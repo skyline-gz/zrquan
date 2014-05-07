@@ -1,0 +1,1 @@
+rails g scaffold Comment content:text user:references commentable:references{polymorphic} comment_type:integer

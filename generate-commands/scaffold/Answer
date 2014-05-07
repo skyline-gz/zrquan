@@ -1,0 +1,1 @@
+rails g scaffold Answer content:text agree_score:integer user:references question:references

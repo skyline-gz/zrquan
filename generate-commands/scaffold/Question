@@ -1,0 +1,1 @@
+rails g scaffold Question title:string content:text theme:references industry:references category:references answer_num:integer mark_flag:boolean user:references

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  agree_score: 1
+  user_id: 
+  question_id: 
+
+two:
+  content: MyText
+  agree_score: 1
+  user_id: 
+  question_id: 
