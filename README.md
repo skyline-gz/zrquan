@@ -9,6 +9,7 @@ http://www.zrquan.com
     bundle install
     rake db:create
     rake db:migrate
+    rails s
 
 # URL
 * http://localhost:3000
