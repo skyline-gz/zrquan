@@ -1,0 +1,31 @@
+<h1>Listing consultant_replies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Consultant subject</th>
+      <th>Reply seq</th>
+      <th>Content</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consultant_replies.each do |consultant_reply| %>
+      <tr>
+        <td><%= consultant_reply.consultant_subject %></td>
+        <td><%= consultant_reply.reply_seq %></td>
+        <td><%= consultant_reply.content %></td>
+        <td><%= consultant_reply.user %></td>
+        <td><%= link_to 'Show', consultant_reply %></td>
+        <td><%= link_to 'Edit', edit_consultant_reply_path(consultant_reply) %></td>
+        <td><%= link_to 'Destroy', consultant_reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Consultant reply', new_consultant_reply_path %>

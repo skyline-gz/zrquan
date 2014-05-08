@@ -1,0 +1,1 @@
+rails g scaffold ConsultantSubject title:string content:text theme:references mentor:references apprentice:references mentor_stat_flag:integer user_stat_flag:integer

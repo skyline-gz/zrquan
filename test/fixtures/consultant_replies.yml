@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consultant_subject_id: 
+  reply_seq: 1
+  content: MyText
+  user_id: 
+
+two:
+  consultant_subject_id: 
+  reply_seq: 1
+  content: MyText
+  user_id: 

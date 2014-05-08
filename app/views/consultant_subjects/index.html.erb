@@ -1,0 +1,37 @@
+<h1>Listing consultant_subjects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Theme</th>
+      <th>Mentor</th>
+      <th>Apprentice</th>
+      <th>Mentor stat flag</th>
+      <th>User stat flag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consultant_subjects.each do |consultant_subject| %>
+      <tr>
+        <td><%= consultant_subject.title %></td>
+        <td><%= consultant_subject.content %></td>
+        <td><%= consultant_subject.theme %></td>
+        <td><%= consultant_subject.mentor %></td>
+        <td><%= consultant_subject.apprentice %></td>
+        <td><%= consultant_subject.mentor_stat_flag %></td>
+        <td><%= consultant_subject.user_stat_flag %></td>
+        <td><%= link_to 'Show', consultant_subject %></td>
+        <td><%= link_to 'Edit', edit_consultant_subject_path(consultant_subject) %></td>
+        <td><%= link_to 'Destroy', consultant_subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Consultant subject', new_consultant_subject_path %>

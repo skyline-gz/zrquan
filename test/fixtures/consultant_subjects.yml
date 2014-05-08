@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyText
+  theme_id: 
+  mentor_id: 
+  apprentice_id: 
+  mentor_stat_flag: 1
+  user_stat_flag: 1
+
+two:
+  title: MyString
+  content: MyText
+  theme_id: 
+  mentor_id: 
+  apprentice_id: 
+  mentor_stat_flag: 1
+  user_stat_flag: 1

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @consultant_subject.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @consultant_subject.content %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @consultant_subject.theme %>
+</p>
+
+<p>
+  <strong>Mentor:</strong>
+  <%= @consultant_subject.mentor %>
+</p>
+
+<p>
+  <strong>Apprentice:</strong>
+  <%= @consultant_subject.apprentice %>
+</p>
+
+<p>
+  <strong>Mentor stat flag:</strong>
+  <%= @consultant_subject.mentor_stat_flag %>
+</p>
+
+<p>
+  <strong>User stat flag:</strong>
+  <%= @consultant_subject.user_stat_flag %>
+</p>
+
+<%= link_to 'Edit', edit_consultant_subject_path(@consultant_subject) %> |
+<%= link_to 'Back', consultant_subjects_path %>

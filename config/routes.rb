@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :consultant_replies
+
+  resources :consultant_subjects
+
+  resources :categories
+
+  resources :industries
+
+  resources :themes
+
   resources :comments
 
   resources :experience_articles
