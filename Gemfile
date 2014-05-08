@@ -43,3 +43,4 @@ gem 'devise'
 gem 'devise-encryptable'
 
 gem 'thin', group: :development
+gem 'china_city'
