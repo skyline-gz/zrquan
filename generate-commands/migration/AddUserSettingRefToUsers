@@ -1,0 +1,1 @@
+rails g migration AddUserSettingRefToUsers user_setting:references

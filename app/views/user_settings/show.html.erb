@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Followed flag:</strong>
+  <%= @user_setting.followed_flag %>
+</p>
+
+<p>
+  <strong>Aggred flag:</strong>
+  <%= @user_setting.aggred_flag %>
+</p>
+
+<p>
+  <strong>Commented flag:</strong>
+  <%= @user_setting.commented_flag %>
+</p>
+
+<p>
+  <strong>Answered flag:</strong>
+  <%= @user_setting.answered_flag %>
+</p>
+
+<p>
+  <strong>Invited flag:</strong>
+  <%= @user_setting.invited_flag %>
+</p>
+
+<p>
+  <strong>Edited flag:</strong>
+  <%= @user_setting.edited_flag %>
+</p>
+
+<p>
+  <strong>Pm flag:</strong>
+  <%= @user_setting.pm_flag %>
+</p>
+
+<%= link_to 'Edit', edit_user_setting_path(@user_setting) %> |
+<%= link_to 'Back', user_settings_path %>

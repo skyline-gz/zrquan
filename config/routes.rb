@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_settings
+
   resources :consultant_replies
 
   resources :consultant_subjects

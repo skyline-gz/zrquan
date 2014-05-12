@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507085023) do
+ActiveRecord::Schema.define(version: 20140508082021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20140507085023) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -40,6 +46,34 @@ ActiveRecord::Schema.define(version: 20140507085023) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "consultant_replies", force: true do |t|
+    t.integer  "consultant_subject_id"
+    t.integer  "reply_seq"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultant_replies", ["consultant_subject_id"], name: "index_consultant_replies_on_consultant_subject_id", using: :btree
+  add_index "consultant_replies", ["user_id"], name: "index_consultant_replies_on_user_id", using: :btree
+
+  create_table "consultant_subjects", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "theme_id"
+    t.integer  "mentor_id"
+    t.integer  "apprentice_id"
+    t.integer  "mentor_stat_flag"
+    t.integer  "user_stat_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultant_subjects", ["apprentice_id"], name: "index_consultant_subjects_on_apprentice_id", using: :btree
+  add_index "consultant_subjects", ["mentor_id"], name: "index_consultant_subjects_on_mentor_id", using: :btree
+  add_index "consultant_subjects", ["theme_id"], name: "index_consultant_subjects_on_theme_id", using: :btree
 
   create_table "experience_articles", force: true do |t|
     t.string   "title"
@@ -58,6 +92,12 @@ ActiveRecord::Schema.define(version: 20140507085023) do
   add_index "experience_articles", ["industry_id"], name: "index_experience_articles_on_industry_id", using: :btree
   add_index "experience_articles", ["theme_id"], name: "index_experience_articles_on_theme_id", using: :btree
   add_index "experience_articles", ["user_id"], name: "index_experience_articles_on_user_id", using: :btree
+
+  create_table "industries", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", force: true do |t|
     t.text     "content"
@@ -86,6 +126,12 @@ ActiveRecord::Schema.define(version: 20140507085023) do
   add_index "questions", ["industry_id"], name: "index_questions_on_industry_id", using: :btree
   add_index "questions", ["theme_id"], name: "index_questions_on_theme_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
+
+  create_table "themes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   has_many:m_consultant_subject, class_name: "ConsultantSubject", foreign_key: "mentor_id"
   has_many:u_consultant_subject, class_name: "ConsultantSubject", foreign_key: "apprentice_id"
   has_many:comments
+  belongs_to:user_setting
 end

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  followed_flag: false
+  aggred_flag: false
+  commented_flag: false
+  answered_flag: false
+  invited_flag: false
+  edited_flag: false
+  pm_flag: false
+
+two:
+  followed_flag: false
+  aggred_flag: false
+  commented_flag: false
+  answered_flag: false
+  invited_flag: false
+  edited_flag: false
+  pm_flag: false

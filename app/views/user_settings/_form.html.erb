@@ -1,0 +1,45 @@
+<%= form_for(@user_setting) do |f| %>
+  <% if @user_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_setting.errors.count, "error") %> prohibited this user_setting from being saved:</h2>
+
+      <ul>
+      <% @user_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :followed_flag %><br>
+    <%= f.check_box :followed_flag %>
+  </div>
+  <div class="field">
+    <%= f.label :aggred_flag %><br>
+    <%= f.check_box :aggred_flag %>
+  </div>
+  <div class="field">
+    <%= f.label :commented_flag %><br>
+    <%= f.check_box :commented_flag %>
+  </div>
+  <div class="field">
+    <%= f.label :answered_flag %><br>
+    <%= f.check_box :answered_flag %>
+  </div>
+  <div class="field">
+    <%= f.label :invited_flag %><br>
+    <%= f.check_box :invited_flag %>
+  </div>
+  <div class="field">
+    <%= f.label :edited_flag %><br>
+    <%= f.check_box :edited_flag %>
+  </div>
+  <div class="field">
+    <%= f.label :pm_flag %><br>
+    <%= f.check_box :pm_flag %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
