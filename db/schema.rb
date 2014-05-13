@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508082021) do
+ActiveRecord::Schema.define(version: 20140512045104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,14 +110,14 @@ ActiveRecord::Schema.define(version: 20140508082021) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "questions", force: true do |t|
-    t.string   "title",       null: false
+    t.string   "title"
     t.text     "content"
-    t.integer  "theme_id",    null: false
+    t.integer  "theme_id"
     t.integer  "industry_id"
     t.integer  "category_id"
     t.integer  "answer_num"
     t.boolean  "mark_flag"
-    t.integer  "user_id",     null: false
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -133,6 +133,18 @@ ActiveRecord::Schema.define(version: 20140508082021) do
     t.datetime "updated_at"
   end
 
+  create_table "user_settings", force: true do |t|
+    t.boolean  "followed_flag"
+    t.boolean  "aggred_flag"
+    t.boolean  "commented_flag"
+    t.boolean  "answered_flag"
+    t.boolean  "invited_flag"
+    t.boolean  "edited_flag"
+    t.boolean  "pm_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -144,11 +156,15 @@ ActiveRecord::Schema.define(version: 20140508082021) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_salt"
-    t.string   "last_name",                           null: false
-    t.string   "first_name",                          null: false
+    t.string   "last_name"
+    t.string   "first_name"
     t.integer  "gender"
     t.integer  "province_id"
     t.integer  "city_id"
@@ -158,15 +174,17 @@ ActiveRecord::Schema.define(version: 20140508082021) do
     t.string   "company"
     t.string   "position"
     t.string   "signature"
-    t.integer  "following",              default: 0,  null: false
-    t.integer  "follower",               default: 0,  null: false
+    t.integer  "following",              default: 0
+    t.integer  "follower",               default: 0
     t.text     "description"
     t.boolean  "mentor_flag"
+    t.integer  "user_setting_id"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["province_id"], name: "index_users_on_province_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["user_setting_id"], name: "index_users_on_user_setting_id", using: :btree
 
 end

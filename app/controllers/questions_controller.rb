@@ -1,9 +1,12 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /questions
   # GET /questions.json
   def index
+    logger.debug(current_user)
+    logger.debug("123")
     @questions = Question.all
   end
 
@@ -24,6 +27,8 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
+    question_params["user_id"] = current_user.id
+    logger.debug(question_params)
     @question = Question.new(question_params)
 
     respond_to do |format|
