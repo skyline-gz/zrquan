@@ -10,14 +10,16 @@ Rails.application.routes.draw do
   resources :industries
 
   resources :themes
-
-  resources :comments
-
-  resources :experience_articles
+ 
+  resources :experience_articles do
+		resources :comments
+	end
 
   resources :messages
 
-  resources :answers
+  resources :answers do
+		resources :comments
+	end
 
   resources :questions
 

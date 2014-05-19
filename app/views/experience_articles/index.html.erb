@@ -25,7 +25,7 @@
         <td><%= experience_article.industry %></td>
         <td><%= experience_article.category %></td>
         <td><%= experience_article.mark_flag %></td>
-        <td><%= experience_article.user %></td>
+        <td><%= experience_article.user.id %></td>
         <td><%= link_to 'Show', experience_article %></td>
         <td><%= link_to 'Edit', edit_experience_article_path(experience_article) %></td>
         <td><%= link_to 'Destroy', experience_article, method: :delete, data: { confirm: 'Are you sure?' } %></td>

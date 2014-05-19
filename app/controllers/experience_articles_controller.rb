@@ -24,7 +24,7 @@ class ExperienceArticlesController < ApplicationController
   # POST /experience_articles
   # POST /experience_articles.json
   def create
-    @experience_article = ExperienceArticle.new(experience_article_params)
+    @experience_article = current_user.experience_articles.new(experience_article_params)
 
     respond_to do |format|
       if @experience_article.save

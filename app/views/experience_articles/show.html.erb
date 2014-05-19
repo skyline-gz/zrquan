@@ -37,8 +37,22 @@
 
 <p>
   <strong>User:</strong>
-  <%= @experience_article.user %>
+  <%= @experience_article.user.id %>
 </p>
 
 <%= link_to 'Edit', edit_experience_article_path(@experience_article) %> |
 <%= link_to 'Back', experience_articles_path %>
+
+<h2>Comments</h2>
+<%= render @experience_article.comments %>
+
+<h2>Add a comment:</h2>
+<%= form_for([@experience_article, @experience_article.comments.build]) do |f| %>  
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

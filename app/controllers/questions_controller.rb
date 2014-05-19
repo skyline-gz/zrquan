@@ -13,6 +13,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+		#@user = User.find(params[:id])
+		#@questions = @user.questions
   end
 
   # GET /questions/new
@@ -27,9 +29,8 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    question_params["user_id"] = current_user.id
     logger.debug(question_params)
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
 
     respond_to do |format|
       if @question.save
