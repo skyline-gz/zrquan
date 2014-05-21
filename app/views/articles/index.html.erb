@@ -1,0 +1,39 @@
+<h1>Listing articles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Agree score</th>
+      <th>Theme</th>
+      <th>Industry</th>
+      <th>Category</th>
+      <th>Mark flag</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.content %></td>
+        <td><%= article.agree_score %></td>
+        <td><%= article.theme %></td>
+        <td><%= article.industry %></td>
+        <td><%= article.category %></td>
+        <td><%= article.mark_flag %></td>
+        <td><%= article.user.id %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>

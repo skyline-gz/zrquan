@@ -42,3 +42,17 @@
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
+
+<h2>Answers</h2>
+<%= render @question.answers %>
+
+<h2>Add an answer:</h2>
+<%= form_for([@question, @question.answers.build]) do |f| %>
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

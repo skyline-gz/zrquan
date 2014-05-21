@@ -1,6 +1,6 @@
-class CreateExperienceArticles < ActiveRecord::Migration
+class CreateArticles < ActiveRecord::Migration
   def change
-    create_table :experience_articles do |t|
+    create_table :articles do |t|
       t.string :title
       t.text :content
       t.integer :agree_score

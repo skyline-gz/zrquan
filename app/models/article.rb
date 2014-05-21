@@ -1,4 +1,4 @@
-class ExperienceArticle < ActiveRecord::Base
+class Article < ActiveRecord::Base
   belongs_to :theme
   belongs_to :industry
   belongs_to :category

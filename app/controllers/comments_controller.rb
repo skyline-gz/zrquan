@@ -24,17 +24,17 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-		if params[:experience_article_id] != nil
+		if params[:article_id] != nil
 			#logger.debug(comment_params)
-			#logger.debug("experience_article_id:" + params[:experience_article_id])
+			#logger.debug("article_id:" + params[:article_id])
 		  @comment = current_user.comments.new(comment_params)
-			@comment.commentable_id = params[:experience_article_id]
-			@comment.commentable_type = "ExperienceArticle"
+			@comment.commentable_id = params[:article_id]
+			@comment.commentable_type = "Article"
 
-			@expArticle = ExperienceArticle.find(params[:experience_article_id])
+			@article = Article.find(params[:article_id])
 		  respond_to do |format|
 		    if @comment.save
-		      format.html { redirect_to experience_article_path(@expArticle), notice: 'Comment was successfully created.' }
+		      format.html { redirect_to article_path(@article), notice: 'Comment was successfully created.' }
 		      #format.json { render :show, status: :created, location: @comment }
 		    else
 		      #format.html { render :new }
@@ -42,7 +42,20 @@ class CommentsController < ApplicationController
 		    end
 		  end
 		elsif params[:answer_id] != nil
+			@comment = current_user.comments.new(comment_params)
+			@comment.commentable_id = params[:answer_id]
+			@comment.commentable_type = "Answer"
 
+			@answer = Answer.find(params[:answer_id])
+			respond_to do |format|
+		    if @comment.save
+		      format.html { redirect_to answer_path(@answer), notice: 'Comment was successfully created.' }
+		      #format.json { render :show, status: :created, location: @comment }
+		    else
+		      #format.html { render :new }
+		      #format.json { render json: @comment.errors, status: :unprocessable_entity }
+		    end
+		  end
 		else
 			#TODO something is wrong
 		end

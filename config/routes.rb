@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :themes
  
-  resources :experience_articles do
+  resources :articles do
 		resources :comments
 	end
 
