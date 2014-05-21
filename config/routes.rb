@@ -17,11 +17,13 @@ Rails.application.routes.draw do
 
   resources :messages
 
-  resources :answers do
-		resources :comments
+  resources :questions do
+		resources :answers
 	end
 
-  resources :questions
+	resources :answers do
+		resources :comments
+	end
 
   devise_for :users
 

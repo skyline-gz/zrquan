@@ -24,17 +24,28 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = current_user.comments.new(comment_params)
+		if params[:experience_article_id] != nil
+			#logger.debug(comment_params)
+			#logger.debug("experience_article_id:" + params[:experience_article_id])
+		  @comment = current_user.comments.new(comment_params)
+			@comment.commentable_id = params[:experience_article_id]
+			@comment.commentable_type = "ExperienceArticle"
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+			@expArticle = ExperienceArticle.find(params[:experience_article_id])
+		  respond_to do |format|
+		    if @comment.save
+		      format.html { redirect_to experience_article_path(@expArticle), notice: 'Comment was successfully created.' }
+		      #format.json { render :show, status: :created, location: @comment }
+		    else
+		      #format.html { render :new }
+		      #format.json { render json: @comment.errors, status: :unprocessable_entity }
+		    end
+		  end
+		elsif params[:answer_id] != nil
+
+		else
+			#TODO something is wrong
+		end
   end
 
   # PATCH/PUT /comments/1
@@ -69,6 +80,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type, :comment_type)
+      params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type)
     end
 end
