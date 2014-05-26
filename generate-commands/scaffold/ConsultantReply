@@ -1,1 +1,0 @@
-rails g scaffold ConsultantReply consultant_subject:references reply_seq:integer content:text user:references

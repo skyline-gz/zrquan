@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :user_settings
 
-  resources :consultant_subjects do
-	  resources :consultant_replies		
+  resources :consult_subjects do
+	  resources :consult_replies		
 	end
  
   resources :articles do

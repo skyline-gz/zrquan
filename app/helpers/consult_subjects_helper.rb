@@ -1,0 +1,2 @@
+module ConsultSubjectsHelper
+end

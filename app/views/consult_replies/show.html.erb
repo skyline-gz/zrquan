@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Consult subject:</strong>
+  <%= @consult_reply.consult_subject %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @consult_reply.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @consult_reply.user %>
+</p>
+
+<%= link_to 'Edit', edit_consult_reply_path(@consult_reply) %> |
+<%= link_to 'Back', consult_replies_path %>
