@@ -1,0 +1,1 @@
+rails g model Bookmark question:references user:references

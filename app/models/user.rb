@@ -14,5 +14,6 @@ class User < ActiveRecord::Base
   has_many:comments
 	has_many:private_messages
 	has_many:invited_questions, class_name: "Question", through: :invitations, foreign_key: "mentor_id"
+	has_many:bookmark_questions, class_name: "Question", through: :bookmarks
   belongs_to:user_setting
 end
