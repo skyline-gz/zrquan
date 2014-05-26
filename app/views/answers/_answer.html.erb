@@ -9,7 +9,7 @@
 </p>
 
 <h2>Comments</h2>
-<%= render answer.comments %>
+<%= render answer.comments.order("id") %>
 
 <h2>Add an comment for this answer:</h2>
 <%= form_for([answer, answer.comments.build]) do |f| %>

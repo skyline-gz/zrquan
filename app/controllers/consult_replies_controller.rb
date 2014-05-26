@@ -24,11 +24,13 @@ class ConsultRepliesController < ApplicationController
   # POST /consult_replies
   # POST /consult_replies.json
   def create
-    @consult_reply = ConsultReply.new(consult_reply_params)
+    @consult_reply = current_user.consult_replies.build(consult_reply_params)
+		@consult_reply.consult_subject_id = params[:consult_subject_id]
 
+		@consult_subject = ConsultSubject.find(params[:consult_subject_id])
     respond_to do |format|
       if @consult_reply.save
-        format.html { redirect_to @consult_reply, notice: 'Consult reply was successfully created.' }
+        format.html { redirect_to consult_subject_path(@consult_subject), notice: 'Consult reply was successfully created.' }
         format.json { render :show, status: :created, location: @consult_reply }
       else
         format.html { render :new }

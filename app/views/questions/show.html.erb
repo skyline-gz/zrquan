@@ -44,7 +44,7 @@
 <%= link_to 'Back', questions_path %>
 
 <h2>Answers</h2>
-<%= render @question.answers %>
+<%= render @question.answers.order("id") %>
 
 <h2>Add an answer:</h2>
 <%= form_for([@question, @question.answers.build]) do |f| %>

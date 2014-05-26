@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526074656) do
+ActiveRecord::Schema.define(version: 20140526085332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,19 +64,18 @@ ActiveRecord::Schema.define(version: 20140526074656) do
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "consultant_replies", force: true do |t|
-    t.integer  "consultant_subject_id"
-    t.integer  "reply_seq"
+  create_table "consult_replies", force: true do |t|
+    t.integer  "consult_subject_id"
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "consultant_replies", ["consultant_subject_id"], name: "index_consultant_replies_on_consultant_subject_id", using: :btree
-  add_index "consultant_replies", ["user_id"], name: "index_consultant_replies_on_user_id", using: :btree
+  add_index "consult_replies", ["consult_subject_id"], name: "index_consult_replies_on_consult_subject_id", using: :btree
+  add_index "consult_replies", ["user_id"], name: "index_consult_replies_on_user_id", using: :btree
 
-  create_table "consultant_subjects", force: true do |t|
+  create_table "consult_subjects", force: true do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "theme_id"
@@ -88,9 +87,9 @@ ActiveRecord::Schema.define(version: 20140526074656) do
     t.datetime "updated_at"
   end
 
-  add_index "consultant_subjects", ["apprentice_id"], name: "index_consultant_subjects_on_apprentice_id", using: :btree
-  add_index "consultant_subjects", ["mentor_id"], name: "index_consultant_subjects_on_mentor_id", using: :btree
-  add_index "consultant_subjects", ["theme_id"], name: "index_consultant_subjects_on_theme_id", using: :btree
+  add_index "consult_subjects", ["apprentice_id"], name: "index_consult_subjects_on_apprentice_id", using: :btree
+  add_index "consult_subjects", ["mentor_id"], name: "index_consult_subjects_on_mentor_id", using: :btree
+  add_index "consult_subjects", ["theme_id"], name: "index_consult_subjects_on_theme_id", using: :btree
 
   create_table "industries", force: true do |t|
     t.string   "name"
