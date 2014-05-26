@@ -1,1 +1,0 @@
-rails g migration CreateUserPm user1:references user2:references pm:references
