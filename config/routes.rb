@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
+  resources :private_messages
+
   resources :user_settings
 
-  resources :consultant_replies
-
-  resources :consultant_subjects
-
-  resources :categories
-
-  resources :industries
-
-  resources :themes
+  resources :consultant_subjects do
+	  resources :consultant_replies		
+	end
  
   resources :articles do
 		resources :comments

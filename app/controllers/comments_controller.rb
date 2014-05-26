@@ -47,9 +47,10 @@ class CommentsController < ApplicationController
 			@comment.commentable_type = "Answer"
 
 			@answer = Answer.find(params[:answer_id])
+			@question = @answer.question
 			respond_to do |format|
 		    if @comment.save
-		      format.html { redirect_to answer_path(@answer), notice: 'Comment was successfully created.' }
+		      format.html { redirect_to question_path(@question), notice: 'Comment was successfully created.' }
 		      #format.json { render :show, status: :created, location: @comment }
 		    else
 		      #format.html { render :new }

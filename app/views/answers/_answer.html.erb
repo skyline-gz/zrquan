@@ -7,3 +7,19 @@
   <strong>Answer:</strong>
   <%= answer.content %>
 </p>
+
+<h2>Comments</h2>
+<%= render answer.comments %>
+
+<h2>Add an comment for this answer:</h2>
+<%= form_for([answer, answer.comments.build]) do |f| %>
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+

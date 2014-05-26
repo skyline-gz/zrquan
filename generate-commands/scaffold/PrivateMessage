@@ -1,0 +1,1 @@
+rails g scaffold PrivateMessage content:text user1:references user2:references send_class:integer read_flag:boolean

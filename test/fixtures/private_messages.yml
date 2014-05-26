@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  user1_id: 
+  user2_id: 
+  send_class: 1
+  read_flag: false
+
+two:
+  content: MyText
+  user1_id: 
+  user2_id: 
+  send_class: 1
+  read_flag: false

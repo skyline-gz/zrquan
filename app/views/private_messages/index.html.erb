@@ -1,0 +1,33 @@
+<h1>Listing private_messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>User1</th>
+      <th>User2</th>
+      <th>Send class</th>
+      <th>Read flag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @private_messages.each do |private_message| %>
+      <tr>
+        <td><%= private_message.content %></td>
+        <td><%= private_message.user1 %></td>
+        <td><%= private_message.user2 %></td>
+        <td><%= private_message.send_class %></td>
+        <td><%= private_message.read_flag %></td>
+        <td><%= link_to 'Show', private_message %></td>
+        <td><%= link_to 'Edit', edit_private_message_path(private_message) %></td>
+        <td><%= link_to 'Destroy', private_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Private message', new_private_message_path %>
