@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+#source 'https://ruby.taobao.org/'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -43,4 +44,5 @@ gem 'devise'
 gem 'devise-encryptable'
 
 gem 'thin', group: :development
+gem 'rails_kindeditor'
 gem 'china_city'

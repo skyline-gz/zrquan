@@ -53,13 +53,13 @@ class PrivateMessagesController < ApplicationController
 
   # DELETE /private_messages/1
   # DELETE /private_messages/1.json
-  def destroy
-    @private_message.destroy
-    respond_to do |format|
-      format.html { redirect_to private_messages_url, notice: 'Private message was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+  #  @private_message.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to private_messages_url, notice: 'Private message was successfully destroyed.' }
+  #    format.json { head :no_content }
+  #  end
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.

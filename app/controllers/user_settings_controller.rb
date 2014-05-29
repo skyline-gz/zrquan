@@ -3,9 +3,9 @@ class UserSettingsController < ApplicationController
 
   # GET /user_settings
   # GET /user_settings.json
-  def index
-    @user_settings = UserSetting.all
-  end
+  #def index
+  #  @user_settings = UserSetting.all
+  #end
 
   # GET /user_settings/1
   # GET /user_settings/1.json
@@ -13,9 +13,9 @@ class UserSettingsController < ApplicationController
   end
 
   # GET /user_settings/new
-  def new
-    @user_setting = UserSetting.new
-  end
+  #def new
+  #  @user_setting = UserSetting.new
+  #end
 
   # GET /user_settings/1/edit
   def edit
@@ -23,19 +23,19 @@ class UserSettingsController < ApplicationController
 
   # POST /user_settings
   # POST /user_settings.json
-  def create
-    @user_setting = UserSetting.new(user_setting_params)
+  #def create
+  #  @user_setting = UserSetting.new(user_setting_params)
 
-    respond_to do |format|
-      if @user_setting.save
-        format.html { redirect_to @user_setting, notice: 'User setting was successfully created.' }
-        format.json { render :show, status: :created, location: @user_setting }
-      else
-        format.html { render :new }
-        format.json { render json: @user_setting.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #  respond_to do |format|
+  #    if @user_setting.save
+  #      format.html { redirect_to @user_setting, notice: 'User setting was successfully created.' }
+  #      format.json { render :show, status: :created, location: @user_setting }
+  #    else
+  #      format.html { render :new }
+  #      format.json { render json: @user_setting.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   # PATCH/PUT /user_settings/1
   # PATCH/PUT /user_settings/1.json
@@ -53,13 +53,13 @@ class UserSettingsController < ApplicationController
 
   # DELETE /user_settings/1
   # DELETE /user_settings/1.json
-  def destroy
-    @user_setting.destroy
-    respond_to do |format|
-      format.html { redirect_to user_settings_url, notice: 'User setting was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+  #  @user_setting.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to user_settings_url, notice: 'User setting was successfully destroyed.' }
+  #    format.json { head :no_content }
+  #  end
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.

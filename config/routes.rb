@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :private_messages, except: :destroy
 
-  resources :user_settings, except: :destroy
+  resources :user_settings, only: [:edit, :update, :show]
 
   resources :consult_subjects, except: :destroy do
 	  resources :consult_replies, except: :destroy		
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 		resources :comments, except: :destroy
 	end
 
-  resources :messages
+  resources :messages, except: [:destroy, :edit, :update]
 
   resources :questions, except: :destroy do
 		resources :answers, except: :destroy

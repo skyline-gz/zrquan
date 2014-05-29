@@ -55,13 +55,13 @@ class ConsultRepliesController < ApplicationController
 
   # DELETE /consult_replies/1
   # DELETE /consult_replies/1.json
-  def destroy
-    @consult_reply.destroy
-    respond_to do |format|
-      format.html { redirect_to consult_replies_url, notice: 'Consult reply was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+  #  @consult_reply.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to consult_replies_url, notice: 'Consult reply was successfully destroyed.' }
+  #    format.json { head :no_content }
+  #  end
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
