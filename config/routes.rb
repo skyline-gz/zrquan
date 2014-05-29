@@ -1,29 +1,29 @@
 Rails.application.routes.draw do
-  resources :private_messages
+  resources :private_messages, except: :destroy
 
-  resources :user_settings
+  resources :user_settings, except: :destroy
 
-  resources :consult_subjects do
-	  resources :consult_replies		
+  resources :consult_subjects, except: :destroy do
+	  resources :consult_replies, except: :destroy		
 	end
  
   resources :articles do
-		resources :comments
+		resources :comments, except: :destroy
 	end
 
   resources :messages
 
-  resources :questions do
-		resources :answers
+  resources :questions, except: :destroy do
+		resources :answers, except: :destroy
 	end
 
 	resources :answers do
-		resources :comments
+		resources :comments, except: :destroy
 	end
 
   devise_for :users
 
-  resources :users
+  resources :users, except: :destroy
 
   root 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
