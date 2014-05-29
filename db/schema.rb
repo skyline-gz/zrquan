@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526085332) do
+ActiveRecord::Schema.define(version: 20140526111433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20140526085332) do
   add_index "articles", ["industry_id"], name: "index_articles_on_industry_id", using: :btree
   add_index "articles", ["theme_id"], name: "index_articles_on_theme_id", using: :btree
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
+
+  create_table "bookmarks", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bookmarks", ["question_id"], name: "index_bookmarks_on_question_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -97,6 +107,16 @@ ActiveRecord::Schema.define(version: 20140526085332) do
     t.datetime "updated_at"
   end
 
+  create_table "invitations", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "mentor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["mentor_id"], name: "index_invitations_on_mentor_id", using: :btree
+  add_index "invitations", ["question_id"], name: "index_invitations_on_question_id", using: :btree
+
   create_table "messages", force: true do |t|
     t.text     "content"
     t.integer  "type"
@@ -137,6 +157,16 @@ ActiveRecord::Schema.define(version: 20140526085332) do
   add_index "questions", ["industry_id"], name: "index_questions_on_industry_id", using: :btree
   add_index "questions", ["theme_id"], name: "index_questions_on_theme_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
+
+  create_table "relationships", force: true do |t|
+    t.integer  "following_user_id"
+    t.integer  "follower_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+  add_index "relationships", ["following_user_id"], name: "index_relationships_on_following_user_id", using: :btree
 
   create_table "themes", force: true do |t|
     t.string   "name"

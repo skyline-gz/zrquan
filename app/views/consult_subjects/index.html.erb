@@ -24,8 +24,8 @@
         <td><%= consult_subject.apprentice %></td>
         <td><%= consult_subject.mentor_stat_flag %></td>
         <td><%= consult_subject.user_stat_flag %></td>
-        <td><%= link_to 'Show', consult_subject %></td>
-        <td><%= link_to 'Edit', edit_consult_subject_path(consult_subject) %></td>
+        <td><%= link_to 'Show', consult_subject, 'data-no-turbolink' => true %></td>
+        <td><%= link_to 'Edit', edit_consult_subject_path(consult_subject), 'data-no-turbolink' => true %></td>
         <td><%= link_to 'Destroy', consult_subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Consult subject', new_consult_subject_path %>
+<%= link_to 'New Consult subject', new_consult_subject_path, 'data-no-turbolink' => true %>

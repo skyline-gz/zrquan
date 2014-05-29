@@ -40,7 +40,7 @@
   <%= @question.user.id %>
 </p>
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Edit', edit_question_path(@question), 'data-no-turbolink' => true %> |
 <%= link_to 'Back', questions_path %>
 
 <h2>Answers</h2>

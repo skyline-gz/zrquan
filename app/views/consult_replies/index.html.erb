@@ -17,7 +17,7 @@
         <td><%= consult_reply.content %></td>
         <td><%= consult_reply.user %></td>
         <td><%= link_to 'Show', consult_reply %></td>
-        <td><%= link_to 'Edit', edit_consult_reply_path(consult_reply) %></td>
+        <td><%= link_to 'Edit', edit_consult_reply_path(consult_reply), 'data-no-turbolink' => true %></td>
         <td><%= link_to 'Destroy', consult_reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Consult reply', new_consult_reply_path %>
+<%= link_to 'New Consult reply', new_consult_reply_path, 'data-no-turbolink' => true %>

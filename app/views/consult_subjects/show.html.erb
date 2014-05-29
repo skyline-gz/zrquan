@@ -35,7 +35,7 @@
   <%= @consult_subject.user_stat_flag %>
 </p>
 
-<%= link_to 'Edit', edit_consult_subject_path(@consult_subject) %> |
+<%= link_to 'Edit', edit_consult_subject_path(@consult_subject), 'data-no-turbolink' => true %> |
 <%= link_to 'Back', consult_subjects_path %>
 
 <h2>Replies</h2>
@@ -45,7 +45,7 @@
 <%= form_for([@consult_subject, @consult_subject.consult_replies.build]) do |f| %>
   <p>
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%= f.kindeditor :content, :items => ['fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'image', 'insertfile'] %>
   </p>
   <p>
     <%= f.submit %>
