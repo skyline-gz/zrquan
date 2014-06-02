@@ -1,0 +1,7 @@
+<h1>Home</h1>
+
+<%= form_tag({controller: "home", action: "search"}, method: "get") do %>
+	<%= label_tag(:search, "Search for:") %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag("Search") %>
+<% end %>

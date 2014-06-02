@@ -1,4 +1,8 @@
 class Question < ActiveRecord::Base
+	searchable do
+		text :title, :content
+	end
+
   belongs_to :theme
   belongs_to :industry
   belongs_to :category

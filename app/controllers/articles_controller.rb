@@ -25,6 +25,11 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = current_user.articles.new(article_params)
+		if params[:commit] == "Create"
+			@article.draft_flag = false
+		elsif params[:commit] == "Draft"
+			@article.draft_flag = true
+		end
 
     respond_to do |format|
       if @article.save

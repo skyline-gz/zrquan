@@ -1,0 +1,21 @@
+<h1>Search Result:</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>User</th>      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search.results.each do |r| %>
+      <tr>
+        <td><%= r.title %></td>
+        <td><%= r.content %></td>
+        <td><%= r.user.email %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
