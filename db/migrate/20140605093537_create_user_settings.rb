@@ -6,6 +6,7 @@ class CreateUserSettings < ActiveRecord::Migration
       t.boolean :commented_flag
       t.boolean :answer_flag
       t.boolean :pm_flag
+			t.references :user, index: true
 
       t.timestamps
     end

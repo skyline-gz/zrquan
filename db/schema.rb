@@ -181,9 +181,12 @@ ActiveRecord::Schema.define(version: 20140605093537) do
     t.boolean  "commented_flag"
     t.boolean  "answer_flag"
     t.boolean  "pm_flag"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_settings", ["user_id"], name: "index_user_settings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -218,13 +221,11 @@ ActiveRecord::Schema.define(version: 20140605093537) do
     t.integer  "follower",               default: 0
     t.text     "description"
     t.boolean  "mentor_flag"
-    t.integer  "user_setting_id"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["province_id"], name: "index_users_on_province_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["user_setting_id"], name: "index_users_on_user_setting_id", using: :btree
 
 end

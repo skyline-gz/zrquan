@@ -17,5 +17,5 @@ class User < ActiveRecord::Base
 	has_many:bookmark_questions, class_name: "Question", through: :bookmarks
 	has_many:following_users, class_name: "User", through: :relationships, foreign_key: "following_user_id"
 	has_many:follower, class_name: "User", through: :relationships, foreign_key: "follower_id"
-  belongs_to:user_setting
+  has_one:user_setting
 end
