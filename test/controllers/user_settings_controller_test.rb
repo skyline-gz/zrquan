@@ -18,7 +18,7 @@ class UserSettingsControllerTest < ActionController::TestCase
 
   test "should create user_setting" do
     assert_difference('UserSetting.count') do
-      post :create, user_setting: { aggred_flag: @user_setting.aggred_flag, answered_flag: @user_setting.answered_flag, commented_flag: @user_setting.commented_flag, edited_flag: @user_setting.edited_flag, followed_flag: @user_setting.followed_flag, invited_flag: @user_setting.invited_flag, pm_flag: @user_setting.pm_flag }
+      post :create, user_setting: { aggred_flag: @user_setting.aggred_flag, answer_flag: @user_setting.answer_flag, commented_flag: @user_setting.commented_flag, followed_flag: @user_setting.followed_flag, pm_flag: @user_setting.pm_flag }
     end
 
     assert_redirected_to user_setting_path(assigns(:user_setting))
@@ -35,7 +35,7 @@ class UserSettingsControllerTest < ActionController::TestCase
   end
 
   test "should update user_setting" do
-    patch :update, id: @user_setting, user_setting: { aggred_flag: @user_setting.aggred_flag, answered_flag: @user_setting.answered_flag, commented_flag: @user_setting.commented_flag, edited_flag: @user_setting.edited_flag, followed_flag: @user_setting.followed_flag, invited_flag: @user_setting.invited_flag, pm_flag: @user_setting.pm_flag }
+    patch :update, id: @user_setting, user_setting: { aggred_flag: @user_setting.aggred_flag, answer_flag: @user_setting.answer_flag, commented_flag: @user_setting.commented_flag, followed_flag: @user_setting.followed_flag, pm_flag: @user_setting.pm_flag }
     assert_redirected_to user_setting_path(assigns(:user_setting))
   end
 

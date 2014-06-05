@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530065633) do
+ActiveRecord::Schema.define(version: 20140605093537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,9 +179,7 @@ ActiveRecord::Schema.define(version: 20140530065633) do
     t.boolean  "followed_flag"
     t.boolean  "aggred_flag"
     t.boolean  "commented_flag"
-    t.boolean  "answered_flag"
-    t.boolean  "invited_flag"
-    t.boolean  "edited_flag"
+    t.boolean  "answer_flag"
     t.boolean  "pm_flag"
     t.datetime "created_at"
     t.datetime "updated_at"

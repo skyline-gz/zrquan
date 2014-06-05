@@ -1,1 +1,1 @@
-rails g scaffold UserSetting followed_flag:boolean aggred_flag:boolean commented_flag:boolean answered_flag:boolean invited_flag:boolean edited_flag:boolean pm_flag:boolean
+rails g scaffold UserSetting followed_flag:boolean aggred_flag:boolean commented_flag:boolean answer_flag:boolean pm_flag:boolean

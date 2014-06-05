@@ -44,9 +44,16 @@ gem 'devise'
 gem 'devise-encryptable'
 
 gem 'thin', group: :development
+
+# rich-content editor
 gem 'rails_kindeditor'
+
+# city lists
 gem 'china_city'
 
 # search engine
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+
+# messaging
+gem 'faye'
