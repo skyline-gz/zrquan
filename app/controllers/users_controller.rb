@@ -29,20 +29,25 @@ class UsersController < ApplicationController
     logger.debug(user_params)
     @user = User.new(user_params)
 
-		# create the user_setting for this user 
-		@user_setting =	@user.user_setting.new
-		logger.debug(@user_setting)
-		@user_setting.followed_flag = true
-		@user_setting.aggred_flag = true
-		@user_setting.commented_flag = true
-		@user_setting.answer_flag = true
-		@user_setting.pm_flag = true
-
     respond_to do |format|
       if @user.save
-				@user_setting.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+				# create default user_setting for this user 
+				@user_setting =	UserSetting.new
+				logger.debug(@user_setting)
+				@user_setting.followed_flag = true
+				@user_setting.aggred_flag = true
+				@user_setting.commented_flag = true
+				@user_setting.answer_flag = true
+				@user_setting.pm_flag = true
+				@user_setting.user_id = @user.id
+				if @user_setting.save
+					#	logger.debug("user setting save ok.")
+					#else
+					#	logger.debug("user setting save failed.")
+					#end
+			    format.html { redirect_to @user, notice: 'User was successfully created.' }
+			    format.json { render :show, status: :created, location: @user }
+				end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
