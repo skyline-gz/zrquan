@@ -23,9 +23,9 @@ Rails.application.routes.draw do
 		resources :comments, except: :destroy
 	end
 
-  devise_for :users
+  devise_for :users, controllers:{registrations: "users/registrations"}
 
-  resources :users, except: :destroy
+  resources :users, except: [:destroy, :create]
 	
 	get '/home/search'
 

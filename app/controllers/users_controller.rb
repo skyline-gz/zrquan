@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+		logger.debug("start index")
     @users = User.all
   end
 
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+		logger.debug("start new")
     @user = User.new
   end
 
@@ -28,12 +30,13 @@ class UsersController < ApplicationController
   def create
     logger.debug(user_params)
     @user = User.new(user_params)
+		logger.debug("start create")
 
     respond_to do |format|
       if @user.save
 				# create default user_setting for this user 
 				@user_setting =	UserSetting.new
-				logger.debug(@user_setting)
+				logger.debug("user saved")
 				@user_setting.followed_flag = true
 				@user_setting.aggred_flag = true
 				@user_setting.commented_flag = true
@@ -41,6 +44,7 @@ class UsersController < ApplicationController
 				@user_setting.pm_flag = true
 				@user_setting.user_id = @user.id
 				if @user_setting.save
+					logger.debug("user_setting saved")
 					#	logger.debug("user setting save ok.")
 					#else
 					#	logger.debug("user setting save failed.")
