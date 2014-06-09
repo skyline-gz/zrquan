@@ -1,1 +1,1 @@
-rails g scaffold Message content:text type:integer user:references
+rails g scaffold Message content:text msg_type:integer user:references

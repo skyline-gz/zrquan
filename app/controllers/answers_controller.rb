@@ -28,29 +28,52 @@ class AnswersController < ApplicationController
 		@answer.question_id = params[:question_id]
 
 		@question = Question.find(params[:question_id])
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to question_path(@question), notice: 'Answer was successfully created.' }
-        #format.json { render :show, status: :created, location: @answer }
-      else
-        #format.html { render :new }
-        #format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
-    end
+    begin
+			ActiveRecord::Base.transaction do
+				@answer.save!
+				if current_user.user_setting.answer_flag == true
+					msg_content = "New answer for your question: " + @question.title + "."
+					create_message(msg_content, 1)
+					# TODO publish to faye
+				end
+			end
+			respond_to do |format|
+		    format.html { redirect_to question_path(@question), notice: 'Answer was successfully created.' }
+		    format.json { render :show, status: :created, location: @answer }
+			end
+		rescue => e    
+			respond_to do |format|
+		    format.html { render :new }
+		    #format.json { render json: @answer.errors, status: :unprocessable_entity }		
+		  end
+		end
   end
 
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   def update
-    respond_to do |format|
-      if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @answer }
-      else
-        format.html { render :edit }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
-    end
+		@question = Question.find(@answer.question_id)
+		begin
+			ActiveRecord::Base.transaction do
+				# update answers
+				@answer.update_attributes!(answer_params)
+				# create message
+				if current_user.user_setting.answer_flag == true
+					msg_content = "Answer for your question: " + @question.title + " has been updated."
+					create_message(msg_content, 1)
+					# TODO publish to faye
+				end
+			end
+		  respond_to do |format|
+		    format.html { redirect_to question_path(@question), notice: 'Answer was successfully updated.' }
+		    format.json { render :show, status: :ok, location: @answer }
+			end
+		rescue => e
+		  respond_to do |format|
+		    format.html { render :edit }
+		    format.json { render json: @answer.errors, status: :unprocessable_entity }
+		  end
+		end
   end
 
   # DELETE /answers/1
@@ -73,4 +96,12 @@ class AnswersController < ApplicationController
     def answer_params
       params.require(:answer).permit(:content, :agree_score, :user_id, :question_id)
     end
+
+		def create_message(content, msg_type)
+			@message = Message.new
+			@message.content = content
+			@message.msg_type = msg_type 	#fake type
+			@message.user_id = @question.user_id
+			@message.save!
+		end
 end

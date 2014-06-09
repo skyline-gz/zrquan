@@ -6,13 +6,13 @@
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @message.type %>
+  <strong>Msg type:</strong>
+  <%= @message.msg_type %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @message.user %>
+  <%= @message.user.email %>
 </p>
 
 <%= link_to 'Edit', edit_message_path(@message) %> |

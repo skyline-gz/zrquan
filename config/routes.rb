@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages
+
   resources :user_settings
 
   resources :private_messages, except: :destroy

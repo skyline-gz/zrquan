@@ -7,6 +7,7 @@
   <strong>Answer:</strong>
   <%= answer.content %>
 </p>
+<%= link_to 'Edit', edit_answer_path(answer) %>
 
 <h2>Comments</h2>
 <%= render answer.comments.order("id") %>
