@@ -1,5 +1,6 @@
 class ConsultSubjectsController < ApplicationController
   before_action :set_consult_subject, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /consult_subjects
   # GET /consult_subjects.json
@@ -14,7 +15,13 @@ class ConsultSubjectsController < ApplicationController
 
   # GET /consult_subjects/new
   def new
+		logger.debug("invoked consult_subjects new method.")
     @consult_subject = ConsultSubject.new
+		@mentor = @consult_subject.build_mentor
+		@mentor.first_name = params[:first_name]
+		@mentor.last_name = params[:last_name]	
+		@mentor.id = params[:id]
+		logger.debug(@mentor.id)
   end
 
   # GET /consult_subjects/1/edit
@@ -24,12 +31,14 @@ class ConsultSubjectsController < ApplicationController
   # POST /consult_subjects
   # POST /consult_subjects.json
   def create
+		logger.debug("invoked consult_subjects create method.")
+		logger.debug(mentor_params[:mentor_attributes])
     @consult_subject = ConsultSubject.new(consult_subject_params)
-		logger.debug("params:" + consult_subject_params)
+		logger.debug(consult_subject_params)
 		@consult_subject.apprentice_id = current_user.id
+		@consult_subject.mentor_id = mentor_params[:mentor_attributes][:id]
 		@consult_subject.mentor_stat_flag = 1		# applying
 		@consult_subject.user_stat_flag = 1			# applying
-
 
     respond_to do |format|
       if @consult_subject.save
@@ -74,6 +83,10 @@ class ConsultSubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consult_subject_params
-      params.require(:consult_subject).permit(:title, :content, :theme_id, :mentor)
+      params.require(:consult_subject).permit(:title, :content, :theme_id)
+    end
+
+		def mentor_params
+      params.require(:consult_subject).permit(mentor_attributes:[:id])
     end
 end

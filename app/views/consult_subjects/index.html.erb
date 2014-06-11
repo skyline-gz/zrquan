@@ -20,8 +20,8 @@
         <td><%= consult_subject.title %></td>
         <td><%= consult_subject.content %></td>
         <td><%= consult_subject.theme %></td>
-        <td><%= consult_subject.mentor %></td>
-        <td><%= consult_subject.apprentice %></td>
+        <td><%= consult_subject.mentor.email %></td>
+        <td><%= consult_subject.apprentice.email %></td>
         <td><%= consult_subject.mentor_stat_flag %></td>
         <td><%= consult_subject.user_stat_flag %></td>
         <td><%= link_to 'Show', consult_subject, 'data-no-turbolink' => true %></td>
