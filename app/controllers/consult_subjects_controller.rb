@@ -1,5 +1,5 @@
 class ConsultSubjectsController < ApplicationController
-  before_action :set_consult_subject, only: [:show, :edit, :update, :destroy]
+  before_action :set_consult_subject, only: [:show, :edit, :update, :destroy, :accept]
   before_action :authenticate_user!
 
   # GET /consult_subjects
@@ -40,15 +40,22 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.mentor_stat_flag = 1		# applying
 		@consult_subject.user_stat_flag = 1			# applying
 
-    respond_to do |format|
-      if @consult_subject.save
-        format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully created.' }
-        format.json { render :show, status: :created, location: @consult_subject }
-      else
-        format.html { render :new }
+		begin
+			ActiveRecord::Base.transaction do
+				@consult_subject.save!
+				msg_content = "New consult apply " + @consult_subject.title + " to you."
+				create_message(msg_content, 1, @consult_subject.mentor_id)
+			end
+			respond_to do |format|
+				format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully created.' }
+		    format.json { render :show, status: :created, location: @consult_subject }
+			end
+		rescue => e
+			respond_to do |format|
+				format.html { render :new }
         format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
-      end
-    end
+			end
+		end
   end
 
   # PATCH/PUT /consult_subjects/1
@@ -64,6 +71,20 @@ class ConsultSubjectsController < ApplicationController
       end
     end
   end
+
+	def accept
+		
+		respond_to do |format|
+      if @consult_subject.update(:mentor_stat_flag=>2, :user_stat_flag=>2)
+				logger.debug("invoked accept update")
+        format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
+        format.json { render :show, status: :ok, location: @consult_subject }
+      else
+        format.html { render :edit }
+        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
+      end
+    end
+	end
 
   # DELETE /consult_subjects/1
   # DELETE /consult_subjects/1.json
@@ -89,4 +110,12 @@ class ConsultSubjectsController < ApplicationController
 		def mentor_params
       params.require(:consult_subject).permit(mentor_attributes:[:id])
     end
+
+		def create_message(content, msg_type, user_id)
+			@message = Message.new
+			@message.content = content
+			@message.msg_type = msg_type 	#fake type
+			@message.user_id = user_id
+			@message.save!
+		end
 end

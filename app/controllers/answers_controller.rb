@@ -54,6 +54,7 @@ class AnswersController < ApplicationController
   def update
 		@question = Question.find(@answer.question_id)
 		begin
+			# cause we should both update answer and create message, use transaction
 			ActiveRecord::Base.transaction do
 				# update answers
 				@answer.update_attributes!(answer_params)

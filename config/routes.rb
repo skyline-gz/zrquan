@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :user_settings, only: [:edit, :update, :show]
 
   resources :consult_subjects, except: :destroy do
+		member do
+			post :accept
+		end
 	  resources :consult_replies, except: :destroy		
 	end
  
