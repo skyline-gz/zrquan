@@ -14,6 +14,6 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :following, :integer, default: 0
     add_column :users, :follower, :integer, default: 0
     add_column :users, :description, :text
-    add_column :users, :mentor_flag, :boolean
+    add_column :users, :mentor_flag, :boolean, default: false
   end
 end

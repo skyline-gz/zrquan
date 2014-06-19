@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :consult_subjects, except: :destroy do
 		member do
 			post :accept
+			post :close
+			post :ignore
 		end
 	  resources :consult_replies, except: :destroy		
 	end
@@ -30,7 +32,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers:{registrations: "users/registrations"}
 
-  resources :users, except: [:destroy, :create]
+  resources :users, except: [:destroy, :create] do
+		member do
+			post :follow
+			delete :unfollow
+		end
+	end
 	
 	get '/home/search'
 

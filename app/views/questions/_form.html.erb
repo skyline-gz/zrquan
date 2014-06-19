@@ -39,10 +39,12 @@
     <%= f.label :mark_flag %><br>
     <%= f.check_box :mark_flag %>
   </div>
-  <!--<div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>-->
+	<%= f.fields_for :invitations do |inv_f| %>
+		<div class="field">
+		  <%= inv_f.label :mentor_id %><br>
+			<%= inv_f.select :mentor_id, options_from_collection_for_select(User.where(mentor_flag: true), :id, :email), {:include_hidden=>false}, {:multiple => true} %>
+		</div>
+	<% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,5 +1,5 @@
 class ConsultSubjectsController < ApplicationController
-  before_action :set_consult_subject, only: [:show, :edit, :update, :destroy, :accept]
+  before_action :set_consult_subject, only: [:show, :edit, :update, :close, :accept, :ignore]
   before_action :authenticate_user!
 
   # GET /consult_subjects
@@ -37,8 +37,7 @@ class ConsultSubjectsController < ApplicationController
 		logger.debug(consult_subject_params)
 		@consult_subject.apprentice_id = current_user.id
 		@consult_subject.mentor_id = mentor_params[:mentor_attributes][:id]
-		@consult_subject.mentor_stat_flag = 1		# applying
-		@consult_subject.user_stat_flag = 1			# applying
+		@consult_subject.stat_class = 1		# applying
 
 		begin
 			ActiveRecord::Base.transaction do
@@ -72,18 +71,65 @@ class ConsultSubjectsController < ApplicationController
     end
   end
 
+	# accept and apply of the consult subject
 	def accept
-		
-		respond_to do |format|
-      if @consult_subject.update(:mentor_stat_flag=>2, :user_stat_flag=>2)
-				logger.debug("invoked accept update")
-        format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
+		begin
+			ActiveRecord::Base.transaction do
+				@consult_subject.update_attributes!(:stat_class=>2)
+				msg_content = "Your consult apply " + @consult_subject.title + " has been accepted."
+				create_message(msg_content, 1, @consult_subject.apprentice_id)
+			end
+			respond_to do |format|
+				format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
         format.json { render :show, status: :ok, location: @consult_subject }
-      else
-        format.html { render :edit }
+			end
+		rescue => e
+			respond_to do |format|
+				format.html { render :new }
         format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
-      end
-    end
+			end
+		end
+	end
+
+	# close a processing consult
+	def close
+		begin
+			ActiveRecord::Base.transaction do
+				logger.debug("invoked consult subject close")
+				@consult_subject.update_attributes!(:stat_class=>3)
+				msg_content = "Consult " + @consult_subject.title + " has been closed."
+				create_message(msg_content, 1, @consult_subject.apprentice_id)
+				create_message(msg_content, 1, @consult_subject.mentor_id)
+			end
+			respond_to do |format|
+				format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
+        format.json { render :show, status: :ok, location: @consult_subject }
+			end
+		rescue => e
+			respond_to do |format|
+				format.html { render :new }
+        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
+			end
+		end	
+	end
+
+	# ignore an applying consult subject
+	def ignore
+		begin
+			ActiveRecord::Base.transaction do
+				logger.debug("invoked consult subject ignore")
+				@consult_subject.update_attributes!(:stat_class=>4)
+			end
+			respond_to do |format|
+				format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
+        format.json { render :show, status: :ok, location: @consult_subject }
+			end
+		rescue => e
+			respond_to do |format|
+				format.html { render :new }
+        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
+			end
+		end	
 	end
 
   # DELETE /consult_subjects/1

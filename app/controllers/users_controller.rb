@@ -73,6 +73,38 @@ class UsersController < ApplicationController
     end
   end
 
+	def follow
+		begin
+			ActiveRecord::Base.transaction do
+				@relationship = current_user.relationships.new
+				@relationship.following_user_id = params[:id]
+				@relationship.save!
+				if current_user.user_setting.followed_flag == true
+					msg_content = current_user.last_name + current_user.first_name + " is following you."
+					create_message(msg_content, 1, @relationship.following_user_id)
+				end
+			end
+			respond_to do |format|
+				format.html { redirect_to users_path, notice: 'Following user succeed.' }
+        format.json { render :show, status: :ok, location: @user }
+			end
+		rescue => e
+			respond_to do |format|
+				format.html { render :follow }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	def unfollow
+		@relationship = current_user.relationships.find_by_following_user_id(params[:id])
+		@relationship.destroy
+    respond_to do |format|
+      format.html { redirect_to users_path, notice: 'Unfollow user succeed.' }
+      format.json { head :no_content }
+    end
+	end
+
   # DELETE /users/1
   # DELETE /users/1.json
   #def destroy
@@ -92,5 +124,13 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params[:user]
-    end       
+    end
+		
+		def create_message(content, msg_type, user_id)
+			@message = Message.new
+			@message.content = content
+			@message.msg_type = msg_type 	#fake type
+			@message.user_id = user_id
+			@message.save!
+		end
 end

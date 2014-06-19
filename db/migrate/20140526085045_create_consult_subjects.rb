@@ -6,8 +6,7 @@ class CreateConsultSubjects < ActiveRecord::Migration
       t.references :theme, index: true
       t.references :mentor, index: true
       t.references :apprentice, index: true
-      t.integer :mentor_stat_flag
-      t.integer :user_stat_flag
+      t.integer :stat_class
 
       t.timestamps
     end

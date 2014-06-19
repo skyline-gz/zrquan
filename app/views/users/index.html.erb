@@ -6,7 +6,7 @@
 			<th>Last Name</th>
       <th>First Name</th>
       <th>Email</th>      
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -19,7 +19,14 @@
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-				<td><%= link_to 'Consult', new_consult_subject_path(:first_name=>user.first_name, :last_name=>user.last_name, :id=>user.id), 'data-no-turbolink' => true %></td>
+				<% if user.mentor_flag == true %>
+					<td><%= link_to 'Consult', new_consult_subject_path(:first_name=>user.first_name, :last_name=>user.last_name, :id=>user.id), 'data-no-turbolink' => true %></td>
+				<% end %>
+				<% if current_user.is_following(user) %>
+					<td><%= link_to 'Unfollow', unfollow_user_path(user), method: :delete %></td>
+				<% else %>
+					<td><%= link_to 'Follow', follow_user_path(user), method: :post %></td>
+				<% end %>
       </tr>
     <% end %>
   </tbody>

@@ -8,6 +8,8 @@ class Question < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
 	has_many :answers
-	has_many :invite_users, class_name: "User", through: :invitations
+	has_many :invitations
+	has_many :invite_users, class_name: "User", through: :invitations, source: :mentor
 	has_many :bookmark_users, class_name: "User", through: :bookmarks
+	accepts_nested_attributes_for :invitations
 end

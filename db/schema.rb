@@ -92,8 +92,7 @@ ActiveRecord::Schema.define(version: 20140609075243) do
     t.integer  "theme_id"
     t.integer  "mentor_id"
     t.integer  "apprentice_id"
-    t.integer  "mentor_stat_flag"
-    t.integer  "user_stat_flag"
+    t.integer  "stat_class"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
