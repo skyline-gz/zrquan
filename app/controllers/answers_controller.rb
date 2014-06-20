@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:show, :edit, :update, :destroy, :agree]
 
   # GET /answers
   # GET /answers.json
@@ -76,6 +76,34 @@ class AnswersController < ApplicationController
 		  end
 		end
   end
+
+	def agree
+		@question = Question.find(@answer.question_id)
+		begin
+			ActiveRecord::Base.transaction do
+				latest_score = @answer.agree_score
+				# agree from mentor plus 2 and agree from normal user plus 1
+				if current_user.mentor_flag
+					@answer.update_attributes!(:answer_num => latest_score + 2)
+				else
+					@answer.update_attributes!(:answer_num => latest_score + 1)
+				end
+				if @answer.user.aggred_flag
+					msg_content = current_user.email + " agreed your answer for " + @question.title + "."
+					create_message(msg_content, 1, @answer.user_id)
+				end
+			end
+			respond_to do |format|
+		    format.html { redirect_to question_path(@question), notice: 'Answer was successfully updated.' }
+		    format.json { render :show, status: :ok, location: @answer }
+			end
+		rescue => e
+			respond_to do |format|
+	      format.html { render :edit }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+		  end
+		end
+	end
 
   # DELETE /answers/1
   # DELETE /answers/1.json

@@ -7,7 +7,13 @@
   <strong>Answer:</strong>
   <%= answer.content %>
 </p>
+
+<p>
+  <strong>Agree:</strong>
+  <%= answer.agree_score %>
+</p>
 <%= link_to 'Edit', edit_answer_path(answer) %>
+<%= link_to 'Agree', agree_answer_path(answer), method: :post %>
 
 <h2>Comments</h2>
 <%= render answer.comments.order("id") %>

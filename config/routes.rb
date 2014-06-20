@@ -27,7 +27,10 @@ Rails.application.routes.draw do
 	end
 
 	resources :answers do
-		resources :comments, except: :destroy
+		member do
+			post :agree
+		end
+		resources :comments, except: :destroy		
 	end
 
   devise_for :users, controllers:{registrations: "users/registrations"}
