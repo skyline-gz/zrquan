@@ -35,14 +35,18 @@ class QuestionsController < ApplicationController
 		  	@question = current_user.questions.new(question_params)
 				@question.save!
 				
-				invitations_params[:invitations_attributes]["0"][:mentor_id].each do |m_id|
-					@invitation = Invitation.new
-					@invitation.question_id = @question.id
-					@invitation.mentor_id = m_id
-					@invitation.save!
-					# send message to invited mentor
-					msg_content = "You are invited to answer " + @question.title + "."
-					create_message(msg_content, 1, m_id)
+				logger.debug(invitations_params)
+				if invitations_params != {}
+					logger.debug("creating invitations")
+					invitations_params[:invitations_attributes]["0"][:mentor_id].each do |m_id|
+						@invitation = Invitation.new
+						@invitation.question_id = @question.id
+						@invitation.mentor_id = m_id
+						@invitation.save!
+						# send message to invited mentor
+						msg_content = "You are invited to answer " + @question.title + "."
+						create_message(msg_content, 1, m_id)
+					end
 				end
 			end
 			respond_to do |format|

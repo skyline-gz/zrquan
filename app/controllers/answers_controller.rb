@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
 				@answer.save!
 				if current_user.user_setting.answer_flag == true
 					msg_content = "New answer for your question: " + @question.title + "."
-					create_message(msg_content, 1)
+					create_message(msg_content, 1, @question.user_id)
 					# TODO publish to faye
 				end
 			end
@@ -61,7 +61,7 @@ class AnswersController < ApplicationController
 				# create message
 				if current_user.user_setting.answer_flag == true
 					msg_content = "Answer for your question: " + @question.title + " has been updated."
-					create_message(msg_content, 1)
+					create_message(msg_content, 1, @question.user_id)
 					# TODO publish to faye
 				end
 			end
@@ -79,16 +79,21 @@ class AnswersController < ApplicationController
 
 	def agree
 		@question = Question.find(@answer.question_id)
+		logger.debug(@answer)
 		begin
 			ActiveRecord::Base.transaction do
 				latest_score = @answer.agree_score
+				logger.debug(latest_score)
 				# agree from mentor plus 2 and agree from normal user plus 1
 				if current_user.mentor_flag
-					@answer.update_attributes!(:answer_num => latest_score + 2)
+					latest_score = latest_score + 2
+					@answer.update_attributes!(:agree_score => latest_score)
 				else
-					@answer.update_attributes!(:answer_num => latest_score + 1)
+					latest_score = latest_score + 1
+					@answer.update_attributes!(:agree_score => latest_score)
 				end
-				if @answer.user.aggred_flag
+				if @answer.user.user_setting.aggred_flag
+					logger.debug("message")
 					msg_content = current_user.email + " agreed your answer for " + @question.title + "."
 					create_message(msg_content, 1, @answer.user_id)
 				end
@@ -126,11 +131,11 @@ class AnswersController < ApplicationController
       params.require(:answer).permit(:content, :agree_score, :user_id, :question_id)
     end
 
-		def create_message(content, msg_type)
+		def create_message(content, msg_type, user_id)
 			@message = Message.new
 			@message.content = content
 			@message.msg_type = msg_type 	#fake type
-			@message.user_id = @question.user_id
+			@message.user_id = user_id
 			@message.save!
 		end
 end
