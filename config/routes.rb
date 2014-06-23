@@ -37,10 +37,12 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy, :create] do
 		member do
-			post :follow
 			delete :unfollow
 		end
 	end
+
+	resources :relationships
+	#post '/relation'
 	
 	get '/home/search'
 

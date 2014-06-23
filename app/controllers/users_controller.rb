@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :follow]
   before_action :authenticate_user!
 
   # GET /users
@@ -73,29 +73,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-	def follow
-		begin
-			ActiveRecord::Base.transaction do
-				@relationship = current_user.relationships.new
-				@relationship.following_user_id = params[:id]
-				@relationship.save!
-				if current_user.user_setting.followed_flag == true
-					msg_content = current_user.last_name + current_user.first_name + " is following you."
-					create_message(msg_content, 1, @relationship.following_user_id)
-				end
-			end
-			respond_to do |format|
-				format.html { redirect_to users_path, notice: 'Following user succeed.' }
-        format.json { render :show, status: :ok, location: @user }
-			end
-		rescue => e
-			respond_to do |format|
-				format.html { render :follow }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-			end
-		end
-	end
 
 	def unfollow
 		@relationship = current_user.relationships.find_by_following_user_id(params[:id])

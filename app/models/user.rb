@@ -22,7 +22,29 @@ class User < ActiveRecord::Base
 	has_many:follower, class_name: "User", through: :reverse_relationships
   has_one:user_setting
 
-	def is_following(other_user)
+	def following?(other_user)
 		relationships.find_by(following_user_id: other_user.id)
 	end
+
+	def follow!(other_user)
+		logger.debug("follow! method.")
+		@relationship = relationships.new
+		@relationship.following_user_id = other_user.id
+		@relationship.save!
+		logger.debug("relationship saved")
+		if user_setting.followed_flag == true
+			msg_content = last_name + first_name + " is following you."
+			create_message(msg_content, 1, @relationship.following_user_id)
+			logger.debug("message created")
+		end
+	end
+
+	private
+		def create_message(content, msg_type, user_id)
+			@message = Message.new
+			@message.content = content
+			@message.msg_type = msg_type 	#fake type
+			@message.user_id = user_id
+			@message.save!
+		end
 end
