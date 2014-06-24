@@ -39,6 +39,11 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def unfollow(other_user)
+		@relationship = relationships.find_by(following_user_id: other_user.id)
+		@relationship.destroy
+	end
+
 	private
 		def create_message(content, msg_type, user_id)
 			@message = Message.new

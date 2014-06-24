@@ -1,7 +1,8 @@
 class RelationshipsController < ApplicationController
+	before_action :set_user, only: [:create, :destroy]
+
 	def create
-		logger.debug("relationships create")
-		@user = User.find(params[:id])
+		logger.debug("relationships created")
 		begin
 			current_user.follow!(@user)
 			respond_to do |format|
@@ -17,6 +18,16 @@ class RelationshipsController < ApplicationController
 	end
 		
 	def destroy
-
+		current_user.unfollow(@user)
+		respond_to do |format|
+      format.html { redirect_to users_path, notice: 'Unfollow user succeed.' }
+      format.json { head :no_content }
+		end
 	end
+
+	private
+		# Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
 end

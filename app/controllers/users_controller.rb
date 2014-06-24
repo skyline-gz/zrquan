@@ -74,15 +74,6 @@ class UsersController < ApplicationController
     end
   end
 
-	def unfollow
-		@relationship = current_user.relationships.find_by_following_user_id(params[:id])
-		@relationship.destroy
-    respond_to do |format|
-      format.html { redirect_to users_path, notice: 'Unfollow user succeed.' }
-      format.json { head :no_content }
-    end
-	end
-
   # DELETE /users/1
   # DELETE /users/1.json
   #def destroy

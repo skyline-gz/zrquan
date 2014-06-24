@@ -35,13 +35,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers:{registrations: "users/registrations"}
 
-  resources :users, except: [:destroy, :create] do
-		member do
-			delete :unfollow
-		end
-	end
+  resources :users, except: [:destroy, :create]
 
-	resources :relationships
+	resources :relationships, only: [:destroy, :create]
 	#post '/relation'
 	
 	get '/home/search'
