@@ -3,17 +3,10 @@ class RelationshipsController < ApplicationController
 
 	def create
 		logger.debug("relationships created")
-		begin
-			current_user.follow!(@user)
-			respond_to do |format|
-				format.html { redirect_to users_path, notice: 'Following user succeed.' }
-		    format.json { render :show, status: :ok, location: @user }
-			end
-		rescue => e
-			respond_to do |format|
-				format.html { render :show }
-				format.json { render json: @user.errors, status: :unprocessable_entity }
-			end
+		current_user.follow!(@user)
+		respond_to do |format|
+			format.html { redirect_to users_path, notice: 'Following user succeed.' }
+	    format.json { redirect_to users_path, status: :ok, location: @user }
 		end
 	end
 		

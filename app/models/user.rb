@@ -33,8 +33,9 @@ class User < ActiveRecord::Base
 		@relationship.save!
 		logger.debug("relationship saved")
 		if user_setting.followed_flag == true
+			logger.debug("ready to send message")
 			msg_content = last_name + first_name + " is following you."
-			create_message(msg_content, 1, @relationship.following_user_id)
+			@relationship.following_user.messages.create!(content: msg_content, msg_type: 1)
 			logger.debug("message created")
 		end
 	end
@@ -44,12 +45,4 @@ class User < ActiveRecord::Base
 		@relationship.destroy
 	end
 
-	private
-		def create_message(content, msg_type, user_id)
-			@message = Message.new
-			@message.content = content
-			@message.msg_type = msg_type 	#fake type
-			@message.user_id = user_id
-			@message.save!
-		end
 end

@@ -94,12 +94,4 @@ class UsersController < ApplicationController
     def user_params
       params[:user]
     end
-		
-		def create_message(content, msg_type, user_id)
-			@message = Message.new
-			@message.content = content
-			@message.msg_type = msg_type 	#fake type
-			@message.user_id = user_id
-			@message.save!
-		end
 end
