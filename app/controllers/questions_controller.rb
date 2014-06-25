@@ -45,10 +45,7 @@ class QuestionsController < ApplicationController
 				end
 			end
 		end
-		respond_to do |format|
-			format.html { redirect_to @question, notice: 'Question was successfully created.' }
-	    format.json { render :show, status: :created, location: @question }
-		end
+		redirect_to @question, notice: 'Question was successfully created.'
   end
 
   # PATCH/PUT /questions/1
@@ -69,10 +66,7 @@ class QuestionsController < ApplicationController
 				@invitation.mentor.messages.create!(content: msg_content, msg_type: 1)
 			end
 		end
-		respond_to do |format|
-			format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-      format.json { render :show, status: :ok, location: @question }
-		end
+		redirect_to @question, notice: 'Question was successfully updated.'
   end
 
   # DELETE /questions/1

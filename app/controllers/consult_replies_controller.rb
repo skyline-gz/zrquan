@@ -37,20 +37,14 @@ class ConsultRepliesController < ApplicationController
 		end
 		msg_content = "New consult reply for " + @consult_subject.title + "."
 		Message.create!(content: msg_content, msg_type: 1, user_id: user_id)
-		respond_to do |format|
-	    format.html { redirect_to consult_subject_path(@consult_subject), notice: 'Consult reply was successfully created.' }
-	    format.json { render :show, status: :created, location: @consult_reply }
-		end
+	  redirect_to consult_subject_path(@consult_subject), notice: 'Consult reply was successfully created.'
   end
 
   # PATCH/PUT /consult_replies/1
   # PATCH/PUT /consult_replies/1.json
   def update
 		@consult_reply.update_attributes!(consult_reply_params)
-    respond_to do |format|
-      format.html { redirect_to @consult_reply, notice: 'Consult reply was successfully updated.' }
-      format.json { render :show, status: :ok, location: @consult_reply }
-    end
+    redirect_to @consult_reply, notice: 'Consult reply was successfully updated.'
   end
 
   # DELETE /consult_replies/1

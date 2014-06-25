@@ -38,20 +38,14 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.save!
 		msg_content = "New consult apply " + @consult_subject.title + " to you."
 		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
-		respond_to do |format|
-			format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully created.' }
-	    format.json { render :show, status: :created, location: @consult_subject }
-		end
+		redirect_to @consult_subject, notice: 'Consult subject was successfully created.'
   end
 
   # PATCH/PUT /consult_subjects/1
   # PATCH/PUT /consult_subjects/1.json
   def update
     @consult_subject.update_attributes!(consult_subject_params)
-    respond_to do |format|
-      format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully updated.' }
-      format.json { render :show, status: :ok, location: @consult_subject }
-    end
+    redirect_to @consult_subject, notice: 'Consult subject was successfully updated.'
   end
 
 	# accept and apply of the consult subject
@@ -59,10 +53,7 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.update_attributes!(:stat_class=>2)
 		msg_content = "Your consult apply " + @consult_subject.title + " has been accepted."
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
-		respond_to do |format|
-			format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
-      format.json { render :show, status: :ok, location: @consult_subject }
-		end
+		redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.'
 	end
 
 	# close a processing consult
@@ -72,20 +63,14 @@ class ConsultSubjectsController < ApplicationController
 		msg_content = "Consult " + @consult_subject.title + " has been closed."
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
 		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
-		respond_to do |format|
-			format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
-      format.json { render :show, status: :ok, location: @consult_subject }
-		end
+		redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.'
 	end
 
 	# ignore an applying consult subject
 	def ignore
 		logger.debug("invoked consult subject ignore")
 		@consult_subject.update_attributes!(:stat_class=>4)
-		respond_to do |format|
-			format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
-      format.json { render :show, status: :ok, location: @consult_subject }
-		end
+		redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.'
 	end
 
   # DELETE /consult_subjects/1

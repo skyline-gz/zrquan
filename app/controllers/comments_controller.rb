@@ -35,10 +35,7 @@ class CommentsController < ApplicationController
 				msg_content = "New comment for your article: " + @article.title + "."
 				@article.user.messages.create!(content: msg_content, msg_type: 1)
 			end
-			respond_to do |format|
-		    format.html { redirect_to article_path(@article), notice: 'Comment was successfully created.' }
-		    #format.json { render :show, status: :created, location: @comment }
-			end
+		  redirect_to article_path(@article), notice: 'Comment was successfully created.'
 		end
 		if params[:answer_id] != nil
 			@answer = Answer.find(params[:answer_id])
@@ -52,10 +49,7 @@ class CommentsController < ApplicationController
 				msg_content = "New comment for your answer of question: " + @question.title + "."
 				@answer.user.messages.create!(content: msg_content, msg_type: 1)
 			end
-			respond_to do |format|
-		    format.html { redirect_to question_path(@question), notice: 'Comment was successfully created.' }
-		    #format.json { render :show, status: :created, location: @comment }
-			end
+		  redirect_to question_path(@question), notice: 'Comment was successfully created.'
 		end
   end
 
@@ -63,10 +57,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1.json
   def update
     @comment.update_attributes!(comment_params)
-    respond_to do |format|
-      format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-      format.json { render :show, status: :ok, location: @comment }
-		end
+    redirect_to @comment, notice: 'Comment was successfully updated.'
   end
 
   # DELETE /comments/1

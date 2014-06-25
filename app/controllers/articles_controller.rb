@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :agree]
 
   # GET /articles
   # GET /articles.json
@@ -33,30 +33,38 @@ class ArticlesController < ApplicationController
 		end
 		# save
     @article.save!
-		respond_to do |format|
-      format.html { render :new }
-      format.json { render json: @article.errors, status: :unprocessable_entity }
-    end
+    render :new
   end
 
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
 		@article.update_attributes!(article_params)
-    respond_to do |format|
-      format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-      format.json { render :show, status: :ok, location: @article }
-    end
+    redirect_to @article, notice: 'Article was successfully updated.'
   end
+
+	def agree
+		latest_score = @article.try(:agree_score) || 0
+		# agree from mentor plus 2 and agree from normal user plus 1
+		if current_user.mentor_flag
+			latest_score = latest_score + 2
+			@article.update_attributes!(:agree_score => latest_score)
+		else
+			latest_score = latest_score + 1
+			@article.update_attributes!(:agree_score => latest_score)
+		end
+		if @article.user.user_setting.aggred_flag
+			msg_content = current_user.email + " agreed your article for " + @article.title + "."
+			@article.user.messages.create!(content: msg_content, msg_type: 1)
+		end
+	  redirect_to @article, notice: 'Answer was successfully updated.'
+	end
 
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
     @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to articles_url, notice: 'Article was successfully destroyed.'
   end
 
   private

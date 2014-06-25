@@ -27,50 +27,34 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  def create
-    logger.debug(user_params)
-    @user = User.new(user_params)
-		logger.debug("start create")
-
-    respond_to do |format|
-      if @user.save
-				# create default user_setting for this user 
-				@user_setting =	UserSetting.new
-				logger.debug("user saved")
-				@user_setting.followed_flag = true
-				@user_setting.aggred_flag = true
-				@user_setting.commented_flag = true
-				@user_setting.answer_flag = true
-				@user_setting.pm_flag = true
-				@user_setting.user_id = @user.id
-				if @user_setting.save
-					logger.debug("user_setting saved")
-					#	logger.debug("user setting save ok.")
-					#else
-					#	logger.debug("user setting save failed.")
-					#end
-			    format.html { redirect_to @user, notice: 'User was successfully created.' }
-			    format.json { render :show, status: :created, location: @user }
-				end
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #def create
+  #  @user = User.new(user_params)
+  #  respond_to do |format|
+  #    if @user.save
+	#			# create default user_setting for this user 
+	#			@user_setting =	UserSetting.new
+	#			@user_setting.followed_flag = true
+	#			@user_setting.aggred_flag = true
+	#			@user_setting.commented_flag = true
+	#			@user_setting.answer_flag = true
+	#			@user_setting.pm_flag = true
+	#			@user_setting.user_id = @user.id
+	#			if @user_setting.save
+	#		    format.html { redirect_to @user, notice: 'User was successfully created.' }
+	#		    format.json { render :show, status: :created, location: @user }
+	#			end
+  #    else
+  #      format.html { render :new }
+  #      format.json { render json: @user.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+  	@user.update_attributes!(user_params)
+    redirect_to @user, notice: 'User was successfully updated.'
   end
 
   # DELETE /users/1

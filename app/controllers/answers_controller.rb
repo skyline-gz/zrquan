@@ -34,10 +34,7 @@ class AnswersController < ApplicationController
 			@question.user.messages.create!(content: msg_content, msg_type: 1)
 			# TODO publish to faye
 		end
-		respond_to do |format|
-	    format.html { redirect_to question_path(@question), notice: 'Answer was successfully created.' }
-	    format.json { render :show, status: :created, location: @answer }
-		end
+	  redirect_to question_path(@question), notice: 'Answer was successfully created.'
   end
 
   # PATCH/PUT /answers/1
@@ -52,10 +49,7 @@ class AnswersController < ApplicationController
 			@question.user.messages.create!(content: msg_content, msg_type: 1)
 			# TODO publish to faye
 		end
-	  respond_to do |format|
-	    format.html { redirect_to question_path(@question), notice: 'Answer was successfully updated.' }
-	    format.json { render :show, status: :ok, location: @answer }
-		end
+	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
 
 	def agree
@@ -73,12 +67,9 @@ class AnswersController < ApplicationController
 		if @answer.user.user_setting.aggred_flag
 			logger.debug("message")
 			msg_content = current_user.email + " agreed your answer for " + @question.title + "."
-			create_message(msg_content, 1, @answer.user_id)
+			@answer.user.messages.create!(content: msg_content, msg_type: 1)
 		end
-		respond_to do |format|
-	    format.html { redirect_to question_path(@question), notice: 'Answer was successfully updated.' }
-	    format.json { render :show, status: :ok, location: @answer }
-		end
+	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'
 	end
 
   # DELETE /answers/1

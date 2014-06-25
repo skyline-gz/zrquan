@@ -4,18 +4,12 @@ class RelationshipsController < ApplicationController
 	def create
 		logger.debug("relationships created")
 		current_user.follow!(@user)
-		respond_to do |format|
-			format.html { redirect_to users_path, notice: 'Following user succeed.' }
-	    format.json { redirect_to users_path, status: :ok, location: @user }
-		end
+		redirect_to users_path, notice: 'Following user succeed.'
 	end
 		
 	def destroy
 		current_user.unfollow(@user)
-		respond_to do |format|
-      format.html { redirect_to users_path, notice: 'Unfollow user succeed.' }
-      format.json { head :no_content }
-		end
+    redirect_to users_path, notice: 'Unfollow user succeed.'
 	end
 
 	private

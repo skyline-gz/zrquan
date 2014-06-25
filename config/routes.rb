@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 	end
  
   resources :articles do
+		member do
+			post :agree
+		end
 		resources :comments, except: :destroy
 	end
 
