@@ -31,105 +31,61 @@ class ConsultSubjectsController < ApplicationController
   # POST /consult_subjects
   # POST /consult_subjects.json
   def create
-		logger.debug("invoked consult_subjects create method.")
-		logger.debug(mentor_params[:mentor_attributes])
     @consult_subject = ConsultSubject.new(consult_subject_params)
-		logger.debug(consult_subject_params)
 		@consult_subject.apprentice_id = current_user.id
 		@consult_subject.mentor_id = mentor_params[:mentor_attributes][:id]
 		@consult_subject.stat_class = 1		# applying
-
-		begin
-			ActiveRecord::Base.transaction do
-				@consult_subject.save!
-				msg_content = "New consult apply " + @consult_subject.title + " to you."
-				create_message(msg_content, 1, @consult_subject.mentor_id)
-			end
-			respond_to do |format|
-				format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully created.' }
-		    format.json { render :show, status: :created, location: @consult_subject }
-			end
-		rescue => e
-			respond_to do |format|
-				format.html { render :new }
-        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
-			end
+		@consult_subject.save!
+		msg_content = "New consult apply " + @consult_subject.title + " to you."
+		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
+		respond_to do |format|
+			format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully created.' }
+	    format.json { render :show, status: :created, location: @consult_subject }
 		end
   end
 
   # PATCH/PUT /consult_subjects/1
   # PATCH/PUT /consult_subjects/1.json
   def update
+    @consult_subject.update_attributes!(consult_subject_params)
     respond_to do |format|
-      if @consult_subject.update(consult_subject_params)
-        format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully updated.' }
-        format.json { render :show, status: :ok, location: @consult_subject }
-      else
-        format.html { render :edit }
-        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @consult_subject, notice: 'Consult subject was successfully updated.' }
+      format.json { render :show, status: :ok, location: @consult_subject }
     end
   end
 
 	# accept and apply of the consult subject
 	def accept
-		begin
-			ActiveRecord::Base.transaction do
-				@consult_subject.update_attributes!(:stat_class=>2)
-				msg_content = "Your consult apply " + @consult_subject.title + " has been accepted."
-				create_message(msg_content, 1, @consult_subject.apprentice_id)
-			end
-			respond_to do |format|
-				format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
-        format.json { render :show, status: :ok, location: @consult_subject }
-			end
-		rescue => e
-			respond_to do |format|
-				format.html { render :new }
-        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
-			end
+		@consult_subject.update_attributes!(:stat_class=>2)
+		msg_content = "Your consult apply " + @consult_subject.title + " has been accepted."
+		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
+		respond_to do |format|
+			format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
+      format.json { render :show, status: :ok, location: @consult_subject }
 		end
 	end
 
 	# close a processing consult
 	def close
-		begin
-			ActiveRecord::Base.transaction do
-				logger.debug("invoked consult subject close")
-				@consult_subject.update_attributes!(:stat_class=>3)
-				msg_content = "Consult " + @consult_subject.title + " has been closed."
-				create_message(msg_content, 1, @consult_subject.apprentice_id)
-				create_message(msg_content, 1, @consult_subject.mentor_id)
-			end
-			respond_to do |format|
-				format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
-        format.json { render :show, status: :ok, location: @consult_subject }
-			end
-		rescue => e
-			respond_to do |format|
-				format.html { render :new }
-        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
-			end
-		end	
+		logger.debug("invoked consult subject close")
+		@consult_subject.update_attributes!(:stat_class=>3)
+		msg_content = "Consult " + @consult_subject.title + " has been closed."
+		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
+		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
+		respond_to do |format|
+			format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
+      format.json { render :show, status: :ok, location: @consult_subject }
+		end
 	end
 
 	# ignore an applying consult subject
 	def ignore
-		begin
-			ActiveRecord::Base.transaction do
-				logger.debug("invoked consult subject ignore")
-				@consult_subject.update_attributes!(:stat_class=>4)
-			end
-			respond_to do |format|
-				format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
-        format.json { render :show, status: :ok, location: @consult_subject }
-			end
-		rescue => e
-			respond_to do |format|
-				format.html { render :new }
-        format.json { render json: @consult_subject.errors, status: :unprocessable_entity }
-			end
-		end	
+		logger.debug("invoked consult subject ignore")
+		@consult_subject.update_attributes!(:stat_class=>4)
+		respond_to do |format|
+			format.html { redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.' }
+      format.json { render :show, status: :ok, location: @consult_subject }
+		end
 	end
 
   # DELETE /consult_subjects/1
@@ -157,11 +113,4 @@ class ConsultSubjectsController < ApplicationController
       params.require(:consult_subject).permit(mentor_attributes:[:id])
     end
 
-		def create_message(content, msg_type, user_id)
-			@message = Message.new
-			@message.content = content
-			@message.msg_type = msg_type 	#fake type
-			@message.user_id = user_id
-			@message.save!
-		end
 end

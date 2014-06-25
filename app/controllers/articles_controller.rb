@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+		@article.output_title
   end
 
   # GET /articles/new
@@ -30,29 +31,21 @@ class ArticlesController < ApplicationController
 		elsif params[:commit] == "Draft"
 			@article.draft_flag = true
 		end
-
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+		# save
+    @article.save!
+		respond_to do |format|
+      format.html { render :new }
+      format.json { render json: @article.errors, status: :unprocessable_entity }
     end
   end
 
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+		@article.update_attributes!(article_params)
     respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+      format.json { render :show, status: :ok, location: @article }
     end
   end
 

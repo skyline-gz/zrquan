@@ -24,43 +24,32 @@ class ConsultRepliesController < ApplicationController
   # POST /consult_replies
   # POST /consult_replies.json
   def create
-		begin
-			ActiveRecord::Base.transaction do
-				@consult_reply = current_user.consult_replies.build(consult_reply_params)
-				@consult_reply.consult_subject_id = params[:consult_subject_id]
-				@consult_reply.save!
-				@consult_subject = ConsultSubject.find(params[:consult_subject_id])
-				if current_user.id == @consult_subject.mentor_id
-					user_id = @consult_subject.apprentice_id
-				else
-					user_id = @consult_subject.mentor_id				
-				end
-				msg_content = "New consult reply for " + @consult_subject.title + "."
-				create_message(msg_content, 1, user_id)
-			end
-			respond_to do |format|
-		    format.html { redirect_to consult_subject_path(@consult_subject), notice: 'Consult reply was successfully created.' }
-		    format.json { render :show, status: :created, location: @consult_reply }
-			end
-		rescue => e
-			respond_to do |format|
-		    format.html { render :new }
-		    format.json { render json: @consult_reply.errors, status: :unprocessable_entity }
-			end
+		# save consult_reply
+		@consult_reply = current_user.consult_replies.build(consult_reply_params)
+		@consult_reply.consult_subject_id = params[:consult_subject_id]
+		@consult_reply.save!
+		# save message
+		@consult_subject = ConsultSubject.find(params[:consult_subject_id])
+		if current_user.id == @consult_subject.mentor_id
+			user_id = @consult_subject.apprentice_id
+		else
+			user_id = @consult_subject.mentor_id				
+		end
+		msg_content = "New consult reply for " + @consult_subject.title + "."
+		Message.create!(content: msg_content, msg_type: 1, user_id: user_id)
+		respond_to do |format|
+	    format.html { redirect_to consult_subject_path(@consult_subject), notice: 'Consult reply was successfully created.' }
+	    format.json { render :show, status: :created, location: @consult_reply }
 		end
   end
 
   # PATCH/PUT /consult_replies/1
   # PATCH/PUT /consult_replies/1.json
   def update
+		@consult_reply.update_attributes!(consult_reply_params)
     respond_to do |format|
-      if @consult_reply.update(consult_reply_params)
-        format.html { redirect_to @consult_reply, notice: 'Consult reply was successfully updated.' }
-        format.json { render :show, status: :ok, location: @consult_reply }
-      else
-        format.html { render :edit }
-        format.json { render json: @consult_reply.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @consult_reply, notice: 'Consult reply was successfully updated.' }
+      format.json { render :show, status: :ok, location: @consult_reply }
     end
   end
 
@@ -84,12 +73,4 @@ class ConsultRepliesController < ApplicationController
     def consult_reply_params
       params.require(:consult_reply).permit(:consult_subject_id, :content, :user_id)
     end
-
-		def create_message(content, msg_type, user_id)
-			@message = Message.new
-			@message.content = content
-			@message.msg_type = msg_type 	#fake type
-			@message.user_id = user_id
-			@message.save!
-		end
 end

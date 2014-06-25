@@ -25,55 +25,36 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
 		if params[:article_id] != nil
+			@article = Article.find(params[:article_id])
+			# will not rollback if message cannnot be created
 		  @comment = current_user.comments.new(comment_params)
 			@comment.commentable_id = params[:article_id]
 			@comment.commentable_type = "Article"
-
-			@article = Article.find(params[:article_id])
-			begin
-				ActiveRecord::Base.transaction do
-					@comment.save!
-					if current_user.user_setting.commented_flag == true
-						msg_content = "New comment for your article: " + @article.title + "."
-						create_message(msg_content, 1, @article.user_id)
-					end
-				end
-				respond_to do |format|
-			    format.html { redirect_to article_path(@article), notice: 'Comment was successfully created.' }
-			    #format.json { render :show, status: :created, location: @comment }
-				end
-			rescue => e
-				respond_to do |format|
-				  #format.html { render :new }
-				  #format.json { render json: @comment.errors, status: :unprocessable_entity }
-				end
+			@comment.save!
+			if current_user.user_setting.commented_flag == true
+				msg_content = "New comment for your article: " + @article.title + "."
+				@article.user.messages.create!(content: msg_content, msg_type: 1)
+			end
+			respond_to do |format|
+		    format.html { redirect_to article_path(@article), notice: 'Comment was successfully created.' }
+		    #format.json { render :show, status: :created, location: @comment }
 			end
 		end
 		if params[:answer_id] != nil
+			@answer = Answer.find(params[:answer_id])
+			@question = @answer.question
+			# will not rollback if message cannnot be created
 			@comment = current_user.comments.new(comment_params)
 			@comment.commentable_id = params[:answer_id]
 			@comment.commentable_type = "Answer"
-
-			@answer = Answer.find(params[:answer_id])
-			@question = @answer.question
-
-			begin
-				ActiveRecord::Base.transaction do
-					@comment.save!
-					if current_user.user_setting.commented_flag == true
-						msg_content = "New comment for your answer of question: " + @question.title + "."
-						create_message(msg_content, 1, @answer.user_id)
-					end
-				end
-				respond_to do |format|
-			    format.html { redirect_to question_path(@question), notice: 'Comment was successfully created.' }
-			    #format.json { render :show, status: :created, location: @comment }
-				end
-			rescue => e
-				respond_to do |format|
-			    format.html { render :new }
-			    format.json { render json: @comment.errors, status: :unprocessable_entity }
-				end
+			@comment.save!
+			if current_user.user_setting.commented_flag == true
+				msg_content = "New comment for your answer of question: " + @question.title + "."
+				@answer.user.messages.create!(content: msg_content, msg_type: 1)
+			end
+			respond_to do |format|
+		    format.html { redirect_to question_path(@question), notice: 'Comment was successfully created.' }
+		    #format.json { render :show, status: :created, location: @comment }
 			end
 		end
   end
@@ -81,15 +62,11 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    @comment.update_attributes!(comment_params)
     respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+      format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+      format.json { render :show, status: :ok, location: @comment }
+		end
   end
 
   # DELETE /comments/1
@@ -112,12 +89,4 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type)
     end
-		
-		def create_message(content, msg_type, user_id)
-			@message = Message.new
-			@message.content = content
-			@message.msg_type = msg_type 	#fake type
-			@message.user_id = user_id
-			@message.save!
-		end
 end
