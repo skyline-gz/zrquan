@@ -9,7 +9,21 @@ class Question < ActiveRecord::Base
   belongs_to :user
 	has_many :answers
 	has_many :invitations
-	has_many :invite_users, class_name: "User", through: :invitations, source: :mentor
+	has_many :invited_mentors, class_name: "User", through: :invitations, source: :mentor
 	has_many :bookmark_users, class_name: "User", through: :bookmarks
 	accepts_nested_attributes_for :invitations
+
+	def answers_num
+		answers.size
+	end
+
+	def mentor_ids
+		mentor_ids = Array.new
+		invitations.each do |inv|
+			mentor_ids << inv.mentor_id
+		end
+		logger.debug(mentor_ids)
+		mentor_ids
+	end
+
 end

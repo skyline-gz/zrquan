@@ -5,8 +5,6 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    logger.debug(current_user)
-    logger.debug("123")
     @questions = Question.all
   end
 
@@ -33,8 +31,9 @@ class QuestionsController < ApplicationController
 		ActiveRecord::Base.transaction do
 	  	@question = current_user.questions.new(question_params)
 			@question.save!
+			logger.debug(invitations_params)
 			if invitations_params != {}
-				invitations_params[:invitations_attributes]["0"][:mentor_id].each do |m_id|
+				invitations_params[:invitations_attributes][:mentor_id].each do |m_id|
 					@invitation = Invitation.new
 					@invitation.question_id = @question.id
 					@invitation.mentor_id = m_id
@@ -56,7 +55,7 @@ class QuestionsController < ApplicationController
 			if !Invitation.destroy_all(question_id:@question.id)
 				raise ActiveRecord::Rollback
 			end
-			invitations_params[:invitations_attributes]["0"][:mentor_id].each do |m_id|
+			invitations_params[:invitations_attributes][:mentor_id].each do |m_id|
 				@invitation = Invitation.new
 				@invitation.question_id = @question.id
 				@invitation.mentor_id = m_id
