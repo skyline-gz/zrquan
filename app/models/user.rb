@@ -45,4 +45,12 @@ class User < ActiveRecord::Base
 		@relationship.destroy
 	end
 
+	def mentor?
+		mentor_flag
+	end
+
+	def confirmed?
+		confirmed_at == nil ? false : true
+	end 
+
 end

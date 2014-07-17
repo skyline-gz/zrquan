@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
 	has_many :answers
 	has_many :invitations
 	has_many :invited_mentors, class_name: "User", through: :invitations, source: :mentor
-	has_many :bookmark_users, class_name: "User", through: :bookmarks
+	has_many :bookmarks, as: :bookmarkable
 	accepts_nested_attributes_for :invitations
 
 	def answers_num

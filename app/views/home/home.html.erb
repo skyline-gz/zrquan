@@ -3,5 +3,10 @@
 <%= form_tag({controller: "home", action: "search"}, method: "get") do %>
 	<%= label_tag(:search, "Search for:") %>
   <%= text_field_tag(:search) %>
-  <%= submit_tag("Search") %>
+  <%= submit_tag("Search") %><br>
+	<% if current_user == nil %>
+		<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
+	<% elsif !current_user.mentor? %>
+		<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
+	<% end %>
 <% end %>

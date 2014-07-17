@@ -1,1 +1,1 @@
-rails g model Bookmark question:references user:references
+rails g model Bookmark user:references bookmarkable:references{polymorphic}

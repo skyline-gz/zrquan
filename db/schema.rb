@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609075243) do
+ActiveRecord::Schema.define(version: 20140704112423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140609075243) do
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "agree_score"
+    t.integer  "agree_score", default: 0
     t.integer  "theme_id"
     t.integer  "industry_id"
     t.integer  "category_id"
@@ -48,13 +48,14 @@ ActiveRecord::Schema.define(version: 20140609075243) do
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "bookmarks", force: true do |t|
-    t.integer  "question_id"
     t.integer  "user_id"
+    t.integer  "bookmarkable_id"
+    t.string   "bookmarkable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "bookmarks", ["question_id"], name: "index_bookmarks_on_question_id", using: :btree
+  add_index "bookmarks", ["bookmarkable_id", "bookmarkable_type"], name: "index_bookmarks_on_bookmarkable_id_and_bookmarkable_type", using: :btree
   add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|

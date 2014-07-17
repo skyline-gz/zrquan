@@ -42,6 +42,7 @@ gem 'spring',        group: :development
 # 用户系统
 gem 'devise'
 gem 'devise-encryptable'
+gem 'cancan'
 
 gem 'thin', group: :development
 

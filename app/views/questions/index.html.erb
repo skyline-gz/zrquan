@@ -36,4 +36,6 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
+<% if current_user.mentor_flag != true %>
+	<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
+<% end %>
