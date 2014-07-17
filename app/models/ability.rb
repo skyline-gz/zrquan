@@ -4,7 +4,11 @@ class Ability
   def initialize(user)
 		# user not login
 		if user != nil
-
+			cannot :create, :all
+			cannot :edit, :all
+			cannot :destroy, :all
+			cannot :agree, [Answer, Article]
+			cannot :accept, ConsultSubject
 		# unconfirmed user
 		elsif !user.confirmed?
 			cannot :create, :all
