@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 		resources :answers, except: :destroy
 	end
 
-	resources :answers do
+	resources :answers, only: [:show, :edit, :update] do
 		member do
 			post :agree
 		end

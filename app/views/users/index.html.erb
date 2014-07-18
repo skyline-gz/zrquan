@@ -22,9 +22,9 @@
 				<% if user.mentor_flag == true %>
 					<td><%= link_to 'Consult', new_consult_subject_path(:first_name=>user.first_name, :last_name=>user.last_name, :id=>user.id), 'data-no-turbolink' => true %></td>
 				<% end %>
-				<% if current_user.following?(user) %>
+				<% if can? :unfollow, user %>
 					<td><%= link_to 'Unfollow', relationship_path(:id=>user.id), method: :delete %></td>
-				<% else %>
+				<% elsif can? :follow, user %>
 					<td><%= link_to 'Follow', relationships_path(:id=>user.id), method: :post %></td>
 				<% end %>
       </tr>

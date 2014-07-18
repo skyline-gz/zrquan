@@ -27,8 +27,9 @@
         <td><%= question.mark_flag %></td>
         <td><%= question.user.id %></td>
         <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question), 'data-no-turbolink' => true %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<!--<% if can? :edit, question %>
+	        <td><%= link_to 'Edit', edit_question_path(question), 'data-no-turbolink' => true %></td>
+				<% end %>-->
       </tr>
     <% end %>
   </tbody>
@@ -36,6 +37,6 @@
 
 <br>
 
-<% if current_user.mentor_flag != true %>
+<% if can? :create, Question %>
 	<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
 <% end %>

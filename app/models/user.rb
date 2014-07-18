@@ -45,12 +45,25 @@ class User < ActiveRecord::Base
 		@relationship.destroy
 	end
 
+	def answered?(question)
+		question.answers.each do |ans|
+			if ans.user_id == id
+				return true
+			end
+		end
+		false
+	end
+
 	def mentor?
 		mentor_flag
 	end
 
-	def confirmed?
+	def activated?
 		confirmed_at == nil ? false : true
-	end 
+	end
+
+	def myself?(other_user)
+		id == other_user.id
+	end
 
 end
