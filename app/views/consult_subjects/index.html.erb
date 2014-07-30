@@ -22,14 +22,17 @@
         <td><%= consult_subject.mentor.email %></td>
         <td><%= consult_subject.apprentice.email %></td>
         <td><%= consult_subject.stat_class %></td>
-        <td><%= link_to 'Show', consult_subject, 'data-no-turbolink' => true %></td>
-        <td><%= link_to 'Edit', edit_consult_subject_path(consult_subject), 'data-no-turbolink' => true %></td>
-        <td><%= link_to 'Destroy', consult_subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-				<% if consult_subject.stat_class == 1 %>      
+				<% if can? :show, consult_subject %>
+        	<td><%= link_to 'Show', consult_subject, 'data-no-turbolink' => true %></td>
+				<% end %>
+        <!--<td><%= link_to 'Edit', edit_consult_subject_path(consult_subject), 'data-no-turbolink' => true %></td>-->
+				<% if can? :accept, consult_subject %>      
 					<td><%= link_to 'Accept', accept_consult_subject_path(consult_subject), method: :post %></td>
+				<% end %>
+				<% if can? :ignore, consult_subject %>      
 					<td><%= link_to 'Ignore', ignore_consult_subject_path(consult_subject), method: :post %></td>
 				<% end %>
-				<% if consult_subject.stat_class == 2 %>
+				<% if can? :close, consult_subject %>
 					<td><%= link_to 'Close', close_consult_subject_path(consult_subject), method: :post %></td>
 				<% end %>				
       </tr>
@@ -39,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Consult subject', new_consult_subject_path, 'data-no-turbolink' => true %>
+<!--<%= link_to 'New Consult subject', new_consult_subject_path, 'data-no-turbolink' => true %>-->

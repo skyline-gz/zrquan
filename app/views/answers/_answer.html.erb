@@ -12,21 +12,25 @@
   <strong>Agree:</strong>
   <%= answer.agree_score %>
 </p>
-<%= link_to 'Edit', edit_answer_path(answer) %>
-<%= link_to 'Agree', agree_answer_path(answer), method: :post %>
+<% if can? :edit, answer %>
+	<%= link_to 'Edit', edit_answer_path(answer) %>
+<% end %>
+<% if can? :agree, answer %>
+	<%= link_to 'Agree', agree_answer_path(answer), method: :post %>
+<% end %>
 
 <h2>Comments</h2>
 <%= render answer.comments.order("id") %>
 
-<h2>Add an comment for this answer:</h2>
-<%= form_for([answer, answer.comments.build]) do |f| %>
-  <p>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<% if can? :create, Comment %>
+	<h2>Add an comment for this answer:</h2>
+	<%= form_for([answer, answer.comments.build]) do |f| %>
+		<p>
+		  <%= f.label :content %><br>
+		  <%= f.text_area :content %>
+		</p>
+		<p>
+		  <%= f.submit %>
+		</p>
+	<% end %>
 <% end %>
-
-

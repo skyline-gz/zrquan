@@ -27,6 +27,11 @@
         <td><%= question.mark_flag %></td>
         <td><%= question.user.id %></td>
         <td><%= link_to 'Show', question %></td>
+				<% if can? :bookmark, question %>
+					<td><%= link_to 'Bookmark', bookmarks_path(:type=>"Question", :id=>question.id), method: :post %></td>
+				<% elsif can? :unbookmark, question %>
+					<td><%= link_to 'Unbookmark', bookmark_path(:type=>"Question", :id=>question.id), :id=>question.id, method: :delete %></td>
+				<% end %>
 				<!--<% if can? :edit, question %>
 	        <td><%= link_to 'Edit', edit_question_path(question), 'data-no-turbolink' => true %></td>
 				<% end %>-->

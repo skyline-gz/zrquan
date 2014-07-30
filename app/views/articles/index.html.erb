@@ -27,11 +27,15 @@
 		      <td><%= article.industry %></td>
 		      <td><%= article.category %></td>
 		      <td><%= article.mark_flag %></td>
-		      <td><%= article.user.id %></td>
+		      <td><%= article.user.email %></td>
 		      <td><%= article.draft_flag %></td>
 		      <td><%= link_to 'Show', article %></td>
-		      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-		      <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<% if can? :bookmark, article %>
+						<td><%= link_to 'Bookmark', bookmarks_path(:type=>"Article", :id=>article.id), method: :post %></td>
+					<% elsif can? :unbookmark, article %>
+						<td><%= link_to 'Unbookmark', bookmark_path(:type=>"Article", :id=>article.id), method: :delete %></td>
+					<% end %>
+		      <!--<td><%= link_to 'Edit', edit_article_path(article) %></td>-->
 		    </tr>
 		  <% end %>		
     <% end %>

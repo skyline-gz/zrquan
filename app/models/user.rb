@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 	has_many:private_messages
 	has_many:invitations, foreign_key: "mentor_id"
 	has_many:invited_questions, class_name: "Question", through: :invitations, source: :question
-	has_many:bookmark_questions, class_name: "Question", through: :bookmarks
+	has_many:bookmarks
 	has_many:relationships, foreign_key: "follower_id"
 	has_many:following_users, class_name: "User", through: :relationships
 	has_many:reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
@@ -43,6 +43,24 @@ class User < ActiveRecord::Base
 	def unfollow(other_user)
 		@relationship = relationships.find_by(following_user_id: other_user.id)
 		@relationship.destroy
+	end
+
+	def bookmarked_q?(question)
+		bookmarks = Bookmark.where(user_id: id, bookmarkable_id: question.id, bookmarkable_type: "Question")
+		if bookmarks.count > 0
+			true
+		else
+			false
+		end
+	end
+
+	def bookmarked_a?(article)
+		bookmarks = Bookmark.where(user_id: id, bookmarkable_id: article.id, bookmarkable_type: "Article")
+		if bookmarks.count > 0
+			true
+		else
+			false
+		end
 	end
 
 	def answered?(question)

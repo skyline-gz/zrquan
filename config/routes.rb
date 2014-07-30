@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy, :create]
 
 	resources :relationships, only: [:destroy, :create]
+
+	resources :bookmarks, only: [:destroy, :create]
 	#post '/relation'
 	
 	get '/home/search'

@@ -43,6 +43,11 @@
 <% if can? :edit, @question %>
 	<%= link_to 'Edit', edit_question_path(@question), 'data-no-turbolink' => true %> | 
 <% end %>
+<% if can? :bookmark, @question %>
+	<%= link_to 'Bookmark', bookmarks_path(:type=>"Question", :id=>@question.id), method: :post %> | 
+<% elsif can? :unbookmark, @question %>
+	<%= link_to 'Unbookmark', bookmark_path(:type=>"Question", :id=>@question.id), method: :delete %> | 
+<% end %>
 <%= link_to 'Back', questions_path %>
 
 <h2>Answers</h2>
