@@ -13,8 +13,10 @@ Rails.application.routes.draw do
 			post :close
 			post :ignore
 		end
-	  resources :consult_replies, except: :destroy		
+	  resources :consult_replies, except: [:edit, :update, :destroy]
 	end
+
+	resources :consult_replies, only: [:show, :edit, :update]
  
   resources :articles do
 		member do

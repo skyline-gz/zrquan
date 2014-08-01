@@ -37,7 +37,8 @@ class Ability
 			# general 
 			can :create, :all
 			cannot :create, [Question, ConsultSubject, Invitation, Message, UserSetting]
-			can :edit, [Answer, UserSetting], :user_id=>user.id			
+			can :edit, [Answer, UserSetting], :user_id=>user.id
+			can :edit, User, :id=>user.id
 			cannot :edit, [Question, ConsultSubject]
 
 			# special QA abilities
@@ -79,7 +80,7 @@ class Ability
 			can [:accept, :ignore], ConsultSubject, :mentor_id=>user.id, :stat_class=>1
 			can :close, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
 			can :edit, ConsultReply do |cr|
-				cr.user_id == user.id and cr.stat_class != 3
+				cr.user_id == user.id and cr.consult_subject.stat_class != 3
 			end
 			cannot :consult, User
 						
@@ -98,6 +99,7 @@ class Ability
 			can :create, :all
 			cannot :create, [Message, UserSetting]
 			can :edit, [Question, Answer, UserSetting], :user_id=>user.id
+			can :edit, User, :id=>user.id
 			
 			# special QA abilities
 			can :answer, Question do |q|
@@ -139,7 +141,7 @@ class Ability
 				cs.apprentice_id == user.id and cs.stat_class != 3
 			end
 			can :edit, ConsultReply do |cr|
-				cr.user_id == user.id and cr.stat_class != 3
+				cr.user_id == user.id and cr.consult_subject.stat_class != 3
 			end
 			can :close, ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
 			can :consult, User do |u|

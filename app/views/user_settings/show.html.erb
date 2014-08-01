@@ -25,5 +25,7 @@
   <%= @user_setting.pm_flag %>
 </p>
 
-<%= link_to 'Edit', edit_user_setting_path(@user_setting) %> |
+<% if can? :edit, @user_setting %>
+	<%= link_to 'Edit', edit_user_setting_path(@user_setting) %> |
+<% end %>
 <%= link_to 'Back', user_settings_path %>

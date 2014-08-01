@@ -7,3 +7,7 @@
   <strong>Reply:</strong>
   <%= consult_reply.content %>
 </p>
+
+<% if can? :edit, consult_reply %>
+	<%= link_to 'Edit', edit_consult_reply_path(consult_reply), 'data-no-turbolink' => true %>
+<% end %>

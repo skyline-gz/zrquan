@@ -56,13 +56,15 @@
 <h2>Comments</h2>
 <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
-<%= form_for([@article, @article.comments.build]) do |f| %>  
-  <p>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<% if can? :comment, article %>
+	<h2>Add a comment:</h2>
+	<%= form_for([@article, @article.comments.build]) do |f| %>  
+		<p>
+		  <%= f.label :content %><br>
+		  <%= f.text_area :content %>
+		</p>
+		<p>
+		  <%= f.submit %>
+		</p>
+	<% end %>
 <% end %>

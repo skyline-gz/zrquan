@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if can? :unfollow, @user %>
+	<%= link_to 'Unfollow', relationship_path(:id=>@user.id), method: :delete %> |
+<% elsif can? :follow, @user %>
+	<%= link_to 'Follow', relationships_path(:id=>@user.id), method: :post %> |
+<% end %>
+<% if can? :edit, @user %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>

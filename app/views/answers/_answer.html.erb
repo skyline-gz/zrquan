@@ -13,7 +13,7 @@
   <%= answer.agree_score %>
 </p>
 <% if can? :edit, answer %>
-	<%= link_to 'Edit', edit_answer_path(answer) %>
+	<%= link_to 'Edit', edit_answer_path(answer), 'data-no-turbolink' => true %>
 <% end %>
 <% if can? :agree, answer %>
 	<%= link_to 'Agree', agree_answer_path(answer), method: :post %>
@@ -22,7 +22,7 @@
 <h2>Comments</h2>
 <%= render answer.comments.order("id") %>
 
-<% if can? :create, Comment %>
+<% if can? :comment, answer %>
 	<h2>Add an comment for this answer:</h2>
 	<%= form_for([answer, answer.comments.build]) do |f| %>
 		<p>
