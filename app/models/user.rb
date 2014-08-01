@@ -19,8 +19,16 @@ class User < ActiveRecord::Base
 	has_many:relationships, foreign_key: "follower_id"
 	has_many:following_users, class_name: "User", through: :relationships
 	has_many:reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
-	has_many:follower, class_name: "User", through: :reverse_relationships
+	has_many:followers, class_name: "User", through: :reverse_relationships
   has_one:user_setting
+
+	def following
+		following_users.count
+	end
+
+	def followers
+		followers.count
+	end
 
 	def following?(other_user)
 		relationships.find_by(following_user_id: other_user.id)

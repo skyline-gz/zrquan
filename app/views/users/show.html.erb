@@ -1,5 +1,42 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Name:</strong>
+  <%= @user.last_name %> <%= @user.first_name %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender %>
+</p>
+<p>
+  <strong>Province:</strong>
+  <%= @user.province %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @user.city %>
+</p>
+<p>
+  <strong>School:</strong>
+  <%= @user.school %>
+</p>
+<p>
+  <strong>Major:</strong>
+  <%= @user.major %>
+</p>
+<p>
+  <strong>Industry:</strong>
+  <%= @user.industry %>
+</p>
+<p>
+  <strong>Company:</strong>
+  <%= @user.company %>
+</p>
+<p>
+  <strong>Position:</strong>
+  <%= @user.position %>
+</p>
+
 <% if can? :unfollow, @user %>
 	<%= link_to 'Unfollow', relationship_path(:id=>@user.id), method: :delete %> |
 <% elsif can? :follow, @user %>

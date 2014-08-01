@@ -156,6 +156,5 @@ class Ability
 			can :unfollow, User do |target_user|
 				user.following?(target_user)
 			end
-
 		end
 end
