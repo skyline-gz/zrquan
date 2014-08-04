@@ -1,5 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<table>
+	<tr>
+		<td>following</td>
+		<td><%= @user.following_num %></td>
+	</tr>
+	<tr>
+		<td>followers</td>
+		<td><%= @user.followers_num %></td>
+	</tr>
+</table
+
 <p>
   <strong>Name:</strong>
   <%= @user.last_name %> <%= @user.first_name %>
@@ -10,11 +21,11 @@
 </p>
 <p>
   <strong>Province:</strong>
-  <%= @user.province %>
+  <%= @user.province.name %>
 </p>
 <p>
   <strong>City:</strong>
-  <%= @user.city %>
+  <%= @user.city.name %>
 </p>
 <p>
   <strong>School:</strong>

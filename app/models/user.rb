@@ -22,12 +22,12 @@ class User < ActiveRecord::Base
 	has_many:followers, class_name: "User", through: :reverse_relationships
   has_one:user_setting
 
-	def following
+	def following_num
 		following_users.count
 	end
 
-	def followers
-		followers.count
+	def followers_num
+		reverse_relationships.count
 	end
 
 	def following?(other_user)

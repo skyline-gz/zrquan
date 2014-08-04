@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require 'china_city/jquery.china_city'
 //= require jquery_ujs
 //= require kindeditor
 //= require turbolinks
