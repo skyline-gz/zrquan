@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804092755) do
+ActiveRecord::Schema.define(version: 20140805104354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(version: 20140804092755) do
     t.string   "signature"
     t.text     "description"
     t.boolean  "mentor_flag"
+    t.string   "avatar"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree

@@ -184,6 +184,7 @@ PLATFORMS
 
 DEPENDENCIES
   cancan
+  carrierwave
   china_city
   coffee-rails (~> 4.0.0)
   devise

@@ -39,11 +39,12 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# 用户系统
+# 用户系统（认证及权限）
 gem 'devise'
 gem 'devise-encryptable'
 gem 'cancan'
 
+# server
 gem 'thin', group: :development
 
 # rich-content editor
@@ -58,3 +59,6 @@ gem 'sunspot_solr'
 
 # messaging
 gem 'faye'
+
+# avatar, image upload
+gem 'carrierwave' 

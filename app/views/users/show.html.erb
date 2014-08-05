@@ -10,7 +10,9 @@
 		<td><%= @user.followers_num %></td>
 	</tr>
 </table
-
+<p>
+  <%= image_tag(@user.avatar_url) %>
+</p>
 <p>
   <strong>Name:</strong>
   <%= @user.last_name %> <%= @user.first_name %>
@@ -19,14 +21,14 @@
   <strong>Gender:</strong>
   <%= @user.gender %>
 </p>
-<p>
+<!--<p>
   <strong>Province:</strong>
-  <%= @user.province.name %>
+  <%= @user.province_id %>
 </p>
 <p>
   <strong>City:</strong>
-  <%= @user.city.name %>
-</p>
+  <%= @user.city_id %>
+</p>-->
 <p>
   <strong>School:</strong>
   <%= @user.school %>
