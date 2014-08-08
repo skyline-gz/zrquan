@@ -59,3 +59,22 @@
 	<%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
 <%= link_to 'Back', users_path %>
+
+<table>
+	<!-- Q&A -->
+	<tr>
+		<% if @user.mentor? %>
+		<td><% @user.invited_questions %></td>
+		<% else %>
+		<td><% @user.questions %></td>
+		<% end %>
+	</tr>
+	<!-- consult subjects -->
+	<tr>
+		<% if @user.mentor? %>
+		<td><% @user.m_subjects %></td>
+		<% else %>
+		<td><% @user.u_subjects %></td>
+		<% end %>
+	</tr>
+</table>

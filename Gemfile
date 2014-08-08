@@ -61,4 +61,5 @@ gem 'sunspot_solr'
 gem 'faye'
 
 # avatar, image upload
-gem 'carrierwave' 
+gem 'carrierwave'
+gem 'mini_magick'

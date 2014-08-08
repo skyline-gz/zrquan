@@ -192,6 +192,7 @@ DEPENDENCIES
   faye
   jbuilder (~> 2.0)
   jquery-rails
+  mini_magick
   pg
   rails (= 4.1.0)
   rails_kindeditor
