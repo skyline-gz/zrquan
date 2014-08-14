@@ -31,14 +31,6 @@
     <%= f.label :category_id %><br>
     <%= f.text_field :category_id %>
   </div>
-  <div class="field">
-    <%= f.label :answer_num %><br>
-    <%= f.number_field :answer_num %>
-  </div>
-  <div class="field">
-    <%= f.label :mark_flag %><br>
-    <%= f.check_box :mark_flag %>
-  </div>
 	<label for="question_invitations_attributes_mentor_id">Mentors</label><br>
 	<select multiple="multiple" name="question[invitations_attributes][mentor_id][]">
 		<% User.where(mentor_flag: true).each do |mentor| %>

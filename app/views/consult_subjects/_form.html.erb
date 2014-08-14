@@ -25,7 +25,7 @@
   </div>
 	<%= f.fields_for :mentor do |mf| %>
 		<div class="field">
-		  <%= mf.label :last_name, @mentor.last_name %><%= mf.label :first_name, @mentor.first_name %><br>
+		  <%= mf.label :last_name, @mentor.last_name %>&nbsp;<%= mf.label :first_name, @mentor.first_name %><br>
 			<%= mf.hidden_field :id, :value=>@mentor.id %>
 		</div>
 	<% end %>

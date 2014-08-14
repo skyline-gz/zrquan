@@ -31,17 +31,15 @@
 </p>
 
 <p>
-  <strong>Mark flag:</strong>
-  <%= @article.mark_flag %>
-</p>
-
-<p>
   <strong>User:</strong>
-  <%= @article.user.email %>
+  <%= @article.user.last_name %>&nbsp;<%= @article.user.first_name %>
 </p>
 
 <% if can? :edit, @article %>
 	<%= link_to 'Edit', edit_article_path(@article) %> |
+<% end %>
+<% if can? :destroy, @article %>
+	<%= link_to 'Delete', article_path(@article), method: :delete %> |
 <% end %>
 <% if can? :agree, @article %>
 	<%= link_to 'Agree', agree_article_path(@article), method: :post %> |
@@ -56,7 +54,7 @@
 <h2>Comments</h2>
 <%= render @article.comments %>
 
-<% if can? :comment, article %>
+<% if can? :comment, @article %>
 	<h2>Add a comment:</h2>
 	<%= form_for([@article, @article.comments.build]) do |f| %>  
 		<p>

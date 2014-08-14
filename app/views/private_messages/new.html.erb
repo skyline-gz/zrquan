@@ -1,5 +1,20 @@
 <h1>New private_message</h1>
 
-<%= render 'form' %>
+<!--<%= render 'form' %>-->
+
+<%= form_tag({controller: "private_messages", action: "create"}, method: "post") do %>
+	<div class="field">
+		<%= label_tag(:target_user, "To:") %>&nbsp;
+		<%= label_tag(:last_name, @target_user.last_name) %>&nbsp;<%= label_tag(:first_name, @target_user.first_name) %>
+	  <%= hidden_field_tag(:target_user_id, @target_user.id) %>
+	</div>
+	<div class="field">
+		<%= label_tag(:content, "Content:") %>
+		<%= text_area_tag(:content) %>
+	</div>
+	<div class="actions">
+		<%= submit_tag("Send") %>
+	</div>
+<% end %>
 
 <%= link_to 'Back', private_messages_path %>

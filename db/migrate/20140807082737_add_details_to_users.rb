@@ -12,7 +12,7 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :position, :string
     add_column :users, :signature, :string
     add_column :users, :description, :text
-    add_column :users, :mentor_flag, :boolean
+    add_column :users, :mentor_flag, :boolean, default: false
     add_column :users, :avatar, :string
   end
 end

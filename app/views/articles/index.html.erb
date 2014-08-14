@@ -9,7 +9,6 @@
       <th>Theme</th>
       <th>Industry</th>
       <th>Category</th>
-      <th>Mark flag</th>
       <th>User</th>
       <th>Draft flag</th>
       <th colspan="3"></th>
@@ -26,8 +25,7 @@
 		      <td><%= article.theme %></td>
 		      <td><%= article.industry %></td>
 		      <td><%= article.category %></td>
-		      <td><%= article.mark_flag %></td>
-		      <td><%= article.user.email %></td>
+		      <td><%= article.user.last_name %>&nbsp;<%= article.user.first_name %></td>
 		      <td><%= article.draft_flag %></td>
 		      <td><%= link_to 'Show', article %></td>
 					<% if can? :bookmark, article %>

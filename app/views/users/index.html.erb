@@ -6,7 +6,7 @@
 			<th>Last Name</th>
       <th>First Name</th>
       <th>Email</th>      
-      <th colspan="5"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -20,6 +20,9 @@
         <!--<td><%= link_to 'Edit', edit_user_path(user) %></td>-->
 				<% if can? :consult, user %>
 					<td><%= link_to 'Consult', new_consult_subject_path(:first_name=>user.first_name, :last_name=>user.last_name, :id=>user.id), 'data-no-turbolink' => true %></td>
+				<% end %>
+				<% if can? :pm, user %>
+					<td><%= link_to 'PM', private_messages_path(:id=>user.id)%></td>
 				<% end %>
 				<% if can? :unfollow, user %>
 					<td><%= link_to 'Unfollow', relationship_path(:id=>user.id), method: :delete %></td>

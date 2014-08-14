@@ -13,9 +13,9 @@ class Question < ActiveRecord::Base
 	has_many :bookmarks, as: :bookmarkable
 	accepts_nested_attributes_for :invitations
 
-	def answers_num
-		answers.size
-	end
+	#def answers_num
+	#	answers.size
+	#end
 
 	def mentor_ids
 		mentor_ids = Array.new
