@@ -27,17 +27,12 @@
 
 <p>
   <strong>Answer num:</strong>
-  <%= @question.answers_num %>
-</p>
-
-<p>
-  <strong>Mark flag:</strong>
-  <%= @question.mark_flag %>
+  <%= @question.answer_num %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @question.user.id %>
+  <%= @question.user.last_name %>&nbsp;<%= @question.user.first_name %>
 </p>
 
 <% if can? :edit, @question %>

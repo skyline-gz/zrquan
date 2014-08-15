@@ -24,16 +24,20 @@ class AnswersController < ApplicationController
   # POST /answers
   # POST /answers.json
   def create
-		@question = Question.find(params[:question_id])
+		# create answer
     @answer = current_user.answers.new(answer_params)
 		@answer.question_id = params[:question_id]
 		@answer.save!
+		# update question answer num
+		@question = Question.find(params[:question_id])
+		@question.update_attributes!(answer_num: @question.answer_num + 1)
 		# will not rollback if message cannot be created
 		if current_user.user_setting.answer_flag == true
 			msg_content = "New answer for your question: " + @question.title + "."
 			@question.user.messages.create!(content: msg_content, msg_type: 1)
 			# TODO publish to faye
 		end
+		
 	  redirect_to question_path(@question), notice: 'Answer was successfully created.'
   end
 

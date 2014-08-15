@@ -1,1 +1,0 @@
-rails g migration AddAvatarToUsers avatar:string

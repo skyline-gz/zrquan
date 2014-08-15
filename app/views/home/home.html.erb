@@ -10,3 +10,52 @@
 		<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
 	<% end %>
 <% end %>
+<br>
+<b>Recommend User</b>
+<table>
+	<% @rec_mentors.each do |rm| %>
+		<tr>
+			<td><%= image_tag(rm.user.avatar_url) %></td>
+			<td><%= rm.user.last_name %></td>&nbsp;<td><%= rm.user.first_name %></td>
+			<td><%= rm.user.company %></td>
+			<td><%= rm.user.position %></td>
+		</tr>
+	<% end %>
+</table>
+<br>
+<b>News Feed</b>
+<% @news_feeds.order("id").each do |nf| %>
+	<div>
+		<table>
+			<% if nf.feedable_type == "Question" %>
+				<% q = Question.find(nf.feedable_id) %>
+				<tr>
+					<td><b>Q</b></td>
+					<td><%= q.title %></td>
+					<td><%= q.content %></td>
+					<td><%= q.answers.first.content %></td>
+					<td><%= q.user.last_name %>&nbsp;<%= q.user.first_name %></td>
+				</tr>
+			<% end %>
+			<% if nf.feedable_type == "Article" %>
+				<% a = Article.find(nf.feedable_id) %>
+				<tr>
+					<td><b>A</b></td>
+					<td><%= a.title %></td>
+					<td><%= a.content %></td>
+					<td><%= a.user.last_name %>&nbsp;<%= a.user.first_name %></td>
+				</tr>
+			<% end %>
+			<% if nf.feedable_type == "ConsultSubject" %>
+				<% c = ConsultSubject.find(nf.feedable_id) %>
+				<tr>
+					<td><b>C</b></td>
+					<td><%= c.title %></td>
+					<td><%= c.content %></td>
+					<td><%= c.mentor.last_name %>&nbsp;<%= c.mentor.first_name %></td>
+					<td><%= c.apprentice.last_name %>&nbsp;<%= c.apprentice.first_name %></td>
+				</tr>
+			<% end %>
+		</table>
+	<div/>
+<% end %>

@@ -2,6 +2,8 @@ class HomeController < ApplicationController
 #  before_action :authenticate_user!
 
 	def home
+		@rec_mentors = RecommendMentor.all
+		@news_feeds = NewsFeed.all
 	end
 
 	def search

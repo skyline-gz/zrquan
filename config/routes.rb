@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :user_settings
 
-  resources :private_messages, except: :destroy
+  resources :private_messages, except: [:destroy, :edit, :update]
 
   resources :user_settings, only: [:edit, :update, :show]
 

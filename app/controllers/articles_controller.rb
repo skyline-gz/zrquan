@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
 		end
 		# save
     @article.save!
-    render :new
+    redirect_to @article, notice: 'Create article succeed.'
   end
 
   # PATCH/PUT /articles/1

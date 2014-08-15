@@ -6,8 +6,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.references :theme, index: true
       t.references :industry, index: true
       t.references :category, index: true
-      t.integer :answer_num
-      t.boolean :mark_flag
+      t.integer :answer_num, default: 0
       t.references :user, index: true
 
       t.timestamps

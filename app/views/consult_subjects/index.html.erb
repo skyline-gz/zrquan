@@ -20,7 +20,7 @@
         <td><%= consult_subject.content %></td>
         <td><%= consult_subject.theme %></td>
         <td><%= consult_subject.mentor.email %></td>
-        <td><%= consult_subject.apprentice.email %></td>
+        <td><%= consult_subject.apprentice.last_name %>&nbsp;<%= consult_subject.apprentice.first_name %></td>
         <td><%= consult_subject.stat_class %></td>
 				<% if can? :show, consult_subject %>
         	<td><%= link_to 'Show', consult_subject, 'data-no-turbolink' => true %></td>

@@ -5,7 +5,7 @@ class CreatePrivateMessages < ActiveRecord::Migration
       t.references :user1, index: true
       t.references :user2, index: true
       t.integer :send_class
-      t.boolean :read_flag
+      t.boolean :read_flag, default: false
 
       t.timestamps
     end

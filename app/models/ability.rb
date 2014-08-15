@@ -83,6 +83,11 @@ class Ability
 				cr.user_id == user.id and cr.consult_subject.stat_class != 3
 			end
 			cannot :consult, User
+
+			# pm
+			can :pm, User do |target_user|
+				target_user.following?(user) or target_user.ever_pm?(user)
+			end
 						
 			# user relationship
 			can :follow, User do |target_user|
@@ -148,6 +153,11 @@ class Ability
 				u.mentor?
 			end
 			cannot :accept, ConsultSubject
+
+			# pm
+			can :pm, User do |target_user|
+				target_user.following?(user) or target_user.ever_pm?(user)
+			end
 
 			# user relationship
 			can :follow, User do |target_user|

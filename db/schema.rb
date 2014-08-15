@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807082737) do
+ActiveRecord::Schema.define(version: 20140815102815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20140807082737) do
     t.integer  "theme_id"
     t.integer  "industry_id"
     t.integer  "category_id"
-    t.boolean  "mark_flag"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -128,12 +127,21 @@ ActiveRecord::Schema.define(version: 20140807082737) do
 
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
+  create_table "news_feeds", force: true do |t|
+    t.integer  "feedable_id"
+    t.string   "feedable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news_feeds", ["feedable_id", "feedable_type"], name: "index_news_feeds_on_feedable_id_and_feedable_type", using: :btree
+
   create_table "private_messages", force: true do |t|
     t.text     "content"
     t.integer  "user1_id"
     t.integer  "user2_id"
     t.integer  "send_class"
-    t.boolean  "read_flag"
+    t.boolean  "read_flag",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -147,8 +155,7 @@ ActiveRecord::Schema.define(version: 20140807082737) do
     t.integer  "theme_id"
     t.integer  "industry_id"
     t.integer  "category_id"
-    t.integer  "answer_num"
-    t.boolean  "mark_flag"
+    t.integer  "answer_num",  default: 0
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -158,6 +165,14 @@ ActiveRecord::Schema.define(version: 20140807082737) do
   add_index "questions", ["industry_id"], name: "index_questions_on_industry_id", using: :btree
   add_index "questions", ["theme_id"], name: "index_questions_on_theme_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
+
+  create_table "recommend_mentors", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recommend_mentors", ["user_id"], name: "index_recommend_mentors_on_user_id", using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "following_user_id"
@@ -176,11 +191,11 @@ ActiveRecord::Schema.define(version: 20140807082737) do
   end
 
   create_table "user_settings", force: true do |t|
-    t.boolean  "followed_flag"
-    t.boolean  "aggred_flag"
-    t.boolean  "commented_flag"
-    t.boolean  "answer_flag"
-    t.boolean  "pm_flag"
+    t.boolean  "followed_flag",  default: true
+    t.boolean  "aggred_flag",    default: true
+    t.boolean  "commented_flag", default: true
+    t.boolean  "answer_flag",    default: true
+    t.boolean  "pm_flag",        default: true
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -189,12 +204,12 @@ ActiveRecord::Schema.define(version: 20140807082737) do
   add_index "user_settings", ["user_id"], name: "index_user_settings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -218,7 +233,7 @@ ActiveRecord::Schema.define(version: 20140807082737) do
     t.string   "position"
     t.string   "signature"
     t.text     "description"
-    t.boolean  "mentor_flag"
+    t.boolean  "mentor_flag",            default: false
     t.string   "avatar"
   end
 

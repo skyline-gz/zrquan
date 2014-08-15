@@ -94,4 +94,14 @@ class User < ActiveRecord::Base
 		id == other_user.id
 	end
 
+	def ever_pm?(other_user)
+		if id < other_user.id
+			pm = PrivateMessage.where(user1_id: id, user2_id: other_user.id)
+			pm.count > 0 ? true : false
+		else
+			pm = PrivateMessage.where(user1_id: other_user.id, user2_id: id)
+			pm.count > 0 ? true : false
+		end
+	end
+
 end
