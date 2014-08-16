@@ -23,4 +23,12 @@ class HomeController < ApplicationController
 
 	def consult
 	end
+
+	def my_bookmark
+		@bookmarks = current_user.bookmarks
+	end
+
+	def my_draft
+		@draft_articles = current_user.articles.where(draft_flag: true)
+	end
 end

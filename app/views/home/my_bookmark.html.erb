@@ -1,0 +1,31 @@
+<h1>Search Result:</h1>
+
+<table>
+  <thead>
+    <tr>
+			<th>Type</th>
+      <th>Title</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookmarks.each do |b| %>
+			<% if b.bookmarkable_type == "Question" %>
+				<% q = Question.find(b.bookmarkable_id) %>
+		    <tr>
+					<td><b>Question</b></td>
+		      <td><%= q.title %></td>
+		      <td><%= q.content %></td>
+		    </tr>
+			<% else %>
+				<% a = Article.find(b.bookmarkable_id) %>
+				<tr>
+					<td><b>Article</b></td>
+		      <td><%= a.title %></td>
+		      <td><%= a.content %></td>
+		    </tr>
+			<% end %>
+    <% end %>
+  </tbody>
+</table>

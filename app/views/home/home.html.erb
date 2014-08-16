@@ -10,6 +10,17 @@
 		<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
 	<% end %>
 <% end %>
+<div>
+	<% if current_user.mentor? %>
+		<p><%= link_to 'My Question', current_user %></p>
+		<p><%= link_to 'My Consult', current_user %></p>
+	<% else %>
+		<p><%= link_to 'Question Which invits Me', current_user %></p>
+		<p><%= link_to 'XX Consults Me', current_user %></p>
+	<% end %>
+		<p><%= link_to 'My Bookmark', home_my_bookmark_path %></p>
+		<p><%= link_to 'My Draft', home_my_draft_path %></p>
+</div>
 <br>
 <b>Recommend User</b>
 <table>
