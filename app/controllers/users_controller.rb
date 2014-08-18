@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+	def mentors
+		@mentors = User.all.where(mentor_flag: true)
+	end
+
   # GET /users/1
   # GET /users/1.json
   def show

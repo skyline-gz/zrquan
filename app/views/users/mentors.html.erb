@@ -1,0 +1,36 @@
+<h1>Listing mentors</h1>
+
+<table>
+  <thead>
+    <tr>
+			<th>Last Name</th>
+      <th>First Name</th>
+      <th>Email</th>      
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mentors.each do |mentor| %>
+      <tr>
+				<td><%= mentor.last_name %></td>
+        <td><%= mentor.first_name %></td>
+        <td><%= mentor.email %></td>
+        <td><%= link_to 'Show', mentor %></td>
+				<% if can? :consult, mentor %>
+					<td><%= link_to 'Consult', new_consult_subject_path(:first_name=>mentor.first_name, :last_name=>mentor.last_name, :id=>mentor.id), 'data-no-turbolink' => true %></td>
+				<% end %>
+				<% if can? :pm, mentor %>
+					<td><%= link_to 'PM', private_messages_path(:id=>mentor.id)%></td>
+				<% end %>
+				<% if can? :unfollow, mentor %>
+					<td><%= link_to 'Unfollow', relationship_path(:id=>mentor.id), method: :delete %></td>
+				<% elsif can? :follow, mentor %>
+					<td><%= link_to 'Follow', relationships_path(:id=>mentor.id), method: :post %></td>
+				<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

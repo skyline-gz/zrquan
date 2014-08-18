@@ -42,7 +42,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers:{registrations: "users/registrations"}
 
-  resources :users, except: [:destroy, :create]
+  resources :users, except: [:destroy, :create] do
+		collection do
+			get :mentors
+		end
+	end
 
 	resources :relationships, only: [:destroy, :create]
 
@@ -52,6 +56,7 @@ Rails.application.routes.draw do
 	get '/home/search'
 	get '/home/my_bookmark'
 	get '/home/my_draft'
+	get '/home/activate'
 
   root 'home#home'
   # The priority is based upon order of creation: first created -> highest priority.

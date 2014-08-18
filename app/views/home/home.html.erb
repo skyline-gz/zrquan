@@ -3,40 +3,37 @@
 <%= form_tag({controller: "home", action: "search"}, method: "get") do %>
 	<%= label_tag(:search, "Search for:") %>
   <%= text_field_tag(:search) %>
-  <%= submit_tag("Search") %><br>
-	<% if current_user == nil %>
-		<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
-	<% elsif !current_user.mentor? %>
-		<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
+  <%= submit_tag("Search") %>
+	<% if can? :create, Question %>
+		<%= link_to 'Ask', new_question_path, 'data-no-turbolink' => true %>
+	<% else %>
+		<% if current_user == nil %>
+			<%= link_to 'Ask', new_user_registration_path %>
+		<% elsif !current_user.activated? %>
+			<%= link_to 'Ask', home_activate_path %>
+		<% end %>
 	<% end %>
 <% end %>
 <div>
-	<% if current_user.mentor? %>
-		<p><%= link_to 'My Question', current_user %></p>
-		<p><%= link_to 'My Consult', current_user %></p>
-	<% else %>
-		<p><%= link_to 'Question Which invits Me', current_user %></p>
-		<p><%= link_to 'XX Consults Me', current_user %></p>
-	<% end %>
-		<p><%= link_to 'My Bookmark', home_my_bookmark_path %></p>
-		<p><%= link_to 'My Draft', home_my_draft_path %></p>
+	<%= link_to 'Home', root_path %> | 	<%= link_to 'Mentor', mentors_users_path %> | 
+	<%= link_to 'Q&A', questions_path %> | 	<%= link_to 'Experience', articles_path %>
 </div>
-<br>
-<b>Recommend User</b>
-<table>
-	<% @rec_mentors.each do |rm| %>
-		<tr>
-			<td><%= image_tag(rm.user.avatar_url) %></td>
-			<td><%= rm.user.last_name %></td>&nbsp;<td><%= rm.user.first_name %></td>
-			<td><%= rm.user.company %></td>
-			<td><%= rm.user.position %></td>
-		</tr>
-	<% end %>
-</table>
-<br>
-<b>News Feed</b>
-<% @news_feeds.order("id").each do |nf| %>
-	<div>
+<div>
+	<b>Recommend User</b>
+	<table>
+		<% @rec_mentors.each do |rm| %>
+			<tr>
+				<td><%= image_tag(rm.user.avatar_url) %></td>
+				<td><%= rm.user.last_name %></td>&nbsp;<td><%= rm.user.first_name %></td>
+				<td><%= rm.user.company %></td>
+				<td><%= rm.user.position %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+<div style="float:left">
+	<b>News Feed</b>
+	<% @news_feeds.order("id").each do |nf| %>
 		<table>
 			<% if nf.feedable_type == "Question" %>
 				<% q = Question.find(nf.feedable_id) %>
@@ -68,5 +65,24 @@
 				</tr>
 			<% end %>
 		</table>
-	<div/>
-<% end %>
+	<% end %>
+</div>
+<div style="float:left">
+	<b>Sub Menu</b><br>
+	<% if current_user != nil %>
+		<% if current_user.mentor? %>
+			<%= link_to 'My Question', current_user %><br>
+			<%= link_to 'My Consult', current_user %><br>
+		<% else %>
+			<%= link_to 'Question Which invits Me', current_user %><br>
+			<%= link_to 'XX Consults Me', current_user %><br>
+		<% end %>
+			<%= link_to 'My Bookmark', home_my_bookmark_path %><br>
+			<%= link_to 'My Draft', home_my_draft_path %>
+	<% else %>
+		<%= link_to 'My Question', new_user_registration_path %><br>
+		<%= link_to 'My Consult', new_user_registration_path %><br>
+		<%= link_to 'My Bookmark', new_user_registration_path %><br>
+		<%= link_to 'My Draft', new_user_registration_path %>
+	<% end %>
+</div>

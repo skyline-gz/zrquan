@@ -4,14 +4,10 @@ class Ability
   def initialize(user)
 		# user not login
 		if user == nil
-			logout_abilities(user)
+			logout_unactivate_abilities(user)
 		# unactivated user
-		#elsif !user.activated?
-		#	cannot :create, :all
-		#	cannot :edit, :all
-		#	cannot :destroy, :all
-		#	cannot :agree, [Answer, Article]
-		#	cannot :accept, ConsultSubject
+		elsif !user.activated?
+			logout_unactivate_abilities(user)
 		# mentor
 		elsif user.mentor?
 			mentor_abilities(user)
@@ -22,14 +18,20 @@ class Ability
   end
 
 	private
-		# not login
-		def logout_abilities(user)
+		# logout & unactivated user
+		def logout_unactivate_abilities(user)
 			cannot :create, :all
 			cannot :edit, :all
 			cannot :destroy, :all
+			cannot :answer, Question
 			cannot :agree, [Answer, Article]
 			cannot :accept, ConsultSubject
+			cannot :show, ConsultSubject
 			cannot :bookmark, :all
+			cannot :comment, :all
+			cannot :pm, User
+			cannot :follow, User
+			cannot :consult, User
 		end
 
 		# mentor
