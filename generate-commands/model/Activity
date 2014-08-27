@@ -1,0 +1,1 @@
+rails g model Activity user:references target:references{polymorphic} activity_type:integer title:string content:text agree_score:integer publish_date:integer theme:references recent_flag:boolean

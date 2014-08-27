@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815102815) do
+ActiveRecord::Schema.define(version: 20140825113542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "activity_type"
+    t.string   "title"
+    t.text     "content"
+    t.integer  "agree_score"
+    t.integer  "publish_date"
+    t.integer  "theme_id"
+    t.boolean  "recent_flag",   default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["target_id", "target_type"], name: "index_activities_on_target_id_and_target_type", using: :btree
+  add_index "activities", ["theme_id"], name: "index_activities_on_theme_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "answers", force: true do |t|
     t.text     "content"

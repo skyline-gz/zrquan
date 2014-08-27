@@ -12,6 +12,7 @@ class Question < ActiveRecord::Base
 	has_many :invited_mentors, class_name: "User", through: :invitations, source: :mentor
 	has_many :bookmarks, as: :bookmarkable
 	has_many :news_feeds, as: :feedable
+	has_many :activities, as: :target
 	accepts_nested_attributes_for :invitations
 
 	#def answers_num

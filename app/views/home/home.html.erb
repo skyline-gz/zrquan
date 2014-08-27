@@ -33,8 +33,116 @@
 </div>
 <div style="float:left">
 	<b>News Feed</b>
-	<% @news_feeds.order("id").each do |nf| %>
-		<table>
+	<table>
+		<% if current_user != nil %>
+			<% current_user.following_users.each do |following| %>
+				<% following.recent_activities.each do |ra| %>
+					<% if ra.ask_question? %>
+						<tr>
+							<td>Asked Question</td>
+							<td><%= ra.title %></td>
+							<td></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td><%= ra.answers.count %> answers</td>
+						</tr>
+					<% end %>
+					<% if ra.answer_question? %>
+						<tr>
+							<td>Answered Question</td>
+							<td><%= ra.title %></td>
+							<td><%= ra.content %></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td><%= ra.target.question.answers.count %> answers</td>
+							<td><%= ra.target.comments.count %> comments</td>
+							<td><%= ra.agree_score %></td>
+						</tr>
+					<% end %>
+					<% if ra.comment_answer? %>
+						<tr>
+							<td>Comment Answer</td>
+							<td><%= ra.title %></td>
+							<td><%= ra.content %></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td><%= ra.target.question.answers.count %> answers</td>
+							<td><%= ra.target.comments.count %> comments</td>
+							<td><%= ra.agree_score %></td>
+						</tr>
+					<% end %>
+					<% if ra.answer_article? %>
+						<tr>
+							<td>Comment Article</td>
+							<td><%= ra.title %></td>
+							<td><%= ra.content %></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td></td>
+							<td><%= ra.target.comments.count %> comments</td>
+							<td><%= ra.agree_score %></td>
+						</tr>
+					<% end %>
+					<% if ra.agree_answer? %>
+						<tr>
+							<td>Agree Answer</td>
+							<td><%= ra.title %></td>
+							<td><%= ra.content %></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td><%= ra.target.question.answers.count %> answers</td>
+							<td><%= ra.target.comments.count %> comments</td>
+							<td><%= ra.agree_score %></td>
+						</tr>
+					<% end %>
+					<% if ra.agree_article? %>
+						<tr>
+							<td>Comment Article</td>
+							<td><%= ra.title %></td>
+							<td><%= ra.content %></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td></td>
+							<td><%= ra.target.comments.count %> comments</td>
+							<td><%= ra.agree_score %></td>
+						</tr>
+					<% end %>
+					<% if ra.accept_consult? %>
+						<tr>
+							<td>Accept Consult</td>
+							<td><%= ra.title %></td>
+							<td></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					<% end %>
+					<% if ra.consult? %>
+						<tr>
+							<td>Consult</td>
+							<td><%= ra.title %></td>
+							<td></td>
+							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
+							<td><%= ra.pdate_to_s %></td>
+							<td><%= ra.theme %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+		<% @news_feeds.order("id").each do |nf| %>
 			<% if nf.feedable_type == "Question" %>
 				<% q = Question.find(nf.feedable_id) %>
 				<tr>
@@ -64,8 +172,8 @@
 					<td><%= c.apprentice.last_name %>&nbsp;<%= c.apprentice.first_name %></td>
 				</tr>
 			<% end %>
-		</table>
-	<% end %>
+		<% end %>
+	</table>
 </div>
 <div style="float:left">
 	<b>Sub Menu</b><br>

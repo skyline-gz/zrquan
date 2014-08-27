@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 	has_many:reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
 	has_many:followers, class_name: "User", through: :reverse_relationships
   has_one:user_setting
+	has_many:activities
 
 	def following_num
 		following_users.count
@@ -102,6 +103,10 @@ class User < ActiveRecord::Base
 			pm = PrivateMessage.where(user1_id: other_user.id, user2_id: id)
 			pm.count > 0 ? true : false
 		end
+	end
+
+	def recent_activities
+		activities.where(recent_flag: true)
 	end
 
 end
