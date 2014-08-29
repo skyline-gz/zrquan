@@ -19,7 +19,7 @@ class Activity < ActiveRecord::Base
 		activity_type == 3
 	end
 
-	def answer_article?
+	def comment_article?
 		activity_type == 4
 	end
 

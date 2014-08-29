@@ -58,7 +58,7 @@
 							<td><%= ra.theme %></td>
 							<td><%= ra.target.question.answers.count %> answers</td>
 							<td><%= ra.target.comments.count %> comments</td>
-							<td><%= ra.agree_score %></td>
+							<td><%= ra.target.agree_score %></td>
 						</tr>
 					<% end %>
 					<% if ra.comment_answer? %>
@@ -71,10 +71,10 @@
 							<td><%= ra.theme %></td>
 							<td><%= ra.target.question.answers.count %> answers</td>
 							<td><%= ra.target.comments.count %> comments</td>
-							<td><%= ra.agree_score %></td>
+							<td><%= ra.target.agree_score %></td>
 						</tr>
 					<% end %>
-					<% if ra.answer_article? %>
+					<% if ra.comment_article? %>
 						<tr>
 							<td>Comment Article</td>
 							<td><%= ra.title %></td>
@@ -84,7 +84,7 @@
 							<td><%= ra.theme %></td>
 							<td></td>
 							<td><%= ra.target.comments.count %> comments</td>
-							<td><%= ra.agree_score %></td>
+							<td><%= ra.target.agree_score %></td>
 						</tr>
 					<% end %>
 					<% if ra.agree_answer? %>
@@ -97,7 +97,7 @@
 							<td><%= ra.theme %></td>
 							<td><%= ra.target.question.answers.count %> answers</td>
 							<td><%= ra.target.comments.count %> comments</td>
-							<td><%= ra.agree_score %></td>
+							<td><%= ra.target.agree_score %></td>
 						</tr>
 					<% end %>
 					<% if ra.agree_article? %>
@@ -110,7 +110,7 @@
 							<td><%= ra.theme %></td>
 							<td></td>
 							<td><%= ra.target.comments.count %> comments</td>
-							<td><%= ra.agree_score %></td>
+							<td><%= ra.target.agree_score %></td>
 						</tr>
 					<% end %>
 					<% if ra.accept_consult? %>

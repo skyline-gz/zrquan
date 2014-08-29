@@ -29,8 +29,12 @@ class AnswersController < ApplicationController
 		@answer.question_id = params[:question_id]
 		@answer.save!
 		# update question answer num
-		@question = Question.find(params[:question_id])
+		@question = Question.find(@answer.question_id)
 		@question.update_attributes!(answer_num: @question.answer_num + 1)
+		# create activity
+		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
+																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
+																		theme:@question.theme, recent_flag: true)
 		# will not rollback if message cannot be created
 		if current_user.user_setting.answer_flag == true
 			msg_content = "New answer for your question: " + @question.title + "."
@@ -73,6 +77,10 @@ class AnswersController < ApplicationController
 			msg_content = current_user.email + " agreed your answer for " + @question.title + "."
 			@answer.user.messages.create!(content: msg_content, msg_type: 1)
 		end
+		# create activity
+		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
+																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
+																		theme:@question.theme, recent_flag: true)
 	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'
 	end
 
@@ -96,4 +104,8 @@ class AnswersController < ApplicationController
     def answer_params
       params.require(:answer).permit(:content, :agree_score, :user_id, :question_id)
     end
+
+		def today_to_i
+			Date.today.to_s.gsub("-", "").to_i
+		end
 end

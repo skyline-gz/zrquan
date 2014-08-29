@@ -56,7 +56,7 @@
 	<%= link_to 'Follow', relationships_path(:id=>@user.id), method: :post %> |
 <% end %>
 <% if can? :consult, @user %>
-	<%= link_to 'Consult', new_consult_subject_path(:first_name=>user.first_name, :last_name=>user.last_name, :id=>user.id), 'data-no-turbolink' => true %> |
+	<%= link_to 'Consult', new_consult_subject_path(:id=>@user.id), 'data-no-turbolink' => true %> |
 <% end %>
 <% if can? :edit, @user %>
 	<%= link_to 'Edit', edit_user_path(@user) %> |

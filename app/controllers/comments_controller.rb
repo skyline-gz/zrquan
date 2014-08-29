@@ -35,6 +35,10 @@ class CommentsController < ApplicationController
 				msg_content = "New comment for your article: " + @article.title + "."
 				@article.user.messages.create!(content: msg_content, msg_type: 1)
 			end
+			# create activity
+			current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 4,
+																		title: @article.title, content: @article.content, publish_date: today_to_i, 
+																		theme:@article.theme, recent_flag: true)
 		  redirect_to article_path(@article), notice: 'Comment was successfully created.'
 		end
 		if params[:answer_id] != nil
@@ -49,6 +53,10 @@ class CommentsController < ApplicationController
 				msg_content = "New comment for your answer of question: " + @question.title + "."
 				@answer.user.messages.create!(content: msg_content, msg_type: 1)
 			end
+			# create activity
+			current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
+																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
+																		theme:@question.theme, recent_flag: true)
 		  redirect_to question_path(@question), notice: 'Comment was successfully created.'
 		end
   end
@@ -80,4 +88,8 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type)
     end
+
+		def today_to_i
+			Date.today.to_s.gsub("-", "").to_i
+		end
 end

@@ -44,6 +44,10 @@ class QuestionsController < ApplicationController
 				end
 			end
 		end
+		# create activity
+		current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
+																		title: @question.title, publish_date: today_to_i, 
+																		theme:@question.theme, recent_flag: true)
 		redirect_to @question, notice: 'Question was successfully created.'
   end
 

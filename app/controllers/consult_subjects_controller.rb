@@ -17,11 +17,7 @@ class ConsultSubjectsController < ApplicationController
   def new
 		logger.debug("invoked consult_subjects new method.")
     @consult_subject = ConsultSubject.new
-		@mentor = @consult_subject.build_mentor
-		@mentor.first_name = params[:first_name]
-		@mentor.last_name = params[:last_name]	
-		@mentor.id = params[:id]
-		logger.debug(@mentor.id)
+		@mentor = User.find(params[:id])
   end
 
   # GET /consult_subjects/1/edit
@@ -38,6 +34,10 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.save!
 		msg_content = "New consult apply " + @consult_subject.title + " to you."
 		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
+		# create activity
+		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 8,
+																		title: @consult_subject.title, publish_date: today_to_i, theme:@consult_subject.theme, 
+																		recent_flag: true)
 		redirect_to @consult_subject, notice: 'Consult subject was successfully created.'
   end
 
@@ -53,7 +53,11 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.update_attributes!(:stat_class=>2)
 		msg_content = "Your consult apply " + @consult_subject.title + " has been accepted."
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
-		redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.'
+		# create activity
+		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 7,
+																		title: @consult_subject.title, publish_date: today_to_i, theme:@consult_subject.theme, 
+																		recent_flag: true)
+		redirect_to :back, notice: 'Consult subject was successfully updated.'
 	end
 
 	# close a processing consult
@@ -63,14 +67,14 @@ class ConsultSubjectsController < ApplicationController
 		msg_content = "Consult " + @consult_subject.title + " has been closed."
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
 		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
-		redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.'
+		redirect_to :back, notice: 'Consult subject was successfully updated.'
 	end
 
 	# ignore an applying consult subject
 	def ignore
 		logger.debug("invoked consult subject ignore")
 		@consult_subject.update_attributes!(:stat_class=>4)
-		redirect_to consult_subjects_path, notice: 'Consult subject was successfully updated.'
+		redirect_to :back, notice: 'Consult subject was successfully updated.'
 	end
 
   # DELETE /consult_subjects/1
