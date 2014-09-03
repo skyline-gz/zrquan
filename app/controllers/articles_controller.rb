@@ -57,6 +57,8 @@ class ArticlesController < ApplicationController
 			msg_content = current_user.email + " agreed your article for " + @article.title + "."
 			@article.user.messages.create!(content: msg_content, msg_type: 1)
 		end
+		# create agreement
+		current_user.agreements.create!(agreeable_id: @article.id, agreeable_type: "Article")
 		# create activity
 		current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 6,
 																		title: @article.title, content: @article.content, publish_date: today_to_i, 
@@ -81,4 +83,8 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :content, :agree_score, :theme_id, :industry_id, :category_id, :mark_flag, :user_id)
     end
+
+		def today_to_i
+			Date.today.to_s.gsub("-", "").to_i
+		end
 end

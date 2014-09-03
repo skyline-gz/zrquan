@@ -77,8 +77,10 @@ class AnswersController < ApplicationController
 			msg_content = current_user.email + " agreed your answer for " + @question.title + "."
 			@answer.user.messages.create!(content: msg_content, msg_type: 1)
 		end
+		# create agreement
+		current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
 		# create activity
-		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
+		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
 																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
 																		theme:@question.theme, recent_flag: true)
 	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'

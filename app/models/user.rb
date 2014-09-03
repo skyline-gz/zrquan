@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 	has_many:invitations, foreign_key: "mentor_id"
 	has_many:invited_questions, class_name: "Question", through: :invitations, source: :question
 	has_many:bookmarks
+	has_many:agreements
 	has_many:relationships, foreign_key: "follower_id"
 	has_many:following_users, class_name: "User", through: :relationships
 	has_many:reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
@@ -81,6 +82,42 @@ class User < ActiveRecord::Base
 			end
 		end
 		false
+	end
+
+	def commented_answer?(answer)
+		comments = Comment.where(user_id: id, commentable_id: answer.id, commentable_type: "Answer")
+		if comments.count > 0
+			true
+		else
+			false
+		end
+	end
+
+	def commented_article?(article)
+		comments = Comment.where(user_id: id, commentable_id: article.id, commentable_type: "Article")
+		if comments.count > 0
+			true
+		else
+			false
+		end
+	end
+
+	def agreed_answer?(answer)
+		agreements = Agreement.where(user_id: id, agreeable_id: answer.id, agreeable_type: "Answer")
+		if agreements.count > 0
+			true
+		else
+			false
+		end
+	end
+
+	def agreed_article?(article)
+		agreements = Agreement.where(user_id: id, agreeable_id: article.id, agreeable_type: "Article")
+		if agreements.count > 0
+			true
+		else
+			false
+		end
 	end
 
 	def mentor?

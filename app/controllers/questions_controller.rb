@@ -97,4 +97,7 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(invitations_attributes:[:mentor_id=>[]])
     end
 
+		def today_to_i
+			Date.today.to_s.gsub("-", "").to_i
+		end
 end

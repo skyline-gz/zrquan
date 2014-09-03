@@ -45,7 +45,7 @@
 							<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 							<td><%= ra.pdate_to_s %></td>
 							<td><%= ra.theme %></td>
-							<td><%= ra.answers.count %> answers</td>
+							<td><%= ra.target.answers.count %> answers</td>
 						</tr>
 					<% end %>
 					<% if ra.answer_question? %>

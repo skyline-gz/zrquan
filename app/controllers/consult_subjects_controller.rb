@@ -102,4 +102,8 @@ class ConsultSubjectsController < ApplicationController
       params.require(:consult_subject).permit(mentor_attributes:[:id])
     end
 
+		def today_to_i
+			Date.today.to_s.gsub("-", "").to_i
+		end
+
 end

@@ -1,0 +1,1 @@
+rails g model Agreement user:references agreeable:references{polymorphic}

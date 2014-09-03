@@ -48,7 +48,7 @@ class Ability
 				!user.answered?(q) and q.user_id != user.id
 			end
 			can :agree, Answer do |ans|
-				ans.user_id != user.id
+				ans.user_id != user.id and !user.agreed_answer?(ans)
 			end
 			can :bookmark, Question do |q|
 				!user.bookmarked_q?(q)
@@ -57,15 +57,15 @@ class Ability
 				user.bookmarked_q?(q)
 			end
 			can :comment, Answer do |ans|
-				ans.user_id != user.id
+				ans.user_id != user.id and !user.commented_answer?(ans)
 			end
 
 			# special article abilities
 			can :agree, Article do |art|
-				art.user_id != user.id
+				art.user_id != user.id and !user.agreed_article?(art)
 			end
 			can :comment, Article do |art|
-				art.user_id != user.id
+				art.user_id != user.id and !user.commented_article?(art)
 			end
 			can :bookmark, Article do |a|
 				!user.bookmarked_a?(a)
@@ -113,10 +113,10 @@ class Ability
 				!user.answered?(q) and q.user_id != user.id
 			end
 			can :agree, Answer do |ans|
-				ans.user_id != user.id
+				ans.user_id != user.id and !user.agreed_answer?(ans)
 			end
 			can :comment, Answer do |ans|
-				ans.user_id != user.id
+				ans.user_id != user.id and !user.commented_answer?(ans)
 			end
 			can :bookmark, Question do |q|
 				!user.bookmarked_q?(q)
@@ -127,10 +127,10 @@ class Ability
 
 			# special article abilities
 			can :agree, Article do |art|
-				art.user_id != user.id
+				art.user_id != user.id and !user.agreed_article?(art)
 			end
 			can :comment, Article do |art|
-				art.user_id != user.id
+				art.user_id != user.id and !user.commented_article?(art)
 			end
 			can :bookmark, Article do |a|
 				!user.bookmarked_a?(a)

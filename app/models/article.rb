@@ -7,6 +7,7 @@ class Article < ActiveRecord::Base
 	has_many :comments, as: :commentable
 	has_many :news_feeds, as: :feedable
 	has_many :activities, as: :target
+	has_many :agreements, as: :agreeable
 
 	# for test
 	def output_title
