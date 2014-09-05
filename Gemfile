@@ -63,3 +63,4 @@ gem 'faye'
 # avatar, image upload
 gem 'carrierwave'
 gem 'mini_magick'
+
