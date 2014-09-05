@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-#source 'https://ruby.taobao.org/'
+#source 'https://rubygems.org'
+source 'https://ruby.taobao.org/'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -63,4 +63,3 @@ gem 'faye'
 # avatar, image upload
 gem 'carrierwave'
 gem 'mini_magick'
-
