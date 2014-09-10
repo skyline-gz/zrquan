@@ -17,6 +17,7 @@ class ConsultSubjectsController < ApplicationController
   def new
 		logger.debug("invoked consult_subjects new method.")
     @consult_subject = ConsultSubject.new
+		@mentor = @consult_subject.build_mentor
 		@mentor = User.find(params[:id])
   end
 

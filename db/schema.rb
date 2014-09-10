@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825113542) do
+ActiveRecord::Schema.define(version: 20140903110554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20140825113542) do
   add_index "activities", ["target_id", "target_type"], name: "index_activities_on_target_id_and_target_type", using: :btree
   add_index "activities", ["theme_id"], name: "index_activities_on_theme_id", using: :btree
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+
+  create_table "agreements", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "agreeable_id"
+    t.string   "agreeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agreements", ["agreeable_id", "agreeable_type"], name: "index_agreements_on_agreeable_id_and_agreeable_type", using: :btree
+  add_index "agreements", ["user_id"], name: "index_agreements_on_user_id", using: :btree
 
   create_table "answers", force: true do |t|
     t.text     "content"
