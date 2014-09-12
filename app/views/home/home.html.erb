@@ -13,6 +13,9 @@
 			<%= link_to 'Ask', home_activate_path %>
 		<% end %>
 	<% end %>
+	<% if current_user != nil %>
+		<%= link_to "Change your password", edit_user_registration_path %>
+	<% end %>
 <% end %>
 <div>
 	<%= link_to 'Home', root_path %> | 	<%= link_to 'Mentor', mentors_users_path %> | 
