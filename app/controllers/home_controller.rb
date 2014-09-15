@@ -6,9 +6,9 @@ class HomeController < ApplicationController
 		@news_feeds = NewsFeed.all
 		if current_user != nil
 			@recent_activities = Activity.find_by_sql(
-				"select A.* from ACTIVITIES A inner join RELATIONSHIPS R on
-				 A.USER_ID = R.FOLLOWING_USER_ID and R.FOLLOWER_ID = " + current_user.id.to_s + "
-				 where A.RECENT_FLAG = true order by A.ID DESC")
+				["select A.* from ACTIVITIES A inner join RELATIONSHIPS R on
+				 A.USER_ID = R.FOLLOWING_USER_ID and R.FOLLOWER_ID = ? 
+				 where A.RECENT_FLAG = true order by A.ID DESC", current_user.id])
 		end
 	end
 

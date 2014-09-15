@@ -39,6 +39,15 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# test
+group :development, :test do
+	gem 'rspec'
+	gem 'rspec-rails'
+	gem 'guard-rspec'
+	gem 'spork-rails'
+	gem 'guard-spork'
+end
+
 # 用户系统（认证及权限）
 gem 'devise'
 gem 'devise-encryptable'
