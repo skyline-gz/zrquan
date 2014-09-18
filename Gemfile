@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# test
+# 测试
 group :development, :test do
 	gem 'rspec'
 	gem 'rspec-rails'
@@ -53,22 +53,22 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'cancan'
 
-# server
+# 服务器
 gem 'thin', group: :development
 
-# rich-content editor
+# 富内容编辑
 gem 'rails_kindeditor'
 
-# city lists
+# 省市级联
 gem 'china_city'
 
-# search engine
+# 搜索引擎
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 
-# messaging
+# 消息队列
 gem 'faye'
 
-# avatar, image upload
+# 头像及图片上传
 gem 'carrierwave'
 gem 'mini_magick'

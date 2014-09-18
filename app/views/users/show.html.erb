@@ -154,7 +154,7 @@
 				<td><%= us.stat_class %></td>
 				<td><%= us.created_at %></td>
 				<% if can? :close, us %>
-					<td><%= link_to 'Close', close_consult_subject_path(ms), method: :post %></td>
+					<td><%= link_to 'Close', close_consult_subject_path(us), method: :post %></td>
 				<% end %>
 			</tr>
 		<% end %>
