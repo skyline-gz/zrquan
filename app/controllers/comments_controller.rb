@@ -1,59 +1,53 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /comments
-  # GET /comments.json
+  # 列表
   def index
     @comments = Comment.all
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
-  def show
-  end
-
-  # GET /comments/new
+  # 新建评论对象
   def new
     @comment = Comment.new
   end
 
-  # GET /comments/1/edit
-  def edit
-  end
-
-  # POST /comments
-  # POST /comments.json
+  # 创建
   def create
+		# 经验评论
 		if params[:article_id] != nil
 			@article = Article.find(params[:article_id])
-			# will not rollback if message cannnot be created
+			# 创建经验评论
 		  @comment = current_user.comments.new(comment_params)
 			@comment.commentable_id = params[:article_id]
 			@comment.commentable_type = "Article"
 			@comment.save!
+			# 创建消息并发送
 			if current_user.user_setting.commented_flag == true
 				msg_content = "New comment for your article: " + @article.title + "."
 				@article.user.messages.create!(content: msg_content, msg_type: 1)
+				# TODO 发送到faye
 			end
-			# create activity
+			# 创建用户行为（评论经验）
 			current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 4,
 																		title: @article.title, content: @article.content, publish_date: today_to_i, 
 																		theme:@article.theme, recent_flag: true)
 		  redirect_to article_path(@article), notice: 'Comment was successfully created.'
 		end
+		# 答案评论
 		if params[:answer_id] != nil
 			@answer = Answer.find(params[:answer_id])
 			@question = @answer.question
-			# will not rollback if message cannnot be created
+			# 创建答案评论
 			@comment = current_user.comments.new(comment_params)
 			@comment.commentable_id = params[:answer_id]
 			@comment.commentable_type = "Answer"
 			@comment.save!
+			# 创建消息并发送
 			if current_user.user_setting.commented_flag == true
 				msg_content = "New comment for your answer of question: " + @question.title + "."
 				@answer.user.messages.create!(content: msg_content, msg_type: 1)
 			end
-			# create activity
+			# 创建用户行为（评论答案）
 			current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
 																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
 																		theme:@question.theme, recent_flag: true)
@@ -61,22 +55,6 @@ class CommentsController < ApplicationController
 		end
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
-  def update
-    @comment.update_attributes!(comment_params)
-    redirect_to @comment, notice: 'Comment was successfully updated.'
-  end
-
-  # DELETE /comments/1
-  # DELETE /comments/1.json
-  #def destroy
-  #  @comment.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-  #    format.json { head :no_content }
-  #  end
-  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -89,6 +67,7 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type)
     end
 
+		# 转换当前日期为int类型
 		def today_to_i
 			Date.today.to_s.gsub("-", "").to_i
 		end

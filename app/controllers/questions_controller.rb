@@ -2,32 +2,30 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /questions
-  # GET /questions.json
+  # 列表
   def index
     @questions = Question.all
   end
 
-  # GET /questions/1
-  # GET /questions/1.json
+  # 显示
   def show
 		#@user = User.find(params[:id])
 		#@questions = @user.questions
   end
 
-  # GET /questions/new
+  # 新建问题对象
   def new
     @question = Question.new
 		@question.invitations.build
   end
 
-  # GET /questions/1/edit
+  # 编辑
   def edit
   end
 
-  # POST /questions
-  # POST /questions.json
+  # 创建
   def create
+		# 创建问题和邀请
 		ActiveRecord::Base.transaction do
 	  	@question = current_user.questions.new(question_params)
 			@question.save!
@@ -38,22 +36,22 @@ class QuestionsController < ApplicationController
 					@invitation.question_id = @question.id
 					@invitation.mentor_id = m_id
 					@invitation.save!
-					# send message to invited mentor
+					# 发信息给受邀导师
 					msg_content = "You are invited to answer " + @question.title + "."
 					@invitation.mentor.messages.create!(content: msg_content, msg_type: 1)
 				end
 			end
 		end
-		# create activity
+		# 创建用户行为（发布问题）
 		current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
 																		title: @question.title, publish_date: today_to_i, 
 																		theme:@question.theme, recent_flag: true)
 		redirect_to @question, notice: 'Question was successfully created.'
   end
 
-  # PATCH/PUT /questions/1
-  # PATCH/PUT /questions/1.json
+  # 更新
   def update
+		# 更新问题和邀请
 		ActiveRecord::Base.transaction do
 			@question.update_attributes!(question_params)
 			if !Invitation.destroy_all(question_id:@question.id)
@@ -64,7 +62,7 @@ class QuestionsController < ApplicationController
 				@invitation.question_id = @question.id
 				@invitation.mentor_id = m_id
 				@invitation.save!
-				# send message to invited mentor
+				# 发信息给受邀导师
 				msg_content = "You are invited to answer " + @question.title + "."
 				@invitation.mentor.messages.create!(content: msg_content, msg_type: 1)
 			end
@@ -97,6 +95,7 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(invitations_attributes:[:mentor_id=>[]])
     end
 
+		# 转换当前日期为int类型
 		def today_to_i
 			Date.today.to_s.gsub("-", "").to_i
 		end

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 #  before_action :authenticate_user!
 
+	# 菜单-首页
 	def home
 		@rec_mentors = RecommendMentor.all
 		@news_feeds = NewsFeed.all
@@ -12,6 +13,19 @@ class HomeController < ApplicationController
 		end
 	end
 
+	# 菜单-问答
+	def question
+	end
+
+	# 菜单-经验
+	def article
+	end
+
+	# 菜单-咨询
+	def consult
+	end
+
+	# 搜索
 	def search
 		@search = Question.search do
 			key_word = params[:search]
@@ -21,19 +35,12 @@ class HomeController < ApplicationController
 		logger.debug(@search.results)
 	end
 
-	def question
-	end
-
-	def article
-	end
-
-	def consult
-	end
-
+	# 副菜单-我的收藏
 	def my_bookmark
 		@bookmarks = current_user.bookmarks
 	end
 
+	# 副菜单-我的草稿
 	def my_draft
 		@draft_articles = current_user.articles.where(draft_flag: true)
 	end

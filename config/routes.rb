@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :messages
 
-  resources :user_settings
+  resources :user_settings, except: [:destroy, :create, :index] do
 
   resources :private_messages, except: [:destroy, :edit, :update]
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 		member do
 			post :agree
 		end
-		resources :comments, except: :destroy
+		resources :comments, only: [:index, :new, :create]
 	end
 
   resources :messages, except: [:destroy, :edit, :update]
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 		member do
 			post :agree
 		end
-		resources :comments, except: :destroy		
+		resources :comments, only: [:index, :new, :create]
 	end
 
   devise_for :users, controllers:{registrations: "users/registrations"}

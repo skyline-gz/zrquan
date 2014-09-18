@@ -1,44 +1,20 @@
 class UserSettingsController < ApplicationController
   before_action :set_user_setting, only: [:show, :edit, :update, :destroy]
 
-  # GET /user_settings
-  # GET /user_settings.json
-  def index
-    @user_settings = UserSetting.all
-  end
-
-  # GET /user_settings/1
-  # GET /user_settings/1.json
+  # 显示
   def show
   end
 
-  # GET /user_settings/new
+  # 新建用户设置对象
   def new
     @user_setting = UserSetting.new
   end
 
-  # GET /user_settings/1/edit
+  # 编辑
   def edit
   end
 
-  # POST /user_settings
-  # POST /user_settings.json
-  def create
-    @user_setting = UserSetting.new(user_setting_params)
-
-    respond_to do |format|
-      if @user_setting.save
-        format.html { redirect_to @user_setting, notice: 'User setting was successfully created.' }
-        format.json { render :show, status: :created, location: @user_setting }
-      else
-        format.html { render :new }
-        format.json { render json: @user_setting.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /user_settings/1
-  # PATCH/PUT /user_settings/1.json
+  # 更新
   def update
     respond_to do |format|
       if @user_setting.update(user_setting_params)
@@ -51,15 +27,6 @@ class UserSettingsController < ApplicationController
     end
   end
 
-  # DELETE /user_settings/1
-  # DELETE /user_settings/1.json
-  def destroy
-    @user_setting.destroy
-    respond_to do |format|
-      format.html { redirect_to user_settings_url, notice: 'User setting was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

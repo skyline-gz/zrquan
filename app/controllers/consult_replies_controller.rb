@@ -1,34 +1,31 @@
 class ConsultRepliesController < ApplicationController
   before_action :set_consult_reply, only: [:show, :edit, :update, :destroy]
 
-  # GET /consult_replies
-  # GET /consult_replies.json
+  # 列表
   def index
     @consult_replies = ConsultReply.all
   end
 
-  # GET /consult_replies/1
-  # GET /consult_replies/1.json
+  # 显示
   def show
   end
 
-  # GET /consult_replies/new
+  # 新建咨询回复对象
   def new
     @consult_reply = ConsultReply.new
   end
 
-  # GET /consult_replies/1/edit
+  # 编辑
   def edit
   end
 
-  # POST /consult_replies
-  # POST /consult_replies.json
+  # 创建
   def create
-		# save consult_reply
+		# 创建咨询回复
 		@consult_reply = current_user.consult_replies.build(consult_reply_params)
 		@consult_reply.consult_subject_id = params[:consult_subject_id]
 		@consult_reply.save!
-		# save message
+		# 创建消息并发送
 		@consult_subject = ConsultSubject.find(params[:consult_subject_id])
 		if current_user.id == @consult_subject.mentor_id
 			user_id = @consult_subject.apprentice_id
@@ -40,8 +37,7 @@ class ConsultRepliesController < ApplicationController
 	  redirect_to consult_subject_path(@consult_subject), notice: 'Consult reply was successfully created.'
   end
 
-  # PATCH/PUT /consult_replies/1
-  # PATCH/PUT /consult_replies/1.json
+  # 更新
   def update
 		@consult_reply.update_attributes!(consult_reply_params)
     redirect_to @consult_reply, notice: 'Consult reply was successfully updated.'

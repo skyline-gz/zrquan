@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  # POST /users
-  # POST /users.json
+  # 创建用户（注册）
+	# 重写devise的注册controller
   def create
     build_resource(sign_up_params)
 

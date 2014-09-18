@@ -2,30 +2,28 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow]
   before_action :authenticate_user!
 
-  # GET /users
-  # GET /users.json
+  # 全用户列表
   def index
 		logger.debug("start index")
     @users = User.all
   end
 
+	# 导师列表
 	def mentors
 		@mentors = User.all.where(mentor_flag: true)
 	end
 
-  # GET /users/1
-  # GET /users/1.json
+  # 显示
   def show
-    
   end
 
-  # GET /users/new
+  # 新建用户对象
   def new
 		logger.debug("start new")
     @user = User.new
   end
 
-  # GET /users/1/edit
+  # 编辑
   def edit
   end
 
@@ -54,8 +52,7 @@ class UsersController < ApplicationController
   #  end
   #end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  # 更新
   def update
   	@user.update_attributes!(user_params)
     redirect_to @user, notice: 'User was successfully updated.'

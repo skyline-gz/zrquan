@@ -1,70 +1,66 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy, :agree]
 
-  # GET /answers
-  # GET /answers.json
+  # 列表
   def index
     @answers = Answer.all
   end
 
-  # GET /answers/1
-  # GET /answers/1.json
+  # 显示
   def show
   end
 
-  # GET /answers/new
+  # 新建答案对象
   def new
     @answer = Answer.new
   end
 
-  # GET /answers/1/edit
+  # 编辑
   def edit
   end
 
-  # POST /answers
-  # POST /answers.json
+  # 创建
   def create
-		# create answer
+		# 创建答案
     @answer = current_user.answers.new(answer_params)
 		@answer.question_id = params[:question_id]
 		@answer.save!
-		# update question answer num
+		# 更新问题的答案数
 		@question = Question.find(@answer.question_id)
 		@question.update_attributes!(answer_num: @question.answer_num + 1)
-		# create activity
+		# 创建用户行为（回答问题）
 		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
 																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
 																		theme:@question.theme, recent_flag: true)
-		# will not rollback if message cannot be created
+		# 创建消息并发送
 		if current_user.user_setting.answer_flag == true
 			msg_content = "New answer for your question: " + @question.title + "."
 			@question.user.messages.create!(content: msg_content, msg_type: 1)
-			# TODO publish to faye
+			# TODO 发送到faye
 		end
-		
 	  redirect_to question_path(@question), notice: 'Answer was successfully created.'
   end
 
-  # PATCH/PUT /answers/1
-  # PATCH/PUT /answers/1.json
+  # 更新
   def update
 		@question = Question.find(@answer.question_id)
-		# update answers
+		# 更新答案
 		@answer.update_attributes!(answer_params)
-		# create message
+		# 创建对应消息，发送给用户
 		if current_user.user_setting.answer_flag == true
 			msg_content = "Answer for your question: " + @question.title + " has been updated."
 			@question.user.messages.create!(content: msg_content, msg_type: 1)
-			# TODO publish to faye
+			# TODO 发送到faye
 		end
 	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
 
+	# 赞同
 	def agree
 		@question = Question.find(@answer.question_id)
 		latest_score = @answer.agree_score
 		logger.debug(latest_score)
-		# agree from mentor plus 2 and agree from normal user plus 1
+		# 更新赞同分数（导师+2，普通用户+1）
 		if current_user.mentor_flag
 			latest_score = latest_score + 2
 			@answer.update_attributes!(:agree_score => latest_score)
@@ -72,14 +68,15 @@ class AnswersController < ApplicationController
 			latest_score = latest_score + 1
 			@answer.update_attributes!(:agree_score => latest_score)
 		end
+		# 创建消息，发送给用户
 		if @answer.user.user_setting.aggred_flag
 			logger.debug("message")
 			msg_content = current_user.email + " agreed your answer for " + @question.title + "."
 			@answer.user.messages.create!(content: msg_content, msg_type: 1)
 		end
-		# create agreement
+		# 创建用户赞同信息
 		current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
-		# create activity
+		# 创建用户行为（赞同答案）
 		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
 																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
 																		theme:@question.theme, recent_flag: true)
@@ -107,6 +104,7 @@ class AnswersController < ApplicationController
       params.require(:answer).permit(:content, :agree_score, :user_id, :question_id)
     end
 
+		# 转换当前日期为int类型
 		def today_to_i
 			Date.today.to_s.gsub("-", "").to_i
 		end
