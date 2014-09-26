@@ -44,14 +44,14 @@ class ConsultSubjectsController < ApplicationController
 
   # 更新
   def update
-    @consult_subject.update_attributes!(consult_subject_params)
+    @consult_subject.update!(consult_subject_params)
     redirect_to @consult_subject, notice: 'Consult subject was successfully updated.'
   end
 
 	# 接受咨询申请
 	def accept
 		# 更新状态并发送消息
-		@consult_subject.update_attributes!(:stat_class=>2)
+		@consult_subject.update!(:stat_class=>2)
 		msg_content = "Your consult apply " + @consult_subject.title + " has been accepted."
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
 		# 创建用户行为（接受申请）
@@ -65,7 +65,7 @@ class ConsultSubjectsController < ApplicationController
 	def close
 		# 更新状态
 		logger.debug("invoked consult subject close")
-		@consult_subject.update_attributes!(:stat_class=>3)
+		@consult_subject.update!(:stat_class=>3)
 		# 创建消息并发送
 		msg_content = "Consult " + @consult_subject.title + " has been closed."
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
@@ -77,7 +77,7 @@ class ConsultSubjectsController < ApplicationController
 	def ignore
 		# 更新状态
 		logger.debug("invoked consult subject ignore")
-		@consult_subject.update_attributes!(:stat_class=>4)
+		@consult_subject.update!(:stat_class=>4)
 		redirect_to :back, notice: 'Consult subject was successfully updated.'
 	end
 

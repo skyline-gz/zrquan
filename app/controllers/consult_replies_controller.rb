@@ -39,7 +39,7 @@ class ConsultRepliesController < ApplicationController
 
   # 更新
   def update
-		@consult_reply.update_attributes!(consult_reply_params)
+		@consult_reply.update!(consult_reply_params)
     redirect_to @consult_reply, notice: 'Consult reply was successfully updated.'
   end
 

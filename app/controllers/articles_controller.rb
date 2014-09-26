@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
   # 更新
   def update
 	  # 更新经验
-		@article.update_attributes!(article_params)
+		@article.update!(article_params)
     redirect_to @article, notice: 'Article was successfully updated.'
   end
 
@@ -46,10 +46,10 @@ class ArticlesController < ApplicationController
 		# 更新赞同分数（导师+2，普通用户+1）
 		if current_user.mentor_flag
 			latest_score = latest_score + 2
-			@article.update_attributes!(:agree_score => latest_score)
+			@article.update!(:agree_score => latest_score)
 		else
 			latest_score = latest_score + 1
-			@article.update_attributes!(:agree_score => latest_score)
+			@article.update!(:agree_score => latest_score)
 		end
 		# 创建消息，发送给用户
 		if @article.user.user_setting.aggred_flag

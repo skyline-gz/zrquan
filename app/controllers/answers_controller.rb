@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
 		@answer.save!
 		# 更新问题的答案数
 		@question = Question.find(@answer.question_id)
-		@question.update_attributes!(answer_num: @question.answer_num + 1)
+		@question.update!(answer_num: @question.answer_num + 1)
 		# 创建用户行为（回答问题）
 		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
 																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
@@ -45,7 +45,7 @@ class AnswersController < ApplicationController
   def update
 		@question = Question.find(@answer.question_id)
 		# 更新答案
-		@answer.update_attributes!(answer_params)
+		@answer.update!(answer_params)
 		# 创建对应消息，发送给用户
 		if current_user.user_setting.answer_flag == true
 			msg_content = "Answer for your question: " + @question.title + " has been updated."
@@ -63,10 +63,10 @@ class AnswersController < ApplicationController
 		# 更新赞同分数（导师+2，普通用户+1）
 		if current_user.mentor_flag
 			latest_score = latest_score + 2
-			@answer.update_attributes!(:agree_score => latest_score)
+			@answer.update!(:agree_score => latest_score)
 		else
 			latest_score = latest_score + 1
-			@answer.update_attributes!(:agree_score => latest_score)
+			@answer.update!(:agree_score => latest_score)
 		end
 		# 创建消息，发送给用户
 		if @answer.user.user_setting.aggred_flag

@@ -53,7 +53,7 @@ class QuestionsController < ApplicationController
   def update
 		# 更新问题和邀请
 		ActiveRecord::Base.transaction do
-			@question.update_attributes!(question_params)
+			@question.update!(question_params)
 			if !Invitation.destroy_all(question_id:@question.id)
 				raise ActiveRecord::Rollback
 			end

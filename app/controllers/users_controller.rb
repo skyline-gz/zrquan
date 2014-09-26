@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   # 更新
   def update
-  	@user.update_attributes!(user_params)
+  	@user.update!(user_params)
     redirect_to @user, notice: 'User was successfully updated.'
   end
 
