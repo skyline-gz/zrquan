@@ -88,7 +88,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :content, :theme_id, :industry_id, :category_id, :answer_num, :mark_flag)
+      params.require(:question).permit(:title, :content, :theme_id)
     end
 
 		def invitations_params

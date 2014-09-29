@@ -25,6 +25,7 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.new(answer_params)
 		@answer.question_id = params[:question_id]
 		@answer.save!
+		# TODO 错误处理
 		# 更新问题的答案数
 		@question = Question.find(@answer.question_id)
 		@question.update!(answer_num: @question.answer_num + 1)
@@ -101,7 +102,7 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:content, :agree_score, :user_id, :question_id)
+      params.require(:answer).permit(:content)
     end
 
 		# 转换当前日期为int类型
