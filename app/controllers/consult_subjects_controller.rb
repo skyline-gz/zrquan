@@ -36,8 +36,8 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
 		# 创建用户行为（申请咨询）
 		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 8,
-																		title: @consult_subject.title, publish_date: today_to_i, theme:@consult_subject.theme, 
-																		recent_flag: true)
+																		title: @consult_subject.title, publish_date: DateUtils.to_yyyymmdd(Date.today), 
+																		theme:@consult_subject.theme, recent_flag: true)
 		# TODO 发送到faye
 		redirect_to @consult_subject, notice: 'Consult subject was successfully created.'
   end
@@ -56,8 +56,8 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
 		# 创建用户行为（接受申请）
 		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 7,
-																		title: @consult_subject.title, publish_date: today_to_i, theme:@consult_subject.theme, 
-																		recent_flag: true)
+																		title: @consult_subject.title, publish_date: DateUtils.to_yyyymmdd(Date.today), 
+																		theme:@consult_subject.theme, recent_flag: true)
 		redirect_to :back, notice: 'Consult subject was successfully updated.'
 	end
 
@@ -104,11 +104,6 @@ class ConsultSubjectsController < ApplicationController
 
 		def mentor_params
       params.require(:consult_subject).permit(mentor_attributes:[:id])
-    end
-
-		# 转换当前日期为int类型
-		def today_to_i
-			Date.today.to_s.gsub("-", "").to_i
-		end
+    end		
 
 end

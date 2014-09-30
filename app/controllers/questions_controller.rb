@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
 		end
 		# 创建用户行为（发布问题）
 		current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
-																		title: @question.title, publish_date: today_to_i, 
+																		title: @question.title, publish_date: DateUtils.to_yyyymmdd(Date.today), 
 																		theme:@question.theme, recent_flag: true)
 		redirect_to @question, notice: 'Question was successfully created.'
   end
@@ -94,9 +94,4 @@ class QuestionsController < ApplicationController
 		def invitations_params
       params.require(:question).permit(invitations_attributes:[:mentor_id=>[]])
     end
-
-		# 转换当前日期为int类型
-		def today_to_i
-			Date.today.to_s.gsub("-", "").to_i
-		end
 end

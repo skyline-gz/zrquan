@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 			end
 			# 创建用户行为（评论经验）
 			current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 4,
-																		title: @article.title, content: @article.content, publish_date: today_to_i, 
+																		title: @article.title, content: @article.content, publish_date: DateUtils.to_yyyymmdd(Date.today), 
 																		theme:@article.theme, recent_flag: true)
 		  redirect_to article_path(@article), notice: 'Comment was successfully created.'
 		end
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
 			end
 			# 创建用户行为（评论答案）
 			current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
-																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
+																		title: @question.title, content: @answer.content, publish_date: DateUtils.to_yyyymmdd(Date.today), 
 																		theme:@question.theme, recent_flag: true)
 		  redirect_to question_path(@question), notice: 'Comment was successfully created.'
 		end
@@ -65,10 +65,5 @@ class CommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type)
-    end
-
-		# 转换当前日期为int类型
-		def today_to_i
-			Date.today.to_s.gsub("-", "").to_i
-		end
+    end		
 end

@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  include DateUtils
   before_action :set_answer, only: [:show, :edit, :update, :destroy, :agree]
 
   # 列表
@@ -31,7 +32,8 @@ class AnswersController < ApplicationController
     @question.update!(answer_num: @question.answer_num + 1)
     # 创建用户行为（回答问题）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
-                                    title: @question.title, content: @answer.content, publish_date: today_to_i, 
+                                    title: @question.title, content: @answer.content, 
+                                    publish_date: DateUtils.to_yyyymmdd(Date.today), 
                                     theme:@question.theme, recent_flag: true)
     # 创建消息并发送
     if current_user.user_setting.answer_flag == true
@@ -57,7 +59,7 @@ class AnswersController < ApplicationController
   end
 
 	# 赞同
-	def agree
+  def agree
     @question = Question.find(@answer.question_id)
     latest_score = @answer.agree_score
     logger.debug(latest_score)
@@ -79,7 +81,8 @@ class AnswersController < ApplicationController
     current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
     # 创建用户行为（赞同答案）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
-                                    title: @question.title, content: @answer.content, publish_date: today_to_i, 
+                                    title: @question.title, content: @answer.content, 
+                                    publish_date: DateUtils.to_yyyymmdd(Date.today), 
                                     theme:@question.theme, recent_flag: true)
     redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
@@ -103,10 +106,5 @@ class AnswersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
       params.require(:answer).permit(:content)
-    end
-
-		# 转换当前日期为int类型
-		def today_to_i
-			Date.today.to_s.gsub("-", "").to_i
-		end
+    end		
 end
