@@ -9,9 +9,9 @@ class UsersController < ApplicationController
   end
 
 	# 导师列表
-	def mentors
-		@mentors = User.all.where(mentor_flag: true)
-	end
+  def mentors
+    @mentors = User.all.where(mentor_flag: true)
+  end
 
   # 显示
   def show
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   # 新建用户对象
   def new
-		logger.debug("start new")
+    logger.debug("start new")
     @user = User.new
   end
 
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   # 更新
   def update
-  	@user.update!(user_params)
+    @user.update!(user_params)
     redirect_to @user, notice: 'User was successfully updated.'
   end
 

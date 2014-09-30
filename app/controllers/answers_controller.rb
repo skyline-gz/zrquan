@@ -21,68 +21,68 @@ class AnswersController < ApplicationController
 
   # 创建
   def create
-		# 创建答案
+    # 创建答案
     @answer = current_user.answers.new(answer_params)
-		@answer.question_id = params[:question_id]
-		@answer.save!
-		# TODO 错误处理
-		# 更新问题的答案数
-		@question = Question.find(@answer.question_id)
-		@question.update!(answer_num: @question.answer_num + 1)
-		# 创建用户行为（回答问题）
-		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
-																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
-																		theme:@question.theme, recent_flag: true)
-		# 创建消息并发送
-		if current_user.user_setting.answer_flag == true
-			msg_content = "New answer for your question: " + @question.title + "."
-			@question.user.messages.create!(content: msg_content, msg_type: 1)
-			# TODO 发送到faye
-		end
-	  redirect_to question_path(@question), notice: 'Answer was successfully created.'
+    @answer.question_id = params[:question_id]
+    @answer.save!
+    # TODO 错误处理
+    # 更新问题的答案数
+    @question = Question.find(@answer.question_id)
+    @question.update!(answer_num: @question.answer_num + 1)
+    # 创建用户行为（回答问题）
+    current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
+                                    title: @question.title, content: @answer.content, publish_date: today_to_i, 
+                                    theme:@question.theme, recent_flag: true)
+    # 创建消息并发送
+    if current_user.user_setting.answer_flag == true
+      msg_content = "New answer for your question: " + @question.title + "."
+      @question.user.messages.create!(content: msg_content, msg_type: 1)
+      # TODO 发送到faye
+    end
+    redirect_to question_path(@question), notice: 'Answer was successfully created.'
   end
 
   # 更新
   def update
-		@question = Question.find(@answer.question_id)
-		# 更新答案
-		@answer.update!(answer_params)
-		# 创建对应消息，发送给用户
-		if current_user.user_setting.answer_flag == true
-			msg_content = "Answer for your question: " + @question.title + " has been updated."
-			@question.user.messages.create!(content: msg_content, msg_type: 1)
-			# TODO 发送到faye
-		end
+    @question = Question.find(@answer.question_id)
+    # 更新答案
+    @answer.update!(answer_params)
+    # 创建对应消息，发送给用户
+    if current_user.user_setting.answer_flag == true
+      msg_content = "Answer for your question: " + @question.title + " has been updated."
+      @question.user.messages.create!(content: msg_content, msg_type: 1)
+      # TODO 发送到faye
+    end
 	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
 
 	# 赞同
 	def agree
-		@question = Question.find(@answer.question_id)
-		latest_score = @answer.agree_score
-		logger.debug(latest_score)
-		# 更新赞同分数（导师+2，普通用户+1）
-		if current_user.mentor_flag
-			latest_score = latest_score + 2
-			@answer.update!(:agree_score => latest_score)
-		else
-			latest_score = latest_score + 1
-			@answer.update!(:agree_score => latest_score)
-		end
-		# 创建消息，发送给用户
-		if @answer.user.user_setting.aggred_flag
-			logger.debug("message")
-			msg_content = current_user.email + " agreed your answer for " + @question.title + "."
-			@answer.user.messages.create!(content: msg_content, msg_type: 1)
-		end
-		# 创建用户赞同信息
-		current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
-		# 创建用户行为（赞同答案）
-		current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
-																		title: @question.title, content: @answer.content, publish_date: today_to_i, 
-																		theme:@question.theme, recent_flag: true)
-	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'
-	end
+    @question = Question.find(@answer.question_id)
+    latest_score = @answer.agree_score
+    logger.debug(latest_score)
+    # 更新赞同分数（导师+2，普通用户+1）
+    if current_user.mentor_flag
+      latest_score = latest_score + 2
+      @answer.update!(:agree_score => latest_score)
+    else
+      latest_score = latest_score + 1
+      @answer.update!(:agree_score => latest_score)
+    end
+    # 创建消息，发送给用户
+    if @answer.user.user_setting.aggred_flag
+      logger.debug("message")
+      msg_content = current_user.email + " agreed your answer for " + @question.title + "."
+      @answer.user.messages.create!(content: msg_content, msg_type: 1)
+    end
+    # 创建用户赞同信息
+    current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
+    # 创建用户行为（赞同答案）
+    current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
+                                    title: @question.title, content: @answer.content, publish_date: today_to_i, 
+                                    theme:@question.theme, recent_flag: true)
+    redirect_to question_path(@question), notice: 'Answer was successfully updated.'
+  end
 
   # DELETE /answers/1
   # DELETE /answers/1.json
