@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   # 全用户列表
   def index
-		logger.debug("start index")
+    logger.debug("start index")
     @users = User.all
   end
 

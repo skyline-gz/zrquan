@@ -15,10 +15,12 @@
 /log/*.log
 /log/*.lck
 /tmp
+
+# ignore solr search engine
 /solr/development
 /solr/data
 /solr/default
 /solr/pids
 /solr/test
 /public/uploads
-
+/.project
