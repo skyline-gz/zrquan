@@ -55,7 +55,7 @@ class AnswersController < ApplicationController
       @question.user.messages.create!(content: msg_content, msg_type: 1)
       # TODO 发送到faye
     end
-	  redirect_to question_path(@question), notice: 'Answer was successfully updated.'
+    redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
 
 	# 赞同
