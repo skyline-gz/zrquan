@@ -15,7 +15,7 @@ class Question < ActiveRecord::Base
 	has_many :activities, as: :target
 	accepts_nested_attributes_for :invitations
 
-	validates :title, :theme, presence: true
+	validates :title, :theme_id, presence: true
 
 	#def answers_num
 	#	answers.size
