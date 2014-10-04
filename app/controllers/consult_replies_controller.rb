@@ -61,6 +61,6 @@ class ConsultRepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consult_reply_params
-      params.require(:consult_reply).permit(:consult_subject_id, :content, :user_id)
+      params.require(:consult_reply).permit(:content)
     end
 end
