@@ -7,9 +7,9 @@ class CreateActivities < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.integer :agree_score
-      t.integer :publish_date
+      t.integer :publish_date, index: true
       t.references :theme, index: true
-      t.boolean :recent_flag, index: true, default: true
+      t.boolean :recent_flag, default: true
 
       t.timestamps
     end
