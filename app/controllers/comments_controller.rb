@@ -1,5 +1,6 @@
+require "date_utils.rb"
+
 class CommentsController < ApplicationController
-  include DateUtils
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # 列表

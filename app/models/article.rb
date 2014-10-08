@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
 	has_many :activities, as: :target
 	has_many :agreements, as: :agreeable
 
-	validates :title, :content, :theme, presence: true
+	validates :title, :content, :theme, presence: true, on: :create
 
 	# for test
 	def output_title

@@ -5,5 +5,5 @@ class Answer < ActiveRecord::Base
 	has_many :activities, as: :target
 	has_many :agreements, as: :agreeable
 
-	validates :content, presence: true
+	validates :content, presence: true, on: :create
 end

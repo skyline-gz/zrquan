@@ -1,5 +1,6 @@
+require "date_utils.rb"
+
 class ConsultSubjectsController < ApplicationController
-  include DateUtils
   before_action :set_consult_subject, only: [:show, :edit, :update, :close, :accept, :ignore]
   before_action :authenticate_user!
 

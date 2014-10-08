@@ -1,5 +1,6 @@
+require "date_utils.rb"
+
 class QuestionsController < ApplicationController
-  include DateUtils
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 

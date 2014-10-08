@@ -1,5 +1,6 @@
+require "date_utils.rb"
+
 class ArticlesController < ApplicationController
-  include DateUtils
   before_action :set_article, only: [:show, :edit, :update, :destroy, :agree]
 
   # 列表

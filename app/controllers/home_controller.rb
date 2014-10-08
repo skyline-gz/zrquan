@@ -1,5 +1,6 @@
+require "date_utils.rb"
+
 class HomeController < ApplicationController
-  include DateUtils
 #  before_action :authenticate_user!
 
 	# 菜单-首页

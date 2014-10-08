@@ -1,5 +1,6 @@
+require "date_utils.rb"
+
 class AnswersController < ApplicationController
-  include DateUtils
   before_action :set_answer, only: [:show, :edit, :update, :destroy, :agree]
 
   # 列表
