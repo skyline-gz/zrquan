@@ -33,9 +33,7 @@ class AnswersController < ApplicationController
     @question.update!(answer_num: @question.answer_num + 1)
     # 创建用户行为（回答问题）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
-                                    title: @question.title, content: @answer.content, 
-                                    publish_date: DateUtils.to_yyyymmdd(Date.today), 
-                                    theme:@question.theme, recent_flag: true)
+                                    publish_date: DateUtils.to_yyyymmdd(Date.today))
     # 创建消息并发送
     if current_user.user_setting.answer_flag == true
       msg_content = "New answer for your question: " + @question.title + "."
@@ -82,9 +80,7 @@ class AnswersController < ApplicationController
     current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
     # 创建用户行为（赞同答案）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
-                                    title: @question.title, content: @answer.content, 
-                                    publish_date: DateUtils.to_yyyymmdd(Date.today), 
-                                    theme:@question.theme, recent_flag: true)
+                                    publish_date: DateUtils.to_yyyymmdd(Date.today))
     redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
 

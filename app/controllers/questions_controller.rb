@@ -46,8 +46,7 @@ class QuestionsController < ApplicationController
 		end
 		# 创建用户行为（发布问题）
 		current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
-																		title: @question.title, publish_date: DateUtils.to_yyyymmdd(Date.today), 
-																		theme:@question.theme, recent_flag: true)
+																		publish_date: DateUtils.to_yyyymmdd(Date.today))
 		redirect_to @question, notice: 'Question was successfully created.'
   end
 

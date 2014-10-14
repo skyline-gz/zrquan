@@ -31,8 +31,7 @@ class CommentsController < ApplicationController
 			end
 			# 创建用户行为（评论经验）
 			current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 4,
-																		title: @article.title, content: @article.content, publish_date: DateUtils.to_yyyymmdd(Date.today), 
-																		theme:@article.theme, recent_flag: true)
+																		  publish_date: DateUtils.to_yyyymmdd(Date.today))
 		  redirect_to article_path(@article), notice: 'Comment was successfully created.'
 		end
 		# 答案评论
@@ -51,8 +50,7 @@ class CommentsController < ApplicationController
 			end
 			# 创建用户行为（评论答案）
 			current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
-																		title: @question.title, content: @answer.content, publish_date: DateUtils.to_yyyymmdd(Date.today), 
-																		theme:@question.theme, recent_flag: true)
+																		  publish_date: DateUtils.to_yyyymmdd(Date.today))
 		  redirect_to question_path(@question), notice: 'Comment was successfully created.'
 		end
   end

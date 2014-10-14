@@ -38,8 +38,7 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
 		# 创建用户行为（申请咨询）
 		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 8,
-																		title: @consult_subject.title, publish_date: DateUtils.to_yyyymmdd(Date.today), 
-																		theme:@consult_subject.theme, recent_flag: true)
+																		publish_date: DateUtils.to_yyyymmdd(Date.today))
 		# TODO 发送到faye
 		redirect_to @consult_subject, notice: 'Consult subject was successfully created.'
   end
@@ -58,8 +57,7 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
 		# 创建用户行为（接受申请）
 		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 7,
-																		title: @consult_subject.title, publish_date: DateUtils.to_yyyymmdd(Date.today), 
-																		theme:@consult_subject.theme, recent_flag: true)
+																		publish_date: DateUtils.to_yyyymmdd(Date.today))
 		redirect_to :back, notice: 'Consult subject was successfully updated.'
 	end
 

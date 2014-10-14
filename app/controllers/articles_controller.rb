@@ -62,8 +62,7 @@ class ArticlesController < ApplicationController
 		current_user.agreements.create!(agreeable_id: @article.id, agreeable_type: "Article")
 		# 创建用户行为（赞同经验）
 		current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 6,
-																		title: @article.title, content: @article.content, publish_date: DateUtils.to_yyyymmdd(Date.today), 
-																		theme:@article.theme, recent_flag: true)
+																		publish_date: DateUtils.to_yyyymmdd(Date.today))
 	  redirect_to @article, notice: 'Answer was successfully updated.'
 	end
 

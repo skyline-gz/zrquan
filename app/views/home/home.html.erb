@@ -42,22 +42,22 @@
 				<% if ra.ask_question? %>
 					<tr>
 						<td>Asked Question</td>
-						<td><%= ra.title %></td>
+						<td><%= ra.target.title %></td>
 						<td></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.theme %></td>
 						<td><%= ra.target.answers.count %> answers</td>
 					</tr>
 				<% end %>
 				<% if ra.answer_question? %>
 					<tr>
 						<td>Answered Question</td>
-						<td><%= ra.title %></td>
-						<td><%= ra.content %></td>
+						<td><%= ra.target.question.title %></td>
+						<td><%= ra.target.content %></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.question.theme %></td>
 						<td><%= ra.target.question.answers.count %> answers</td>
 						<td><%= ra.target.comments.count %> comments</td>
 						<td><%= ra.target.agree_score %></td>
@@ -66,11 +66,11 @@
 				<% if ra.comment_answer? %>
 					<tr>
 						<td>Comment Answer</td>
-						<td><%= ra.title %></td>
-						<td><%= ra.content %></td>
+						<td><%= ra.target.question.title %></td>
+						<td><%= ra.target.content %></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.question.theme %></td>
 						<td><%= ra.target.question.answers.count %> answers</td>
 						<td><%= ra.target.comments.count %> comments</td>
 						<td><%= ra.target.agree_score %></td>
@@ -79,11 +79,11 @@
 				<% if ra.comment_article? %>
 					<tr>
 						<td>Comment Article</td>
-						<td><%= ra.title %></td>
-						<td><%= ra.content %></td>
+						<td><%= ra.target.title %></td>
+						<td><%= ra.target.content %></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.theme %></td>
 						<td></td>
 						<td><%= ra.target.comments.count %> comments</td>
 						<td><%= ra.target.agree_score %></td>
@@ -92,11 +92,11 @@
 				<% if ra.agree_answer? %>
 					<tr>
 						<td>Agree Answer</td>
-						<td><%= ra.title %></td>
-						<td><%= ra.content %></td>
+						<td><%= ra.target.question.title %></td>
+						<td><%= ra.target.content %></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.question.theme %></td>
 						<td><%= ra.target.question.answers.count %> answers</td>
 						<td><%= ra.target.comments.count %> comments</td>
 						<td><%= ra.target.agree_score %></td>
@@ -105,11 +105,11 @@
 				<% if ra.agree_article? %>
 					<tr>
 						<td>Agree Article</td>
-						<td><%= ra.title %></td>
-						<td><%= ra.content %></td>
+						<td><%= ra.target.title %></td>
+						<td><%= ra.target.content %></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.theme %></td>
 						<td></td>
 						<td><%= ra.target.comments.count %> comments</td>
 						<td><%= ra.target.agree_score %></td>
@@ -118,11 +118,11 @@
 				<% if ra.accept_consult? %>
 					<tr>
 						<td>Accept Consult</td>
-						<td><%= ra.title %></td>
+						<td><%= ra.target.title %></td>
 						<td></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.theme %></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -131,11 +131,11 @@
 				<% if ra.consult? %>
 					<tr>
 						<td>Consult</td>
-						<td><%= ra.title %></td>
+						<td><%= ra.target.title %></td>
 						<td></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.theme %></td>
+						<td><%= ra.target.theme %></td>
 						<td></td>
 						<td></td>
 						<td></td>
