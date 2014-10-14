@@ -1,1 +1,1 @@
-rails g scaffold Message msg_type:integer user:references extra_info1:references{polymophic} extra_info2:references{polymophic}
+rails g scaffold Message msg_type:integer user:references extra_info1:references{polymophic} extra_info2:references{polymophic}, read_flag:boolean

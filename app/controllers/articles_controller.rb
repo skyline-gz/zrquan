@@ -55,8 +55,8 @@ class ArticlesController < ApplicationController
 		end
 		# 创建消息，发送给用户
 		if @article.user.user_setting.aggred_flag
-			msg_content = current_user.email + " agreed your article for " + @article.title + "."
-			@article.user.messages.create!(content: msg_content, msg_type: 1)
+			@article.user.messages.create!(msg_type: 11, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                       extra_info2_id: @article.id, extra_info2_type: "Article")
 		end
 		# 创建用户赞同信息
 		current_user.agreements.create!(agreeable_id: @article.id, agreeable_type: "Article")

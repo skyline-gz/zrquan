@@ -25,8 +25,8 @@ class CommentsController < ApplicationController
 			@comment.save!
 			# 创建消息并发送
 			if current_user.user_setting.commented_flag == true
-				msg_content = "New comment for your article: " + @article.title + "."
-				@article.user.messages.create!(content: msg_content, msg_type: 1)
+				@article.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                       extra_info2_id: @article.id, extra_info2_type: "Article")
 				# TODO 发送到faye
 			end
 			# 创建用户行为（评论经验）
@@ -45,8 +45,8 @@ class CommentsController < ApplicationController
 			@comment.save!
 			# 创建消息并发送
 			if current_user.user_setting.commented_flag == true
-				msg_content = "New comment for your answer of question: " + @question.title + "."
-				@answer.user.messages.create!(content: msg_content, msg_type: 1)
+				@answer.user.messages.create!(msg_type: 2, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                       extra_info2_id: @question.id, extra_info2_type: "Question")
 			end
 			# 创建用户行为（评论答案）
 			current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,

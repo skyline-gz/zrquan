@@ -39,8 +39,8 @@ class QuestionsController < ApplicationController
 					@invitation.mentor_id = m_id
 					@invitation.save!
 					# 发信息给受邀导师
-					msg_content = "You are invited to answer " + @question.title + "."
-					@invitation.mentor.messages.create!(content: msg_content, msg_type: 1)
+					@invitation.mentor.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                                extra_info2_id: @question.id, extra_info2_type: "Question")
 				end
 			end
 		end
@@ -64,8 +64,8 @@ class QuestionsController < ApplicationController
 				@invitation.mentor_id = m_id
 				@invitation.save!
 				# 发信息给受邀导师
-				msg_content = "You are invited to answer " + @question.title + "."
-				@invitation.mentor.messages.create!(content: msg_content, msg_type: 1)
+				@invitation.mentor.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                              extra_info2_id: @question.id, extra_info2_type: "Question")
 			end
 		end
 		redirect_to @question, notice: 'Question was successfully updated.'

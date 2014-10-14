@@ -36,8 +36,8 @@ class AnswersController < ApplicationController
                                     publish_date: DateUtils.to_yyyymmdd(Date.today))
     # 创建消息并发送
     if current_user.user_setting.answer_flag == true
-      msg_content = "New answer for your question: " + @question.title + "."
-      @question.user.messages.create!(content: msg_content, msg_type: 1)
+      @question.user.messages.create!(msg_type: 1, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                        extra_info2_id: @question.id, extra_info2_type: "Question")
       # TODO 发送到faye
     end
     redirect_to question_path(@question), notice: 'Answer was successfully created.'
@@ -48,12 +48,6 @@ class AnswersController < ApplicationController
     @question = Question.find(@answer.question_id)
     # 更新答案
     @answer.update!(answer_params)
-    # 创建对应消息，发送给用户
-    if current_user.user_setting.answer_flag == true
-      msg_content = "Answer for your question: " + @question.title + " has been updated."
-      @question.user.messages.create!(content: msg_content, msg_type: 1)
-      # TODO 发送到faye
-    end
     redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
 
@@ -73,8 +67,8 @@ class AnswersController < ApplicationController
     # 创建消息，发送给用户
     if @answer.user.user_setting.aggred_flag
       logger.debug("message")
-      msg_content = current_user.email + " agreed your answer for " + @question.title + "."
-      @answer.user.messages.create!(content: msg_content, msg_type: 1)
+      @answer.user.messages.create!(msg_type: 12, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                       extra_info2_id: @question.id, extra_info2_type: "Question")
     end
     # 创建用户赞同信息
     current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")

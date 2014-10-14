@@ -21,18 +21,12 @@ ActiveRecord::Schema.define(version: 20140903110554) do
     t.integer  "target_id"
     t.string   "target_type"
     t.integer  "activity_type"
-    t.string   "title"
-    t.text     "content"
-    t.integer  "agree_score"
     t.integer  "publish_date"
-    t.integer  "theme_id"
-    t.boolean  "recent_flag",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "activities", ["target_id", "target_type"], name: "index_activities_on_target_id_and_target_type", using: :btree
-  add_index "activities", ["theme_id"], name: "index_activities_on_theme_id", using: :btree
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "agreements", force: true do |t|
@@ -61,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140903110554) do
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.boolean  "draft_flag",  default: false
     t.integer  "agree_score", default: 0
     t.integer  "theme_id"
     t.integer  "industry_id"
@@ -68,7 +63,6 @@ ActiveRecord::Schema.define(version: 20140903110554) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "draft_flag"
   end
 
   add_index "articles", ["category_id"], name: "index_articles_on_category_id", using: :btree
@@ -148,13 +142,18 @@ ActiveRecord::Schema.define(version: 20140903110554) do
   add_index "invitations", ["question_id"], name: "index_invitations_on_question_id", using: :btree
 
   create_table "messages", force: true do |t|
-    t.text     "content"
     t.integer  "msg_type"
     t.integer  "user_id"
+    t.integer  "extra_info1_id"
+    t.string   "extra_info1_type"
+    t.integer  "extra_info2_id"
+    t.string   "extra_info2_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "messages", ["extra_info1_id", "extra_info1_type"], name: "index_messages_on_extra_info1_id_and_extra_info1_type", using: :btree
+  add_index "messages", ["extra_info2_id", "extra_info2_type"], name: "index_messages_on_extra_info2_id_and_extra_info2_type", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "news_feeds", force: true do |t|
@@ -268,6 +267,7 @@ ActiveRecord::Schema.define(version: 20140903110554) do
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["province_id"], name: "index_users_on_province_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

@@ -34,8 +34,8 @@ class ConsultSubjectsController < ApplicationController
 		@consult_subject.stat_class = 1		# applying
 		@consult_subject.save!
 		# 创建消息并发送
-		msg_content = "New consult apply " + @consult_subject.title + " to you."
-		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
+		@consult_subject.mentor.messages.create!(msg_type: 4, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                                extra_info2_id: @consult_subject.id, extra_info2_type: "ConsultSubject")
 		# 创建用户行为（申请咨询）
 		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 8,
 																		publish_date: DateUtils.to_yyyymmdd(Date.today))
@@ -53,8 +53,8 @@ class ConsultSubjectsController < ApplicationController
 	def accept
 		# 更新状态并发送消息
 		@consult_subject.update!(:stat_class=>2)
-		msg_content = "Your consult apply " + @consult_subject.title + " has been accepted."
-		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
+		@consult_subject.apprentice.messages.create!(msg_type: 5, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                                    extra_info2_id: @consult_subject.id, extra_info2_type: "ConsultSubject")
 		# 创建用户行为（接受申请）
 		current_user.activities.create!(target_id: @consult_subject.id, target_type: "ConsultSubject", activity_type: 7,
 																		publish_date: DateUtils.to_yyyymmdd(Date.today))
@@ -67,9 +67,12 @@ class ConsultSubjectsController < ApplicationController
 		logger.debug("invoked consult subject close")
 		@consult_subject.update!(:stat_class=>3)
 		# 创建消息并发送
-		msg_content = "Consult " + @consult_subject.title + " has been closed."
-		@consult_subject.apprentice.messages.create!(content: msg_content, msg_type: 1)
-		@consult_subject.mentor.messages.create!(content: msg_content, msg_type: 1)
+		@consult_subject.apprentice.messages.create!(msg_type: 6, extra_info1_id: @consult_subject.mentor.id, 
+		                                                extra_info1_type: "User", extra_info2_id: @consult_subject.id, 
+		                                               extra_info2_type: "ConsultSubject")
+		@consult_subject.mentor.messages.create!(msg_type: 7, extra_info1_id: @consult_subject.apprentice.id, 
+                                                extra_info1_type: "User", extra_info2_id: @consult_subject.id, 
+                                                extra_info2_type: "ConsultSubject")
 		redirect_to :back, notice: 'Consult subject was successfully updated.'
 	end
 

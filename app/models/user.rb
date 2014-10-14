@@ -46,8 +46,7 @@ class User < ActiveRecord::Base
 		logger.debug("relationship saved")
 		if user_setting.followed_flag == true
 			logger.debug("ready to send message")
-			msg_content = last_name + first_name + " is following you."
-			@relationship.following_user.messages.create!(content: msg_content, msg_type: 1)
+			@relationship.following_user.messages.create!(msg_type: 10, extra_info1_id: id, extra_info1_type: "User")
 			logger.debug("message created")
 		end
 	end
