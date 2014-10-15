@@ -55,6 +55,10 @@ gem 'cancan'
 # 服务器
 gem 'thin', group: :development
 
+# API Server
+gem 'grape', '0.7.0'
+gem 'grape-entity', '0.4.4'
+
 # 富内容编辑
 gem 'rails_kindeditor'
 
