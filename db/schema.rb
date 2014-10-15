@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20140903110554) do
     t.string   "extra_info2_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "read_flag",        default: false
   end
 
   add_index "messages", ["extra_info1_id", "extra_info1_type"], name: "index_messages_on_extra_info1_id_and_extra_info1_type", using: :btree
