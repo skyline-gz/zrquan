@@ -24,3 +24,6 @@
 /solr/test
 /public/uploads
 /.project
+
+#ignore iea setting files
+./idea
