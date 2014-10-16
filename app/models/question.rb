@@ -21,6 +21,23 @@ class Question < ActiveRecord::Base
 	#	answers.size
 	#end
 
+	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
+	def sorted_answers
+		invited_answers = Array.new
+		normal_answers = Array.new
+		answers.each do |ans|
+			if invited_mentors.include? ans.user
+				invited_answers << ans
+			else
+				normal_answers << ans
+			end
+		end
+		# 两类型答案分别按赞同分数排序，然后合并
+		invited_answers.sort_by {|ia| -ia.agree_score}
+		normal_answers.sort_by {|na| -na.agree_score}
+		invited_answers + normal_answers
+	end
+
 	def mentor_ids
 		mentor_ids = Array.new
 		invitations.each do |inv|
