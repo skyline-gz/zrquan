@@ -33,24 +33,24 @@ gem 'spring',        group: :development
 
 
 # 数据库：postgresql
-gem 'pg'
+gem 'pg', '0.17.1'
 
 # javascript库：jquery
-gem 'jquery-rails'
+gem 'jquery-rails', '3.1.0'
 
 # 测试
 group :development, :test do
-	gem 'rspec'
-	gem 'rspec-rails'
-	gem 'guard-rspec'
+	gem 'rspec', '~> 3.1.0'
+	gem 'rspec-rails', '~> 3.1.0'
+	gem 'guard-rspec', '~> 4.3.1'
 	gem 'spork-rails'
 	gem 'guard-spork'
 end
 
 # 用户系统（认证及权限）
-gem 'devise'
-gem 'devise-encryptable'
-gem 'cancan'
+gem 'devise', '3.2.4'
+gem 'devise-encryptable', '0.2.0'
+gem 'cancan', '1.6.10'
 
 # 服务器
 gem 'thin', group: :development
@@ -59,19 +59,22 @@ gem 'thin', group: :development
 gem 'grape', '0.7.0'
 gem 'grape-entity', '0.4.4'
 
+# 分页
+gem 'will_paginate', '~> 3.0.5'
+
 # 富内容编辑
-gem 'rails_kindeditor'
+gem 'rails_kindeditor', '0.4.5'
 
 # 省市级联
 gem 'china_city'
 
 # 搜索引擎
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'sunspot_rails', '2.1.1'
+gem 'sunspot_solr', '2.1.1'
 
 # 消息队列
-gem 'faye'
+gem 'faye', '1.0.1'
 
 # 头像及图片上传
-gem 'carrierwave'
-gem 'mini_magick'
+gem 'carrierwave', '0.10.0'
+gem 'mini_magick', '3.7.0'
