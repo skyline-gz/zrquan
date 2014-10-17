@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Zrquan
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += %W(#{config.root}/app/grape)
+    # config.autoload_paths += %W(#{config.root}/app/grape)
 
 		config.time_zone = 'Beijing'
 		config.active_record.default_timezone = :local

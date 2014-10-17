@@ -30,6 +30,9 @@ gem 'spring',        group: :development
 # gem 'capistrano-rails', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+# Use API Server
+# gem 'grape', '0.7.0'
+# gem 'grape-entity', '0.4.4'
 
 
 # 数据库：postgresql
@@ -55,10 +58,6 @@ gem 'cancan', '1.6.10'
 
 # 服务器
 gem 'thin', group: :development
-
-# API Server
-gem 'grape', '0.7.0'
-gem 'grape-entity', '0.4.4'
 
 # 分页
 gem 'will_paginate', '~> 3.0.5'

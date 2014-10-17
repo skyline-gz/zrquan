@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  require 'api'
-
 	#mount ChinaCity::Engine => '/china_city'
 
   resources :messages
@@ -62,5 +60,5 @@ Rails.application.routes.draw do
 
   root 'home#home'
 
-  mount Zrquan::API => "/"
+  # mount Zrquan::API => "/"
 end
