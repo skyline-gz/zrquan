@@ -44,4 +44,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Disable request forgery protection in development environment
+  config.action_controller.allow_forgery_protection = false
+
 end

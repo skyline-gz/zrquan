@@ -40,7 +40,10 @@ Rails.application.routes.draw do
 		resources :comments, only: [:index, :new, :create]
 	end
 
-  devise_for :users, controllers:{registrations: "users/registrations"}
+  devise_for :users, controllers:{
+      registrations: "users/registrations",
+      sessions: "users/sessions"
+  }
 
   resources :users, except: [:destroy, :create] do
 		collection do

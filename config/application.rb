@@ -13,5 +13,10 @@ module Zrquan
 
 		config.time_zone = 'Beijing'
 		config.active_record.default_timezone = :local
+
+    # devise respond_to json
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
   end
 end
