@@ -45,6 +45,12 @@ Rails.application.routes.draw do
       sessions: "users/sessions"
   }
 
+  devise_scope :user do
+    post 'registrations' => 'users/registrations#create', :as => 'register'
+    post 'sessions' => 'users/sessions#create', :as => 'login'
+    delete 'sessions' => 'users/sessions#destroy', :as => 'logout'
+  end
+
   resources :users, except: [:destroy, :create] do
 		collection do
 			get :mentors
