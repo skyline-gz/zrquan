@@ -61,11 +61,11 @@ class Users::SessionsController < Devise::SessionsController
                       warden.authenticated?(resource_name)
                     end
 
-    if authenticated && resource = warden.user(resource_name)
+    if authenticated and resource = warden.user(resource_name)
       respond_to do |format|
         format.html {redirect_to after_sign_in_path_for(resource)}
         # 重复创建session时应提示 用户已登陆
-        format.json {render :json => {:code => "FA_SESSION_HAS_BEEN_CREATED", :redirect => redirect_to after_sign_in_path_for(resource)}}
+        format.json {render :json => {:code => "FA_SESSION_HAS_BEEN_CREATED", :redirect => after_sign_in_path_for(resource)}}
       end
     end
   end
