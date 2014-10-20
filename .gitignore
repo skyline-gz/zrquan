@@ -26,4 +26,4 @@
 /.project
 
 #ignore iea setting files
-./idea
+/.idea
