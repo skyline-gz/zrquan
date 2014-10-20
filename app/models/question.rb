@@ -14,6 +14,7 @@ class Question < ActiveRecord::Base
 	has_many :activities, as: :target
 	has_many :question_themes
 	accepts_nested_attributes_for :invitations
+  accepts_nested_attributes_for :question_themes
 
 	validates :title, presence: true, on: :create
 
@@ -36,7 +37,15 @@ class Question < ActiveRecord::Base
 		invited_answers.sort_by {|ia| -ia.agree_score}
 		normal_answers.sort_by {|na| -na.agree_score}
 		invited_answers + normal_answers
-	end
+  end
+
+  def theme_ids
+    theme_ids = Array.new
+    question_themes.each do |qt|
+      theme_ids << qt.theme_id
+    end
+    theme_ids
+  end
 
 	def mentor_ids
 		mentor_ids = Array.new

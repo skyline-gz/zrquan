@@ -8,6 +8,7 @@ class Article < ActiveRecord::Base
 	has_many :activities, as: :target
 	has_many :agreements, as: :agreeable
 	has_many :article_themes
+  accepts_nested_attributes_for :article_themes
 
 	validates :title, :content, presence: true, on: :create
 

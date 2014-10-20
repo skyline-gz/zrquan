@@ -21,6 +21,12 @@
   </div>
 
 	<!-- theme -->
+  <label for="question_themes_attributes_theme_id">Theme</label><br>
+  <select multiple="multiple" name="question[question_themes_attributes][theme_id][]">
+    <% Theme.all.each do |th| %>
+      <option value="<%= th.id %>"<% if @question.theme_ids.include?(th.id) %>selected<% end %>><%= th.name %></option>
+    <% end %>
+  </select>
 
   <div class="field">
     <%= f.label :industry_id %><br>

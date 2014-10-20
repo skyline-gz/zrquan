@@ -42,7 +42,15 @@ class QuestionsController < ApplicationController
 					@invitation.mentor.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
                                                 extra_info2_id: @question.id, extra_info2_type: "Question")
 				end
-			end
+      end
+      if question_themes_params != {}
+        question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
+          @question_theme = QuestionTheme.new
+          @question_theme.question_id = @question.id
+          @question_theme.theme_id = t_id
+          @question_theme.save!
+        end
+      end
 		end
 		# 创建用户行为（发布问题）
 		current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
@@ -66,7 +74,13 @@ class QuestionsController < ApplicationController
 				# 发信息给受邀导师
 				@invitation.mentor.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
                                               extra_info2_id: @question.id, extra_info2_type: "Question")
-			end
+      end
+      question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
+        @question_theme = QuestionTheme.new
+        @question_theme.question_id = @question.id
+        @question_theme.theme_id = t_id
+        @question_theme.save!
+      end
 		end
 		redirect_to @question, notice: 'Question was successfully updated.'
   end
@@ -94,5 +108,9 @@ class QuestionsController < ApplicationController
 
 		def invitations_params
       params.require(:question).permit(invitations_attributes:[:mentor_id=>[]])
+    end
+
+    def question_themes_params
+      params.require(:question).permit(question_themes_attributes:[:theme_id=>[]])
     end
 end

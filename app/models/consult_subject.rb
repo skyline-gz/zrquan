@@ -6,6 +6,7 @@ class ConsultSubject < ActiveRecord::Base
 	has_many :activities, as: :target
 	has_many :consult_themes
 	accepts_nested_attributes_for :mentor
+  accepts_nested_attributes_for :consult_themes
 
 	validates :title, presence: true, on: :create
 end
