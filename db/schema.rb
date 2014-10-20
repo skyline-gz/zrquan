@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903110554) do
+ActiveRecord::Schema.define(version: 20141020051035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,12 +52,21 @@ ActiveRecord::Schema.define(version: 20140903110554) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
+  create_table "article_themes", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "article_themes", ["article_id"], name: "index_article_themes_on_article_id", using: :btree
+  add_index "article_themes", ["theme_id"], name: "index_article_themes_on_theme_id", using: :btree
+
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "content"
     t.boolean  "draft_flag",  default: false
     t.integer  "agree_score", default: 0
-    t.integer  "theme_id"
     t.integer  "industry_id"
     t.integer  "category_id"
     t.integer  "user_id"
@@ -67,7 +76,6 @@ ActiveRecord::Schema.define(version: 20140903110554) do
 
   add_index "articles", ["category_id"], name: "index_articles_on_category_id", using: :btree
   add_index "articles", ["industry_id"], name: "index_articles_on_industry_id", using: :btree
-  add_index "articles", ["theme_id"], name: "index_articles_on_theme_id", using: :btree
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "bookmarks", force: true do |t|
@@ -113,7 +121,6 @@ ActiveRecord::Schema.define(version: 20140903110554) do
   create_table "consult_subjects", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "theme_id"
     t.integer  "mentor_id"
     t.integer  "apprentice_id"
     t.integer  "stat_class"
@@ -123,7 +130,16 @@ ActiveRecord::Schema.define(version: 20140903110554) do
 
   add_index "consult_subjects", ["apprentice_id"], name: "index_consult_subjects_on_apprentice_id", using: :btree
   add_index "consult_subjects", ["mentor_id"], name: "index_consult_subjects_on_mentor_id", using: :btree
-  add_index "consult_subjects", ["theme_id"], name: "index_consult_subjects_on_theme_id", using: :btree
+
+  create_table "consult_themes", force: true do |t|
+    t.integer  "consult_subject_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consult_themes", ["consult_subject_id"], name: "index_consult_themes_on_consult_subject_id", using: :btree
+  add_index "consult_themes", ["theme_id"], name: "index_consult_themes_on_theme_id", using: :btree
 
   create_table "industries", force: true do |t|
     t.string   "name"
@@ -140,6 +156,16 @@ ActiveRecord::Schema.define(version: 20140903110554) do
 
   add_index "invitations", ["mentor_id"], name: "index_invitations_on_mentor_id", using: :btree
   add_index "invitations", ["question_id"], name: "index_invitations_on_question_id", using: :btree
+
+  create_table "mentor_themes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mentor_themes", ["theme_id"], name: "index_mentor_themes_on_theme_id", using: :btree
+  add_index "mentor_themes", ["user_id"], name: "index_mentor_themes_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.integer  "msg_type"
@@ -179,10 +205,19 @@ ActiveRecord::Schema.define(version: 20140903110554) do
   add_index "private_messages", ["user1_id"], name: "index_private_messages_on_user1_id", using: :btree
   add_index "private_messages", ["user2_id"], name: "index_private_messages_on_user2_id", using: :btree
 
+  create_table "question_themes", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "question_themes", ["question_id"], name: "index_question_themes_on_question_id", using: :btree
+  add_index "question_themes", ["theme_id"], name: "index_question_themes_on_theme_id", using: :btree
+
   create_table "questions", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "theme_id"
     t.integer  "industry_id"
     t.integer  "category_id"
     t.integer  "answer_num",  default: 0
@@ -193,7 +228,6 @@ ActiveRecord::Schema.define(version: 20140903110554) do
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree
   add_index "questions", ["industry_id"], name: "index_questions_on_industry_id", using: :btree
-  add_index "questions", ["theme_id"], name: "index_questions_on_theme_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "recommend_mentors", force: true do |t|

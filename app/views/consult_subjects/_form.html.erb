@@ -19,10 +19,9 @@
     <%= f.label :content %><br>
     <%= f.kindeditor :content, :items => ['fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'image', 'insertfile'] %>
   </div>
-  <div class="field">
-    <%= f.label :theme_id %><br>
-    <%= f.text_field :theme_id %>
-  </div>
+
+  <!-- theme -->
+
 	<%= f.fields_for :mentor do |mf| %>
 		<div class="field">
 		  <%= mf.label :last_name, @mentor.last_name %>&nbsp;<%= mf.label :first_name, @mentor.first_name %><br>

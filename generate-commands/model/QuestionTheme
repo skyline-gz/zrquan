@@ -1,0 +1,1 @@
+rails g model QuestionTheme question:references theme:references

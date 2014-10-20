@@ -1,1 +1,1 @@
-rails g scaffold Question title:string content:text theme:references industry:references category:references answer_num:integer user:references
+rails g scaffold Question title:string content:text industry:references category:references answer_num:integer user:references

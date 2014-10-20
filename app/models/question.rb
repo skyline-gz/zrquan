@@ -3,7 +3,6 @@ class Question < ActiveRecord::Base
 		text :title, :content
 	end
 
-  belongs_to :theme
   belongs_to :industry
   belongs_to :category
   belongs_to :user
@@ -13,9 +12,10 @@ class Question < ActiveRecord::Base
 	has_many :bookmarks, as: :bookmarkable
 	has_many :news_feeds, as: :feedable
 	has_many :activities, as: :target
+	has_many :question_themes
 	accepts_nested_attributes_for :invitations
 
-	validates :title, :theme_id, presence: true, on: :create
+	validates :title, presence: true, on: :create
 
 	#def answers_num
 	#	answers.size

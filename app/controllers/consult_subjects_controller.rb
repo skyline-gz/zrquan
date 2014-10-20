@@ -102,7 +102,7 @@ class ConsultSubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consult_subject_params
-      params.require(:consult_subject).permit(:title, :content, :theme_id)
+      params.require(:consult_subject).permit(:title, :content)
     end
 
 		def mentor_params

@@ -56,14 +56,14 @@ class ArticlesController < ApplicationController
 		# 创建消息，发送给用户
 		if @article.user.user_setting.aggred_flag
 			@article.user.messages.create!(msg_type: 11, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                       extra_info2_id: @article.id, extra_info2_type: "Article")
+                                     extra_info2_id: @article.id, extra_info2_type: "Article")
 		end
 		# 创建用户赞同信息
 		current_user.agreements.create!(agreeable_id: @article.id, agreeable_type: "Article")
 		# 创建用户行为（赞同经验）
 		current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 6,
 																		publish_date: DateUtils.to_yyyymmdd(Date.today))
-	  redirect_to @article, notice: 'Answer was successfully updated.'
+	  redirect_to @article, notice: 'Article was successfully updated.'
 	end
 
   # 删除（只限草稿）
@@ -80,6 +80,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :content, :theme_id)
+      params.require(:article).permit(:title, :content)
     end		
 end
