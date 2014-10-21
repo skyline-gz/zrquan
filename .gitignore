@@ -27,3 +27,6 @@
 
 #ignore iea setting files
 /.idea
+
+#ignore sass cache files
+/font/src/.sass-cache
