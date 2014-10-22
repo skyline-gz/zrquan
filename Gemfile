@@ -55,9 +55,11 @@ group :development, :test do
 	gem 'guard-spork'
 end
 
-# 用户系统（认证及权限）
+# 用户认证
 gem 'devise', '3.2.4'
-gem 'devise-encryptable', '0.2.0'
+# gem 'devise-encryptable', '0.2.0'
+
+# 用户权限
 gem 'cancan', '1.6.10'
 
 # 服务器
