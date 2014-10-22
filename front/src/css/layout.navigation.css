@@ -28,18 +28,20 @@
 div[role=navigation] {
   display: block;
   position: fixed;
+  left: 0;
   top: 0;
+  z-index: 20;
   height: 50px;
   background-color: #f7f7f7;
   border-bottom: 2px solid #e9e9e9;
   width: 100%;
 }
-/* line 21, ../sass/layout.navigation.scss */
+/* line 24, ../sass/layout.navigation.scss */
 div[role=navigation] .warp-content {
   position: relative;
   height: inherit;
 }
-/* line 26, ../sass/layout.navigation.scss */
+/* line 29, ../sass/layout.navigation.scss */
 div[role=navigation] a.top-link-logo {
   float: left;
   background: url(../images/logo.png) no-repeat 0 10px;
@@ -48,24 +50,24 @@ div[role=navigation] a.top-link-logo {
   height: 100%;
   text-indent: -9999px;
 }
-/* line 35, ../sass/layout.navigation.scss */
+/* line 38, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav {
   float: left;
   position: relative;
 }
-/* line 39, ../sass/layout.navigation.scss */
+/* line 42, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-ul {
   padding: 0;
   margin: 0 0 0 43px;
 }
-/* line 44, ../sass/layout.navigation.scss */
+/* line 47, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-li {
   float: left;
   position: relative;
   margin: 0;
   list-style: none;
 }
-/* line 51, ../sass/layout.navigation.scss */
+/* line 54, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-link {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   width: 60px;
@@ -77,32 +79,32 @@ div[role=navigation] .top-nav .top-nav-link {
   font-size: 18px;
   cursor: pointer;
 }
-/* line 64, ../sass/layout.navigation.scss */
+/* line 67, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .current .top-nav-link {
   color: #ffffff;
   background-color: #ff9700;
   border-bottom: 2px solid #dd8401;
 }
-/* line 73, ../sass/layout.navigation.scss */
+/* line 76, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 79, ../sass/layout.navigation.scss */
+/* line 82, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth > li {
   float: left;
   list-style: none;
 }
-/* line 84, ../sass/layout.navigation.scss */
+/* line 87, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth a {
   text-align: center;
   display: block;
   white-space: nowrap;
   cursor: pointer;
 }
-/* line 91, ../sass/layout.navigation.scss */
+/* line 94, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
   display: inline-block;
   vertical-align: middle;
@@ -111,7 +113,7 @@ div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-aut
   *display: inline;
   vertical-align: middle;
 }
-/* line 96, ../sass/layout.navigation.scss */
+/* line 99, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -121,31 +123,32 @@ div[role=navigation] .top-nav-auth .user-logo {
   background: url(../images/head_01.png) no-repeat;
   padding-right: 12px;
 }
-/* line 105, ../sass/layout.navigation.scss */
+/* line 108, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-message {
   width: 26px;
   height: 21px;
 }
-/* line 110, ../sass/layout.navigation.scss */
+/* line 113, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-private_message {
   width: 29px;
   height: 23px;
 }
-/* line 115, ../sass/layout.navigation.scss */
+/* line 118, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-link {
   color: #6b6b6b;
   width: auto;
   height: 100%;
   line-height: 50px;
   padding-right: 16px;
+  font-size: 16px;
 }
-/* line 123, ../sass/layout.navigation.scss */
+/* line 127, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 129, ../sass/layout.navigation.scss */
+/* line 133, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .private-message-link {
   width: 45px;
   height: 100%;

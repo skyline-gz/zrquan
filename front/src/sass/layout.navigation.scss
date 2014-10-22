@@ -12,7 +12,10 @@
 div[role=navigation] {
   display: block;
   position: fixed;
+  left: 0;
   top: 0;
+  z-index: 20;
+
   height: $navigation-height;
   background-color: $navigation-background-color;
   border-bottom: 2px solid $navigation-border-color;
@@ -118,6 +121,7 @@ div[role=navigation] {
       height: 100%;
       line-height: $navigation-height;
       padding-right: 16px;
+      font-size: 16px;
     }
 
     .message-link {
