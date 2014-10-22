@@ -62,3 +62,34 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
+
+/* line 3, ../sass/layout.scss */
+.warp-content {
+  width: 1040px;
+  margin: 0 auto;
+  clear: both;
+}
+
+/* line 3, ../sass/layout.navigation.scss */
+div[role=navigation] {
+  display: block;
+  position: fixed;
+  height: 52px;
+  background-color: #f7f7f7;
+  border-bottom: 2px solid #e9e9e9;
+  width: 100%;
+}
+/* line 11, ../sass/layout.navigation.scss */
+div[role=navigation] .warp-content {
+  position: relative;
+  height: inherit;
+}
+/* line 16, ../sass/layout.navigation.scss */
+div[role=navigation] a.top-link-logo {
+  background: url(../images/logo.png) no-repeat 0 10px;
+  display: block;
+  width: 92px;
+  height: 100%;
+  float: left;
+  text-indent: -9999px;
+}

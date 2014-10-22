@@ -14,8 +14,7 @@ div[role=navigation] .warp-content {
 }
 /* line 16, ../sass/layout.navigation.scss */
 div[role=navigation] a.top-link-logo {
-  background-image: url(../images/logo.png);
-  background-repeat: no-repeat;
+  background: url(../images/logo.png) no-repeat 0 10px;
   display: block;
   width: 92px;
   height: 100%;
