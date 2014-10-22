@@ -284,7 +284,6 @@ ActiveRecord::Schema.define(version: 20141020051035) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_salt"
     t.string   "last_name"
     t.string   "first_name"
     t.integer  "gender"

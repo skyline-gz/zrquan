@@ -12,7 +12,6 @@ FactoryGirl.define do
 		email   		  "royfung@zqruan.com"
     last_name  	  "冯"
     first_name	  "庆强"
-		encrypted_password	"12345678"
     confirmed_at  1.days.ago
     mentor_flag   false
   end
@@ -21,7 +20,6 @@ FactoryGirl.define do
     email   		  "fan.yuqi@zrquan.com"
     last_name  	  "樊"
     first_name	  "宇祺"
-    encrypted_password	"12345678"
     confirmed_at  1.days.ago
     mentor_flag   true
   end
@@ -30,7 +28,6 @@ FactoryGirl.define do
     email   		  "lin.zhiling@zrquan.com"
     last_name  	  "林"
     first_name	  "志玲"
-    encrypted_password	"12345678"
     confirmed_at  1.days.ago
     mentor_flag   true
   end
@@ -39,7 +36,6 @@ FactoryGirl.define do
     email   		  "gao.yuanyuan@zrquan.com"
     last_name  	  "高"
     first_name	  "圆圆"
-    encrypted_password	"12345678"
     confirmed_at  1.days.ago
     mentor_flag   true
   end
@@ -48,6 +44,5 @@ FactoryGirl.define do
     email   		  "fan.bingbing@zrquan.com"
     last_name  	  "范"
     first_name	  "冰冰"
-    encrypted_password	"12345678"
   end
 end
