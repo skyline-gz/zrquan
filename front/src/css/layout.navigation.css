@@ -1,4 +1,4 @@
-/* line 3, ../sass/layout.navigation.scss */
+/* line 4, ../sass/layout.navigation.scss */
 div[role=navigation] {
   display: block;
   position: fixed;
@@ -7,17 +7,52 @@ div[role=navigation] {
   border-bottom: 2px solid #e9e9e9;
   width: 100%;
 }
-/* line 11, ../sass/layout.navigation.scss */
+/* line 12, ../sass/layout.navigation.scss */
 div[role=navigation] .warp-content {
   position: relative;
   height: inherit;
 }
-/* line 16, ../sass/layout.navigation.scss */
+/* line 17, ../sass/layout.navigation.scss */
 div[role=navigation] a.top-link-logo {
+  float: left;
   background: url(../images/logo.png) no-repeat 0 10px;
   display: block;
   width: 92px;
   height: 100%;
-  float: left;
   text-indent: -9999px;
+}
+/* line 26, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav {
+  float: left;
+  position: relative;
+}
+/* line 30, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav .top-nav-ul {
+  padding: 0;
+  margin: 0 0 0 43px;
+}
+/* line 35, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav .top-nav-li {
+  float: left;
+  position: relative;
+  margin: 0;
+  list-style: none;
+}
+/* line 42, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav .top-nav-link {
+  width: 60px;
+  height: 52px;
+  line-height: 50px;
+  text-align: center;
+  display: block;
+  color: #868686;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  font-size: 18px;
+  cursor: pointer;
+}
+/* line 55, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav .current .top-nav-link {
+  color: #ffffff;
+  background-color: #ff9700;
+  border-bottom: 2px solid #dd8401;
 }

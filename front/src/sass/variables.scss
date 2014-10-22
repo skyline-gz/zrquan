@@ -3,10 +3,14 @@ $warp-content-width : 1040px;    //网站内容宽度
 //基本颜色定义
 $light-dark : #868686;
 $base-color : #ff9700;   //网站基础颜色
+$deep-base-color : #dd8401;
+
 
 //顶部导航栏
 $navigation-background-color : #f7f7f7;
 $navigation-border-color : #e9e9e9;
+$navigation-current-link-background-color: $base-color;
+$navigation-current-link-border-color: $deep-base-color;
 
 //字体
 $base-font-size : 12px;

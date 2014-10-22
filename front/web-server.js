@@ -42,7 +42,7 @@ var mime = {
 
 http.createServer(function(request, response) {
     var pathname = url.parse(request.url).pathname;
-    var realpath = 'src/' + (pathname == '/' ? 'index.html' : pathname);      // dev
+    var realpath = 'src' + (pathname == '/' ? 'index.html' : pathname);      // dev
 //    var realpath = 'build/' + (pathname == '/' ? 'index.html' : pathname);      // release
     console.log("request path: " + realpath);
 

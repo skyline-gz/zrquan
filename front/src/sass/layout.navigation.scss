@@ -1,3 +1,4 @@
+@import "compass/utilities";
 @import "variables";
 
 div[role=navigation] {
@@ -14,11 +15,48 @@ div[role=navigation] {
   }
 
   a.top-link-logo {
+    @include float-left;
     background: url(../images/logo.png) no-repeat 0 10px;
     display: block;
     width: 92px;
     height: 100%;
-    float: left;
     text-indent: -9999px;
+  }
+
+  .top-nav {
+    @include float-left;
+    position: relative;
+
+    .top-nav-ul {
+      padding: 0;
+      margin: 0 0 0 43px;
+    }
+
+    .top-nav-li {
+      @include float-left;
+      position: relative;
+      margin: 0;
+      list-style: none;
+    }
+
+    .top-nav-link {
+      width: 60px;
+      height: 52px;
+      line-height: 50px;
+      text-align: center;
+      display: block;
+      color: $light-dark;
+      text-shadow: 0 1px 1px rgba(0,0,0,.12);
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .current {
+      .top-nav-link {
+        color: #ffffff;
+        background-color: $navigation-current-link-background-color;
+        border-bottom: 2px solid $navigation-current-link-border-color;
+      }
+    }
   }
 }
