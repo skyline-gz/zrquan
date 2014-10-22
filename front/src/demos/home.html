@@ -31,6 +31,20 @@
             </ul>
         </div>
     </div>
+    <div class="home-top">
+        <div class="home-top-container">
+            <div class="home-top-inner-wrap">
+                <form method="GET" action="/search" class="home-top-search-form">
+                    <input type="text" class="home-top-search-input" id="q" name="q"
+                           autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
+                    <input type="hidden" name="type" value="question">
+                    <!--<label for="q" class="hide-text">职人圈搜索</label>-->
+                    <!--<button type="submit" class="home-top-add-question"><i class="icon icon-magnify-q"></i><span class="hide-text">搜索</span></button>-->
+                </form>
+                <button class="home-top-add-question">提问</button>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript">
         $(document).ready(function(){
 

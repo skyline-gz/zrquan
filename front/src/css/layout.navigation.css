@@ -29,7 +29,7 @@ div[role=navigation] {
   display: block;
   position: fixed;
   top: 0;
-  height: 52px;
+  height: 50px;
   background-color: #f7f7f7;
   border-bottom: 2px solid #e9e9e9;
   width: 100%;
@@ -69,8 +69,8 @@ div[role=navigation] .top-nav .top-nav-li {
 div[role=navigation] .top-nav .top-nav-link {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   width: 60px;
-  height: 52px;
-  line-height: 52px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
   display: block;
   color: #868686;
@@ -88,7 +88,7 @@ div[role=navigation] .top-nav-auth {
   margin: 0;
   position: absolute;
   right: 0;
-  line-height: 52px;
+  line-height: 50px;
 }
 /* line 79, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth > li {
@@ -136,18 +136,18 @@ div[role=navigation] .top-nav-auth .user-link {
   color: #6b6b6b;
   width: auto;
   height: 100%;
-  line-height: 52px;
-  padding-right: 20px;
+  line-height: 50px;
+  padding-right: 16px;
 }
 /* line 123, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .message-link {
   width: 45px;
   height: 100%;
-  line-height: 52px;
+  line-height: 50px;
 }
 /* line 129, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .private-message-link {
   width: 45px;
   height: 100%;
-  line-height: 52px;
+  line-height: 50px;
 }

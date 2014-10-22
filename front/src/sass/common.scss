@@ -1,7 +1,26 @@
+@import "variables";
+
 .warp-content {
   width: $warp-content-width;
   margin: 0 auto;
   clear: both;
+}
+
+html body, html input, html textarea, html select, html button {
+  font-family: $base-font-family;
+}
+
+body, input, textarea, select, button {
+  line-height: 1.7;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  color: #222;
+  word-wrap: break-word;
+}
+
+input[type=text], input[type=password]:focus {
+  -webkit-appearance: none;
 }
 
 div[contentEditable], input, textarea, button, a:link {
