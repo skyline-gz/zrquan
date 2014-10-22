@@ -49,14 +49,17 @@ group :development, :test do
 	gem 'rspec', '~> 3.1.0'
 	gem 'rspec-rails', '~> 3.1.0'
 	gem 'guard-rspec', '~> 4.3.1'
+  gem 'database_cleaner'
 	gem 'factory_girl_rails', '~> 4.4.1'
 	gem 'spork-rails'
 	gem 'guard-spork'
 end
 
-# 用户系统（认证及权限）
+# 用户认证
 gem 'devise', '3.2.4'
-gem 'devise-encryptable', '0.2.0'
+# gem 'devise-encryptable', '0.2.0'
+
+# 用户权限
 gem 'cancan', '1.6.10'
 
 # 服务器
