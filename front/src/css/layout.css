@@ -1,6 +1,4 @@
 /* line 3, ../sass/layout.scss */
-.warp-content {
-  width: 1040px;
-  margin: 0 auto;
-  clear: both;
+body {
+  padding-top: 52px;
 }

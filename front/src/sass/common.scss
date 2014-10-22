@@ -1,0 +1,9 @@
+.warp-content {
+  width: $warp-content-width;
+  margin: 0 auto;
+  clear: both;
+}
+
+div[contentEditable], input, textarea, button, a:link {
+  -webkit-tap-highlight-color: rgba(225,225,225,.5);
+}

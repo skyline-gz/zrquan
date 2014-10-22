@@ -1,7 +1,5 @@
 @import "variables";
 
-.warp-content {
-  width: $warp-content-width;
-  margin: 0 auto;
-  clear: both;
+body {
+  padding-top: $navigation-height;
 }

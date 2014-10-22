@@ -1,0 +1,65 @@
+/*
+Error: Undefined variable: "$warp-content-width".
+        on line 2 of /home/vicky/Projects/zrquan/front/src/sass/common.scss
+
+1: .warp-content {
+2:   width: $warp-content-width;
+3:   margin: 0 auto;
+4:   clear: both;
+5: }
+6: 
+7: div[contentEditable], input, textarea, button, a:link {
+
+Backtrace:
+/home/vicky/Projects/zrquan/front/src/sass/common.scss:2
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/script/tree/variable.rb:49:in `_perform'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/script/tree/node.rb:50:in `perform'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/stack.rb:79:in `block in with_base'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/stack.rb:115:in `with_frame'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/stack.rb:79:in `with_base'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:420:in `block (2 levels) in visit_rule'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:420:in `map'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:420:in `block in visit_rule'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:418:in `visit_rule'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/stack.rb:79:in `block in with_base'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/stack.rb:115:in `with_frame'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/stack.rb:79:in `with_base'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `map'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/root_node.rb:36:in `css_tree'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/tree/root_node.rb:20:in `render'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/engine.rb:268:in `render'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:491:in `update_stylesheet'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:209:in `each'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:469:in `on_file_changed'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:328:in `block in watch'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/listen-2.7.9/lib/listen/listener.rb:276:in `call'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/listen-2.7.9/lib/listen/listener.rb:276:in `_process_changes'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/listen-2.7.9/lib/listen/listener.rb:233:in `block in _wait_for_changes'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/listen-2.7.9/lib/listen/listener.rb:216:in `loop'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/listen-2.7.9/lib/listen/listener.rb:216:in `_wait_for_changes'
+/home/vicky/.rvm/gems/ruby-2.1.2/gems/listen-2.7.9/lib/listen/listener.rb:312:in `block in _start_wait_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$warp-content-width\".\A         on line 2 of /home/vicky/Projects/zrquan/front/src/sass/common.scss\A \A 1: .warp-content {\A 2:   width: $warp-content-width;\A 3:   margin: 0 auto;\A 4:   clear: both;\A 5: }\A 6: \A 7: div[contentEditable], input, textarea, button, a:link {"; }
