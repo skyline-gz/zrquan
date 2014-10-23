@@ -1,6 +1,6 @@
 /* line 160, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myquestion, .icons-mystar, .icons-mytalk, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
-  background-image: url('/images/icons-s1e65959241.png');
+.icons-sprite, .icons-comment, .icons-favorites, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
+  background-image: url('/images/icons-s3288d72484.png');
   background-repeat: no-repeat;
 }
 
@@ -41,17 +41,17 @@
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
+.icons-myexperience {
   background-position: 0 -97px;
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mystar {
+.icons-myfavorite {
   background-position: 0 -115px;
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mytalk {
+.icons-myquestion {
   background-position: 0 -133px;
 }
 
@@ -322,18 +322,19 @@
 }
 /* line 196, ../sass/layout.home.scss */
 .home-content .home-news {
+  float: left;
   border-bottom: 1px solid #CCCCCC;
   width: 722px;
   height: 32px;
 }
-/* line 201, ../sass/layout.home.scss */
+/* line 202, ../sass/layout.home.scss */
 .home-content .home-news .home-news-header {
   float: left;
   height: 24px;
   font-size: 24px;
   line-height: 24px;
 }
-/* line 208, ../sass/layout.home.scss */
+/* line 209, ../sass/layout.home.scss */
 .home-content .home-news .icons-point_left {
   width: 18px;
   height: 18px;
@@ -341,11 +342,11 @@
   margin-right: 8px;
   margin-top: 2px;
 }
-/* line 216, ../sass/layout.home.scss */
+/* line 217, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul {
   float: right;
 }
-/* line 219, ../sass/layout.home.scss */
+/* line 220, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li {
   float: left;
   margin: 0 10px;
@@ -354,8 +355,54 @@
   text-align: center;
   height: 30px;
 }
-/* line 228, ../sass/layout.home.scss */
+/* line 229, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li-current {
   color: #ffa121;
   border-bottom: 3px solid #ff9700;
+}
+/* line 236, ../sass/layout.home.scss */
+.home-content .home-right-panel {
+  float: right;
+  width: 270px;
+}
+/* line 240, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ad {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  width: 270px;
+  height: 101px;
+  display: block;
+  background: url(../images/home/home_ad.png) no-repeat;
+}
+/* line 248, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul {
+  margin-top: 25px;
+}
+/* line 251, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
+  margin-bottom: 3px;
+  line-height: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: #6b6b6b;
+  background: #F7F7F7;
+  cursor: pointer;
+}
+/* line 261, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
+  background: #E0E0E0;
+  border-right: 6px solid #ff9700;
+}
+/* line 267, ../sass/layout.home.scss */
+.home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  width: 19px;
+  height: 18px;
+  margin-left: 12px;
+  margin-right: 15px;
 }
