@@ -2,13 +2,9 @@
 @import "compass/css3/transition";
 @import "compass/css3/border-radius";
 @import "compass/utilities/general";
-@import "compass/utilities/sprites";
 
+@import "_base";
 @import "variables";
-@import "icons/*.png";
-@import "avatars/*.png";
-@include all-icons-sprites;
-@include all-avatars-sprites;
 
 div[role=infoblocks] {
   clear: both;
@@ -17,7 +13,7 @@ div[role=infoblocks] {
     padding-top: 21px;
 
     .component-infoblock-left {
-      @include inline-block;
+      @include float-left;
       width: 32px;
 
       .component-infoblock-avatar {
@@ -61,7 +57,7 @@ div[role=infoblocks] {
     }
 
     .component-infoblock-right {
-      @include inline-block;
+      @include float-left;
       margin-left: 11px;
       padding-bottom: 16px;
       border-bottom: 1px solid #eeeeee;
@@ -90,6 +86,7 @@ div[role=infoblocks] {
 
       .component-infoblock-title {
         font-size: 14px;
+        font-weight: bold;
         height: 23px;
         line-height: 23px;
         color: $base-color;

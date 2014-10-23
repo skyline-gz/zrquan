@@ -1,4 +1,4 @@
-/* line 5, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,46 +20,46 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+/* line 116, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
@@ -110,129 +110,127 @@ body {
   padding-top: 52px;
 }
 
-/* line 168, icons/*.png */
+/* line 162, icons/*.png */
 .icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
-  background-image: url('/images/icons-s7ee209d05a.png');
-  background-repeat: no-repeat;
+  background: url('/images/icons-s7df1e1f08d.png') no-repeat;
 }
 
-/* line 88, avatars/*.png */
+/* line 82, avatars/*.png */
 .avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
-  background-image: url('/images/avatars-sfa42aeeada.png');
-  background-repeat: no-repeat;
+  background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-comment {
+  background-position: 0 -280px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-favorites {
+  background-position: 0 -258px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-good {
+  background-position: 0 -269px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-message {
+  background-position: 0 -47px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myanswer_hover {
+  background-position: 0 -192px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myconsulting {
+  background-position: 0 -86px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-mydraft {
+  background-position: 0 -104px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myexperience {
+  background-position: 0 -240px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myfavorite {
+  background-position: 0 -121px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myquestion {
+  background-position: 0 -68px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-point_left {
+  background-position: 0 -222px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-private_message {
   background-position: 0 0;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-favorites {
-  background-position: 0 -12px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-good {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-search {
   background-position: 0 -23px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-message {
-  background-position: 0 -34px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myanswer_hover {
-  background-position: 0 -55px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
-  background-position: 0 -73px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
-  background-position: 0 -91px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myexperience {
-  background-position: 0 -108px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myfavorite {
-  background-position: 0 -126px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
-  background-position: 0 -144px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-point_left {
-  background-position: 0 -162px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-private_message {
-  background-position: 0 -180px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-search {
-  background-position: 0 -203px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-set {
-  background-position: 0 -227px;
+  background-position: 0 -210px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-up_to_top {
-  background-position: 0 -239px;
+  background-position: 0 -139px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-vip {
-  background-position: 0 -279px;
+  background-position: 0 -179px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_01 {
   background-position: 0 0;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_02 {
-  background-position: 0 -64px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_03 {
   background-position: 0 -128px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_04 {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_03 {
   background-position: 0 -192px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
-  background-position: 0 -256px;
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_04 {
+  background-position: 0 -64px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_02 {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
   background-position: 0 -288px;
 }
 
-/* line 14, ../sass/layout.navigation.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_02 {
+  background-position: 0 -256px;
+}
+
+/* line 9, ../sass/layout.navigation.scss */
 div[role=navigation] {
   display: block;
   position: fixed;
@@ -244,13 +242,14 @@ div[role=navigation] {
   border-bottom: 2px solid #e9e9e9;
   width: 100%;
 }
-/* line 26, ../sass/layout.navigation.scss */
+/* line 21, ../sass/layout.navigation.scss */
 div[role=navigation] .warp-content, div[role=navigation] .home-content {
   position: relative;
   height: inherit;
 }
-/* line 31, ../sass/layout.navigation.scss */
+/* line 26, ../sass/layout.navigation.scss */
 div[role=navigation] a.top-link-logo {
+  display: inline;
   float: left;
   background: url(../images/logo.png) no-repeat 0 10px;
   display: block;
@@ -258,24 +257,26 @@ div[role=navigation] a.top-link-logo {
   height: 100%;
   text-indent: -9999px;
 }
-/* line 40, ../sass/layout.navigation.scss */
+/* line 35, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav {
+  display: inline;
   float: left;
   position: relative;
 }
-/* line 44, ../sass/layout.navigation.scss */
+/* line 39, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-ul {
   padding: 0;
   margin: 0 0 0 43px;
 }
-/* line 49, ../sass/layout.navigation.scss */
+/* line 44, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-li {
+  display: inline;
   float: left;
   position: relative;
   margin: 0;
   list-style: none;
 }
-/* line 56, ../sass/layout.navigation.scss */
+/* line 51, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-link {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   width: 60px;
@@ -287,60 +288,64 @@ div[role=navigation] .top-nav .top-nav-link {
   font-size: 18px;
   cursor: pointer;
 }
-/* line 69, ../sass/layout.navigation.scss */
+/* line 64, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .current .top-nav-link {
   color: #ffffff;
   background-color: #ff9700;
   border-bottom: 2px solid #dd8401;
 }
-/* line 78, ../sass/layout.navigation.scss */
+/* line 73, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 84, ../sass/layout.navigation.scss */
+/* line 79, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth > li {
+  display: inline;
   float: left;
   list-style: none;
 }
-/* line 89, ../sass/layout.navigation.scss */
+/* line 84, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth a {
   text-align: center;
   display: block;
   white-space: nowrap;
   cursor: pointer;
 }
-/* line 96, ../sass/layout.navigation.scss */
+/* line 91, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   vertical-align: middle;
 }
-/* line 101, ../sass/layout.navigation.scss */
+/* line 96, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo {
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
   border-radius: 3px;
   width: 32px;
   height: 32px;
   padding-right: 12px;
 }
-/* line 111, ../sass/layout.navigation.scss */
+/* line 105, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-message {
   width: 26px;
   height: 21px;
 }
-/* line 116, ../sass/layout.navigation.scss */
+/* line 110, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-private_message {
   width: 29px;
   height: 23px;
 }
-/* line 121, ../sass/layout.navigation.scss */
+/* line 115, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-link {
   color: #6b6b6b;
   width: auto;
@@ -349,149 +354,27 @@ div[role=navigation] .top-nav-auth .user-link {
   padding-right: 16px;
   font-size: 16px;
 }
-/* line 130, ../sass/layout.navigation.scss */
+/* line 124, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 136, ../sass/layout.navigation.scss */
+/* line 130, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .private-message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
 
-/* line 168, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
-  background-image: url('/images/icons-s7ee209d05a.png');
-  background-repeat: no-repeat;
-}
-
-/* line 88, avatars/*.png */
-.avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
-  background-image: url('/images/avatars-sfa42aeeada.png');
-  background-repeat: no-repeat;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-comment {
-  background-position: 0 0;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-favorites {
-  background-position: 0 -12px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-good {
-  background-position: 0 -23px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-message {
-  background-position: 0 -34px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myanswer_hover {
-  background-position: 0 -55px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
-  background-position: 0 -73px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
-  background-position: 0 -91px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myexperience {
-  background-position: 0 -108px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myfavorite {
-  background-position: 0 -126px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
-  background-position: 0 -144px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-point_left {
-  background-position: 0 -162px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-private_message {
-  background-position: 0 -180px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-search {
-  background-position: 0 -203px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-set {
-  background-position: 0 -227px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-up_to_top {
-  background-position: 0 -239px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-vip {
-  background-position: 0 -279px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_01 {
-  background-position: 0 0;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_02 {
-  background-position: 0 -64px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_03 {
-  background-position: 0 -128px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_04 {
-  background-position: 0 -192px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
-  background-position: 0 -256px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_02 {
-  background-position: 0 -288px;
-}
-
-/* line 17, ../sass/layout.home.scss */
+/* line 13, ../sass/layout.home.scss */
 .home-top {
   background: #000000;
   display: block;
   width: 100%;
   height: 380px;
 }
-/* line 23, ../sass/layout.home.scss */
+/* line 19, ../sass/layout.home.scss */
 .home-top .home-top-container {
   display: block;
   width: 100%;
@@ -499,32 +382,35 @@ div[role=navigation] .top-nav-auth .private-message-link {
   background: url(../images/home/main_bg.png) top center no-repeat;
   position: relative;
 }
-/* line 30, ../sass/layout.home.scss */
+/* line 26, ../sass/layout.home.scss */
 .home-top .home-top-container .home-top-inner-wrap {
   width: 450px;
   height: 38px;
   margin: 0 auto;
   padding-top: 326px;
 }
-/* line 37, ../sass/layout.home.scss */
+/* line 33, ../sass/layout.home.scss */
 .home-top .home-top-container .home-top-search-form {
   width: 360px;
+  display: inline;
   float: left;
 }
-/* line 42, ../sass/layout.home.scss */
+/* line 38, ../sass/layout.home.scss */
 .home-top .home-top-container .home-top-search-input {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   padding: 10px 10px;
   font-size: 14px;
@@ -536,29 +422,31 @@ div[role=navigation] .top-nav-auth .private-message-link {
   background-color: #ffffff;
   color: #49525c;
 }
-/* line 60, ../sass/layout.home.scss */
+/* line 56, ../sass/layout.home.scss */
 .home-top .home-top-container .home-top-add-question {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  display: inline;
   float: left;
   margin: 0 0 0 6px;
   background: #ff9700;
   background-color: #ff9700;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
   background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
   background-repeat: repeat-x;
   color: #FFF;
   font-size: 18px;
@@ -571,27 +459,28 @@ div[role=navigation] .top-nav-auth .private-message-link {
   outline: 0;
 }
 
-/* line 85, ../sass/layout.home.scss */
+/* line 81, ../sass/layout.home.scss */
 .home-mid {
   background: url(../images/home/home_mid_bg.png);
   display: block;
   width: 100%;
   height: 211px;
 }
-/* line 91, ../sass/layout.home.scss */
+/* line 87, ../sass/layout.home.scss */
 .home-mid .home-mid-title-warp {
   width: 190px;
   margin: 0 auto;
   padding-top: 26px;
   padding-bottom: 34px;
 }
-/* line 98, ../sass/layout.home.scss */
+/* line 94, ../sass/layout.home.scss */
 .home-mid .home-mid-title {
   line-height: 25px;
   font-size: 25px;
 }
-/* line 103, ../sass/layout.home.scss */
+/* line 99, ../sass/layout.home.scss */
 .home-mid .icons-point_left {
+  display: inline;
   float: left;
   display: block;
   width: 18px;
@@ -599,17 +488,17 @@ div[role=navigation] .top-nav-auth .private-message-link {
   vertical-align: middle;
   margin: 3px 10px 0 16px;
 }
-/* line 112, ../sass/layout.home.scss */
+/* line 108, ../sass/layout.home.scss */
 .home-mid .home-mid-subtitle {
   font-size: 14px;
   line-height: 18px;
   color: #6b6b6b;
 }
-/* line 118, ../sass/layout.home.scss */
+/* line 114, ../sass/layout.home.scss */
 .home-mid .warp-content, .home-mid .home-content {
   position: relative;
 }
-/* line 122, ../sass/layout.home.scss */
+/* line 118, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-switch {
   position: absolute;
   font-size: 12px;
@@ -618,52 +507,56 @@ div[role=navigation] .top-nav-auth .private-message-link {
   right: 0px;
   cursor: pointer;
 }
-/* line 131, ../sass/layout.home.scss */
+/* line 127, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block {
   margin: 0 35px;
+  display: inline;
   float: left;
   width: 188px;
 }
-/* line 136, ../sass/layout.home.scss */
+/* line 132, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-logo {
+  display: inline;
   float: left;
   display: block;
   width: 64px;
   height: 64px;
 }
-/* line 143, ../sass/layout.home.scss */
+/* line 139, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc {
+  display: inline;
   float: left;
   margin-left: 10px;
 }
-/* line 147, ../sass/layout.home.scss */
+/* line 143, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-name {
   line-height: 16px;
   font-size: 16px;
   font-weight: bold;
 }
-/* line 153, ../sass/layout.home.scss */
+/* line 149, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-company {
   margin-top: 2px;
   line-height: 14px;
   font-size: 12px;
   font-weight: bold;
 }
-/* line 160, ../sass/layout.home.scss */
+/* line 156, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-position {
   line-height: 14px;
   font-size: 12px;
 }
-/* line 165, ../sass/layout.home.scss */
+/* line 161, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-subjects {
   margin-top: 3px;
 }
-/* line 169, ../sass/layout.home.scss */
+/* line 165, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 16px;
   height: 13px;
@@ -672,25 +565,27 @@ div[role=navigation] .top-nav-auth .private-message-link {
   margin-bottom: 2px;
 }
 
-/* line 181, ../sass/layout.home.scss */
+/* line 177, ../sass/layout.home.scss */
 .home-content {
   margin-top: 35px;
 }
-/* line 185, ../sass/layout.home.scss */
+/* line 181, ../sass/layout.home.scss */
 .home-content .home-news {
+  display: inline;
   float: left;
   border-bottom: 1px solid #CCCCCC;
   width: 722px;
   height: 32px;
 }
-/* line 191, ../sass/layout.home.scss */
+/* line 187, ../sass/layout.home.scss */
 .home-content .home-news .home-news-header {
+  display: inline;
   float: left;
   height: 24px;
   font-size: 24px;
   line-height: 24px;
 }
-/* line 198, ../sass/layout.home.scss */
+/* line 194, ../sass/layout.home.scss */
 .home-content .home-news .icons-point_left {
   width: 18px;
   height: 18px;
@@ -698,12 +593,14 @@ div[role=navigation] .top-nav-auth .private-message-link {
   margin-right: 8px;
   margin-top: 2px;
 }
-/* line 206, ../sass/layout.home.scss */
+/* line 202, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul {
+  display: inline;
   float: right;
 }
-/* line 209, ../sass/layout.home.scss */
+/* line 205, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li {
+  display: inline;
   float: left;
   margin: 0 10px;
   width: 38px;
@@ -712,31 +609,34 @@ div[role=navigation] .top-nav-auth .private-message-link {
   height: 30px;
   cursor: pointer;
 }
-/* line 219, ../sass/layout.home.scss */
+/* line 215, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li-current {
   color: #ffa121;
   border-bottom: 3px solid #ff9700;
 }
-/* line 226, ../sass/layout.home.scss */
+/* line 222, ../sass/layout.home.scss */
 .home-content .home-right-panel {
+  display: inline;
   float: right;
   width: 270px;
 }
-/* line 230, ../sass/layout.home.scss */
+/* line 226, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ad {
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   width: 270px;
   height: 101px;
   display: block;
   background: url(../images/home/home_ad.png) no-repeat;
 }
-/* line 238, ../sass/layout.home.scss */
+/* line 234, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul {
   margin-top: 25px;
 }
-/* line 241, ../sass/layout.home.scss */
+/* line 237, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
   margin-bottom: 3px;
   line-height: 32px;
@@ -746,17 +646,18 @@ div[role=navigation] .top-nav-auth .private-message-link {
   background: #F7F7F7;
   cursor: pointer;
 }
-/* line 251, ../sass/layout.home.scss */
+/* line 247, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
   background: #E0E0E0;
   border-right: 6px solid #ff9700;
 }
-/* line 257, ../sass/layout.home.scss */
+/* line 253, ../sass/layout.home.scss */
 .home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 19px;
   height: 18px;
@@ -764,11 +665,14 @@ div[role=navigation] .top-nav-auth .private-message-link {
   margin-right: 15px;
 }
 
-/* line 1, ../sass/components.subject.scss */
+/* line 4, ../sass/components.subject.scss */
 .component-subject {
+  display: inline;
   float: left;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   color: #ffffff;
   background: #fbd28d;
@@ -778,156 +682,31 @@ div[role=navigation] .top-nav-auth .private-message-link {
   margin-right: 3px;
 }
 
-/* line 168, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
-  background-image: url('/images/icons-s7ee209d05a.png');
-  background-repeat: no-repeat;
-}
-
-/* line 88, avatars/*.png */
-.avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
-  background-image: url('/images/avatars-sfa42aeeada.png');
-  background-repeat: no-repeat;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-comment {
-  background-position: 0 0;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-favorites {
-  background-position: 0 -12px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-good {
-  background-position: 0 -23px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-message {
-  background-position: 0 -34px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myanswer_hover {
-  background-position: 0 -55px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
-  background-position: 0 -73px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
-  background-position: 0 -91px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myexperience {
-  background-position: 0 -108px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myfavorite {
-  background-position: 0 -126px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
-  background-position: 0 -144px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-point_left {
-  background-position: 0 -162px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-private_message {
-  background-position: 0 -180px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-search {
-  background-position: 0 -203px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-set {
-  background-position: 0 -227px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-up_to_top {
-  background-position: 0 -239px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-vip {
-  background-position: 0 -279px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_01 {
-  background-position: 0 0;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_02 {
-  background-position: 0 -64px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_03 {
-  background-position: 0 -128px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_04 {
-  background-position: 0 -192px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
-  background-position: 0 -256px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_02 {
-  background-position: 0 -288px;
-}
-
-/* line 13, ../sass/component.infoblock.scss */
+/* line 9, ../sass/component.infoblock.scss */
 div[role=infoblocks] {
   clear: both;
 }
-/* line 16, ../sass/component.infoblock.scss */
+/* line 12, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock {
   padding-top: 21px;
 }
-/* line 19, ../sass/component.infoblock.scss */
+/* line 15, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left {
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
+  display: inline;
+  float: left;
   width: 32px;
 }
-/* line 23, ../sass/component.infoblock.scss */
+/* line 19, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar {
   width: 32px;
   height: 32px;
   display: block;
 }
-/* line 29, ../sass/component.infoblock.scss */
+/* line 25, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good {
   margin-top: 6px;
 }
-/* line 32, ../sass/component.infoblock.scss */
+/* line 28, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -942,7 +721,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   font-size: 12px;
   font-weight: bold;
 }
-/* line 43, ../sass/component.infoblock.scss */
+/* line 39, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action {
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
@@ -958,123 +737,128 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   text-align: center;
   cursor: pointer;
 }
-/* line 55, ../sass/component.infoblock.scss */
+/* line 51, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 10px;
   height: 11px;
 }
-/* line 63, ../sass/component.infoblock.scss */
+/* line 59, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right {
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
+  display: inline;
+  float: left;
   margin-left: 11px;
   padding-bottom: 16px;
   border-bottom: 1px solid #eeeeee;
   width: 675px;
 }
-/* line 70, ../sass/component.infoblock.scss */
+/* line 66, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header {
   font-size: 12px;
   line-height: 12px;
 }
-/* line 74, ../sass/component.infoblock.scss */
+/* line 70, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 16px;
   height: 13px;
 }
-/* line 80, ../sass/component.infoblock.scss */
+/* line 76, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username {
   font-weight: bold;
   color: #000000;
 }
-/* line 85, ../sass/component.infoblock.scss */
+/* line 81, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action {
   font-weight: normal;
   color: #868686;
 }
-/* line 91, ../sass/component.infoblock.scss */
+/* line 87, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-title {
   font-size: 14px;
+  font-weight: bold;
   height: 23px;
   line-height: 23px;
   color: #ff9700;
 }
-/* line 98, ../sass/component.infoblock.scss */
+/* line 95, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
   font-size: 14px;
   line-height: 22px;
-  color: #222;
+  color: #222222;
 }
-/* line 104, ../sass/component.infoblock.scss */
+/* line 101, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer {
   margin-top: 5px;
   line-height: 22px;
 }
-/* line 108, ../sass/component.infoblock.scss */
+/* line 105, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   color: #868686;
   margin-right: 12px;
 }
-/* line 113, ../sass/component.infoblock.scss */
+/* line 110, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 12px;
   height: 12px;
   margin-right: 6px;
 }
-/* line 121, ../sass/component.infoblock.scss */
+/* line 118, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   color: #868686;
   margin-right: 12px;
 }
-/* line 126, ../sass/component.infoblock.scss */
+/* line 123, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 12px;
   height: 11px;
   margin-right: 4px;
   margin-top: -2px;
 }
-/* line 135, ../sass/component.infoblock.scss */
+/* line 132, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
 }
-/* line 140, ../sass/component.infoblock.scss */
+/* line 137, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #438cca;
 }

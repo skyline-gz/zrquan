@@ -9,6 +9,8 @@ gem 'rails', '4.1.0'
 gem 'sass', '3.2.19'
 # Use Compass CSS Framework
 gem 'compass', '0.12.7'
+# Ensure import Compass modules once
+gem 'compass-import-once', '1.0.5'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views

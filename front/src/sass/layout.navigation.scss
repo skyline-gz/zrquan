@@ -2,14 +2,9 @@
 @import "compass/css3/inline-block";
 @import "compass/css3/border-radius";
 @import "compass/css3/text-shadow";
-//@import "compass/css3/box-shadow";
-@import "compass/utilities/sprites";
 
+@import "_base";
 @import "variables";
-@import "icons/*.png";
-@import "avatars/*.png";
-@include all-icons-sprites;
-@include all-avatars-sprites;
 
 div[role=navigation] {
   display: block;
@@ -105,7 +100,6 @@ div[role=navigation] {
       width: 32px;
       height: 32px;
       padding-right: 12px;
-//      @include box-shadow(0 1px 1px rgba(0,0,0,.12));
     }
 
     .icons-message {

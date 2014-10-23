@@ -6,13 +6,9 @@
 @import "compass/css3/text-shadow";
 @import "compass/css3/images";
 @import "compass/utilities/general";
-@import "compass/utilities/sprites";
 
+@import "_base";
 @import "variables";
-@import "icons/*.png";
-@import "avatars/*.png";
-@include all-icons-sprites;
-@include all-avatars-sprites;
 
 .home-top {
   background: #000000;
