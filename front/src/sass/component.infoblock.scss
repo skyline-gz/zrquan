@@ -14,8 +14,7 @@ div[role=infoblocks] {
   clear: both;
 
   .component-infoblock {
-    padding: 21px 0 16px 0;
-    border-bottom: 1px solid #eeeeee;
+    padding-top: 21px;
 
     .component-infoblock-left {
       @include inline-block;
@@ -58,6 +57,84 @@ div[role=infoblocks] {
           width: 10px;
           height: 11px;
         }
+      }
+    }
+
+    .component-infoblock-right {
+      @include inline-block;
+      margin-left: 11px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eeeeee;
+      width: 675px;
+
+      .component-infoblock-header {
+        font-size: 12px;
+        line-height: 12px;
+
+        .icons-vip {
+          @include inline-block;
+          width: 16px;
+          height: 13px;
+        }
+
+        .component-infoblock-username {
+          font-weight: bold;
+          color: #000000;
+        }
+
+        .component-infoblock-action {
+          font-weight: normal;
+          color: $light-dark
+        }
+      }
+
+      .component-infoblock-title {
+        font-size: 14px;
+        height: 23px;
+        line-height: 23px;
+        color: $base-color;
+      }
+
+      .component-infoblock-content {
+        font-size: 14px;
+        line-height: 22px;
+        color: $deep-dark;
+      }
+
+      .component-infoblock-footer {
+        margin-top: 5px;
+        line-height: 22px;
+
+        .component-comment {
+          @include inline-block;
+          color: $light-dark;
+          margin-right: 12px;
+
+          .icons-comment {
+            @include inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 6px;
+          }
+        }
+
+        .component-favorites {
+          @include inline-block;
+          color: $light-dark;
+          margin-right: 12px;
+
+          .icons-favorites {
+            @include inline-block;
+            width: 12px;
+            height: 11px;
+            margin-right: 4px;
+            margin-top: -2px;
+          }
+        }
+      }
+
+      a.showall {
+        color: #438cca
       }
     }
   }

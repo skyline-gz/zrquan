@@ -905,10 +905,9 @@ div[role=infoblocks] {
 }
 /* line 16, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock {
-  padding: 21px 0 16px 0;
-  border-bottom: 1px solid #eeeeee;
+  padding-top: 21px;
 }
-/* line 20, ../sass/component.infoblock.scss */
+/* line 19, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left {
   display: inline-block;
   vertical-align: middle;
@@ -917,17 +916,17 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left {
   *display: inline;
   width: 32px;
 }
-/* line 24, ../sass/component.infoblock.scss */
+/* line 23, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar {
   width: 32px;
   height: 32px;
   display: block;
 }
-/* line 30, ../sass/component.infoblock.scss */
+/* line 29, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good {
   margin-top: 6px;
 }
-/* line 33, ../sass/component.infoblock.scss */
+/* line 32, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -942,7 +941,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   font-size: 12px;
   font-weight: bold;
 }
-/* line 44, ../sass/component.infoblock.scss */
+/* line 43, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action {
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
@@ -958,7 +957,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   text-align: center;
   cursor: pointer;
 }
-/* line 56, ../sass/component.infoblock.scss */
+/* line 55, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good {
   display: inline-block;
   vertical-align: middle;
@@ -967,4 +966,106 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   *display: inline;
   width: 10px;
   height: 11px;
+}
+/* line 63, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  margin-left: 11px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eeeeee;
+  width: 675px;
+}
+/* line 70, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header {
+  font-size: 12px;
+  line-height: 12px;
+}
+/* line 74, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  width: 16px;
+  height: 13px;
+}
+/* line 80, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username {
+  font-weight: bold;
+  color: #000000;
+}
+/* line 85, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action {
+  font-weight: normal;
+  color: #868686;
+}
+/* line 91, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-title {
+  font-size: 14px;
+  height: 23px;
+  line-height: 23px;
+  color: #ff9700;
+}
+/* line 98, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
+  font-size: 14px;
+  line-height: 22px;
+  color: #222;
+}
+/* line 104, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer {
+  margin-top: 5px;
+  line-height: 22px;
+}
+/* line 108, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  color: #868686;
+  margin-right: 12px;
+}
+/* line 113, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+}
+/* line 121, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  color: #868686;
+  margin-right: 12px;
+}
+/* line 126, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  width: 12px;
+  height: 11px;
+  margin-right: 4px;
+  margin-top: -2px;
+}
+/* line 136, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
+  color: #438cca;
 }
