@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
   # 编辑
   def edit
+    authorize! :edit, @user
   end
 
   # POST /users

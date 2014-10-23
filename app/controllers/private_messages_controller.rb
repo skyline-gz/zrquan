@@ -22,6 +22,8 @@ class PrivateMessagesController < ApplicationController
 
   # 创建
   def create
+    target_user = User.find(private_message_params[:target_user_id])
+    authorize! :pm, target_user
 		# 创建私信
     @private_message = PrivateMessage.new
 		@private_message.content = private_message_params[:content]

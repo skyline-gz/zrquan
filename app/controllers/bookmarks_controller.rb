@@ -2,6 +2,13 @@ class BookmarksController < ApplicationController
 
   # 收藏
 	def create
+    if params[:type] == "Article"
+      article = Article.find(params[:id])
+      authorize! :bookmark, article
+    elsif params[:type] == "Question"
+      question = Question.find(params[:id])
+      authorize! :bookmark, question
+    end
 	  # 创建收藏信息
 		@bookmark = current_user.bookmarks.new
 		@bookmark.bookmarkable_id = params[:id]
@@ -17,6 +24,13 @@ class BookmarksController < ApplicationController
 		
   # 取消收藏
 	def destroy
+    if params[:type] == "Article"
+      article = Article.find(params[:id])
+      authorize! :unbookmark, article
+    elsif params[:type] == "Question"
+      question = Question.find(params[:id])
+      authorize! :unbookmark, question
+    end
 		# 删除收藏信息
 		@bookmark = Bookmark.find_by(user_id: current_user.id, bookmarkable_id: params[:id], bookmarkable_type: params[:type])
 		@bookmark.destroy

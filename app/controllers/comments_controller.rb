@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
 		# 经验评论
 		if params[:article_id] != nil
 			@article = Article.find(params[:article_id])
+      authorize! :comment, @article
 			# 创建经验评论
 		  @comment = current_user.comments.new(comment_params)
 			@comment.commentable_id = params[:article_id]
@@ -37,6 +38,7 @@ class CommentsController < ApplicationController
 		# 答案评论
 		if params[:answer_id] != nil
 			@answer = Answer.find(params[:answer_id])
+      authorize! :comment, @answer
 			@question = @answer.question
 			# 创建答案评论
 			@comment = current_user.comments.new(comment_params)

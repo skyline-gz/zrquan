@@ -81,6 +81,9 @@ class Ability
 			can :reply, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
 			can [:accept, :ignore], ConsultSubject, :mentor_id=>user.id, :stat_class=>1
 			can :close, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
+      can :create, ConsultReply do |cr|
+        cr.consult_subject.mentor_id == user.id and cr.consult_subject.stat_class != 3
+      end
 			can :edit, ConsultReply do |cr|
 				cr.user_id == user.id and cr.consult_subject.stat_class != 3
 			end
@@ -146,7 +149,10 @@ class Ability
 			can :reply, ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
 			can :edit, ConsultSubject do |cs|
 				cs.apprentice_id == user.id and cs.stat_class != 3
-			end
+      end
+      can :create, ConsultReply do |cr|
+        cr.consult_subject.apprentice_id == user.id and cr.consult_subject.stat_class != 3
+      end
 			can :edit, ConsultReply do |cr|
 				cr.user_id == user.id and cr.consult_subject.stat_class != 3
 			end

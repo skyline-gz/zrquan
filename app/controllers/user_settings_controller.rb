@@ -12,6 +12,7 @@ class UserSettingsController < ApplicationController
 
   # 编辑
   def edit
+    authorize! :edit, @user_setting
   end
 
   # 更新

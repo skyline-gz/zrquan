@@ -23,10 +23,12 @@ class QuestionsController < ApplicationController
 
   # 编辑
   def edit
+    authorize! :edit, Question
   end
 
   # 创建
   def create
+    authorize! :answer, Question
 		# 创建问题和邀请
 		ActiveRecord::Base.transaction do
 	  	@question = current_user.questions.new(question_params)

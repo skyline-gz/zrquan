@@ -17,10 +17,12 @@ class ConsultRepliesController < ApplicationController
 
   # 编辑
   def edit
+    authorize! :edit, @consult_reply
   end
 
   # 创建
   def create
+    authorize! :edit, @consult_reply
 		# 创建咨询回复
 		@consult_reply = current_user.consult_replies.build(consult_reply_params)
 		@consult_reply.consult_subject_id = params[:consult_subject_id]

@@ -3,13 +3,14 @@ class RelationshipsController < ApplicationController
 
   # 创建
 	def create
-		logger.debug("relationships created")
+    authorize! :follow, @user
 		current_user.follow!(@user)
 		redirect_to users_path, notice: 'Following user succeed.'
 	end
 		
 	# 删除
 	def destroy
+    authorize! :unfollow, @user
 		current_user.unfollow(@user)
     redirect_to users_path, notice: 'Unfollow user succeed.'
 	end
