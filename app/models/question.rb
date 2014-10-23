@@ -34,8 +34,8 @@ class Question < ActiveRecord::Base
 			end
 		end
 		# 两类型答案分别按赞同分数排序，然后合并
-		invited_answers.sort_by {|ia| -ia.agree_score}
-		normal_answers.sort_by {|na| -na.agree_score}
+    invited_answers = invited_answers.sort_by {|ia| -ia.agree_score}
+    normal_answers = normal_answers.sort_by {|na| -na.agree_score}
 		invited_answers + normal_answers
   end
 
