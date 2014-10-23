@@ -1,6 +1,6 @@
 /* line 160, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-message, .icons-myconsulting, .icons-mydraft, .icons-mymessage_hover, .icons-myquestion, .icons-mystar, .icons-mytalk, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
-  background-image: url('/images/icons-s3f1c02b2ff.png');
+.icons-sprite, .icons-comment, .icons-favorites, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myquestion, .icons-mystar, .icons-mytalk, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
+  background-image: url('/images/icons-s1e65959241.png');
   background-repeat: no-repeat;
 }
 
@@ -26,18 +26,18 @@
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
+.icons-myanswer_hover {
   background-position: 0 -44px;
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
+.icons-myconsulting {
   background-position: 0 -62px;
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mymessage_hover {
-  background-position: 0 -79px;
+.icons-mydraft {
+  background-position: 0 -80px;
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
@@ -237,7 +237,7 @@
   color: #6b6b6b;
 }
 /* line 118, ../sass/layout.home.scss */
-.home-mid .warp-content {
+.home-mid .warp-content, .home-mid .home-content {
   position: relative;
 }
 /* line 122, ../sass/layout.home.scss */
@@ -314,4 +314,48 @@
   line-height: 16px;
   margin-left: 3px;
   margin-bottom: 2px;
+}
+
+/* line 192, ../sass/layout.home.scss */
+.home-content {
+  margin-top: 35px;
+}
+/* line 196, ../sass/layout.home.scss */
+.home-content .home-news {
+  border-bottom: 1px solid #CCCCCC;
+  width: 722px;
+  height: 32px;
+}
+/* line 201, ../sass/layout.home.scss */
+.home-content .home-news .home-news-header {
+  float: left;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+/* line 208, ../sass/layout.home.scss */
+.home-content .home-news .icons-point_left {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+/* line 216, ../sass/layout.home.scss */
+.home-content .home-news .home-news-ul {
+  float: right;
+}
+/* line 219, ../sass/layout.home.scss */
+.home-content .home-news .home-news-ul .home-news-li {
+  float: left;
+  margin: 0 10px;
+  width: 38px;
+  font-size: 16px;
+  text-align: center;
+  height: 30px;
+}
+/* line 228, ../sass/layout.home.scss */
+.home-content .home-news .home-news-ul .home-news-li-current {
+  color: #ffa121;
+  border-bottom: 3px solid #ff9700;
 }

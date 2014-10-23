@@ -188,3 +188,47 @@
     }
   }
 }
+
+.home-content {
+  @extend .warp-content;
+  margin-top: 35px;
+
+  .home-news {
+    border-bottom: 1px solid #CCCCCC;
+    width: 722px;
+    height: 32px;;
+
+    .home-news-header {
+      @include float-left;
+      height: 24px;
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    .icons-point_left {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      margin-right: 8px;
+      margin-top: 2px;
+    }
+
+    .home-news-ul {
+      @include float-right;
+
+      .home-news-li {
+        @include float-left;
+        margin: 0 10px;
+        width: 38px;
+        font-size: 16px;
+        text-align: center;
+        height: 30px;
+      }
+
+      .home-news-li-current {
+        color: $light-base-color;
+        border-bottom: 3px solid $base-color;
+      }
+    }
+  }
+}
