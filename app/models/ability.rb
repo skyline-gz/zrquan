@@ -20,18 +20,17 @@ class Ability
 	private
 		# logout & unactivated user
 		def logout_unactivate_abilities(user)
-			cannot :create, :all
-			cannot :edit, :all
-			cannot :destroy, :all
-			cannot :answer, Question
-			cannot :agree, [Answer, Article]
-			cannot :accept, ConsultSubject
-			cannot :show, ConsultSubject
-			cannot :bookmark, :all
-			cannot :comment, :all
-			cannot :pm, User
-			cannot :follow, User
-			cannot :consult, User
+      cannot :manage, :all
+      # read only
+      can :show, Question
+      can :show, Answer
+      can :show, Article
+      can :show, Comment
+      can :show, UserSetting
+      can :show, Bookmark
+      can :show, Message
+      can :show, NewsFeed
+      can :show, Activity
 		end
 
 		# mentor
@@ -78,13 +77,10 @@ class Ability
 
 			# special consult abilities
 			can :show, ConsultSubject, :mentor_id=>user.id
-			can :reply, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
 			can [:accept, :ignore], ConsultSubject, :mentor_id=>user.id, :stat_class=>1
-			can :close, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
-      can :create, ConsultReply do |cr|
-        cr.consult_subject.mentor_id == user.id and cr.consult_subject.in_progress?
-      end
-			can :edit, ConsultReply do |cr|
+      can :close, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
+      can :reply, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
+      can :edit, ConsultReply do |cr|
 				cr.user_id == user.id and cr.consult_subject.in_progress?
 			end
 			cannot :consult, User
@@ -149,9 +145,6 @@ class Ability
 			can :reply, ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
 			can :edit, ConsultSubject do |cs|
 				cs.apprentice_id == user.id and cs.in_progress?
-      end
-      can :create, ConsultReply do |cr|
-        cr.consult_subject.apprentice_id == user.id and cr.consult_subject.in_progress?
       end
 			can :edit, ConsultReply do |cr|
 				cr.user_id == user.id and cr.consult_subject.in_progress?

@@ -22,13 +22,13 @@ class ConsultRepliesController < ApplicationController
 
   # 创建
   def create
-    authorize! :edit, @consult_reply
-		# 创建咨询回复
-		@consult_reply = current_user.consult_replies.build(consult_reply_params)
-		@consult_reply.consult_subject_id = params[:consult_subject_id]
-		@consult_reply.save!
-		# 创建消息并发送
-		@consult_subject = ConsultSubject.find(params[:consult_subject_id])
+    @consult_subject = ConsultSubject.find(params[:consult_subject_id])
+    authorize! :reply, @consult_subject
+    # 创建咨询回复
+    @consult_reply = current_user.consult_replies.build(consult_reply_params)
+    @consult_reply.consult_subject_id = params[:consult_subject_id]
+    @consult_reply.save!
+    # 创建消息并发送
 		if current_user.id == @consult_subject.mentor_id
 			user_id = @consult_subject.apprentice_id
 		else
