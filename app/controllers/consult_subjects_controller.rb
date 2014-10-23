@@ -29,11 +29,12 @@ class ConsultSubjectsController < ApplicationController
 
   # 创建
   def create
-    authorize! :create, @consult_subject
+    target_user = User.find(mentor_params[:mentor_attributes][:id])
+    authorize! :consult, target_user
 		# 创建咨询主题
     @consult_subject = ConsultSubject.new(consult_subject_params)
 		@consult_subject.apprentice_id = current_user.id
-		@consult_subject.mentor_id = mentor_params[:mentor_attributes][:id]
+		@consult_subject.mentor_id = target_user.id
 		@consult_subject.stat_class = 1		# applying
 		@consult_subject.save!
 		# 创建消息并发送
