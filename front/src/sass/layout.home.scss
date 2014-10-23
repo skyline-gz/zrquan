@@ -92,6 +92,7 @@
     width: 190px;
     margin: 0 auto;
     padding-top: 26px;
+    padding-bottom: 34px;
   }
 
   .home-mid-title {
@@ -111,10 +112,20 @@
   .home-mid-subtitle {
     font-size: 14px;
     line-height: 18px;
+    color: $light-dark2;
   }
 
   .warp-content {
-    padding-top: 34px;
+    position: relative;
+  }
+
+  .home-mid-mentor-switch {
+    position: absolute;
+    font-size: 12px;
+    color: $light-dark3;
+    top: 50px;
+    right: 0px;
+    cursor: pointer;
   }
 
   .home-mid-mentor-block {
