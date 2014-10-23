@@ -1,0 +1,147 @@
+@import "compass/utilities/general";
+@import "compass/css3/inline-block";
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+//@import "compass/css3/box-shadow";
+@import "compass/utilities/sprites";
+
+@import "variables";
+@import "icons/*.png";
+@import "avatars/*.png";
+@include all-icons-sprites;
+@include all-avatars-sprites;
+
+div[role=navigation] {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+
+  height: $navigation-height;
+  background-color: $navigation-background-color;
+  border-bottom: 2px solid $navigation-border-color;
+  width: 100%;
+
+  .warp-content {
+    position: relative;
+    height: inherit;
+  }
+
+  a.top-link-logo {
+    @include float-left;
+    background: url(../images/logo.png) no-repeat 0 10px;
+    display: block;
+    width: 92px;
+    height: 100%;
+    text-indent: -9999px;
+  }
+
+  .top-nav {
+    @include float-left;
+    position: relative;
+
+    .top-nav-ul {
+      padding: 0;
+      margin: 0 0 0 43px;
+    }
+
+    .top-nav-li {
+      @include float-left;
+      position: relative;
+      margin: 0;
+      list-style: none;
+    }
+
+    .top-nav-link {
+      @include text-shadow(0 1px 1px rgba(0,0,0,.12));
+      width: 60px;
+      height: $navigation-height;
+      line-height: $navigation-height;
+      text-align: center;
+      display: block;
+      color: $light-dark;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .current {
+      .top-nav-link {
+        color: #ffffff;
+        background-color: $navigation-current-link-background-color;
+        border-bottom: 2px solid $navigation-current-link-border-color;
+      }
+    }
+  }
+
+  //已登陆
+  .top-nav-auth {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    line-height: $navigation-height;
+
+    & > li {
+      @include float-left;
+      list-style: none;
+    }
+
+    a {
+      text-align: center;
+      display: block;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .user-logo, .icons-message, .icons-private_message {
+      @include inline-block;
+      vertical-align: middle;
+    }
+
+    .user-logo {
+      @include border-radius(3px);
+      @extend .avatars-head_s_01;
+
+      width: 32px;
+      height: 32px;
+      padding-right: 12px;
+//      @include box-shadow(0 1px 1px rgba(0,0,0,.12));
+    }
+
+    .icons-message {
+      width: 26px;
+      height: 21px;
+    }
+
+    .icons-private_message {
+      width: 29px;
+      height: 23px;
+    }
+
+    .user-link {
+      color: $light-dark2;
+      width: auto;
+      height: 100%;
+      line-height: $navigation-height;
+      padding-right: 16px;
+      font-size: 16px;
+    }
+
+    .message-link {
+      width: 45px;
+      height: 100%;
+      line-height: $navigation-height;
+    }
+
+    .private-message-link{
+      width: 45px;
+      height: 100%;
+      line-height: $navigation-height;
+    }
+  }
+
+  //未登陆
+  .top-nav-noauth {
+
+  }
+}

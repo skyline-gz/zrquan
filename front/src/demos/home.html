@@ -1,13 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>首页 - 职人圈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--[if lt IE 9]>
     <script src="../vendors/html5shiv/html5shiv.js"></script>
     <![endif]-->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="../vendors/jquery/jquery-1.11.1.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/zrquan.css">
 </head>
 <body>
+    <div role="navigation">
+        <div class="warp-content">
+            <a class="top-link-logo"></a>
+            <div class="top-nav">
+                <div class="top-nav-ul">
+                    <div class="top-nav-li current"><a class="top-nav-link">首页</a></div>
+                    <div class="top-nav-li"><a class="top-nav-link">导师</a></div>
+                    <div class="top-nav-li"><a class="top-nav-link">经验</a></div>
+                    <div class="top-nav-li"><a class="top-nav-link">问答</a></div>
+                </div>
+            </div>
+            <ul class="top-nav-auth">
+                <li><a class="user-link"><i class="user-logo"></i>Tank</a></li>
+                <li><a class="message-link"><i class="icons-message"></i></a></li>
+                <li><a class="private-message-link"><i class="icons-private_message"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="home-top">
+        <div class="home-top-container">
+            <div class="home-top-inner-wrap">
+                <form method="GET" action="/search" class="home-top-search-form">
+                    <input type="text" class="home-top-search-input" id="q" name="q"
+                           autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
+                    <input type="hidden" name="type" value="question">
+                    <!--<label for="q" class="hide-text">职人圈搜索</label>-->
+                    <!--<button type="submit" class="home-top-add-question"><i class="icon icon-magnify-q"></i><span class="hide-text">搜索</span></button>-->
+                </form>
+                <button class="home-top-add-question">提问</button>
+            </div>
+        </div>
+    </div>
+    <div class="home-mid">
+        <div class="home-mid-title-warp">
+            <div class="home-mid-title"><i class="icons-point_left"></i>推荐导师</div>
+            <div class="home-mid-subtitle">Teacher Recommendation</div>
+        </div>
+        <div class="warp-content">
+            <div class="home-mid-mentor-block">
+                <div class="home-mid-mentor-logo avatars-head_m_01"></div>
+                <div class="home-mid-mentor-desc">
+                    <div class="home-mid-mentor-name">Alan Cao<i class="icons-vip"></i></div>
+                    <div class="home-mid-mentor-company">网易</div>
+                    <div class="home-mid-mentor-position">高级产品经理</div>
+                    <div class="home-mid-mentor-subjects">
+                        <div class="component-subject">职业策划</div>
+                        <div class="component-subject">产品策划</div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-mid-mentor-block">
+                <div class="home-mid-mentor-logo avatars-head_m_02"></div>
+                <div class="home-mid-mentor-desc">
+                    <div class="home-mid-mentor-name">Niky Guo<i class="icons-vip"></i></div>
+                    <div class="home-mid-mentor-company">腾讯</div>
+                    <div class="home-mid-mentor-position">高级视觉设计师</div>
+                    <div class="home-mid-mentor-subjects">
+                        <div class="component-subject">职业策划</div>
+                        <div class="component-subject">产品设计</div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-mid-mentor-block">
+                <div class="home-mid-mentor-logo avatars-head_m_03"></div>
+                <div class="home-mid-mentor-desc">
+                    <div class="home-mid-mentor-name">Zoe Zhen<i class="icons-vip"></i></div>
+                    <div class="home-mid-mentor-company">Coremail</div>
+                    <div class="home-mid-mentor-position">资深UI设计师</div>
+                    <div class="home-mid-mentor-subjects">
+                        <div class="component-subject">产品设计</div>
+                        <div class="component-subject">UI设计</div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-mid-mentor-block">
+                <div class="home-mid-mentor-logo avatars-head_m_04"></div>
+                <div class="home-mid-mentor-desc">
+                    <div class="home-mid-mentor-name">欧阳骏<i class="icons-vip"></i></div>
+                    <div class="home-mid-mentor-company">日立</div>
+                    <div class="home-mid-mentor-position">高级秘书长</div>
+                    <div class="home-mid-mentor-subjects">
+                        <div class="component-subject">办公室政治</div>
+                        <div class="component-subject">潜规则</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+        });
+    </script>
 </body>
 </html>

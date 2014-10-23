@@ -1,4 +1,13 @@
 @import "compass/reset";
 
+//常量
 @import "variables";
+//常用类
+@import "common";
+
+//布局
 @import "layout";
+@import "layout.navigation";
+@import "layout.home";
+
+//控件
