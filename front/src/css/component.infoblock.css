@@ -286,7 +286,15 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   margin-right: 4px;
   margin-top: -2px;
 }
-/* line 136, ../sass/component.infoblock.scss */
+/* line 135, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+}
+/* line 140, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #438cca;
 }

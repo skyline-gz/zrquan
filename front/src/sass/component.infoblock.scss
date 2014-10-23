@@ -131,10 +131,14 @@ div[role=infoblocks] {
             margin-top: -2px;
           }
         }
+
+        .component-infoblock-subjects {
+          @include inline-block;
+        }
       }
 
       a.showall {
-        color: #438cca
+        color: #438cca;
       }
     }
   }

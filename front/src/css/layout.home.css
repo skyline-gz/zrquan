@@ -295,19 +295,6 @@
   margin-top: 3px;
 }
 /* line 169, ../sass/layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .component-subject {
-  float: left;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  color: #ffffff;
-  background: #fbd28d;
-  font-size: 12px;
-  line-height: 12px;
-  padding: 2px 3px;
-  margin-right: 3px;
-}
-/* line 180, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
   display: inline-block;
   vertical-align: middle;
@@ -321,25 +308,25 @@
   margin-bottom: 2px;
 }
 
-/* line 192, ../sass/layout.home.scss */
+/* line 181, ../sass/layout.home.scss */
 .home-content {
   margin-top: 35px;
 }
-/* line 196, ../sass/layout.home.scss */
+/* line 185, ../sass/layout.home.scss */
 .home-content .home-news {
   float: left;
   border-bottom: 1px solid #CCCCCC;
   width: 722px;
   height: 32px;
 }
-/* line 202, ../sass/layout.home.scss */
+/* line 191, ../sass/layout.home.scss */
 .home-content .home-news .home-news-header {
   float: left;
   height: 24px;
   font-size: 24px;
   line-height: 24px;
 }
-/* line 209, ../sass/layout.home.scss */
+/* line 198, ../sass/layout.home.scss */
 .home-content .home-news .icons-point_left {
   width: 18px;
   height: 18px;
@@ -347,11 +334,11 @@
   margin-right: 8px;
   margin-top: 2px;
 }
-/* line 217, ../sass/layout.home.scss */
+/* line 206, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul {
   float: right;
 }
-/* line 220, ../sass/layout.home.scss */
+/* line 209, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li {
   float: left;
   margin: 0 10px;
@@ -361,17 +348,17 @@
   height: 30px;
   cursor: pointer;
 }
-/* line 230, ../sass/layout.home.scss */
+/* line 219, ../sass/layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li-current {
   color: #ffa121;
   border-bottom: 3px solid #ff9700;
 }
-/* line 237, ../sass/layout.home.scss */
+/* line 226, ../sass/layout.home.scss */
 .home-content .home-right-panel {
   float: right;
   width: 270px;
 }
-/* line 241, ../sass/layout.home.scss */
+/* line 230, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ad {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -381,11 +368,11 @@
   display: block;
   background: url(../images/home/home_ad.png) no-repeat;
 }
-/* line 249, ../sass/layout.home.scss */
+/* line 238, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul {
   margin-top: 25px;
 }
-/* line 252, ../sass/layout.home.scss */
+/* line 241, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
   margin-bottom: 3px;
   line-height: 32px;
@@ -395,12 +382,12 @@
   background: #F7F7F7;
   cursor: pointer;
 }
-/* line 262, ../sass/layout.home.scss */
+/* line 251, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
   background: #E0E0E0;
   border-right: 6px solid #ff9700;
 }
-/* line 268, ../sass/layout.home.scss */
+/* line 257, ../sass/layout.home.scss */
 .home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
   display: inline-block;
   vertical-align: middle;
