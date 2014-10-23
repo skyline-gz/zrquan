@@ -1,0 +1,64 @@
+@import "compass/css3/inline-block";
+@import "compass/css3/transition";
+@import "compass/css3/border-radius";
+@import "compass/utilities/general";
+@import "compass/utilities/sprites";
+
+@import "variables";
+@import "icons/*.png";
+@import "avatars/*.png";
+@include all-icons-sprites;
+@include all-avatars-sprites;
+
+div[role=infoblocks] {
+  clear: both;
+
+  .component-infoblock {
+    padding: 21px 0 16px 0;
+    border-bottom: 1px solid #eeeeee;
+
+    .component-infoblock-left {
+      @include inline-block;
+      width: 32px;
+
+      .component-infoblock-avatar {
+        width: 32px;
+        height: 32px;
+        display: block;
+      }
+
+      .component-infoblock-good {
+        margin-top: 6px;
+
+        .component-infoblock-good-num {
+          @include border-top-left-radius(4px);
+          @include border-top-right-radius(4px);
+          background-color: #ffe3bb;
+          color: #edc17f;
+          height: 18px;
+          text-align: center;
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        .component-infoblock-good-action {
+          @include border-bottom-left-radius(4px);
+          @include border-bottom-right-radius(4px);
+          margin-top: 1px;
+          background-color: #ffe3bb;
+          color: #edc17f;
+          height: 18px;
+          line-height: 16px;
+          text-align: center;
+          cursor: pointer;
+        }
+
+        .icons-good {
+          @include inline-block;
+          width: 10px;
+          height: 11px;
+        }
+      }
+    }
+  }
+}

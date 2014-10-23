@@ -5,7 +5,7 @@
 }
 
 /* line 88, avatars/*.png */
-.avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
+.avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, .avatars-head_s_02 {
   background-image: url('/images/avatars-sfa42aeeada.png');
   background-repeat: no-repeat;
 }
@@ -111,7 +111,7 @@
 }
 
 /* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
+.avatars-head_s_01 {
   background-position: 0 -256px;
 }
 
@@ -120,132 +120,72 @@
   background-position: 0 -288px;
 }
 
-/* line 14, ../sass/layout.navigation.scss */
-div[role=navigation] {
-  display: block;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 20;
-  height: 50px;
-  background-color: #f7f7f7;
-  border-bottom: 2px solid #e9e9e9;
-  width: 100%;
+/* line 13, ../sass/component.infoblock.scss */
+div[role=infoblocks] {
+  clear: both;
 }
-/* line 26, ../sass/layout.navigation.scss */
-div[role=navigation] .warp-content {
-  position: relative;
-  height: inherit;
+/* line 16, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock {
+  padding: 21px 0 16px 0;
+  border-bottom: 1px solid #eeeeee;
 }
-/* line 31, ../sass/layout.navigation.scss */
-div[role=navigation] a.top-link-logo {
-  float: left;
-  background: url(../images/logo.png) no-repeat 0 10px;
-  display: block;
-  width: 92px;
-  height: 100%;
-  text-indent: -9999px;
-}
-/* line 40, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav {
-  float: left;
-  position: relative;
-}
-/* line 44, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav .top-nav-ul {
-  padding: 0;
-  margin: 0 0 0 43px;
-}
-/* line 49, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav .top-nav-li {
-  float: left;
-  position: relative;
-  margin: 0;
-  list-style: none;
-}
-/* line 56, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav .top-nav-link {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
-  width: 60px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  display: block;
-  color: #868686;
-  font-size: 18px;
-  cursor: pointer;
-}
-/* line 69, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav .current .top-nav-link {
-  color: #ffffff;
-  background-color: #ff9700;
-  border-bottom: 2px solid #dd8401;
-}
-/* line 78, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth {
-  margin: 0;
-  position: absolute;
-  right: 0;
-  line-height: 50px;
-}
-/* line 84, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth > li {
-  float: left;
-  list-style: none;
-}
-/* line 89, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth a {
-  text-align: center;
-  display: block;
-  white-space: nowrap;
-  cursor: pointer;
-}
-/* line 96, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
+/* line 20, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left {
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
   *zoom: 1;
   *display: inline;
-  vertical-align: middle;
+  width: 32px;
 }
-/* line 101, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth .user-logo {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+/* line 24, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar {
   width: 32px;
   height: 32px;
-  padding-right: 12px;
+  display: block;
 }
-/* line 111, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth .icons-message {
-  width: 26px;
-  height: 21px;
+/* line 30, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good {
+  margin-top: 6px;
 }
-/* line 116, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth .icons-private_message {
-  width: 29px;
-  height: 23px;
+/* line 33, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num {
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #ffe3bb;
+  color: #edc17f;
+  height: 18px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
 }
-/* line 121, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth .user-link {
-  color: #6b6b6b;
-  width: auto;
-  height: 100%;
-  line-height: 50px;
-  padding-right: 16px;
-  font-size: 16px;
+/* line 44, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action {
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-top: 1px;
+  background-color: #ffe3bb;
+  color: #edc17f;
+  height: 18px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
 }
-/* line 130, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth .message-link {
-  width: 45px;
-  height: 100%;
-  line-height: 50px;
-}
-/* line 136, ../sass/layout.navigation.scss */
-div[role=navigation] .top-nav-auth .private-message-link {
-  width: 45px;
-  height: 100%;
-  line-height: 50px;
+/* line 56, ../sass/component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  width: 10px;
+  height: 11px;
 }
