@@ -7,7 +7,9 @@
 
 @import "variables";
 @import "icons/*.png";
+@import "avatars/*.png";
 @include all-icons-sprites;
+@include all-avatars-sprites;
 
 div[role=navigation] {
   display: block;
@@ -98,9 +100,10 @@ div[role=navigation] {
 
     .user-logo {
       @include border-radius(3px);
+      @extend .avatars-head_s_01;
+
       width: 32px;
       height: 32px;
-      background: url(../images/head_01.png) no-repeat;
       padding-right: 12px;
 //      @include box-shadow(0 1px 1px rgba(0,0,0,.12));
     }
