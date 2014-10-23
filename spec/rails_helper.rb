@@ -48,7 +48,17 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  config.before(:each) do
-    DatabaseCleaner.clean
+  config.before(:suite) do
+    #system("rake", "sunspot:solr:start", "RAILS_ENV=test")
+
+    #DatabaseCleaner.strategy = :truncation
+    #DatabaseCleaner.clean
+    #puts "Cleaned all tables"
+  end
+
+  config.after(:suite) do
+    #DatabaseCleaner.strategy = :truncation
+    #DatabaseCleaner.clean
+    #system("rake", "sunspot:solr:stop", "RAILS_ENV=test")
   end
 end
