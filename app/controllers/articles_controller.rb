@@ -20,10 +20,12 @@ class ArticlesController < ApplicationController
 
   # 编辑
   def edit
+    authorize! :edit, @article
   end
 
   # 创建
   def create
+    authorize! :create, @article
 		# 创建经验
     @article = current_user.articles.new(article_params)
 		if params[:commit] == "Create"
@@ -44,6 +46,7 @@ class ArticlesController < ApplicationController
 
 	# 赞同
 	def agree
+    authorize! :agree, @article
 		latest_score = @article.try(:agree_score) || 0
 		# 更新赞同分数（导师+2，普通用户+1）
 		if current_user.mentor_flag
@@ -68,6 +71,7 @@ class ArticlesController < ApplicationController
 
   # 删除（只限草稿）
   def destroy
+    authorize! :destroy, @article
     @article.destroy
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
   end

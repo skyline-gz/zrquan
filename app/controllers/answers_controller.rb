@@ -19,17 +19,19 @@ class AnswersController < ApplicationController
 
   # 编辑
   def edit
+    authorize! :edit, @answer
   end
 
   # 创建
   def create
+    @question = Question.find(params[:question_id])
+    authorize! :answer, @question
     # 创建答案
     @answer = current_user.answers.new(answer_params)
     @answer.question_id = params[:question_id]
     @answer.save!
     # TODO 错误处理
     # 更新问题的答案数
-    @question = Question.find(@answer.question_id)
     @question.update!(answer_num: @question.answer_num + 1)
     # 创建用户行为（回答问题）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
@@ -53,6 +55,7 @@ class AnswersController < ApplicationController
 
 	# 赞同
   def agree
+    authorize! :agree, @answer
     @question = Question.find(@answer.question_id)
     latest_score = @answer.agree_score
     logger.debug(latest_score)

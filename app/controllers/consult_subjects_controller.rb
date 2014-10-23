@@ -11,6 +11,7 @@ class ConsultSubjectsController < ApplicationController
 
   # 显示
   def show
+    authorize! :show, @consult_subject
   end
 
   # 新建咨询主题对象
@@ -23,10 +24,12 @@ class ConsultSubjectsController < ApplicationController
 
   # 编辑
   def edit
+    authorize! :edit, @consult_subject
   end
 
   # 创建
   def create
+    authorize! :create, @consult_subject
 		# 创建咨询主题
     @consult_subject = ConsultSubject.new(consult_subject_params)
 		@consult_subject.apprentice_id = current_user.id
@@ -51,6 +54,7 @@ class ConsultSubjectsController < ApplicationController
 
 	# 接受咨询申请
 	def accept
+    authorize! :accept, @consult_subject
 		# 更新状态并发送消息
 		@consult_subject.update!(:stat_class=>2)
 		@consult_subject.apprentice.messages.create!(msg_type: 5, extra_info1_id: current_user.id, extra_info1_type: "User",
@@ -63,6 +67,7 @@ class ConsultSubjectsController < ApplicationController
 
 	# 结束咨询
 	def close
+    authorize! :close, @consult_subject
 		# 更新状态
 		logger.debug("invoked consult subject close")
 		@consult_subject.update!(:stat_class=>3)
@@ -78,6 +83,7 @@ class ConsultSubjectsController < ApplicationController
 
 	# 忽略咨询申请
 	def ignore
+    authorize! :ignore, @consult_subject
 		# 更新状态
 		logger.debug("invoked consult subject ignore")
 		@consult_subject.update!(:stat_class=>4)
