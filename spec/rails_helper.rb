@@ -51,8 +51,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     #system("rake", "sunspot:solr:start", "RAILS_ENV=test")
 
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean
+    #DatabaseCleaner.strategy = :truncation
+    #DatabaseCleaner.clean
     #puts "Cleaned all tables"
   end
 
