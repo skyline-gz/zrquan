@@ -21,20 +21,37 @@ RSpec.describe Ability, :type => :model do
     let (:mentor) { FactoryGirl.create(:mentor_1) }
     let (:normal_user) { FactoryGirl.create(:normal_user_1) }
     let (:question) { FactoryGirl.create(:question_1) }
-
+    let (:mentor_user_setting) { FactoryGirl.create(:user_setting, :user=>mentor) }
+    let (:normal_user_setting) { FactoryGirl.create(:user_setting, :user=>normal_user) }
     let (:ability) { Ability.new(mentor) }
 
     it { should_not be_able_to(:create, Question) }
     it { should_not be_able_to(:create, ConsultSubject) }
     it { should_not be_able_to(:edit, Question) }
     it { should_not be_able_to(:edit, ConsultSubject) }
-    it { should be_able_to(:answer, question) }
-    it {
-      FactoryGirl.create(:q1_invited_answer_1, :question=>question, :user=>mentor)
-      should_not be_able_to(:answer, question)
-    }
-    it { should be_able_to(:edit, mentor) }
-    it { should_not be_able_to(:edit, normal_user) }
+
+    context "answer" do
+      it { should be_able_to(:answer, question) }
+      it {
+        FactoryGirl.create(:q1_invited_answer_1, :question=>question, :user=>mentor)
+        should_not be_able_to(:answer, question)
+      }
+      it {
+        other_answer = FactoryGirl.create(:q1_other_answer_1, :question=>question, :user=>normal_user)
+        should be_able_to(:agree, other_answer)
+      }
+      it {
+        my_answer = FactoryGirl.create(:q1_invited_answer_1, :question=>question, :user=>mentor)
+        should_not be_able_to(:agree, my_answer)
+      }
+    end
+
+    context "user info and user setting" do
+      it { should be_able_to(:edit, mentor) }
+      it { should_not be_able_to(:edit, normal_user) }
+      it { should be_able_to(:edit, mentor_user_setting) }
+      it { should_not be_able_to(:edit, normal_user_setting) }
+    end
 
   end
 
