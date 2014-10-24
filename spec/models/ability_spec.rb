@@ -20,7 +20,7 @@ RSpec.describe Ability, :type => :model do
   context "mentor" do
     let (:mentor) { FactoryGirl.create(:mentor_1) }
     let (:normal_user) { FactoryGirl.create(:normal_user_1) }
-    let (:question) { FactoryGirl.create(:question_1) }
+    let (:question) { FactoryGirl.create(:question_1, :user=>normal_user) }
     let (:published_article) { FactoryGirl.create(:published_article, :user=>normal_user) }
     let (:draft_article) { FactoryGirl.create(:draft_article, :user=>normal_user) }
     let (:mentor_user_setting) { FactoryGirl.create(:user_setting, :user=>mentor) }
@@ -57,7 +57,7 @@ RSpec.describe Ability, :type => :model do
       it {
         other_answer = FactoryGirl.create(:q1_other_answer_1, :question=>question, :user=>normal_user)
         FactoryGirl.create(:answer_agree, :user=>mentor, :agreeable=>other_answer)
-        should_not be_able_to(:agree, other_answer)
+        should_not be_able_to(:agree, agreed_answer = other_answer)
       }
     end
 
@@ -88,7 +88,7 @@ RSpec.describe Ability, :type => :model do
       }
       it {
         FactoryGirl.create(:answer_agree, :user=>mentor, :agreeable=>published_article)
-        should_not be_able_to(:agree, published_article)
+        should_not be_able_to(:agree, agreed_article = published_article)
       }
     end
 
@@ -99,21 +99,48 @@ RSpec.describe Ability, :type => :model do
     end
 
     context "bookmark" do
-      it { should be_able_to (:bookmark, question) }
+      it { should be_able_to(:bookmark, question) }
       it {
         FactoryGirl.create(:question_bookmark, :user=>mentor, :bookmarkable=>question)
-        should_not be_able_to (:bookmark, question)
+        should_not be_able_to(:bookmark, question)
       }
-      it { should be_able_to (:bookmark, published_article) }
-      it { should_not be_able_to (:bookmark, draft_article) }
+      it { should be_able_to(:bookmark, published_article) }
+      it { should_not be_able_to(:bookmark, draft_article) }
       it {
         FactoryGirl.create(:article_bookmark, :user=>mentor, :bookmarkable=>published_article)
-        should_not be_able_to (:bookmark, published_article)
+        should_not be_able_to(:bookmark, published_article)
       }
     end
 
-    context "consult_reply" do
+    context "consult" do
+      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>mentor) }
+      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>normal_user, :mentor=>mentor) }
+      let (:closed_subject) { FactoryGirl.create(:closed_subject, :apprentice=>normal_user, :mentor=>mentor) }
+      let (:ignored_subject) { FactoryGirl.create(:ignored_subject, :apprentice=>normal_user, :mentor=>mentor) }
+      let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>mentor, :consult_subject=>in_progress_subject) }
+      let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>normal_user, :consult_subject=>in_progress_subject) }
+      let (:other_mentor) { FactoryGirl.create(:mentor_2) }
 
+      it { should be_able_to(:accept, applying_subject) }
+      it { should be_able_to(:ignore, applying_subject) }
+      it { should_not be_able_to(:accept, in_progress_subject) }
+      it { should_not be_able_to(:ignore, in_progress_subject) }
+      it { should be_able_to(:close, in_progress_subject) }
+      it { should_not be_able_to(:close, applying_subject) }
+      it { should be_able_to(:show, applying_subject) }
+      it {
+        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>other_mentor)
+        should_not be_able_to(:show, not_my_subject)
+      }
+      it { should be_able_to(:reply, in_progress_subject) }
+      it { should_not be_able_to(:reply, applying_subject) }
+      it { should be_able_to(:edit, my_reply) }
+      it { should_not be_able_to(:edit, not_my_reply) }
+    end
+
+    context "follow" do
+      it { should be_able_to(:follow, other_user = normal_user) }
+      it { should_not be_able_to(:follow, myself = mentor) }
     end
 
     context "user info and user setting" do

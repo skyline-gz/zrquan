@@ -62,7 +62,7 @@ gem 'devise', '3.2.4'
 # gem 'devise-encryptable', '0.2.0'
 
 # 用户权限
-gem 'cancan', '1.6.10'
+gem 'cancancan', '~> 1.9.2'
 
 # 服务器
 gem 'thin', group: :development

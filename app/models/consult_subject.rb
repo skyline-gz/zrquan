@@ -25,8 +25,8 @@ class ConsultSubject < ActiveRecord::Base
     stat_class == 4
   end
 
-  # 待处理状态
-  def to_be_handled
+  # 申请中状态
+  def applying
     stat_class == 1
   end
 end
