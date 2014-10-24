@@ -28,6 +28,6 @@ require([
     ) {
     'use strict';
     $(document).ready(function() {
-        $('#myModal').modal('show')
+//        $('#myModal').modal('show')
     });
 });

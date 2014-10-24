@@ -1,6 +1,6 @@
-/* line 162, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-vip {
-  background: url('/images/icons-s7df1e1f08d.png') no-repeat;
+/* line 170, icons/*.png */
+.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-scc18f1a3c6.png') no-repeat;
 }
 
 /* line 82, avatars/*.png */
@@ -81,6 +81,11 @@
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-up_to_top {
   background-position: 0 -139px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up {
+  background-position: 0 -292px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
@@ -253,4 +258,45 @@ div[role=navigation] .top-nav-auth .private-message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
+}
+/* line 138, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav-noauth {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  line-height: 50px;
+}
+/* line 144, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav-noauth > li {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  display: inline;
+  float: left;
+  list-style: none;
+  font-size: 14px;
+  margin: 0 15px;
+}
+/* line 152, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav-noauth a {
+  text-align: center;
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #868686;
+}
+/* line 160, ../sass/layout.navigation.scss */
+div[role=navigation] .top-nav-noauth .icons-user_sign_up {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
 }

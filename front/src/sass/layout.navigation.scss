@@ -136,6 +136,34 @@ div[role=navigation] {
 
   //未登陆
   .top-nav-noauth {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    line-height: $navigation-height;
 
+    & > li {
+      @include inline-block;
+      @include float-left;
+      list-style: none;
+      font-size: 14px;
+      margin: 0 15px;
+    }
+
+    a {
+      text-align: center;
+      display: block;
+      white-space: nowrap;
+      cursor: pointer;
+      color: $light-dark;
+    }
+
+    .icons-user_sign_up {
+      @include inline-block;
+      @extend .icons-user_sign_up;
+
+      width: 18px;
+      height: 18px;
+      margin-right: 6px;
+    }
   }
 }
