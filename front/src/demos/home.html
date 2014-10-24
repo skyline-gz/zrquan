@@ -23,6 +23,16 @@
                     <div class="top-nav-li"><a class="top-nav-link">问答</a></div>
                 </div>
             </div>
+            <div class="top-nav-searchbar">
+                <form method="GET" action="/search" class="top-nav-search-form">
+                    <input type="text" class="top-nav-search-input" id="q" name="q"
+                           autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
+                    <input type="hidden" name="type" value="question">
+                    <button type="submit" class="top-nav-search-submit">
+                        <i class="icons-search_s"></i></button>
+                </form>
+                <button class="top-nav-add-question">提问</button>
+            </div>
             <ul class="top-nav-auth" style="display: none">
                 <li><a class="user-link"><i class="user-logo"></i>Tank</a></li>
                 <li><a class="message-link"><i class="icons-message"></i></a></li>
@@ -41,8 +51,8 @@
                     <input type="text" class="home-top-search-input" id="q" name="q"
                            autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
                     <input type="hidden" name="type" value="question">
-                    <!--<label for="q" class="hide-text">职人圈搜索</label>-->
-                    <!--<button type="submit" class="home-top-add-question"><i class="icon icon-magnify-q"></i><span class="hide-text">搜索</span></button>-->
+                    <button type="submit" class="home-top-search-submit">
+                        <i class="icons-search"></i></button>
                 </form>
                 <button class="home-top-add-question">提问</button>
             </div>

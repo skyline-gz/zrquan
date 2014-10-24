@@ -1,16 +1,445 @@
-/* line 4, ../sass/component.subject.scss */
-.component-subject {
+/* line 178, icons/*.png */
+.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-sa3fe4239ed.png') no-repeat;
+}
+
+/* line 82, avatars/*.png */
+.avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, .avatars-head_s_02 {
+  background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-comment {
+  background-position: 0 -298px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-favorites {
+  background-position: 0 -276px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-good {
+  background-position: 0 -287px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-message {
+  background-position: 0 -47px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myanswer_hover {
+  background-position: 0 -210px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myconsulting {
+  background-position: 0 -104px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-mydraft {
+  background-position: 0 -122px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myexperience {
+  background-position: 0 -258px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myfavorite {
+  background-position: 0 -139px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myquestion {
+  background-position: 0 -86px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-point_left {
+  background-position: 0 -240px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-private_message {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-search {
+  background-position: 0 -23px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-search_s {
+  background-position: 0 -68px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-set {
+  background-position: 0 -228px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-up_to_top {
+  background-position: 0 -157px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-user_sign_up {
+  background-position: 0 -310px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-vip {
+  background-position: 0 -197px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_01 {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_02 {
+  background-position: 0 -128px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_03 {
+  background-position: 0 -192px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_04 {
+  background-position: 0 -64px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_01 {
+  background-position: 0 -288px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_02 {
+  background-position: 0 -256px;
+}
+
+/* line 13, ../sass/layout.home.scss */
+.home-top {
+  background: #000000;
+  display: block;
+  width: 100%;
+  height: 380px;
+}
+/* line 19, ../sass/layout.home.scss */
+.home-top .home-top-container {
+  display: block;
+  width: 100%;
+  height: 380px;
+  background: url(../images/home/main_bg.png) top center no-repeat;
+  position: relative;
+}
+/* line 26, ../sass/layout.home.scss */
+.home-top .home-top-container .home-top-inner-wrap {
+  width: 450px;
+  height: 38px;
+  margin: 0 auto;
+  padding-top: 326px;
+}
+/* line 33, ../sass/layout.home.scss */
+.home-top .home-top-container .home-top-search-form {
+  position: relative;
+  width: 360px;
   display: inline;
   float: left;
+}
+/* line 39, ../sass/layout.home.scss */
+.home-top .home-top-container .home-top-search-input {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  color: #ffffff;
-  background: #fbd28d;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 10px 10px;
+  font-size: 14px;
+  outline: medium none;
+  overflow: hidden;
+  width: 100%;
+  line-height: 17px;
+  border: 1px solid #D2D2D2;
+  background-color: #ffffff;
+  color: #49525c;
+}
+/* line 57, ../sass/layout.home.scss */
+.home-top .home-top-container .home-top-add-question {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  display: inline;
+  float: left;
+  margin: 0 0 0 6px;
+  background: #ff9700;
+  background-color: #ff9700;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
+  background-repeat: repeat-x;
+  color: #FFF;
+  font-size: 18px;
+  width: 80px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ff9700;
+  outline: 0;
+}
+/* line 80, ../sass/layout.home.scss */
+.home-top .home-top-container .home-top-search-submit {
+  position: absolute;
+  right: 4px;
+  top: 0px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  background: 0;
+  line-height: 55px;
+}
+/* line 90, ../sass/layout.home.scss */
+.home-top .home-top-container .home-top-search-submit .icons-search_s {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
+/* line 99, ../sass/layout.home.scss */
+.home-mid {
+  background: url(../images/home/home_mid_bg.png);
+  display: block;
+  width: 100%;
+  height: 211px;
+}
+/* line 105, ../sass/layout.home.scss */
+.home-mid .home-mid-title-warp {
+  width: 190px;
+  margin: 0 auto;
+  padding-top: 26px;
+  padding-bottom: 34px;
+}
+/* line 112, ../sass/layout.home.scss */
+.home-mid .home-mid-title {
+  line-height: 25px;
+  font-size: 25px;
+}
+/* line 117, ../sass/layout.home.scss */
+.home-mid .icons-point_left {
+  display: inline;
+  float: left;
+  display: block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin: 3px 10px 0 16px;
+}
+/* line 126, ../sass/layout.home.scss */
+.home-mid .home-mid-subtitle {
+  font-size: 14px;
+  line-height: 18px;
+  color: #6b6b6b;
+}
+/* line 132, ../sass/layout.home.scss */
+.home-mid .warp-content, .home-mid .home-content {
+  position: relative;
+}
+/* line 136, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-switch {
+  position: absolute;
   font-size: 12px;
-  line-height: 12px;
-  padding: 2px 3px;
-  margin-right: 3px;
+  color: #5e5e5e;
+  top: 50px;
+  right: 0px;
+  cursor: pointer;
+}
+/* line 145, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block {
+  margin: 0 35px;
+  display: inline;
+  float: left;
+  width: 188px;
+}
+/* line 150, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-logo {
+  display: inline;
+  float: left;
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+/* line 157, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+}
+/* line 161, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-name {
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* line 167, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-company {
+  margin-top: 2px;
+  line-height: 14px;
+  font-size: 12px;
+  font-weight: bold;
+}
+/* line 174, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-position {
+  line-height: 14px;
+  font-size: 12px;
+}
+/* line 179, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-subjects {
+  margin-top: 3px;
+}
+/* line 183, ../sass/layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 16px;
+  height: 13px;
+  line-height: 16px;
+  margin-left: 3px;
+  margin-bottom: 2px;
+}
+
+/* line 195, ../sass/layout.home.scss */
+.home-content {
+  margin-top: 35px;
+}
+/* line 199, ../sass/layout.home.scss */
+.home-content .home-news {
+  display: inline;
+  float: left;
+  border-bottom: 1px solid #CCCCCC;
+  width: 722px;
+  height: 32px;
+}
+/* line 205, ../sass/layout.home.scss */
+.home-content .home-news .home-news-header {
+  display: inline;
+  float: left;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+/* line 212, ../sass/layout.home.scss */
+.home-content .home-news .icons-point_left {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+/* line 220, ../sass/layout.home.scss */
+.home-content .home-news .home-news-ul {
+  display: inline;
+  float: right;
+}
+/* line 223, ../sass/layout.home.scss */
+.home-content .home-news .home-news-ul .home-news-li {
+  display: inline;
+  float: left;
+  margin: 0 10px;
+  width: 38px;
+  font-size: 16px;
+  text-align: center;
+  height: 30px;
+  cursor: pointer;
+}
+/* line 233, ../sass/layout.home.scss */
+.home-content .home-news .home-news-ul .home-news-li-current {
+  color: #ffa121;
+  border-bottom: 3px solid #ff9700;
+}
+/* line 240, ../sass/layout.home.scss */
+.home-content .home-right-panel {
+  display: inline;
+  float: right;
+  width: 270px;
+}
+/* line 244, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ad {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  width: 270px;
+  height: 101px;
+  display: block;
+  background: url(../images/home/home_ad.png) no-repeat;
+}
+/* line 252, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul {
+  margin-top: 25px;
+}
+/* line 255, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
+  margin-bottom: 3px;
+  line-height: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: #6b6b6b;
+  background: #F7F7F7;
+  cursor: pointer;
+}
+/* line 265, ../sass/layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
+  background: #E0E0E0;
+  border-right: 6px solid #ff9700;
+}
+/* line 271, ../sass/layout.home.scss */
+.home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 19px;
+  height: 18px;
+  margin-left: 12px;
+  margin-right: 15px;
 }
