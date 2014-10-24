@@ -10,6 +10,7 @@ div[role=infoblocks] {
   clear: both;
 
   .component-infoblock {
+    clear: both;
     padding-top: 21px;
 
     .component-infoblock-left {
@@ -75,16 +76,24 @@ div[role=infoblocks] {
 
         .component-infoblock-username {
           font-weight: bold;
-          color: #000000;
+          color: $dark;
         }
 
         .component-infoblock-action {
           font-weight: normal;
           color: $light-dark
         }
+
+        .component-infoblock-time {
+          font-weight: normal;
+          color:$light-dark;
+          float: right;
+          margin-right: 10px;
+        }
       }
 
       .component-infoblock-title {
+        margin-top: 2px;
         font-size: 14px;
         font-weight: bold;
         height: 23px;
@@ -96,6 +105,7 @@ div[role=infoblocks] {
         font-size: 14px;
         line-height: 22px;
         color: $deep-dark;
+        font-family: $base-article-family;
       }
 
       .component-infoblock-footer {

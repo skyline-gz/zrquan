@@ -1,6 +1,7 @@
 $warp-content-width : 1040px;    //网站内容宽度
 
 //基本颜色定义
+$dark: #000;
 $light-dark : #868686;
 $light-dark2 : #6b6b6b;
 $light-dark3 : #5e5e5e;
@@ -20,6 +21,8 @@ $navigation-current-link-border-color: $deep-base-color;
 $body-padding-top: $navigation-height + 2px;
 
 //字体
-$base-font-family: 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+$base-font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+//$base-article-family: '宋体','Helvetica Neue', Helvetica, Arial, Sans-serif;
+$base-article-family: 'Microsoft Yahei','Helvetica Neue', Helvetica, Arial, Sans-serif;
 $base-font-size : 12px;
 
