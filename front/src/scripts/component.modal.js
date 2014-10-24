@@ -1,4 +1,4 @@
-define(['jQuery', 'component.transition'], function($){
+define(['jquery', 'component.transition'], function($){
     'use strict';
 
     // MODAL CLASS DEFINITION
