@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :answer_agree, class: Agreement do
+    association :user, factory: :normal_user_1
     association :agreeable, factory: :q1_other_answer_1
   end
 

@@ -21,6 +21,8 @@ RSpec.describe Ability, :type => :model do
     let (:mentor) { FactoryGirl.create(:mentor_1) }
     let (:normal_user) { FactoryGirl.create(:normal_user_1) }
     let (:question) { FactoryGirl.create(:question_1) }
+    let (:published_article) { FactoryGirl.create(:published_article, :user=>normal_user) }
+    let (:draft_article) { FactoryGirl.create(:draft_article, :user=>normal_user) }
     let (:mentor_user_setting) { FactoryGirl.create(:user_setting, :user=>mentor) }
     let (:normal_user_setting) { FactoryGirl.create(:user_setting, :user=>normal_user) }
     let (:ability) { Ability.new(mentor) }
@@ -33,6 +35,14 @@ RSpec.describe Ability, :type => :model do
     context "answer" do
       it { should be_able_to(:answer, question) }
       it {
+        my_answer = FactoryGirl.create(:q1_invited_answer_1, :question=>question, :user=>mentor)
+        should be_able_to(:edit, my_answer)
+      }
+      it {
+        other_answer = FactoryGirl.create(:q1_other_answer_1, :question=>question, :user=>normal_user)
+        should_not be_able_to(:edit, other_answer)
+      }
+      it {
         FactoryGirl.create(:q1_invited_answer_1, :question=>question, :user=>mentor)
         should_not be_able_to(:answer, question)
       }
@@ -44,6 +54,66 @@ RSpec.describe Ability, :type => :model do
         my_answer = FactoryGirl.create(:q1_invited_answer_1, :question=>question, :user=>mentor)
         should_not be_able_to(:agree, my_answer)
       }
+      it {
+        other_answer = FactoryGirl.create(:q1_other_answer_1, :question=>question, :user=>normal_user)
+        FactoryGirl.create(:answer_agree, :user=>mentor, :agreeable=>other_answer)
+        should_not be_able_to(:agree, other_answer)
+      }
+    end
+
+    context "article" do
+      it { should be_able_to(:create, Article) }
+      it {
+        my_draft_article = FactoryGirl.create(:draft_article, :user=>mentor)
+        should be_able_to(:destroy, my_draft_article)
+      }
+      it {
+        my_published_article = FactoryGirl.create(:published_article, :user=>mentor)
+        should_not be_able_to(:destroy, my_published_article)
+      }
+      it {
+        my_draft_article = FactoryGirl.create(:draft_article, :user=>mentor)
+        should be_able_to(:edit, my_draft_article)
+      }
+      it {
+        my_published_article = FactoryGirl.create(:published_article, :user=>mentor)
+        should be_able_to(:edit, my_published_article)
+      }
+      it { should_not be_able_to(:edit, published_article) }
+      it { should be_able_to(:agree, published_article) }
+      it { should_not be_able_to(:agree, draft_article) }
+      it {
+        my_article = FactoryGirl.create(:published_article, :user=>mentor)
+        should_not be_able_to(:agree, my_article)
+      }
+      it {
+        FactoryGirl.create(:answer_agree, :user=>mentor, :agreeable=>published_article)
+        should_not be_able_to(:agree, published_article)
+      }
+    end
+
+    context "comment" do
+      it { should be_able_to(:comment, Answer) }
+      it { should be_able_to(:comment, published_article) }
+      it { should_not be_able_to(:comment, draft_article) }
+    end
+
+    context "bookmark" do
+      it { should be_able_to (:bookmark, question) }
+      it {
+        FactoryGirl.create(:question_bookmark, :user=>mentor, :bookmarkable=>question)
+        should_not be_able_to (:bookmark, question)
+      }
+      it { should be_able_to (:bookmark, published_article) }
+      it { should_not be_able_to (:bookmark, draft_article) }
+      it {
+        FactoryGirl.create(:article_bookmark, :user=>mentor, :bookmarkable=>published_article)
+        should_not be_able_to (:bookmark, published_article)
+      }
+    end
+
+    context "consult_reply" do
+
     end
 
     context "user info and user setting" do
