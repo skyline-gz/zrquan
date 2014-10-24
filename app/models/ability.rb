@@ -55,24 +55,20 @@ class Ability
 			can :unbookmark, Question do |q|
 				user.bookmarked_q?(q)
 			end
-			can :comment, Answer do |ans|
-				ans.user_id != user.id and !user.commented_answer?(ans)
-			end
+			can :comment, Answer
 
 			# special article abilities
-			can :agree, Article do |art|
-				art.user_id != user.id and !user.agreed_article?(art)
+			can :agree, Article do |a|
+        a.user_id != user.id and !user.agreed_article?(a) and !a.draft?
 			end
-			can :comment, Article do |art|
-				art.user_id != user.id and !user.commented_article?(art)
-			end
+			can :comment, Article, :draft_flag=>false
 			can :bookmark, Article do |a|
-				!user.bookmarked_a?(a)
+				!user.bookmarked_a?(a) and !a.draft?
 			end
 			can :unbookmark, Article do |a|
-				user.bookmarked_a?(a)
+				user.bookmarked_a?(a) and !a.draft?
 			end
-			can :edit, Article, :user_id=>user.id, :draft_flag=>true
+			can :edit, Article, :user_id=>user.id
 			can :destroy, Article, :user_id=>user.id, :draft_flag=>true
 
 			# special consult abilities
@@ -114,9 +110,7 @@ class Ability
 			can :agree, Answer do |ans|
 				ans.user_id != user.id and !user.agreed_answer?(ans)
 			end
-			can :comment, Answer do |ans|
-				ans.user_id != user.id and !user.commented_answer?(ans)
-			end
+			can :comment, Answer
 			can :bookmark, Question do |q|
 				!user.bookmarked_q?(q)
 			end
@@ -125,19 +119,17 @@ class Ability
 			end
 
 			# special article abilities
-			can :agree, Article do |art|
-				art.user_id != user.id and !user.agreed_article?(art)
+			can :agree, Article do |a|
+				a.user_id != user.id and !user.agreed_article?(a) and !a.draft?
 			end
-			can :comment, Article do |art|
-				art.user_id != user.id and !user.commented_article?(art)
-			end
+			can :comment, Article, :draft_flag=>false
 			can :bookmark, Article do |a|
-				!user.bookmarked_a?(a)
+				!user.bookmarked_a?(a) and !a.draft?
 			end
 			can :unbookmark, Article do |a|
-				user.bookmarked_a?(a)
+				user.bookmarked_a?(a) and !a.draft?
 			end
-			can :edit, Article, :user_id=>user.id, :draft_flag=>true
+			can :edit, Article, :user_id=>user.id
 			can :destroy, Article, :user_id=>user.id, :draft_flag=>true		
 
 			# special consult abilities

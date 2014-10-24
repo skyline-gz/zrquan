@@ -15,5 +15,9 @@ class Article < ActiveRecord::Base
 	# for test
 	def output_title
 		logger.debug(self.title)
-	end
+  end
+
+  def draft?
+    draft_flag
+  end
 end
