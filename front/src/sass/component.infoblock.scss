@@ -27,8 +27,8 @@ div[role=infoblocks] {
         margin-top: 6px;
 
         .component-infoblock-good-num {
-          @include border-top-left-radius(4px);
-          @include border-top-right-radius(4px);
+          @include border-top-left-radius($border-radius-base);
+          @include border-top-right-radius($border-radius-base);
           background-color: #ffe3bb;
           color: #edc17f;
           height: 18px;
@@ -38,8 +38,8 @@ div[role=infoblocks] {
         }
 
         .component-infoblock-good-action {
-          @include border-bottom-left-radius(4px);
-          @include border-bottom-right-radius(4px);
+          @include border-bottom-left-radius($border-radius-base);
+          @include border-bottom-right-radius($border-radius-base);
           margin-top: 1px;
           background-color: #ffe3bb;
           color: #edc17f;
