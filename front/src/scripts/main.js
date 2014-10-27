@@ -29,7 +29,11 @@ require([
     'use strict';
     $(document).ready(function() {
         $('#btn-sign-up').click(function(){
-            $('#myModal').modal('show')
+            $('#authModal').modal('show');
+        });
+
+        $("#btn-sign-in").click(function(){
+            $('#myModal').modal('show');
         });
     });
 });

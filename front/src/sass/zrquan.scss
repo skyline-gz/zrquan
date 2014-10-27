@@ -11,7 +11,10 @@
 @import "layout.navigation";
 @import "layout.home";
 
-//组件
+//通用组件
 @import "component.modal";
 @import "component.subject";
 @import "component.infoblock";
+
+//自定义组件
+@import "components.modal.auth";

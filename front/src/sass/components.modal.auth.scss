@@ -1,0 +1,14 @@
+@import "compass/css3/inline-block";
+//登陆注册模态框
+
+#authModal {
+  width: 510px;
+  height: 510px;
+
+  .icons-no {
+    @include inline-block;
+
+    width: 10px;
+    height: 10px;
+  }
+}

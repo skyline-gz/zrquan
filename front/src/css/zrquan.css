@@ -110,9 +110,9 @@ a:hover {
   text-decoration: underline;
 }
 
-/* line 178, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
-  background: url('/images/icons-sa3fe4239ed.png') no-repeat;
+/* line 186, icons/*.png */
+.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-s8b6eef0fcb.png') no-repeat;
 }
 
 /* line 82, avatars/*.png */
@@ -122,17 +122,17 @@ a:hover {
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-comment {
-  background-position: 0 -298px;
+  background-position: 0 -308px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-favorites {
-  background-position: 0 -276px;
+  background-position: 0 -286px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-good {
-  background-position: 0 -287px;
+  background-position: 0 -297px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
@@ -171,6 +171,11 @@ a:hover {
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-no {
+  background-position: 0 -276px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-point_left {
   background-position: 0 -240px;
 }
@@ -202,7 +207,7 @@ a:hover {
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up {
-  background-position: 0 -310px;
+  background-position: 0 -320px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
@@ -843,28 +848,14 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
-/* line 35, ../sass/component.modal.scss */
-.modal.fade .modal-dialog {
-  -webkit-transform: translate3d(0, -25%, 0);
-  transform: translate3d(0, -25%, 0);
-  -webkit-transition: -webkit-transform 0.3s ease-out;
-  -moz-transition: -moz-transform 0.3s ease-out;
-  -o-transition: -o-transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
-}
-/* line 39, ../sass/component.modal.scss */
-.modal.in .modal-dialog {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
 
-/* line 41, ../sass/component.modal.scss */
+/* line 43, ../sass/component.modal.scss */
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-/* line 47, ../sass/component.modal.scss */
+/* line 49, ../sass/component.modal.scss */
 .modal-dialog {
   position: relative;
   width: auto;
@@ -872,13 +863,13 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   z-index: 1050;
 }
 
-/* line 55, ../sass/component.modal.scss */
+/* line 57, ../sass/component.modal.scss */
 .modal-content {
   position: relative;
   background-color: white;
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
+  border-radius: 3px;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -886,7 +877,7 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   outline: 0;
 }
 
-/* line 68, ../sass/component.modal.scss */
+/* line 70, ../sass/component.modal.scss */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -894,44 +885,48 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: black;
+  background-color: #666666;
+  min-height: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible;
 }
-/* line 77, ../sass/component.modal.scss */
+/* line 85, ../sass/component.modal.scss */
 .modal-backdrop.fade {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-/* line 78, ../sass/component.modal.scss */
+/* line 86, ../sass/component.modal.scss */
 .modal-backdrop.in {
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
 
-/* line 83, ../sass/component.modal.scss */
+/* line 91, ../sass/component.modal.scss */
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
   min-height: 29px;
 }
 
-/* line 89, ../sass/component.modal.scss */
+/* line 97, ../sass/component.modal.scss */
 .modal-header .close {
   margin-top: -2px;
 }
 
-/* line 94, ../sass/component.modal.scss */
+/* line 102, ../sass/component.modal.scss */
 .modal-title {
   margin: 0;
   line-height: 14px;
 }
 
-/* line 101, ../sass/component.modal.scss */
+/* line 109, ../sass/component.modal.scss */
 .modal-body {
   position: relative;
   padding: 15px;
 }
 
-/* line 107, ../sass/component.modal.scss */
+/* line 115, ../sass/component.modal.scss */
 .modal-footer {
   padding: 15px;
   text-align: right;
@@ -939,21 +934,21 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 114, ../sass/component.modal.scss */
+/* line 122, ../sass/component.modal.scss */
 .modal-footer .btn + .btn {
   margin-left: 5px;
   margin-bottom: 0;
 }
-/* line 119, ../sass/component.modal.scss */
+/* line 127, ../sass/component.modal.scss */
 .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;
 }
-/* line 123, ../sass/component.modal.scss */
+/* line 131, ../sass/component.modal.scss */
 .modal-footer .btn-block + .btn-block {
   margin-left: 0;
 }
 
-/* line 129, ../sass/component.modal.scss */
+/* line 137, ../sass/component.modal.scss */
 .modal-scrollbar-measure {
   position: absolute;
   top: -9999px;
@@ -1168,4 +1163,21 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 /* line 147, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #438cca;
+}
+
+/* line 4, ../sass/components.modal.auth.scss */
+#authModal {
+  width: 510px;
+  height: 510px;
+}
+/* line 8, ../sass/components.modal.auth.scss */
+#authModal .icons-no {
+  width: 10px;
+  height: 10px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
 }

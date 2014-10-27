@@ -23,8 +23,10 @@ define(['jquery', 'component.transition'], function($){
 
     Modal.VERSION  = '3.2.0';
 
-    Modal.TRANSITION_DURATION = 300;
-    Modal.BACKDROP_TRANSITION_DURATION = 150;
+//    Modal.TRANSITION_DURATION = 300;
+//    Modal.BACKDROP_TRANSITION_DURATION = 150;
+    Modal.TRANSITION_DURATION = 0;
+    Modal.BACKDROP_TRANSITION_DURATION = 0;
 
     Modal.DEFAULTS = {
         backdrop: true,
@@ -51,6 +53,11 @@ define(['jquery', 'component.transition'], function($){
 
 //        this.setScrollbar();
         this.escape();
+
+        //居中显示
+        setTimeout(function(){
+            that.position();
+        }, 10);
 
         this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this));
 
@@ -132,6 +139,16 @@ define(['jquery', 'component.transition'], function($){
         } else if (!this.isShown) {
             this.$element.off('keydown.dismiss.bs.modal')
         }
+    };
+
+    Modal.prototype.position = function () {
+        var modalDialog = $(".modal-dialog", this.$element);
+        var screenWidth = document.body.clientWidth;
+        var screenHeight = document.body.clientHeight;
+        this.$element.css({
+            top: (screenHeight - modalDialog.height())/2 + "px",
+            left: (screenWidth - modalDialog.width())/2 + "px"
+        })
     };
 
     Modal.prototype.hideModal = function () {

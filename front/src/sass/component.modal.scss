@@ -33,10 +33,12 @@
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-    @include translate3d(0, -25%, 0);
-    @include transition-transform(0.3s ease-out);
+//    @include translate3d(0, -25%, 0);
+//    @include transition-transform(0.3s ease-out);
   }
-  &.in .modal-dialog { @include translate3d(0, 0, 0) }
+  &.in .modal-dialog {
+//    @include translate3d(0, 0, 0);
+  }
 }
 .modal-open .modal {
   overflow-x: hidden;
@@ -57,7 +59,7 @@
   background-color: $modal-content-bg;
   border: 1px solid $modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
   border: 1px solid $modal-content-border-color;
-  border-radius: $border-radius-large;
+  border-radius: $border-radius-small;
   @include box-shadow(0 3px 9px rgba(0,0,0,.5));
   background-clip: padding-box;
   // Remove focus outline from opened modal
@@ -73,6 +75,12 @@
   left: 0;
   z-index: $zindex-modal-background;
   background-color: $modal-backdrop-bg;
+
+  min-height: 100%!important;
+  width: 100%!important;
+  height: 100%!important;
+  overflow: visible;
+
   // Fade for backdrop
   &.fade { @include opacity(0); }
   &.in { @include opacity($modal-backdrop-opacity); }

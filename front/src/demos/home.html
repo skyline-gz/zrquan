@@ -40,7 +40,7 @@
             </ul>
             <ul class="top-nav-noauth">
                 <li><a id="btn-sign-up" class="sign-up"><i class="icons-user_sign_up"></i>注册职人圈</a></li>
-                <li><a class="sign-in">登录</a></li>
+                <li><a id="btn-sign-in" class="sign-in">登录</a></li>
             </ul>
         </div>
     </div>
@@ -345,6 +345,7 @@
         </div>
     </div>
 
+    <!--普通模态框-->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -361,6 +362,17 @@
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
+    </div>
+
+    <!--登陆模态框-->
+    <div class="modal" id="authModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="icons-no"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <script data-main="../scripts/main" src="../vendors/requirejs/require.js"></script>
