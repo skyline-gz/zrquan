@@ -120,6 +120,11 @@ a:hover {
   background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
 }
 
+/* line 66, big-icons/*.png */
+.big-icons-sprite, .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq, .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren, .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo, .big-icons-zrquan, #authModal .modal-container .modal-logo {
+  background: url('/images/big-icons-se25fe173f0.png') no-repeat;
+}
+
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-comment {
   background-position: 0 -308px;
@@ -243,6 +248,26 @@ a:hover {
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_s_02 {
   background-position: 0 -256px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq {
+  background-position: 0 -202px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren {
+  background-position: 0 -136px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo {
+  background-position: 0 -70px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-zrquan, #authModal .modal-container .modal-logo {
+  background-position: 0 0;
 }
 
 /* line 13, ../sass/layout.navigation.scss */
@@ -1150,15 +1175,16 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #438cca;
 }
 
-/* line 5, ../sass/components.modal.auth.scss */
+/* line 9, ../sass/component.modal.auth.scss */
 #authModal .close {
   position: absolute;
   display: block;
-  right: 5px;
-  top: 5px;
+  right: 15px;
+  top: 12px;
+  line-height: 10px;
   cursor: pointer;
 }
-/* line 13, ../sass/components.modal.auth.scss */
+/* line 18, ../sass/component.modal.auth.scss */
 #authModal .icons-no {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1169,13 +1195,122 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   width: 10px;
   height: 10px;
 }
-/* line 19, ../sass/components.modal.auth.scss */
+/* line 24, ../sass/component.modal.auth.scss */
 #authModal .modal-dialog {
   display: block;
 }
-/* line 23, ../sass/components.modal.auth.scss */
+/* line 28, ../sass/component.modal.auth.scss */
 #authModal .modal-content {
   width: 510px;
-  height: 510px;
+  height: 480px;
   background: #ffffff;
+}
+/* line 34, ../sass/component.modal.auth.scss */
+#authModal .modal-container {
+  width: 232px;
+  margin: 40px auto;
+}
+/* line 38, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-logo {
+  display: block;
+  margin: 0 auto;
+  width: 169px;
+  height: 70px;
+}
+/* line 46, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-sub-header {
+  border-top: 1px solid #efefef;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12px;
+  color: #a7a7a7;
+}
+/* line 54, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-input {
+  overflow: hidden;
+  *zoom: 1;
+  margin: 5px 0;
+}
+/* line 59, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-input-checkbox {
+  font-size: 12px;
+  line-height: 13px;
+  color: #a7a7a7;
+  text-align: center;
+  text-decoration: underline;
+}
+/* line 67, ../sass/component.modal.auth.scss */
+#authModal .modal-container .first-name {
+  float: left;
+  width: 74px;
+}
+/* line 72, ../sass/component.modal.auth.scss */
+#authModal .modal-container .last-name {
+  float: left;
+  width: 122px;
+  margin-left: 8px;
+}
+/* line 78, ../sass/component.modal.auth.scss */
+#authModal .modal-container .email, #authModal .modal-container .password {
+  overflow: hidden;
+  *zoom: 1;
+  width: 218px;
+}
+/* line 83, ../sass/component.modal.auth.scss */
+#authModal .modal-container .btn-sign-up {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  width: 100%;
+  height: 28px;
+  line-height: 28px;
+  font-size: 13px;
+  background: #ff9700;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+/* line 96, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-link-sign-in {
+  text-align: center;
+}
+/* line 99, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-link-sign-in a {
+  text-decoration: underline;
+  color: #ff9900;
+  cursor: pointer;
+}
+/* line 106, ../sass/component.modal.auth.scss */
+#authModal .modal-container .sign-with-oth {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 109, ../sass/component.modal.auth.scss */
+#authModal .modal-container .sign-with-oth .sign-in-weibo, #authModal .modal-container .sign-with-oth .sign-in-qq, #authModal .modal-container .sign-with-oth .sign-in-renren {
+  width: 66px;
+  height: 66px;
+  display: block;
+  float: left;
+  margin: 5px;
+  cursor: pointer;
+}
+/* line 129, ../sass/component.modal.auth.scss */
+#authModal input {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #CCCCCC;
+  padding: 7px 6px;
+  line-height: 14px;
+  font-size: 14px;
+  outline: none;
 }

@@ -1,0 +1,137 @@
+@import "compass/css3";
+
+@import "base";
+@import "minixs";
+@import "variables";
+
+//登陆注册模态框
+#authModal {
+  .close {
+    position: absolute;
+    display: block;
+    right: 15px;
+    top: 12px;
+    line-height: 10px;
+    cursor: pointer;
+  }
+
+  .icons-no {
+    @include inline-block;
+    width: 10px;
+    height: 10px;
+  }
+
+  .modal-dialog {
+    display: block;
+  }
+
+  .modal-content {
+    width: 510px;
+    height: 480px;
+    background: #ffffff;
+  }
+
+  .modal-container {
+    width: 232px;
+    margin: 40px auto;
+
+    .modal-logo {
+      @extend .big-icons-zrquan;
+      display: block;
+      margin: 0 auto;
+      width: 169px;
+      height: 70px;
+    }
+
+    .modal-sub-header {
+      border-top: 1px solid #efefef;
+      margin-top: 12px;
+      text-align: center;
+      font-size: 12px;
+      color: #a7a7a7;
+    }
+
+    .modal-input {
+      @include clearfix;
+      margin: 5px 0;
+    }
+
+    .modal-input-checkbox {
+      font-size: 12px;
+      line-height: 13px;
+      color: #a7a7a7;
+      text-align: center;
+      text-decoration: underline;
+    }
+
+    .first-name {
+      float: left;
+      width: 74px;
+    }
+
+    .last-name {
+      float: left;
+      width: 122px;
+      margin-left: 8px;
+    }
+
+    .email, .password {
+      @include clearfix;
+      width: 218px;
+    }
+
+    .btn-sign-up {
+      @include border-radius($border-radius-base);
+      width: 100%;
+      height: 28px;
+      line-height: 28px;
+      font-size: 13px;
+      background: $base-color;
+      @include background-image(linear-gradient(top,$base-color,$deep-base-color));
+      color: #ffffff;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .modal-link-sign-in {
+      text-align: center;
+
+      a {
+        text-decoration: underline;
+        color: #ff9900;
+        cursor: pointer;
+      }
+    }
+
+    .sign-with-oth {
+      @include clearfix;
+
+      .sign-in-weibo, .sign-in-qq, .sign-in-renren{
+        width: 66px;
+        height: 66px;
+        display: block;
+        float: left;
+        margin: 5px;
+        cursor: pointer;
+      }
+      .sign-in-weibo {
+        @extend .big-icons-weibo;
+      }
+      .sign-in-qq {
+        @extend .big-icons-qq;
+      }
+      .sign-in-renren {
+        @extend .big-icons-renren;
+      }
+    }
+  }
+
+  input {
+    @include border-radius($border-radius-base);
+    border: 1px solid #CCCCCC;
+    padding: 7px 6px;
+    line-height: 14px;
+    font-size: 14px;
+    outline: none;
+  }
+}
