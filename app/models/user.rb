@@ -142,8 +142,4 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def recent_activities
-		activities.where(recent_flag: true)
-	end
-
 end
