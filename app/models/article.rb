@@ -12,10 +12,6 @@ class Article < ActiveRecord::Base
 
 	validates :title, :content, presence: true, on: :create
 
-	# for test
-	def output_title
-		logger.debug(self.title)
-  end
 
   def draft?
     draft_flag
