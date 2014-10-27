@@ -2,3 +2,45 @@
 body {
   padding-top: 52px;
 }
+
+/* line 7, ../sass/layout.scss */
+.warp-content {
+  width: 1040px;
+  margin: 0 auto;
+  clear: both;
+}
+
+/* line 13, ../sass/layout.scss */
+html body, html input, html textarea, html select, html button {
+  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
+}
+
+/* line 17, ../sass/layout.scss */
+body, input, textarea, select, button {
+  line-height: 1.7;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  color: #222;
+  word-wrap: break-word;
+}
+
+/* line 26, ../sass/layout.scss */
+input[type=text], input[type=password]:focus {
+  -webkit-appearance: none;
+}
+
+/* line 30, ../sass/layout.scss */
+div[contentEditable], input, textarea, button, a:link {
+  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5);
+}
+
+/* line 34, ../sass/layout.scss */
+a:link {
+  text-decoration: none;
+}
+
+/* line 38, ../sass/layout.scss */
+a:hover {
+  text-decoration: underline;
+}

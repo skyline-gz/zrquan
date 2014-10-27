@@ -28,6 +28,8 @@ require([
     ) {
     'use strict';
     $(document).ready(function() {
-//        $('#myModal').modal('show')
+        $('#btn-sign-up').click(function(){
+            $('#myModal').modal('show')
+        });
     });
 });

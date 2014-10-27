@@ -1,9 +1,4 @@
-@import "compass/css3/transition";
-@import "compass/css3/transform";
-@import "compass/css3/opacity";
-@import "compass/css3/box-shadow";
-@import "compass/utilities/general";
-
+@import "minixs";
 @import "variables";
 
 //
@@ -29,7 +24,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index:$zindex-modal;
+  z-index: $zindex-modal;
   -webkit-overflow-scrolling: touch;
 
   // Prevent Chrome on Windows from adding a focus outline. For details, see
@@ -38,12 +33,10 @@
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-    @include transition("0.3s ease-out");
-    @include transform(0, -25%);
+    @include translate3d(0, -25%, 0);
+    @include transition-transform(0.3s ease-out);
   }
-  &.in .modal-dialog {
-    @include transform(0, 0);
-  }
+  &.in .modal-dialog { @include translate3d(0, 0, 0) }
 }
 .modal-open .modal {
   overflow-x: hidden;
@@ -55,17 +48,17 @@
   position: relative;
   width: auto;
   margin: 10px;
+  z-index: $zindex-modal;
 }
 
 // Actual modal
 .modal-content {
-  @include box-shadow(0 3px 9px rgba(0,0,0,.5));
-
   position: relative;
   background-color: $modal-content-bg;
   border: 1px solid $modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
   border: 1px solid $modal-content-border-color;
   border-radius: $border-radius-large;
+  @include box-shadow(0 3px 9px rgba(0,0,0,.5));
   background-clip: padding-box;
   // Remove focus outline from opened modal
   outline: 0;
@@ -78,14 +71,11 @@
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: $zindex-modal-background;
   background-color: $modal-backdrop-bg;
   // Fade for backdrop
-  &.fade {
-    @include opacity(0);
-  }
-  &.in {
-    @include opacity($modal-backdrop-opacity);
-  }
+  &.fade { @include opacity(0); }
+  &.in { @include opacity($modal-backdrop-opacity); }
 }
 
 // Modal header
@@ -115,11 +105,10 @@
 
 // Footer (for actions)
 .modal-footer {
-  @include clearfix;
-
   padding: $modal-inner-padding;
   text-align: right; // right align buttons
   border-top: 1px solid $modal-footer-border-color;
+  @include clearfix(); // clear it in case folks use .pull-* classes on buttons
 
   // Properly space out buttons
   .btn + .btn {
