@@ -27,6 +27,14 @@ class User < ActiveRecord::Base
 	has_many :mentor_themes
 	has_many :activities
 
+  validate :password_complexity
+
+  def password_complexity
+    if password.present? and not password.match(/^[a-zA-Z0-9]+$/)
+      errors.add :password, "can only be input by alphabet and digit."
+    end
+  end
+
 	def following_num
 		following_users.count
 	end
@@ -140,6 +148,6 @@ class User < ActiveRecord::Base
 			pm = PrivateMessage.where(user1_id: other_user.id, user2_id: id)
 			pm.count > 0 ? true : false
 		end
-	end
+  end
 
 end
