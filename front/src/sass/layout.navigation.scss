@@ -28,7 +28,7 @@ div[role=navigation] {
   }
 
   a.top-link-logo {
-    @include float-left;
+    float:left;
     background: url(../images/logo.png) no-repeat 0 10px;
     display: block;
     width: 92px;
@@ -37,7 +37,7 @@ div[role=navigation] {
   }
 
   .top-nav {
-    @include float-left;
+    float:left;
     position: relative;
 
     .top-nav-ul {
@@ -46,7 +46,7 @@ div[role=navigation] {
     }
 
     .top-nav-li {
-      @include float-left;
+      float:left;
       position: relative;
       margin: 0;
       list-style: none;
@@ -75,12 +75,12 @@ div[role=navigation] {
 
   //搜索框
   .top-nav-searchbar {
-    @include float-left;
+    float:left;
     display: block;
     line-height: $navigation-height;
 
     .top-nav-search-form {
-      @include float-left;
+      float:left;
       position: relative;
     }
 
@@ -150,7 +150,7 @@ div[role=navigation] {
     line-height: $navigation-height;
 
     & > li {
-      @include float-left;
+      float:left;
       list-style: none;
     }
 
@@ -216,7 +216,7 @@ div[role=navigation] {
 
     & > li {
       @include inline-block;
-      @include float-left;
+      float:left;
       list-style: none;
       font-size: 14px;
       margin: 0 15px;

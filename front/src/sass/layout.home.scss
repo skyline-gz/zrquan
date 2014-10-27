@@ -1,13 +1,7 @@
-@import "compass/css3/box-sizing";
-@import "compass/css3/inline-block";
-@import "compass/css3/transition";
-@import "compass/css3/border-radius";
-@import "compass/css3/box-shadow";
-@import "compass/css3/text-shadow";
-@import "compass/css3/images";
-@import "compass/utilities/general";
+@import "compass/css3";
 
 @import "base";
+@import "minixs";
 @import "variables";
 
 .home-top {
@@ -33,7 +27,7 @@
     .home-top-search-form {
       position: relative;
       width: 360px;
-      @include float-left;
+      float:left;
     }
 
     .home-top-search-input {
@@ -50,7 +44,6 @@
       line-height: 17px;
       border: 1px solid #D2D2D2;
       background-color: #ffffff;
-      //        background-color: #E1EAF2;
       color: #49525c;
     }
 
@@ -59,7 +52,7 @@
       @include border-radius(4px);
       @include box-shadow(0 1px 2px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15));
       @include text-shadow(0 1px 1px rgba(0,0,0,.12));
-      @include float-left;
+      float:left;
 
       margin: 0 0 0 6px;
       background: $base-color;
@@ -115,7 +108,7 @@
   }
 
   .icons-point_left {
-    @include float-left;
+    float:left;
     display: block;
     width: 18px;
     height: 18px;
@@ -144,18 +137,18 @@
 
   .home-mid-mentor-block {
     margin: 0 35px;
-    @include float-left;
+    float:left;
     width: 188px;
 
     .home-mid-mentor-logo {
-      @include float-left;
+      float:left;
       display: block;
       width: 64px;
       height: 64px;
     }
 
     .home-mid-mentor-desc {
-      @include float-left;
+      float:left;
       margin-left: 10px;
 
       .home-mid-mentor-name {
@@ -195,15 +188,20 @@
 .home-content {
   @extend .warp-content;
   margin-top: 35px;
+  @include clearfix;
+
+  .home-left-content {
+    float: left;
+  }
 
   .home-news {
-    @include float-left;
+    float:left;
     border-bottom: 1px solid #CCCCCC;
     width: 722px;
     height: 32px;;
 
     .home-news-header {
-      @include float-left;
+      float:left;
       height: 24px;
       font-size: 24px;
       line-height: 24px;
@@ -218,10 +216,10 @@
     }
 
     .home-news-ul {
-      @include float-right;
+      float:right;
 
       .home-news-li {
-        @include float-left;
+        float:left;
         margin: 0 10px;
         width: 38px;
         font-size: 16px;
@@ -238,7 +236,7 @@
   }
 
   .home-right-panel {
-    @include float-right;
+    float: right;
     width: 270px;
 
     .home-right-panel-ad {

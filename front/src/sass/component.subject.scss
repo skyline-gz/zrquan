@@ -2,7 +2,7 @@
 @import "compass/utilities/general";
 
 .component-subject {
-  @include float-left;
+  float:left;
   @include border-radius(4px);
   color: #ffffff;
   background: #fbd28d;

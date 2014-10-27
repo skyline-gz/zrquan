@@ -1,6 +1,6 @@
-/* line 178, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
-  background: url('/images/icons-sa3fe4239ed.png') no-repeat;
+/* line 186, icons/*.png */
+.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-s8b6eef0fcb.png') no-repeat;
 }
 
 /* line 82, avatars/*.png */
@@ -10,17 +10,17 @@
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-comment {
-  background-position: 0 -298px;
+  background-position: 0 -308px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-favorites {
-  background-position: 0 -276px;
+  background-position: 0 -286px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-good {
-  background-position: 0 -287px;
+  background-position: 0 -297px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
@@ -59,6 +59,11 @@
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-no {
+  background-position: 0 -276px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-point_left {
   background-position: 0 -240px;
 }
@@ -90,7 +95,7 @@
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up {
-  background-position: 0 -310px;
+  background-position: 0 -320px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
@@ -147,7 +152,6 @@ div[role=navigation] .warp-content {
 }
 /* line 30, ../sass/layout.navigation.scss */
 div[role=navigation] a.top-link-logo {
-  display: inline;
   float: left;
   background: url(../images/logo.png) no-repeat 0 10px;
   display: block;
@@ -157,7 +161,6 @@ div[role=navigation] a.top-link-logo {
 }
 /* line 39, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav {
-  display: inline;
   float: left;
   position: relative;
 }
@@ -168,7 +171,6 @@ div[role=navigation] .top-nav .top-nav-ul {
 }
 /* line 48, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-li {
-  display: inline;
   float: left;
   position: relative;
   margin: 0;
@@ -194,14 +196,12 @@ div[role=navigation] .top-nav .current .top-nav-link {
 }
 /* line 77, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar {
-  display: inline;
   float: left;
   display: block;
   line-height: 50px;
 }
 /* line 82, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-form {
-  display: inline;
   float: left;
   position: relative;
 }
@@ -292,7 +292,6 @@ div[role=navigation] .top-nav-auth {
 }
 /* line 152, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth > li {
-  display: inline;
   float: left;
   list-style: none;
 }
@@ -370,7 +369,6 @@ div[role=navigation] .top-nav-noauth > li {
   *vertical-align: auto;
   zoom: 1;
   *display: inline;
-  display: inline;
   float: left;
   list-style: none;
   font-size: 14px;

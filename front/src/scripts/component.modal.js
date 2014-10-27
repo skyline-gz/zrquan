@@ -142,12 +142,12 @@ define(['jquery', 'component.transition'], function($){
     };
 
     Modal.prototype.position = function () {
-        var modalDialog = $(".modal-dialog", this.$element);
-        var screenWidth = document.body.clientWidth;
-        var screenHeight = document.body.clientHeight;
-        this.$element.css({
-            top: (screenHeight - modalDialog.height())/2 + "px",
-            left: (screenWidth - modalDialog.width())/2 + "px"
+        var contentInstance = $(".modal-content", this.$element);
+        var screenWidth = $(window).width();
+        var screenHeight = $(window).height();
+        contentInstance.css({
+            top: (screenHeight - contentInstance.height())/2 + "px",
+            left: (screenWidth - contentInstance.width())/2 + "px"
         })
     };
 
