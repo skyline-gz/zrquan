@@ -9,6 +9,9 @@
 //通用帮助类
 @import "utilities";
 
+//引用插件依赖的样式
+@import "lib/jquery.jcrop";
+
 //布局
 @import "layout";
 @import "layout.navigation";

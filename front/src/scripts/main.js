@@ -2,7 +2,8 @@ require.config({
     paths: {
         jquery: '../vendors/jquery/jquery-1.11.1',
         handlebars: '../vendors/handlebarsjs/handlebars-v1.3.0',
-        moderniz: '../vendors/moderniz/moderniz'
+        moderniz: '../vendors/moderniz/moderniz',
+        jcorp: '../vendors/jcorp/jquery.jcrop-0.9.12'
     },
     priority: [
         "jquery"

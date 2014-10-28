@@ -230,13 +230,14 @@ div[role=navigation] .top-nav-searchbar {
   display: block;
   line-height: 50px;
   width: 332px;
+  margin-left: 10px;
 }
-/* line 83, ../sass/layout.navigation.scss */
+/* line 84, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-form {
   float: left;
   position: relative;
 }
-/* line 88, ../sass/layout.navigation.scss */
+/* line 89, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-input {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -263,7 +264,7 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-input {
   background-color: #ffffff;
   color: #49525c;
 }
-/* line 106, ../sass/layout.navigation.scss */
+/* line 107, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-add-question {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -297,7 +298,7 @@ div[role=navigation] .top-nav-searchbar .top-nav-add-question {
   border: 1px solid #ff9700;
   outline: 0;
 }
-/* line 128, ../sass/layout.navigation.scss */
+/* line 129, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
   position: absolute;
   right: 7px;
@@ -308,32 +309,32 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
   background: 0;
   line-height: 55px;
 }
-/* line 138, ../sass/layout.navigation.scss */
+/* line 139, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-submit .icons-search_s {
   width: 18px;
   height: 18px;
   display: block;
 }
-/* line 147, ../sass/layout.navigation.scss */
+/* line 148, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 153, ../sass/layout.navigation.scss */
+/* line 154, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth > li {
   float: left;
   list-style: none;
 }
-/* line 158, ../sass/layout.navigation.scss */
+/* line 159, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth a {
   text-align: center;
   display: block;
   white-space: nowrap;
   cursor: pointer;
 }
-/* line 165, ../sass/layout.navigation.scss */
+/* line 166, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
   display: -moz-inline-stack;
   display: inline-block;
@@ -343,7 +344,7 @@ div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-aut
   *display: inline;
   vertical-align: middle;
 }
-/* line 170, ../sass/layout.navigation.scss */
+/* line 171, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -354,17 +355,17 @@ div[role=navigation] .top-nav-auth .user-logo {
   height: 32px;
   padding-right: 12px;
 }
-/* line 179, ../sass/layout.navigation.scss */
+/* line 180, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-message {
   width: 26px;
   height: 21px;
 }
-/* line 184, ../sass/layout.navigation.scss */
+/* line 185, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-private_message {
   width: 29px;
   height: 23px;
 }
-/* line 189, ../sass/layout.navigation.scss */
+/* line 190, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-link {
   color: #6b6b6b;
   width: auto;
@@ -373,26 +374,26 @@ div[role=navigation] .top-nav-auth .user-link {
   padding-right: 16px;
   font-size: 16px;
 }
-/* line 198, ../sass/layout.navigation.scss */
+/* line 199, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 204, ../sass/layout.navigation.scss */
+/* line 205, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .private-message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 212, ../sass/layout.navigation.scss */
+/* line 213, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 218, ../sass/layout.navigation.scss */
+/* line 219, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth > li {
   display: -moz-inline-stack;
   display: inline-block;
@@ -405,7 +406,7 @@ div[role=navigation] .top-nav-noauth > li {
   font-size: 14px;
   margin: 0 15px;
 }
-/* line 226, ../sass/layout.navigation.scss */
+/* line 227, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth a {
   text-align: center;
   display: block;
@@ -413,7 +414,7 @@ div[role=navigation] .top-nav-noauth a {
   cursor: pointer;
   color: #868686;
 }
-/* line 234, ../sass/layout.navigation.scss */
+/* line 235, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   display: -moz-inline-stack;
   display: inline-block;
