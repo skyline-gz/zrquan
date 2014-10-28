@@ -349,7 +349,7 @@
     </div>
 
     <!--普通模态框-->
-    <div class="modal fade" id="myModal">
+    <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -367,13 +367,15 @@
         </div><!-- /.modal-dialog -->
     </div>
 
-    <!--注册模态框-->
+    <!--用户验证模态框-->
     <div class="modal" id="authModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <a class="close" data-dismiss="modal">
                     <i class="icons-no"></i>
                 </a>
+
+                <!--注册区域-->
                 <div role="sign-up" class="modal-container" style="display: none;">
                     <div class="modal-logo"></div>
                     <div class="modal-sub-header">普通账号注册</div>
@@ -401,6 +403,7 @@
                     </div>
                 </div>
 
+                <!--登录区域-->
                 <div role="sign-in" class="modal-container">
                     <div class="modal-logo"></div>
                     <div class="modal-sub-header">使用账号登录</div>
@@ -419,6 +422,27 @@
                         <div class="sign-in-qq"></div>
                         <div class="sign-in-renren"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--激活成功提示模态框-->
+    <div class="modal" id="activateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <a class="close" data-dismiss="modal">
+                    <i class="icons-no"></i>
+                </a>
+                <div class="modal-container">
+                    <div class="modal-logo"></div>
+                </div>
+                <div class="modal-container-desc">您的账号已经注册成功，我们已经将一封邮件发送到您的注册邮箱，需要您登录邮箱进行激活，才能登录职业人圈，如果没有收到邮件，请<a>重新发送邮件</a>。</div>
+                <div class="modal-container">
+                    <div class="btn-modal-activate">进入邮箱激活</div>
+                </div>
+                <div class="modal-container">
+                    <div class="btn-modal-deactivate">暂不激活</div>
                 </div>
             </div>
         </div>

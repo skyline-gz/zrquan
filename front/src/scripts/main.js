@@ -50,5 +50,9 @@ require([
             $('div[role=sign-in]', authModal).show();
             $('div[role=sign-up]', authModal).hide();
         });
+
+        $(".top-link-logo").click(function(){
+            $('#activateModal').modal('show');
+        });
     });
 });
