@@ -27,10 +27,17 @@ class User < ActiveRecord::Base
 	has_many :mentor_themes
 	has_many :activities
 
+  validates :last_name, :first_name, presence: true, on: :create
+  validates :last_name, :first_name, format: {with: /\A\p{Han}+\z|\A[a-zA-Z]+\z/}
+  validates :last_name, length: {in: 1..20}, if: Proc.new { |u| u.last_name.match(/\A[a-zA-Z]+\z/) }
+  validates :first_name, length: {in: 1..20}, if: Proc.new { |u| u.first_name.match(/\A[a-zA-Z]+\z/) }
+  validates :last_name, length: {in: 1..9}, if: Proc.new { |u| u.last_name.match(/\A\p{Han}+\z/) }
+  validates :first_name, length: {in: 1..9}, if: Proc.new { |u| u.first_name.match(/\A\p{Han}+\z/) }
+  #validates :last_name, :first_name, length: {in: 1..9}, if: :all_chinese?
   validate :password_complexity
 
   def password_complexity
-    if password.present? and not password.match(/^[a-zA-Z0-9]+$/)
+    if password.present? and not password.match(/\A[a-zA-Z0-9]+\z/)
       errors.add :password, "can only be input by alphabet and digit."
     end
   end
