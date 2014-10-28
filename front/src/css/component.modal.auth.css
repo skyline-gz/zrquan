@@ -1,161 +1,164 @@
-/* line 186, icons/*.png */
+/* line 192, icons/*.png */
 .icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, .icons-vip {
-  background: url('/images/icons-s8b6eef0fcb.png') no-repeat;
+  background-image: url('/images/icons-s995b6e710e.png');
+  background-repeat: no-repeat;
 }
 
-/* line 82, avatars/*.png */
+/* line 88, avatars/*.png */
 .avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, .avatars-head_s_02 {
-  background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
+  background-image: url('/images/avatars-sfa42aeeada.png');
+  background-repeat: no-repeat;
 }
 
-/* line 66, big-icons/*.png */
+/* line 72, big-icons/*.png */
 .big-icons-sprite, .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq, .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren, .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo, .big-icons-zrquan, #authModal .modal-container .modal-logo {
-  background: url('/images/big-icons-se25fe173f0.png') no-repeat;
+  background-image: url('/images/big-icons-sdb12854628.png');
+  background-repeat: no-repeat;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-comment {
-  background-position: 0 -308px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-favorites {
-  background-position: 0 -286px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-good {
-  background-position: 0 -297px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-message {
-  background-position: 0 -47px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myanswer_hover {
-  background-position: 0 -210px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
-  background-position: 0 -104px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
-  background-position: 0 -122px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myexperience {
-  background-position: 0 -258px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myfavorite {
-  background-position: 0 -139px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
-  background-position: 0 -86px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-no {
-  background-position: 0 -276px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-point_left {
-  background-position: 0 -240px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-private_message {
   background-position: 0 0;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-search {
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-favorites {
+  background-position: 0 -12px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-good {
   background-position: 0 -23px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-message {
+  background-position: 0 -34px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myanswer_hover {
+  background-position: 0 -55px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myconsulting {
+  background-position: 0 -73px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-mydraft {
+  background-position: 0 -91px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myexperience {
+  background-position: 0 -108px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myfavorite {
+  background-position: 0 -126px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myquestion {
+  background-position: 0 -144px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-no {
+  background-position: 0 -162px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-point_left {
+  background-position: 0 -172px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-private_message {
+  background-position: 0 -190px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-search {
+  background-position: 0 -213px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-search_s {
-  background-position: 0 -68px;
+  background-position: 0 -237px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-set {
-  background-position: 0 -228px;
+  background-position: 0 -255px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-up_to_top {
-  background-position: 0 -157px;
+  background-position: 0 -267px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-user_sign_up {
-  background-position: 0 -320px;
+  background-position: 0 -307px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-vip {
-  background-position: 0 -197px;
+  background-position: 0 -325px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_01 {
   background-position: 0 0;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_02 {
-  background-position: 0 -128px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_03 {
-  background-position: 0 -192px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_04 {
   background-position: 0 -64px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01 {
-  background-position: 0 -288px;
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_03 {
+  background-position: 0 -128px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_02 {
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_04 {
+  background-position: 0 -192px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_01 {
   background-position: 0 -256px;
 }
 
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_02 {
+  background-position: 0 -288px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq {
-  background-position: 0 -202px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren {
-  background-position: 0 -136px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo {
-  background-position: 0 -70px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.big-icons-zrquan, #authModal .modal-container .modal-logo {
   background-position: 0 0;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren {
+  background-position: 0 -66px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo {
+  background-position: 0 -132px;
+}
+
+/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-zrquan, #authModal .modal-container .modal-logo {
+  background-position: 0 -198px;
 }
 
 /* line 9, ../sass/component.modal.auth.scss */
@@ -169,11 +172,10 @@
 }
 /* line 18, ../sass/component.modal.auth.scss */
 #authModal .icons-no {
-  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  zoom: 1;
+  *zoom: 1;
   *display: inline;
   width: 10px;
   height: 10px;
@@ -212,7 +214,7 @@
 #authModal .modal-container .modal-input {
   margin: 5px 0;
 }
-/* line 15, ../sass/mixins/_clearfix.scss */
+/* line 14, ../sass/mixins/_clearfix.scss */
 #authModal .modal-container .modal-input:before, #authModal .modal-container .modal-input:after {
   content: " ";
   display: table;
@@ -224,27 +226,28 @@
 /* line 59, ../sass/component.modal.auth.scss */
 #authModal .modal-container .modal-input-checkbox {
   font-size: 12px;
-  line-height: 13px;
+  line-height: 22px;
+  height: 22px;
   color: #a7a7a7;
   text-align: center;
   text-decoration: underline;
 }
-/* line 67, ../sass/component.modal.auth.scss */
+/* line 68, ../sass/component.modal.auth.scss */
 #authModal .modal-container .first-name {
   float: left;
   width: 74px;
 }
-/* line 72, ../sass/component.modal.auth.scss */
+/* line 73, ../sass/component.modal.auth.scss */
 #authModal .modal-container .last-name {
   float: left;
   width: 122px;
   margin-left: 8px;
 }
-/* line 78, ../sass/component.modal.auth.scss */
+/* line 79, ../sass/component.modal.auth.scss */
 #authModal .modal-container .email, #authModal .modal-container .password {
   width: 218px;
 }
-/* line 15, ../sass/mixins/_clearfix.scss */
+/* line 14, ../sass/mixins/_clearfix.scss */
 #authModal .modal-container .email:before, #authModal .modal-container .email:after, #authModal .modal-container .password:before, #authModal .modal-container .password:after {
   content: " ";
   display: table;
@@ -253,38 +256,50 @@
 #authModal .modal-container .email:after, #authModal .modal-container .password:after {
   clear: both;
 }
-/* line 83, ../sass/component.modal.auth.scss */
-#authModal .modal-container .btn-sign-up {
-  -webkit-border-radius: 4px;
+/* line 84, ../sass/component.modal.auth.scss */
+#authModal .modal-container .btn-sign-up, #authModal .modal-container .btn-sign-in {
+  margin-top: 8px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
   width: 100%;
   height: 28px;
   line-height: 28px;
   font-size: 13px;
   background: #ff9700;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
   background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
-  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(top, #ff9700, #dd8401);
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
   color: #ffffff;
   text-align: center;
   cursor: pointer;
 }
-/* line 96, ../sass/component.modal.auth.scss */
-#authModal .modal-container .modal-link-sign-in {
+/* line 98, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-link-sign-up {
+  margin-top: 5px;
   text-align: center;
 }
-/* line 99, ../sass/component.modal.auth.scss */
+/* line 102, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-link-sign-up a {
+  text-decoration: underline;
+  color: #ff9900;
+  cursor: pointer;
+}
+/* line 109, ../sass/component.modal.auth.scss */
+#authModal .modal-container .modal-link-sign-in {
+  margin-top: 5px;
+  text-align: left;
+}
+/* line 113, ../sass/component.modal.auth.scss */
 #authModal .modal-container .modal-link-sign-in a {
   text-decoration: underline;
   color: #ff9900;
   cursor: pointer;
 }
-/* line 15, ../sass/mixins/_clearfix.scss */
+/* line 14, ../sass/mixins/_clearfix.scss */
 #authModal .modal-container .sign-with-oth:before, #authModal .modal-container .sign-with-oth:after {
   content: " ";
   display: table;
@@ -293,7 +308,7 @@
 #authModal .modal-container .sign-with-oth:after {
   clear: both;
 }
-/* line 109, ../sass/component.modal.auth.scss */
+/* line 123, ../sass/component.modal.auth.scss */
 #authModal .modal-container .sign-with-oth .sign-in-weibo, #authModal .modal-container .sign-with-oth .sign-in-qq, #authModal .modal-container .sign-with-oth .sign-in-renren {
   width: 66px;
   height: 66px;
@@ -302,12 +317,10 @@
   margin: 5px;
   cursor: pointer;
 }
-/* line 129, ../sass/component.modal.auth.scss */
+/* line 143, ../sass/component.modal.auth.scss */
 #authModal input {
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
   border: 1px solid #CCCCCC;
   padding: 7px 6px;

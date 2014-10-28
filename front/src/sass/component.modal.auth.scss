@@ -58,7 +58,8 @@
 
     .modal-input-checkbox {
       font-size: 12px;
-      line-height: 13px;
+      line-height: 22px;
+      height: 22px;
       color: #a7a7a7;
       text-align: center;
       text-decoration: underline;
@@ -80,7 +81,8 @@
       width: 218px;
     }
 
-    .btn-sign-up {
+    .btn-sign-up, .btn-sign-in {
+      margin-top: 8px;
       @include border-radius($border-radius-base);
       width: 100%;
       height: 28px;
@@ -93,8 +95,20 @@
       cursor: pointer;
     }
 
-    .modal-link-sign-in {
+    .modal-link-sign-up {
+      margin-top: 5px;
       text-align: center;
+
+      a {
+        text-decoration: underline;
+        color: #ff9900;
+        cursor: pointer;
+      }
+    }
+
+    .modal-link-sign-in {
+      margin-top: 5px;
+      text-align: left;
 
       a {
         text-decoration: underline;

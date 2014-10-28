@@ -1,10 +1,13 @@
 @import "compass/reset";
 
-//常量
+//预定义常量
 @import "variables";
 
 //预定义函数
 @import "minixs";
+
+//通用帮助类
+@import "utilities";
 
 //布局
 @import "layout";

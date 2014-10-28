@@ -367,14 +367,14 @@
         </div><!-- /.modal-dialog -->
     </div>
 
-    <!--登陆模态框-->
+    <!--注册模态框-->
     <div class="modal" id="authModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <a class="close" data-dismiss="modal">
                     <i class="icons-no"></i>
                 </a>
-                <div class="modal-container">
+                <div role="sign-up" class="modal-container" style="display: none;">
                     <div class="modal-logo"></div>
                     <div class="modal-sub-header">普通账号注册</div>
                     <div class="modal-input">
@@ -392,8 +392,28 @@
                         <label for="agreeService">同意服务协议</label>
                     </div>
                     <div class="btn-sign-up">注册</div>
-                    <div class="modal-link-sign-in">已有账号？<a>点击登录</a></div>
+                    <div class="modal-link-sign-up">已有账号？<a id="btn-switch-sign-in">点击登录</a></div>
                     <div class="modal-sub-header">其它账号注册</div>
+                    <div class="sign-with-oth">
+                        <div class="sign-in-weibo"></div>
+                        <div class="sign-in-qq"></div>
+                        <div class="sign-in-renren"></div>
+                    </div>
+                </div>
+
+                <div role="sign-in" class="modal-container">
+                    <div class="modal-logo"></div>
+                    <div class="modal-sub-header">使用账号登录</div>
+                    <div class="modal-input">
+                        <input class="email" placeholder="职人圈账号"/>
+                    </div>
+                    <div class="modal-input">
+                        <input class="password" placeholder="密码"/>
+                    </div>
+                    <div class="btn-sign-in">登录</div>
+                    <div class="modal-link-sign-in"><a>忘记密码？</a>
+                        <span class="pull-right">没有账号？<a id="btn-switch-sign-up">点击注册</a></span></div>
+                    <div class="modal-sub-header">其它账号登录</div>
                     <div class="sign-with-oth">
                         <div class="sign-in-weibo"></div>
                         <div class="sign-in-qq"></div>
