@@ -9,3 +9,10 @@
     background-color: darken($color, 10%);
   }
 }
+
+@mixin background-clip($param) {
+  -webkit-background-clip: -webkit-transform $param;
+  -moz-background-clip: -moz-transform $param;
+  -o-background-clip: -o-transform $param;
+  background-clip: transform $param;
+}

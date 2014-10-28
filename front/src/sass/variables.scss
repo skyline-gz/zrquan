@@ -66,6 +66,8 @@ $modal-content-fallback-border-color:          #999;
 
 //** Modal backdrop background color
 $modal-backdrop-bg:           #666;
+//** Modal content border color **for IE8**
+$modal-content-fallback-border-color:          #999 !default;
 //** Modal backdrop opacity
 $modal-backdrop-opacity:      .5;
 //** Modal header border color
@@ -76,3 +78,9 @@ $modal-footer-border-color:   $modal-header-border-color;
 $modal-lg:                    900px;
 $modal-md:                    600px;
 $modal-sm:                    300px;
+
+//== Popovers
+//** Modal content border color
+$popover-content-border-color:                   rgba(0,0,0,.2);
+//** Modal content border color **for IE8**
+$popover-content-fallback-border-color:           #999 !default;

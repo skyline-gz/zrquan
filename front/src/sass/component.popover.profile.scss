@@ -1,0 +1,50 @@
+@import "compass/css3";
+
+@import "base";
+@import "minixs";
+@import "variables";
+
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $zindex-popover;
+  padding: 12px;
+
+  .popover-content {
+    border: 1px solid $popover-content-fallback-border-color; //old browsers fallback (ie8 etc)
+    border: 1px solid $popover-content-border-color;
+    @include box-shadow(0 3px 9px rgba(0,0,0,.5));
+    @include border-radius($border-radius-base);
+    @include background-clip(padding-box);
+    overflow: hidden;
+
+    .profile-card {
+      width: 380px;
+      height: 155px;
+      background: #ffffff;
+
+//      @include border-radius($border-radius-base);
+    }
+  }
+
+  .arrow, .arrow2 {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 91px;
+    margin-left: -13px;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+  }
+
+  .arrow {
+    top: 0;
+    border-bottom: 13px solid $popover-content-border-color;
+  }
+
+  .arrow2 {
+    top: 1px;
+    border-bottom: 13px solid #fff;
+  }
+}

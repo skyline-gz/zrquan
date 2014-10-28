@@ -34,8 +34,8 @@
 /* line 57, ../sass/component.modal.scss */
 .modal-content {
   position: relative;
-  background-color: white;
-  border: 1px solid #999999;
+  background-color: #fff;
+  border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -52,7 +52,7 @@
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: #666666;
+  background-color: #666;
   min-height: 100% !important;
   width: 100% !important;
   height: 100% !important;
@@ -99,7 +99,7 @@
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }
-/* line 15, ../sass/mixins/_clearfix.scss */
+/* line 14, ../sass/mixins/_clearfix.scss */
 .modal-footer:before, .modal-footer:after {
   content: " ";
   display: table;
