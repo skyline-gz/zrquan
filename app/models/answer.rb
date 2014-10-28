@@ -6,4 +6,5 @@ class Answer < ActiveRecord::Base
 	has_many :agreements, as: :agreeable
 
 	validates :content, presence: true, on: :create
+	validates :content, length: {in: 8..10000}
 end

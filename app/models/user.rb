@@ -33,8 +33,10 @@ class User < ActiveRecord::Base
   validates :first_name, length: {in: 1..20}, if: Proc.new { |u| u.first_name.match(/\A[a-zA-Z]+\z/) }
   validates :last_name, length: {in: 1..9}, if: Proc.new { |u| u.last_name.match(/\A\p{Han}+\z/) }
   validates :first_name, length: {in: 1..9}, if: Proc.new { |u| u.first_name.match(/\A\p{Han}+\z/) }
-  #validates :last_name, :first_name, length: {in: 1..9}, if: :all_chinese?
+
   validate :password_complexity
+  # 密码长度的验证在config/initializers/devise.rb里面设置（config.password_length）
+  # 邮箱格式的验证在config/initializers/devise.rb里面设置（config.email_regexp）
 
   def password_complexity
     if password.present? and not password.match(/\A[a-zA-Z0-9]+\z/)

@@ -9,6 +9,8 @@ class ConsultSubject < ActiveRecord::Base
   accepts_nested_attributes_for :consult_themes
 
 	validates :title, presence: true, on: :create
+	validates :title, length: {in: 8..50}
+	validates :content, length: {maximum: 10000}
 
   # 结束状态
   def closed?

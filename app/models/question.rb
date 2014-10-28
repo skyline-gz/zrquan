@@ -17,6 +17,8 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :question_themes
 
 	validates :title, presence: true, on: :create
+  validates :title, length: {in: 8..50}
+  validates :content, length: {maximum: 10000}
 
 	#def answers_num
 	#	answers.size

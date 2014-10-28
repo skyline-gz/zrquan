@@ -11,6 +11,8 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :article_themes
 
 	validates :title, :content, presence: true, on: :create
+	validates :title, length: {in: 8..50}
+	validates :content, length: {in: 100..20000}
 
 
   def draft?
