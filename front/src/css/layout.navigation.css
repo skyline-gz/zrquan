@@ -1,164 +1,166 @@
-/* line 192, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
-  background-image: url('/images/icons-s995b6e710e.png');
-  background-repeat: no-repeat;
+/* line 194, icons/*.png */
+.icons-sprite, .icons-add, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-s1edcc9806c.png') no-repeat;
 }
 
-/* line 88, avatars/*.png */
+/* line 82, avatars/*.png */
 .avatars-sprite, .avatars-head_m_01, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
-  background-image: url('/images/avatars-sfa42aeeada.png');
-  background-repeat: no-repeat;
+  background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
 }
 
-/* line 72, big-icons/*.png */
+/* line 66, big-icons/*.png */
 .big-icons-sprite, .big-icons-qq, .big-icons-renren, .big-icons-weibo, .big-icons-zrquan {
-  background-image: url('/images/big-icons-sdb12854628.png');
-  background-repeat: no-repeat;
+  background: url('/images/big-icons-se25fe173f0.png') no-repeat;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-add {
+  background-position: 0 -320px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-comment {
+  background-position: 0 -308px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-favorites {
+  background-position: 0 -286px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-good {
+  background-position: 0 -297px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-message {
+  background-position: 0 -47px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myanswer_hover {
+  background-position: 0 -210px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myconsulting {
+  background-position: 0 -104px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-mydraft {
+  background-position: 0 -122px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myexperience {
+  background-position: 0 -258px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myfavorite {
+  background-position: 0 -139px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myquestion {
+  background-position: 0 -86px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-no {
+  background-position: 0 -276px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-point_left {
+  background-position: 0 -240px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-private_message {
   background-position: 0 0;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-favorites {
-  background-position: 0 -12px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-good {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-search {
   background-position: 0 -23px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-message {
-  background-position: 0 -34px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myanswer_hover {
-  background-position: 0 -55px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
-  background-position: 0 -73px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
-  background-position: 0 -91px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myexperience {
-  background-position: 0 -108px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myfavorite {
-  background-position: 0 -126px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
-  background-position: 0 -144px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-no {
-  background-position: 0 -162px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-point_left {
-  background-position: 0 -172px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-private_message {
-  background-position: 0 -190px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-search {
-  background-position: 0 -213px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-search_s {
-  background-position: 0 -237px;
+  background-position: 0 -68px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-set {
-  background-position: 0 -255px;
+  background-position: 0 -228px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-up_to_top {
-  background-position: 0 -267px;
+  background-position: 0 -157px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up {
-  background-position: 0 -307px;
+  background-position: 0 -332px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-vip {
-  background-position: 0 -325px;
+  background-position: 0 -197px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_01 {
   background-position: 0 0;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_02 {
-  background-position: 0 -64px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_03 {
   background-position: 0 -128px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_04 {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_03 {
   background-position: 0 -192px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
-  background-position: 0 -256px;
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_04 {
+  background-position: 0 -64px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_02 {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
   background-position: 0 -288px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_02 {
+  background-position: 0 -256px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-qq {
-  background-position: 0 0;
+  background-position: 0 -202px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-renren {
-  background-position: 0 -66px;
+  background-position: 0 -136px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-weibo {
-  background-position: 0 -132px;
+  background-position: 0 -70px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-zrquan {
-  background-position: 0 -198px;
+  background-position: 0 0;
 }
 
 /* line 13, ../sass/layout.navigation.scss */
@@ -227,26 +229,29 @@ div[role=navigation] .top-nav-searchbar {
   float: left;
   display: block;
   line-height: 50px;
+  width: 332px;
 }
-/* line 82, ../sass/layout.navigation.scss */
+/* line 83, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-form {
   float: left;
   position: relative;
 }
-/* line 87, ../sass/layout.navigation.scss */
+/* line 88, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-input {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   padding: 5px 10px;
   font-size: 14px;
@@ -258,28 +263,29 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-input {
   background-color: #ffffff;
   color: #49525c;
 }
-/* line 105, ../sass/layout.navigation.scss */
+/* line 106, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-add-question {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   margin: 0 0 0 6px;
   background: #ff9700;
   background-color: #ff9700;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
   background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
   background-repeat: repeat-x;
   color: #FFF;
   font-size: 14px;
@@ -291,7 +297,7 @@ div[role=navigation] .top-nav-searchbar .top-nav-add-question {
   border: 1px solid #ff9700;
   outline: 0;
 }
-/* line 127, ../sass/layout.navigation.scss */
+/* line 128, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
   position: absolute;
   right: 7px;
@@ -302,60 +308,63 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
   background: 0;
   line-height: 55px;
 }
-/* line 137, ../sass/layout.navigation.scss */
+/* line 138, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-submit .icons-search_s {
   width: 18px;
   height: 18px;
   display: block;
 }
-/* line 146, ../sass/layout.navigation.scss */
+/* line 147, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 152, ../sass/layout.navigation.scss */
+/* line 153, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth > li {
   float: left;
   list-style: none;
 }
-/* line 157, ../sass/layout.navigation.scss */
+/* line 158, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth a {
   text-align: center;
   display: block;
   white-space: nowrap;
   cursor: pointer;
 }
-/* line 164, ../sass/layout.navigation.scss */
+/* line 165, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   vertical-align: middle;
 }
-/* line 169, ../sass/layout.navigation.scss */
+/* line 170, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo {
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
   border-radius: 3px;
   width: 32px;
   height: 32px;
   padding-right: 12px;
 }
-/* line 178, ../sass/layout.navigation.scss */
+/* line 179, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-message {
   width: 26px;
   height: 21px;
 }
-/* line 183, ../sass/layout.navigation.scss */
+/* line 184, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-private_message {
   width: 29px;
   height: 23px;
 }
-/* line 188, ../sass/layout.navigation.scss */
+/* line 189, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-link {
   color: #6b6b6b;
   width: auto;
@@ -364,38 +373,39 @@ div[role=navigation] .top-nav-auth .user-link {
   padding-right: 16px;
   font-size: 16px;
 }
-/* line 197, ../sass/layout.navigation.scss */
+/* line 198, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 203, ../sass/layout.navigation.scss */
+/* line 204, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .private-message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 211, ../sass/layout.navigation.scss */
+/* line 212, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 217, ../sass/layout.navigation.scss */
+/* line 218, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth > li {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   float: left;
   list-style: none;
   font-size: 14px;
   margin: 0 15px;
 }
-/* line 225, ../sass/layout.navigation.scss */
+/* line 226, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth a {
   text-align: center;
   display: block;
@@ -403,12 +413,13 @@ div[role=navigation] .top-nav-noauth a {
   cursor: pointer;
   color: #868686;
 }
-/* line 233, ../sass/layout.navigation.scss */
+/* line 234, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth .icons-user_sign_up {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 18px;
   height: 18px;

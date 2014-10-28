@@ -1,6 +1,6 @@
-/* line 186, icons/*.png */
-.icons-sprite, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, .icons-vip {
-  background: url('/images/icons-s8b6eef0fcb.png') no-repeat;
+/* line 194, icons/*.png */
+.icons-sprite, .icons-add, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-s1edcc9806c.png') no-repeat;
 }
 
 /* line 82, avatars/*.png */
@@ -11,6 +11,11 @@
 /* line 66, big-icons/*.png */
 .big-icons-sprite, .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq, .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren, .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo, .big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
   background: url('/images/big-icons-se25fe173f0.png') no-repeat;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-add {
+  background-position: 0 -320px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
@@ -100,7 +105,7 @@
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-user_sign_up {
-  background-position: 0 -320px;
+  background-position: 0 -332px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */

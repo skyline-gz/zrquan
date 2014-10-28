@@ -1,8 +1,8 @@
-@import "compass/css3/border-radius";
-@import "compass/utilities/general";
+@import "compass/css3";
+@import "compass/utilities";
 
 .component-subject {
-  float:left;
+  float: left;
   @include border-radius(4px);
   color: #ffffff;
   background: #fbd28d;

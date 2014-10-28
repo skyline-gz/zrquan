@@ -55,9 +55,10 @@ define(['jquery', 'component.transition'], function($){
         this.escape();
 
         //居中显示
-        setTimeout(function(){
-            that.position();
-        }, 10);
+        this.position();
+//        setTimeout(function(){
+//            that.position();
+//        }, 10);
 
         this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this));
 

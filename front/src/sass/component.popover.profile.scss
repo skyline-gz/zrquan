@@ -6,8 +6,8 @@
 
 .popover {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 694px;
+  left: 122px;
   z-index: $zindex-popover;
   padding: 12px;
 
@@ -17,14 +17,129 @@
     @include box-shadow(0 3px 9px rgba(0,0,0,.5));
     @include border-radius($border-radius-base);
     @include background-clip(padding-box);
+    background: #ffffff;
     overflow: hidden;
 
     .profile-card {
       width: 380px;
-      height: 155px;
-      background: #ffffff;
 
-//      @include border-radius($border-radius-base);
+      .upper {
+        @include clearfix;
+        border-bottom: 1px solid $popover-content-border-color;
+        padding-top: 18px;
+        padding-left: 15px;
+        padding-bottom: 9px;
+
+        .user-logo {
+          display: block;
+          float: left;
+          width: 64px;
+          height: 64px;
+          @extend .avatars-head_m_01;
+          margin-right: 10px;
+        }
+
+        .user-desc-container {
+          float: left;
+
+          .user-name {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 16px;
+          }
+
+          .user-company {
+            line-height: 14px;
+            font-size: 12px;
+            font-weight: bold;
+          }
+
+          .user-position {
+            line-height: 14px;
+            font-size: 12px;
+          }
+
+          .user-subjects {
+            margin-top: 2px;
+            width: 240px;
+            line-height: 20px;
+
+            .component-subject {
+              float: none;
+              display: inline-block;
+            }
+          }
+
+          .icons-vip {
+            @include inline-block;
+            width: 16px;
+            height: 13px;
+            line-height: 16px;
+            margin-left: 3px;
+            margin-bottom: 2px;
+          }
+        }
+      }
+
+      .lower {
+        @include clearfix;
+
+        .lower-left {
+          margin-top: 6px;
+          margin-bottom: 6px;
+          margin-left: 14px;
+          font-size: 13px;
+
+          float: left;
+          .lower-accp {
+            float: left;
+            border-right: 1px solid $popover-content-border-color;
+            padding-right: 6px;
+          }
+
+          .lower-corn {
+            float: left;
+            padding-left: 6px;
+          }
+
+          em {
+            font-weight: bold;
+          }
+        }
+
+        .lower-right {
+          margin-top: 6px;
+          margin-right: 14px;
+          float: right;
+
+          .btn-ask {
+            float: left;
+            margin-right: 10px;
+            text-align: center;
+            color: #ffffff;
+            width: 54px;
+            height: 22px;
+            @include border-radius($border-radius-small);
+            background: $base-color;
+            @include background-image(linear-gradient(top,$base-color,$deep-base-color));
+            cursor: pointer;
+          }
+
+          .btn-corn {
+            float: left;
+            cursor: pointer;
+            line-height: 22px;
+
+            .icons-add {
+              width: 12px;
+              height: 12px;
+              float: left;
+              margin-top: 4px;
+              margin-right: 3px;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -32,7 +147,7 @@
     position: absolute;
     width: 0;
     height: 0;
-    left: 91px;
+    left: 60px;
     margin-left: -13px;
     border-left: 13px solid transparent;
     border-right: 13px solid transparent;
