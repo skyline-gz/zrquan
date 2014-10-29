@@ -67,6 +67,10 @@ Rails.application.routes.draw do
 	get '/home/my_draft'
 	get '/home/activate'
 
+  # 头像上传
+  post 'upload/upload_avatar'
+  get 'upload/preview_avatar'
+
   root 'home#home'
 
   # mount Zrquan::API => "/"

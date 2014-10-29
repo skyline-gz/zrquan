@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>头像上传测试 - 职人圈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--&lt;!&ndash;[if lt IE 9]>-->
+    <!--<script src="../vendors/html5shiv/html5shiv.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" href="../css/zrquan.css">-->
+    <script src="../vendors/jquery/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#btnSubmit").click(function(){
+               $("form").submit();
+            });
+        });
+    </script>
+</head>
+<body>
+    <form target="av_up_frame" method="post" enctype="multipart/form-data" action="http://localhost:3000/upload/upload_avatar">
+        <label for="avt_file"></label>
+        <input type="file" accept="image/*" name="picture" id="avt_file">
+        <input type="hidden" name="handle_mode" value="upload">
+        <input type="hidden" name="type" value="1">
+        <input type="hidden" name="dest_id" value="668baec661da36f56ad735997c001dd8">
+        <input type="hidden" name="return_size" value="l">
+    </form>
+    <button id="btnSubmit">提交</button>
+    <!--隐藏的iframe，用于处理头像上传的请求-->
+    <iframe id="av_up_frame" name="av_up_frame" style="position: absolute; height: 0px; width: 0px; left: -9000px;"></iframe>
+</body>
+</html>

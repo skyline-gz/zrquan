@@ -86,3 +86,4 @@ gem 'faye', '1.0.1'
 # 头像及图片上传
 gem 'carrierwave', '0.10.0'
 gem 'mini_magick', '3.7.0'
+gem 'carrierwave-qiniu', '0.1.4'
