@@ -14,13 +14,29 @@ class UploadController < ApplicationController
     UploadCache.instance.write(destid, cache_obj)
     # render :json => {:code => "S_OK", :destId => destid}
     # render html: '<b>html goes here<b/>'.html_safe
-    render html: ('<script>document.domain=;parent.tempAvatarUrl = "http://localhost:3000/upload/preview_avatar/' + destid + '";alert("123")</script>').html_safe
+    render html: ('<script>parent.tempAvatarUrl = "http://localhost:3000/upload/preview_avatar/' + destid + '";alert("123")</script>').html_safe
   end
 
   def preview_avatar
     key = params["destid"]
     cache_obj = UploadCache.instance.read(key)
-    send_data cache_obj[:file], :type => 'image/png',:disposition => 'inline'
+    if cache_obj
+      send_data cache_obj[:file], :type => 'image/png', :disposition => 'inline'
+      return
+    end
+    render text: "cache expired"
+  end
+
+  def corp_avatar
+    key = params["destid"]
+    w = params["w"]
+    h = params["h"]
+    x = params["x"]
+    y = params["y"]
+    cache_obj = UploadCache.instance.read(key)
+    image = MiniMagick::Image.open(cache_obj[:file])
+    image.corp("#{w}x#{h}+#{x}+#{y}")
+    send_data image, :type => 'image/png',:disposition => 'inline'
   end
 
 private
