@@ -11,10 +11,17 @@
     <!--<![endif]&ndash;&gt;-->
     <!--<link rel="stylesheet" type="text/css" href="../css/zrquan.css">-->
     <script src="../vendors/jquery/jquery-1.11.1.js"></script>
+    <script src="../vendors/jcorp/jquery.jcrop-0.9.12.js"></script>
     <script type="text/javascript">
+        tempAvatarUrl = null;
+
         $(document).ready(function(){
             $("#btnSubmit").click(function(){
-               $("form").submit();
+               $("form")[0].submit();
+            });
+
+            $("btnGetSubmitImg").click(function(){
+               $("#jcrop_target").attr("src", tempAvatarUrl);
             });
         });
     </script>
@@ -29,6 +36,10 @@
         <input type="hidden" name="return_size" value="l">
     </form>
     <button id="btnSubmit">提交</button>
+
+    <button id="btnGetSubmitImg">获取图像</button>
+
+    <img id="jcrop_target" />
     <!--隐藏的iframe，用于处理头像上传的请求-->
     <iframe id="av_up_frame" name="av_up_frame" style="position: absolute; height: 0px; width: 0px; left: -9000px;"></iframe>
 </body>

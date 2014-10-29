@@ -12,7 +12,9 @@ class UploadController < ApplicationController
     cache_obj = {:content_type => params["picture"].content_type, :file => uploaded_avatar}
     destid = Digest::MD5.hexdigest(uploaded_avatar)
     UploadCache.instance.write(destid, cache_obj)
-    render :json => {:code => "S_OK", :destId => destid}
+    # render :json => {:code => "S_OK", :destId => destid}
+    # render html: '<b>html goes here<b/>'.html_safe
+    render html: ('<script>document.domain=;parent.tempAvatarUrl = "http://localhost:3000/upload/preview_avatar/' + destid + '";alert("123")</script>').html_safe
   end
 
   def preview_avatar
@@ -24,6 +26,6 @@ class UploadController < ApplicationController
 private
   def allow_iframe
     # response.headers.except! 'X-Frame-Options'
-    response.headers['X-Frame-Options'] = 'ALLOW-FROM https://localhost:8888'
+    response.headers['X-Frame-Options'] = 'ALLOW-FROM http://localhost:8888'
   end
 end

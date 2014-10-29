@@ -5,7 +5,7 @@ class UploadCache
   @avatars_cache = nil
 
   def initialize
-    @avatars_cache = ActiveSupport::Cache::MemoryStore.new
+    @avatars_cache = ActiveSupport::Cache::MemoryStore.new(expires_in: 5.minutes)
   end
 
   def write(key, val)
