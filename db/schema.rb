@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030045217) do
+ActiveRecord::Schema.define(version: 20141020051035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20141030045217) do
   create_table "consult_subjects", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "user_id"
+    t.integer  "mentor_id"
     t.integer  "apprentice_id"
     t.integer  "stat_class"
     t.datetime "created_at"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20141030045217) do
   end
 
   add_index "consult_subjects", ["apprentice_id"], name: "index_consult_subjects_on_apprentice_id", using: :btree
-  add_index "consult_subjects", ["user_id"], name: "index_consult_subjects_on_user_id", using: :btree
+  add_index "consult_subjects", ["mentor_id"], name: "index_consult_subjects_on_mentor_id", using: :btree
 
   create_table "consult_themes", force: true do |t|
     t.integer  "consult_subject_id"

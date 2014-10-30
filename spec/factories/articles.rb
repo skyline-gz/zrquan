@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :article do
     association :user, factory: :normal_user_1
-    title       "经验题目"
-    content     "经验内容"
+    title       "经验题目补完字数"
+    content     "十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多十个字的经验内容很多"
 
     factory :published_article do
       draft_flag  false
