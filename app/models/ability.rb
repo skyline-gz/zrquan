@@ -36,57 +36,25 @@ class Ability
 		# verified_user
 		def verified_user_abilities(user)
 			# general 
-			can :create, :all
-			cannot :create, [Question, ConsultSubject, Invitation, Message, UserSetting]
-			can :edit, [Answer, UserSetting], :user_id=>user.id
-			can :edit, User, :id=>user.id
-			cannot :edit, [Question, ConsultSubject]
+			create_edit_abilities(user)
 
       # special consult abilities
-      can :show, ConsultSubject, :mentor_id=>user.id
-      can [:accept, :ignore], ConsultSubject, :mentor_id=>user.id, :stat_class=>1
-      can :close, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
-      can :reply, ConsultSubject, :mentor_id=>user.id, :stat_class=>2
-      can :edit, ConsultReply do |cr|
-        cr.user_id == user.id and cr.consult_subject.in_progress?
+      can :show, ConsultSubject do |cs|
+        cs.mentor_id == user.id or cs.apprentice_id == user.id
       end
-      cannot :consult, User
-
-      # answer
-      answer_abilities(user)
-      # article
-      article_abilities(user)
-			# pm
-      pm_abilities(user)
-      # bookmark
-      bookmark_abilities(user)
-			# user relationship
-      follow_abilities(user)
-		end
-
-
-  # normal user
-  def normal_user_abilities(user)
-			# general 
-			can :create, :all
-			cannot :create, [Message, UserSetting]
-			can :edit, [Question, Answer, UserSetting], :user_id=>user.id
-			can :edit, User, :id=>user.id
-			
-      # special consult abilities
-      can :show, ConsultSubject, :apprentice_id=>user.id
-      can :reply, ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
+      can [:accept, :ignore], ConsultSubject, :mentor_id=>user.id, :stat_class=>1
+      can [:reply, :close], ConsultSubject  do |cs|
+        (cs.mentor_id == user.id or cs.apprentice_id == user.id) and cs.in_progress?
+      end
       can :edit, ConsultSubject do |cs|
         cs.apprentice_id == user.id and cs.in_progress?
       end
       can :edit, ConsultReply do |cr|
         cr.user_id == user.id and cr.consult_subject.in_progress?
       end
-      can :close, ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
       can :consult, User do |u|
-        u.verified_user?
+        u.verified_user? and !user.myself?(u)
       end
-      cannot :accept, ConsultSubject
 
       # answer
       answer_abilities(user)
@@ -99,6 +67,44 @@ class Ability
 			# user relationship
       follow_abilities(user)
 		end
+
+    # normal user
+    def normal_user_abilities(user)
+			# general 
+			create_edit_abilities(user)
+			
+      # special consult abilities
+      can :show, ConsultSubject, :apprentice_id=>user.id
+      cannot :accept, ConsultSubject
+      can [:reply, :close], ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
+      can :edit, ConsultSubject do |cs|
+        cs.apprentice_id == user.id and cs.in_progress?
+      end
+      can :edit, ConsultReply do |cr|
+        cr.user_id == user.id and cr.consult_subject.in_progress?
+      end
+      can :consult, User do |u|
+        u.verified_user?
+      end
+
+      # answer
+      answer_abilities(user)
+      # article
+      article_abilities(user)
+			# pm
+      pm_abilities(user)
+      # bookmark
+      bookmark_abilities(user)
+			# user relationship
+      follow_abilities(user)
+		end
+
+    def create_edit_abilities(user)
+      can :create, :all
+      cannot :create, [Message, UserSetting]
+      can :edit, [Question, Answer, UserSetting], :user_id => user.id
+      can :edit, User, :id => user.id
+    end
 
     def answer_abilities(user)
       can :answer, Question do |q|
