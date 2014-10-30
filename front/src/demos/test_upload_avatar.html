@@ -130,6 +130,56 @@
                 // read selected file as DataURL
                 oReader.readAsDataURL(oFile);
             }
+
+//            使用JavaScript将图片拷贝进画布
+//
+//            要想将图片放入画布里，我们使用canvas元素的drawImage方法：
+//
+//// Converts image to canvas; returns new canvas element
+//            function convertImageToCanvas(image) {
+//                var canvas = document.createElement("canvas");
+//                canvas.width = image.width;
+//                canvas.height = image.height;
+//                canvas.getContext("2d").drawImage(image, 0, 0);
+//
+//                return canvas;
+//            }
+//            这里的0, 0参数画布上的坐标点，图片将会拷贝到这个地方。
+//
+//用JavaScript将画布保持成图片格式
+//
+//            如果你的画布上的作品已经完成，你可以用下面简单的方法将canvas数据转换成图片格式：
+//
+//// Converts canvas to an image
+//            function convertCanvasToImage(canvas) {
+//                var image = new Image();
+//                image.src = canvas.toDataURL("image/png");
+//                return image;
+//            }
+//            这段代码就能神奇的将canvas转变成PNG格式！
+
+
+//            ajax 上传 multipart/form-data
+//            var request = new FormData();
+//            $.each(context.prototype.fileData, function(i, obj) { request.append(i, obj.value.files[0]); });
+//            request.append('action', 'upload');
+//            request.append('id', response.obj.id);
+//            $.ajax({
+//
+//                type        : 'POST',
+//                url     : context.controller,
+//                data        : request,
+//                processData : false,
+//                contentType : false,
+//                success     : function(r) {
+//                    console.log(r);
+//                    //if (errors != null) { } else context.close();
+//
+//                },
+//
+//                error       : function(r) { alert('jQuery Error'); }
+//
+//            });
         });
     </script>
 </head>
