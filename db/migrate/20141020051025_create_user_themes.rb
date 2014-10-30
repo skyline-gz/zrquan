@@ -1,4 +1,4 @@
-class CreateMentorThemes < ActiveRecord::Migration
+class CreateUserThemes < ActiveRecord::Migration
   def change
     create_table :mentor_themes do |t|
       t.references :user, index: true

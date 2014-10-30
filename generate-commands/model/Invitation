@@ -1,1 +1,1 @@
-rails g model Invitation question:references mentor:references
+rails g model Invitation question:references user:references

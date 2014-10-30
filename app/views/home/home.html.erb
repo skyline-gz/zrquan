@@ -18,13 +18,13 @@
 	<% end %>
 <% end %>
 <div>
-	<%= link_to 'Home', root_path %> | 	<%= link_to 'Mentor', mentors_users_path %> | 
+	<%= link_to 'Home', root_path %> | 	<%= link_to 'Verified_Users', verified_users_users_path %> |
 	<%= link_to 'Q&A', questions_path %> | 	<%= link_to 'Experience', articles_path %>
 </div>
 <div>
 	<b>Recommend User</b>
 	<table>
-		<% @rec_mentors.each do |rm| %>
+		<% @rec_users.each do |rm| %>
 			<tr>
 				<td><%= image_tag(rm.user.avatar_url) %></td>
 				<td><%= rm.user.last_name %></td>&nbsp;<td><%= rm.user.first_name %></td>
@@ -179,7 +179,7 @@
 <div style="float:left">
 	<b>Sub Menu</b><br>
 	<% if current_user != nil %>
-		<% if current_user.mentor? %>
+		<% if current_user.verified_user? %>
 			<%= link_to 'My Question', current_user %><br>
 			<%= link_to 'My Consult', current_user %><br>
 		<% else %>

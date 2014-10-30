@@ -5,7 +5,7 @@ FactoryGirl.define do
     title       "咨询主题题目"
     content     "咨询主题内容"
     association :apprentice, factory: :normal_user_1
-    association :mentor, factory: :mentor_1
+    association :user, factory: :mentor_1
 
     factory :applying_subject do
       stat_class  1

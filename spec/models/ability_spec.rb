@@ -113,10 +113,10 @@ RSpec.describe Ability, :type => :model do
     end
 
     context "consult" do
-      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>me) }
-      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>normal_user, :mentor=>me) }
-      let (:closed_subject) { FactoryGirl.create(:closed_subject, :apprentice=>normal_user, :mentor=>me) }
-      let (:ignored_subject) { FactoryGirl.create(:ignored_subject, :apprentice=>normal_user, :mentor=>me) }
+      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :user=>me) }
+      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>normal_user, :user=>me) }
+      let (:closed_subject) { FactoryGirl.create(:closed_subject, :apprentice=>normal_user, :user=>me) }
+      let (:ignored_subject) { FactoryGirl.create(:ignored_subject, :apprentice=>normal_user, :user=>me) }
       let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
       let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>normal_user, :consult_subject=>in_progress_subject) }
       let (:other_mentor) { FactoryGirl.create(:mentor_2) }
@@ -129,7 +129,7 @@ RSpec.describe Ability, :type => :model do
       it { should_not be_able_to(:close, applying_subject) }
       it { should be_able_to(:show, applying_subject) }
       it {
-        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>other_mentor)
+        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :user=>other_mentor)
         should_not be_able_to(:show, not_my_subject)
       }
       it { should be_able_to(:reply, in_progress_subject) }
@@ -171,7 +171,7 @@ RSpec.describe Ability, :type => :model do
 
   context "normal_user" do
     let (:me) { FactoryGirl.create(:normal_user_2) }
-    let (:mentor) { FactoryGirl.create(:mentor_1) }
+    let (:user) { FactoryGirl.create(:mentor_1) }
     let (:another_n_user) { FactoryGirl.create(:normal_user_1) }
     let (:question) { FactoryGirl.create(:question_1, :user=>another_n_user) }
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
@@ -248,8 +248,8 @@ RSpec.describe Ability, :type => :model do
     end
 
     context "consult" do
-      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>me, :mentor=>mentor) }
-      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>me, :mentor=>mentor) }
+      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>me, :user=>mentor) }
+      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>me, :user=>mentor) }
       let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
       let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>another_n_user, :consult_subject=>in_progress_subject) }
 
@@ -262,7 +262,7 @@ RSpec.describe Ability, :type => :model do
       it { should_not be_able_to(:close, applying_subject) }
       it { should be_able_to(:show, my_applying_subject = applying_subject) }
       it {
-        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>another_n_user, :mentor=>mentor)
+        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>another_n_user, :user=>mentor)
         should_not be_able_to(:show, not_my_subject)
       }
       it { should be_able_to(:reply, my_subject = in_progress_subject) }

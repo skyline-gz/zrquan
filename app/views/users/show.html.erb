@@ -66,7 +66,7 @@
 <b>Q&A</b>
 <!-- Q&A -->
 <table>
-	<% if @user.mentor? %>
+	<% if @user.verified_user? %>
 		<% @user.invited_questions.each do |iq| %>	
 			<tr>
 				<td>title</td>
@@ -110,7 +110,7 @@
 <!-- consult subjects -->
 <b>Consult</b>
 <table>
-	<% if @user.mentor? %>
+	<% if @user.verified_user? %>
 		<% @user.m_subjects.each do |ms| %>
 			<tr>
 				<td>title</td>

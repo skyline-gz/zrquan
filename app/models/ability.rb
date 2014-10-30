@@ -8,9 +8,9 @@ class Ability
 		# unactivated user
 		elsif !user.activated?
 			logout_unactivate_abilities(user)
-		# mentor
-		elsif user.mentor?
-			mentor_abilities(user)
+		# verified_user
+		elsif user.verified_user?
+			verified_user_abilities(user)
 		# normal user
 		else
 			normal_user_abilities(user)
@@ -33,8 +33,8 @@ class Ability
       can :show, Activity
 		end
 
-		# mentor
-		def mentor_abilities(user)
+		# verified_user
+		def verified_user_abilities(user)
 			# general 
 			can :create, :all
 			cannot :create, [Question, ConsultSubject, Invitation, Message, UserSetting]
@@ -84,7 +84,7 @@ class Ability
       end
       can :close, ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
       can :consult, User do |u|
-        u.mentor?
+        u.verified_user?
       end
       cannot :accept, ConsultSubject
 

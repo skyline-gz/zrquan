@@ -1,1 +1,1 @@
-rails g migration AddDetailsToUsers last_name:string first_name:string gender:integer province:references city:references school:string major:string industry:string company:string position:string signature:string description:text mentor_flag:boolean avatar:string
+rails g migration AddDetailsToUsers last_name:string first_name:string gender:integer province:references city:references school:string major:string industry:string company:string position:string signature:string description:text verified_flag:boolean avatar:string

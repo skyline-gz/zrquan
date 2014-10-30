@@ -6,7 +6,7 @@ FactoryGirl.define do
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
-    mentor_flag   false
+    verified_flag   false
   end
 
   factory :normal_user_2, class: User do
@@ -16,7 +16,7 @@ FactoryGirl.define do
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
-    mentor_flag   false
+    verified_flag   false
   end
 
   factory :mentor_1, class: User do
@@ -26,7 +26,7 @@ FactoryGirl.define do
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
-    mentor_flag   true
+    verified_flag   true
   end
 
   factory :mentor_2, class: User do
@@ -36,7 +36,7 @@ FactoryGirl.define do
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
-    mentor_flag   true
+    verified_flag   true
   end
 
   factory :mentor_3, class: User do
@@ -46,7 +46,7 @@ FactoryGirl.define do
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
-    mentor_flag   true
+    verified_flag   true
   end
 
   factory :unconfirmed_user, class: User do

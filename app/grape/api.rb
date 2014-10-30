@@ -27,7 +27,7 @@ module Zrquan
       get do
 
         userexit = true if authenticated?
-        usermentor = true if current_user.mentor?
+        usermentor = true if current_user.verified_user?
         useractivated = true if current_user.activated?
         followuser = true if can? :follow, User
         editall = true if can? :edit, :all
