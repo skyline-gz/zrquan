@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
 	has_many :answers
 	has_many :invitations
-	has_many :invited_mentors, class_name: "User", through: :invitations, source: :mentor
+	has_many :invited_users, class_name: "User", through: :invitations, source: :user
 	has_many :bookmarks, as: :bookmarkable
 	has_many :news_feeds, as: :feedable
 	has_many :activities, as: :target
@@ -29,7 +29,7 @@ class Question < ActiveRecord::Base
 		invited_answers = Array.new
 		normal_answers = Array.new
 		answers.each do |ans|
-			if invited_mentors.include? ans.user
+			if invited_users.include? ans.user
 				invited_answers << ans
 			else
 				normal_answers << ans
@@ -49,13 +49,13 @@ class Question < ActiveRecord::Base
     theme_ids
   end
 
-	def mentor_ids
-		mentor_ids = Array.new
+	def inv_user_ids
+		inv_users_ids = Array.new
 		invitations.each do |inv|
-			mentor_ids << inv.mentor_id
+			inv_users_ids << inv.user_id
 		end
-		logger.debug(mentor_ids)
-		mentor_ids
+		logger.debug(inv_users_ids)
+		inv_users_ids
 	end
 
 end

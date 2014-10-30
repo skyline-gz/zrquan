@@ -8,9 +8,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-	# 导师列表
-  def mentors
-    @mentors = User.all.where(mentor_flag: true)
+	# 认证职场人列表
+  def verified_users
+    @verified_users = User.all.where(verified_flag: true)
   end
 
   # 显示

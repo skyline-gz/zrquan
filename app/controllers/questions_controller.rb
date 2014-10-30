@@ -35,13 +35,13 @@ class QuestionsController < ApplicationController
 			@question.save!
 			logger.debug(invitations_params)
 			if invitations_params != {}
-				invitations_params[:invitations_attributes][:mentor_id].each do |m_id|
+				invitations_params[:invitations_attributes][:user_id].each do |u_id|
 					@invitation = Invitation.new
 					@invitation.question_id = @question.id
-					@invitation.mentor_id = m_id
+					@invitation.user_id = u_id
 					@invitation.save!
 					# 发信息给受邀导师
-					@invitation.mentor.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
+					@invitation.user.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
                                                 extra_info2_id: @question.id, extra_info2_type: "Question")
 				end
       end
@@ -68,13 +68,13 @@ class QuestionsController < ApplicationController
 			if !Invitation.destroy_all(question_id:@question.id)
 				raise ActiveRecord::Rollback
 			end
-			invitations_params[:invitations_attributes][:mentor_id].each do |m_id|
+			invitations_params[:invitations_attributes][:user_id].each do |u_id|
 				@invitation = Invitation.new
 				@invitation.question_id = @question.id
-				@invitation.mentor_id = m_id
+				@invitation.user_id = u_id
 				@invitation.save!
 				# 发信息给受邀导师
-				@invitation.mentor.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
+				@invitation.user.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
                                               extra_info2_id: @question.id, extra_info2_type: "Question")
       end
       question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
@@ -109,7 +109,7 @@ class QuestionsController < ApplicationController
     end
 
 		def invitations_params
-      params.require(:question).permit(invitations_attributes:[:mentor_id=>[]])
+      params.require(:question).permit(invitations_attributes:[:user_id=>[]])
     end
 
     def question_themes_params

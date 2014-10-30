@@ -5,8 +5,8 @@ RSpec.describe Question, :type => :model do
     let (:question) {FactoryGirl.create(:question_1)}
     let (:mentor_1) {FactoryGirl.create(:mentor_1)}
     let (:mentor_2) {FactoryGirl.create(:mentor_2)}
-    let (:invitation_1) {FactoryGirl.create(:q1_invitation_1, :question=>question, :mentor=>mentor_1)}
-    let (:invitation_2) {FactoryGirl.create(:q1_invitation_2, :question=>question, :mentor=>mentor_2)}
+    let (:invitation_1) {FactoryGirl.create(:q1_invitation_1, :question=>question, :user=>mentor_1)}
+    let (:invitation_2) {FactoryGirl.create(:q1_invitation_2, :question=>question, :user=>mentor_2)}
 
     it "invited mentors' answers should before other users' answers " do
       invitation_1

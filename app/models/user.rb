@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 	has_many :consult_replies
   has_many :comments
 	has_many :private_messages
-	has_many :invitations, foreign_key: "mentor_id"
+	has_many :invitations, foreign_key: "user_id"
 	has_many :invited_questions, class_name: "Question", through: :invitations, source: :question
 	has_many :bookmarks
 	has_many :agreements
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
 	has_many :followers, class_name: "User", through: :reverse_relationships
   has_one :user_setting
-	has_many :mentor_themes
+	has_many :user_themes
 	has_many :activities
 
   validates :last_name, :first_name, presence: true, on: :create
@@ -137,8 +137,8 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def mentor?
-		mentor_flag
+	def verified_user?
+		verified_flag
 	end
 
 	def activated?

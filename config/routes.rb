@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy, :create] do
 		collection do
-			get :mentors
+			get :verified_users
 		end
 	end
 

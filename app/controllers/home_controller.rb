@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
 	# 菜单-首页
 	def home
-		@rec_mentors = RecommendMentor.all
+		@rec_users = RecommendUser.all
 		@news_feeds = NewsFeed.all
 		# 列出最近一个月的个人活动
 		prev_month_date = DateUtils.to_yyyymmdd(Date.today.prev_month)

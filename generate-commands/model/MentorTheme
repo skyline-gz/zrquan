@@ -1,1 +1,0 @@
-rails g model MentorTheme user:references theme:references

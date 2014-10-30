@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
     authorize! :agree, @article
 		latest_score = @article.try(:agree_score) || 0
 		# 更新赞同分数（导师+2，普通用户+1）
-		if current_user.mentor_flag
+		if current_user.verified_flag
 			latest_score = latest_score + 2
 			@article.update!(:agree_score => latest_score)
 		else

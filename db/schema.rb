@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020051035) do
+ActiveRecord::Schema.define(version: 20141030045217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20141020051035) do
   create_table "consult_subjects", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "mentor_id"
+    t.integer  "user_id"
     t.integer  "apprentice_id"
     t.integer  "stat_class"
     t.datetime "created_at"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20141020051035) do
   end
 
   add_index "consult_subjects", ["apprentice_id"], name: "index_consult_subjects_on_apprentice_id", using: :btree
-  add_index "consult_subjects", ["mentor_id"], name: "index_consult_subjects_on_mentor_id", using: :btree
+  add_index "consult_subjects", ["user_id"], name: "index_consult_subjects_on_user_id", using: :btree
 
   create_table "consult_themes", force: true do |t|
     t.integer  "consult_subject_id"
@@ -149,13 +149,13 @@ ActiveRecord::Schema.define(version: 20141020051035) do
 
   create_table "invitations", force: true do |t|
     t.integer  "question_id"
-    t.integer  "mentor_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "invitations", ["mentor_id"], name: "index_invitations_on_mentor_id", using: :btree
   add_index "invitations", ["question_id"], name: "index_invitations_on_question_id", using: :btree
+  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
   create_table "mentor_themes", force: true do |t|
     t.integer  "user_id"
@@ -230,13 +230,13 @@ ActiveRecord::Schema.define(version: 20141020051035) do
   add_index "questions", ["industry_id"], name: "index_questions_on_industry_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
-  create_table "recommend_mentors", force: true do |t|
+  create_table "recommend_users", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "recommend_mentors", ["user_id"], name: "index_recommend_mentors_on_user_id", using: :btree
+  add_index "recommend_users", ["user_id"], name: "index_recommend_users_on_user_id", using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "following_user_id"
@@ -296,7 +296,7 @@ ActiveRecord::Schema.define(version: 20141020051035) do
     t.string   "position"
     t.string   "signature"
     t.text     "description"
-    t.boolean  "mentor_flag",            default: false
+    t.boolean  "verified_flag",          default: false
     t.string   "avatar"
   end
 

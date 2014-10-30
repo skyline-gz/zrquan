@@ -60,7 +60,7 @@ class AnswersController < ApplicationController
     latest_score = @answer.agree_score
     logger.debug(latest_score)
     # 更新赞同分数（导师+2，普通用户+1）
-    if current_user.mentor_flag
+    if current_user.verified_flag
       latest_score = latest_score + 2
       @answer.update!(:agree_score => latest_score)
     else

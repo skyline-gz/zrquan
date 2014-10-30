@@ -36,18 +36,13 @@
     <%= f.label :category_id %><br>
     <%= f.text_field :category_id %>
   </div>
-	<label for="question_invitations_attributes_mentor_id">Mentors</label><br>
-	<select multiple="multiple" name="question[invitations_attributes][mentor_id][]">
-		<% User.where(mentor_flag: true).each do |mentor| %>
-			<option value="<%= mentor.id %>"<% if @question.mentor_ids.include?(mentor.id) %>selected<% end %>><%= mentor.email %></option>
+	<label for="question_invitations_attributes_user_id">Verified User</label><br>
+	<select multiple="multiple" name="question[invitations_attributes][user_id][]">
+		<% User.where(verified_flag: true).each do |vu| %>
+			<option value="<%= vu.id %>"<% if @question.inv_user_ids.include?(vu.id) %>selected<% end %>><%= vu.email %></option>
 		<% end %>
 	</select>
-	<!--<%= f.fields_for :invitations do |inv_f| %>
-		<div class="field">
-		  <%= inv_f.label :mentor_id %><br>
-			<%= inv_f.select :mentor_id, options_from_collection_for_select(User.where(mentor_flag: true), :id, :email), {:include_hidden=>false}, {:multiple => true} %>
-		</div>
-	<% end %>-->
+
   <div class="actions">
     <%= f.submit %>
   </div>
