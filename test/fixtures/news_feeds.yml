@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  feedable_id: 
-  feedable_type: Feedable
-
-two:
-  feedable_id: 
-  feedable_type: Feedable

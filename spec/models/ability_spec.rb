@@ -17,20 +17,21 @@ RSpec.describe Ability, :type => :model do
     it { should_not be_able_to(:create, Relationship) }
   end
 
-  context "mentor" do
+  context "verified user" do
     let (:normal_user) { FactoryGirl.create(:normal_user_1) }
     let (:me) { FactoryGirl.create(:mentor_1) }
     let (:question) { FactoryGirl.create(:question_1, :user=>normal_user) }
+    let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
     let (:published_article) { FactoryGirl.create(:published_article, :user=>normal_user) }
     let (:draft_article) { FactoryGirl.create(:draft_article, :user=>normal_user) }
     let (:my_user_setting) { FactoryGirl.create(:user_setting, :user=>me) }
     let (:another_user_setting) { FactoryGirl.create(:user_setting, :user=>normal_user) }
     let (:ability) { Ability.new(me) }
 
-    it { should_not be_able_to(:create, Question) }
-    it { should_not be_able_to(:create, ConsultSubject) }
-    it { should_not be_able_to(:edit, Question) }
-    it { should_not be_able_to(:edit, ConsultSubject) }
+    context "question" do
+      it { should be_able_to(:create, Question) }
+      it { should be_able_to(:edit, my_question) }
+    end
 
     context "answer" do
       it { should be_able_to(:answer, question) }
@@ -113,14 +114,16 @@ RSpec.describe Ability, :type => :model do
     end
 
     context "consult" do
-      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :user=>me) }
-      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>normal_user, :user=>me) }
-      let (:closed_subject) { FactoryGirl.create(:closed_subject, :apprentice=>normal_user, :user=>me) }
-      let (:ignored_subject) { FactoryGirl.create(:ignored_subject, :apprentice=>normal_user, :user=>me) }
+      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>me) }
+      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>normal_user, :mentor=>me) }
+      let (:closed_subject) { FactoryGirl.create(:closed_subject, :apprentice=>normal_user, :mentor=>me) }
+      let (:ignored_subject) { FactoryGirl.create(:ignored_subject, :apprentice=>normal_user, :mentor=>me) }
       let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
       let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>normal_user, :consult_subject=>in_progress_subject) }
       let (:other_mentor) { FactoryGirl.create(:mentor_2) }
 
+      it { should be_able_to(:create, ConsultSubject) }
+      it { should be_able_to(:consult, other_mentor) }
       it { should be_able_to(:accept, applying_subject) }
       it { should be_able_to(:ignore, applying_subject) }
       it { should_not be_able_to(:accept, in_progress_subject) }
@@ -129,7 +132,7 @@ RSpec.describe Ability, :type => :model do
       it { should_not be_able_to(:close, applying_subject) }
       it { should be_able_to(:show, applying_subject) }
       it {
-        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :user=>other_mentor)
+        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>other_mentor)
         should_not be_able_to(:show, not_my_subject)
       }
       it { should be_able_to(:reply, in_progress_subject) }
@@ -171,7 +174,7 @@ RSpec.describe Ability, :type => :model do
 
   context "normal_user" do
     let (:me) { FactoryGirl.create(:normal_user_2) }
-    let (:user) { FactoryGirl.create(:mentor_1) }
+    let (:verified_user) { FactoryGirl.create(:mentor_1) }
     let (:another_n_user) { FactoryGirl.create(:normal_user_1) }
     let (:question) { FactoryGirl.create(:question_1, :user=>another_n_user) }
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
@@ -248,13 +251,13 @@ RSpec.describe Ability, :type => :model do
     end
 
     context "consult" do
-      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>me, :user=>mentor) }
-      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>me, :user=>mentor) }
+      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>me, :mentor=>verified_user) }
+      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>me, :mentor=>verified_user) }
       let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
       let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>another_n_user, :consult_subject=>in_progress_subject) }
 
       it { should be_able_to(:create, ConsultSubject) }
-      it { should be_able_to(:consult, mentor) }
+      it { should be_able_to(:consult, verified_user) }
       it { should_not be_able_to(:consult, another_n_user) }
       it { should_not be_able_to(:accept, ConsultSubject) }
       it { should_not be_able_to(:ignore, ConsultSubject) }
@@ -262,7 +265,7 @@ RSpec.describe Ability, :type => :model do
       it { should_not be_able_to(:close, applying_subject) }
       it { should be_able_to(:show, my_applying_subject = applying_subject) }
       it {
-        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>another_n_user, :user=>mentor)
+        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>another_n_user, :mentor=>verified_user)
         should_not be_able_to(:show, not_my_subject)
       }
       it { should be_able_to(:reply, my_subject = in_progress_subject) }
@@ -292,30 +295,30 @@ RSpec.describe Ability, :type => :model do
     end
 
     context "follow" do
-      it { should be_able_to(:follow, other_user = mentor) }
+      it { should be_able_to(:follow, other_user = verified_user) }
       it { should_not be_able_to(:follow, myself = me) }
       it {
-        FactoryGirl.create(:relationship, :following_user=>mentor, :follower=>me)
-        should be_able_to(:unfollow, following_user = mentor)
+        FactoryGirl.create(:relationship, :following_user=>verified_user, :follower=>me)
+        should be_able_to(:unfollow, following_user = verified_user)
       }
-      it { should_not be_able_to(:unfollow, not_following = mentor) }
+      it { should_not be_able_to(:unfollow, not_following = verified_user) }
     end
 
     context "pm" do
       it {
-        FactoryGirl.create(:relationship, :following_user=>me, :follower=>mentor)
-        should be_able_to(:pm, follower = mentor)
+        FactoryGirl.create(:relationship, :following_user=>me, :follower=>verified_user)
+        should be_able_to(:pm, follower = verified_user)
       }
       it {
-        FactoryGirl.create(:private_message, :user1=>me, :user2=>mentor)
-        should be_able_to(:pm, ever_pm_user = mentor)
+        FactoryGirl.create(:private_message, :user1=>me, :user2=>verified_user)
+        should be_able_to(:pm, ever_pm_user = verified_user)
       }
-      it { should_not be_able_to(:pm, no_relationship_user = mentor) }
+      it { should_not be_able_to(:pm, no_relationship_user = verified_user) }
     end
 
     context "user info and user setting" do
       it { should be_able_to(:edit, me) }
-      it { should_not be_able_to(:edit, other_user = mentor) }
+      it { should_not be_able_to(:edit, other_user = verified_user) }
       it { should be_able_to(:edit, my_user_setting) }
       it { should_not be_able_to(:edit, another_user_setting) }
     end
