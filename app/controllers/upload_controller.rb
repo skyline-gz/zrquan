@@ -10,6 +10,7 @@ class UploadController < ApplicationController
   def upload_avatar
     uploaded_avatar = params["picture"].read
     cache_obj = {:content_type => params["picture"].content_type, :file => uploaded_avatar}
+    # File.read(:content_type => params["picture"])
     destid = Digest::MD5.hexdigest(uploaded_avatar)
     UploadCache.instance.write(destid, cache_obj)
     # render :json => {:code => "S_OK", :destId => destid}
@@ -27,16 +28,21 @@ class UploadController < ApplicationController
     render text: "cache expired"
   end
 
-  def corp_avatar
+  def crop_avatar
     key = params["destid"]
     w = params["w"]
     h = params["h"]
     x = params["x"]
     y = params["y"]
     cache_obj = UploadCache.instance.read(key)
-    image = MiniMagick::Image.open(cache_obj[:file])
-    image.corp("#{w}x#{h}+#{x}+#{y}")
-    send_data image, :type => 'image/png',:disposition => 'inline'
+    if cache_obj
+      image = MiniMagick::Image.read(cache_obj[:file])
+      # image.crop '#{w}x#{h}+#{x}+#{y}'
+      image.crop('10x10+10+10')
+      send_data image.to_blob, :type => 'image/png',:disposition => 'inline'
+      return
+    end
+    render text: "cache expired"
   end
 
 private

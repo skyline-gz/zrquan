@@ -68,7 +68,7 @@ Rails.application.routes.draw do
   # 头像上传
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
-  get 'upload/corp_avatar'
+  get 'upload/crop_avatar'
 
   root 'home#home'
 
