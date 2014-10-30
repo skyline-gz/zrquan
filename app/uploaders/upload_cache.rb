@@ -5,7 +5,8 @@ class UploadCache
   @avatars_cache = nil
 
   def initialize
-    @avatars_cache = ActiveSupport::Cache::MemoryStore.new(expires_in: 5.minutes)
+    min = Rails.application.config.avatar_cache_experied_minute
+    @avatars_cache = ActiveSupport::Cache::MemoryStore.new(expires_in: min.minutes)
   end
 
   def write(key, val)

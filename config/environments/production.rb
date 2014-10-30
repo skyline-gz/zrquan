@@ -80,4 +80,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # 头像上传缓存时间
+  config.avatar_cache_experied_minute = 3
 end

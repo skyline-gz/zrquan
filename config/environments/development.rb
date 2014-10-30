@@ -47,4 +47,7 @@ Rails.application.configure do
   # Disable request forgery protection in development environment
   config.action_controller.allow_forgery_protection = false
 
+  # 头像上传缓存时间
+  config.avatar_cache_experied_minute = 60
+
 end

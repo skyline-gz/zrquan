@@ -37,4 +37,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # 头像上传缓存时间
+  config.avatar_cache_experied_minute = 3
 end
