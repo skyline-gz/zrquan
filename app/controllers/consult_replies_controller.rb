@@ -35,7 +35,7 @@ class ConsultRepliesController < ApplicationController
 			user_id = @consult_subject.mentor_id				
 		end
 		msg_content = "New consult reply for " + @consult_subject.title + "."
-		Message.create!(content: msg_content, msg_type: 1, user_id: user_id)
+		Message.create!(msg_type: 1, user_id: user_id)
 	  redirect_to consult_subject_path(@consult_subject), notice: 'Consult reply was successfully created.'
   end
 
