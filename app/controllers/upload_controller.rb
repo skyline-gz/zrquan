@@ -1,7 +1,10 @@
 require 'digest/md5'
+require 'mime/types'
+require 'tempfile'
 
 class UploadController < ApplicationController
   # respond_to :html, :xml, :json
+  before_action :authenticate_user!
   # 允许iframe跨域请求
   # see http://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4?rq=1
   after_action :allow_iframe
@@ -9,7 +12,7 @@ class UploadController < ApplicationController
 
   def upload_avatar
     uploaded_avatar = params["picture"].read
-    cache_obj = {:content_type => params["picture"].content_type, :file => uploaded_avatar}
+    cache_obj = {:content_type => params["picture"].content_type, :fileblob => uploaded_avatar}
     # File.read(:content_type => params["picture"])
     destid = Digest::MD5.hexdigest(uploaded_avatar)
     UploadCache.instance.write(destid, cache_obj)
@@ -22,7 +25,23 @@ class UploadController < ApplicationController
     key = params["destid"]
     cache_obj = UploadCache.instance.read(key)
     if cache_obj
-      send_data cache_obj[:file], :type => 'image/png', :disposition => 'inline'
+      # 利用md5构造唯一的文件名及临时文件
+      type = MIME::Types[cache_obj[:content_type]].first.extensions.first
+      tempfile = Tempfile.new([key, "\." + type], '/tmp')
+      File.open(tempfile, "wb") do |f|
+        f.write cache_obj[:fileblob]
+      end
+
+      # file.write(cache_obj[:fileblob])
+
+      # 测试七牛云存储
+      uploader = AvatarUploader.new(@user, "avartars")
+      uploader.store!(tempfile)
+      # 释放临时文件
+
+      tempfile.close
+      tempfile.unlink
+      send_data cache_obj[:fileblob], :type => cache_obj[:content_type], :disposition => 'inline'
       return
     end
     render text: "cache expired"
@@ -36,7 +55,7 @@ class UploadController < ApplicationController
     y = params["y"]
     cache_obj = UploadCache.instance.read(key)
     if cache_obj
-      image = MiniMagick::Image.read(cache_obj[:file])
+      image = MiniMagick::Image.read(cache_obj[:fileblob])
       # image.crop '#{w}x#{h}+#{x}+#{y}'
       image.crop('10x10+10+10')
       send_data image.to_blob, :type => 'image/png',:disposition => 'inline'
