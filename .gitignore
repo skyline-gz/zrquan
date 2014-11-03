@@ -30,3 +30,6 @@
 
 #ignore sass cache files
 /font/src/.sass-cache
+
+#ignore nodejs/grunt plugin
+node_modules
