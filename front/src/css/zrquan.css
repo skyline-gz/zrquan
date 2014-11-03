@@ -1,4 +1,6 @@
-/* line 5, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/*! zrquan 2014-11-03 */
+
+/* line 17, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,50 +22,50 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+/* line 116, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
-/* line 14, ../sass/mixins/_clearfix.scss */
+/* line 15, ../sass/mixins/_clearfix.scss */
 .clearfix:before, .clearfix:after {
   content: " ";
   display: table;
@@ -144,7 +146,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* Selection Border */
-/* line 16, ../sass/lib/_jquery.jcrop.scss */
+/* line 17, ../sass/lib/_jquery.jcrop.scss */
 .jcrop-vline,
 .jcrop-hline {
   font-size: 0;
@@ -261,14 +263,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* Dragbars */
-/* line 104, ../sass/lib/_jquery.jcrop.scss */
+/* line 105, ../sass/lib/_jquery.jcrop.scss */
 .jcrop-dragbar.ord-n,
 .jcrop-dragbar.ord-s {
   height: 7px;
   width: 100%;
 }
 
-/* line 109, ../sass/lib/_jquery.jcrop.scss */
+/* line 110, ../sass/lib/_jquery.jcrop.scss */
 .jcrop-dragbar.ord-e,
 .jcrop-dragbar.ord-w {
   height: 100%;
@@ -298,7 +300,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* The "jcrop-light" class/extension */
-/* line 129, ../sass/lib/_jquery.jcrop.scss */
+/* line 130, ../sass/lib/_jquery.jcrop.scss */
 .jcrop-light .jcrop-vline,
 .jcrop-light .jcrop-hline {
   background: #ffffff;
@@ -316,7 +318,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* The "jcrop-dark" class/extension */
-/* line 143, ../sass/lib/_jquery.jcrop.scss */
+/* line 144, ../sass/lib/_jquery.jcrop.scss */
 .jcrop-dark .jcrop-vline,
 .jcrop-dark .jcrop-hline {
   background: #000000;
@@ -334,14 +336,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* Simple macro to turn off the antlines */
-/* line 157, ../sass/lib/_jquery.jcrop.scss */
+/* line 158, ../sass/lib/_jquery.jcrop.scss */
 .solid-line .jcrop-vline,
 .solid-line .jcrop-hline {
   background: #ffffff;
 }
 
 /* Fix for twitter bootstrap et al. */
-/* line 162, ../sass/lib/_jquery.jcrop.scss */
+/* line 163, ../sass/lib/_jquery.jcrop.scss */
 .jcrop-holder img,
 img.jcrop-preview {
   max-width: none;
@@ -394,172 +396,169 @@ a:hover {
   text-decoration: underline;
 }
 
-/* line 200, icons/*.png */
+/* line 194, icons/*.png */
 .icons-sprite, .icons-add, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
-  background-image: url('/images/icons-sc019d1d5a2.png');
-  background-repeat: no-repeat;
+  background: url('/images/icons-s1edcc9806c.png') no-repeat;
 }
 
-/* line 88, avatars/*.png */
+/* line 82, avatars/*.png */
 .avatars-sprite, .avatars-head_m_01, .popover .popover-content .profile-card .upper .user-logo, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
-  background-image: url('/images/avatars-sfa42aeeada.png');
-  background-repeat: no-repeat;
+  background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
 }
 
-/* line 72, big-icons/*.png */
+/* line 66, big-icons/*.png */
 .big-icons-sprite, .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq, .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren, .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo, .big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
-  background-image: url('/images/big-icons-sdb12854628.png');
-  background-repeat: no-repeat;
+  background: url('/images/big-icons-se25fe173f0.png') no-repeat;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-add {
+  background-position: 0 -320px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-comment {
+  background-position: 0 -308px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-favorites {
+  background-position: 0 -286px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-good {
+  background-position: 0 -297px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-message {
+  background-position: 0 -47px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myanswer_hover {
+  background-position: 0 -210px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myconsulting {
+  background-position: 0 -104px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-mydraft {
+  background-position: 0 -122px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myexperience {
+  background-position: 0 -258px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myfavorite {
+  background-position: 0 -139px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myquestion {
+  background-position: 0 -86px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-no {
+  background-position: 0 -276px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-point_left {
+  background-position: 0 -240px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-private_message {
   background-position: 0 0;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-comment {
-  background-position: 0 -12px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-favorites {
-  background-position: 0 -24px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-good {
-  background-position: 0 -35px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-message {
-  background-position: 0 -46px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myanswer_hover {
-  background-position: 0 -67px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
-  background-position: 0 -85px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
-  background-position: 0 -103px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myexperience {
-  background-position: 0 -120px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myfavorite {
-  background-position: 0 -138px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
-  background-position: 0 -156px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-no {
-  background-position: 0 -174px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-point_left {
-  background-position: 0 -184px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-private_message {
-  background-position: 0 -202px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-search {
-  background-position: 0 -225px;
+  background-position: 0 -23px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-search_s {
-  background-position: 0 -249px;
+  background-position: 0 -68px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-set {
-  background-position: 0 -267px;
+  background-position: 0 -228px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-up_to_top {
-  background-position: 0 -279px;
+  background-position: 0 -157px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up {
-  background-position: 0 -319px;
+  background-position: 0 -332px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .icons-vip {
-  background-position: 0 -337px;
+  background-position: 0 -197px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_01, .popover .popover-content .profile-card .upper .user-logo {
   background-position: 0 0;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .avatars-head_m_02 {
-  background-position: 0 -64px;
-}
-
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_03 {
   background-position: 0 -128px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_04 {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_03 {
   background-position: 0 -192px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
-  background-position: 0 -256px;
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_04 {
+  background-position: 0 -64px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_02 {
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
   background-position: 0 -288px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_02 {
+  background-position: 0 -256px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq {
-  background-position: 0 0;
+  background-position: 0 -202px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren {
-  background-position: 0 -66px;
+  background-position: 0 -136px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo {
-  background-position: 0 -132px;
+  background-position: 0 -70px;
 }
 
-/* line 84, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
-  background-position: 0 -198px;
+  background-position: 0 0;
 }
 
 /* line 13, ../sass/layout.navigation.scss */
@@ -638,18 +637,20 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-form {
 }
 /* line 89, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-input {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   padding: 5px 10px;
   font-size: 14px;
@@ -663,26 +664,27 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-input {
 }
 /* line 107, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-add-question {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   margin: 0 0 0 6px;
   background: #ff9700;
   background-color: #ff9700;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
   background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
   background-repeat: repeat-x;
   color: #FFF;
   font-size: 14px;
@@ -732,17 +734,20 @@ div[role=navigation] .top-nav-auth a {
 }
 /* line 166, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   vertical-align: middle;
 }
 /* line 171, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo {
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
   border-radius: 3px;
   width: 32px;
   height: 32px;
@@ -788,10 +793,11 @@ div[role=navigation] .top-nav-noauth {
 }
 /* line 219, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth > li {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   float: left;
   list-style: none;
@@ -808,10 +814,11 @@ div[role=navigation] .top-nav-noauth a {
 }
 /* line 235, ../sass/layout.navigation.scss */
 div[role=navigation] .top-nav-noauth .icons-user_sign_up {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 18px;
   height: 18px;
@@ -848,18 +855,20 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
 }
 /* line 33, ../sass/layout.home.scss */
 .home-top .home-top-container .home-top-search-input {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   padding: 9px 10px;
   font-size: 14px;
@@ -874,27 +883,28 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
 }
 /* line 51, ../sass/layout.home.scss */
 .home-top .home-top-container .home-top-add-question {
+  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   float: left;
   margin: 0 0 0 6px;
   background: #ff9700;
   background-color: #ff9700;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
   background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
   background-repeat: repeat-x;
   color: #FFF;
   font-size: 18px;
@@ -1013,10 +1023,11 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
 }
 /* line 177, ../sass/layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 16px;
   height: 13px;
@@ -1083,8 +1094,10 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
 }
 /* line 243, ../sass/layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ad {
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   width: 270px;
   height: 101px;
@@ -1112,10 +1125,11 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
 }
 /* line 270, ../sass/layout.home.scss */
 .home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 19px;
   height: 18px;
@@ -1159,12 +1173,12 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
 /* line 57, ../sass/component.modal.scss */
 .modal-content {
   position: relative;
-  background-color: #fff;
-  border: 1px solid #999;
+  background-color: white;
+  border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
   outline: 0;
@@ -1178,7 +1192,7 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: #666;
+  background-color: #666666;
   min-height: 100% !important;
   width: 100% !important;
   height: 100% !important;
@@ -1253,8 +1267,10 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
 /* line 4, ../sass/component.subject.scss */
 .component-subject {
   float: left;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   color: #ffffff;
   background: #fbd28d;
@@ -1321,10 +1337,11 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
 }
 /* line 52, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 10px;
   height: 11px;
@@ -1344,10 +1361,11 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 }
 /* line 71, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 16px;
   height: 13px;
@@ -1356,7 +1374,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username {
   font-size: 13px;
   font-weight: bold;
-  color: #000;
+  color: black;
 }
 /* line 83, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action {
@@ -1383,7 +1401,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
   font-size: 14px;
   line-height: 22px;
-  color: #222;
+  color: #222222;
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
 }
 /* line 112, ../sass/component.infoblock.scss */
@@ -1393,20 +1411,22 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 }
 /* line 116, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   color: #868686;
   margin-right: 12px;
 }
 /* line 121, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 12px;
   height: 12px;
@@ -1414,20 +1434,22 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 }
 /* line 129, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   color: #868686;
   margin-right: 12px;
 }
 /* line 134, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 12px;
   height: 11px;
@@ -1436,10 +1458,11 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 }
 /* line 143, ../sass/component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
 }
 /* line 148, ../sass/component.infoblock.scss */
@@ -1458,10 +1481,11 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 }
 /* line 18, ../sass/component.modal.auth.scss */
 #authModal .icons-no {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 10px;
   height: 10px;
@@ -1531,20 +1555,21 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 /* line 84, ../sass/component.modal.auth.scss */
 #authModal .modal-container .btn-sign-up, #authModal .modal-container .btn-sign-in {
   margin-top: 8px;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   width: 100%;
   height: 28px;
   line-height: 28px;
   font-size: 13px;
   background: #ff9700;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
   background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
   color: #ffffff;
   text-align: center;
   cursor: pointer;
@@ -1587,8 +1612,10 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 }
 /* line 143, ../sass/component.modal.auth.scss */
 #authModal input {
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   border: 1px solid #CCCCCC;
   padding: 7px 6px;
@@ -1608,10 +1635,11 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 }
 /* line 164, ../sass/component.modal.auth.scss */
 #activateModal .icons-no {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 10px;
   height: 10px;
@@ -1642,20 +1670,21 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 /* line 193, ../sass/component.modal.auth.scss */
 #activateModal .modal-container .btn-modal-activate {
   margin-top: 8px;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   width: 100%;
   height: 28px;
   line-height: 28px;
   font-size: 13px;
   background: #ff9700;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
   background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
   color: #ffffff;
   text-align: center;
   cursor: pointer;
@@ -1663,8 +1692,10 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 /* line 207, ../sass/component.modal.auth.scss */
 #activateModal .modal-container .btn-modal-deactivate {
   margin-top: 8px;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   width: 100%;
   height: 28px;
@@ -1700,17 +1731,18 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 }
 /* line 14, ../sass/component.popover.profile.scss */
 .popover .popover-content {
-  border: 1px solid #999;
+  border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-background-clip: padding;
-  -o-background-clip: padding-box;
   -webkit-background-clip: padding;
+  -moz-background-clip: padding;
   background-clip: padding-box;
   background: #ffffff;
   overflow: hidden;
@@ -1770,10 +1802,11 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 }
 /* line 73, ../sass/component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container .icons-vip {
+  display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  *zoom: 1;
+  zoom: 1;
   *display: inline;
   width: 16px;
   height: 13px;
@@ -1823,16 +1856,17 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #ffffff;
   width: 54px;
   height: 22px;
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
   border-radius: 3px;
   background: #ff9700;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmOTcwMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RkODQwMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
   background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(to bottom, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
   cursor: pointer;
 }
 /* line 128, ../sass/component.popover.profile.scss */

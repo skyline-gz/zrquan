@@ -4,18 +4,34 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+###############
+#    环境相关  #
+###############
+#ignore idea setting files
+/.idea
+/.project
+
 # Ignore bundler config.
 /.bundle
 
+###############
+#   数据库相关 #
+###############
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+###############
+#   日志和缓存 #
+###############
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /log/*.lck
 /tmp
 
+###############
+#   程序生产　 #
+###############
 # ignore solr search engine
 /solr/development
 /solr/data
@@ -23,13 +39,18 @@
 /solr/pids
 /solr/test
 /public/uploads
-/.project
 
-#ignore iea setting files
-/.idea
+###############
+#   前端构建   #
+###############
 
 #ignore sass cache files
-/font/src/.sass-cache
+/front/src/.sass-cache
 
 #ignore nodejs/grunt plugin
 node_modules
+
+#ignore live/development/build
+/front/src/css
+/front/development
+/front/build
