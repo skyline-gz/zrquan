@@ -13413,6 +13413,7 @@ require.config({
     ]
 });
 
+console.log("begin zrquan page require");
 require([
     'jquery',
     'handlebars',

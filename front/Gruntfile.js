@@ -39,6 +39,7 @@ module.exports = function(grunt){
                     mainConfigFile: 'src/scripts/main.js',
                     name: 'main',
                     out: 'development/javascripts/<%= pkg.name %>.js',
+                    keepAmdefine: true,       //确保保留Amd定义，因为zrquan.js里包含jQ等基础类库
                     optimize: "none",
                     preserveLicenseComments: true
                 }
