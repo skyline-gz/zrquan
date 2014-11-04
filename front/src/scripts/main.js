@@ -29,6 +29,7 @@ require([
     ) {
     'use strict';
     $(document).ready(function() {
+        console.log("APP Start");
         var authModal = $('#authModal');
         $('#btn-sign-up').click(function(){
             $('div[role=sign-in]', authModal).hide();

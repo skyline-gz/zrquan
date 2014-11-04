@@ -130,6 +130,14 @@ module.exports = function(grunt){
                     interrupt: true
                 }
             }
+        },
+        //项目还是以JS为主，此处主要用于转换某些特定的coffeescript
+        coffee: {
+            compile: {
+                files: {
+                    'src/coffee/turbolinks.js': 'src/coffee/turbolinks.js.coffee' // 1:1 compile
+                }
+            }
         }
     });
 
@@ -138,8 +146,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
 
     // 默认任务(发布到开发环境)
     grunt.registerTask('default', ['compass:development', 'requirejs:development',
         'copy:toDev', 'copy:development']);
+
+    grunt.registerTask('mycoffee', ['coffee']);
 };
