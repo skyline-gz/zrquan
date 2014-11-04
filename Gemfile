@@ -14,7 +14,8 @@ gem 'compass-import-once', '1.0.5'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+# js为前端开发首选语言，暂不考虑使用coffee，若源码中含有coffee文件，可使用grunt-coffee预编译成js再放入rails目录中
+# gem 'coffee-rails', '~> 4.0.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # 暂时不使用turbolinks,因为IE8~9上不支持history.pushState，且会引入其它问题
 # gem 'turbolinks'

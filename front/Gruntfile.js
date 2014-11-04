@@ -7,13 +7,12 @@ module.exports = function(grunt){
         compass: {
             development: {
                 options: {
+                    basePath:'src',
                     require: 'compass/import-once/activate',
                     outputStyle: 'expanded',
-                    sassDir: 'src/sass',
-                    cssDir: 'src/css',
-                    imagesDir: 'src/images',
-                    imagesPath: 'src/images',
-                    generatedImagesDir: 'src/images',
+                    sassDir: 'sass',
+                    cssDir: 'css',
+                    imagesDir: 'images',
                     environment: 'development',
                     specify: 'src/sass/<%= pkg.name %>.scss',
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'

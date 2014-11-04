@@ -398,17 +398,17 @@ a:hover {
 
 /* line 194, icons/*.png */
 .icons-sprite, .icons-add, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
-  background: url('/src/images/icons-s1edcc9806c.png') no-repeat;
+  background: url('/images/icons-s1edcc9806c.png') no-repeat;
 }
 
 /* line 82, avatars/*.png */
 .avatars-sprite, .avatars-head_m_01, .popover .popover-content .profile-card .upper .user-logo, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
-  background: url('/src/images/avatars-sc3e49de2d4.png') no-repeat;
+  background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
 }
 
 /* line 66, big-icons/*.png */
 .big-icons-sprite, .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq, .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren, .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo, .big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
-  background: url('/src/images/big-icons-se25fe173f0.png') no-repeat;
+  background: url('/images/big-icons-se25fe173f0.png') no-repeat;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */

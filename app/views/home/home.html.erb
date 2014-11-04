@@ -1,197 +1,335 @@
-<h1>Home</h1>
+<div role="navigation">
+  <div class="warp-content">
+    <a class="top-link-logo"></a>
+    <div class="top-nav">
+      <div class="top-nav-ul">
+        <div class="top-nav-li current"><a class="top-nav-link">首页</a></div>
+        <div class="top-nav-li"><a class="top-nav-link">职人</a></div>
+        <div class="top-nav-li"><a class="top-nav-link">经验</a></div>
+        <div class="top-nav-li"><a class="top-nav-link">问答</a></div>
+      </div>
+    </div>
+    <div class="top-nav-searchbar">
+      <form method="GET" action="/search" class="top-nav-search-form">
+        <input type="text" class="top-nav-search-input" id="q" name="q"
+               autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
+        <input type="hidden" name="type" value="question">
+        <button type="submit" class="top-nav-search-submit">
+          <i class="icons-search_s"></i></button>
+      </form>
+      <button class="top-nav-add-question">提问</button>
+    </div>
+    <ul class="top-nav-auth" style="display: none">
+      <li><a class="user-link"><i class="user-logo"></i>Tank</a></li>
+      <li><a class="message-link"><i class="icons-message"></i></a></li>
+      <li><a class="private-message-link"><i class="icons-private_message"></i></a></li>
+    </ul>
+    <ul class="top-nav-noauth">
+      <li><a id="btn-sign-up" class="sign-up"><i class="icons-user_sign_up"></i>注册职人圈</a></li>
+      <li><a id="btn-sign-in" class="sign-in">登录</a></li>
+    </ul>
+  </div>
+</div>
+<div class="home-top">
+  <div class="home-top-container">
+    <div class="home-top-inner-wrap">
+      <form method="GET" action="/search" class="home-top-search-form">
+        <input type="text" class="home-top-search-input" id="q" name="q"
+               autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
+        <input type="hidden" name="type" value="question">
+        <button type="submit" class="home-top-search-submit">
+          <i class="icons-search"></i></button>
+      </form>
+      <button class="home-top-add-question">提问</button>
+    </div>
+  </div>
+</div>
+<div class="home-mid">
+  <div class="warp-content">
+    <div class="home-mid-title-warp">
+      <div class="home-mid-title"><i class="icons-point_left"></i>推荐导师</div>
+      <div class="home-mid-subtitle">Teacher Recommendation</div>
+    </div>
+    <a href="javascript:void(0)" class="home-mid-mentor-switch">换一批</a>
+    <div class="home-mid-mentor-block">
+      <div class="home-mid-mentor-logo avatars-head_m_01"></div>
+      <div class="home-mid-mentor-desc">
+        <div class="home-mid-mentor-name">Alan Cao<i class="icons-vip"></i></div>
+        <div class="home-mid-mentor-company">网易</div>
+        <div class="home-mid-mentor-position">高级产品经理</div>
+        <div class="home-mid-mentor-subjects">
+          <div class="component-subject">职业策划</div>
+          <div class="component-subject">产品策划</div>
+        </div>
+      </div>
+    </div>
+    <div class="home-mid-mentor-block">
+      <div class="home-mid-mentor-logo avatars-head_m_02"></div>
+      <div class="home-mid-mentor-desc">
+        <div class="home-mid-mentor-name">Niky Guo<i class="icons-vip"></i></div>
+        <div class="home-mid-mentor-company">腾讯</div>
+        <div class="home-mid-mentor-position">高级视觉设计师</div>
+        <div class="home-mid-mentor-subjects">
+          <div class="component-subject">职业策划</div>
+          <div class="component-subject">产品设计</div>
+        </div>
+      </div>
+    </div>
+    <div class="home-mid-mentor-block">
+      <div class="home-mid-mentor-logo avatars-head_m_03"></div>
+      <div class="home-mid-mentor-desc">
+        <div class="home-mid-mentor-name">Zoe Zhen<i class="icons-vip"></i></div>
+        <div class="home-mid-mentor-company">Coremail</div>
+        <div class="home-mid-mentor-position">资深UI设计师</div>
+        <div class="home-mid-mentor-subjects">
+          <div class="component-subject">产品设计</div>
+          <div class="component-subject">UI设计</div>
+        </div>
+      </div>
+    </div>
+    <div class="home-mid-mentor-block">
+      <div class="home-mid-mentor-logo avatars-head_m_04"></div>
+      <div class="home-mid-mentor-desc">
+        <div class="home-mid-mentor-name">欧阳俊<i class="icons-vip"></i></div>
+        <div class="home-mid-mentor-company">日立</div>
+        <div class="home-mid-mentor-position">高级秘书长</div>
+        <div class="home-mid-mentor-subjects">
+          <div class="component-subject">办公室政治</div>
+          <div class="component-subject">潜规则</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="home-content">
+<div class="home-left-content">
+<div class="home-news">
+  <div class="home-news-header">
+    <div class="home-news-title"><i class="icons-point_left"></i>最新动态</div>
+  </div>
+  <ul class="home-news-ul">
+    <li class="home-news-li home-news-li-current">全部</li>
+    <li class="home-news-li">关注</li>
+    <li class="home-news-li">推荐</li>
+  </ul>
+</div>
 
-<%= form_tag({controller: "home", action: "search"}, method: "get") do %>
-	<%= label_tag(:search, "Search for:") %>
-  <%= text_field_tag(:search) %>
-  <%= submit_tag("Search") %>
-	<% if can? :create, Question %>
-		<%= link_to 'Ask', new_question_path, 'data-no-turbolink' => true %>
-	<% else %>
-		<% if current_user == nil %>
-			<%= link_to 'Ask', new_user_registration_path %>
-		<% elsif !current_user.activated? %>
-			<%= link_to 'Ask', home_activate_path %>
-		<% end %>
-	<% end %>
-	<% if current_user != nil %>
-		<%= link_to "Change your password", edit_user_registration_path %>
-	<% end %>
-<% end %>
-<div>
-	<%= link_to 'Home', root_path %> | 	<%= link_to 'Verified_Users', verified_users_users_path %> |
-	<%= link_to 'Q&A', questions_path %> | 	<%= link_to 'Experience', articles_path %>
+<div role="infoblocks">
+  <div class="component-infoblock">
+    <div class="component-infoblock-left">
+      <div class="component-infoblock-avatar avatars-head_s_01"></div>
+      <div class="component-infoblock-good">
+        <div class="component-infoblock-good-num">10</div>
+        <div class="component-infoblock-good-action">
+          <i class="icons-good"></i>
+        </div>
+      </div>
+    </div>
+    <div class="component-infoblock-right">
+      <div class="component-infoblock-header">
+        <span class="component-infoblock-username">Tank</span>
+        <i class="icons-vip"></i>
+        <span class="component-infoblock-action">回答了问题（推荐）</span>
+        <span class="component-infoblock-time">刚刚</span>
+      </div>
+      <div class="component-infoblock-title">应该如何做好自己的职业规划</div>
+      <div class="component-infoblock-content">大家好，我是本案原告汪龙，感谢大家的关注。来晚了！我对楼主的问题回答如下（与在微博回答相同，如需转载、转发请注明我的名字）：关于起诉意义的问题：网上有很多网友在评论时都说，这类案件肯定会败诉，认为是浪费时间。其实这点我在起诉前也有考虑，但…<a href="javascript:void(0);" class="showall">显示全文</a></div>
+      <div class="component-infoblock-footer">
+        <div class="component-comment">
+          <i class="icons-comment"></i>评论&nbsp;99
+        </div>
+        <div class="component-favorites">
+          <i class="icons-favorites"></i>收藏&nbsp;5
+        </div>
+        <div class="component-infoblock-subjects">
+          <div class="component-subject">职业策划</div>
+          <div class="component-subject">应届生求职</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="component-infoblock">
+    <div class="component-infoblock-left">
+      <div class="component-infoblock-avatar avatars-head_s_02"></div>
+      <div class="component-infoblock-good">
+        <div class="component-infoblock-good-num">25</div>
+        <div class="component-infoblock-good-action">
+          <i class="icons-good"></i>
+        </div>
+      </div>
+    </div>
+    <div class="component-infoblock-right">
+      <div class="component-infoblock-header">
+        <span class="component-infoblock-username">Niky</span>
+        <i class="icons-vip"></i>
+        <span class="component-infoblock-action">提出了问题</span>
+        <span class="component-infoblock-time">10分钟前</span>
+      </div>
+      <div class="component-infoblock-title">怎样面对职场性骚扰？</div>
+      <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="javascript:void(0);" class="showall">我来回答</a></div>
+      <div class="component-infoblock-footer">
+        <div class="component-comment">
+          <i class="icons-comment"></i>回答&nbsp;０
+        </div>
+        <div class="component-favorites">
+          <i class="icons-favorites"></i>收藏&nbsp;5
+        </div>
+        <div class="component-infoblock-subjects">
+          <div class="component-subject">办公室政治</div>
+          <div class="component-subject">潜规则</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="component-infoblock">
+    <div class="component-infoblock-left">
+      <div class="component-infoblock-avatar avatars-head_s_01"></div>
+      <div class="component-infoblock-good">
+        <div class="component-infoblock-good-num">10</div>
+        <div class="component-infoblock-good-action">
+          <i class="icons-good"></i>
+        </div>
+      </div>
+    </div>
+    <div class="component-infoblock-right">
+      <div class="component-infoblock-header">
+        <span class="component-infoblock-username">Tank</span>
+        <i class="icons-vip"></i>
+        <span class="component-infoblock-action">回答了问题（推荐）</span>
+        <span class="component-infoblock-time">刚刚</span>
+      </div>
+      <div class="component-infoblock-title">应该如何做好自己的职业规划</div>
+      <div class="component-infoblock-content">大家好，我是本案原告汪龙，感谢大家的关注。来晚了！我对楼主的问题回答如下（与在微博回答相同，如需转载、转发请注明我的名字）：关于起诉意义的问题：网上有很多网友在评论时都说，这类案件肯定会败诉，认为是浪费时间。其实这点我在起诉前也有考虑，但…<a href="javascript:void(0);" class="showall">显示全文</a></div>
+      <div class="component-infoblock-footer">
+        <div class="component-comment">
+          <i class="icons-comment"></i>评论&nbsp;99
+        </div>
+        <div class="component-favorites">
+          <i class="icons-favorites"></i>收藏&nbsp;5
+        </div>
+        <div class="component-infoblock-subjects">
+          <div class="component-subject">职业策划</div>
+          <div class="component-subject">应届生求职</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="component-infoblock">
+    <div class="component-infoblock-left">
+      <div class="component-infoblock-avatar avatars-head_s_02"></div>
+      <div class="component-infoblock-good">
+        <div class="component-infoblock-good-num">25</div>
+        <div class="component-infoblock-good-action">
+          <i class="icons-good"></i>
+        </div>
+      </div>
+    </div>
+    <div class="component-infoblock-right">
+      <div class="component-infoblock-header">
+        <span class="component-infoblock-username">Niky</span>
+        <i class="icons-vip"></i>
+        <span class="component-infoblock-action">提出了问题</span>
+        <span class="component-infoblock-time">10分钟前</span>
+      </div>
+      <div class="component-infoblock-title">怎样面对职场性骚扰？</div>
+      <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="javascript:void(0);" class="showall">我来回答</a></div>
+      <div class="component-infoblock-footer">
+        <div class="component-comment">
+          <i class="icons-comment"></i>回答&nbsp;０
+        </div>
+        <div class="component-favorites">
+          <i class="icons-favorites"></i>收藏&nbsp;5
+        </div>
+        <div class="component-infoblock-subjects">
+          <div class="component-subject">办公室政治</div>
+          <div class="component-subject">潜规则</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="component-infoblock">
+    <div class="component-infoblock-left">
+      <div class="component-infoblock-avatar avatars-head_s_01"></div>
+      <div class="component-infoblock-good">
+        <div class="component-infoblock-good-num">10</div>
+        <div class="component-infoblock-good-action">
+          <i class="icons-good"></i>
+        </div>
+      </div>
+    </div>
+    <div class="component-infoblock-right">
+      <div class="component-infoblock-header">
+        <span class="component-infoblock-username">Tank</span>
+        <i class="icons-vip"></i>
+        <span class="component-infoblock-action">回答了问题（推荐）</span>
+        <span class="component-infoblock-time">刚刚</span>
+      </div>
+      <div class="component-infoblock-title">应该如何做好自己的职业规划</div>
+      <div class="component-infoblock-content">大家好，我是本案原告汪龙，感谢大家的关注。来晚了！我对楼主的问题回答如下（与在微博回答相同，如需转载、转发请注明我的名字）：关于起诉意义的问题：网上有很多网友在评论时都说，这类案件肯定会败诉，认为是浪费时间。其实这点我在起诉前也有考虑，但…<a href="javascript:void(0);" class="showall">显示全文</a></div>
+      <div class="component-infoblock-footer">
+        <div class="component-comment">
+          <i class="icons-comment"></i>评论&nbsp;99
+        </div>
+        <div class="component-favorites">
+          <i class="icons-favorites"></i>收藏&nbsp;5
+        </div>
+        <div class="component-infoblock-subjects">
+          <div class="component-subject">职业策划</div>
+          <div class="component-subject">应届生求职</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="component-infoblock">
+    <div class="component-infoblock-left">
+      <div class="component-infoblock-avatar avatars-head_s_02"></div>
+      <div class="component-infoblock-good">
+        <div class="component-infoblock-good-num">25</div>
+        <div class="component-infoblock-good-action">
+          <i class="icons-good"></i>
+        </div>
+      </div>
+    </div>
+    <div class="component-infoblock-right">
+      <div class="component-infoblock-header">
+        <span class="component-infoblock-username">Niky</span>
+        <i class="icons-vip"></i>
+        <span class="component-infoblock-action">提出了问题</span>
+        <span class="component-infoblock-time">10分钟前</span>
+      </div>
+      <div class="component-infoblock-title">怎样面对职场性骚扰？</div>
+      <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="javascript:void(0);" class="showall">我来回答</a></div>
+      <div class="component-infoblock-footer">
+        <div class="component-comment">
+          <i class="icons-comment"></i>回答&nbsp;０
+        </div>
+        <div class="component-favorites">
+          <i class="icons-favorites"></i>收藏&nbsp;5
+        </div>
+        <div class="component-infoblock-subjects">
+          <div class="component-subject">办公室政治</div>
+          <div class="component-subject">潜规则</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-	<b>Recommend User</b>
-	<table>
-		<% @rec_users.each do |rm| %>
-			<tr>
-				<td><%= image_tag(rm.user.avatar_url) %></td>
-				<td><%= rm.user.last_name %></td>&nbsp;<td><%= rm.user.first_name %></td>
-				<td><%= rm.user.company %></td>
-				<td><%= rm.user.position %></td>
-			</tr>
-		<% end %>
-	</table>
 </div>
-<div style="float:left">
-	<b>News Feed</b>
-	<table>
-		<% if current_user != nil %>
-			<% @recent_activities.each do |ra| %>
-				<% if ra.ask_question? %>
-					<tr>
-						<td>Asked Question</td>
-						<td><%= ra.target.title %></td>
-						<td></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.theme %></td>
-						<td><%= ra.target.answers.count %> answers</td>
-					</tr>
-				<% end %>
-				<% if ra.answer_question? %>
-					<tr>
-						<td>Answered Question</td>
-						<td><%= ra.target.question.title %></td>
-						<td><%= ra.target.content %></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.question.theme %></td>
-						<td><%= ra.target.question.answers.count %> answers</td>
-						<td><%= ra.target.comments.count %> comments</td>
-						<td><%= ra.target.agree_score %></td>
-					</tr>
-				<% end %>
-				<% if ra.comment_answer? %>
-					<tr>
-						<td>Comment Answer</td>
-						<td><%= ra.target.question.title %></td>
-						<td><%= ra.target.content %></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.question.theme %></td>
-						<td><%= ra.target.question.answers.count %> answers</td>
-						<td><%= ra.target.comments.count %> comments</td>
-						<td><%= ra.target.agree_score %></td>
-					</tr>
-				<% end %>
-				<% if ra.comment_article? %>
-					<tr>
-						<td>Comment Article</td>
-						<td><%= ra.target.title %></td>
-						<td><%= ra.target.content %></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.theme %></td>
-						<td></td>
-						<td><%= ra.target.comments.count %> comments</td>
-						<td><%= ra.target.agree_score %></td>
-					</tr>
-				<% end %>
-				<% if ra.agree_answer? %>
-					<tr>
-						<td>Agree Answer</td>
-						<td><%= ra.target.question.title %></td>
-						<td><%= ra.target.content %></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.question.theme %></td>
-						<td><%= ra.target.question.answers.count %> answers</td>
-						<td><%= ra.target.comments.count %> comments</td>
-						<td><%= ra.target.agree_score %></td>
-					</tr>
-				<% end %>
-				<% if ra.agree_article? %>
-					<tr>
-						<td>Agree Article</td>
-						<td><%= ra.target.title %></td>
-						<td><%= ra.target.content %></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.theme %></td>
-						<td></td>
-						<td><%= ra.target.comments.count %> comments</td>
-						<td><%= ra.target.agree_score %></td>
-					</tr>
-				<% end %>
-				<% if ra.accept_consult? %>
-					<tr>
-						<td>Accept Consult</td>
-						<td><%= ra.target.title %></td>
-						<td></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.theme %></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				<% end %>
-				<% if ra.consult? %>
-					<tr>
-						<td>Consult</td>
-						<td><%= ra.target.title %></td>
-						<td></td>
-						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
-						<td><%= ra.pdate_to_s %></td>
-						<td><%= ra.target.theme %></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				<% end %>
-			<% end %>
-		<% end %>
-		<% @news_feeds.order("id").each do |nf| %>
-			<% if nf.feedable_type == "Question" %>
-				<% q = Question.find(nf.feedable_id) %>
-				<tr>
-					<td><b>Q</b></td>
-					<td><%= q.title %></td>
-					<td><%= q.content %></td>
-					<td><%= q.answers.first.content %></td>
-					<td><%= q.user.last_name %>&nbsp;<%= q.user.first_name %></td>
-				</tr>
-			<% end %>
-			<% if nf.feedable_type == "Article" %>
-				<% a = Article.find(nf.feedable_id) %>
-				<tr>
-					<td><b>A</b></td>
-					<td><%= a.title %></td>
-					<td><%= a.content %></td>
-					<td><%= a.user.last_name %>&nbsp;<%= a.user.first_name %></td>
-				</tr>
-			<% end %>
-			<% if nf.feedable_type == "ConsultSubject" %>
-				<% c = ConsultSubject.find(nf.feedable_id) %>
-				<tr>
-					<td><b>C</b></td>
-					<td><%= c.title %></td>
-					<td><%= c.content %></td>
-					<td><%= c.mentor.last_name %>&nbsp;<%= c.mentor.first_name %></td>
-					<td><%= c.apprentice.last_name %>&nbsp;<%= c.apprentice.first_name %></td>
-				</tr>
-			<% end %>
-		<% end %>
-	</table>
+<div class="home-right-panel">
+  <div class="home-right-panel-ad"></div>
+  <ul class="home-right-panel-ul">
+    <li class="home-right-panel-li">
+      <i class="icons-myquestion"></i>我的提问</li>
+    <li class="home-right-panel-li home-right-panel-li-hover">
+      <i class="icons-myanswer_hover"></i>我的回答</li>
+    <li class="home-right-panel-li">
+      <i class="icons-myconsulting"></i>我的咨询</li>
+    <li class="home-right-panel-li">
+      <i class="icons-myfavorite"></i>我的收藏</li>
+    <li class="home-right-panel-li">
+      <i class="icons-myexperience"></i>我的经验</li>
+    <li class="home-right-panel-li">
+      <i class="icons-mydraft"></i>我的草稿</li>
+  </ul>
 </div>
-<div style="float:left">
-	<b>Sub Menu</b><br>
-	<% if current_user != nil %>
-		<% if current_user.verified_user? %>
-			<%= link_to 'My Question', current_user %><br>
-			<%= link_to 'My Consult', current_user %><br>
-		<% else %>
-			<%= link_to 'Question Which invits Me', current_user %><br>
-			<%= link_to 'XX Consults Me', current_user %><br>
-		<% end %>
-			<%= link_to 'My Bookmark', home_my_bookmark_path %><br>
-			<%= link_to 'My Draft', home_my_draft_path %>
-	<% else %>
-		<%= link_to 'My Question', new_user_registration_path %><br>
-		<%= link_to 'My Consult', new_user_registration_path %><br>
-		<%= link_to 'My Bookmark', new_user_registration_path %><br>
-		<%= link_to 'My Draft', new_user_registration_path %>
-	<% end %>
 </div>
