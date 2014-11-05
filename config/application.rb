@@ -18,7 +18,5 @@ module Zrquan
     config.to_prepare do
       DeviseController.respond_to :html, :json
     end
-
-    config.compass.require "compass/import-once/activate"
   end
 end

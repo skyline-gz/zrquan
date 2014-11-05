@@ -9,7 +9,7 @@
   <!--[if lt IE 9]>
     <%= javascript_include_tag 'html5shiv'%>
   <![endif]-->
-  <%= stylesheet_link_tag 'zrquan', media: 'all'%>
+  <%= stylesheet_link_tag 'zrquan', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -17,6 +17,6 @@
     <p class="alert"><%= alert %></p>
     <%= yield %>
 </body>
-<%= javascript_include_tag 'require', "data-main" =>"/assets/zrquan.js" %>
+<%= javascript_include_tag 'zrquan', 'data-turbolinks-track' => true %>
 <%= yield :page_javascript %>
 </html>
