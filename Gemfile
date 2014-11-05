@@ -4,21 +4,26 @@ source 'https://ruby.taobao.org/'
 # rails默认系列gem
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
+
+# 前端系列gem
 # Use SCSS for stylesheets
-# gem 'sass-rails', '~> 4.0.3'
-gem 'sass', '3.2.19'
+gem 'sass-rails', '~> 4.0.3'
 # Use Compass CSS Framework
-gem 'compass', '0.12.7'
+gem 'compass-rails', '2.0.0'
 # Ensure import Compass modules once
 gem 'compass-import-once', '1.0.5'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-# js为前端开发首选语言，暂不考虑使用coffee，若源码中含有coffee文件，可使用grunt-coffee预编译成js再放入rails目录中
-# gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+# javascript库：jquery
+gem 'jquery-rails', '3.1.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# 暂时不使用turbolinks,因为IE8~9上不支持history.pushState，且会引入其它问题
-# gem 'turbolinks'
+gem 'turbolinks'
+# 此处使用百度的富内容编辑器Ueditor
+gem 'rails_kindeditor', '0.4.5'
+
+# 后端系列gem
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -45,9 +50,6 @@ gem 'spring',        group: :development
 # 数据库：postgresql
 gem 'pg', '0.17.1'
 
-# javascript库：jquery
-gem 'jquery-rails', '3.1.0'
-
 # 测试
 group :development, :test do
 	gem 'rspec', '~> 3.1.0'
@@ -71,9 +73,6 @@ gem 'thin', group: :development
 
 # 分页
 gem 'will_paginate', '~> 3.0.5'
-
-# 富内容编辑
-gem 'rails_kindeditor', '0.4.5'
 
 # 省市级联
 gem 'china_city'

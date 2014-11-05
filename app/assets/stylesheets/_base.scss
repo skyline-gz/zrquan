@@ -1,0 +1,7 @@
+@import "compass/utilities/sprites";
+@import "icons/*.png";
+@import "avatars/*.png";
+@import "big-icons/*.png";
+@include all-icons-sprites;
+@include all-avatars-sprites;
+@include all-big-icons-sprites;

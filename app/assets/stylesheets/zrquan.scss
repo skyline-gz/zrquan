@@ -1,0 +1,28 @@
+@import "compass";
+@import "compass/reset";
+
+//预定义常量
+@import "variables";
+
+//预定义函数
+@import "minixs";
+
+//通用帮助类
+@import "utilities";
+
+//引用插件依赖的样式
+@import "lib/jquery.jcrop";
+
+//布局
+@import "layout";
+@import "layout.navigation";
+@import "layout.home";
+
+//通用组件
+@import "component.modal";
+@import "component.subject";
+@import "component.infoblock";
+
+//自定义组件
+@import "component.modal.auth";
+@import "component.popover.profile";

@@ -1,0 +1,278 @@
+@import "compass/css3";
+
+@import "base";
+@import "minixs";
+@import "variables";
+
+.home-top {
+  background: #000000;
+  display: block;
+  width: 100%;
+  height: 380px;
+
+  .home-top-container {
+    display: block;
+    width: 100%;
+    height: 380px;
+    background: url(../images/home/main_bg.png) top center no-repeat;
+    position: relative;
+
+    .home-top-inner-wrap {
+      width: 450px;
+      height: 38px;
+      margin: 0 auto;
+      padding-top: 326px;
+    }
+
+    .home-top-search-form {
+      position: relative;
+      width: 360px;
+      float:left;
+    }
+
+    .home-top-search-input {
+      @include transition(all .2s ease-in-out);
+      @include box-sizing(border-box);
+      @include border-radius(4px);
+      @include box-shadow(inset 0 1px 3px rgba(0,0,0,.2),0 1px 0 rgba(255,255,255,.1));
+
+      padding: 9px 10px;
+      font-size: 14px;
+      outline: medium none;
+      overflow: hidden;
+      width: 100%;
+      line-height: 18px;
+      border: 1px solid #D2D2D2;
+      background-color: #ffffff;
+      color: #49525c;
+      height: 38px;
+    }
+
+    .home-top-add-question {
+      @include transition(all .2s ease-in-out);
+      @include border-radius(4px);
+      @include box-shadow(0 1px 2px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15));
+      @include text-shadow(0 1px 1px rgba(0,0,0,.12));
+      float:left;
+
+      margin: 0 0 0 6px;
+      background: $base-color;
+      background-color: $base-color;
+      @include background-image(linear-gradient(top,$base-color,$deep-base-color));
+      background-repeat: repeat-x;
+      color: #FFF;
+      font-size: 18px;
+      width: 80px;
+      height: 38px;
+      line-height: 38px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid $base-color;
+      outline: 0;
+    }
+
+    .home-top-search-submit {
+      position: absolute;
+      right: 4px;
+      top: 0px;
+      border: 0;
+      cursor: pointer;
+      display: inline-block;
+      background: 0;
+      margin-top: 8px;
+
+      .icons-search {
+        width: 30px;
+        height: 24px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.home-mid {
+  background: url(../images/home/home_mid_bg.png);
+  display: block;
+  width: 100%;
+  height: 211px;
+
+  .home-mid-title-warp {
+    width: 190px;
+    margin: 0 auto;
+    padding-top: 26px;
+    padding-bottom: 34px;
+  }
+
+  .home-mid-title {
+    line-height: 25px;
+    font-size: 25px;
+  }
+
+  .icons-point_left {
+    float:left;
+    display: block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin: 3px 10px 0 16px;
+  }
+
+  .home-mid-subtitle {
+    font-size: 14px;
+    line-height: 18px;
+    color: $light-dark2;
+  }
+
+  .warp-content {
+    position: relative;
+  }
+
+  .home-mid-mentor-switch {
+    position: absolute;
+    font-size: 12px;
+    color: $light-dark3;
+    top: 50px;
+    right: 0px;
+    cursor: pointer;
+  }
+
+  .home-mid-mentor-block {
+    margin: 0 35px;
+    float:left;
+    width: 188px;
+
+    .home-mid-mentor-logo {
+      float:left;
+      display: block;
+      width: 64px;
+      height: 64px;
+    }
+
+    .home-mid-mentor-desc {
+      float:left;
+      margin-left: 10px;
+
+      .home-mid-mentor-name {
+        line-height: 16px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .home-mid-mentor-company {
+        margin-top: 2px;
+        line-height: 14px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .home-mid-mentor-position {
+        line-height: 14px;
+        font-size: 12px;
+      }
+
+      .home-mid-mentor-subjects {
+        margin-top: 3px;
+      }
+
+      .icons-vip {
+        @include inline-block;
+        width: 16px;
+        height: 13px;
+        line-height: 16px;
+        margin-left: 3px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
+
+.home-content {
+  @extend .warp-content;
+  margin-top: 35px;
+  @include clearfix;
+
+  .home-left-content {
+    float: left;
+  }
+
+  .home-news {
+    float:left;
+    border-bottom: 1px solid #CCCCCC;
+    width: 722px;
+    height: 32px;;
+
+    .home-news-header {
+      float:left;
+      height: 24px;
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    .icons-point_left {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      margin-right: 8px;
+      margin-top: 2px;
+    }
+
+    .home-news-ul {
+      float:right;
+
+      .home-news-li {
+        float:left;
+        margin: 0 10px;
+        width: 38px;
+        font-size: 16px;
+        text-align: center;
+        height: 30px;
+        cursor: pointer;
+      }
+
+      .home-news-li-current {
+        color: $light-base-color;
+        border-bottom: 3px solid $base-color;
+      }
+    }
+  }
+
+  .home-right-panel {
+    float: right;
+    width: 270px;
+
+    .home-right-panel-ad {
+      @include border-radius(4px);
+      width: 270px;
+      height: 101px;
+      display: block;
+      background: url(../images/home/home_ad.png) no-repeat;
+    }
+
+    .home-right-panel-ul {
+      margin-top: 25px;
+
+      .home-right-panel-li {
+        margin-bottom: 3px;
+        line-height: 32px;
+        height: 32px;
+        font-size: 14px;
+        color: $light-dark2;
+        background: #F7F7F7;
+        cursor: pointer;
+      }
+
+      .home-right-panel-li-hover {
+        background: #E0E0E0;
+        border-right: 6px solid $base-color;
+      }
+    }
+
+    .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myquestion, .icons-myfavorite, .icons-myexperience {
+      @include inline-block;
+      width: 19px;
+      height: 18px;
+      margin-left: 12px;
+      margin-right: 15px;
+    }
+  }
+}

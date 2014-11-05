@@ -1,0 +1,13 @@
+@import "compass/css3";
+@import "compass/utilities";
+
+.component-subject {
+  float: left;
+  @include border-radius(4px);
+  color: #ffffff;
+  background: #fbd28d;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 2px 3px;
+  margin-right: 3px;
+}
