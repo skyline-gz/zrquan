@@ -59,14 +59,9 @@ class AnswersController < ApplicationController
     @question = Question.find(@answer.question_id)
     latest_score = @answer.agree_score
     logger.debug(latest_score)
-    # 更新赞同分数（导师+2，普通用户+1）
-    if current_user.verified_flag
-      latest_score = latest_score + 2
-      @answer.update!(:agree_score => latest_score)
-    else
-      latest_score = latest_score + 1
-      @answer.update!(:agree_score => latest_score)
-    end
+    # 更新赞同分数（因为职人的范围变广，所有人都+1）
+    latest_score = latest_score + 1
+    @answer.update!(:agree_score => latest_score)
     # 创建消息，发送给用户
     if @answer.user.user_setting.aggred_flag
       logger.debug("message")

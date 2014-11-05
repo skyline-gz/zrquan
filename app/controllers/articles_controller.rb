@@ -48,14 +48,9 @@ class ArticlesController < ApplicationController
 	def agree
     authorize! :agree, @article
 		latest_score = @article.try(:agree_score) || 0
-		# 更新赞同分数（导师+2，普通用户+1）
-		if current_user.verified_flag
-			latest_score = latest_score + 2
-			@article.update!(:agree_score => latest_score)
-		else
-			latest_score = latest_score + 1
-			@article.update!(:agree_score => latest_score)
-		end
+		# 更新赞同分数（因为职人的范围变广，所有人都+1）
+    latest_score = latest_score + 1
+    @article.update!(:agree_score => latest_score)
 		# 创建消息，发送给用户
 		if @article.user.user_setting.aggred_flag
 			@article.user.messages.create!(msg_type: 11, extra_info1_id: current_user.id, extra_info1_type: "User",
