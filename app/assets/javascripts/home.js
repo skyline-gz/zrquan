@@ -39,9 +39,15 @@ $(document).ready(function() {
         }
     });
 
-    function initAuthModal() {
+    //点击登陆
+    $(".btn-sign-in").click(function(){
+        removeErrorTips();
+        if(checkAuthParam("sign-in")){
+            return;
+        }
+    });
 
-    }
+    $.on("click.dismiss.bs.modal")
 
     function checkAuthParam(sType) {
         if(sType == "sign-up") {
@@ -65,6 +71,17 @@ $(document).ready(function() {
             if(!$("input[name=input-sign-up-service]").is(":checked")) {
                 addErrorTips("#sign-up-protocol", "请同意服务协议");
             }
+        } else if (sType == "sign-in") {
+            if(checkEmpty("input[name=input-sign-in-email]")) {
+                addErrorTips("#sign-in-email", "请输入邮箱账号");
+            } else if (!RegEmail.test($("input[name=input-sign-in-email]").val())){
+                addErrorTips("#sign-in-email", "请输入合法邮箱账号");
+            }
+            if(checkEmpty("input[name=input-sign-in-password]")) {
+                addErrorTips("#sign-in-password", "请输入密码");
+            } else if (!RegPassword.test($("input[name=input-sign-in-password]").val())){
+                addErrorTips("#sign-in-password", "至少为8位字母或数字");
+            }
         }
     }
 
@@ -74,10 +91,7 @@ $(document).ready(function() {
 
     function checkName(sExp) {
         var value = $(sExp).val();
-        if(!RegEnglishName.test(value) && !RegChineseName.test(value)) {
-            return false;
-        }
-        return true;
+        return RegEnglishName.test(value) || RegChineseName.test(value);
     }
 
     function addErrorTips(sExp, sError) {
