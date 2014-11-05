@@ -10,9 +10,12 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//基本库
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require ./component/component.transition
-//= require ./component/component.modal
+//组件
+//= require ./components/component.transition
+//= require ./components/component.modal
+//逻辑
 //= require home

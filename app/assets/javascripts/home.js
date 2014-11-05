@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    var RegEnglishName = /^[a-z|A-Z]{0,20}$/;
+    var RegChineseName = /^[\u4e00-\u9fa5]{0,9}$/;
+    var RegPassword =/\w{8,16}/;
+    var RegEmail = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+
     var authModal = $('#authModal');
     $('#btn-sign-up').click(function(){
         $('div[role=sign-in]', authModal).hide();
@@ -25,4 +30,63 @@ $(document).ready(function() {
     $(".top-link-logo").click(function(){
         $('#activateModal').modal('show');
     });
+
+    //点击注册
+    $(".btn-sign-up").click(function(){
+        removeErrorTips();
+        if(checkAuthParam("sign-up")){
+            return;
+        }
+    });
+
+    function initAuthModal() {
+
+    }
+
+    function checkAuthParam(sType) {
+        if(sType == "sign-up") {
+            if(checkEmpty("input[name=input-sign-up-first-name]")
+                || checkEmpty("input[name=input-sign-up-last-name]")) {
+                addErrorTips("#sign-up-name", "请输入姓名");
+            } else if (!checkName("input[name=input-sign-up-first-name]")
+                || !checkName("input[name=input-sign-up-last-name]")) {
+                addErrorTips("#sign-up-name", "姓名只能为中英文字符");
+            }
+            if(checkEmpty("input[name=input-sign-up-email]")) {
+                addErrorTips("#sign-up-email", "请输入邮箱账号");
+            } else if (!RegEmail.test($("input[name=input-sign-up-email]").val())){
+                addErrorTips("#sign-up-email", "请输入合法邮箱账号");
+            }
+            if(checkEmpty("input[name=input-sign-up-password]")) {
+                addErrorTips("#sign-up-password", "请输入密码");
+            } else if (!RegPassword.test($("input[name=input-sign-up-password]").val())){
+                addErrorTips("#sign-up-password", "至少为8位字母或数字");
+            }
+            if(!$("input[name=input-sign-up-service]").is(":checked")) {
+                addErrorTips("#sign-up-protocol", "请同意服务协议");
+            }
+        }
+    }
+
+    function checkEmpty(sExp) {
+        return $.trim($(sExp).val()).length == 0;
+    }
+
+    function checkName(sExp) {
+        var value = $(sExp).val();
+        if(!RegEnglishName.test(value) && !RegChineseName.test(value)) {
+            return false;
+        }
+        return true;
+    }
+
+    function addErrorTips(sExp, sError) {
+        var eTips = $(document.createElement("DIV")).addClass("modal-input-tips");
+        eTips.append(sError);
+        $(sExp).append(eTips);
+    }
+
+    function removeErrorTips() {
+        $(".modal-input-tips", authModal).remove();
+    }
 });

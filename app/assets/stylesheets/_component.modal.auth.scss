@@ -52,8 +52,18 @@
     }
 
     .modal-input {
+      position: relative;
       @include clearfix;
       margin: 5px 0;
+    }
+
+    .modal-input-tips {
+      position: absolute;
+      top: 5px;
+      left: 240px;
+      overflow: hidden;
+      white-space: nowrap;
+      color: rgb(255, 126, 0);
     }
 
     .modal-input-checkbox {
