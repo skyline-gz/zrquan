@@ -3,7 +3,7 @@
 @import "variables";
 
 .user-top {
-  margin-top: 30px;
+  margin-top: 15px;
   display: block;
   height: 317px;
 
@@ -70,7 +70,134 @@
       }
 
       .user-profile-right {
+        float: left;
+        padding-top: 16px;
+        padding-left: 24px;
+        height: 100%;
+        .user-profile-header {
+          clear: both;
+          line-height: 23px;
+          height: 23px;
 
+          .user-profile-name {
+            float: left;
+            color: #ffffff;
+            font-size: 23px;
+          }
+
+          .user-profile-vip {
+            float: left;
+            display: block;
+            margin-top: 4px;
+            margin-left: 3px;
+            @extend .icons-b_vip;
+            width: 23px;
+            height: 17px;
+          }
+
+          .user-profile-opt {
+            float: left;
+            margin-left: 8px;
+            line-height: 14px;
+
+            .user-profile-opt-cont {
+              float: left;
+              margin-left: 8px;
+              margin-right: 8px;
+              color: #ffffff;
+              font-size: 14px;
+              cursor: pointer;
+            }
+
+            .user-profile-consult, .user-profile-star, .user-profile-private_message {
+              float: left;
+              display: block;
+              margin-top: 1px;
+            }
+
+            .user-profile-consult {
+              @extend .icons-u_question;
+              width: 8px;
+              height: 12px;
+            }
+
+            .user-profile-star {
+              @extend .icons-u_star;
+              width: 12px;
+              height: 12px;
+            }
+
+            .user-profile-private_message {
+              @extend .icons-u_private_message;
+              width: 12px;
+              height: 12px;
+            }
+
+            .spilt {
+              float: left;
+              height: 14px;
+              width: 1px;
+              background: white;
+            }
+          }
+        }
+
+        .user-profile-content {
+          @include clearfix;
+          margin-top: 25px;
+
+          .user-content-row {
+            @include clearfix;
+            margin-top: 12px;
+            line-height: 14px;
+            height: 14px;
+          }
+
+          .desc {
+            float: left;
+            font: 14px;
+            color: #333;
+          }
+
+          .spilt {
+            float: left;
+            margin: 0 8px;
+            display: block;
+            width: 1px;
+            height: 14px;
+            background: #333;
+          }
+
+          .icon-profile-profession, .icon-profile-location, .icon-profile-education, .icon-profile-specialized {
+            display: block;
+            float: left;
+            width: 12px;
+            margin-right: 8px;
+          }
+
+          .icon-profile-profession {
+            height: 8px;
+            margin-top: 2px;
+            @extend .icons-u_profession;
+          }
+
+          .icon-profile-location {
+            height: 11px;
+            margin-left: 2px;
+            @extend .icons-u_location;
+          }
+
+          .icon-profile-education {
+            height: 8px;
+            margin-top: 2px;
+            @extend .icons-u_education
+          }
+
+          .icon-profile-specialized {
+            height: 13px;
+            @extend .icons-u_specialized
+          }
+        }
       }
     }
   }
@@ -78,7 +205,7 @@
 
 
   .user-detail {
-    margin-top: 11px;
+    margin-top: 8px;
     height: 45px;
     padding: 16px 32px;
     background: $light-grey;
@@ -100,5 +227,72 @@
 }
 
 .user-content {
+  .user-content-categories {
+    background: $light-grey;
+    border:1px solid $deep-grey;
+    @include border-radius($border-radius-small);
+    padding-left: 2px;
+    margin-top: 10px;
+    height: 38px;
 
+    .user-content-category {
+      float: left;
+      width: 65px;
+      height: 38px;
+      line-height: 38px;
+      font-size: 14px;
+      text-align: center;
+      color: #333;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+
+    .user-content-category-current {
+      background: $deep-grey;
+      font-weight: bold;
+    }
+  }
+
+  .user-content-header {
+    margin-top: 10px;
+    border-bottom: 1px solid $deep-grey;
+    width: 100%;
+    height: 24px;
+
+    .user-content-li {
+      float: left;
+      margin: 0 10px;
+      width: 50px;
+      font-size: 14px;
+      text-align: center;
+      height: 22px;
+      cursor: pointer;
+    }
+
+    .user-content-li-current {
+      color: $light-base-color;
+      border-bottom: 3px solid $base-color;
+    }
+  }
+
+  .user-main-content {
+    overflow: hidden;
+    padding-top: 22px;
+  }
+
+  .user-content-left {
+    float: left;
+    width: 772px;
+    border-right: 1px solid $deep-grey;
+  }
+
+  .user-content-infoblock {
+    margin-top: -16px;
+  }
+
+//  .user-content-right {
+//    float: left;
+//    height: 100%;
+//    border-left: 1px solid $deep-grey;
+//  }
 }

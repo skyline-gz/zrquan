@@ -497,8 +497,8 @@ img.jcrop-preview {
 }
 
 /* line 258, icons/*.png */
-.icons-sprite, .icons-add, .icons-b_vip, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt, .icons-u_education, .icons-u_location, .icons-u_message, .icons-u_question, .icons-u_specialized, .icons-u_star, .icons-u_zhiye, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
-  background: url('/images/icons-sed49e70128.png') no-repeat;
+.icons-sprite, .icons-add, .icons-b_vip, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-vip, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt, .icons-u_education, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education, .icons-u_location, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location, .icons-u_private_message, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message, .icons-u_profession, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession, .icons-u_question, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult, .icons-u_specialized, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized, .icons-u_star, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-s729f2ea71a.png') no-repeat;
 }
 
 /* line 90, avatars/*.png */
@@ -517,7 +517,7 @@ img.jcrop-preview {
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-b_vip {
+.icons-b_vip, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-vip {
   background-position: 0 -47px;
 }
 
@@ -607,38 +607,38 @@ img.jcrop-preview {
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-u_education {
+.icons-u_education, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education {
   background-position: 0 -299px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-u_location {
+.icons-u_location, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location {
   background-position: 0 -288px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-u_message {
+.icons-u_private_message, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message {
   background-position: 0 -248px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-u_question {
+.icons-u_profession, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession {
+  background-position: 0 -278px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_question, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult {
   background-position: 0 -318px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-u_specialized {
+.icons-u_specialized, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized {
   background-position: 0 -217px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-u_star {
+.icons-u_star, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star {
   background-position: 0 -376px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-u_zhiye {
-  background-position: 0 -278px;
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
@@ -718,24 +718,25 @@ div[role=infoblocks] {
 /* line 12, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock {
   clear: both;
+  overflow: hidden;
   padding-top: 21px;
 }
-/* line 16, ../sass/_component.infoblock.scss */
+/* line 17, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left {
   float: left;
   width: 32px;
 }
-/* line 20, ../sass/_component.infoblock.scss */
+/* line 21, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar {
   width: 32px;
   height: 32px;
   display: block;
 }
-/* line 26, ../sass/_component.infoblock.scss */
+/* line 27, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good {
   margin-top: 6px;
 }
-/* line 29, ../sass/_component.infoblock.scss */
+/* line 30, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -750,7 +751,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   font-size: 12px;
   font-weight: bold;
 }
-/* line 40, ../sass/_component.infoblock.scss */
+/* line 41, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action {
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
@@ -766,7 +767,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   text-align: center;
   cursor: pointer;
 }
-/* line 52, ../sass/_component.infoblock.scss */
+/* line 53, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good {
   display: -moz-inline-stack;
   display: inline-block;
@@ -777,7 +778,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   width: 10px;
   height: 11px;
 }
-/* line 60, ../sass/_component.infoblock.scss */
+/* line 61, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right {
   float: left;
   margin-left: 11px;
@@ -785,12 +786,12 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right {
   border-bottom: 1px solid #eeeeee;
   width: 675px;
 }
-/* line 67, ../sass/_component.infoblock.scss */
+/* line 68, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header {
   font-size: 12px;
   line-height: 12px;
 }
-/* line 71, ../sass/_component.infoblock.scss */
+/* line 72, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip {
   display: -moz-inline-stack;
   display: inline-block;
@@ -801,25 +802,25 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   width: 16px;
   height: 13px;
 }
-/* line 77, ../sass/_component.infoblock.scss */
+/* line 78, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username {
   font-size: 13px;
   font-weight: bold;
   color: black;
 }
-/* line 83, ../sass/_component.infoblock.scss */
+/* line 84, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action {
   font-weight: normal;
   color: #868686;
 }
-/* line 88, ../sass/_component.infoblock.scss */
+/* line 89, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-time {
   font-weight: normal;
   color: #868686;
   float: right;
   margin-right: 10px;
 }
-/* line 96, ../sass/_component.infoblock.scss */
+/* line 97, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-title {
   margin-top: 2px;
   font-size: 14px;
@@ -828,19 +829,19 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   line-height: 23px;
   color: #ff9700;
 }
-/* line 105, ../sass/_component.infoblock.scss */
+/* line 106, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
   font-size: 14px;
   line-height: 22px;
   color: #222222;
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
 }
-/* line 112, ../sass/_component.infoblock.scss */
+/* line 113, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer {
   margin-top: 5px;
   line-height: 22px;
 }
-/* line 116, ../sass/_component.infoblock.scss */
+/* line 117, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment {
   display: -moz-inline-stack;
   display: inline-block;
@@ -851,7 +852,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   color: #868686;
   margin-right: 12px;
 }
-/* line 121, ../sass/_component.infoblock.scss */
+/* line 122, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment {
   display: -moz-inline-stack;
   display: inline-block;
@@ -863,7 +864,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   height: 12px;
   margin-right: 6px;
 }
-/* line 129, ../sass/_component.infoblock.scss */
+/* line 130, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites {
   display: -moz-inline-stack;
   display: inline-block;
@@ -874,7 +875,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   color: #868686;
   margin-right: 12px;
 }
-/* line 134, ../sass/_component.infoblock.scss */
+/* line 135, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites {
   display: -moz-inline-stack;
   display: inline-block;
@@ -887,7 +888,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   margin-right: 4px;
   margin-top: -2px;
 }
-/* line 143, ../sass/_component.infoblock.scss */
+/* line 144, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects {
   display: -moz-inline-stack;
   display: inline-block;
@@ -896,7 +897,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   zoom: 1;
   *display: inline;
 }
-/* line 148, ../sass/_component.infoblock.scss */
+/* line 149, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #438cca;
 }
@@ -1994,7 +1995,7 @@ div[role=navigation] a:hover {
 
 /* line 5, ../sass/_layout.user.scss */
 .user-top {
-  margin-top: 30px;
+  margin-top: 15px;
   display: block;
   height: 317px;
 }
@@ -2066,9 +2067,149 @@ div[role=navigation] a:hover {
   width: 1px;
   height: 16px;
 }
-/* line 80, ../sass/_layout.user.scss */
+/* line 72, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right {
+  float: left;
+  padding-top: 16px;
+  padding-left: 24px;
+  height: 100%;
+}
+/* line 77, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header {
+  clear: both;
+  line-height: 23px;
+  height: 23px;
+}
+/* line 82, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-name {
+  float: left;
+  color: #ffffff;
+  font-size: 23px;
+}
+/* line 88, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-vip {
+  float: left;
+  display: block;
+  margin-top: 4px;
+  margin-left: 3px;
+  width: 23px;
+  height: 17px;
+}
+/* line 98, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt {
+  float: left;
+  margin-left: 8px;
+  line-height: 14px;
+}
+/* line 103, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-opt-cont {
+  float: left;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* line 112, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message {
+  float: left;
+  display: block;
+  margin-top: 1px;
+}
+/* line 118, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult {
+  width: 8px;
+  height: 12px;
+}
+/* line 124, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star {
+  width: 12px;
+  height: 12px;
+}
+/* line 130, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message {
+  width: 12px;
+  height: 12px;
+}
+/* line 136, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .spilt {
+  float: left;
+  height: 14px;
+  width: 1px;
+  background: white;
+}
+/* line 145, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content {
+  margin-top: 25px;
+}
+/* line 15, ../sass/mixins/_clearfix.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content:before, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content:after {
+  clear: both;
+}
+/* line 149, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .user-content-row {
+  margin-top: 12px;
+  line-height: 14px;
+  height: 14px;
+}
+/* line 15, ../sass/mixins/_clearfix.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .user-content-row:before, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .user-content-row:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .user-content-row:after {
+  clear: both;
+}
+/* line 156, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .desc {
+  float: left;
+  font: 14px;
+  color: #333;
+}
+/* line 162, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .spilt {
+  float: left;
+  margin: 0 8px;
+  display: block;
+  width: 1px;
+  height: 14px;
+  background: #333;
+}
+/* line 171, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized {
+  display: block;
+  float: left;
+  width: 12px;
+  margin-right: 8px;
+}
+/* line 178, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession {
+  height: 8px;
+  margin-top: 2px;
+}
+/* line 184, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location {
+  height: 11px;
+  margin-left: 2px;
+}
+/* line 190, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education {
+  height: 8px;
+  margin-top: 2px;
+}
+/* line 196, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized {
+  height: 13px;
+}
+/* line 207, ../sass/_layout.user.scss */
 .user-top .user-detail {
-  margin-top: 11px;
+  margin-top: 8px;
   height: 45px;
   padding: 16px 32px;
   background: #f6f9f9;
@@ -2080,14 +2221,82 @@ div[role=navigation] a:hover {
   border-radius: 3px;
   font-size: 14px;
 }
-/* line 89, ../sass/_layout.user.scss */
+/* line 216, ../sass/_layout.user.scss */
 .user-top .user-detail .user-detail-left {
   float: left;
   font-weight: bold;
   color: #333;
   height: 100%;
 }
-/* line 96, ../sass/_layout.user.scss */
+/* line 223, ../sass/_layout.user.scss */
 .user-top .user-detail .user-detail-right {
   color: #333;
+}
+
+/* line 230, ../sass/_layout.user.scss */
+.user-content .user-content-categories {
+  background: #f6f9f9;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding-left: 2px;
+  margin-top: 10px;
+  height: 38px;
+}
+/* line 238, ../sass/_layout.user.scss */
+.user-content .user-content-categories .user-content-category {
+  float: left;
+  width: 65px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+  margin-left: 20px;
+  cursor: pointer;
+}
+/* line 250, ../sass/_layout.user.scss */
+.user-content .user-content-categories .user-content-category-current {
+  background: #cccccc;
+  font-weight: bold;
+}
+/* line 256, ../sass/_layout.user.scss */
+.user-content .user-content-header {
+  margin-top: 10px;
+  border-bottom: 1px solid #cccccc;
+  width: 100%;
+  height: 24px;
+}
+/* line 262, ../sass/_layout.user.scss */
+.user-content .user-content-header .user-content-li {
+  float: left;
+  margin: 0 10px;
+  width: 50px;
+  font-size: 14px;
+  text-align: center;
+  height: 22px;
+  cursor: pointer;
+}
+/* line 272, ../sass/_layout.user.scss */
+.user-content .user-content-header .user-content-li-current {
+  color: #ffa121;
+  border-bottom: 3px solid #ff9700;
+}
+/* line 278, ../sass/_layout.user.scss */
+.user-content .user-main-content {
+  overflow: hidden;
+  padding-top: 22px;
+}
+/* line 283, ../sass/_layout.user.scss */
+.user-content .user-content-left {
+  float: left;
+  width: 772px;
+  border-right: 1px solid #cccccc;
+}
+/* line 289, ../sass/_layout.user.scss */
+.user-content .user-content-infoblock {
+  margin-top: -16px;
 }

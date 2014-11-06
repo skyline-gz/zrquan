@@ -11,6 +11,7 @@ div[role=infoblocks] {
 
   .component-infoblock {
     clear: both;
+    overflow: hidden;    //解决子元素浮动时父元素没有被自动撑开的问题
     padding-top: 21px;
 
     .component-infoblock-left {
