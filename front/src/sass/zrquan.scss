@@ -17,6 +17,7 @@
 @import "component.modal";
 @import "component.subject";
 @import "component.infoblock";
+@import "component.categories";
 
 //自定义组件
 @import "component.modal.auth";
@@ -27,3 +28,4 @@
 @import "layout.navigation";
 @import "layout.home";
 @import "layout.user";
+@import "layout.verified_users_list";

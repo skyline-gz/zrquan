@@ -827,7 +827,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   font-weight: bold;
   height: 23px;
   line-height: 23px;
-  color: #ff9700;
+  color: #EE8E00;
 }
 /* line 106, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
@@ -900,6 +900,36 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 /* line 149, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #438cca;
+}
+
+/* line 1, ../sass/_component.categories.scss */
+.component-categories {
+  background: #f6f9f9;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding-left: 2px;
+  height: 38px;
+}
+/* line 8, ../sass/_component.categories.scss */
+.component-categories .component-category {
+  float: left;
+  width: 65px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+  margin-left: 20px;
+  cursor: pointer;
+}
+/* line 20, ../sass/_component.categories.scss */
+.component-categories .component-category-current {
+  background: #cccccc;
+  font-weight: bold;
 }
 
 /* line 9, ../sass/_component.modal.auth.scss */
@@ -2235,42 +2265,16 @@ div[role=navigation] a:hover {
 
 /* line 230, ../sass/_layout.user.scss */
 .user-content .user-content-categories {
-  background: #f6f9f9;
-  border: 1px solid #cccccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  padding-left: 2px;
   margin-top: 10px;
-  height: 38px;
 }
-/* line 238, ../sass/_layout.user.scss */
-.user-content .user-content-categories .user-content-category {
-  float: left;
-  width: 65px;
-  height: 38px;
-  line-height: 38px;
-  font-size: 14px;
-  text-align: center;
-  color: #333;
-  margin-left: 20px;
-  cursor: pointer;
-}
-/* line 250, ../sass/_layout.user.scss */
-.user-content .user-content-categories .user-content-category-current {
-  background: #cccccc;
-  font-weight: bold;
-}
-/* line 256, ../sass/_layout.user.scss */
+/* line 234, ../sass/_layout.user.scss */
 .user-content .user-content-header {
   margin-top: 10px;
   border-bottom: 1px solid #cccccc;
   width: 100%;
   height: 24px;
 }
-/* line 262, ../sass/_layout.user.scss */
+/* line 240, ../sass/_layout.user.scss */
 .user-content .user-content-header .user-content-li {
   float: left;
   margin: 0 10px;
@@ -2280,23 +2284,38 @@ div[role=navigation] a:hover {
   height: 22px;
   cursor: pointer;
 }
-/* line 272, ../sass/_layout.user.scss */
+/* line 250, ../sass/_layout.user.scss */
 .user-content .user-content-header .user-content-li-current {
   color: #ffa121;
   border-bottom: 3px solid #ff9700;
 }
-/* line 278, ../sass/_layout.user.scss */
+/* line 256, ../sass/_layout.user.scss */
 .user-content .user-main-content {
   overflow: hidden;
   padding-top: 22px;
 }
-/* line 283, ../sass/_layout.user.scss */
+/* line 261, ../sass/_layout.user.scss */
 .user-content .user-content-left {
   float: left;
   width: 772px;
   border-right: 1px solid #cccccc;
 }
-/* line 289, ../sass/_layout.user.scss */
+/* line 267, ../sass/_layout.user.scss */
 .user-content .user-content-infoblock {
   margin-top: -16px;
+}
+
+/* line 1, ../sass/_layout.verified_users_list.scss */
+.vul-header {
+  margin-top: 10px;
+}
+/* line 4, ../sass/_layout.verified_users_list.scss */
+.vul-header .vul-header-title {
+  margin-left: 20px;
+  font-size: 16px;
+  color: #333;
+}
+/* line 10, ../sass/_layout.verified_users_list.scss */
+.vul-header .vul-content-categories {
+  margin-top: 2px;
 }

@@ -228,29 +228,7 @@
 
 .user-content {
   .user-content-categories {
-    background: $light-grey;
-    border:1px solid $deep-grey;
-    @include border-radius($border-radius-small);
-    padding-left: 2px;
     margin-top: 10px;
-    height: 38px;
-
-    .user-content-category {
-      float: left;
-      width: 65px;
-      height: 38px;
-      line-height: 38px;
-      font-size: 14px;
-      text-align: center;
-      color: #333;
-      margin-left: 20px;
-      cursor: pointer;
-    }
-
-    .user-content-category-current {
-      background: $deep-grey;
-      font-weight: bold;
-    }
   }
 
   .user-content-header {
@@ -290,9 +268,4 @@
     margin-top: -16px;
   }
 
-//  .user-content-right {
-//    float: left;
-//    height: 100%;
-//    border-left: 1px solid $deep-grey;
-//  }
 }
