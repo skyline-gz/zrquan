@@ -64,11 +64,18 @@ div[role=navigation] {
       cursor: pointer;
     }
 
+    a.top-nav-link:hover {
+      color: #555;
+    }
+
     .current {
       .top-nav-link {
         color: #ffffff;
         background-color: $navigation-current-link-background-color;
         border-bottom: 2px solid $navigation-current-link-border-color;
+      }
+      a.top-nav-link:hover {
+        color: #ffffff;
       }
     }
   }
@@ -240,5 +247,9 @@ div[role=navigation] {
       height: 18px;
       margin-right: 6px;
     }
+  }
+
+  a:hover {
+    color: #555;
   }
 }

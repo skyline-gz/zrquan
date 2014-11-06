@@ -1,5 +1,3 @@
-/*! zrquan 2014-11-04 */
-
 /* line 17, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -349,24 +347,24 @@ img.jcrop-preview {
   max-width: none;
 }
 
-/* line 3, ../sass/layout.scss */
+/* line 3, ../sass/_layout.scss */
 body {
   padding-top: 52px;
 }
 
-/* line 7, ../sass/layout.scss */
+/* line 7, ../sass/_layout.scss */
 .warp-content, .home-content {
   width: 1040px;
   margin: 0 auto;
   clear: both;
 }
 
-/* line 13, ../sass/layout.scss */
+/* line 13, ../sass/_layout.scss */
 html body, html input, html textarea, html select, html button {
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
 }
 
-/* line 17, ../sass/layout.scss */
+/* line 17, ../sass/_layout.scss */
 body, input, textarea, select, button {
   line-height: 1.7;
   font-size: 13px;
@@ -376,24 +374,14 @@ body, input, textarea, select, button {
   word-wrap: break-word;
 }
 
-/* line 26, ../sass/layout.scss */
+/* line 26, ../sass/_layout.scss */
 input[type=text], input[type=password]:focus {
   -webkit-appearance: none;
 }
 
-/* line 30, ../sass/layout.scss */
+/* line 30, ../sass/_layout.scss */
 div[contentEditable], input, textarea, button, a:link {
   -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5);
-}
-
-/* line 34, ../sass/layout.scss */
-a:link {
-  text-decoration: none;
-}
-
-/* line 38, ../sass/layout.scss */
-a:hover {
-  text-decoration: underline;
 }
 
 /* line 194, icons/*.png */
@@ -561,7 +549,7 @@ a:hover {
   background-position: 0 0;
 }
 
-/* line 13, ../sass/layout.navigation.scss */
+/* line 13, ../sass/_layout.navigation.scss */
 div[role=navigation] {
   display: block;
   position: fixed;
@@ -573,12 +561,12 @@ div[role=navigation] {
   border-bottom: 2px solid #e9e9e9;
   width: 100%;
 }
-/* line 25, ../sass/layout.navigation.scss */
+/* line 25, ../sass/_layout.navigation.scss */
 div[role=navigation] .warp-content, div[role=navigation] .home-content {
   position: relative;
   height: inherit;
 }
-/* line 30, ../sass/layout.navigation.scss */
+/* line 30, ../sass/_layout.navigation.scss */
 div[role=navigation] a.top-link-logo {
   float: left;
   background: url(../images/logo.png) no-repeat 0 10px;
@@ -587,24 +575,24 @@ div[role=navigation] a.top-link-logo {
   height: 100%;
   text-indent: -9999px;
 }
-/* line 39, ../sass/layout.navigation.scss */
+/* line 39, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav {
   float: left;
   position: relative;
 }
-/* line 43, ../sass/layout.navigation.scss */
+/* line 43, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-ul {
   padding: 0;
   margin: 0 0 0 43px;
 }
-/* line 48, ../sass/layout.navigation.scss */
+/* line 48, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-li {
   float: left;
   position: relative;
   margin: 0;
   list-style: none;
 }
-/* line 55, ../sass/layout.navigation.scss */
+/* line 55, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav .top-nav-link {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   width: 60px;
@@ -616,13 +604,21 @@ div[role=navigation] .top-nav .top-nav-link {
   font-size: 18px;
   cursor: pointer;
 }
-/* line 68, ../sass/layout.navigation.scss */
+/* line 67, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav a.top-nav-link:hover {
+  color: #555;
+}
+/* line 72, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav .current .top-nav-link {
   color: #ffffff;
   background-color: #ff9700;
   border-bottom: 2px solid #dd8401;
 }
-/* line 77, ../sass/layout.navigation.scss */
+/* line 77, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav .current a.top-nav-link:hover {
+  color: #ffffff;
+}
+/* line 84, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar {
   float: left;
   display: block;
@@ -630,15 +626,14 @@ div[role=navigation] .top-nav-searchbar {
   width: 332px;
   margin-left: 10px;
 }
-/* line 84, ../sass/layout.navigation.scss */
+/* line 91, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-form {
   float: left;
   position: relative;
 }
-/* line 89, ../sass/layout.navigation.scss */
+/* line 96, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-input {
   -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   -webkit-box-sizing: border-box;
@@ -650,7 +645,6 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-input {
   -o-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
-  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   padding: 5px 10px;
   font-size: 14px;
@@ -662,10 +656,9 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-input {
   background-color: #ffffff;
   color: #49525c;
 }
-/* line 107, ../sass/layout.navigation.scss */
+/* line 114, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-add-question {
   -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   -webkit-border-radius: 4px;
@@ -674,7 +667,6 @@ div[role=navigation] .top-nav-searchbar .top-nav-add-question {
   -o-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   margin: 0 0 0 6px;
@@ -696,7 +688,7 @@ div[role=navigation] .top-nav-searchbar .top-nav-add-question {
   border: 1px solid #ff9700;
   outline: 0;
 }
-/* line 129, ../sass/layout.navigation.scss */
+/* line 136, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
   position: absolute;
   right: 7px;
@@ -707,32 +699,32 @@ div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
   background: 0;
   line-height: 55px;
 }
-/* line 139, ../sass/layout.navigation.scss */
+/* line 146, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-searchbar .top-nav-search-submit .icons-search_s {
   width: 18px;
   height: 18px;
   display: block;
 }
-/* line 148, ../sass/layout.navigation.scss */
+/* line 155, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 154, ../sass/layout.navigation.scss */
+/* line 161, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth > li {
   float: left;
   list-style: none;
 }
-/* line 159, ../sass/layout.navigation.scss */
+/* line 166, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth a {
   text-align: center;
   display: block;
   white-space: nowrap;
   cursor: pointer;
 }
-/* line 166, ../sass/layout.navigation.scss */
+/* line 173, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
   display: -moz-inline-stack;
   display: inline-block;
@@ -742,7 +734,7 @@ div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-aut
   *display: inline;
   vertical-align: middle;
 }
-/* line 171, ../sass/layout.navigation.scss */
+/* line 178, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-logo {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -753,17 +745,17 @@ div[role=navigation] .top-nav-auth .user-logo {
   height: 32px;
   padding-right: 12px;
 }
-/* line 180, ../sass/layout.navigation.scss */
+/* line 187, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-message {
   width: 26px;
   height: 21px;
 }
-/* line 185, ../sass/layout.navigation.scss */
+/* line 192, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth .icons-private_message {
   width: 29px;
   height: 23px;
 }
-/* line 190, ../sass/layout.navigation.scss */
+/* line 197, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth .user-link {
   color: #6b6b6b;
   width: auto;
@@ -772,26 +764,26 @@ div[role=navigation] .top-nav-auth .user-link {
   padding-right: 16px;
   font-size: 16px;
 }
-/* line 199, ../sass/layout.navigation.scss */
+/* line 206, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth .message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 205, ../sass/layout.navigation.scss */
+/* line 212, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-auth .private-message-link {
   width: 45px;
   height: 100%;
   line-height: 50px;
 }
-/* line 213, ../sass/layout.navigation.scss */
+/* line 220, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-noauth {
   margin: 0;
   position: absolute;
   right: 0;
   line-height: 50px;
 }
-/* line 219, ../sass/layout.navigation.scss */
+/* line 226, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-noauth > li {
   display: -moz-inline-stack;
   display: inline-block;
@@ -804,7 +796,7 @@ div[role=navigation] .top-nav-noauth > li {
   font-size: 14px;
   margin: 0 15px;
 }
-/* line 227, ../sass/layout.navigation.scss */
+/* line 234, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-noauth a {
   text-align: center;
   display: block;
@@ -812,7 +804,7 @@ div[role=navigation] .top-nav-noauth a {
   cursor: pointer;
   color: #868686;
 }
-/* line 235, ../sass/layout.navigation.scss */
+/* line 242, ../sass/_layout.navigation.scss */
 div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   display: -moz-inline-stack;
   display: inline-block;
@@ -824,15 +816,19 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   height: 18px;
   margin-right: 6px;
 }
+/* line 252, ../sass/_layout.navigation.scss */
+div[role=navigation] a:hover {
+  color: #555;
+}
 
-/* line 7, ../sass/layout.home.scss */
+/* line 7, ../sass/_layout.home.scss */
 .home-top {
   background: #000000;
   display: block;
   width: 100%;
   height: 380px;
 }
-/* line 13, ../sass/layout.home.scss */
+/* line 13, ../sass/_layout.home.scss */
 .home-top .home-top-container {
   display: block;
   width: 100%;
@@ -840,23 +836,22 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   background: url(../images/home/main_bg.png) top center no-repeat;
   position: relative;
 }
-/* line 20, ../sass/layout.home.scss */
+/* line 20, ../sass/_layout.home.scss */
 .home-top .home-top-container .home-top-inner-wrap {
   width: 450px;
   height: 38px;
   margin: 0 auto;
   padding-top: 326px;
 }
-/* line 27, ../sass/layout.home.scss */
+/* line 27, ../sass/_layout.home.scss */
 .home-top .home-top-container .home-top-search-form {
   position: relative;
   width: 360px;
   float: left;
 }
-/* line 33, ../sass/layout.home.scss */
+/* line 33, ../sass/_layout.home.scss */
 .home-top .home-top-container .home-top-search-input {
   -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   -webkit-box-sizing: border-box;
@@ -868,7 +863,6 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   -o-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
-  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
   padding: 9px 10px;
   font-size: 14px;
@@ -881,10 +875,9 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   color: #49525c;
   height: 38px;
 }
-/* line 51, ../sass/layout.home.scss */
+/* line 51, ../sass/_layout.home.scss */
 .home-top .home-top-container .home-top-add-question {
   -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   -webkit-border-radius: 4px;
@@ -893,7 +886,6 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   -o-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   float: left;
@@ -916,7 +908,7 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   border: 1px solid #ff9700;
   outline: 0;
 }
-/* line 74, ../sass/layout.home.scss */
+/* line 74, ../sass/_layout.home.scss */
 .home-top .home-top-container .home-top-search-submit {
   position: absolute;
   right: 4px;
@@ -927,33 +919,33 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   background: 0;
   margin-top: 8px;
 }
-/* line 84, ../sass/layout.home.scss */
+/* line 84, ../sass/_layout.home.scss */
 .home-top .home-top-container .home-top-search-submit .icons-search {
   width: 30px;
   height: 24px;
   display: inline-block;
 }
 
-/* line 93, ../sass/layout.home.scss */
+/* line 93, ../sass/_layout.home.scss */
 .home-mid {
   background: url(../images/home/home_mid_bg.png);
   display: block;
   width: 100%;
   height: 211px;
 }
-/* line 99, ../sass/layout.home.scss */
+/* line 99, ../sass/_layout.home.scss */
 .home-mid .home-mid-title-warp {
   width: 190px;
   margin: 0 auto;
   padding-top: 26px;
   padding-bottom: 34px;
 }
-/* line 106, ../sass/layout.home.scss */
+/* line 106, ../sass/_layout.home.scss */
 .home-mid .home-mid-title {
   line-height: 25px;
   font-size: 25px;
 }
-/* line 111, ../sass/layout.home.scss */
+/* line 111, ../sass/_layout.home.scss */
 .home-mid .icons-point_left {
   float: left;
   display: block;
@@ -962,17 +954,17 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   vertical-align: middle;
   margin: 3px 10px 0 16px;
 }
-/* line 120, ../sass/layout.home.scss */
+/* line 120, ../sass/_layout.home.scss */
 .home-mid .home-mid-subtitle {
   font-size: 14px;
   line-height: 18px;
   color: #6b6b6b;
 }
-/* line 126, ../sass/layout.home.scss */
+/* line 126, ../sass/_layout.home.scss */
 .home-mid .warp-content, .home-mid .home-content {
   position: relative;
 }
-/* line 130, ../sass/layout.home.scss */
+/* line 130, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-switch {
   position: absolute;
   font-size: 12px;
@@ -981,47 +973,47 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   right: 0px;
   cursor: pointer;
 }
-/* line 139, ../sass/layout.home.scss */
+/* line 139, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block {
   margin: 0 35px;
   float: left;
   width: 188px;
 }
-/* line 144, ../sass/layout.home.scss */
+/* line 144, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-logo {
   float: left;
   display: block;
   width: 64px;
   height: 64px;
 }
-/* line 151, ../sass/layout.home.scss */
+/* line 151, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc {
   float: left;
   margin-left: 10px;
 }
-/* line 155, ../sass/layout.home.scss */
+/* line 155, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-name {
   line-height: 16px;
   font-size: 16px;
   font-weight: bold;
 }
-/* line 161, ../sass/layout.home.scss */
+/* line 161, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-company {
   margin-top: 2px;
   line-height: 14px;
   font-size: 12px;
   font-weight: bold;
 }
-/* line 168, ../sass/layout.home.scss */
+/* line 168, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-position {
   line-height: 14px;
   font-size: 12px;
 }
-/* line 173, ../sass/layout.home.scss */
+/* line 173, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-subjects {
   margin-top: 3px;
 }
-/* line 177, ../sass/layout.home.scss */
+/* line 177, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1036,31 +1028,38 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   margin-bottom: 2px;
 }
 
-/* line 189, ../sass/layout.home.scss */
+/* line 189, ../sass/_layout.home.scss */
 .home-content {
   margin-top: 35px;
-  overflow: hidden;
-  *zoom: 1;
 }
-/* line 194, ../sass/layout.home.scss */
+/* line 15, ../sass/mixins/_clearfix.scss */
+.home-content:before, .home-content:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+.home-content:after {
+  clear: both;
+}
+/* line 194, ../sass/_layout.home.scss */
 .home-content .home-left-content {
   float: left;
 }
-/* line 198, ../sass/layout.home.scss */
+/* line 198, ../sass/_layout.home.scss */
 .home-content .home-news {
   float: left;
   border-bottom: 1px solid #CCCCCC;
   width: 722px;
   height: 32px;
 }
-/* line 204, ../sass/layout.home.scss */
+/* line 204, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-header {
   float: left;
   height: 24px;
   font-size: 24px;
   line-height: 24px;
 }
-/* line 211, ../sass/layout.home.scss */
+/* line 211, ../sass/_layout.home.scss */
 .home-content .home-news .icons-point_left {
   width: 18px;
   height: 18px;
@@ -1068,11 +1067,11 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   margin-right: 8px;
   margin-top: 2px;
 }
-/* line 219, ../sass/layout.home.scss */
+/* line 219, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-ul {
   float: right;
 }
-/* line 222, ../sass/layout.home.scss */
+/* line 222, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li {
   float: left;
   margin: 0 10px;
@@ -1082,17 +1081,17 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   height: 30px;
   cursor: pointer;
 }
-/* line 232, ../sass/layout.home.scss */
+/* line 232, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li-current {
   color: #ffa121;
   border-bottom: 3px solid #ff9700;
 }
-/* line 239, ../sass/layout.home.scss */
+/* line 239, ../sass/_layout.home.scss */
 .home-content .home-right-panel {
   float: right;
   width: 270px;
 }
-/* line 243, ../sass/layout.home.scss */
+/* line 243, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ad {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1104,11 +1103,11 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   display: block;
   background: url(../images/home/home_ad.png) no-repeat;
 }
-/* line 251, ../sass/layout.home.scss */
+/* line 251, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul {
   margin-top: 25px;
 }
-/* line 254, ../sass/layout.home.scss */
+/* line 254, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
   margin-bottom: 3px;
   line-height: 32px;
@@ -1118,12 +1117,12 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   background: #F7F7F7;
   cursor: pointer;
 }
-/* line 264, ../sass/layout.home.scss */
+/* line 264, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
   background: #E0E0E0;
   border-right: 6px solid #ff9700;
 }
-/* line 270, ../sass/layout.home.scss */
+/* line 270, ../sass/_layout.home.scss */
 .home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1137,12 +1136,12 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   margin-right: 15px;
 }
 
-/* line 14, ../sass/component.modal.scss */
+/* line 14, ../sass/_component.modal.scss */
 .modal-open {
   overflow: hidden;
 }
 
-/* line 19, ../sass/component.modal.scss */
+/* line 19, ../sass/_component.modal.scss */
 .modal {
   display: none;
   overflow: hidden;
@@ -1156,13 +1155,13 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   outline: 0;
 }
 
-/* line 43, ../sass/component.modal.scss */
+/* line 43, ../sass/_component.modal.scss */
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-/* line 49, ../sass/component.modal.scss */
+/* line 49, ../sass/_component.modal.scss */
 .modal-dialog {
   position: relative;
   width: auto;
@@ -1170,7 +1169,7 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   z-index: 1050;
 }
 
-/* line 57, ../sass/component.modal.scss */
+/* line 57, ../sass/_component.modal.scss */
 .modal-content {
   position: relative;
   background-color: white;
@@ -1178,13 +1177,12 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
   outline: 0;
 }
 
-/* line 70, ../sass/component.modal.scss */
+/* line 70, ../sass/_component.modal.scss */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -1198,64 +1196,71 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   height: 100% !important;
   overflow: visible;
 }
-/* line 85, ../sass/component.modal.scss */
+/* line 85, ../sass/_component.modal.scss */
 .modal-backdrop.fade {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
+  filter: alpha(opacity=0);
 }
-/* line 86, ../sass/component.modal.scss */
+/* line 86, ../sass/_component.modal.scss */
 .modal-backdrop.in {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
-/* line 91, ../sass/component.modal.scss */
+/* line 91, ../sass/_component.modal.scss */
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
   min-height: 29px;
 }
 
-/* line 97, ../sass/component.modal.scss */
+/* line 97, ../sass/_component.modal.scss */
 .modal-header .close {
   margin-top: -2px;
 }
 
-/* line 102, ../sass/component.modal.scss */
+/* line 102, ../sass/_component.modal.scss */
 .modal-title {
   margin: 0;
   line-height: 14px;
 }
 
-/* line 109, ../sass/component.modal.scss */
+/* line 109, ../sass/_component.modal.scss */
 .modal-body {
   position: relative;
   padding: 15px;
 }
 
-/* line 115, ../sass/component.modal.scss */
+/* line 115, ../sass/_component.modal.scss */
 .modal-footer {
   padding: 15px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
-  overflow: hidden;
-  *zoom: 1;
 }
-/* line 122, ../sass/component.modal.scss */
+/* line 15, ../sass/mixins/_clearfix.scss */
+.modal-footer:before, .modal-footer:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+.modal-footer:after {
+  clear: both;
+}
+/* line 122, ../sass/_component.modal.scss */
 .modal-footer .btn + .btn {
   margin-left: 5px;
   margin-bottom: 0;
 }
-/* line 127, ../sass/component.modal.scss */
+/* line 127, ../sass/_component.modal.scss */
 .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;
 }
-/* line 131, ../sass/component.modal.scss */
+/* line 131, ../sass/_component.modal.scss */
 .modal-footer .btn-block + .btn-block {
   margin-left: 0;
 }
 
-/* line 137, ../sass/component.modal.scss */
+/* line 137, ../sass/_component.modal.scss */
 .modal-scrollbar-measure {
   position: absolute;
   top: -9999px;
@@ -1264,7 +1269,7 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   overflow: scroll;
 }
 
-/* line 4, ../sass/component.subject.scss */
+/* line 4, ../sass/_component.subject.scss */
 .component-subject {
   float: left;
   -webkit-border-radius: 4px;
@@ -1280,31 +1285,31 @@ div[role=navigation] .top-nav-noauth .icons-user_sign_up {
   margin-right: 3px;
 }
 
-/* line 9, ../sass/component.infoblock.scss */
+/* line 9, ../sass/_component.infoblock.scss */
 div[role=infoblocks] {
   clear: both;
 }
-/* line 12, ../sass/component.infoblock.scss */
+/* line 12, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock {
   clear: both;
   padding-top: 21px;
 }
-/* line 16, ../sass/component.infoblock.scss */
+/* line 16, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left {
   float: left;
   width: 32px;
 }
-/* line 20, ../sass/component.infoblock.scss */
+/* line 20, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar {
   width: 32px;
   height: 32px;
   display: block;
 }
-/* line 26, ../sass/component.infoblock.scss */
+/* line 26, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good {
   margin-top: 6px;
 }
-/* line 29, ../sass/component.infoblock.scss */
+/* line 29, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -1319,7 +1324,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   font-size: 12px;
   font-weight: bold;
 }
-/* line 40, ../sass/component.infoblock.scss */
+/* line 40, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action {
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
@@ -1335,7 +1340,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   text-align: center;
   cursor: pointer;
 }
-/* line 52, ../sass/component.infoblock.scss */
+/* line 52, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1346,7 +1351,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   width: 10px;
   height: 11px;
 }
-/* line 60, ../sass/component.infoblock.scss */
+/* line 60, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right {
   float: left;
   margin-left: 11px;
@@ -1354,12 +1359,12 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right {
   border-bottom: 1px solid #eeeeee;
   width: 675px;
 }
-/* line 67, ../sass/component.infoblock.scss */
+/* line 67, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header {
   font-size: 12px;
   line-height: 12px;
 }
-/* line 71, ../sass/component.infoblock.scss */
+/* line 71, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1370,25 +1375,25 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   width: 16px;
   height: 13px;
 }
-/* line 77, ../sass/component.infoblock.scss */
+/* line 77, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username {
   font-size: 13px;
   font-weight: bold;
   color: black;
 }
-/* line 83, ../sass/component.infoblock.scss */
+/* line 83, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action {
   font-weight: normal;
   color: #868686;
 }
-/* line 88, ../sass/component.infoblock.scss */
+/* line 88, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-time {
   font-weight: normal;
   color: #868686;
   float: right;
   margin-right: 10px;
 }
-/* line 96, ../sass/component.infoblock.scss */
+/* line 96, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-title {
   margin-top: 2px;
   font-size: 14px;
@@ -1397,19 +1402,19 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   line-height: 23px;
   color: #ff9700;
 }
-/* line 105, ../sass/component.infoblock.scss */
+/* line 105, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
   font-size: 14px;
   line-height: 22px;
   color: #222222;
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
 }
-/* line 112, ../sass/component.infoblock.scss */
+/* line 112, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer {
   margin-top: 5px;
   line-height: 22px;
 }
-/* line 116, ../sass/component.infoblock.scss */
+/* line 116, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1420,7 +1425,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   color: #868686;
   margin-right: 12px;
 }
-/* line 121, ../sass/component.infoblock.scss */
+/* line 121, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1432,7 +1437,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   height: 12px;
   margin-right: 6px;
 }
-/* line 129, ../sass/component.infoblock.scss */
+/* line 129, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1443,7 +1448,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   color: #868686;
   margin-right: 12px;
 }
-/* line 134, ../sass/component.infoblock.scss */
+/* line 134, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1456,7 +1461,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   margin-right: 4px;
   margin-top: -2px;
 }
-/* line 143, ../sass/component.infoblock.scss */
+/* line 143, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1465,12 +1470,12 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   zoom: 1;
   *display: inline;
 }
-/* line 148, ../sass/component.infoblock.scss */
+/* line 148, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   color: #438cca;
 }
 
-/* line 9, ../sass/component.modal.auth.scss */
+/* line 9, ../sass/_component.modal.auth.scss */
 #authModal .close {
   position: absolute;
   display: block;
@@ -1479,7 +1484,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   line-height: 10px;
   cursor: pointer;
 }
-/* line 18, ../sass/component.modal.auth.scss */
+/* line 18, ../sass/_component.modal.auth.scss */
 #authModal .icons-no {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1490,29 +1495,29 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   width: 10px;
   height: 10px;
 }
-/* line 24, ../sass/component.modal.auth.scss */
+/* line 24, ../sass/_component.modal.auth.scss */
 #authModal .modal-dialog {
   display: block;
 }
-/* line 28, ../sass/component.modal.auth.scss */
+/* line 28, ../sass/_component.modal.auth.scss */
 #authModal .modal-content {
   width: 510px;
   height: 480px;
   background: #ffffff;
 }
-/* line 34, ../sass/component.modal.auth.scss */
+/* line 34, ../sass/_component.modal.auth.scss */
 #authModal .modal-container {
   width: 232px;
   margin: 40px auto;
 }
-/* line 38, ../sass/component.modal.auth.scss */
+/* line 38, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-logo {
   display: block;
   margin: 0 auto;
   width: 169px;
   height: 70px;
 }
-/* line 46, ../sass/component.modal.auth.scss */
+/* line 46, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-sub-header {
   border-top: 1px solid #efefef;
   margin-top: 12px;
@@ -1520,13 +1525,30 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   font-size: 12px;
   color: #a7a7a7;
 }
-/* line 54, ../sass/component.modal.auth.scss */
+/* line 54, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-input {
-  overflow: hidden;
-  *zoom: 1;
+  position: relative;
   margin: 5px 0;
 }
-/* line 59, ../sass/component.modal.auth.scss */
+/* line 15, ../sass/mixins/_clearfix.scss */
+#authModal .modal-container .modal-input:before, #authModal .modal-container .modal-input:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+#authModal .modal-container .modal-input:after {
+  clear: both;
+}
+/* line 60, ../sass/_component.modal.auth.scss */
+#authModal .modal-container .modal-input-tips {
+  position: absolute;
+  top: 5px;
+  left: 240px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #ff7e00;
+}
+/* line 69, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-input-checkbox {
   font-size: 12px;
   line-height: 22px;
@@ -1535,24 +1557,31 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   text-align: center;
   text-decoration: underline;
 }
-/* line 68, ../sass/component.modal.auth.scss */
+/* line 78, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .first-name {
   float: left;
   width: 74px;
 }
-/* line 73, ../sass/component.modal.auth.scss */
+/* line 83, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .last-name {
   float: left;
   width: 122px;
   margin-left: 8px;
 }
-/* line 79, ../sass/component.modal.auth.scss */
+/* line 89, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .email, #authModal .modal-container .password {
-  overflow: hidden;
-  *zoom: 1;
   width: 218px;
 }
-/* line 84, ../sass/component.modal.auth.scss */
+/* line 15, ../sass/mixins/_clearfix.scss */
+#authModal .modal-container .email:before, #authModal .modal-container .email:after, #authModal .modal-container .password:before, #authModal .modal-container .password:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+#authModal .modal-container .email:after, #authModal .modal-container .password:after {
+  clear: both;
+}
+/* line 94, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .btn-sign-up, #authModal .modal-container .btn-sign-in {
   margin-top: 8px;
   -webkit-border-radius: 4px;
@@ -1574,34 +1603,38 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   text-align: center;
   cursor: pointer;
 }
-/* line 98, ../sass/component.modal.auth.scss */
+/* line 108, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-link-sign-up {
   margin-top: 5px;
   text-align: center;
 }
-/* line 102, ../sass/component.modal.auth.scss */
+/* line 112, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-link-sign-up a {
   text-decoration: underline;
   color: #ff9900;
   cursor: pointer;
 }
-/* line 109, ../sass/component.modal.auth.scss */
+/* line 119, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-link-sign-in {
   margin-top: 5px;
   text-align: left;
 }
-/* line 113, ../sass/component.modal.auth.scss */
+/* line 123, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .modal-link-sign-in a {
   text-decoration: underline;
   color: #ff9900;
   cursor: pointer;
 }
-/* line 120, ../sass/component.modal.auth.scss */
-#authModal .modal-container .sign-with-oth {
-  overflow: hidden;
-  *zoom: 1;
+/* line 15, ../sass/mixins/_clearfix.scss */
+#authModal .modal-container .sign-with-oth:before, #authModal .modal-container .sign-with-oth:after {
+  content: " ";
+  display: table;
 }
-/* line 123, ../sass/component.modal.auth.scss */
+/* line 19, ../sass/mixins/_clearfix.scss */
+#authModal .modal-container .sign-with-oth:after {
+  clear: both;
+}
+/* line 133, ../sass/_component.modal.auth.scss */
 #authModal .modal-container .sign-with-oth .sign-in-weibo, #authModal .modal-container .sign-with-oth .sign-in-qq, #authModal .modal-container .sign-with-oth .sign-in-renren {
   width: 66px;
   height: 66px;
@@ -1610,7 +1643,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   margin: 5px;
   cursor: pointer;
 }
-/* line 143, ../sass/component.modal.auth.scss */
+/* line 153, ../sass/_component.modal.auth.scss */
 #authModal input {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1624,7 +1657,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   outline: none;
 }
 
-/* line 155, ../sass/component.modal.auth.scss */
+/* line 165, ../sass/_component.modal.auth.scss */
 #activateModal .close {
   position: absolute;
   display: block;
@@ -1633,7 +1666,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   line-height: 10px;
   cursor: pointer;
 }
-/* line 164, ../sass/component.modal.auth.scss */
+/* line 174, ../sass/_component.modal.auth.scss */
 #activateModal .icons-no {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1644,30 +1677,30 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   width: 10px;
   height: 10px;
 }
-/* line 170, ../sass/component.modal.auth.scss */
+/* line 180, ../sass/_component.modal.auth.scss */
 #activateModal .modal-dialog {
   display: block;
 }
-/* line 174, ../sass/component.modal.auth.scss */
+/* line 184, ../sass/_component.modal.auth.scss */
 #activateModal .modal-content {
   width: 510px;
   height: 362px;
   background: #ffffff;
   padding-top: 42px;
 }
-/* line 181, ../sass/component.modal.auth.scss */
+/* line 191, ../sass/_component.modal.auth.scss */
 #activateModal .modal-container {
   margin: 0 auto;
   width: 232px;
 }
-/* line 185, ../sass/component.modal.auth.scss */
+/* line 195, ../sass/_component.modal.auth.scss */
 #activateModal .modal-container .modal-logo {
   display: block;
   margin: 0 auto;
   width: 169px;
   height: 70px;
 }
-/* line 193, ../sass/component.modal.auth.scss */
+/* line 203, ../sass/_component.modal.auth.scss */
 #activateModal .modal-container .btn-modal-activate {
   margin-top: 8px;
   -webkit-border-radius: 4px;
@@ -1689,7 +1722,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   text-align: center;
   cursor: pointer;
 }
-/* line 207, ../sass/component.modal.auth.scss */
+/* line 217, ../sass/_component.modal.auth.scss */
 #activateModal .modal-container .btn-modal-deactivate {
   margin-top: 8px;
   -webkit-border-radius: 4px;
@@ -1706,7 +1739,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   text-align: center;
   cursor: pointer;
 }
-/* line 221, ../sass/component.modal.auth.scss */
+/* line 231, ../sass/_component.modal.auth.scss */
 #activateModal .modal-container-desc {
   margin: 35px auto;
   width: 380px;
@@ -1714,14 +1747,14 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   line-height: 22px;
   color: #757575;
 }
-/* line 228, ../sass/component.modal.auth.scss */
+/* line 238, ../sass/_component.modal.auth.scss */
 #activateModal .modal-container-desc a {
   text-decoration: underline;
   color: #ff9900;
   cursor: pointer;
 }
 
-/* line 7, ../sass/component.popover.profile.scss */
+/* line 7, ../sass/_component.popover.profile.scss */
 .popover {
   position: absolute;
   top: 694px;
@@ -1729,38 +1762,45 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   z-index: 1060;
   padding: 12px;
 }
-/* line 14, ../sass/component.popover.profile.scss */
+/* line 14, ../sass/_component.popover.profile.scss */
 .popover .popover-content {
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  -webkit-background-clip: padding;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
+  -webkit-background-clip: -webkit-transform padding-box;
+  -moz-background-clip: -moz-transform padding-box;
+  -o-background-clip: -o-transform padding-box;
+  background-clip: transform padding-box;
   background: #ffffff;
   overflow: hidden;
 }
-/* line 23, ../sass/component.popover.profile.scss */
+/* line 23, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card {
   width: 380px;
 }
-/* line 26, ../sass/component.popover.profile.scss */
+/* line 26, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper {
-  overflow: hidden;
-  *zoom: 1;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-top: 18px;
   padding-left: 15px;
   padding-bottom: 9px;
 }
-/* line 33, ../sass/component.popover.profile.scss */
+/* line 15, ../sass/mixins/_clearfix.scss */
+.popover .popover-content .profile-card .upper:before, .popover .popover-content .profile-card .upper:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+.popover .popover-content .profile-card .upper:after {
+  clear: both;
+}
+/* line 33, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-logo {
   display: block;
   float: left;
@@ -1768,39 +1808,39 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   height: 64px;
   margin-right: 10px;
 }
-/* line 42, ../sass/component.popover.profile.scss */
+/* line 42, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container {
   float: left;
 }
-/* line 45, ../sass/component.popover.profile.scss */
+/* line 45, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container .user-name {
   font-size: 14px;
   font-weight: bold;
   line-height: 16px;
 }
-/* line 51, ../sass/component.popover.profile.scss */
+/* line 51, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container .user-company {
   line-height: 14px;
   font-size: 12px;
   font-weight: bold;
 }
-/* line 57, ../sass/component.popover.profile.scss */
+/* line 57, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container .user-position {
   line-height: 14px;
   font-size: 12px;
 }
-/* line 62, ../sass/component.popover.profile.scss */
+/* line 62, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container .user-subjects {
   margin-top: 2px;
   width: 240px;
   line-height: 20px;
 }
-/* line 67, ../sass/component.popover.profile.scss */
+/* line 67, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container .user-subjects .component-subject {
   float: none;
   display: inline-block;
 }
-/* line 73, ../sass/component.popover.profile.scss */
+/* line 73, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper .user-desc-container .icons-vip {
   display: -moz-inline-stack;
   display: inline-block;
@@ -1814,12 +1854,16 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   margin-left: 3px;
   margin-bottom: 2px;
 }
-/* line 84, ../sass/component.popover.profile.scss */
-.popover .popover-content .profile-card .lower {
-  overflow: hidden;
-  *zoom: 1;
+/* line 15, ../sass/mixins/_clearfix.scss */
+.popover .popover-content .profile-card .lower:before, .popover .popover-content .profile-card .lower:after {
+  content: " ";
+  display: table;
 }
-/* line 87, ../sass/component.popover.profile.scss */
+/* line 19, ../sass/mixins/_clearfix.scss */
+.popover .popover-content .profile-card .lower:after {
+  clear: both;
+}
+/* line 87, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-left {
   margin-top: 6px;
   margin-bottom: 6px;
@@ -1827,28 +1871,28 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   font-size: 13px;
   float: left;
 }
-/* line 94, ../sass/component.popover.profile.scss */
+/* line 94, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-left .lower-accp {
   float: left;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   padding-right: 6px;
 }
-/* line 100, ../sass/component.popover.profile.scss */
+/* line 100, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-left .lower-corn {
   float: left;
   padding-left: 6px;
 }
-/* line 105, ../sass/component.popover.profile.scss */
+/* line 105, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-left em {
   font-weight: bold;
 }
-/* line 110, ../sass/component.popover.profile.scss */
+/* line 110, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right {
   margin-top: 6px;
   margin-right: 14px;
   float: right;
 }
-/* line 115, ../sass/component.popover.profile.scss */
+/* line 115, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right .btn-ask {
   float: left;
   margin-right: 10px;
@@ -1869,13 +1913,13 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   background-image: linear-gradient(top, #ff9700, #dd8401);
   cursor: pointer;
 }
-/* line 128, ../sass/component.popover.profile.scss */
+/* line 128, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right .btn-corn {
   float: left;
   cursor: pointer;
   line-height: 22px;
 }
-/* line 133, ../sass/component.popover.profile.scss */
+/* line 133, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right .btn-corn .icons-add {
   width: 12px;
   height: 12px;
@@ -1883,7 +1927,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   margin-top: 4px;
   margin-right: 3px;
 }
-/* line 146, ../sass/component.popover.profile.scss */
+/* line 146, ../sass/_component.popover.profile.scss */
 .popover .arrow, .popover .arrow2 {
   position: absolute;
   width: 0;
@@ -1893,12 +1937,12 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   border-left: 13px solid transparent;
   border-right: 13px solid transparent;
 }
-/* line 156, ../sass/component.popover.profile.scss */
+/* line 156, ../sass/_component.popover.profile.scss */
 .popover .arrow {
   top: 0;
   border-bottom: 13px solid rgba(0, 0, 0, 0.2);
 }
-/* line 161, ../sass/component.popover.profile.scss */
+/* line 161, ../sass/_component.popover.profile.scss */
 .popover .arrow2 {
   top: 1px;
   border-bottom: 13px solid #fff;

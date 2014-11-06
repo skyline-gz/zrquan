@@ -1,3 +1,4 @@
+@import "compass";
 @import "compass/reset";
 
 //预定义常量
@@ -12,11 +13,6 @@
 //引用插件依赖的样式
 @import "lib/jquery.jcrop";
 
-//布局
-@import "layout";
-@import "layout.navigation";
-@import "layout.home";
-
 //通用组件
 @import "component.modal";
 @import "component.subject";
@@ -25,3 +21,9 @@
 //自定义组件
 @import "component.modal.auth";
 @import "component.popover.profile";
+
+//布局
+@import "layout";
+@import "layout.navigation";
+@import "layout.home";
+@import "layout.user";
