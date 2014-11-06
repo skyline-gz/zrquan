@@ -347,795 +347,6 @@ img.jcrop-preview {
   max-width: none;
 }
 
-/* line 3, ../sass/_layout.scss */
-body {
-  padding-top: 52px;
-}
-
-/* line 7, ../sass/_layout.scss */
-.warp-content, .home-content {
-  width: 1040px;
-  margin: 0 auto;
-  clear: both;
-}
-
-/* line 13, ../sass/_layout.scss */
-html body, html input, html textarea, html select, html button {
-  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
-}
-
-/* line 17, ../sass/_layout.scss */
-body, input, textarea, select, button {
-  line-height: 1.7;
-  font-size: 13px;
-  padding: 0;
-  margin: 0;
-  color: #222;
-  word-wrap: break-word;
-}
-
-/* line 26, ../sass/_layout.scss */
-input[type=text], input[type=password]:focus {
-  -webkit-appearance: none;
-}
-
-/* line 30, ../sass/_layout.scss */
-div[contentEditable], input, textarea, button, a:link {
-  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5);
-}
-
-/* line 194, icons/*.png */
-.icons-sprite, .icons-add, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-up_to_top, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
-  background: url('/images/icons-s1edcc9806c.png') no-repeat;
-}
-
-/* line 82, avatars/*.png */
-.avatars-sprite, .avatars-head_m_01, .popover .popover-content .profile-card .upper .user-logo, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
-  background: url('/images/avatars-sc3e49de2d4.png') no-repeat;
-}
-
-/* line 66, big-icons/*.png */
-.big-icons-sprite, .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq, .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren, .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo, .big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
-  background: url('/images/big-icons-se25fe173f0.png') no-repeat;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-add {
-  background-position: 0 -320px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-comment {
-  background-position: 0 -308px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-favorites {
-  background-position: 0 -286px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-good {
-  background-position: 0 -297px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-message {
-  background-position: 0 -47px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myanswer_hover {
-  background-position: 0 -210px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myconsulting {
-  background-position: 0 -104px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-mydraft {
-  background-position: 0 -122px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myexperience {
-  background-position: 0 -258px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myfavorite {
-  background-position: 0 -139px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-myquestion {
-  background-position: 0 -86px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-no {
-  background-position: 0 -276px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-point_left {
-  background-position: 0 -240px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-private_message {
-  background-position: 0 0;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-search {
-  background-position: 0 -23px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-search_s {
-  background-position: 0 -68px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-set {
-  background-position: 0 -228px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-up_to_top {
-  background-position: 0 -157px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up {
-  background-position: 0 -332px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-vip {
-  background-position: 0 -197px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_01, .popover .popover-content .profile-card .upper .user-logo {
-  background-position: 0 0;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_02 {
-  background-position: 0 -128px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_03 {
-  background-position: 0 -192px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_m_04 {
-  background-position: 0 -64px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
-  background-position: 0 -288px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.avatars-head_s_02 {
-  background-position: 0 -256px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq {
-  background-position: 0 -202px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren {
-  background-position: 0 -136px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo {
-  background-position: 0 -70px;
-}
-
-/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
-  background-position: 0 0;
-}
-
-/* line 13, ../sass/_layout.navigation.scss */
-div[role=navigation] {
-  display: block;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 20;
-  height: 50px;
-  background-color: #f7f7f7;
-  border-bottom: 2px solid #e9e9e9;
-  width: 100%;
-}
-/* line 25, ../sass/_layout.navigation.scss */
-div[role=navigation] .warp-content, div[role=navigation] .home-content {
-  position: relative;
-  height: inherit;
-}
-/* line 30, ../sass/_layout.navigation.scss */
-div[role=navigation] a.top-link-logo {
-  float: left;
-  background: url(../images/logo.png) no-repeat 0 10px;
-  display: block;
-  width: 92px;
-  height: 100%;
-  text-indent: -9999px;
-}
-/* line 39, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav {
-  float: left;
-  position: relative;
-}
-/* line 43, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav .top-nav-ul {
-  padding: 0;
-  margin: 0 0 0 43px;
-}
-/* line 48, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav .top-nav-li {
-  float: left;
-  position: relative;
-  margin: 0;
-  list-style: none;
-}
-/* line 55, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav .top-nav-link {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
-  width: 60px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  display: block;
-  color: #868686;
-  font-size: 18px;
-  cursor: pointer;
-}
-/* line 67, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav a.top-nav-link:hover {
-  color: #555;
-}
-/* line 72, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav .current .top-nav-link {
-  color: #ffffff;
-  background-color: #ff9700;
-  border-bottom: 2px solid #dd8401;
-}
-/* line 77, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav .current a.top-nav-link:hover {
-  color: #ffffff;
-}
-/* line 84, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-searchbar {
-  float: left;
-  display: block;
-  line-height: 50px;
-  width: 332px;
-  margin-left: 10px;
-}
-/* line 91, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-searchbar .top-nav-search-form {
-  float: left;
-  position: relative;
-}
-/* line 96, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-searchbar .top-nav-search-input {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
-  padding: 5px 10px;
-  font-size: 14px;
-  outline: medium none;
-  overflow: hidden;
-  width: 260px;
-  line-height: 17px;
-  border: 1px solid #D2D2D2;
-  background-color: #ffffff;
-  color: #49525c;
-}
-/* line 114, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-searchbar .top-nav-add-question {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
-  margin: 0 0 0 6px;
-  background: #ff9700;
-  background-color: #ff9700;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
-  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(top, #ff9700, #dd8401);
-  background-repeat: repeat-x;
-  color: #FFF;
-  font-size: 14px;
-  width: 65px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  cursor: pointer;
-  border: 1px solid #ff9700;
-  outline: 0;
-}
-/* line 136, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
-  position: absolute;
-  right: 7px;
-  top: 15px;
-  border: 0;
-  cursor: pointer;
-  display: inline-block;
-  background: 0;
-  line-height: 55px;
-}
-/* line 146, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-searchbar .top-nav-search-submit .icons-search_s {
-  width: 18px;
-  height: 18px;
-  display: block;
-}
-/* line 155, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth {
-  margin: 0;
-  position: absolute;
-  right: 0;
-  line-height: 50px;
-}
-/* line 161, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth > li {
-  float: left;
-  list-style: none;
-}
-/* line 166, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth a {
-  text-align: center;
-  display: block;
-  white-space: nowrap;
-  cursor: pointer;
-}
-/* line 173, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  vertical-align: middle;
-}
-/* line 178, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth .user-logo {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  width: 32px;
-  height: 32px;
-  padding-right: 12px;
-}
-/* line 187, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth .icons-message {
-  width: 26px;
-  height: 21px;
-}
-/* line 192, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth .icons-private_message {
-  width: 29px;
-  height: 23px;
-}
-/* line 197, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth .user-link {
-  color: #6b6b6b;
-  width: auto;
-  height: 100%;
-  line-height: 50px;
-  padding-right: 16px;
-  font-size: 16px;
-}
-/* line 206, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth .message-link {
-  width: 45px;
-  height: 100%;
-  line-height: 50px;
-}
-/* line 212, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-auth .private-message-link {
-  width: 45px;
-  height: 100%;
-  line-height: 50px;
-}
-/* line 220, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-noauth {
-  margin: 0;
-  position: absolute;
-  right: 0;
-  line-height: 50px;
-}
-/* line 226, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-noauth > li {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  float: left;
-  list-style: none;
-  font-size: 14px;
-  margin: 0 15px;
-}
-/* line 234, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-noauth a {
-  text-align: center;
-  display: block;
-  white-space: nowrap;
-  cursor: pointer;
-  color: #868686;
-}
-/* line 242, ../sass/_layout.navigation.scss */
-div[role=navigation] .top-nav-noauth .icons-user_sign_up {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  width: 18px;
-  height: 18px;
-  margin-right: 6px;
-}
-/* line 252, ../sass/_layout.navigation.scss */
-div[role=navigation] a:hover {
-  color: #555;
-}
-
-/* line 7, ../sass/_layout.home.scss */
-.home-top {
-  background: #000000;
-  display: block;
-  width: 100%;
-  height: 380px;
-}
-/* line 13, ../sass/_layout.home.scss */
-.home-top .home-top-container {
-  display: block;
-  width: 100%;
-  height: 380px;
-  background: url(../images/home/main_bg.png) top center no-repeat;
-  position: relative;
-}
-/* line 20, ../sass/_layout.home.scss */
-.home-top .home-top-container .home-top-inner-wrap {
-  width: 450px;
-  height: 38px;
-  margin: 0 auto;
-  padding-top: 326px;
-}
-/* line 27, ../sass/_layout.home.scss */
-.home-top .home-top-container .home-top-search-form {
-  position: relative;
-  width: 360px;
-  float: left;
-}
-/* line 33, ../sass/_layout.home.scss */
-.home-top .home-top-container .home-top-search-input {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
-  padding: 9px 10px;
-  font-size: 14px;
-  outline: medium none;
-  overflow: hidden;
-  width: 100%;
-  line-height: 18px;
-  border: 1px solid #D2D2D2;
-  background-color: #ffffff;
-  color: #49525c;
-  height: 38px;
-}
-/* line 51, ../sass/_layout.home.scss */
-.home-top .home-top-container .home-top-add-question {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
-  float: left;
-  margin: 0 0 0 6px;
-  background: #ff9700;
-  background-color: #ff9700;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
-  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
-  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
-  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
-  background-image: linear-gradient(top, #ff9700, #dd8401);
-  background-repeat: repeat-x;
-  color: #FFF;
-  font-size: 18px;
-  width: 80px;
-  height: 38px;
-  line-height: 38px;
-  text-align: center;
-  cursor: pointer;
-  border: 1px solid #ff9700;
-  outline: 0;
-}
-/* line 74, ../sass/_layout.home.scss */
-.home-top .home-top-container .home-top-search-submit {
-  position: absolute;
-  right: 4px;
-  top: 0px;
-  border: 0;
-  cursor: pointer;
-  display: inline-block;
-  background: 0;
-  margin-top: 8px;
-}
-/* line 84, ../sass/_layout.home.scss */
-.home-top .home-top-container .home-top-search-submit .icons-search {
-  width: 30px;
-  height: 24px;
-  display: inline-block;
-}
-
-/* line 93, ../sass/_layout.home.scss */
-.home-mid {
-  background: url(../images/home/home_mid_bg.png);
-  display: block;
-  width: 100%;
-  height: 211px;
-}
-/* line 99, ../sass/_layout.home.scss */
-.home-mid .home-mid-title-warp {
-  width: 190px;
-  margin: 0 auto;
-  padding-top: 26px;
-  padding-bottom: 34px;
-}
-/* line 106, ../sass/_layout.home.scss */
-.home-mid .home-mid-title {
-  line-height: 25px;
-  font-size: 25px;
-}
-/* line 111, ../sass/_layout.home.scss */
-.home-mid .icons-point_left {
-  float: left;
-  display: block;
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  margin: 3px 10px 0 16px;
-}
-/* line 120, ../sass/_layout.home.scss */
-.home-mid .home-mid-subtitle {
-  font-size: 14px;
-  line-height: 18px;
-  color: #6b6b6b;
-}
-/* line 126, ../sass/_layout.home.scss */
-.home-mid .warp-content, .home-mid .home-content {
-  position: relative;
-}
-/* line 130, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-switch {
-  position: absolute;
-  font-size: 12px;
-  color: #5e5e5e;
-  top: 50px;
-  right: 0px;
-  cursor: pointer;
-}
-/* line 139, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block {
-  margin: 0 35px;
-  float: left;
-  width: 188px;
-}
-/* line 144, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-logo {
-  float: left;
-  display: block;
-  width: 64px;
-  height: 64px;
-}
-/* line 151, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc {
-  float: left;
-  margin-left: 10px;
-}
-/* line 155, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-name {
-  line-height: 16px;
-  font-size: 16px;
-  font-weight: bold;
-}
-/* line 161, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-company {
-  margin-top: 2px;
-  line-height: 14px;
-  font-size: 12px;
-  font-weight: bold;
-}
-/* line 168, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-position {
-  line-height: 14px;
-  font-size: 12px;
-}
-/* line 173, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-subjects {
-  margin-top: 3px;
-}
-/* line 177, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  width: 16px;
-  height: 13px;
-  line-height: 16px;
-  margin-left: 3px;
-  margin-bottom: 2px;
-}
-
-/* line 189, ../sass/_layout.home.scss */
-.home-content {
-  margin-top: 35px;
-}
-/* line 15, ../sass/mixins/_clearfix.scss */
-.home-content:before, .home-content:after {
-  content: " ";
-  display: table;
-}
-/* line 19, ../sass/mixins/_clearfix.scss */
-.home-content:after {
-  clear: both;
-}
-/* line 194, ../sass/_layout.home.scss */
-.home-content .home-left-content {
-  float: left;
-}
-/* line 198, ../sass/_layout.home.scss */
-.home-content .home-news {
-  float: left;
-  border-bottom: 1px solid #CCCCCC;
-  width: 722px;
-  height: 32px;
-}
-/* line 204, ../sass/_layout.home.scss */
-.home-content .home-news .home-news-header {
-  float: left;
-  height: 24px;
-  font-size: 24px;
-  line-height: 24px;
-}
-/* line 211, ../sass/_layout.home.scss */
-.home-content .home-news .icons-point_left {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  margin-right: 8px;
-  margin-top: 2px;
-}
-/* line 219, ../sass/_layout.home.scss */
-.home-content .home-news .home-news-ul {
-  float: right;
-}
-/* line 222, ../sass/_layout.home.scss */
-.home-content .home-news .home-news-ul .home-news-li {
-  float: left;
-  margin: 0 10px;
-  width: 38px;
-  font-size: 16px;
-  text-align: center;
-  height: 30px;
-  cursor: pointer;
-}
-/* line 232, ../sass/_layout.home.scss */
-.home-content .home-news .home-news-ul .home-news-li-current {
-  color: #ffa121;
-  border-bottom: 3px solid #ff9700;
-}
-/* line 239, ../sass/_layout.home.scss */
-.home-content .home-right-panel {
-  float: right;
-  width: 270px;
-}
-/* line 243, ../sass/_layout.home.scss */
-.home-content .home-right-panel .home-right-panel-ad {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  width: 270px;
-  height: 101px;
-  display: block;
-  background: url(../images/home/home_ad.png) no-repeat;
-}
-/* line 251, ../sass/_layout.home.scss */
-.home-content .home-right-panel .home-right-panel-ul {
-  margin-top: 25px;
-}
-/* line 254, ../sass/_layout.home.scss */
-.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
-  margin-bottom: 3px;
-  line-height: 32px;
-  height: 32px;
-  font-size: 14px;
-  color: #6b6b6b;
-  background: #F7F7F7;
-  cursor: pointer;
-}
-/* line 264, ../sass/_layout.home.scss */
-.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
-  background: #E0E0E0;
-  border-right: 6px solid #ff9700;
-}
-/* line 270, ../sass/_layout.home.scss */
-.home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  width: 19px;
-  height: 18px;
-  margin-left: 12px;
-  margin-right: 15px;
-}
-
 /* line 14, ../sass/_component.modal.scss */
 .modal-open {
   overflow: hidden;
@@ -1283,6 +494,221 @@ div[role=navigation] a:hover {
   line-height: 12px;
   padding: 2px 3px;
   margin-right: 3px;
+}
+
+/* line 258, icons/*.png */
+.icons-sprite, .icons-add, .icons-b_vip, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt, .icons-u_education, .icons-u_location, .icons-u_message, .icons-u_question, .icons-u_specialized, .icons-u_star, .icons-u_zhiye, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
+  background: url('/images/icons-sed49e70128.png') no-repeat;
+}
+
+/* line 90, avatars/*.png */
+.avatars-sprite, .avatars-head_b_01, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-logo, .avatars-head_m_01, .popover .popover-content .profile-card .upper .user-logo, .avatars-head_m_02, .avatars-head_m_03, .avatars-head_m_04, .avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo, .avatars-head_s_02 {
+  background: url('/images/avatars-s8e95fd644a.png') no-repeat;
+}
+
+/* line 74, big-icons/*.png */
+.big-icons-sprite, .big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq, .big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren, .big-icons-up_to_top, .big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo, .big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
+  background: url('/images/big-icons-s164c2abcc5.png') no-repeat;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-add {
+  background-position: 0 -364px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-b_vip {
+  background-position: 0 -47px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-comment {
+  background-position: 0 -352px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-favorites {
+  background-position: 0 -330px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-good {
+  background-position: 0 -341px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-message {
+  background-position: 0 -64px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myanswer_hover {
+  background-position: 0 -187px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myconsulting {
+  background-position: 0 -121px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-mydraft {
+  background-position: 0 -139px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myexperience {
+  background-position: 0 -260px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myfavorite {
+  background-position: 0 -156px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-myquestion {
+  background-position: 0 -103px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-no {
+  background-position: 0 -308px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-point_left {
+  background-position: 0 -230px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-private_message {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-search {
+  background-position: 0 -23px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-search_s {
+  background-position: 0 -85px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-set {
+  background-position: 0 -205px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt {
+  background-position: 0 -388px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_education {
+  background-position: 0 -299px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_location {
+  background-position: 0 -288px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_message {
+  background-position: 0 -248px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_question {
+  background-position: 0 -318px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_specialized {
+  background-position: 0 -217px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_star {
+  background-position: 0 -376px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-u_zhiye {
+  background-position: 0 -278px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up {
+  background-position: 0 -404px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-vip {
+  background-position: 0 -174px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_b_01, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-logo {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_01, .popover .popover-content .profile-card .upper .user-logo {
+  background-position: 0 -136px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_02 {
+  background-position: 0 -264px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_03 {
+  background-position: 0 -328px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_m_04 {
+  background-position: 0 -200px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_01, div[role=navigation] .top-nav-auth .user-logo {
+  background-position: 0 -424px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.avatars-head_s_02 {
+  background-position: 0 -392px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-qq, #authModal .modal-container .sign-with-oth .sign-in-qq {
+  background-position: 0 -202px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-renren, #authModal .modal-container .sign-with-oth .sign-in-renren {
+  background-position: 0 -136px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-up_to_top {
+  background-position: 0 -268px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-weibo, #authModal .modal-container .sign-with-oth .sign-in-weibo {
+  background-position: 0 -70px;
+}
+
+/* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.big-icons-zrquan, #authModal .modal-container .modal-logo, #activateModal .modal-container .modal-logo {
+  background-position: 0 0;
 }
 
 /* line 9, ../sass/_component.infoblock.scss */
@@ -1946,4 +1372,722 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
 .popover .arrow2 {
   top: 1px;
   border-bottom: 13px solid #fff;
+}
+
+/* line 3, ../sass/_layout.scss */
+.warp-content, .home-content {
+  width: 1040px;
+  margin: 0 auto;
+  clear: both;
+}
+
+/* line 9, ../sass/_layout.scss */
+html body, html input, html textarea, html select, html button {
+  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
+}
+
+/* line 13, ../sass/_layout.scss */
+body, input, textarea, select, button {
+  line-height: 1.7;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  color: #222;
+  word-wrap: break-word;
+}
+
+/* line 22, ../sass/_layout.scss */
+body {
+  padding-top: 52px;
+}
+
+/* line 26, ../sass/_layout.scss */
+input[type=text], input[type=password]:focus {
+  -webkit-appearance: none;
+}
+
+/* line 30, ../sass/_layout.scss */
+div[contentEditable], input, textarea, button, a:link {
+  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5);
+}
+
+/* line 13, ../sass/_layout.navigation.scss */
+div[role=navigation] {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  height: 50px;
+  background-color: #f7f7f7;
+  border-bottom: 2px solid #e9e9e9;
+  width: 100%;
+}
+/* line 25, ../sass/_layout.navigation.scss */
+div[role=navigation] .warp-content, div[role=navigation] .home-content {
+  position: relative;
+  height: inherit;
+}
+/* line 30, ../sass/_layout.navigation.scss */
+div[role=navigation] a.top-link-logo {
+  float: left;
+  background: url(../images/logo.png) no-repeat 0 10px;
+  display: block;
+  width: 92px;
+  height: 100%;
+  text-indent: -9999px;
+}
+/* line 39, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav {
+  float: left;
+  position: relative;
+}
+/* line 43, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav .top-nav-ul {
+  padding: 0;
+  margin: 0 0 0 43px;
+}
+/* line 48, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav .top-nav-li {
+  float: left;
+  position: relative;
+  margin: 0;
+  list-style: none;
+}
+/* line 55, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav .top-nav-link {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  width: 60px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  display: block;
+  color: #868686;
+  font-size: 18px;
+  cursor: pointer;
+}
+/* line 67, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav a.top-nav-link:hover {
+  color: #555;
+}
+/* line 72, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav .current .top-nav-link {
+  color: #ffffff;
+  background-color: #ff9700;
+  border-bottom: 2px solid #dd8401;
+}
+/* line 77, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav .current a.top-nav-link:hover {
+  color: #ffffff;
+}
+/* line 84, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-searchbar {
+  float: left;
+  display: block;
+  line-height: 50px;
+  width: 332px;
+  margin-left: 10px;
+}
+/* line 91, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-searchbar .top-nav-search-form {
+  float: left;
+  position: relative;
+}
+/* line 96, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-searchbar .top-nav-search-input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  font-size: 14px;
+  outline: medium none;
+  overflow: hidden;
+  width: 260px;
+  line-height: 17px;
+  border: 1px solid #D2D2D2;
+  background-color: #ffffff;
+  color: #49525c;
+}
+/* line 113, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-searchbar .top-nav-add-question {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  margin: 0 0 0 6px;
+  background: #ff9700;
+  background-color: #ff9700;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
+  background-repeat: repeat-x;
+  color: #FFF;
+  font-size: 14px;
+  width: 65px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ff9700;
+  outline: 0;
+}
+/* line 135, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-searchbar .top-nav-search-submit {
+  position: absolute;
+  right: 7px;
+  top: 15px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  background: 0;
+  line-height: 55px;
+}
+/* line 145, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-searchbar .top-nav-search-submit .icons-search_s {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+/* line 154, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  line-height: 50px;
+}
+/* line 160, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth > li {
+  float: left;
+  list-style: none;
+}
+/* line 165, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth a {
+  text-align: center;
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* line 172, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth .user-logo, div[role=navigation] .top-nav-auth .icons-message, div[role=navigation] .top-nav-auth .icons-private_message {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  vertical-align: middle;
+}
+/* line 177, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth .user-logo {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  width: 32px;
+  height: 32px;
+  padding-right: 12px;
+}
+/* line 186, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth .icons-message {
+  width: 26px;
+  height: 21px;
+}
+/* line 191, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth .icons-private_message {
+  width: 29px;
+  height: 23px;
+}
+/* line 196, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth .user-link {
+  color: #6b6b6b;
+  width: auto;
+  height: 100%;
+  line-height: 50px;
+  padding-right: 16px;
+  font-size: 16px;
+}
+/* line 205, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth .message-link {
+  width: 45px;
+  height: 100%;
+  line-height: 50px;
+}
+/* line 211, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-auth .private-message-link {
+  width: 45px;
+  height: 100%;
+  line-height: 50px;
+}
+/* line 219, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-noauth {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  line-height: 50px;
+}
+/* line 225, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-noauth > li {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  float: left;
+  list-style: none;
+  font-size: 14px;
+  margin: 0 15px;
+}
+/* line 233, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-noauth a {
+  text-align: center;
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #868686;
+}
+/* line 241, ../sass/_layout.navigation.scss */
+div[role=navigation] .top-nav-noauth .icons-user_sign_up {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
+/* line 251, ../sass/_layout.navigation.scss */
+div[role=navigation] a:hover {
+  color: #555;
+}
+
+/* line 7, ../sass/_layout.home.scss */
+.home-top {
+  background: #000000;
+  display: block;
+  width: 100%;
+  height: 380px;
+}
+/* line 13, ../sass/_layout.home.scss */
+.home-top .home-top-container {
+  display: block;
+  width: 100%;
+  height: 380px;
+  background: url(../images/home/main_bg.png) top center no-repeat;
+  position: relative;
+}
+/* line 20, ../sass/_layout.home.scss */
+.home-top .home-top-container .home-top-inner-wrap {
+  width: 450px;
+  height: 38px;
+  margin: 0 auto;
+  padding-top: 326px;
+}
+/* line 27, ../sass/_layout.home.scss */
+.home-top .home-top-container .home-top-search-form {
+  position: relative;
+  width: 360px;
+  float: left;
+}
+/* line 33, ../sass/_layout.home.scss */
+.home-top .home-top-container .home-top-search-input {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 9px 10px;
+  font-size: 14px;
+  outline: medium none;
+  overflow: hidden;
+  width: 100%;
+  line-height: 18px;
+  border: 1px solid #D2D2D2;
+  background-color: #ffffff;
+  color: #49525c;
+  height: 38px;
+}
+/* line 51, ../sass/_layout.home.scss */
+.home-top .home-top-container .home-top-add-question {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  float: left;
+  margin: 0 0 0 6px;
+  background: #ff9700;
+  background-color: #ff9700;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
+  background-repeat: repeat-x;
+  color: #FFF;
+  font-size: 18px;
+  width: 80px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ff9700;
+  outline: 0;
+}
+/* line 74, ../sass/_layout.home.scss */
+.home-top .home-top-container .home-top-search-submit {
+  position: absolute;
+  right: 4px;
+  top: 0px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  background: 0;
+  margin-top: 8px;
+}
+/* line 84, ../sass/_layout.home.scss */
+.home-top .home-top-container .home-top-search-submit .icons-search {
+  width: 30px;
+  height: 24px;
+  display: inline-block;
+}
+
+/* line 93, ../sass/_layout.home.scss */
+.home-mid {
+  background: url(../images/home/home_mid_bg.png);
+  display: block;
+  width: 100%;
+  height: 211px;
+}
+/* line 99, ../sass/_layout.home.scss */
+.home-mid .home-mid-title-warp {
+  width: 190px;
+  margin: 0 auto;
+  padding-top: 26px;
+  padding-bottom: 34px;
+}
+/* line 106, ../sass/_layout.home.scss */
+.home-mid .home-mid-title {
+  line-height: 25px;
+  font-size: 25px;
+}
+/* line 111, ../sass/_layout.home.scss */
+.home-mid .icons-point_left {
+  float: left;
+  display: block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin: 3px 10px 0 16px;
+}
+/* line 120, ../sass/_layout.home.scss */
+.home-mid .home-mid-subtitle {
+  font-size: 14px;
+  line-height: 18px;
+  color: #6b6b6b;
+}
+/* line 126, ../sass/_layout.home.scss */
+.home-mid .warp-content, .home-mid .home-content {
+  position: relative;
+}
+/* line 130, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-switch {
+  position: absolute;
+  font-size: 12px;
+  color: #5e5e5e;
+  top: 50px;
+  right: 0px;
+  cursor: pointer;
+}
+/* line 139, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block {
+  margin: 0 35px;
+  float: left;
+  width: 188px;
+}
+/* line 144, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-logo {
+  float: left;
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+/* line 151, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc {
+  float: left;
+  margin-left: 10px;
+}
+/* line 155, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-name {
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* line 161, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-company {
+  margin-top: 2px;
+  line-height: 14px;
+  font-size: 12px;
+  font-weight: bold;
+}
+/* line 168, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-position {
+  line-height: 14px;
+  font-size: 12px;
+}
+/* line 173, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-subjects {
+  margin-top: 3px;
+}
+/* line 177, ../sass/_layout.home.scss */
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 16px;
+  height: 13px;
+  line-height: 16px;
+  margin-left: 3px;
+  margin-bottom: 2px;
+}
+
+/* line 189, ../sass/_layout.home.scss */
+.home-content {
+  margin-top: 35px;
+}
+/* line 15, ../sass/mixins/_clearfix.scss */
+.home-content:before, .home-content:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+.home-content:after {
+  clear: both;
+}
+/* line 194, ../sass/_layout.home.scss */
+.home-content .home-left-content {
+  float: left;
+}
+/* line 198, ../sass/_layout.home.scss */
+.home-content .home-news {
+  float: left;
+  border-bottom: 1px solid #CCCCCC;
+  width: 722px;
+  height: 32px;
+}
+/* line 204, ../sass/_layout.home.scss */
+.home-content .home-news .home-news-header {
+  float: left;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+/* line 211, ../sass/_layout.home.scss */
+.home-content .home-news .icons-point_left {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+/* line 219, ../sass/_layout.home.scss */
+.home-content .home-news .home-news-ul {
+  float: right;
+}
+/* line 222, ../sass/_layout.home.scss */
+.home-content .home-news .home-news-ul .home-news-li {
+  float: left;
+  margin: 0 10px;
+  width: 38px;
+  font-size: 16px;
+  text-align: center;
+  height: 30px;
+  cursor: pointer;
+}
+/* line 232, ../sass/_layout.home.scss */
+.home-content .home-news .home-news-ul .home-news-li-current {
+  color: #ffa121;
+  border-bottom: 3px solid #ff9700;
+}
+/* line 239, ../sass/_layout.home.scss */
+.home-content .home-right-panel {
+  float: right;
+  width: 270px;
+}
+/* line 243, ../sass/_layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ad {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  width: 270px;
+  height: 101px;
+  display: block;
+  background: url(../images/home/home_ad.png) no-repeat;
+}
+/* line 251, ../sass/_layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul {
+  margin-top: 25px;
+}
+/* line 254, ../sass/_layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
+  margin-bottom: 3px;
+  line-height: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: #6b6b6b;
+  background: #F7F7F7;
+  cursor: pointer;
+}
+/* line 264, ../sass/_layout.home.scss */
+.home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
+  background: #E0E0E0;
+  border-right: 6px solid #ff9700;
+}
+/* line 270, ../sass/_layout.home.scss */
+.home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 19px;
+  height: 18px;
+  margin-left: 12px;
+  margin-right: 15px;
+}
+
+/* line 5, ../sass/_layout.user.scss */
+.user-top {
+  margin-top: 30px;
+  display: block;
+  height: 317px;
+}
+/* line 10, ../sass/_layout.user.scss */
+.user-top .user-profile {
+  position: relative;
+  background: #f6f9f9;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  height: 225px;
+}
+/* line 17, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88px;
+  background: url(../images/user/user_bg.png);
+  z-index: 1;
+}
+/* line 27, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 31px 31px 0 31px;
+  width: 100%;
+  z-index: 2;
+}
+/* line 35, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-left {
+  float: left;
+  width: 136px;
+  height: 100%;
+  z-index: 2;
+}
+/* line 41, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-left .user-profile-logo {
+  display: block;
+  width: 136px;
+  height: 136px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 49, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-left .user-profile-data {
+  margin-top: 14px;
+  line-height: 16px;
+}
+/* line 53, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .desc {
+  display: block;
+  float: left;
+  font-size: 16px;
+  color: #333;
+}
+/* line 60, ../sass/_layout.user.scss */
+.user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt {
+  display: block;
+  float: left;
+  width: 1px;
+  height: 16px;
+}
+/* line 80, ../sass/_layout.user.scss */
+.user-top .user-detail {
+  margin-top: 11px;
+  height: 45px;
+  padding: 16px 32px;
+  background: #f6f9f9;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+/* line 89, ../sass/_layout.user.scss */
+.user-top .user-detail .user-detail-left {
+  float: left;
+  font-weight: bold;
+  color: #333;
+  height: 100%;
+}
+/* line 96, ../sass/_layout.user.scss */
+.user-top .user-detail .user-detail-right {
+  color: #333;
 }

@@ -1,9 +1,5 @@
 @import "variables";
 
-body {
-  padding-top: $body-padding-top;
-}
-
 .warp-content {
   width: $warp-content-width;
   margin: 0 auto;
@@ -21,6 +17,10 @@ body, input, textarea, select, button {
   margin: 0;
   color: #222;
   word-wrap: break-word;
+}
+
+body {
+  padding-top: $body-padding-top;
 }
 
 input[type=text], input[type=password]:focus {
