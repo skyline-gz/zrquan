@@ -1,0 +1,27 @@
+@import "base";
+@import "variables";
+
+div[role=userblocks] {
+  clear: both;
+
+  .component-userblock {
+    clear: both;
+    overflow: hidden; //解决子元素浮动时父元素没有被自动撑开的问题
+    padding: 16px 0;
+    border-bottom: 1px solid #eeeeee;
+
+    img.component-userblock-avatar {
+      float: left;
+      width: 56px;
+      height: 56px;
+    }
+
+    .component-userblock-desc {
+      float: left;
+    }
+
+    .component-userblock-opts {
+      float: left;
+    }
+  }
+}
