@@ -18,10 +18,81 @@ div[role=userblocks] {
 
     .component-userblock-desc {
       float: left;
+      margin-left: 8px;
+
+      .component-userblock-name {
+        margin-top: 2px;
+        margin-bottom: 3px;
+        font-size: 14px;
+        line-height: 14px;
+        height: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .component-userblock-ico-vip {
+        @extend .icons-vip;
+        @include inline-block;
+        width: 16px;
+        height: 13px;
+        margin-left: 5px;
+        margin-top: -2px;
+      }
+
+      .component-userblock-professional {
+        font-size: 12px;
+
+        .component-userblock-company {
+          @include inline-block;
+          font-weight: bold;
+        }
+
+        .component-userblock-position {
+          @include inline-block;
+          margin-left: 5px;
+        }
+      }
     }
 
     .component-userblock-opts {
-      float: left;
+      float: right;
+      margin-right: 25px;
+      margin-top: 5px;
+
+      .component-userblock-star {
+        @include border-radius(4px);
+        background: #3ea004;
+        background-color: #3ea004;
+        @include background-image(linear-gradient(top,#3ea004, #368c04));
+        background-repeat: repeat-x;
+
+        float: left;
+        width: 48px;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .component-userblock-consult {
+        @include border-radius(4px);
+        background: $base-color;
+        background-color: $base-color;
+        @include background-image(linear-gradient(top,$base-color,$deep-base-color));
+        background-repeat: repeat-x;
+
+        float: left;
+        margin-left: 8px;
+        width: 48px;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+      }
     }
   }
 }

@@ -56,5 +56,10 @@ require([
         $(".top-link-logo").click(function(){
             $('#activateModal').modal('show');
         });
+
+        $(".home-mid-mentor-logo").click(function(){
+                location.href="user.html"
+            }
+        ).css("cursor", "pointer")
     });
 });

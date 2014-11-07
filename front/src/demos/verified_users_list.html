@@ -9,18 +9,26 @@
     <!--[if lt IE 9]>
     <script src="../vendors/html5shiv/html5shiv.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="../vendors/jquery/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+           $(".component-userblock-avatar").click(function(){
+               location.href = "user.html";
+           }).css("cursor", "pointer");
+        });
+    </script>
     <link rel="stylesheet" type="text/css" href="../css/zrquan.css">
 </head>
 <body>
     <div role="navigation">
         <div class="warp-content">
-            <a class="top-link-logo"></a>
+            <a class="top-link-logo" href="home.html"></a>
             <div class="top-nav">
                 <div class="top-nav-ul">
-                    <div class="top-nav-li current"><a class="top-nav-link">首页</a></div>
-                    <div class="top-nav-li"><a class="top-nav-link">导师</a></div>
-                    <div class="top-nav-li"><a class="top-nav-link">经验</a></div>
+                    <div class="top-nav-li current"><a class="top-nav-link" href="home.html">首页</a></div>
+                    <div class="top-nav-li"><a class="top-nav-link" href="verified_users_list.html">职人</a></div>
                     <div class="top-nav-li"><a class="top-nav-link">问答</a></div>
+                    <div class="top-nav-li"><a class="top-nav-link">经验</a></div>
                 </div>
             </div>
             <div class="top-nav-searchbar">
@@ -61,8 +69,144 @@
         <div class="vul-content-left">
             <div role="userblocks" class="vul-content-infoblock">
                 <div class="component-userblock">
-                    <img src="../images/avatars/head_b_01.png" class="component-userblock-avatar">
-                    <div class="component-userblock-desc"></div>
+                    <img src="../images/avatars/head_m_01.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">陈磊华<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">网易</div>
+                            <div class="component-userblock-position">高级产品经理</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">职业策划</div>
+                            <div class="component-subject">应届生求职</div>
+                        </div>
+                    </div>
+                    <div class="component-userblock-opts">
+                        <div class="component-userblock-star">关注</div>
+                        <div class="component-userblock-consult">咨询</div>
+                    </div>
+                </div>
+                <div class="component-userblock">
+                    <img src="../images/avatars/head_m_02.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">何灏<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">Coremail</div>
+                            <div class="component-userblock-position">设计主管</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">职业策划</div>
+                            <div class="component-subject">应届生求职</div>
+                        </div>
+                    </div>
+                    <div class="component-userblock-opts">
+                        <div class="component-userblock-star">关注</div>
+                        <div class="component-userblock-consult">咨询</div>
+                    </div>
+                </div>
+                <div class="component-userblock">
+                    <img src="../images/avatars/head_m_03.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">冯庆强<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">百度</div>
+                            <div class="component-userblock-position">高级搜索引擎专家</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">搜索引擎</div>
+                            <div class="component-subject">数据库</div>
+                        </div>
+                    </div>
+                    <div class="component-userblock-opts">
+                        <div class="component-userblock-star">关注</div>
+                        <div class="component-userblock-consult">咨询</div>
+                    </div>
+                </div>
+                <div class="component-userblock">
+                    <img src="../images/avatars/head_m_04.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">欧阳俊<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">小米</div>
+                            <div class="component-userblock-position">高级产品经理</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">职业策划</div>
+                            <div class="component-subject">应届生求职</div>
+                        </div>
+                    </div>
+                    <div class="component-userblock-opts">
+                        <div class="component-userblock-star">关注</div>
+                        <div class="component-userblock-consult">咨询</div>
+                    </div>
+                </div>
+                <div class="component-userblock">
+                    <img src="../images/avatars/head_m_01.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">James Ouyang<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">网易</div>
+                            <div class="component-userblock-position">高级产品经理</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">职业策划</div>
+                            <div class="component-subject">应届生求职</div>
+                        </div>
+                    </div>
+                    <div class="component-userblock-opts">
+                        <div class="component-userblock-star">关注</div>
+                        <div class="component-userblock-consult">咨询</div>
+                    </div>
+                </div>
+                <div class="component-userblock">
+                    <img src="../images/avatars/head_m_02.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">邓亚萍<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">Coremail</div>
+                            <div class="component-userblock-position">设计主管</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">职业策划</div>
+                            <div class="component-subject">应届生求职</div>
+                        </div>
+                    </div>
+                    <div class="component-userblock-opts">
+                        <div class="component-userblock-star">关注</div>
+                        <div class="component-userblock-consult">咨询</div>
+                    </div>
+                </div>
+                <div class="component-userblock">
+                    <img src="../images/avatars/head_m_03.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">冯庆强<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">百度</div>
+                            <div class="component-userblock-position">高级搜索引擎专家</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">搜索引擎</div>
+                            <div class="component-subject">数据库</div>
+                        </div>
+                    </div>
+                    <div class="component-userblock-opts">
+                        <div class="component-userblock-star">关注</div>
+                        <div class="component-userblock-consult">咨询</div>
+                    </div>
+                </div>
+                <div class="component-userblock">
+                    <img src="../images/avatars/head_m_04.png" class="component-userblock-avatar">
+                    <div class="component-userblock-desc">
+                        <div class="component-userblock-name">欧阳俊<i class="component-userblock-ico-vip"></i></div>
+                        <div class="component-userblock-professional">
+                            <div class="component-userblock-company">小米</div>
+                            <div class="component-userblock-position">高级产品经理</div>
+                        </div>
+                        <div class="component-userblock-subjects">
+                            <div class="component-subject">职业策划</div>
+                            <div class="component-subject">应届生求职</div>
+                        </div>
+                    </div>
                     <div class="component-userblock-opts">
                         <div class="component-userblock-star">关注</div>
                         <div class="component-userblock-consult">咨询</div>
