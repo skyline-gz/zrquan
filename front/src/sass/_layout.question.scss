@@ -1,0 +1,133 @@
+.question-warp-content {
+  width: 772px;
+}
+
+.question-title {
+  margin-top: 22px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  height: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.question-body {
+  padding-bottom: 15px;
+  clear: both;
+  overflow: hidden;
+  padding-top: 15px;
+  color: #333;
+
+  .question-body-left {
+    float:left;
+    width: 32px;
+
+    .question-avatar {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+  }
+
+  .question-body-right {
+    float:left;
+    margin-left: 11px;
+    width: 675px;
+
+    .question-body-provider {
+      height: 13px;
+
+      .question-body-provider-name {
+        float: left;
+        font-size: 13px;
+        line-height: 13px;
+        font-weight: bold;
+      }
+
+
+      .question-icons-vip {
+        @extend .icons-vip;
+        float: left;
+        margin-left: 4px;
+        width: 16px;
+        height: 13px;
+      }
+
+      .question-time {
+        float: right;
+        font-weight: normal;
+        color:$light-dark;
+        margin-right: 10px;
+      }
+    }
+
+    .question-body-content {
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 22px;
+      color: $deep-dark;
+      font-family: $base-article-family;
+    }
+
+    .question-body-footer {
+      overflow: hidden;
+      margin-top: 5px;
+      line-height: 22px;
+
+      .component-comment {
+        float: left;
+        color: $light-dark;
+        margin-right: 12px;
+
+        .icons-comment {
+          float: left;
+          width: 12px;
+          height: 12px;
+          margin-right: 6px;
+        }
+      }
+
+      .component-favorites {
+        float: left;
+        color: $light-dark;
+        margin-right: 12px;
+
+        .icons-favorites {
+          @include inline-block;
+          width: 12px;
+          height: 11px;
+          margin-right: 4px;
+          margin-top: -2px;
+        }
+      }
+
+      .question-subjects {
+        margin-top: 2px;
+        float: left;
+      }
+    }
+  }
+}
+
+.question-answer {
+  .question-answer-header {
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 5px;
+
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .question-answer-ico {
+      @extend .icons-comment;
+      margin-top: 8px;
+      margin-right: 8px;
+      float: left;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+
+}
