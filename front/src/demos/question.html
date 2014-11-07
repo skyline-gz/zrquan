@@ -9,7 +9,16 @@
     <!--[if lt IE 9]>
     <script src="../vendors/html5shiv/html5shiv.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="../vendors/jquery/jquery-1.11.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../vendors/ueditor/zrquan.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../vendors/ueditor/ueditor.all.js"></script>
+    <link rel="stylesheet" href="../vendors/ueditor/themes/zrquan/css/ueditor.min.css">
     <link rel="stylesheet" type="text/css" href="../css/zrquan.css">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var ue = UE.getEditor('myEditor');
+        });
+    </script>
 </head>
 <body>
     <div role="navigation">
@@ -45,8 +54,8 @@
         </div>
     </div>
     <div class="warp-content">
+        <div class="question-title">应该如何做好自己的职业规划？</div>
         <div class="question-warp-content">
-            <div class="question-title">应该如何做好自己的职业规划？</div>
             <div class="question-body">
                 <div class="question-body-left">
                     <div class="question-avatar avatars-head_s_02"></div>
@@ -192,7 +201,11 @@
                 </div>
             </div>
             <div class="question-answer-editor">
-
+                <form id="form" action="_blank" method="post" target="_blank">
+                    <script type="text/plain" id="myEditor" name="myEditor">
+                        <p class='init-content'>请输入内容...</p>
+                    </script>
+                </form>
             </div>
         </div>
     </div>

@@ -1,0 +1,26 @@
+body {
+    font-family: "Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    line-height: 23px;
+    word-wrap: break-word;
+    color: #222;
+}
+
+address, blockquote, sup {
+    border-left: 3px solid #D0E5F2;
+    font-style: normal;
+    padding: 0 0 0 10px;
+    display: block;
+    line-height: 22px;
+    vertical-align: baseline;
+    font-size: 100%;
+}
+
+blockquote {
+    margin: .8em 0;
+}
+
+p.init-content {
+    color: gainsboro;
+}
