@@ -1,0 +1,58 @@
+.ql-header {
+  margin-top: 10px;
+
+  .ql-header-title-container {
+    overflow: hidden;
+  }
+
+  .ql-header-title {
+    float: left;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .ql-btn-ask-question {
+    margin-top: 2px;
+    margin-left: 15px;
+    padding: 3px 10px;
+
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+
+    @include border-radius(4px);
+    background: $base-color;
+    background-color: $base-color;
+    @include background-image(linear-gradient(top,$base-color,$deep-base-color));
+    background-repeat: repeat-x;
+  }
+
+  .ql-content-categories {
+    @include clearfix;
+    margin-top: 2px;
+  }
+}
+
+.ql-content {
+  margin-top: 20px;
+  overflow: hidden;
+  border-top: 1px solid $deep-grey;
+  padding-top: 25px;
+
+
+  .ql-content-left {
+    float: left;
+    width: 772px;
+    border-right: 1px solid $deep-grey;
+  }
+
+  div[role=questionblocks] {
+    margin-top: -20px;
+    width: 720px;
+  }
+}

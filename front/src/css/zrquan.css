@@ -1,3 +1,5 @@
+/*! zrquan 2014-11-07 */
+
 /* line 17, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -489,7 +491,7 @@ img.jcrop-preview {
   -o-border-radius: 4px;
   border-radius: 4px;
   color: #ffffff;
-  background: #fbd28d;
+  background: #FFBD4D;
   font-size: 12px;
   line-height: 12px;
   padding: 2px 3px;
@@ -497,7 +499,7 @@ img.jcrop-preview {
 }
 
 /* line 258, icons/*.png */
-.icons-sprite, .icons-add, .icons-b_vip, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-vip, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt, .icons-u_education, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education, .icons-u_location, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location, .icons-u_private_message, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message, .icons-u_profession, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession, .icons-u_question, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult, .icons-u_specialized, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized, .icons-u_star, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip {
+.icons-sprite, .icons-add, .icons-b_vip, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-vip, .icons-comment, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt, .icons-u_education, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education, .icons-u_location, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location, .icons-u_private_message, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message, .icons-u_profession, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession, .icons-u_question, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult, .icons-u_specialized, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized, .icons-u_star, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip, div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip {
   background: url('/images/icons-s729f2ea71a.png') no-repeat;
 }
 
@@ -647,7 +649,7 @@ img.jcrop-preview {
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-vip {
+.icons-vip, div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip {
   background-position: 0 -174px;
 }
 
@@ -711,33 +713,105 @@ img.jcrop-preview {
   background-position: 0 0;
 }
 
-/* line 9, ../sass/_component.infoblock.scss */
-div[role=infoblocks] {
+/* line 5, ../sass/_component.infoblock.scss */
+div[role=infoblocks],
+div[role=questionblocks] {
   clear: both;
 }
-/* line 12, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock {
+/* line 9, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock,
+div[role=infoblocks] .component-questionblock,
+div[role=questionblocks] .component-infoblock,
+div[role=questionblocks] .component-questionblock {
   clear: both;
   overflow: hidden;
-  padding-top: 21px;
+  padding-top: 15px;
 }
-/* line 17, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-left {
+/* line 15, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left,
+div[role=infoblocks] .component-infoblock .component-questionblock-left,
+div[role=infoblocks] .component-questionblock .component-infoblock-left,
+div[role=infoblocks] .component-questionblock .component-questionblock-left,
+div[role=questionblocks] .component-infoblock .component-infoblock-left,
+div[role=questionblocks] .component-infoblock .component-questionblock-left,
+div[role=questionblocks] .component-questionblock .component-infoblock-left,
+div[role=questionblocks] .component-questionblock .component-questionblock-left {
   float: left;
   width: 32px;
 }
-/* line 21, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar {
+/* line 20, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-questionblock-avatar,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-infoblock-avatar,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-questionblock-avatar,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-infoblock-avatar,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-questionblock-avatar,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-infoblock-avatar,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-questionblock-avatar,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-infoblock-avatar,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-questionblock-avatar,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-infoblock-avatar,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-questionblock-avatar,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-infoblock-avatar,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-questionblock-avatar,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-infoblock-avatar,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-questionblock-avatar {
   width: 32px;
   height: 32px;
   display: block;
 }
 /* line 27, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good {
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-questionblock-good,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-infoblock-good,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-questionblock-good,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-infoblock-good,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-questionblock-good,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-infoblock-good,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-questionblock-good,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-infoblock-good,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-questionblock-good,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-infoblock-good,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-questionblock-good,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-infoblock-good,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-questionblock-good,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-infoblock-good,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-questionblock-good {
   margin-top: 6px;
 }
-/* line 30, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num {
+/* line 31, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-num,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-num,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-num,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-num,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-num,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-num {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
   border-top-left-radius: 4px;
@@ -751,8 +825,39 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   font-size: 12px;
   font-weight: bold;
 }
-/* line 41, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action {
+/* line 43, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .component-questionblock-good-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-infoblock-good-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .component-questionblock-good-action {
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
@@ -767,8 +872,23 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   text-align: center;
   cursor: pointer;
 }
-/* line 53, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good {
+/* line 55, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good,
+div[role=infoblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .icons-good,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .icons-good,
+div[role=infoblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .icons-good,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .icons-good,
+div[role=infoblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .icons-good,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .icons-good,
+div[role=infoblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .icons-good,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-infoblock-good .icons-good,
+div[role=questionblocks] .component-infoblock .component-infoblock-left .component-questionblock-good .icons-good,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-infoblock-good .icons-good,
+div[role=questionblocks] .component-infoblock .component-questionblock-left .component-questionblock-good .icons-good,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-infoblock-good .icons-good,
+div[role=questionblocks] .component-questionblock .component-infoblock-left .component-questionblock-good .icons-good,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-infoblock-good .icons-good,
+div[role=questionblocks] .component-questionblock .component-questionblock-left .component-questionblock-good .icons-good {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -778,50 +898,226 @@ div[role=infoblocks] .component-infoblock .component-infoblock-left .component-i
   width: 10px;
   height: 11px;
 }
-/* line 61, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right {
+/* line 64, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right,
+div[role=infoblocks] .component-infoblock .component-questionblock-right,
+div[role=infoblocks] .component-questionblock .component-infoblock-right,
+div[role=infoblocks] .component-questionblock .component-questionblock-right,
+div[role=questionblocks] .component-infoblock .component-infoblock-right,
+div[role=questionblocks] .component-infoblock .component-questionblock-right,
+div[role=questionblocks] .component-questionblock .component-infoblock-right,
+div[role=questionblocks] .component-questionblock .component-questionblock-right {
   float: left;
   margin-left: 11px;
-  padding-bottom: 16px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
   width: 675px;
 }
-/* line 68, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header {
+/* line 73, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header {
   font-size: 12px;
   line-height: 12px;
 }
-/* line 72, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip {
+/* line 77, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip, div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .icons-vip,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-userblock-ico-vip,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .icons-vip,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .icons-vip,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-userblock-ico-vip,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .icons-vip,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .icons-vip,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-userblock-ico-vip,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .icons-vip,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .icons-vip,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .icons-vip,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .icons-vip,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .icons-vip,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .icons-vip,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .icons-vip,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .icons-vip,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-userblock-ico-vip,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .icons-vip,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip,
+div[role=userblocks] .component-userblock .component-userblock-desc div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-userblock-ico-vip {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
   zoom: 1;
   *display: inline;
+  margin-top: -2px;
   width: 16px;
   height: 13px;
 }
-/* line 78, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username {
+/* line 85, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-questionblock-username,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-infoblock-username,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-questionblock-username,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-infoblock-username,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-questionblock-username,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-infoblock-username,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-questionblock-username,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-infoblock-username,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-questionblock-username,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-infoblock-username,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-questionblock-username,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-infoblock-username,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-questionblock-username,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-infoblock-username,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-questionblock-username,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-username,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-questionblock-username,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-infoblock-username,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-questionblock-username,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-infoblock-username,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-questionblock-username,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-infoblock-username,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-questionblock-username,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-infoblock-username,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-questionblock-username,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-infoblock-username,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-questionblock-username,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-infoblock-username,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-questionblock-username,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-infoblock-username,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-questionblock-username {
   font-size: 13px;
   font-weight: bold;
   color: black;
 }
-/* line 84, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action {
+/* line 92, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-questionblock-action,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-infoblock-action,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-questionblock-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-infoblock-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-questionblock-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-infoblock-action,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-questionblock-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-infoblock-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-questionblock-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-infoblock-action,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-questionblock-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-infoblock-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-questionblock-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-infoblock-action,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-questionblock-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-questionblock-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-infoblock-action,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-questionblock-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-infoblock-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-questionblock-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-infoblock-action,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-questionblock-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-infoblock-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-questionblock-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-infoblock-action,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-questionblock-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-infoblock-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-questionblock-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-infoblock-action,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-questionblock-action {
   font-weight: normal;
   color: #868686;
 }
-/* line 89, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-time {
+/* line 98, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-time,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-questionblock-time,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-infoblock-time,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-questionblock-time,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-infoblock-time,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-questionblock-time,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-infoblock-time,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-questionblock-time,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-infoblock-time,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-questionblock-time,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-infoblock-time,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-questionblock-time,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-infoblock-time,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-questionblock-time,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-infoblock-time,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-questionblock-time,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-infoblock-time,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-questionblock-time,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-infoblock-time,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-header .component-questionblock-time,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-infoblock-time,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-header .component-questionblock-time,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-infoblock-time,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header .component-questionblock-time,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-infoblock-time,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-header .component-questionblock-time,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-infoblock-time,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-header .component-questionblock-time,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-infoblock-time,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-header .component-questionblock-time,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-infoblock-time,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header .component-questionblock-time {
   font-weight: normal;
   color: #868686;
   float: right;
   margin-right: 10px;
 }
-/* line 97, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-title {
+/* line 107, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-title,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-quesitionblock-title,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-title,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-quesitionblock-title,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-title,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-quesitionblock-title,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-title,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-quesitionblock-title,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-title,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-quesitionblock-title,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-title,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-quesitionblock-title,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-title,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-quesitionblock-title,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-title,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-quesitionblock-title {
   margin-top: 2px;
   font-size: 14px;
   font-weight: bold;
@@ -829,20 +1125,65 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   line-height: 23px;
   color: #EE8E00;
 }
-/* line 106, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
+/* line 117, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-content,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-content,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-content,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-content,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-content,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-content,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-content,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-content,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-content,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-content,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-content,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-content,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-content,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-content,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-content {
   font-size: 14px;
   line-height: 22px;
   color: #222222;
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
 }
-/* line 113, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer {
+/* line 125, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer {
   margin-top: 5px;
   line-height: 22px;
 }
-/* line 117, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment {
+/* line 129, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-comment,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-comment,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-comment,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-comment,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-comment,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-comment,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-comment,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-comment,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-comment,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-comment,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-comment,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-comment,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-comment,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-comment {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -852,8 +1193,23 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   color: #868686;
   margin-right: 12px;
 }
-/* line 122, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment {
+/* line 134, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-comment .icons-comment,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-comment .icons-comment,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-comment .icons-comment,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-comment .icons-comment,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-comment .icons-comment {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -864,8 +1220,23 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   height: 12px;
   margin-right: 6px;
 }
-/* line 130, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites {
+/* line 142, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-favorites,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-favorites,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-favorites,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-favorites,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-favorites,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-favorites,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-favorites,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-favorites,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-favorites,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-favorites,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-favorites,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-favorites,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-favorites,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-favorites {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -875,8 +1246,23 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   color: #868686;
   margin-right: 12px;
 }
-/* line 135, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites {
+/* line 147, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-favorites .icons-favorites,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-favorites .icons-favorites,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-favorites .icons-favorites,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-favorites .icons-favorites,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-favorites .icons-favorites {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -888,8 +1274,39 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   margin-right: 4px;
   margin-top: -2px;
 }
-/* line 144, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects {
+/* line 157, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-questionblock-subjects,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-questionblock-subjects,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-questionblock-subjects,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-infoblock .component-infoblock-right .component-questionblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-questionblock .component-infoblock-right .component-questionblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-infoblock-footer .component-questionblock-subjects,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-infoblock-subjects,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-footer .component-questionblock-subjects {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -897,9 +1314,172 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   zoom: 1;
   *display: inline;
 }
-/* line 149, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
+/* line 162, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall,
+div[role=infoblocks] .component-infoblock .component-questionblock-right a.showall,
+div[role=infoblocks] .component-questionblock .component-infoblock-right a.showall,
+div[role=infoblocks] .component-questionblock .component-questionblock-right a.showall,
+div[role=questionblocks] .component-infoblock .component-infoblock-right a.showall,
+div[role=questionblocks] .component-infoblock .component-questionblock-right a.showall,
+div[role=questionblocks] .component-questionblock .component-infoblock-right a.showall,
+div[role=questionblocks] .component-questionblock .component-questionblock-right a.showall {
   color: #438cca;
+}
+/* line 168, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-questionblock-title,
+div[role=infoblocks] .component-questionblock .component-questionblock-title,
+div[role=questionblocks] .component-infoblock .component-questionblock-title,
+div[role=questionblocks] .component-questionblock .component-questionblock-title {
+  font-size: 14px;
+  font-weight: bold;
+  height: 14px;
+  line-height: 14px;
+  color: #EE8E00;
+  margin-bottom: 8px;
+}
+/* line 177, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-questionblock-right,
+div[role=infoblocks] .component-questionblock .component-questionblock-right,
+div[role=questionblocks] .component-infoblock .component-questionblock-right,
+div[role=questionblocks] .component-questionblock .component-questionblock-right {
+  border-bottom: 0;
+}
+/* line 180, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-questionblock-right .component-questionblock-header,
+div[role=infoblocks] .component-questionblock .component-questionblock-right .component-questionblock-header,
+div[role=questionblocks] .component-infoblock .component-questionblock-right .component-questionblock-header,
+div[role=questionblocks] .component-questionblock .component-questionblock-right .component-questionblock-header {
+  margin-bottom: 3px;
+}
+/* line 186, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-questionblock,
+div[role=questionblocks] .component-questionblock {
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* line 4, ../sass/_component.userblock.scss */
+div[role=userblocks] {
+  clear: both;
+}
+/* line 7, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock {
+  clear: both;
+  overflow: hidden;
+  padding: 16px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 13, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock img.component-userblock-avatar {
+  float: left;
+  width: 56px;
+  height: 56px;
+}
+/* line 19, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-desc {
+  float: left;
+  margin-left: 8px;
+}
+/* line 23, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-name {
+  margin-top: 2px;
+  margin-bottom: 3px;
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  font-weight: bold;
+  color: #333;
+}
+/* line 33, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 16px;
+  height: 13px;
+  margin-left: 5px;
+  margin-top: -2px;
+}
+/* line 42, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-professional {
+  font-size: 12px;
+}
+/* line 45, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-professional .component-userblock-company {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  font-weight: bold;
+}
+/* line 50, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-professional .component-userblock-position {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  margin-left: 5px;
+}
+/* line 57, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-opts {
+  float: right;
+  margin-right: 25px;
+  margin-top: 5px;
+}
+/* line 62, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-opts .component-userblock-star {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: #3ea004;
+  background-color: #3ea004;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3ea004), color-stop(100%, #368c04));
+  background-image: -webkit-linear-gradient(top, #3ea004, #368c04);
+  background-image: -moz-linear-gradient(top, #3ea004, #368c04);
+  background-image: -o-linear-gradient(top, #3ea004, #368c04);
+  background-image: linear-gradient(top, #3ea004, #368c04);
+  background-repeat: repeat-x;
+  float: left;
+  width: 48px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* line 79, ../sass/_component.userblock.scss */
+div[role=userblocks] .component-userblock .component-userblock-opts .component-userblock-consult {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: #ff9700;
+  background-color: #ff9700;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
+  background-repeat: repeat-x;
+  float: left;
+  margin-left: 8px;
+  width: 48px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 /* line 1, ../sass/_component.categories.scss */
@@ -912,18 +1492,18 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   -o-border-radius: 3px;
   border-radius: 3px;
   padding-left: 2px;
-  height: 38px;
+  height: 34px;
 }
 /* line 8, ../sass/_component.categories.scss */
 .component-categories .component-category {
   float: left;
-  width: 65px;
-  height: 38px;
-  line-height: 38px;
+  padding: 0 10px;
+  height: 34px;
+  line-height: 34px;
   font-size: 14px;
   text-align: center;
   color: #333;
-  margin-left: 20px;
+  margin-left: 12px;
   cursor: pointer;
 }
 /* line 20, ../sass/_component.categories.scss */
@@ -1298,7 +1878,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right a.showall {
   display: inline-block;
 }
 /* line 73, ../sass/_component.popover.profile.scss */
-.popover .popover-content .profile-card .upper .user-desc-container .icons-vip {
+.popover .popover-content .profile-card .upper .user-desc-container .icons-vip, .popover .popover-content .profile-card .upper .user-desc-container div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc .popover .popover-content .profile-card .upper .user-desc-container .component-userblock-ico-vip {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -1438,6 +2018,11 @@ input[type=text], input[type=password]:focus {
 }
 
 /* line 30, ../sass/_layout.scss */
+a:link {
+  text-decoration: none;
+}
+
+/* line 34, ../sass/_layout.scss */
 div[contentEditable], input, textarea, button, a:link {
   -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5);
 }
@@ -1901,7 +2486,7 @@ div[role=navigation] a:hover {
   margin-top: 3px;
 }
 /* line 177, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip {
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip, .home-mid .home-mid-mentor-block .home-mid-mentor-desc div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc .home-mid .home-mid-mentor-block .home-mid-mentor-desc .component-userblock-ico-vip {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -2318,4 +2903,91 @@ div[role=navigation] a:hover {
 /* line 10, ../sass/_layout.verified_users_list.scss */
 .vul-header .vul-content-categories {
   margin-top: 2px;
+}
+
+/* line 15, ../sass/_layout.verified_users_list.scss */
+.vul-content {
+  margin-top: 20px;
+  overflow: hidden;
+  border-top: 1px solid #cccccc;
+}
+/* line 21, ../sass/_layout.verified_users_list.scss */
+.vul-content .vul-content-left {
+  float: left;
+  width: 772px;
+  border-right: 1px solid #cccccc;
+}
+
+/* line 1, ../sass/_layout.questions_list.scss */
+.ql-header {
+  margin-top: 10px;
+}
+/* line 4, ../sass/_layout.questions_list.scss */
+.ql-header .ql-header-title-container {
+  overflow: hidden;
+}
+/* line 8, ../sass/_layout.questions_list.scss */
+.ql-header .ql-header-title {
+  float: left;
+  margin-left: 20px;
+  font-size: 16px;
+  color: #333;
+}
+/* line 15, ../sass/_layout.questions_list.scss */
+.ql-header .ql-btn-ask-question {
+  margin-top: 2px;
+  margin-left: 15px;
+  padding: 3px 10px;
+  float: left;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: #ff9700;
+  background-color: #ff9700;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
+  background-repeat: repeat-x;
+}
+/* line 35, ../sass/_layout.questions_list.scss */
+.ql-header .ql-content-categories {
+  margin-top: 2px;
+}
+/* line 15, ../sass/mixins/_clearfix.scss */
+.ql-header .ql-content-categories:before, .ql-header .ql-content-categories:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../sass/mixins/_clearfix.scss */
+.ql-header .ql-content-categories:after {
+  clear: both;
+}
+
+/* line 41, ../sass/_layout.questions_list.scss */
+.ql-content {
+  margin-top: 20px;
+  overflow: hidden;
+  border-top: 1px solid #cccccc;
+  padding-top: 25px;
+}
+/* line 48, ../sass/_layout.questions_list.scss */
+.ql-content .ql-content-left {
+  float: left;
+  width: 772px;
+  border-right: 1px solid #cccccc;
+}
+/* line 54, ../sass/_layout.questions_list.scss */
+.ql-content div[role=questionblocks] {
+  margin-top: -20px;
+  width: 720px;
 }
