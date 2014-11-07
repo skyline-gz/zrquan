@@ -94,13 +94,13 @@
   background: url(../images/home/home_mid_bg.png);
   display: block;
   width: 100%;
-  height: 211px;
+  height: 175px;
 
   .home-mid-title-warp {
     width: 190px;
     margin: 0 auto;
-    padding-top: 26px;
-    padding-bottom: 34px;
+    padding-top: 20px;
+    padding-bottom: 30px;
   }
 
   .home-mid-title {
@@ -115,12 +115,6 @@
     height: 18px;
     vertical-align: middle;
     margin: 3px 10px 0 16px;
-  }
-
-  .home-mid-subtitle {
-    font-size: 14px;
-    line-height: 18px;
-    color: $light-dark2;
   }
 
   .warp-content {

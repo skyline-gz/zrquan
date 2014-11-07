@@ -10,6 +10,14 @@
     <script src="../vendors/html5shiv/html5shiv.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="../css/zrquan.css">
+    <script type="text/javascript" src="../vendors/jquery/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".component-questionblock-title").click(function(){
+                location.href = "question.html";
+            }).css("cursor", "pointer");
+        });
+    </script>
 </head>
 <body>
     <div role="navigation">
@@ -26,7 +34,7 @@
             <div class="top-nav-searchbar">
                 <form method="GET" action="/search" class="top-nav-search-form">
                     <input type="text" class="top-nav-search-input" id="q" name="q"
-                           autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
+                           autocomplete="off" value="" placeholder="搜索问题、经验或职人..." aria-haspopup="true">
                     <input type="hidden" name="type" value="question">
                     <button type="submit" class="top-nav-search-submit">
                         <i class="icons-search_s"></i></button>
@@ -47,7 +55,6 @@
     <div class="ql-header warp-content">
         <div class="ql-header-title-container">
             <div class="ql-header-title">问答推荐</div>
-            <div class="ql-btn-ask-question">提问</div>
         </div>
         <div class="component-categories ql-content-categories">
             <div class="component-category">职场规划</div>
