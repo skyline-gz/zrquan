@@ -1,20 +1,18 @@
 .question-warp-content {
   width: 772px;
-  border-right: 1px solid #CCCCCC;
-  margin-top: 25px;
 }
 
 .question-title {
   margin-top: 22px;
-  padding-bottom: 8px;
-  font-size: 16px;
+  margin-bottom: 22px;
+  font-size: 18px;
+  height: 18px;
   font-weight: bold;
   color: #333;
-  border-bottom: 1px solid #CCCCCC;
 }
 
 .question-body {
-  padding-bottom: 15px;
+  padding-bottom: 30px;
   clear: both;
   overflow: hidden;
   color: #333;
@@ -40,8 +38,8 @@
 
       .question-body-provider-name {
         float: left;
-        font-size: 13px;
-        line-height: 13px;
+        font-size: 14px;
+        line-height: 14px;
         font-weight: bold;
       }
 
@@ -59,6 +57,7 @@
         font-weight: normal;
         color:$light-dark;
         margin-right: 10px;
+        line-height: 14px;
       }
     }
 
@@ -117,7 +116,6 @@
 
     span {
       font-size: 16px;
-      font-weight: bold;
     }
 
     .question-answer-ico {
@@ -128,6 +126,10 @@
       width: 12px;
       height: 12px;
     }
+  }
+
+  .component-infoblock-content {
+    margin-top: 5px;
   }
 }
 

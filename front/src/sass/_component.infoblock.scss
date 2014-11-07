@@ -83,19 +83,22 @@ div[role=questionblocks],{
 
         .component-infoblock-username,
         .component-questionblock-username {
-          font-size: 13px;
+          font-size: 14px;
+          line-height: 14px;
           font-weight: bold;
           color: $dark;
         }
 
         .component-infoblock-action,
         .component-questionblock-action {
+          line-height: 14px;
           font-weight: normal;
           color: $light-dark
         }
 
         .component-infoblock-time,
         .component-questionblock-time {
+          line-height: 14px;
           font-weight: normal;
           color:$light-dark;
           float: right;
