@@ -89,12 +89,19 @@
           margin-bottom: 6px;
           margin-left: 14px;
           font-size: 13px;
+          line-height: 22px;
 
           float: left;
           .lower-accp {
             float: left;
-            border-right: 1px solid $popover-content-border-color;
             padding-right: 6px;
+          }
+
+          .lower-split {
+            float: left;
+            width: 1px;
+            background: $popover-content-border-color;
+            height: 22px;
           }
 
           .lower-corn {

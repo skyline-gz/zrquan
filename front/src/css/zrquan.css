@@ -1,5 +1,3 @@
-/*! zrquan 2014-11-07 */
-
 /* line 17, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -1865,7 +1863,7 @@ div[role=userblocks] .component-userblock .component-userblock-opts .component-u
 /* line 14, ../sass/_component.popover.profile.scss */
 .popover .popover-content {
   border: 1px solid #999999;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid #cccccc;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   -webkit-border-radius: 4px;
@@ -1886,7 +1884,7 @@ div[role=userblocks] .component-userblock .component-userblock-opts .component-u
 }
 /* line 26, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .upper {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #cccccc;
   padding-top: 18px;
   padding-left: 15px;
   padding-bottom: 9px;
@@ -1969,30 +1967,37 @@ div[role=userblocks] .component-userblock .component-userblock-opts .component-u
   margin-bottom: 6px;
   margin-left: 14px;
   font-size: 13px;
+  line-height: 22px;
   float: left;
 }
-/* line 94, ../sass/_component.popover.profile.scss */
+/* line 95, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-left .lower-accp {
   float: left;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
   padding-right: 6px;
 }
 /* line 100, ../sass/_component.popover.profile.scss */
+.popover .popover-content .profile-card .lower .lower-left .lower-split {
+  float: left;
+  width: 1px;
+  background: #cccccc;
+  height: 22px;
+}
+/* line 107, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-left .lower-corn {
   float: left;
   padding-left: 6px;
 }
-/* line 105, ../sass/_component.popover.profile.scss */
+/* line 112, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-left em {
   font-weight: bold;
 }
-/* line 110, ../sass/_component.popover.profile.scss */
+/* line 117, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right {
   margin-top: 6px;
   margin-right: 14px;
   float: right;
 }
-/* line 115, ../sass/_component.popover.profile.scss */
+/* line 122, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right .btn-ask {
   float: left;
   margin-right: 10px;
@@ -2013,13 +2018,13 @@ div[role=userblocks] .component-userblock .component-userblock-opts .component-u
   background-image: linear-gradient(top, #ff9700, #dd8401);
   cursor: pointer;
 }
-/* line 128, ../sass/_component.popover.profile.scss */
+/* line 135, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right .btn-corn {
   float: left;
   cursor: pointer;
   line-height: 22px;
 }
-/* line 133, ../sass/_component.popover.profile.scss */
+/* line 140, ../sass/_component.popover.profile.scss */
 .popover .popover-content .profile-card .lower .lower-right .btn-corn .icons-add {
   width: 12px;
   height: 12px;
@@ -2027,7 +2032,7 @@ div[role=userblocks] .component-userblock .component-userblock-opts .component-u
   margin-top: 4px;
   margin-right: 3px;
 }
-/* line 146, ../sass/_component.popover.profile.scss */
+/* line 153, ../sass/_component.popover.profile.scss */
 .popover .arrow, .popover .arrow2 {
   position: absolute;
   width: 0;
@@ -2037,12 +2042,12 @@ div[role=userblocks] .component-userblock .component-userblock-opts .component-u
   border-left: 13px solid transparent;
   border-right: 13px solid transparent;
 }
-/* line 156, ../sass/_component.popover.profile.scss */
+/* line 163, ../sass/_component.popover.profile.scss */
 .popover .arrow {
   top: 0;
-  border-bottom: 13px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 13px solid #cccccc;
 }
-/* line 161, ../sass/_component.popover.profile.scss */
+/* line 168, ../sass/_component.popover.profile.scss */
 .popover .arrow2 {
   top: 1px;
   border-bottom: 13px solid #fff;
@@ -2504,9 +2509,9 @@ div[role=navigation] a:hover {
 }
 /* line 133, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block {
-  margin: 0 35px;
+  margin: 0 30px;
   float: left;
-  width: 188px;
+  width: 199px;
 }
 /* line 138, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-logo {
@@ -2540,9 +2545,10 @@ div[role=navigation] a:hover {
 }
 /* line 167, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-subjects {
+  overflow: hidden;
   margin-top: 3px;
 }
-/* line 171, ../sass/_layout.home.scss */
+/* line 172, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip, .home-mid .home-mid-mentor-block .home-mid-mentor-desc div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc .home-mid .home-mid-mentor-block .home-mid-mentor-desc .component-userblock-ico-vip, .home-mid .home-mid-mentor-block .home-mid-mentor-desc .question-body .question-body-right .question-body-provider .question-icons-vip, .question-body .question-body-right .question-body-provider .home-mid .home-mid-mentor-block .home-mid-mentor-desc .question-icons-vip {
   display: -moz-inline-stack;
   display: inline-block;
@@ -2553,11 +2559,12 @@ div[role=navigation] a:hover {
   width: 16px;
   height: 13px;
   line-height: 16px;
-  margin-left: 3px;
+  margin-left: 4px;
   margin-bottom: 2px;
+  margin-top: -2px;
 }
 
-/* line 183, ../sass/_layout.home.scss */
+/* line 185, ../sass/_layout.home.scss */
 .home-content {
   margin-top: 35px;
 }
@@ -2570,25 +2577,25 @@ div[role=navigation] a:hover {
 .home-content:after {
   clear: both;
 }
-/* line 188, ../sass/_layout.home.scss */
+/* line 190, ../sass/_layout.home.scss */
 .home-content .home-left-content {
   float: left;
 }
-/* line 192, ../sass/_layout.home.scss */
+/* line 194, ../sass/_layout.home.scss */
 .home-content .home-news {
   float: left;
   border-bottom: 1px solid #CCCCCC;
   width: 722px;
   height: 32px;
 }
-/* line 198, ../sass/_layout.home.scss */
+/* line 200, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-header {
   float: left;
   height: 24px;
   font-size: 24px;
   line-height: 24px;
 }
-/* line 205, ../sass/_layout.home.scss */
+/* line 207, ../sass/_layout.home.scss */
 .home-content .home-news .icons-point_left {
   width: 18px;
   height: 18px;
@@ -2596,11 +2603,11 @@ div[role=navigation] a:hover {
   margin-right: 8px;
   margin-top: 2px;
 }
-/* line 213, ../sass/_layout.home.scss */
+/* line 215, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-ul {
   float: right;
 }
-/* line 216, ../sass/_layout.home.scss */
+/* line 218, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li {
   float: left;
   margin: 0 10px;
@@ -2610,17 +2617,17 @@ div[role=navigation] a:hover {
   height: 30px;
   cursor: pointer;
 }
-/* line 226, ../sass/_layout.home.scss */
+/* line 228, ../sass/_layout.home.scss */
 .home-content .home-news .home-news-ul .home-news-li-current {
   color: #ffa121;
   border-bottom: 3px solid #ff9700;
 }
-/* line 233, ../sass/_layout.home.scss */
+/* line 235, ../sass/_layout.home.scss */
 .home-content .home-right-panel {
   float: right;
   width: 270px;
 }
-/* line 237, ../sass/_layout.home.scss */
+/* line 239, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ad {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2632,11 +2639,11 @@ div[role=navigation] a:hover {
   display: block;
   background: url(../images/home/home_ad.png) no-repeat;
 }
-/* line 245, ../sass/_layout.home.scss */
+/* line 247, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul {
   margin-top: 25px;
 }
-/* line 248, ../sass/_layout.home.scss */
+/* line 250, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li {
   margin-bottom: 3px;
   line-height: 32px;
@@ -2646,12 +2653,12 @@ div[role=navigation] a:hover {
   background: #F7F7F7;
   cursor: pointer;
 }
-/* line 258, ../sass/_layout.home.scss */
+/* line 260, ../sass/_layout.home.scss */
 .home-content .home-right-panel .home-right-panel-ul .home-right-panel-li-hover {
   background: #E0E0E0;
   border-right: 6px solid #ff9700;
 }
-/* line 264, ../sass/_layout.home.scss */
+/* line 266, ../sass/_layout.home.scss */
 .home-content .home-right-panel .icons-myanswer_hover, .home-content .home-right-panel .icons-myconsulting, .home-content .home-right-panel .icons-mydraft, .home-content .home-right-panel .icons-myquestion, .home-content .home-right-panel .icons-myfavorite, .home-content .home-right-panel .icons-myexperience {
   display: -moz-inline-stack;
   display: inline-block;
@@ -3095,13 +3102,14 @@ div[role=navigation] a:hover {
 /* line 113, ../sass/_layout.question.scss */
 .question-answer .question-answer-header {
   border-bottom: 1px solid #CCCCCC;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 6px;
 }
-/* line 117, ../sass/_layout.question.scss */
+/* line 118, ../sass/_layout.question.scss */
 .question-answer .question-answer-header span {
   font-size: 16px;
 }
-/* line 121, ../sass/_layout.question.scss */
+/* line 122, ../sass/_layout.question.scss */
 .question-answer .question-answer-header .question-answer-ico {
   margin-top: 8px;
   margin-right: 8px;
@@ -3109,12 +3117,12 @@ div[role=navigation] a:hover {
   width: 12px;
   height: 12px;
 }
-/* line 131, ../sass/_layout.question.scss */
+/* line 132, ../sass/_layout.question.scss */
 .question-answer .component-infoblock-content {
   margin-top: 5px;
 }
 
-/* line 136, ../sass/_layout.question.scss */
+/* line 137, ../sass/_layout.question.scss */
 .question-answer-editor {
   margin-top: 50px;
   margin-bottom: 200px;
