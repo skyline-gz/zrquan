@@ -1,40 +1,20 @@
 .ql-header {
-  margin-top: 10px;
+  margin-top: 18px;
 
   .ql-header-title-container {
     overflow: hidden;
   }
 
   .ql-header-title {
-    float: left;
     margin-left: 20px;
+    margin-bottom: 8px;
     font-size: 16px;
     color: #333;
-  }
-
-  .ql-btn-ask-question {
-    margin-top: 2px;
-    margin-left: 15px;
-    padding: 3px 10px;
-
-    float: left;
-    height: 16px;
-    line-height: 16px;
-    text-align: center;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-
-    @include border-radius(4px);
-    background: $base-color;
-    background-color: $base-color;
-    @include background-image(linear-gradient(top,$base-color,$deep-base-color));
-    background-repeat: repeat-x;
+    font-weight: bold;
   }
 
   .ql-content-categories {
     @include clearfix;
-    margin-top: 2px;
   }
 }
 
