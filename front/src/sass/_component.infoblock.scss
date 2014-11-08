@@ -1,34 +1,28 @@
 @import "base";
 @import "variables";
 
-div[role=infoblocks],
-div[role=questionblocks],{
+div[role=infoblocks] {
   clear: both;
 
-  .component-infoblock,
-  .component-questionblock {
+  .component-infoblock {
     clear: both;
     overflow: hidden;    //解决子元素浮动时父元素没有被自动撑开的问题
     padding-top: 15px;
 
-    .component-infoblock-left,
-    .component-questionblock-left {
+    .component-infoblock-left {
       float:left;
       width: 32px;
 
-      .component-infoblock-avatar,
-      .component-questionblock-avatar {
+      .component-infoblock-avatar {
         width: 32px;
         height: 32px;
         display: block;
       }
 
-      .component-infoblock-good,
-      .component-questionblock-good {
+      .component-infoblock-good {
         margin-top: 6px;
 
-        .component-infoblock-good-num,
-        .component-questionblock-good-num {
+        .component-infoblock-good-num {
           @include border-top-left-radius($border-radius-base);
           @include border-top-right-radius($border-radius-base);
           background-color: #ffe3bb;
@@ -39,8 +33,7 @@ div[role=questionblocks],{
           font-weight: bold;
         }
 
-        .component-infoblock-good-action,
-        .component-questionblock-good-action {
+        .component-infoblock-good-action {
           @include border-bottom-left-radius($border-radius-base);
           @include border-bottom-right-radius($border-radius-base);
           margin-top: 1px;
@@ -60,8 +53,7 @@ div[role=questionblocks],{
       }
     }
 
-    .component-infoblock-right,
-    .component-questionblock-right {
+    .component-infoblock-right {
       float:left;
       margin-left: 11px;
       padding-bottom: 10px;
@@ -69,8 +61,7 @@ div[role=questionblocks],{
       width: 675px;
 
 
-      .component-infoblock-header,
-      .component-questionblock-header {
+      .component-infoblock-header {
         font-size: 12px;
         line-height: 12px;
 
@@ -81,23 +72,20 @@ div[role=questionblocks],{
           height: 13px;
         }
 
-        .component-infoblock-username,
-        .component-questionblock-username {
+        .component-infoblock-username {
           font-size: 14px;
           line-height: 14px;
           font-weight: bold;
           color: $dark;
         }
 
-        .component-infoblock-action,
-        .component-questionblock-action {
+        .component-infoblock-action {
           line-height: 14px;
           font-weight: normal;
           color: $light-dark
         }
 
-        .component-infoblock-time,
-        .component-questionblock-time {
+        .component-infoblock-time {
           line-height: 14px;
           font-weight: normal;
           color:$light-dark;
@@ -106,8 +94,7 @@ div[role=questionblocks],{
         }
       }
 
-      .component-infoblock-title,
-      .component-quesitionblock-title {
+      .component-infoblock-title {
         margin-top: 2px;
         font-size: 14px;
         font-weight: bold;
@@ -116,16 +103,14 @@ div[role=questionblocks],{
         color: #EE8E00;
       }
 
-      .component-infoblock-content,
-      .component-questionblock-content {
+      .component-infoblock-content {
         font-size: 14px;
         line-height: 22px;
         color: $deep-dark;
         font-family: $base-article-family;
       }
 
-      .component-infoblock-footer,
-      .component-questionblock-footer {
+      .component-infoblock-footer {
         margin-top: 5px;
         line-height: 22px;
 
@@ -156,8 +141,7 @@ div[role=questionblocks],{
           }
         }
 
-        .component-infoblock-subjects,
-        .component-questionblock-subjects {
+        .component-infoblock-subjects {
           @include inline-block;
         }
       }
@@ -166,27 +150,5 @@ div[role=questionblocks],{
         color: #438cca;
       }
     }
-
-    //问答信息块的自定义样式
-    .component-questionblock-title {
-      font-size: 14px;
-      font-weight: bold;
-      height: 14px;
-      line-height: 14px;
-      color: #EE8E00;
-      margin-bottom: 8px;
-    }
-
-    .component-questionblock-right {
-      border-bottom: 0;
-
-      .component-questionblock-header {
-        margin-bottom: 3px;
-      }
-    }
-  }
-
-  .component-questionblock {
-    border-bottom: 1px solid #eeeeee;
   }
 }

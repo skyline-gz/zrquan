@@ -51,8 +51,34 @@
     border-right: 1px solid $deep-grey;
   }
 
-  div[role=questionblocks] {
-    margin-top: -20px;
+  div[role=infoblocks] {
+    margin-top: -16px;
     width: 720px;
+
+    //问答信息块的自定义样式，覆盖_component.infoblock.scss的定义
+    .component-infoblock {
+      border-bottom: 1px solid #eeeeee;
+
+      .component-infoblock-content {
+        margin-top: 5px;
+      }
+
+      .component-infoblock-title {
+        font-size: 15px;
+        font-weight: bold;
+        height: 15px;
+        line-height: 15px;
+        color: #EE8E00;
+        margin-bottom: 8px;
+      }
+
+      .component-infoblock-right {
+        border-bottom: 0;
+
+        .component-infoblock-header {
+          margin-bottom: 3px;
+        }
+      }
+    }
   }
 }
