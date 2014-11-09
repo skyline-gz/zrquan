@@ -49,26 +49,13 @@
     }
 
     .home-top-add-question {
-      @include transition(all .2s ease-in-out);
-      @include border-radius(4px);
-      @include box-shadow(0 1px 2px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15));
-      @include text-shadow(0 1px 1px rgba(0,0,0,.12));
+      @include btn-base($border-radius-base);
       float:left;
-
       margin: 0 0 0 6px;
-      background: $base-color;
-      background-color: $base-color;
-      @include background-image(linear-gradient(top,$base-color,$deep-base-color));
-      background-repeat: repeat-x;
-      color: #FFF;
       font-size: 18px;
       width: 80px;
       height: 38px;
       line-height: 38px;
-      text-align: center;
-      cursor: pointer;
-      border: 1px solid $base-color;
-      outline: 0;
     }
 
     .home-top-search-submit {

@@ -60,38 +60,24 @@ div[role=userblocks] {
       margin-top: 5px;
 
       .component-userblock-star {
-        @include border-radius(4px);
-        background: #3ea004;
-        background-color: #3ea004;
-        @include background-image(linear-gradient(top,#3ea004, #368c04));
-        background-repeat: repeat-x;
+        @include btn-gbase($border-radius-base);
 
         float: left;
         width: 48px;
-        height: 26px;
-        line-height: 26px;
-        text-align: center;
-        color: white;
+        height: 24px;
+        line-height: 24px;
         font-size: 14px;
-        cursor: pointer;
       }
 
       .component-userblock-consult {
-        @include border-radius(4px);
-        background: $base-color;
-        background-color: $base-color;
-        @include background-image(linear-gradient(top,$base-color,$deep-base-color));
-        background-repeat: repeat-x;
+        @include btn-base($border-radius-base);
 
         float: left;
         margin-left: 8px;
         width: 48px;
-        height: 26px;
-        line-height: 26px;
-        text-align: center;
-        color: white;
+        height: 24px;
+        line-height: 24px;
         font-size: 14px;
-        cursor: pointer;
       }
     }
   }
