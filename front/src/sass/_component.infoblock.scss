@@ -92,15 +92,15 @@ div[role=infoblocks] {
           float: right;
           margin-right: 10px;
         }
-      }
 
-      .component-infoblock-title {
-        margin-top: 2px;
-        font-size: 14px;
-        font-weight: bold;
-        height: 23px;
-        line-height: 23px;
-        color: #EE8E00;
+        .component-infoblock-title {
+          margin-top: 2px;
+          font-size: 14px;
+          font-weight: bold;
+          height: 23px;
+          line-height: 23px;
+          color: #EE8E00;
+        }
       }
 
       .component-infoblock-content {
@@ -108,6 +108,10 @@ div[role=infoblocks] {
         line-height: 22px;
         color: $deep-dark;
         font-family: $base-article-family;
+
+        a.showall {
+          color: #438cca;
+        }
       }
 
       .component-infoblock-footer {
@@ -146,8 +150,80 @@ div[role=infoblocks] {
         }
       }
 
-      a.showall {
-        color: #438cca;
+      .component-infoblock-comment {
+        margin: 8px 0 25px;
+        background: #fff;
+        position: relative;
+        border: 1px solid #ddd;
+        @include border-radius($border-radius-base);
+        @include box-shadow(0 1px 1px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15));
+
+        .component-infoblock-icon-spike {
+          display: block;
+          position: absolute;
+          top: -8px;
+          left: 24px;
+          width: 13px;
+          height: 8px;
+          background-position: -200px -165px;
+          background-image: url(../images/sprites-zh.png);
+          background-repeat: no-repeat;
+          vertical-align: middle;
+        }
+
+        .component-infoblock-comment-list {
+          .component-infoblock-item-comment {
+            position: relative;
+            margin: 0 12px;
+            padding: 8px 0;
+
+            .component-infoblock-item-comment-left {
+              float: left;
+              width: 25px;
+              height: 100%;
+
+              img {
+                width: 25px;
+                height: 25px;
+              }
+            }
+
+            .component-infoblock-item-comment-right {
+              margin: 0 0 0 35px;
+              line-height: 22px;
+              font-size: 13px;
+
+              .component-infoblock-item-comment-header {
+                a {
+                  color: $base-color;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+                a:hover {
+                  text-decoration: underline;
+                }
+
+                .component-infoblock-item-comment-date {
+                  float: right;
+                  color: #999;
+                }
+              }
+
+              .component-infoblock-item-comment-content {
+                color: #222;
+                min-height: 22px;
+              }
+
+              .component-infoblock-item-comment-footer {
+
+              }
+            }
+          }
+
+          .component-infoblock-item-comment+.component-infoblock-item-comment {
+            border-top: solid 1px #eee;
+          }
+        }
       }
     }
   }
