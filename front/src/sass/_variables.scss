@@ -17,6 +17,7 @@ $base-font-family:    'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, San
 //$base-article-family: '宋体','Helvetica Neue', Helvetica, Arial, Sans-serif;
 $base-article-family: 'Microsoft Yahei','Helvetica Neue', Helvetica, Arial, Sans-serif;
 $base-font-size :     12px;
+$base-content-line-height:  23px;
 
 //-- Z-index master list
 //
@@ -35,7 +36,8 @@ $zindex-modal:             1050 !default;
 
 
 //顶部导航栏
-$navigation-height :           50px;
+$navigation-height :           44px;
+$navigation-content-line-height : 46px;
 $navigation-background-color : #f7f7f7;
 $navigation-border-color :     #e9e9e9;
 $navigation-current-link-background-color: $base-color;
