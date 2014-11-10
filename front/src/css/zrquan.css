@@ -1018,9 +1018,95 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   font-size: 12px;
   float: right;
 }
-/* line 264, ../sass/_component.infoblock.scss */
+/* line 262, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-list .component-infoblock-item-comment .component-infoblock-item-comment-right .component-infoblock-item-comment-form {
+  padding: 15px 0;
+}
+/* line 265, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-list .component-infoblock-item-comment .component-infoblock-item-comment-right .component-infoblock-item-comment-form .comment-editable {
+  padding: 7px 8px;
+  font-size: 13px;
+  line-height: 22px;
+  min-height: 22px;
+  white-space: pre-wrap;
+  color: #222;
+  cursor: text;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+  background-color: #fff;
+  outline: 0;
+  overflow: hidden;
+}
+/* line 284, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-list .component-infoblock-item-comment + .component-infoblock-item-comment {
   border-top: solid 1px #eee;
+}
+/* line 289, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-footer {
+  background: #fbfbfb;
+  border-radius: 0 0 4px 4px;
+  border-top: 1px solid #EEE;
+  position: relative;
+  padding: 15px;
+}
+/* line 296, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-footer .component-infoblock-comment-editable {
+  padding: 7px 8px;
+  font-size: 13px;
+  line-height: 22px;
+  min-height: 22px;
+  color: #222;
+  cursor: text;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+  background-color: #fff;
+  outline: 0;
+}
+/* line 311, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .comment-editable-opts {
+  padding-top: 10px;
+  overflow: hidden;
+}
+/* line 315, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .comment-editable-opts .comment-editable-opts-submit {
+  float: right;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  background: #ff9700;
+  background-color: #ff9700;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
+  background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -moz-linear-gradient(top, #ff9700, #dd8401);
+  background-image: -o-linear-gradient(top, #ff9700, #dd8401);
+  background-image: linear-gradient(top, #ff9700, #dd8401);
+  background-repeat: repeat-x;
+  border: 1px solid #dd8401;
+  text-align: center;
+  color: #FFF;
+  cursor: pointer;
+  outline: 0;
+  font-size: 14px;
+  padding: 6px 8px;
+}
+/* line 322, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .comment-editable-opts a.comment-editable-opts-cancel {
+  float: right;
+  line-height: 36px;
+  margin-right: 18px;
+  color: #dd8401;
+  cursor: pointer;
+}
+/* line 330, ../sass/_component.infoblock.scss */
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .comment-editable-opts a.comment-editable-opts-cancel:hover {
+  text-decoration: underline;
 }
 
 /* line 4, ../sass/_component.userblock.scss */
@@ -2146,8 +2232,8 @@ div[role=navigation] a:hover {
 }
 /* line 136, ../sass/_layout.home.scss */
 .home-mid .home-mid-mentor-block .home-mid-mentor-desc .home-mid-mentor-name {
-  line-height: 16px;
-  font-size: 16px;
+  line-height: 14px;
+  font-size: 14px;
   font-weight: bold;
 }
 /* line 142, ../sass/_layout.home.scss */

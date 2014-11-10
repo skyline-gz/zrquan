@@ -258,11 +258,77 @@ div[role=infoblocks] {
                   float: right;
                 }
               }
+
+              .component-infoblock-item-comment-form {
+                padding: 15px 0;
+
+                .comment-editable {
+                  padding: 7px 8px;
+                  font-size: 13px;
+                  line-height: 22px;
+                  min-height: 22px;
+                  white-space: pre-wrap;
+                  color: #222;
+                  cursor: text;
+                  border: 1px solid #ddd;
+                  border-radius: 3px;
+                  box-shadow: 0 1px 3px rgba(0,0,0,.1) inset;
+                  background-color: #fff;
+                  outline: 0;
+                  overflow: hidden;
+                }
+              }
             }
           }
 
           .component-infoblock-item-comment+.component-infoblock-item-comment {
             border-top: solid 1px #eee;
+          }
+        }
+
+        .component-infoblock-comment-footer {
+          background: #fbfbfb;
+          border-radius: 0 0 4px 4px;
+          border-top: 1px solid #EEE;
+          position: relative;
+          padding: 15px;
+
+          .component-infoblock-comment-editable {
+            padding: 7px 8px;
+            font-size: 13px;
+            line-height: 22px;
+            min-height: 22px;
+            color: #222;
+            cursor: text;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.1) inset;
+            background-color: #fff;
+            outline: 0;
+          }
+        }
+
+        .comment-editable-opts {
+          padding-top: 10px;
+          overflow: hidden;
+
+          .comment-editable-opts-submit {
+            float: right;
+            @include btn-base($border-radius-base);
+            font-size: 14px;
+            padding: 6px 8px;
+          }
+
+          a.comment-editable-opts-cancel {
+            float: right;
+            line-height: 36px;
+            margin-right: 18px;
+            color: $deep-base-color;
+            cursor: pointer;
+          }
+
+          a.comment-editable-opts-cancel:hover {
+            text-decoration: underline;
           }
         }
       }
