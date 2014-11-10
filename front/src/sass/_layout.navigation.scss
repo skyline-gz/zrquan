@@ -23,7 +23,7 @@ div[role=navigation] {
 
   a.top-link-logo {
     float:left;
-    background: url(../images/logo.png) no-repeat 0 10px;
+    background: url(../images/logo.png) no-repeat 0 6px;
     display: block;
     width: 92px;
     height: 100%;
@@ -50,11 +50,11 @@ div[role=navigation] {
       @include text-shadow(0 1px 1px rgba(0,0,0,.12));
       width: 60px;
       height: $navigation-height;
-      line-height: $navigation-height;
+      line-height: $navigation-content-line-height;
       text-align: center;
       display: block;
       color: $light-dark;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
     }
 
@@ -78,7 +78,7 @@ div[role=navigation] {
   .top-nav-searchbar {
     float:left;
     display: block;
-    line-height: $navigation-height;
+    line-height: $navigation-content-line-height;
     width: 332px;
     margin-left: 10px;
 
@@ -109,13 +109,13 @@ div[role=navigation] {
       margin-left: 6px;
       font-size: 14px;
       width: 65px;
-      height: 30px;
+      height: 29px;
     }
 
     .top-nav-search-submit {
       position: absolute;
-      right: 7px;
-      top: 15px;
+      right: 9px;
+      top: 13px;
       border: 0;
       cursor: pointer;
       display: inline-block;
@@ -156,21 +156,20 @@ div[role=navigation] {
 
     .user-logo {
       @include border-radius(3px);
-      @extend .avatars-head_s_01;
 
-      width: 32px;
-      height: 32px;
-      padding-right: 12px;
+      width: 27px;
+      height: 27px;
+      padding-right: 10px;
     }
 
     .icons-message {
-      width: 26px;
-      height: 21px;
+      width: 25px;
+      height: 20px;
     }
 
     .icons-private_message {
-      width: 29px;
-      height: 23px;
+      width: 26px;
+      height: 20px;
     }
 
     .user-link {
@@ -178,8 +177,8 @@ div[role=navigation] {
       width: auto;
       height: 100%;
       line-height: $navigation-height;
-      padding-right: 16px;
-      font-size: 16px;
+      padding-right: 14px;
+      font-size: 14px;
     }
 
     .message-link {
