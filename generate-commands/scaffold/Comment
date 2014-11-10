@@ -1,1 +1,1 @@
-rails g scaffold Comment content:text user:references commentable:references{polymorphic}
+rails g scaffold Comment content:text user:references commentable:references{polymorphic} replied_comment:references

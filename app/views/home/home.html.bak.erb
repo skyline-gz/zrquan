@@ -76,17 +76,17 @@
 						<td><%= ra.target.agree_score %></td>
 					</tr>
 				<% end %>
-				<% if ra.comment_article? %>
+				<% if ra.comment_question? %>
 					<tr>
-						<td>Comment Article</td>
+						<td>Comment Question</td>
 						<td><%= ra.target.title %></td>
-						<td><%= ra.target.content %></td>
+						<td></td>
 						<td><%= ra.user.last_name %>&nbsp;<%= ra.user.first_name %></td>
 						<td><%= ra.pdate_to_s %></td>
 						<td><%= ra.target.theme %></td>
 						<td></td>
 						<td><%= ra.target.comments.count %> comments</td>
-						<td><%= ra.target.agree_score %></td>
+						<td></td>
 					</tr>
 				<% end %>
 				<% if ra.agree_answer? %>

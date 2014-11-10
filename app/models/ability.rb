@@ -60,6 +60,8 @@ class Ability
       answer_abilities(user)
       # article
       article_abilities(user)
+      # comment
+      comment_abilities
 			# pm
       pm_abilities(user)
       # bookmark
@@ -91,6 +93,8 @@ class Ability
       answer_abilities(user)
       # article
       article_abilities(user)
+      # comment
+      comment_abilities
 			# pm
       pm_abilities(user)
       # bookmark
@@ -98,6 +102,11 @@ class Ability
 			# user relationship
       follow_abilities(user)
 		end
+
+    def comment_abilities
+      can :comment, Answer
+      can :comment, Question
+    end
 
     def create_edit_abilities(user)
       can :create, :all
@@ -113,14 +122,12 @@ class Ability
       can :agree, Answer do |ans|
         ans.user_id != user.id and !user.agreed_answer?(ans)
       end
-      can :comment, Answer
     end
 
     def article_abilities(user)
       can :agree, Article do |a|
         a.user_id != user.id and !user.agreed_article?(a) and !a.draft?
       end
-      can :comment, Article, :draft_flag => false
       can :edit, Article, :user_id => user.id
       can :destroy, Article, :user_id => user.id, :draft_flag => true
     end

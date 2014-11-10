@@ -4,6 +4,7 @@ class CreateComments < ActiveRecord::Migration
       t.text :content
       t.references :user, index: true
       t.references :commentable, polymorphic: true, index: true
+			t.references :replied_comment, index: true
 
       t.timestamps
     end
