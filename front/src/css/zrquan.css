@@ -348,7 +348,7 @@ img.jcrop-preview {
 }
 
 /* line 258, icons/*.png */
-.icons-sprite, .icons-add, .icons-b_vip, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-vip, .icons-comment, .question-answer .question-answer-header .question-answer-ico, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt, .icons-u_education, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education, .icons-u_location, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location, .icons-u_private_message, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message, .icons-u_profession, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession, .icons-u_question, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult, .icons-u_specialized, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized, .icons-u_star, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip, div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, .question-body .question-body-right .question-body-provider .question-icons-vip {
+.icons-sprite, .icons-add, .icons-b_vip, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-vip, .icons-comment, .question-answer .question-answer-header .question-answer-ico, .icons-favorites, .icons-good, .icons-message, .icons-myanswer_hover, .icons-myconsulting, .icons-mydraft, .icons-myexperience, .icons-myfavorite, .icons-myquestion, .icons-no, .icons-point_left, .icons-private_message, .icons-search, .icons-search_s, .icons-set, .icons-split_line_black, .user-top .user-profile .user-profile-container .user-profile-left .user-profile-data .spilt, .icons-u_education, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-education, .icons-u_location, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-location, .icons-u_private_message, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-private_message, .icons-u_profession, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-profession, .icons-u_question, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-consult, .icons-u_specialized, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-content .icon-profile-specialized, .icons-u_star, .user-top .user-profile .user-profile-container .user-profile-right .user-profile-header .user-profile-opt .user-profile-star, .icons-user_sign_up, div[role=navigation] .top-nav-noauth .icons-user_sign_up, .icons-vip, div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip {
   background: url('/images/icons-s775ce2d94a.png') no-repeat;
 }
 
@@ -498,7 +498,7 @@ img.jcrop-preview {
 }
 
 /* line 60, ../../../../../.rvm/gems/ruby-2.1.2/gems/compass-0.12.7/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.icons-vip, div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, .question-body .question-body-right .question-body-provider .question-icons-vip {
+.icons-vip, div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip {
   background-position: 0 -170px;
 }
 
@@ -792,14 +792,14 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   line-height: 12px;
 }
 /* line 68, ../sass/_component.infoblock.scss */
-div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip, div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-userblock-ico-vip, div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .question-body .question-body-right .question-body-provider .question-icons-vip, .question-body .question-body-right .question-body-provider div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .question-icons-vip {
+div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .icons-vip, div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-header .component-userblock-ico-vip {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
   zoom: 1;
   *display: inline;
-  margin-top: -2px;
+  margin-top: -4px;
   width: 16px;
   height: 13px;
 }
@@ -859,7 +859,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
   zoom: 1;
   *display: inline;
   color: #868686;
-  margin-right: 12px;
+  margin-right: 8px;
   cursor: pointer;
 }
 /* line 128, ../sass/_component.infoblock.scss */
@@ -1640,7 +1640,7 @@ div[role=userblocks] .component-userblock .component-userblock-opts .component-u
   display: inline-block;
 }
 /* line 73, ../sass/_component.popover.profile.scss */
-.popover .popover-content .profile-card .upper .user-desc-container .icons-vip, .popover .popover-content .profile-card .upper .user-desc-container div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc .popover .popover-content .profile-card .upper .user-desc-container .component-userblock-ico-vip, .popover .popover-content .profile-card .upper .user-desc-container .question-body .question-body-right .question-body-provider .question-icons-vip, .question-body .question-body-right .question-body-provider .popover .popover-content .profile-card .upper .user-desc-container .question-icons-vip {
+.popover .popover-content .profile-card .upper .user-desc-container .icons-vip, .popover .popover-content .profile-card .upper .user-desc-container div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc .popover .popover-content .profile-card .upper .user-desc-container .component-userblock-ico-vip {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -2254,7 +2254,7 @@ div[role=navigation] a:hover {
   margin-top: 3px;
 }
 /* line 159, ../sass/_layout.home.scss */
-.home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip, .home-mid .home-mid-mentor-block .home-mid-mentor-desc div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc .home-mid .home-mid-mentor-block .home-mid-mentor-desc .component-userblock-ico-vip, .home-mid .home-mid-mentor-block .home-mid-mentor-desc .question-body .question-body-right .question-body-provider .question-icons-vip, .question-body .question-body-right .question-body-provider .home-mid .home-mid-mentor-block .home-mid-mentor-desc .question-icons-vip {
+.home-mid .home-mid-mentor-block .home-mid-mentor-desc .icons-vip, .home-mid .home-mid-mentor-block .home-mid-mentor-desc div[role=userblocks] .component-userblock .component-userblock-desc .component-userblock-ico-vip, div[role=userblocks] .component-userblock .component-userblock-desc .home-mid .home-mid-mentor-block .home-mid-mentor-desc .component-userblock-ico-vip {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -2695,126 +2695,34 @@ div[role=navigation] a:hover {
 /* line 5, ../sass/_layout.question.scss */
 .question-title {
   margin-top: 22px;
-  margin-bottom: 22px;
+  margin-bottom: 7px;
   font-size: 18px;
   height: 18px;
   font-weight: bold;
   color: #333;
 }
 
-/* line 14, ../sass/_layout.question.scss */
-.question-body {
-  padding-bottom: 30px;
-  clear: both;
-  overflow: hidden;
-  color: #333;
+/* line 17, ../sass/_layout.question.scss */
+.question-body div[role=infoblocks] .component-infoblock .component-infoblock-right {
+  border: 0;
+  margin-bottom: 8px;
 }
-/* line 20, ../sass/_layout.question.scss */
-.question-body .question-body-left {
-  float: left;
-  width: 32px;
-}
-/* line 24, ../sass/_layout.question.scss */
-.question-body .question-body-left .question-avatar {
-  width: 32px;
-  height: 32px;
-  display: block;
-}
-/* line 31, ../sass/_layout.question.scss */
-.question-body .question-body-right {
-  float: left;
-  margin-left: 11px;
-  width: 675px;
-}
-/* line 36, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-provider {
-  height: 13px;
-}
-/* line 39, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-provider .question-body-provider-name {
-  float: left;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: bold;
-}
-/* line 47, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-provider .question-icons-vip {
-  float: left;
-  margin-left: 4px;
-  width: 16px;
-  height: 13px;
-}
-/* line 55, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-provider .question-time {
-  float: right;
-  font-weight: normal;
-  color: #868686;
-  margin-right: 10px;
-  line-height: 14px;
-}
-/* line 64, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-content {
-  margin-top: 12px;
-  font-size: 14px;
-  line-height: 22px;
-  color: #222222;
-  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
-}
-/* line 72, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-footer {
-  overflow: hidden;
-  margin-top: 5px;
-  line-height: 22px;
-}
-/* line 77, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-footer .component-comment {
-  float: left;
-  color: #868686;
-  margin-right: 12px;
-}
-/* line 82, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-footer .component-comment .icons-comment, .question-body .question-body-right .question-body-footer .component-comment .question-answer .question-answer-header .question-answer-ico, .question-answer .question-answer-header .question-body .question-body-right .question-body-footer .component-comment .question-answer-ico {
-  float: left;
-  width: 12px;
-  height: 12px;
-  margin-right: 6px;
-}
-/* line 90, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-footer .component-favorites {
-  float: left;
-  color: #868686;
-  margin-right: 12px;
-}
-/* line 95, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-footer .component-favorites .icons-favorites {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  width: 12px;
-  height: 11px;
-  margin-right: 4px;
-  margin-top: -2px;
-}
-/* line 104, ../sass/_layout.question.scss */
-.question-body .question-body-right .question-body-footer .question-subjects {
-  margin-top: 2px;
-  float: left;
+/* line 21, ../sass/_layout.question.scss */
+.question-body div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
+  margin-top: 8px;
 }
 
-/* line 113, ../sass/_layout.question.scss */
+/* line 30, ../sass/_layout.question.scss */
 .question-answer .question-answer-header {
   border-bottom: 1px solid #CCCCCC;
   padding-bottom: 10px;
   margin-bottom: 6px;
 }
-/* line 118, ../sass/_layout.question.scss */
+/* line 35, ../sass/_layout.question.scss */
 .question-answer .question-answer-header span {
   font-size: 16px;
 }
-/* line 122, ../sass/_layout.question.scss */
+/* line 39, ../sass/_layout.question.scss */
 .question-answer .question-answer-header .question-answer-ico {
   margin-top: 8px;
   margin-right: 8px;
@@ -2823,7 +2731,7 @@ div[role=navigation] a:hover {
   height: 12px;
 }
 
-/* line 133, ../sass/_layout.question.scss */
+/* line 50, ../sass/_layout.question.scss */
 .question-answer-editor {
   margin-top: 50px;
   margin-bottom: 200px;
