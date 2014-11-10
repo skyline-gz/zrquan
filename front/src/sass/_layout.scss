@@ -8,6 +8,7 @@
 
 html body, html input, html textarea, html select, html button {
   font-family: $base-font-family;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 body, input, textarea, select, button {

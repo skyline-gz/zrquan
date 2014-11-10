@@ -17,6 +17,19 @@
     <script type="text/javascript">
         $(document).ready(function(){
             var ue = UE.getEditor('myEditor');
+
+            var openComment = true;
+            $("#test-comment").click(function(){
+                if(openComment) {
+                    $("span", $("#test-comment")).html("收起评论");
+                    $(".component-infoblock-comment").show();
+                    openComment = false;
+                } else {
+                    $("span", $("#test-comment")).html("评论&nbsp;99");
+                    $(".component-infoblock-comment").hide();
+                    openComment = true;
+                }
+            });
         });
     </script>
 </head>
@@ -104,8 +117,9 @@
                             </div>
                             <div class="component-infoblock-content">1、做好职业生涯规划，可以分析自我，以既有的成就为基础，确立人生的方向，提供奋斗的策略。 2、通过职业生涯规划，可以重新安排自己的职业生涯，突破生活的格线，塑造清新充实的自我。 3、通过职业生涯规划，个人可以准确评价个人特点和强项，在职业竞争中发挥个人优势。 4、通过职业生涯规划可以评估个人目标和现状的差距， 提供了前进的动力。 5、通过职业生涯规划可以准确定位职业方向。 6、通过职业生涯规划重新认识自身的价值并使其增值。 通过自我评估，知道自己的优缺点，然后通过反思和学习，不断完善自己使个人价值增值。 7、通过职业生涯规划，全面了解自己，增强职业竞争力，发现新的职业机遇。 8、职业生涯规划通常建立在个体的人生规划上，因此，做好职业生涯规划将个人生活、事业与家庭联系起来，让生活充实而有条理。</div>
                             <div class="component-infoblock-footer">
-                                <div class="component-comment">
-                                    <i class="icons-comment"></i>评论&nbsp;99
+                                <div class="component-comment" id="test-comment">
+                                    <i class="icons-comment"></i>
+                                    <span>收起评论</span>
                                 </div>
                                 <div class="component-infoblock-subjects">
                                     <div class="component-subject">职业策划</div>
@@ -125,9 +139,71 @@
                                                 <span class="component-infoblock-item-comment-date">2014-09-30</span>
                                             </div>
                                             <div class="component-infoblock-item-comment-content">大脑：大麻引起的HIGH其实就是思维和记忆的扭曲及身体协调的受阻。如赵阿萌所提，在美国麻后驾车和酒后及毒后驾车一样都是DUI (driving under influence)，一并需要面对法律制裁。长期吸食大麻会导致记忆力和学习能力的减弱。</div>
+                                            <div class="component-infoblock-item-comment-footer">
+                                                <a class="comment-op-link">
+                                                    <i class="icon-comment-reply"></i>
+                                                    <span>回复</span>
+                                                </a>
+                                                <a class="comment-op-link">
+                                                    <i class="icon-comment-agree"></i>
+                                                    <span>赞</span>
+                                                </a>
+                                                <span class="like-num">408&nbsp;赞</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="component-infoblock-item-comment"></div>
+                                    <div class="component-infoblock-item-comment">
+                                        <div class="component-infoblock-item-comment-left">
+                                            <img src="../images/avatars/head_s_02.png">
+                                        </div>
+                                        <div class="component-infoblock-item-comment-right">
+                                            <div class="component-infoblock-item-comment-header">
+                                                <a>林黛玉</a>
+                                                <span>（作者）</span>
+                                                <span>&nbsp;回复&nbsp;</span>
+                                                <a>李明</a>
+                                                <span class="component-infoblock-item-comment-date">2014-09-30</span>
+                                            </div>
+                                            <div class="component-infoblock-item-comment-content">大脑：大麻引起的HIGH其实就是思维和记忆的扭曲及身体协调的受阻。如赵阿萌所提，在美国麻后驾车和酒后及毒后驾车一样都是DUI (driving under influence)，一并需要面对法律制裁。长期吸食大麻会导致记忆力和学习能力的减弱。</div>
+                                            <div class="component-infoblock-item-comment-footer">
+                                                <a class="comment-op-link">
+                                                    <i class="icon-comment-reply"></i>
+                                                    <span>回复</span>
+                                                </a>
+                                                <a class="comment-op-link">
+                                                    <i class="icon-comment-agree"></i>
+                                                    <span>赞</span>
+                                                </a>
+                                                <span class="like-num">131&nbsp;赞</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="component-infoblock-item-comment">
+                                        <div class="component-infoblock-item-comment-left">
+                                            <img src="../images/avatars/head_m_04.png">
+                                        </div>
+                                        <div class="component-infoblock-item-comment-right">
+                                            <div class="component-infoblock-item-comment-header">
+                                                <a>张山峰</a>
+                                                <span>&nbsp;回复&nbsp;</span>
+                                                <a>林黛玉</a>
+                                                <span>（作者）</span>
+                                                <span class="component-infoblock-item-comment-date">2014-09-30</span>
+                                            </div>
+                                            <div class="component-infoblock-item-comment-content">楼主说的非常好！顶一个。</div>
+                                            <div class="component-infoblock-item-comment-footer">
+                                                <a class="comment-op-link">
+                                                    <i class="icon-comment-reply"></i>
+                                                    <span>回复</span>
+                                                </a>
+                                                <a class="comment-op-link">
+                                                    <i class="icon-comment-agree"></i>
+                                                    <span>赞</span>
+                                                </a>
+                                                <span class="like-num">20&nbsp;赞</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +224,8 @@
                                 <i class="icons-vip"></i>
                                 <span class="component-infoblock-time">一天前</span>
                             </div>
-                            <div class="component-infoblock-content">你也要做些事情，一些相关的、有意义和影响但又不落俗套的事情，让这个单位知道你的存在，认可你的价值和成绩。成功的人士会不断对照单位的投入来评估自己的产出价值，并保持自己的贡献在单位的要求...<a href="javascript:void(0);" class="showall">显示全文</a></div>
+                            <div class="component-infoblock-content">你也要做些事情，一些相关的、有意义和影响但又不落俗套的事情，让这个单位知道你的存在，认可你的价值和成绩。成功的人士会不断对照单位的投入来评估自己的产出价值，并保持自在单位的要求...
+                                <a href="javascript:void(0);" class="showall">显示全文</a></div>
                             <div class="component-infoblock-footer">
                                 <div class="component-comment">
                                     <i class="icons-comment"></i>评论&nbsp;99
