@@ -105,7 +105,7 @@ div[role=infoblocks] {
 
       .component-infoblock-content {
         font-size: 14px;
-        line-height: 22px;
+        line-height: $base-content-line-height;
         color: $deep-dark;
         font-family: $base-article-family;
 
@@ -117,7 +117,7 @@ div[role=infoblocks] {
 
       .component-infoblock-footer {
         margin-top: 5px;
-        line-height: 22px;
+        line-height: $base-content-line-height;
 
         .component-comment {
           @include inline-block;
@@ -194,7 +194,7 @@ div[role=infoblocks] {
 
             .component-infoblock-item-comment-right {
               margin: 0 0 0 35px;
-              line-height: 22px;
+              line-height: $base-content-line-height;
               font-size: 13px;
 
               .component-infoblock-item-comment-header {
@@ -219,7 +219,7 @@ div[role=infoblocks] {
 
               .component-infoblock-item-comment-content {
                 color: #222;
-                min-height: 22px;
+                min-height: $base-content-line-height;
               }
 
               .component-infoblock-item-comment-footer {
@@ -265,8 +265,8 @@ div[role=infoblocks] {
                 .comment-editable {
                   padding: 7px 8px;
                   font-size: 13px;
-                  line-height: 22px;
-                  min-height: 22px;
+                  line-height: $base-content-line-height;
+                  min-height: $base-content-line-height;
                   white-space: pre-wrap;
                   color: #222;
                   cursor: text;
@@ -296,8 +296,8 @@ div[role=infoblocks] {
           .component-infoblock-comment-editable {
             padding: 7px 8px;
             font-size: 13px;
-            line-height: 22px;
-            min-height: 22px;
+            line-height: $base-content-line-height;
+            min-height: $base-content-line-height;
             color: #222;
             cursor: text;
             border: 1px solid #ddd;

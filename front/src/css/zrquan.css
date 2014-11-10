@@ -836,7 +836,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 /* line 106, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-content {
   font-size: 14px;
-  line-height: 22px;
+  line-height: 23px;
   color: #222222;
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, Sans-serif;
 }
@@ -848,7 +848,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 /* line 118, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer {
   margin-top: 5px;
-  line-height: 22px;
+  line-height: 23px;
 }
 /* line 122, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-footer .component-comment {
@@ -956,7 +956,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 /* line 195, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-list .component-infoblock-item-comment .component-infoblock-item-comment-right {
   margin: 0 0 0 35px;
-  line-height: 22px;
+  line-height: 23px;
   font-size: 13px;
 }
 /* line 201, ../sass/_component.infoblock.scss */
@@ -981,7 +981,7 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 /* line 220, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-list .component-infoblock-item-comment .component-infoblock-item-comment-right .component-infoblock-item-comment-content {
   color: #222;
-  min-height: 22px;
+  min-height: 23px;
 }
 /* line 226, ../sass/_component.infoblock.scss */
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-list .component-infoblock-item-comment .component-infoblock-item-comment-right .component-infoblock-item-comment-footer .comment-op-link {
@@ -1026,8 +1026,8 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-list .component-infoblock-item-comment .component-infoblock-item-comment-right .component-infoblock-item-comment-form .comment-editable {
   padding: 7px 8px;
   font-size: 13px;
-  line-height: 22px;
-  min-height: 22px;
+  line-height: 23px;
+  min-height: 23px;
   white-space: pre-wrap;
   color: #222;
   cursor: text;
@@ -1054,8 +1054,8 @@ div[role=infoblocks] .component-infoblock .component-infoblock-right .component-
 div[role=infoblocks] .component-infoblock .component-infoblock-right .component-infoblock-comment .component-infoblock-comment-footer .component-infoblock-comment-editable {
   padding: 7px 8px;
   font-size: 13px;
-  line-height: 22px;
-  min-height: 22px;
+  line-height: 23px;
+  min-height: 23px;
   color: #222;
   cursor: text;
   border: 1px solid #ddd;
