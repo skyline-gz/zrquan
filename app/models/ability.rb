@@ -99,7 +99,7 @@ class Ability
       pm_abilities(user)
       # bookmark
       bookmark_abilities(user)
-			# user relationship
+			# follow
       follow_abilities(user)
 		end
 
@@ -139,6 +139,12 @@ class Ability
       can :unfollow, User do |target_user|
         user.following?(target_user)
       end
+			can :follow, Question do |q|
+				!user.following?(q)
+			end
+			can :unfollow, Question do |q|
+				user.following?(q)
+			end
     end
 
     def pm_abilities(user)

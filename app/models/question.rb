@@ -8,7 +8,9 @@ class Question < ActiveRecord::Base
   belongs_to :user
 	has_many :answers
 	has_many :invitations
+	has_many :question_follows
 	has_many :invited_users, class_name: "User", through: :invitations, source: :user
+	has_many :followers, class_name: "User", through: :question_follows, source: :user
 	has_many :bookmarks, as: :bookmarkable
 	has_many :news_feeds, as: :feedable
 	has_many :activities, as: :target

@@ -15,8 +15,10 @@ class User < ActiveRecord::Base
 	has_many :consult_replies
   has_many :comments
 	has_many :private_messages
-	has_many :invitations, foreign_key: "user_id"
+	has_many :invitations
 	has_many :invited_questions, class_name: "Question", through: :invitations, source: :question
+	has_many :question_follows
+	has_many :following_questions, class_name: "Question", through: :question_follows, source: :question
 	has_many :bookmarks
 	has_many :agreements
 	has_many :relationships, foreign_key: "follower_id"
@@ -54,6 +56,10 @@ class User < ActiveRecord::Base
 
 	def following?(other_user)
 		relationships.find_by(following_user_id: other_user.id)
+	end
+
+	def following?(question)
+		question_follows.find_by(question_id: question.id)
 	end
 
 	def follow!(other_user)
