@@ -10,6 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//跨浏览器debug支持
+//= require consolelog
+//支持IE8/IOS6-/Safari 11-的console debug
+//= require consolelog.detailprint
 //基本库
 //= require jquery
 //= require jquery_ujs
@@ -17,5 +21,7 @@
 //组件
 //= require ./components/component.transition
 //= require ./components/component.modal
+//工具类
+//= require ./utils/ajax
 //逻辑
 //= require home

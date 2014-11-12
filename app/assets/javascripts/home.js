@@ -34,55 +34,100 @@ $(document).ready(function() {
     //点击注册
     $(".btn-sign-up").click(function(){
         removeErrorTips();
-        if(checkAuthParam("sign-up")){
-            return;
-        }
+//        if(checkAuthParam("sign-up")){
+        var requestObj = {user: {
+                email : $("input[name=input-sign-up-first-name]").val(),
+                password : $("input[name=input-sign-up-email]").val()
+        }};
+            $.ajax({
+                type: "POST",   //访问WebService使用Post方式请求
+                contentType: "application/json",
+                url: "users",
+                data: JSON.stringify(requestObj),
+                dataType: 'json',
+
+                success: function(result) {     //回调函数，result，返回值
+                    alert(result.d);
+                }
+            });
+//        }
     });
 
     //点击登陆
     $(".btn-sign-in").click(function(){
         removeErrorTips();
-        if(checkAuthParam("sign-in")){
-            return;
-        }
+//        if(checkAuthParam("sign-in")){
+            $.ajax({
+                type: "POST",   //访问WebService使用Post方式请求
+                contentType: "application/json",
+                url: "users",
+                data: {
+                    user: {
+                        email : $("input[name=input-sign-up-first-name]").val(),
+                        password : $("input[name=input-sign-up-email]").val()
+                    }
+                },
+                dataType: 'json',
+
+                success: function(result) {     //回调函数，result，返回值
+                    alert(result.d);
+                }
+            });
+//        }
+        return false;
     });
 
-    $.on("click.dismiss.bs.modal")
+    authModal.on("hide.bs.modal", function(){
+        removeErrorTips();
+    });
 
     function checkAuthParam(sType) {
+        var bValid = true;
         if(sType == "sign-up") {
             if(checkEmpty("input[name=input-sign-up-first-name]")
                 || checkEmpty("input[name=input-sign-up-last-name]")) {
                 addErrorTips("#sign-up-name", "请输入姓名");
+                bValid = false;
             } else if (!checkName("input[name=input-sign-up-first-name]")
                 || !checkName("input[name=input-sign-up-last-name]")) {
                 addErrorTips("#sign-up-name", "姓名只能为中英文字符");
+                bValid = false;
             }
             if(checkEmpty("input[name=input-sign-up-email]")) {
                 addErrorTips("#sign-up-email", "请输入邮箱账号");
+                bValid = false;
             } else if (!RegEmail.test($("input[name=input-sign-up-email]").val())){
                 addErrorTips("#sign-up-email", "请输入合法邮箱账号");
+                bValid = false;
             }
             if(checkEmpty("input[name=input-sign-up-password]")) {
                 addErrorTips("#sign-up-password", "请输入密码");
+                bValid = false;
             } else if (!RegPassword.test($("input[name=input-sign-up-password]").val())){
                 addErrorTips("#sign-up-password", "至少为8位字母或数字");
+                bValid = false;
             }
             if(!$("input[name=input-sign-up-service]").is(":checked")) {
                 addErrorTips("#sign-up-protocol", "请同意服务协议");
+                bValid = false;
             }
         } else if (sType == "sign-in") {
             if(checkEmpty("input[name=input-sign-in-email]")) {
                 addErrorTips("#sign-in-email", "请输入邮箱账号");
+                bValid = false;
             } else if (!RegEmail.test($("input[name=input-sign-in-email]").val())){
                 addErrorTips("#sign-in-email", "请输入合法邮箱账号");
+                bValid = false;
             }
             if(checkEmpty("input[name=input-sign-in-password]")) {
                 addErrorTips("#sign-in-password", "请输入密码");
+                bValid = false;
             } else if (!RegPassword.test($("input[name=input-sign-in-password]").val())){
                 addErrorTips("#sign-in-password", "至少为8位字母或数字");
+                bValid = false;
             }
         }
+        return bValid;
     }
 
     function checkEmpty(sExp) {
