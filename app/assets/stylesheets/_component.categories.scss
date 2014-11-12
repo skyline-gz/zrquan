@@ -1,0 +1,24 @@
+.component-categories {
+  background: $light-grey;
+  border:1px solid $deep-grey;
+  @include border-radius($border-radius-small);
+  padding-left: 2px;
+  height: 34px;
+
+  .component-category {
+    float: left;
+    padding: 0 10px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+    margin-left: 12px;
+    cursor: pointer;
+  }
+
+  .component-category-current {
+    background: $deep-grey;
+    font-weight: bold;
+  }
+}

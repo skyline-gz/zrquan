@@ -13,16 +13,23 @@
 //引用插件依赖的样式
 @import "lib/jquery.jcrop";
 
-//布局
-@import "layout";
-@import "layout.navigation";
-@import "layout.home";
-
 //通用组件
+@import "component.button";
 @import "component.modal";
 @import "component.subject";
 @import "component.infoblock";
+@import "component.userblock";
+@import "component.categories";
 
 //自定义组件
 @import "component.modal.auth";
 @import "component.popover.profile";
+
+//布局
+@import "layout";
+@import "layout.navigation";
+@import "layout.home";
+@import "layout.user";
+@import "layout.verified_users_list";
+@import "layout.question";
+@import "layout.questions_list";

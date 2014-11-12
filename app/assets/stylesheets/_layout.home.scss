@@ -49,26 +49,13 @@
     }
 
     .home-top-add-question {
-      @include transition(all .2s ease-in-out);
-      @include border-radius(4px);
-      @include box-shadow(0 1px 2px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15));
-      @include text-shadow(0 1px 1px rgba(0,0,0,.12));
+      @include btn-base($border-radius-base);
       float:left;
-
       margin: 0 0 0 6px;
-      background: $base-color;
-      background-color: $base-color;
-      @include background-image(linear-gradient(top,$base-color,$deep-base-color));
-      background-repeat: repeat-x;
-      color: #FFF;
       font-size: 18px;
       width: 80px;
       height: 38px;
       line-height: 38px;
-      text-align: center;
-      cursor: pointer;
-      border: 1px solid $base-color;
-      outline: 0;
     }
 
     .home-top-search-submit {
@@ -94,13 +81,13 @@
   background: url(../images/home/home_mid_bg.png);
   display: block;
   width: 100%;
-  height: 211px;
+  height: 160px;
 
   .home-mid-title-warp {
     width: 190px;
     margin: 0 auto;
-    padding-top: 26px;
-    padding-bottom: 34px;
+    padding-top: 20px;
+    padding-bottom: 25px;
   }
 
   .home-mid-title {
@@ -117,12 +104,6 @@
     margin: 3px 10px 0 16px;
   }
 
-  .home-mid-subtitle {
-    font-size: 14px;
-    line-height: 18px;
-    color: $light-dark2;
-  }
-
   .warp-content {
     position: relative;
   }
@@ -137,9 +118,9 @@
   }
 
   .home-mid-mentor-block {
-    margin: 0 35px;
-    float:left;
-    width: 188px;
+    margin: 0 30px;
+    float: left;
+    width: 199px;
 
     .home-mid-mentor-logo {
       float:left;
@@ -153,8 +134,8 @@
       margin-left: 10px;
 
       .home-mid-mentor-name {
-        line-height: 16px;
-        font-size: 16px;
+        line-height: 14px;
+        font-size: 14px;
         font-weight: bold;
       }
 
@@ -171,6 +152,7 @@
       }
 
       .home-mid-mentor-subjects {
+        overflow: hidden;
         margin-top: 3px;
       }
 
@@ -179,8 +161,9 @@
         width: 16px;
         height: 13px;
         line-height: 16px;
-        margin-left: 3px;
+        margin-left: 4px;
         margin-bottom: 2px;
+        margin-top: -2px;
       }
     }
   }
@@ -199,21 +182,20 @@
     float:left;
     border-bottom: 1px solid #CCCCCC;
     width: 722px;
-    height: 32px;;
+    height: 27px;;
 
     .home-news-header {
       float:left;
-      height: 24px;
-      font-size: 24px;
-      line-height: 24px;
+      height: 18px;
+      font-size: 18px;
+      line-height: 18px;
     }
 
     .icons-point_left {
+      float: left;
       width: 18px;
       height: 18px;
-      display: inline-block;
       margin-right: 8px;
-      margin-top: 2px;
     }
 
     .home-news-ul {
@@ -225,7 +207,7 @@
         width: 38px;
         font-size: 16px;
         text-align: center;
-        height: 30px;
+        height: 25px;
         cursor: pointer;
       }
 

@@ -1,0 +1,84 @@
+@import "base";
+@import "variables";
+
+div[role=userblocks] {
+  clear: both;
+
+  .component-userblock {
+    clear: both;
+    overflow: hidden; //解决子元素浮动时父元素没有被自动撑开的问题
+    padding: 16px 0;
+    border-bottom: 1px solid #eeeeee;
+
+    img.component-userblock-avatar {
+      float: left;
+      width: 56px;
+      height: 56px;
+    }
+
+    .component-userblock-desc {
+      float: left;
+      margin-left: 8px;
+
+      .component-userblock-name {
+        margin-top: 2px;
+        margin-bottom: 3px;
+        font-size: 14px;
+        line-height: 14px;
+        height: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .component-userblock-ico-vip {
+        @extend .icons-vip;
+        @include inline-block;
+        width: 16px;
+        height: 13px;
+        margin-left: 5px;
+        margin-top: -2px;
+      }
+
+      .component-userblock-professional {
+        font-size: 12px;
+
+        .component-userblock-company {
+          @include inline-block;
+          font-weight: bold;
+        }
+
+        .component-userblock-position {
+          @include inline-block;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .component-userblock-opts {
+      float: right;
+      margin-right: 25px;
+      margin-top: 5px;
+
+      .component-userblock-star {
+        @include btn-gbase($border-radius-base);
+
+        float: left;
+        width: 48px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+      }
+
+      .component-userblock-consult {
+        @include btn-base($border-radius-base);
+
+        float: left;
+        margin-left: 8px;
+        width: 48px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+      }
+    }
+  }
+}

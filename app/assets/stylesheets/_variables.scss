@@ -6,16 +6,18 @@ $light-dark :         #868686;
 $light-dark2 :        #6b6b6b;
 $light-dark3 :        #5e5e5e;
 $deep-dark :          #222;
+$light-grey:          #f6f9f9;
+$deep-grey:           #ccc;
 $base-color :         #ff9700;   //网站基础颜色
 $light-base-color :   #ffa121;   //网站基础颜色
 $deep-base-color :    #dd8401;
-
 
 //字体
 $base-font-family:    'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, Sans-serif;
 //$base-article-family: '宋体','Helvetica Neue', Helvetica, Arial, Sans-serif;
 $base-article-family: 'Microsoft Yahei','Helvetica Neue', Helvetica, Arial, Sans-serif;
 $base-font-size :     12px;
+$base-content-line-height:  23px;
 
 //-- Z-index master list
 //
@@ -34,7 +36,8 @@ $zindex-modal:             1050 !default;
 
 
 //顶部导航栏
-$navigation-height :           50px;
+$navigation-height :           44px;
+$navigation-content-line-height : 46px;
 $navigation-background-color : #f7f7f7;
 $navigation-border-color :     #e9e9e9;
 $navigation-current-link-background-color: $base-color;
@@ -81,6 +84,6 @@ $modal-sm:                    300px;
 
 //== Popovers
 //** Modal content border color
-$popover-content-border-color:                   rgba(0,0,0,.2);
+$popover-content-border-color:                   #ccc;
 //** Modal content border color **for IE8**
 $popover-content-fallback-border-color:           #999 !default;

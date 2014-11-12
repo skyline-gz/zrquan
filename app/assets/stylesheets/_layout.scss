@@ -1,9 +1,5 @@
 @import "variables";
 
-body {
-  padding-top: $body-padding-top;
-}
-
 .warp-content {
   width: $warp-content-width;
   margin: 0 auto;
@@ -12,6 +8,7 @@ body {
 
 html body, html input, html textarea, html select, html button {
   font-family: $base-font-family;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 body, input, textarea, select, button {
@@ -23,8 +20,16 @@ body, input, textarea, select, button {
   word-wrap: break-word;
 }
 
+body {
+  padding-top: $body-padding-top;
+}
+
 input[type=text], input[type=password]:focus {
   -webkit-appearance: none;
+}
+
+a:link {
+  text-decoration: none;
 }
 
 div[contentEditable], input, textarea, button, a:link {

@@ -6,8 +6,8 @@
 
 .popover {
   position: absolute;
-  top: 694px;
-  left: 122px;
+  top: 702px;
+  left: 125px;
   z-index: $zindex-popover;
   padding: 12px;
 
@@ -89,12 +89,19 @@
           margin-bottom: 6px;
           margin-left: 14px;
           font-size: 13px;
+          line-height: 22px;
 
           float: left;
           .lower-accp {
             float: left;
-            border-right: 1px solid $popover-content-border-color;
             padding-right: 6px;
+          }
+
+          .lower-split {
+            float: left;
+            width: 1px;
+            background: $popover-content-border-color;
+            height: 22px;
           }
 
           .lower-corn {
@@ -108,33 +115,28 @@
         }
 
         .lower-right {
-          margin-top: 6px;
+          margin-top: 5px;
           margin-right: 14px;
           float: right;
 
           .btn-ask {
+            @include btn-base($border-radius-small);
             float: left;
             margin-right: 10px;
-            text-align: center;
-            color: #ffffff;
             width: 54px;
             height: 22px;
-            @include border-radius($border-radius-small);
-            background: $base-color;
-            @include background-image(linear-gradient(top,$base-color,$deep-base-color));
-            cursor: pointer;
           }
 
           .btn-corn {
             float: left;
             cursor: pointer;
-            line-height: 22px;
+            line-height: 24px;
 
             .icons-add {
               width: 12px;
               height: 12px;
               float: left;
-              margin-top: 4px;
+              margin-top: 5px;
               margin-right: 3px;
             }
           }
