@@ -3,8 +3,8 @@ require "returncode_define.rb"
 class Users::SessionsController < Devise::SessionsController
   include Zrquan::ReturnCode
   # usage:
-  # curl -v -H 'Content-Type: application/json' -H 'Accept: application/json' -X POST http://localhost:3000/users/sign_in -d "{\"user\":{\"email\":\"user@example.com\",\"password\":\"secret\"}}"
-  # POST /resource/sign_in
+  # curl -v -H 'Content-Type: application/json' -H 'Accept: application/json' -X POST http://localhost:3000/sessions -d "{\"user\":{\"email\":\"user@example.com\",\"password\":\"secret\"}}"
+  # POST /sessions
   def create
     respond_to do |format|
       format.html{ super }
@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
-  # DELETE /resource/sign_out
+  # DELETE /sessions
   def destroy
     respond_to do |format|
       format.html{ super }
