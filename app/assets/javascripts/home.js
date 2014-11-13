@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     var authModal = $('#authModal');
+    var activateModal = $('#activateModal');
 
     $('#btn-sign-up').click(function(){
         $('div[role=sign-in]', authModal).hide();
@@ -45,9 +46,17 @@ $(document).ready(function() {
                 url: "registrations",
                 data: requestObj
             })).then(function(result){
-                if(result["code"] == "S_INACTIVE_OK") {
+                if(result["code"] == "S_OK") {
                     console.log("新用户注册成功");
-                    location.href = result["redirect"];
+                    authModal.hide();
+                    authModal.off("hide.bs.modal");
+                    activateModal.modal('show');
+                    activateModal.on("hide.bs.modal", function(){
+                        location.href = result["redirect"];
+                        activateModal.off("hide.bs.modal");
+                    });
+                    var matches = Zrquan.Regex.EMAIL.exec(requestObj.user.email);
+                    $("#activateLink").prop("href", "http://mail." + matches[1]);
                 }
             });
         }
@@ -62,9 +71,14 @@ $(document).ready(function() {
                 password : $("input[name=input-sign-up-password]").val()
             }};
 
-            Zrquan.Ajax.request({
+            $.when(Zrquan.Ajax.request({
                 url: "sessions",
                 data: requestObj
+            })).then(function(result){
+                if(result["code"] == "S_OK" || result["code"] == "S_INACTIVE_OK") {
+                    console.log("用户登陆成功");
+                    location.href = result["redirect"];
+                }
             });
         }
     });

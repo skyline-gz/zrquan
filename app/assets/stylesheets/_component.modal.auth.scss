@@ -201,6 +201,7 @@
     }
 
     .btn-modal-activate {
+      display: block;
       margin-top: 8px;
       @include border-radius($border-radius-base);
       width: 100%;
@@ -215,6 +216,7 @@
     }
 
     .btn-modal-deactivate {
+      display: block;
       margin-top: 8px;
       @include border-radius($border-radius-base);
       width: 100%;
