@@ -36,20 +36,23 @@ $(document).ready(function() {
         removeErrorTips();
 //        if(checkAuthParam("sign-up")){
         var requestObj = {user: {
-                email : $("input[name=input-sign-up-first-name]").val(),
-                password : $("input[name=input-sign-up-email]").val()
+                email : $("input[name=input-sign-up-email]").val(),
+                password : $("input[name=input-sign-up-password]").val(),
+                first_name : $("input[name=input-sign-up-first-name]").val(),
+                last_name : $("input[name=input-sign-up-last-name]").val()
         }};
-            $.ajax({
-                type: "POST",   //访问WebService使用Post方式请求
-                contentType: "application/json",
-                url: "users",
-                data: JSON.stringify(requestObj),
-                dataType: 'json',
 
-                success: function(result) {     //回调函数，result，返回值
-                    alert(result.d);
-                }
-            });
+        $.ajax({
+            type: "POST",   //访问WebService使用Post方式请求
+            contentType: "application/json",
+            url: "registrations",
+            data: JSON.stringify(requestObj),
+            dataType: 'json',
+
+            success: function(result) {     //回调函数，result，返回值
+                alert(result.d);
+            }
+        });
 //        }
     });
 
