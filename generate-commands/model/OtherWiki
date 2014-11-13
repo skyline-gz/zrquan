@@ -1,1 +1,1 @@
-rails g model Industry name:string description:text
+rails g model OtherWiki name:string description:text

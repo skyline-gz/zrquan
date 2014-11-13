@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110120233) do
+ActiveRecord::Schema.define(version: 20141113081553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,11 +89,62 @@ ActiveRecord::Schema.define(version: 20141110120233) do
   add_index "bookmarks", ["bookmarkable_id", "bookmarkable_type"], name: "index_bookmarks_on_bookmarkable_id_and_bookmarkable_type", using: :btree
   add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
+  create_table "careers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "industry_id"
+    t.integer  "company_id"
+    t.string   "position"
+    t.string   "entry_year"
+    t.string   "entry_month"
+    t.string   "leave_year"
+    t.string   "leave_month"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "careers", ["company_id"], name: "index_careers_on_company_id", using: :btree
+  add_index "careers", ["industry_id"], name: "index_careers_on_industry_id", using: :btree
+  add_index "careers", ["user_id"], name: "index_careers_on_user_id", using: :btree
+
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "certifications", force: true do |t|
+    t.string   "name"
+    t.integer  "study_time_sum"
+    t.integer  "study_time_samples"
+    t.integer  "study_time_avg"
+    t.integer  "study_cost_sum"
+    t.integer  "study_cost_samples"
+    t.integer  "study_cost_avg"
+    t.text     "regist_rule"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cities", force: true do |t|
+    t.text     "expense"
+    t.text     "strong_industry"
+    t.text     "entry_policy"
+    t.text     "support_policy"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "city_foods", force: true do |t|
+    t.string   "content"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "city_foods", ["city_id"], name: "index_city_foods_on_city_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -108,6 +159,37 @@ ActiveRecord::Schema.define(version: 20141110120233) do
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["replied_comment_id"], name: "index_comments_on_replied_comment_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.integer  "industry_id"
+    t.integer  "corporate_group_id"
+    t.string   "address"
+    t.string   "site"
+    t.string   "contact"
+    t.string   "legal_person"
+    t.integer  "capital_state"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "companies", ["city_id"], name: "index_companies_on_city_id", using: :btree
+  add_index "companies", ["corporate_group_id"], name: "index_companies_on_corporate_group_id", using: :btree
+  add_index "companies", ["industry_id"], name: "index_companies_on_industry_id", using: :btree
+
+  create_table "company_salaries", force: true do |t|
+    t.integer  "company_id"
+    t.string   "position"
+    t.integer  "salary_sum"
+    t.integer  "samples"
+    t.integer  "salary_avg"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "company_salaries", ["company_id"], name: "index_company_salaries_on_company_id", using: :btree
 
   create_table "consult_replies", force: true do |t|
     t.integer  "consult_subject_id"
@@ -143,8 +225,35 @@ ActiveRecord::Schema.define(version: 20141110120233) do
   add_index "consult_themes", ["consult_subject_id"], name: "index_consult_themes_on_consult_subject_id", using: :btree
   add_index "consult_themes", ["theme_id"], name: "index_consult_themes_on_theme_id", using: :btree
 
+  create_table "corporate_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "industry_id"
+    t.string   "site"
+    t.string   "legal_person"
+    t.integer  "capital_state"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "corporate_groups", ["industry_id"], name: "index_corporate_groups_on_industry_id", using: :btree
+
+  create_table "educations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "school_id"
+    t.string   "major"
+    t.string   "graduate_year"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "educations", ["school_id"], name: "index_educations_on_school_id", using: :btree
+  add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
+
   create_table "industries", force: true do |t|
     t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -193,6 +302,25 @@ ActiveRecord::Schema.define(version: 20141110120233) do
   end
 
   add_index "news_feeds", ["feedable_id", "feedable_type"], name: "index_news_feeds_on_feedable_id_and_feedable_type", using: :btree
+
+  create_table "other_wikis", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personal_salaries", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "position"
+    t.integer  "salary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personal_salaries", ["company_id"], name: "index_personal_salaries_on_company_id", using: :btree
+  add_index "personal_salaries", ["user_id"], name: "index_personal_salaries_on_user_id", using: :btree
 
   create_table "private_messages", force: true do |t|
     t.text     "content"
@@ -260,11 +388,34 @@ ActiveRecord::Schema.define(version: 20141110120233) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   add_index "relationships", ["following_user_id"], name: "index_relationships_on_following_user_id", using: :btree
 
-  create_table "themes", force: true do |t|
+  create_table "schools", force: true do |t|
     t.string   "name"
+    t.integer  "city_id"
+    t.string   "address"
+    t.string   "site"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "schools", ["city_id"], name: "index_schools_on_city_id", using: :btree
+
+  create_table "skills", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "themes", force: true do |t|
+    t.string   "name"
+    t.integer  "substance_id"
+    t.string   "substance_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "themes", ["substance_id", "substance_type"], name: "index_themes_on_substance_id_and_substance_type", using: :btree
 
   create_table "user_settings", force: true do |t|
     t.boolean  "followed_flag",  default: true

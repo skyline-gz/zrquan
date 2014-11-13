@@ -1,0 +1,1 @@
+rails g model CompanySalary company:references position:string salary_sum:integer samples:integerd salary_avg:integer
