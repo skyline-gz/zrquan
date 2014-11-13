@@ -452,11 +452,6 @@ ActiveRecord::Schema.define(version: 20141113081553) do
     t.integer  "gender"
     t.integer  "province_id"
     t.integer  "city_id"
-    t.string   "school"
-    t.string   "major"
-    t.string   "industry"
-    t.string   "company"
-    t.string   "position"
     t.string   "signature"
     t.text     "description"
     t.boolean  "verified_flag",          default: false

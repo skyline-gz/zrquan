@@ -5,11 +5,6 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :gender, :integer
     add_reference :users, :province, index: true
     add_reference :users, :city, index: true
-    add_column :users, :school, :string
-    add_column :users, :major, :string
-    add_column :users, :industry, :string
-    add_column :users, :company, :string
-    add_column :users, :position, :string
     add_column :users, :signature, :string
     add_column :users, :description, :text
     add_column :users, :verified_flag, :boolean, default: false
