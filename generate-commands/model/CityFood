@@ -1,0 +1,1 @@
+rails g model CityFood content:string city:references
