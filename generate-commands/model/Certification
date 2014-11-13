@@ -1,0 +1,1 @@
+rails g model Certification name:string study_time_sum:int study_time_samples:int study_time_avg:int study_cost_sum:int study_cost_samples:int study_cost_avg:int regist_rule:text description:text

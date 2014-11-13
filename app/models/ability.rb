@@ -134,7 +134,7 @@ class Ability
 
     def follow_abilities(user)
       can :follow, User do |target_user|
-        !user.myself?(target_user) and !user.following?(target_user)
+        !user.myself?(target_user) and !user.following_u?(target_user)
       end
       can :unfollow, User do |target_user|
         user.following?(target_user)
@@ -149,7 +149,7 @@ class Ability
 
     def pm_abilities(user)
       can :pm, User do |target_user|
-        target_user.following?(user) or target_user.ever_pm?(user)
+        target_user.following_u?(user) or target_user.ever_pm?(user)
       end
     end
 

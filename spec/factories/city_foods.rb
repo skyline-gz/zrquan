@@ -1,8 +1,8 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :theme do
-    name "MyString"
-    substance nil
+  factory :city_food do
+    content "MyString"
+    city nil
   end
 end

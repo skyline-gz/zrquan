@@ -1,1 +1,0 @@
-rails g scaffold Theme name:string

@@ -1,0 +1,1 @@
+rails g model Career user:references industry:references company:references position:string entry_year:string entry_month:string leave_year:string leave_month:string description:text

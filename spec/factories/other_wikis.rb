@@ -1,8 +1,8 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :theme do
+  factory :other_wiki do
     name "MyString"
-    substance nil
+    description "MyText"
   end
 end

@@ -1,8 +1,11 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :theme do
+  factory :school do
     name "MyString"
-    substance nil
+    city nil
+    address "MyString"
+    site "MyString"
+    description "MyText"
   end
 end

@@ -1,0 +1,1 @@
+rails g model Education user:references school:references major:string graduate_year:string description:text

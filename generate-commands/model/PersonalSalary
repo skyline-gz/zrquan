@@ -1,0 +1,1 @@
+rails g model PersonalSalary user:references company:references position:string salary:integer
