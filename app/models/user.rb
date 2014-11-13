@@ -54,11 +54,11 @@ class User < ActiveRecord::Base
 		reverse_relationships.count
 	end
 
-	def following?(other_user)
+	def following_u?(other_user)
 		relationships.find_by(following_user_id: other_user.id)
 	end
 
-	def following?(question)
+	def following_q?(question)
 		question_follows.find_by(question_id: question.id)
 	end
 
