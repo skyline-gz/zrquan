@@ -1,3 +1,5 @@
+require "returncode_define.rb"
+
 class Users::SessionsController < Devise::SessionsController
   include Zrquan::ReturnCode
   # usage:
@@ -20,7 +22,7 @@ class Users::SessionsController < Devise::SessionsController
       format.json do
         redirect_path = after_sign_out_path_for(resource_name)
         signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-        code = signed_out ? S_OK : FA_UNKNOWN_ERROR
+        code = signed_out ? ReturnCode::S_OK : ReturnCode::FA_UNKNOWN_ERROR
         render :json => {:code => code, :redirect => redirect_path}
       end
     end
@@ -31,7 +33,7 @@ class Users::SessionsController < Devise::SessionsController
     resource ||= resource_or_scope
     sign_in(scope, resource) unless warden.user(scope) == resource
     respond_to do |format|
-      format.json {render :json => {:code => S_OK, :redirect => stored_location_for(scope) || after_sign_in_path_for(resource)}}
+      format.json {render :json => {:code => ReturnCode::S_OK, :redirect => stored_location_for(scope) || after_sign_in_path_for(resource)}}
       format.html {redirect_to root_url}
     end
   end
@@ -40,9 +42,9 @@ class Users::SessionsController < Devise::SessionsController
     user = User.find_by_email(params[:user][:email])
     code = nil
     if user != nil
-      user.valid_password?(params[:user][:password]) ? nil : code = FA_PASSWORD_ERROR
+      user.valid_password?(params[:user][:password]) ? nil : code = ReturnCode::FA_PASSWORD_ERROR
     else
-      code = FA_USER_NOT_EXIT
+      code = ReturnCode::FA_USER_NOT_EXIT
     end
 
     respond_to do |format|
@@ -66,7 +68,7 @@ class Users::SessionsController < Devise::SessionsController
       respond_to do |format|
         format.html {redirect_to after_sign_in_path_for(resource)}
         # 重复创建session时应提示 用户已登陆
-        format.json {render :json => {:code => FA_SESSION_HAS_BEEN_CREATED, :redirect => after_sign_in_path_for(resource)}}
+        format.json {render :json => {:code => ReturnCode::FA_SESSION_HAS_BEEN_CREATED, :redirect => after_sign_in_path_for(resource)}}
       end
     end
   end
