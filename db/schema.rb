@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020051035) do
+ActiveRecord::Schema.define(version: 20141110120233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,11 +100,13 @@ ActiveRecord::Schema.define(version: 20141020051035) do
     t.integer  "user_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.integer  "replied_comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["replied_comment_id"], name: "index_comments_on_replied_comment_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "consult_replies", force: true do |t|
@@ -204,6 +206,16 @@ ActiveRecord::Schema.define(version: 20141020051035) do
 
   add_index "private_messages", ["user1_id"], name: "index_private_messages_on_user1_id", using: :btree
   add_index "private_messages", ["user2_id"], name: "index_private_messages_on_user2_id", using: :btree
+
+  create_table "question_follows", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "question_follows", ["question_id"], name: "index_question_follows_on_question_id", using: :btree
+  add_index "question_follows", ["user_id"], name: "index_question_follows_on_user_id", using: :btree
 
   create_table "question_themes", force: true do |t|
     t.integer  "question_id"
