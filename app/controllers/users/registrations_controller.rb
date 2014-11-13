@@ -5,9 +5,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	# 重写devise的注册controller
 
   # sample:
-  # curl -v -H 'Content-Type: applicationion/json' -X POST http://localhost:3000/users -d "{\"user\":{\"email\":\"yuqi.fan@foxmail.com\",\"password\":\"secret\"}}"
+  # curl -v -H 'Content-Type: applicationion/json' -X POST http://localhost:3000/registrations -d "{\"user\":{\"email\":\"yuqi.fan@foxmail.com\",\"password\":\"secret\"}}"
   # {"code":"FA_INVALID_PARAMETERS","msg":{"email":["can't be blank"],"password":["can't be blank"]}}
-  # POST /resource/sign_in
+  # POST /registrations
   def create
     build_resource(sign_up_params)
 
