@@ -1,21 +1,43 @@
-Zrquan = Zrquan || {};
 Zrquan.Ajax = function(){
 
-    function fRequest() {
+    /**
+     * $.ajax的简单封装,直接返回$.defered对象
+     * @param options
+     *          url
+     *          data
+     *          type:    默认为POST
+     * @param successCallback
+     * @param errorCallback
+     * @returns {*}
+     */
+    function fRequest(options, successCallback, errorCallback) {
+        var deferred = new $.Deferred();
+
+        options = options || {};
+        options.type = options.type || "POST";
+        options.data = options.data || "";
+        successCallback = successCallback || $.noop();
+        errorCallback = errorCallback || $.noop();
         $.ajax({
             type: "POST",   //访问WebService使用Post方式请求
             contentType: "application/json",
-            url: "users",
-            data: "{}",  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到
-            dataType: 'json',   //WebService 会返回Json类型
-
+            url: options.url,
+            data: JSON.stringify(options.data),
+            dataType: 'json',
             success: function(result) {     //回调函数，result，返回值
-                alert(result.d);
+                console.log(result);
+                if(result.code == "S_OK" || result.code == "S_INACTIVE_OK") {
+                    deferred.resolve(result);
+                } else {
+                    deferred.reject();
+                }
             }
         });
+
+        return deferred;
     }
 
     return {
         request: fRequest
     };
-};
+}();

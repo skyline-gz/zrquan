@@ -22,6 +22,8 @@
 //= require ./components/component.transition
 //= require ./components/component.modal
 //工具类
+//= require ./utils/base
 //= require ./utils/ajax
-//逻辑
+//= require ./utils/regex
+//页面逻辑
 //= require home

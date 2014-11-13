@@ -1,10 +1,7 @@
 $(document).ready(function() {
-    var RegEnglishName = /^[a-z|A-Z]{0,20}$/;
-    var RegChineseName = /^[\u4e00-\u9fa5]{0,9}$/;
-    var RegPassword =/\w{8,16}/;
-    var RegEmail = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
 
     var authModal = $('#authModal');
+
     $('#btn-sign-up').click(function(){
         $('div[role=sign-in]', authModal).hide();
         $('div[role=sign-up]', authModal).show();
@@ -34,56 +31,49 @@ $(document).ready(function() {
     //点击注册
     $(".btn-sign-up").click(function(){
         removeErrorTips();
-//        if(checkAuthParam("sign-up")){
-        var requestObj = {user: {
-                email : $("input[name=input-sign-up-email]").val(),
-                password : $("input[name=input-sign-up-password]").val(),
-                first_name : $("input[name=input-sign-up-first-name]").val(),
-                last_name : $("input[name=input-sign-up-last-name]").val()
-        }};
+        if(checkAuthParam("sign-up")){
+            var requestObj = {
+                user: {
+                    email : $("input[name=input-sign-up-email]").val(),
+                    password : $("input[name=input-sign-up-password]").val(),
+                    first_name : $("input[name=input-sign-up-first-name]").val(),
+                    last_name : $("input[name=input-sign-up-last-name]").val()
+                }
+            };
 
-        $.ajax({
-            type: "POST",   //访问WebService使用Post方式请求
-            contentType: "application/json",
-            url: "registrations",
-            data: JSON.stringify(requestObj),
-            dataType: 'json',
-
-            success: function(result) {     //回调函数，result，返回值
-                alert(result.d);
-            }
-        });
-//        }
+            $.when(Zrquan.Ajax.request({
+                url: "registrations",
+                data: requestObj
+            })).then(function(result){
+                if(result["code"] == "S_INACTIVE_OK") {
+                    console.log("新用户注册成功");
+                    location.href = result["redirect"];
+                }
+            });
+        }
     });
 
     //点击登陆
     $(".btn-sign-in").click(function(){
         removeErrorTips();
-//        if(checkAuthParam("sign-in")){
-            $.ajax({
-                type: "POST",   //访问WebService使用Post方式请求
-                contentType: "application/json",
-                url: "users",
-                data: {
-                    user: {
-                        email : $("input[name=input-sign-up-first-name]").val(),
-                        password : $("input[name=input-sign-up-email]").val()
-                    }
-                },
-                dataType: 'json',
+        if(checkAuthParam("sign-in")){
+            var requestObj = {user: {
+                email : $("input[name=input-sign-up-email]").val(),
+                password : $("input[name=input-sign-up-password]").val()
+            }};
 
-                success: function(result) {     //回调函数，result，返回值
-                    alert(result.d);
-                }
+            Zrquan.Ajax.request({
+                url: "sessions",
+                data: requestObj
             });
-//        }
-        return false;
+        }
     });
 
     authModal.on("hide.bs.modal", function(){
         removeErrorTips();
     });
 
+    //检测用户输入是否合法并从界面显示出错信息
     function checkAuthParam(sType) {
         var bValid = true;
         if(sType == "sign-up") {
@@ -99,14 +89,14 @@ $(document).ready(function() {
             if(checkEmpty("input[name=input-sign-up-email]")) {
                 addErrorTips("#sign-up-email", "请输入邮箱账号");
                 bValid = false;
-            } else if (!RegEmail.test($("input[name=input-sign-up-email]").val())){
+            } else if (!Zrquan.Regex.EMAIL.test($("input[name=input-sign-up-email]").val())){
                 addErrorTips("#sign-up-email", "请输入合法邮箱账号");
                 bValid = false;
             }
             if(checkEmpty("input[name=input-sign-up-password]")) {
                 addErrorTips("#sign-up-password", "请输入密码");
                 bValid = false;
-            } else if (!RegPassword.test($("input[name=input-sign-up-password]").val())){
+            } else if (!Zrquan.Regex.PASSWORD.test($("input[name=input-sign-up-password]").val())){
                 addErrorTips("#sign-up-password", "至少为8位字母或数字");
                 bValid = false;
             }
@@ -118,14 +108,14 @@ $(document).ready(function() {
             if(checkEmpty("input[name=input-sign-in-email]")) {
                 addErrorTips("#sign-in-email", "请输入邮箱账号");
                 bValid = false;
-            } else if (!RegEmail.test($("input[name=input-sign-in-email]").val())){
+            } else if (!Zrquan.Regex.EMAIL.test($("input[name=input-sign-in-email]").val())){
                 addErrorTips("#sign-in-email", "请输入合法邮箱账号");
                 bValid = false;
             }
             if(checkEmpty("input[name=input-sign-in-password]")) {
                 addErrorTips("#sign-in-password", "请输入密码");
                 bValid = false;
-            } else if (!RegPassword.test($("input[name=input-sign-in-password]").val())){
+            } else if (!Zrquan.Regex.PASSWORD.test($("input[name=input-sign-in-password]").val())){
                 addErrorTips("#sign-in-password", "至少为8位字母或数字");
                 bValid = false;
             }
@@ -139,7 +129,7 @@ $(document).ready(function() {
 
     function checkName(sExp) {
         var value = $(sExp).val();
-        return RegEnglishName.test(value) || RegChineseName.test(value);
+        return Zrquan.Regex.ENGLISH_NAME.test(value) || Zrquan.Regex.CHINESE_NAME.test(value);
     }
 
     function addErrorTips(sExp, sError) {
@@ -148,6 +138,7 @@ $(document).ready(function() {
         $(sExp).append(eTips);
     }
 
+    //清空出错信息
     function removeErrorTips() {
         $(".modal-input-tips", authModal).remove();
     }

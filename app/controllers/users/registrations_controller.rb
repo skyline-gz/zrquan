@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
+    # 此处捕获devise save时的异常,并返回JSON到前端
     begin
       resource_saved = resource.save
     rescue Net::SMTPAuthenticationError
