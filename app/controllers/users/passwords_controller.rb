@@ -21,6 +21,14 @@ class Users::PasswordsController < Devise::PasswordsController
     end
   end
 
+  # 重写此方法只为了改变layout为full_middle.html.erb
+  # GET /resource/password/edit?reset_password_token=abcdef
+  def edit
+    layout :full_middle
+    self.resource = resource_class.new
+    resource.reset_password_token = params[:reset_password_token]
+  end
+
   protected
     # The path used after sending reset password instructions
     def after_sending_reset_password_instructions_path_for(resource_name)
