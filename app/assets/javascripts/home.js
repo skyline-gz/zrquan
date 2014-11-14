@@ -26,11 +26,30 @@ $(document).ready(function() {
     });
 
     $("#btn-forget-password").click(function(){
-
-    });
-
-    $(".top-link-logo").click(function(){
+        authModal.hide();
         $('#forgetPasswordModal').modal('show');
+
+        $('#resetPassword').click(function(){
+            removeErrorTips();
+            if(checkAuthParam("reset-password")){
+                var requestObj = {
+                    user: {
+                        email : $("input[name=input-email-reset-password]").val()
+                    }
+                };
+
+                $.when(Zrquan.Ajax.request({
+                    url: "users/password",
+                    data: requestObj
+                })).then(function(result){
+                    console.log(result);
+//                    if(result["code"] == "S_OK" || result["code"] == "S_INACTIVE_OK") {
+//                        console.log("用户登陆成功");
+//                        location.href = result["redirect"];
+//                    }
+                });
+            }
+        });
     });
 
     //点击注册
@@ -138,6 +157,14 @@ $(document).ready(function() {
                 bValid = false;
             } else if (!Zrquan.Regex.PASSWORD.test($("input[name=input-sign-in-password]").val())){
                 addErrorTips("#sign-in-password", "至少为8位字母或数字");
+                bValid = false;
+            }
+        } else if (sType == "forget-password") {
+            if(checkEmpty("input[name=input-email-reset-password]")) {
+                addErrorTips("#reset-password-email", "请输入邮箱账号");
+                bValid = false;
+            } else if (!Zrquan.Regex.EMAIL.test($("input[name=input-email-reset-password]").val())){
+                addErrorTips("#reset-password-email", "请输入合法邮箱账号");
                 bValid = false;
             }
         }

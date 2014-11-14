@@ -239,7 +239,8 @@
       margin-bottom: 10px;
     }
 
-    .btn-modal-activate {
+    .btn-modal-activate,
+    .btn-modal-reset-password{
       display: block;
       margin-top: 8px;
       @include border-radius($border-radius-base);

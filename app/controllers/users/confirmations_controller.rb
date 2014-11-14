@@ -2,7 +2,7 @@ require "returncode_define.rb"
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
 
-  #重新发送激活信
+  # Ajax重新发送激活信
   # get 'confirmations/resend'
   def resend
     self.resource = resource_class.send_confirmation_instructions({email: current_user.email})
