@@ -69,7 +69,8 @@ $(document).ready(function() {
             var requestObj = {
                 user: {
                     email : $("input[name=input-sign-in-email]").val(),
-                    password : $("input[name=input-sign-in-password]").val()
+                    password : $("input[name=input-sign-in-password]").val(),
+                    remember_me : $("input[name=input-sign-in-remember-me]").isChecked
                 }
             };
 

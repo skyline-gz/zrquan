@@ -44,11 +44,11 @@
     }
 
     .modal-sub-header {
-      border-top: 1px solid #efefef;
+      border-top: 1px solid #aaa;
       margin-top: 12px;
       text-align: center;
       font-size: 12px;
-      color: #a7a7a7;
+      color: #aaa;
     }
 
     .modal-input {
@@ -70,9 +70,12 @@
       font-size: 12px;
       line-height: 22px;
       height: 22px;
-      color: #a7a7a7;
-      text-align: center;
-      text-decoration: underline;
+      color: #333;
+
+      .agree-service {
+        color: #aaa;
+        text-decoration: underline;
+      }
     }
 
     .first-name {
@@ -152,7 +155,7 @@
 
   input {
     @include border-radius($border-radius-base);
-    border: 1px solid #CCCCCC;
+    border: 1px solid #aaa;
     padding: 7px 6px;
     line-height: 14px;
     font-size: 14px;
