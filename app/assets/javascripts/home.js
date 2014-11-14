@@ -66,10 +66,12 @@ $(document).ready(function() {
     $(".btn-sign-in").click(function(){
         removeErrorTips();
         if(checkAuthParam("sign-in")){
-            var requestObj = {user: {
-                email : $("input[name=input-sign-up-email]").val(),
-                password : $("input[name=input-sign-up-password]").val()
-            }};
+            var requestObj = {
+                user: {
+                    email : $("input[name=input-sign-in-email]").val(),
+                    password : $("input[name=input-sign-in-password]").val()
+                }
+            };
 
             $.when(Zrquan.Ajax.request({
                 url: "sessions",

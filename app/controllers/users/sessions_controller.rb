@@ -1,7 +1,7 @@
 require "returncode_define.rb"
 
 class Users::SessionsController < Devise::SessionsController
-  include Zrquan::ReturnCode
+
   # usage:
   # curl -v -H 'Content-Type: application/json' -H 'Accept: application/json' -X POST http://localhost:3000/sessions -d "{\"user\":{\"email\":\"user@example.com\",\"password\":\"secret\"}}"
   # POST /sessions
