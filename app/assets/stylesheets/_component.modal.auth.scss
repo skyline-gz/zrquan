@@ -164,7 +164,7 @@
 }
 
 //激活成功提示模态框
-#activateModal {
+#activateModal, #forgetPasswordModal {
   .close {
     position: absolute;
     display: block;
@@ -186,7 +186,6 @@
 
   .modal-content {
     width: 510px;
-    height: 362px;
     background: #ffffff;
     padding-top: 42px;
   }
@@ -201,6 +200,43 @@
       margin: 0 auto;
       width: 169px;
       height: 70px;
+    }
+
+    .modal-text-title {
+      font-size: 16px;
+      line-height: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #787878;
+      text-shadow: 0 1px 1px rgba(0,0,0,.15);
+      text-decoration: none;
+      text-align: center;
+
+      .title {
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        margin-top: 12px;
+      }
+
+      .sub-title {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+
+    input {
+      display: block;
+      @include border-radius($border-radius-base);
+      border: 1px solid #aaa;
+      padding: 7px 6px;
+      line-height: 14px;
+      font-size: 14px;
+      outline: none;
+      width: 218px;
+      margin-top: 5px;
+      margin-bottom: 10px;
     }
 
     .btn-modal-activate {

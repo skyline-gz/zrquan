@@ -25,8 +25,12 @@ $(document).ready(function() {
         $('div[role=sign-up]', authModal).hide();
     });
 
+    $("#btn-forget-password").click(function(){
+
+    });
+
     $(".top-link-logo").click(function(){
-        $('#activateModal').modal('show');
+        $('#forgetPasswordModal').modal('show');
     });
 
     //点击注册
