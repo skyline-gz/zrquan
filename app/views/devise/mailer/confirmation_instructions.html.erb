@@ -1,5 +1,5 @@
-<p>Welcome <%= @email %>!</p>
+<p>欢迎 <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>我们是职人圈团队,请您访问下面的链接来激活账户:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to '立即激活', confirmation_url(@resource, confirmation_token: @token) %></p>
