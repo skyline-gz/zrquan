@@ -219,7 +219,6 @@ $(document).ready(function() {
             url: "/sessions",
             type: "DELETE"
         })).then(function(result){
-            console.log(result);
             if(result["code"] == "S_OK") {
                 console.log("用户退出成功");
                 location.href = result["redirect"];
