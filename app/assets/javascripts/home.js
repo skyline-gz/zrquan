@@ -43,11 +43,7 @@ $(document).ready(function() {
                     url: "users/password",
                     data: requestObj
                 })).then(function(result){
-                    console.log(result);
-//                    if(result["code"] == "S_OK" || result["code"] == "S_INACTIVE_OK") {
-//                        console.log("用户登陆成功");
-//                        location.href = result["redirect"];
-//                    }
+                    console.log("重设密码邮件发送成功");
                 });
             }
         });
@@ -83,9 +79,7 @@ $(document).ready(function() {
                     $("#activateLink").prop("href", "http://mail." + matches[1]);
                 }else if(result["code"] == "FA_USER_ALREADY_EXIT") {
                     console.log("该账号已经存在");
-                    authModal.modal('hide');
-                    authModal.off("hide.bs.modal");
-                    alert("该账号已经存在");
+                    addErrorTips("#sign-up-email", "该账号已经存在");
                 }
             });
         }
@@ -112,13 +106,11 @@ $(document).ready(function() {
                     authModal.modal('hide');
                     location.href = result["redirect"];
                 } else if (result["code"] == "FA_USER_NOT_EXIT") {
-                    console.log("用户登陆失败");
-                    authModal.modal('hide');
-                    alert("用户不存在")
+                    console.log("用户账号不存在");
+                    addErrorTips("#sign-in-email", "用户账号不存在");
                 } else if (result["code"] == "FA_PASSWORD_ERROR") {
                     console.log("密码错误");
-                    authModal.modal('hide');
-                    alert("密码错误")
+                    addErrorTips("#sign-in-password", "用户名与密码不匹配");
                 }
             });
         }
