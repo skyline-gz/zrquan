@@ -81,6 +81,11 @@ $(document).ready(function() {
                     });
                     var matches = Zrquan.Regex.EMAIL.exec(requestObj.user.email);
                     $("#activateLink").prop("href", "http://mail." + matches[1]);
+                }else if(result["code"] == "FA_USER_ALREADY_EXIT") {
+                    console.log("该账号已经存在");
+                    authModal.modal('hide');
+                    authModal.off("hide.bs.modal");
+                    alert("该账号已经存在");
                 }
             });
         }
@@ -106,6 +111,14 @@ $(document).ready(function() {
                     console.log("用户登陆成功");
                     authModal.modal('hide');
                     location.href = result["redirect"];
+                } else if (result["code"] == "FA_USER_NOT_EXIT") {
+                    console.log("用户登陆失败");
+                    authModal.modal('hide');
+                    alert("用户不存在")
+                } else if (result["code"] == "FA_PASSWORD_ERROR") {
+                    console.log("密码错误");
+                    authModal.modal('hide');
+                    alert("密码错误")
                 }
             });
         }

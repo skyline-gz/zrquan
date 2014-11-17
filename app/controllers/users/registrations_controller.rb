@@ -11,6 +11,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
+    # 首先检查用户账号是否已经存在
+    user = User.find_by_email(params[:user][:email])
+    if user != nil
+      render :json => {:code => ReturnCode::FA_USER_ALREADY_EXIT}
+      return
+    end
+
     # 此处捕获devise save时的异常,并返回JSON到前端
     begin
       resource_saved = resource.save

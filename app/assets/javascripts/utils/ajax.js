@@ -26,11 +26,7 @@ Zrquan.Ajax = function(){
             dataType: 'json',
             success: function(result) {     //回调函数，result，返回值
                 console.log(result);
-                if(result.code == "S_OK" || result.code == "S_INACTIVE_OK") {
-                    deferred.resolve(result);
-                } else {
-                    deferred.reject();
-                }
+                deferred.resolve(result);
             }
         });
 

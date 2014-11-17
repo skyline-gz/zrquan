@@ -256,6 +256,7 @@ div[role=navigation] {
       text-overflow: ellipsis;
       overflow: hidden;
       cursor: pointer;
+      outline: 0;
     }
 
     li a:hover {
