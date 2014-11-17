@@ -30,6 +30,20 @@
                 <% end %>
                 <span><%=generate_name(current_user.first_name, current_user.last_name)%></span>
             </a>
+            <ul class="top-nav-dropdown" id="top-nav-profile-dropdown" aria-labelledby=":0" aria-hidden="true">
+              <li>
+                <a href="/users/<%=current_user.id%>" tabindex="-1">
+                  <i class="top-nav-icon-home"></i>我的主页</a>
+              </li>
+              <li>
+                <a href="/user_settings/<%=current_user.id%>" tabindex="-1">
+                  <i class="top-nav-icon-settings"></i>设置</a>
+              </li>
+              <li>
+                <a href="/logout" class="logout" id="btn-logout" tabindex="-1">
+                  <i class="top-nav-icon-logout"></i>退出</a>
+              </li>
+            </ul>
           </li>
           <li><a class="message-link"><i class="icons-message"></i></a></li>
           <li><a class="private-message-link"><i class="icons-private_message"></i></a></li>

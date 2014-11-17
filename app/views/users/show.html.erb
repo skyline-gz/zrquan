@@ -1,185 +1,250 @@
-<p id="notice"><%= notice %></p>
-
-<table>
-	<tr>
-		<td>following</td>
-		<td><%= @user.following_num %></td>
-	</tr>
-	<tr>
-		<td>followers</td>
-		<td><%= @user.followers_num %></td>
-	</tr>
-</table>
-<p>
-  <%= image_tag(@user.avatar_url) %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= @user.last_name %> <%= @user.first_name %>
-</p>
-<p>
-  <strong>Gender:</strong>
-  <%= @user.gender %>
-</p>
-<!--<p>
-  <strong>Province:</strong>
-  <%= @user.province_id %>
-</p>
-<p>
-  <strong>City:</strong>
-  <%= @user.city_id %>
-</p>-->
-<p>
-  <strong>School:</strong>
-  <%= @user.school %>
-</p>
-<p>
-  <strong>Major:</strong>
-  <%= @user.major %>
-</p>
-<p>
-  <strong>Industry:</strong>
-  <%= @user.industry %>
-</p>
-<p>
-  <strong>Company:</strong>
-  <%= @user.company %>
-</p>
-<p>
-  <strong>Position:</strong>
-  <%= @user.position %>
-</p>
-
-<% if can? :unfollow, @user %>
-	<%= link_to 'Unfollow', relationship_path(:id=>@user.id), method: :delete %> |
-<% elsif can? :follow, @user %>
-	<%= link_to 'Follow', relationships_path(:id=>@user.id), method: :post %> |
-<% end %>
-<% if can? :consult, @user %>
-	<%= link_to 'Consult', new_consult_subject_path(:id=>@user.id), 'data-no-turbolink' => true %> |
-<% end %>
-<% if can? :edit, @user %>
-	<%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
-<%= link_to 'Back', users_path %>
-<br><br>
-<b>Q&A</b>
-<!-- Q&A -->
-<table>
-	<% if @user.verified_user? %>
-		<% @user.invited_questions.each do |iq| %>	
-			<tr>
-				<td>title</td>
-				<td>content</td>
-				<td>theme</td>
-				<td>asker</td>
-				<td>answer num</td>
-				<td>date</td>
-			</tr>
-			<tr>
-				<td><%= iq.title %></td>
-				<td><%= iq.content %></td>
-				<td><%= iq.theme %></td>
-				<td><%= iq.user.last_name %>&nbsp;<%= iq.user.first_name %></td>
-				<td><%= iq.answer_num %></td>
-				<td><%= iq.created_at %></td>
-			</tr>
-		<% end %>
-	<% else %>
-		<% @user.questions.each do |q| %>
-			<tr>
-				<td>title</td>
-				<td>content</td>
-				<td>theme</td>
-				<td>asker</td>
-				<td>answer num</td>
-				<td>date</td>
-			</tr>
-			<tr>
-				<td><%= q.title %></td>
-				<td><%= q.content %></td>
-				<td><%= q.theme %></td>
-				<td><%= q.user.last_name %>&nbsp;<%= q.user.first_name %></td>
-				<td><%= q.answer_num %></td>
-				<td><%= q.created_at %></td>
-			</tr>
-		<% end %>
-	<% end %>
-</table>
-<br>
-<!-- consult subjects -->
-<b>Consult</b>
-<table>
-	<% if @user.verified_user? %>
-		<% @user.m_subjects.each do |ms| %>
-			<tr>
-				<td>title</td>
-				<td>apprentice</td>
-				<td>theme</td>
-				<td>stat</td>
-				<td>date</td>
-				<td colspan="2"></td>
-			</tr>
-			<tr>
-				<td><%= ms.title %></td>
-				<td><%= ms.apprentice.last_name %>&nbsp;<%= ms.apprentice.first_name %></td>
-				<td><%= ms.theme %></td>
-				<td><%= ms.stat_class %></td>
-				<td><%= ms.created_at %></td>
-				<% if can? :accept, ms %>
-					<td><%= link_to 'Accept', accept_consult_subject_path(ms), method: :post %></td>
-				<% end %>
-				<% if can? :ignore, ms %>      
-					<td><%= link_to 'Ignore', ignore_consult_subject_path(ms), method: :post %></td>
-				<% end %>
-				<% if can? :close, ms %>
-					<td><%= link_to 'Close', close_consult_subject_path(ms), method: :post %></td>
-				<% end %>
-			</tr>
-		<% end %>
-	<% else %>
-		<% @user.u_subjects.each do |us| %>
-			<tr>
-				<td>title</td>
-				<td>mentor</td>
-				<td>theme</td>
-				<td>stat</td>
-				<td>date</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><%= us.title %></td>
-				<td><%= us.mentor.last_name %>&nbsp;<%= us.mentor.first_name %></td>
-				<td><%= us.theme %></td>
-				<td><%= us.stat_class %></td>
-				<td><%= us.created_at %></td>
-				<% if can? :close, us %>
-					<td><%= link_to 'Close', close_consult_subject_path(us), method: :post %></td>
-				<% end %>
-			</tr>
-		<% end %>
-	<% end %>
-</table>
-<br>
-<!-- article -->
-<b>Experience</b>
-<table>
-	<% @user.articles.each do |a| %>
-		<tr>
-			<td>title</td>
-			<td>user</td>
-			<td>theme</td>
-			<td>date</td>
-			<td></td>
-		</tr> 
-		<tr>
-			<td><%= a.title %></td>
-			<td><%= a.user.last_name %>&nbsp;<%= a.user.first_name %></td>
-			<td><%= a.theme %></td>
-			<td><%= a.created_at %></td>
-			<% if can? :destroy, a %>
-				<td><%= link_to 'Delete', article_path(a), method: :delete %></td>
-			<% end %>
-		</tr>
-	<% end %>
-</table>
+<div class="user-top warp-content">
+  <div class="user-profile">
+    <div class="user-profile-top"></div>
+    <div class="user-profile-container">
+      <div class="user-profile-left">
+        <div class="user-profile-logo"></div>
+        <div class="user-profile-data">
+          <div class="desc">关注&nbsp;50&nbsp;&nbsp;</div>
+          <div class="spilt"></div>
+          <div class="desc">&nbsp;&nbsp;粉丝&nbsp;32</div>
+        </div>
+      </div>
+      <div class="user-profile-right">
+        <div class="user-profile-header">
+          <div class="user-profile-name">Sam（UI设计师）</div>
+          <div class="user-profile-vip"></div>
+          <div class="user-profile-opt">
+            <div class="user-profile-opt-cont">
+              <i class="user-profile-consult"></i>&nbsp;咨询</div>
+            <div class="spilt"></div>
+            <div class="user-profile-opt-cont">
+              <i class="user-profile-star"></i>&nbsp;关注</div>
+            <div class="spilt"></div>
+            <div class="user-profile-opt-cont">
+              <i class="user-profile-private_message"></i>&nbsp;私信</div>
+          </div>
+        </div>
+        <div class="user-profile-content">
+          <div class="user-content-row">
+            <i class="icon-profile-profession"></i>
+            <div class="desc">IT行业</div>
+            <div class="spilt"></div>
+            <div class="desc">网易网络科技有限公司</div>
+          </div>
+          <div class="user-content-row">
+            <i class="icon-profile-location"></i>
+            <div class="desc">广东省广州市</div>
+          </div>
+          <div class="user-content-row">
+            <i class="icon-profile-education"></i>
+            <div class="desc">广东工业大学多媒体技术专业</div>
+          </div>
+          <div class="user-content-row">
+            <i class="icon-profile-specialized"></i>
+            <div class="component-subject">职业策划</div>
+            <div class="component-subject">产品策划</div>
+            <div class="component-subject">职业策划</div>
+            <div class="component-subject">产品策划</div>
+            <div class="component-subject">职业策划</div>
+            <div class="component-subject">产品策划</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user-detail">
+    <div class="user-detail-left">个人说明&nbsp;:&nbsp;</div>
+    <div class="user-detail-right">我来自郑州，我是一名信息工程大学印刷工程专业应届本科即将毕业的学员。我的性格偏于内向，为人坦率、热情、讲求原则；处事乐观、专心、细致、头脑清醒；富有责任心、乐于助人。</div>
+  </div>
+</div>
+<div class="user-content warp-content">
+  <div class="component-categories user-content-categories">
+    <div class="component-category">提问(15)</div>
+    <div class="component-category component-category-current">回答(2)</div>
+    <div class="component-category">咨询(20)</div>
+    <div class="component-category">经验(15)</div>
+    <div class="component-category">收藏(６)</div>
+    <div class="component-category">草稿(３)</div>
+  </div>
+  <div class="user-content-header">
+    <ul class="user-content-ul">
+      <li class="user-content-li user-content-li-current">全部</li>
+      <li class="user-content-li">已回答</li>
+      <li class="user-content-li">未回答</li>
+    </ul>
+  </div>
+  <div class="user-main-content">
+    <div class="user-content-left">
+      <div role="infoblocks" class="user-content-infoblock">
+        <div class="component-infoblock">
+          <div class="component-infoblock-left">
+            <div class="component-infoblock-avatar avatars-head_s_01"></div>
+            <div class="component-infoblock-good">
+              <div class="component-infoblock-good-num">10</div>
+              <div class="component-infoblock-good-action">
+                <i class="icons-good"></i>
+              </div>
+            </div>
+          </div>
+          <div class="component-infoblock-right">
+            <div class="component-infoblock-header">
+              <span class="component-infoblock-username">Tank</span>
+              <i class="icons-vip"></i>
+              <span class="component-infoblock-action">回答了问题（推荐）</span>
+              <span class="component-infoblock-time">刚刚</span>
+            </div>
+            <div class="component-infoblock-title">应该如何做好自己的职业规划</div>
+            <div class="component-infoblock-content">大家好，我是本案原告汪龙，感谢大家的关注。来晚了！我对楼主的问题回答如下（与在微博回答相同，如需转载、转发请注明我的名字）：关于起诉意义的问题：网上有很多网友在评论时都说，这类案件肯定会败诉，认为是浪费时间。其实这点我在起诉前也有考虑，但…<a href="javascript:void(0);" class="showall">显示全文</a></div>
+            <div class="component-infoblock-footer">
+              <div class="component-comment">
+                <i class="icons-comment"></i>评论&nbsp;99
+              </div>
+              <div class="component-favorites">
+                <i class="icons-favorites"></i>收藏&nbsp;5
+              </div>
+              <div class="component-infoblock-subjects">
+                <div class="component-subject">职业策划</div>
+                <div class="component-subject">应届生求职</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="component-infoblock">
+          <div class="component-infoblock-left">
+            <div class="component-infoblock-avatar avatars-head_s_02"></div>
+            <div class="component-infoblock-good">
+              <div class="component-infoblock-good-num">25</div>
+              <div class="component-infoblock-good-action">
+                <i class="icons-good"></i>
+              </div>
+            </div>
+          </div>
+          <div class="component-infoblock-right">
+            <div class="component-infoblock-header">
+              <span class="component-infoblock-username">Niky</span>
+              <i class="icons-vip"></i>
+              <span class="component-infoblock-action">提出了问题</span>
+              <span class="component-infoblock-time">10分钟前</span>
+            </div>
+            <div class="component-infoblock-title">怎样面对职场性骚扰？</div>
+            <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="javascript:void(0);" class="showall">我来回答</a></div>
+            <div class="component-infoblock-footer">
+              <div class="component-comment">
+                <i class="icons-comment"></i>回答&nbsp;０
+              </div>
+              <div class="component-favorites">
+                <i class="icons-favorites"></i>收藏&nbsp;5
+              </div>
+              <div class="component-infoblock-subjects">
+                <div class="component-subject">办公室政治</div>
+                <div class="component-subject">潜规则</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="component-infoblock">
+          <div class="component-infoblock-left">
+            <div class="component-infoblock-avatar avatars-head_s_01"></div>
+            <div class="component-infoblock-good">
+              <div class="component-infoblock-good-num">10</div>
+              <div class="component-infoblock-good-action">
+                <i class="icons-good"></i>
+              </div>
+            </div>
+          </div>
+          <div class="component-infoblock-right">
+            <div class="component-infoblock-header">
+              <span class="component-infoblock-username">Tank</span>
+              <i class="icons-vip"></i>
+              <span class="component-infoblock-action">回答了问题（推荐）</span>
+              <span class="component-infoblock-time">刚刚</span>
+            </div>
+            <div class="component-infoblock-title">应该如何做好自己的职业规划</div>
+            <div class="component-infoblock-content">大家好，我是本案原告汪龙，感谢大家的关注。来晚了！我对楼主的问题回答如下（与在微博回答相同，如需转载、转发请注明我的名字）：关于起诉意义的问题：网上有很多网友在评论时都说，这类案件肯定会败诉，认为是浪费时间。其实这点我在起诉前也有考虑，但…<a href="javascript:void(0);" class="showall">显示全文</a></div>
+            <div class="component-infoblock-footer">
+              <div class="component-comment">
+                <i class="icons-comment"></i>评论&nbsp;99
+              </div>
+              <div class="component-favorites">
+                <i class="icons-favorites"></i>收藏&nbsp;5
+              </div>
+              <div class="component-infoblock-subjects">
+                <div class="component-subject">职业策划</div>
+                <div class="component-subject">应届生求职</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="component-infoblock">
+          <div class="component-infoblock-left">
+            <div class="component-infoblock-avatar avatars-head_s_02"></div>
+            <div class="component-infoblock-good">
+              <div class="component-infoblock-good-num">25</div>
+              <div class="component-infoblock-good-action">
+                <i class="icons-good"></i>
+              </div>
+            </div>
+          </div>
+          <div class="component-infoblock-right">
+            <div class="component-infoblock-header">
+              <span class="component-infoblock-username">Niky</span>
+              <i class="icons-vip"></i>
+              <span class="component-infoblock-action">提出了问题</span>
+              <span class="component-infoblock-time">10分钟前</span>
+            </div>
+            <div class="component-infoblock-title">怎样面对职场性骚扰？</div>
+            <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="javascript:void(0);" class="showall">我来回答</a></div>
+            <div class="component-infoblock-footer">
+              <div class="component-comment">
+                <i class="icons-comment"></i>回答&nbsp;０
+              </div>
+              <div class="component-favorites">
+                <i class="icons-favorites"></i>收藏&nbsp;5
+              </div>
+              <div class="component-infoblock-subjects">
+                <div class="component-subject">办公室政治</div>
+                <div class="component-subject">潜规则</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="component-infoblock">
+          <div class="component-infoblock-left">
+            <div class="component-infoblock-avatar avatars-head_s_01"></div>
+            <div class="component-infoblock-good">
+              <div class="component-infoblock-good-num">10</div>
+              <div class="component-infoblock-good-action">
+                <i class="icons-good"></i>
+              </div>
+            </div>
+          </div>
+          <div class="component-infoblock-right">
+            <div class="component-infoblock-header">
+              <span class="component-infoblock-username">Tank</span>
+              <i class="icons-vip"></i>
+              <span class="component-infoblock-action">回答了问题（推荐）</span>
+              <span class="component-infoblock-time">刚刚</span>
+            </div>
+            <div class="component-infoblock-title">应该如何做好自己的职业规划</div>
+            <div class="component-infoblock-content">大家好，我是本案原告汪龙，感谢大家的关注。来晚了！我对楼主的问题回答如下（与在微博回答相同，如需转载、转发请注明我的名字）：关于起诉意义的问题：网上有很多网友在评论时都说，这类案件肯定会败诉，认为是浪费时间。其实这点我在起诉前也有考虑，但…<a href="javascript:void(0);" class="showall">显示全文</a></div>
+            <div class="component-infoblock-footer">
+              <div class="component-comment">
+                <i class="icons-comment"></i>评论&nbsp;99
+              </div>
+              <div class="component-favorites">
+                <i class="icons-favorites"></i>收藏&nbsp;5
+              </div>
+              <div class="component-infoblock-subjects">
+                <div class="component-subject">职业策划</div>
+                <div class="component-subject">应届生求职</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="user-content-right">
+    </div>
+  </div>
+</div>

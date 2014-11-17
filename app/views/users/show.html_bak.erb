@@ -1,0 +1,179 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+	<tr>
+		<td>following</td>
+		<td><%= @user.following_num %></td>
+	</tr>
+	<tr>
+		<td>followers</td>
+		<td><%= @user.followers_num %></td>
+	</tr>
+</table>
+<p>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @user.last_name %> <%= @user.first_name %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender %>
+</p>
+<!--<p>
+  <strong>Province:</strong>
+  <%= @user.province_id %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @user.city_id %>
+</p>-->
+<p>
+  <strong>School:</strong>
+</p>
+<p>
+  <strong>Major:</strong>
+</p>
+<p>
+  <strong>Industry:</strong>
+</p>
+<p>
+  <strong>Company:</strong>
+</p>
+<p>
+  <strong>Position:</strong>
+</p>
+
+<% if can? :unfollow, @user %>
+	<%= link_to 'Unfollow', relationship_path(:id=>@user.id), method: :delete %> |
+<% elsif can? :follow, @user %>
+	<%= link_to 'Follow', relationships_path(:id=>@user.id), method: :post %> |
+<% end %>
+<% if can? :consult, @user %>
+	<%= link_to 'Consult', new_consult_subject_path(:id=>@user.id), 'data-no-turbolink' => true %> |
+<% end %>
+<% if can? :edit, @user %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
+<%= link_to 'Back', users_path %>
+<br><br>
+<b>Q&A</b>
+<!-- Q&A -->
+<table>
+	<% if @user.verified_user? %>
+		<% @user.invited_questions.each do |iq| %>	
+			<tr>
+				<td>title</td>
+				<td>content</td>
+				<td>theme</td>
+				<td>asker</td>
+				<td>answer num</td>
+				<td>date</td>
+			</tr>
+			<tr>
+				<td><%= iq.title %></td>
+				<td><%= iq.content %></td>
+				<td><%= iq.theme %></td>
+				<td><%= iq.user.last_name %>&nbsp;<%= iq.user.first_name %></td>
+				<td><%= iq.answer_num %></td>
+				<td><%= iq.created_at %></td>
+			</tr>
+		<% end %>
+	<% else %>
+		<% @user.questions.each do |q| %>
+			<tr>
+				<td>title</td>
+				<td>content</td>
+				<td>theme</td>
+				<td>asker</td>
+				<td>answer num</td>
+				<td>date</td>
+			</tr>
+			<tr>
+				<td><%= q.title %></td>
+				<td><%= q.content %></td>
+				<td><%= q.theme %></td>
+				<td><%= q.user.last_name %>&nbsp;<%= q.user.first_name %></td>
+				<td><%= q.answer_num %></td>
+				<td><%= q.created_at %></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+<br>
+<!-- consult subjects -->
+<b>Consult</b>
+<table>
+	<% if @user.verified_user? %>
+		<% @user.m_subjects.each do |ms| %>
+			<tr>
+				<td>title</td>
+				<td>apprentice</td>
+				<td>theme</td>
+				<td>stat</td>
+				<td>date</td>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td><%= ms.title %></td>
+				<td><%= ms.apprentice.last_name %>&nbsp;<%= ms.apprentice.first_name %></td>
+				<td><%= ms.theme %></td>
+				<td><%= ms.stat_class %></td>
+				<td><%= ms.created_at %></td>
+				<% if can? :accept, ms %>
+					<td><%= link_to 'Accept', accept_consult_subject_path(ms), method: :post %></td>
+				<% end %>
+				<% if can? :ignore, ms %>      
+					<td><%= link_to 'Ignore', ignore_consult_subject_path(ms), method: :post %></td>
+				<% end %>
+				<% if can? :close, ms %>
+					<td><%= link_to 'Close', close_consult_subject_path(ms), method: :post %></td>
+				<% end %>
+			</tr>
+		<% end %>
+	<% else %>
+		<% @user.u_subjects.each do |us| %>
+			<tr>
+				<td>title</td>
+				<td>mentor</td>
+				<td>theme</td>
+				<td>stat</td>
+				<td>date</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><%= us.title %></td>
+				<td><%= us.mentor.last_name %>&nbsp;<%= us.mentor.first_name %></td>
+				<td><%= us.theme %></td>
+				<td><%= us.stat_class %></td>
+				<td><%= us.created_at %></td>
+				<% if can? :close, us %>
+					<td><%= link_to 'Close', close_consult_subject_path(us), method: :post %></td>
+				<% end %>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+<br>
+<!-- article -->
+<b>Experience</b>
+<table>
+	<% @user.articles.each do |a| %>
+		<tr>
+			<td>title</td>
+			<td>user</td>
+			<td>theme</td>
+			<td>date</td>
+			<td></td>
+		</tr> 
+		<tr>
+			<td><%= a.title %></td>
+			<td><%= a.user.last_name %>&nbsp;<%= a.user.first_name %></td>
+			<td><%= a.theme %></td>
+			<td><%= a.created_at %></td>
+			<% if can? :destroy, a %>
+				<td><%= link_to 'Delete', article_path(a), method: :delete %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

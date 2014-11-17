@@ -192,4 +192,18 @@ $(document).ready(function() {
     function removeErrorTips() {
         $(".modal-input-tips", authModal).remove();
     }
+
+
+    //dropdown menu相关
+    $('.user-link').mouseover(function(){
+        $("#top-nav-profile-dropdown").show();
+    });
+
+    $(document).mouseover(checkAndHideMenu);
+
+    function checkAndHideMenu(){
+        if($(event.target).hasParent("#top-nav-profile-dropdown,.user-link").length == 0) {
+            $("#top-nav-profile-dropdown").hide();
+        }
+    }
 });
