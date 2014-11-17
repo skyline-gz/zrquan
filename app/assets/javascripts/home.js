@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     var authModal = $('#authModal');
     var activateModal = $('#activateModal');
+    var forgetPasswordModal = $('#forgetPasswordModal');
 
     $('#btn-sign-up').click(function(){
         $('div[role=sign-in]', authModal).hide();
@@ -26,8 +27,8 @@ $(document).ready(function() {
     });
 
     $("#btn-forget-password").click(function(){
-        authModal.hide();
-        $('#forgetPasswordModal').modal('show');
+        authModal.modal('hide');
+        forgetPasswordModal.modal('show');
 
         $('#resetPassword').click(function(){
             removeErrorTips();
@@ -71,7 +72,7 @@ $(document).ready(function() {
             })).then(function(result){
                 if(result["code"] == "S_OK") {
                     console.log("新用户注册成功");
-                    authModal.hide();
+                    authModal.modal('hide');
                     authModal.off("hide.bs.modal");
                     activateModal.modal('show');
                     activateModal.on("hide.bs.modal", function(){

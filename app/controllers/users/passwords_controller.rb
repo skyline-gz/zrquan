@@ -24,9 +24,9 @@ class Users::PasswordsController < Devise::PasswordsController
   # 重写此方法只为了改变layout为full_middle.html.erb
   # GET /resource/password/edit?reset_password_token=abcdef
   def edit
-    layout :full_middle
     self.resource = resource_class.new
     resource.reset_password_token = params[:reset_password_token]
+    render layout: "full_middle"
   end
 
   protected
