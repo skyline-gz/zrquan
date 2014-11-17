@@ -7,6 +7,10 @@
   display: block;
   height: 317px;
 
+  .user-wrap-content {
+    width: 772px;
+  }
+
   .user-profile {
     position: relative;
     background: $light-grey;
@@ -226,6 +230,10 @@
 }
 
 .user-content {
+  .user-wrap-content {
+    width: 772px;
+  }
+
   .user-content-categories {
     margin-top: 10px;
   }

@@ -19,7 +19,7 @@ Zrquan.Ajax = function(){
         successCallback = successCallback || $.noop();
         errorCallback = errorCallback || $.noop();
         $.ajax({
-            type: "POST",   //访问WebService使用Post方式请求
+            type: options.type,   //访问WebService使用Post方式请求
             contentType: "application/json",
             url: options.url,
             data: JSON.stringify(options.data),

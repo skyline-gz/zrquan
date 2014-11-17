@@ -67,7 +67,7 @@ $(document).ready(function() {
             };
 
             $.when(Zrquan.Ajax.request({
-                url: "registrations",
+                url: "/registrations",
                 data: requestObj
             })).then(function(result){
                 if(result["code"] == "S_OK") {
@@ -99,7 +99,7 @@ $(document).ready(function() {
             };
 
             $.when(Zrquan.Ajax.request({
-                url: "sessions",
+                url: "/sessions",
                 data: requestObj
             })).then(function(result){
                 if(result["code"] == "S_OK" || result["code"] == "S_INACTIVE_OK") {
@@ -206,4 +206,19 @@ $(document).ready(function() {
             $("#top-nav-profile-dropdown").hide();
         }
     }
+
+    //用户登出响应
+    $(".logout").click(function(){
+        $("#top-nav-profile-dropdown").hide();
+        $.when(Zrquan.Ajax.request({
+            url: "/sessions",
+            type: "DELETE"
+        })).then(function(result){
+            console.log(result);
+            if(result["code"] == "S_OK") {
+                console.log("用户退出成功");
+                location.href = result["redirect"];
+            }
+        });
+    });
 });
