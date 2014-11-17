@@ -6,6 +6,10 @@
   <meta name="renderer" content="webkit">
   <title>密码重置 - 职人圈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag 'html5shiv'%>
+    <%= javascript_include_tag 'json2'%>
+  <![endif]-->
   <%= stylesheet_link_tag 'zrquan', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
