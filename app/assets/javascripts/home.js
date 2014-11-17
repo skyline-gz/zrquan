@@ -104,6 +104,7 @@ $(document).ready(function() {
             })).then(function(result){
                 if(result["code"] == "S_OK" || result["code"] == "S_INACTIVE_OK") {
                     console.log("用户登陆成功");
+                    authModal.modal('hide');
                     location.href = result["redirect"];
                 }
             });

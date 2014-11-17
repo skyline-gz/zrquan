@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-	
-	mount_uploader :avatar, AvatarUploader
+
+	# 头像上传由异步upload_controller.rb控制,avatar字段只存储头像url
+	# mount_uploader :avatar, AvatarUploader
 
   has_many :questions
   has_many :answers

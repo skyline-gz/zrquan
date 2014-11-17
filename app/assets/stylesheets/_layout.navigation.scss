@@ -157,9 +157,9 @@ div[role=navigation] {
     .user-logo {
       @include border-radius(3px);
 
-      width: 27px;
-      height: 27px;
-      padding-right: 10px;
+      width: 25px;
+      height: 25px;
+      margin-right: 6px;
     }
 
     .icons-message {
