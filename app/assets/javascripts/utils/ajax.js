@@ -1,5 +1,7 @@
 Zrquan.module('Ajax', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
+    //无任何意义，只为了IDEA识别Zrquan.Ajax已经被定义
+    Zrquan.Ajax = Zrquan.Ajax || undefined;
     /**
      * $.ajax的简单封装,直接返回$.defered对象
      * @param options
