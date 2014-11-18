@@ -10,20 +10,31 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+/**
+ * 基本库
+ **/
 //跨浏览器debug支持
 //= require consolelog
 //支持IE8/IOS6-/Safari 11-的console debug
 //= require consolelog.detailprint
-//基本库
+//= require underscore
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//组件
+//= require backbone
+//= require backbone.marionette
+/**
+ * 组件
+ **/
 //= require ./components/component.transition
 //= require ./components/component.modal
-//工具类
+/**
+ * 工具类
+ **/
 //= require ./utils/base
 //= require ./utils/ajax
 //= require ./utils/regex
-//页面逻辑
+/**
+ * 视图(View)逻辑
+ **/
 //= require home
