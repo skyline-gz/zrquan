@@ -29,16 +29,20 @@
 //= require ./components/component.transition
 //= require ./components/component.modal
 /**
- * 工具类
+ * Main Module
+ **/
+//= require app
+/**
+ * Utils Module
  **/
 //= require ./utils/base
 //= require ./utils/ajax
 //= require ./utils/regex
 /**
- * 视图(View)逻辑
+ * 视图(View) Module
  **/
-//= require home
-//= require app
 //= require navbar
-
-ZrquanApp.start();
+/**
+ * 初始化页面Application
+ **/
+Zrquan.start();

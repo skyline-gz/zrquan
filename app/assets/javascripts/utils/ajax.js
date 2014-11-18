@@ -1,5 +1,5 @@
-Zrquan.Ajax = function(){
-
+Zrquan.module('Ajax', function(Module, App, Backbone, Marionette, $, _){
+    'use strict';
     /**
      * $.ajax的简单封装,直接返回$.defered对象
      * @param options
@@ -33,7 +33,5 @@ Zrquan.Ajax = function(){
         return deferred;
     }
 
-    return {
-        request: fRequest
-    };
-}();
+    this.request = fRequest;
+});
