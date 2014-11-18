@@ -1,5 +1,9 @@
-ZrquanApp.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
+Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
+
+    var authModal = $('#authModal');
+    var activateModal = $('#activateModal');
+    var forgetPasswordModal = $('#forgetPasswordModal');
 
     Module.addInitializer(function() {
         console.log("Module Navbar init...");
@@ -8,15 +12,25 @@ ZrquanApp.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     });
 
 
-    Module.View = Marionette.ItemView.extend({
+    Module.View = Marionette.LayoutView.extend({
         el: "div[role=navigation]",
         events: {
-            'click a': 'onClickLink'
+            'click #btn-sign-up': 'onClickBtnSignUp',
+            'click #btn-sign-in': 'onClickBtnSignIn',
+            'mouseover .user-link': 'onShowProfileDropdown'
         },
-        onClickLink: function(e) {
-            this.$('li.active').toggleClass('active', false); // turn previously-selected nav link off
-            $(e.target).blur()
-                .closest('li').toggleClass('active', true); // turn on new link
+        onClickBtnSignUp: function(e) {
+            this.$('div[role=sign-in]', authModal).hide();
+            this.$('div[role=sign-up]', authModal).show();
+            authModal.modal('show');
+        },
+        onClickBtnSignIn: function(e) {
+            this.$('div[role=sign-in]', authModal).show();
+            this.$('div[role=sign-up]', authModal).hide();
+            authModal.modal('show');
+        },
+        onShowProfileDropdown: function(e) {
+            this.$("#top-nav-profile-dropdown").show();
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
@@ -31,5 +45,8 @@ ZrquanApp.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             this.view.render();
         }
     });
+
+    //private function
+
 
 });
