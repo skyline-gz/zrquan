@@ -38,3 +38,7 @@
  * 视图(View)逻辑
  **/
 //= require home
+//= require app
+//= require navbar
+
+ZrquanApp.start();
