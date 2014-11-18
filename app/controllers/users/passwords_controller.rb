@@ -14,10 +14,7 @@ class Users::PasswordsController < Devise::PasswordsController
         format.html {respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))}
       end
     else
-      respond_to do |format|
-        format.json {render :json => {:code => ReturnCode::FA_UNKNOWN_ERROR}}
-        format.html {respond_with(resource)}
-      end
+      failure
     end
   end
 
@@ -34,4 +31,19 @@ class Users::PasswordsController < Devise::PasswordsController
     def after_sending_reset_password_instructions_path_for(resource_name)
       root_url
     end
+
+  private
+  def failure
+    # 检查邮箱是否不存在
+    user = User.find_by_email(params[:user][:email])
+    code = ReturnCode::FA_UNKNOWN_ERROR
+    if user == nil
+      code = ReturnCode::FA_USER_NOT_EXIT
+    end
+
+    respond_to do |format|
+      format.json {render :json => {:code => code}}
+      format.html {respond_with(resource)}
+    end
+  end
 end

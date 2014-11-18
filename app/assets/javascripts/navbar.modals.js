@@ -61,7 +61,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                     this.addErrorTips("#sign-in-password", "至少为8位字母或数字");
                     bValid = false;
                 }
-            } else if (sType == "forget-password") {
+            } else if (sType == "reset-password") {
                 if(this.checkEmpty("input[name=input-email-reset-password]")) {
                     this.addErrorTips("#reset-password-email", "请输入邮箱账号");
                     bValid = false;
@@ -219,7 +219,9 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             'click #resetPassword' : 'onClickResetPassword'
         },
         onClickResetPassword: function(){
+            var that = this;
             if(this.checkAuthParam("reset-password")){
+                that.removeErrorTips();
                 var requestObj = {
                     user: {
                         email : $("input[name=input-email-reset-password]").val()
@@ -229,8 +231,15 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                 $.when(Zrquan.Ajax.request({
                     url: "users/password",
                     data: requestObj
-                })).then(function(result){
-                    console.log("重设密码邮件发送成功");
+                })).then(function(result) {
+                    if (result.code == "S_OK") {
+                        //todo: 这里应该在界面提示已发送成功
+                        console.log("重设密码邮件发送成功");
+                    } else if (result.code == "FA_USER_NOT_EXIT") {
+                        that.addErrorTips("#reset-password-email", "该账号不存在");
+                    } else if (result.code == "FA_UNKNOWN_ERROR") {
+                        that.addErrorTips("#reset-password-email", "未知错误");
+                    }
                 });
             }
         }

@@ -283,4 +283,18 @@
       cursor: pointer;
     }
   }
+
+  #reset-password-email {
+    position: relative;
+
+    .modal-input-tips {
+      position: absolute;
+      top: 5px;
+      left: 240px;
+      overflow: hidden;
+      white-space: nowrap;
+      color: rgb(255, 126, 0);
+    }
+  }
+
 }
