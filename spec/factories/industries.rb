@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :industry do
     name "MyString"
     description "MyText"
+    parent_industry nil
   end
 end
