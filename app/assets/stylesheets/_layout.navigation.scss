@@ -231,8 +231,20 @@ div[role=navigation] {
     padding: 2px 0;
     @include box-shadow(0 3px 9px rgba(0,0,0,.5));
     @include border-radius($border-radius-base);
+    border: 1px solid #e0e0e0;
 
-    :before {
+    &:before {
+      right: 99px;
+      content: '';
+      display: inline-block;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #e0e0e0;
+      position: absolute;
+      top: -8px;
+    }
+
+    &:after {
       right: 99px;
       content: '';
       display: inline-block;
@@ -240,7 +252,7 @@ div[role=navigation] {
       border-right: 8px solid transparent;
       border-bottom: 8px solid #ffffff;
       position: absolute;
-      top: -8px;
+      top: -7px;
     }
 
     li a {
@@ -265,6 +277,32 @@ div[role=navigation] {
 
     a.logout {
       border-top: 1px solid #e0e0e0
+    }
+
+    .top-nav-icon-home,.top-nav-icon-settings,
+    .top-nav-icon-logout {
+      width: 14px;
+      height: 14px;
+      display: block;
+      float: left;
+      margin-top: 13px;
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+
+    .top-nav-icon-home {
+      @extend .icons-nav_personal;
+    }
+
+    .top-nav-icon-settings {
+      @extend .icons-nav_settings;
+    }
+
+    .top-nav-icon-logout {
+      @extend .icons-nav_logout;
+      width: 12px;
+      margin-left: 13px;
+      margin-right: 13px;
     }
   }
 
