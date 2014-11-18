@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118072121) do
+ActiveRecord::Schema.define(version: 20141118074622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,6 +238,16 @@ ActiveRecord::Schema.define(version: 20141118072121) do
   add_index "educations", ["school_id"], name: "index_educations_on_school_id", using: :btree
   add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
 
+  create_table "images", force: true do |t|
+    t.string   "content"
+    t.integer  "wiki_id"
+    t.string   "wiki_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["wiki_id", "wiki_type"], name: "index_images_on_wiki_id_and_wiki_type", using: :btree
+
   create_table "industries", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -456,5 +466,14 @@ ActiveRecord::Schema.define(version: 20141118072121) do
   add_index "users", ["latest_school_id"], name: "index_users_on_latest_school_id", using: :btree
   add_index "users", ["province_id"], name: "index_users_on_province_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "welfares", force: true do |t|
+    t.string   "content"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "welfares", ["company_id"], name: "index_welfares_on_company_id", using: :btree
 
 end
