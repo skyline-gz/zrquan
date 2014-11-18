@@ -1,1 +1,0 @@
-rails g model CorporateGroup name:string industry:references site:string legal_person:string capital_state:int description:text
