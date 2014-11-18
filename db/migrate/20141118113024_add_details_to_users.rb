@@ -11,6 +11,8 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :latest_major, :string
     add_column :users, :signature, :string
     add_column :users, :description, :text
+    add_column :users, :total_agree_score, :integer
+    add_column :users, :reputation, :integer
     add_column :users, :verified_flag, :boolean
     add_column :users, :avatar, :string
   end

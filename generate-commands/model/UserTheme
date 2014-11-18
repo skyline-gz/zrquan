@@ -1,1 +1,0 @@
-rails g model UserTheme user:references theme:references
