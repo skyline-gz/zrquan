@@ -1,14 +1,13 @@
 Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
-    Module.navbarEventBus = Module.navbarEventBus || new Backbone.Wreqr.EventAggregator();
     var navbarEventBus = Module.navbarEventBus;
 
     //模态框抽象视图
     var AuthBaseModalView = Backbone.Marionette.ItemView.extend({
         modalName: "",
         showModal: function(modalName) {
-            console.log(modalName + " show");
             if(modalName && modalName == this.modalName) {
+                console.log("modal:" + modalName + " show");
                 this.$el.modal('show');
             }
         },
@@ -236,7 +235,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                         //todo: 这里应该在界面提示已发送成功
                         console.log("重设密码邮件发送成功");
                     } else if (result.code == "FA_USER_NOT_EXIT") {
-                        that.addErrorTips("#reset-password-email", "该账号不存在");
+                        that.addErrorTips("#reset-password-email", "用户账号不存在");
                     } else if (result.code == "FA_UNKNOWN_ERROR") {
                         that.addErrorTips("#reset-password-email", "未知错误");
                     }
