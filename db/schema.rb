@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118084338) do
+ActiveRecord::Schema.define(version: 20141118090438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -258,6 +258,16 @@ ActiveRecord::Schema.define(version: 20141118084338) do
 
   add_index "industries", ["parent_industry_id"], name: "index_industries_on_parent_industry_id", using: :btree
 
+  create_table "industry_job_categories", force: true do |t|
+    t.integer  "industry_id"
+    t.integer  "job_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "industry_job_categories", ["industry_id"], name: "index_industry_job_categories_on_industry_id", using: :btree
+  add_index "industry_job_categories", ["job_category_id"], name: "index_industry_job_categories_on_job_category_id", using: :btree
+
   create_table "invitations", force: true do |t|
     t.integer  "question_id"
     t.integer  "user_id"
@@ -267,6 +277,13 @@ ActiveRecord::Schema.define(version: 20141118084338) do
 
   add_index "invitations", ["question_id"], name: "index_invitations_on_question_id", using: :btree
   add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
+
+  create_table "job_categories", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mentor_themes", force: true do |t|
     t.integer  "user_id"
