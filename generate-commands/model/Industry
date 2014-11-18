@@ -1,1 +1,1 @@
-rails g model Industry name:string description:text
+rails g model Industry name:string description:text parent_industry:references
