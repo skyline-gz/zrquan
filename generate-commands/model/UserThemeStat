@@ -1,0 +1,1 @@
+rails g model UserThemeStat user:references theme:references question_count:integer answer_count:integer total_agree_score:integer apply_consult_count:integer accept_consult_count fin_mentor_consult_count:integer mentor_score_sum:integer score_consult_count:integer mentor_score_avg:integer reputation:integer

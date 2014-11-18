@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118090438) do
+ActiveRecord::Schema.define(version: 20141118113024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -285,16 +285,6 @@ ActiveRecord::Schema.define(version: 20141118090438) do
     t.datetime "updated_at"
   end
 
-  create_table "mentor_themes", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "theme_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "mentor_themes", ["theme_id"], name: "index_mentor_themes_on_theme_id", using: :btree
-  add_index "mentor_themes", ["user_id"], name: "index_mentor_themes_on_user_id", using: :btree
-
   create_table "messages", force: true do |t|
     t.integer  "msg_type"
     t.integer  "user_id"
@@ -447,6 +437,26 @@ ActiveRecord::Schema.define(version: 20141118090438) do
 
   add_index "user_settings", ["user_id"], name: "index_user_settings_on_user_id", using: :btree
 
+  create_table "user_theme_stats", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "theme_id"
+    t.integer  "question_count"
+    t.integer  "answer_count"
+    t.integer  "total_agree_score"
+    t.integer  "apply_consult_count"
+    t.string   "accept_consult_count"
+    t.integer  "fin_mentor_consult_count"
+    t.integer  "mentor_score_sum"
+    t.integer  "score_consult_count"
+    t.integer  "mentor_score_avg"
+    t.integer  "reputation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_theme_stats", ["theme_id"], name: "index_user_theme_stats_on_theme_id", using: :btree
+  add_index "user_theme_stats", ["user_id"], name: "index_user_theme_stats_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -475,6 +485,8 @@ ActiveRecord::Schema.define(version: 20141118090438) do
     t.string   "latest_major"
     t.string   "signature"
     t.text     "description"
+    t.integer  "total_agree_score"
+    t.integer  "reputation"
     t.boolean  "verified_flag"
     t.string   "avatar"
   end
