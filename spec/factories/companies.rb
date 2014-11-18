@@ -5,12 +5,12 @@ FactoryGirl.define do
     name "MyString"
     city nil
     industry nil
-    corporate_group nil
+    parent_company nil
     address "MyString"
     site "MyString"
     contact "MyString"
     legal_person "MyString"
-    capital_state ""
+    capital_state 1
     description "MyText"
   end
 end

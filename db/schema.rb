@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113081553) do
+ActiveRecord::Schema.define(version: 20141118072121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20141113081553) do
     t.string   "name"
     t.integer  "city_id"
     t.integer  "industry_id"
-    t.integer  "corporate_group_id"
+    t.integer  "parent_company_id"
     t.string   "address"
     t.string   "site"
     t.string   "contact"
@@ -176,8 +176,8 @@ ActiveRecord::Schema.define(version: 20141113081553) do
   end
 
   add_index "companies", ["city_id"], name: "index_companies_on_city_id", using: :btree
-  add_index "companies", ["corporate_group_id"], name: "index_companies_on_corporate_group_id", using: :btree
   add_index "companies", ["industry_id"], name: "index_companies_on_industry_id", using: :btree
+  add_index "companies", ["parent_company_id"], name: "index_companies_on_parent_company_id", using: :btree
 
   create_table "company_salaries", force: true do |t|
     t.integer  "company_id"
@@ -224,19 +224,6 @@ ActiveRecord::Schema.define(version: 20141113081553) do
 
   add_index "consult_themes", ["consult_subject_id"], name: "index_consult_themes_on_consult_subject_id", using: :btree
   add_index "consult_themes", ["theme_id"], name: "index_consult_themes_on_theme_id", using: :btree
-
-  create_table "corporate_groups", force: true do |t|
-    t.string   "name"
-    t.integer  "industry_id"
-    t.string   "site"
-    t.string   "legal_person"
-    t.integer  "capital_state"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "corporate_groups", ["industry_id"], name: "index_corporate_groups_on_industry_id", using: :btree
 
   create_table "educations", force: true do |t|
     t.integer  "user_id"
@@ -431,12 +418,12 @@ ActiveRecord::Schema.define(version: 20141113081553) do
   add_index "user_settings", ["user_id"], name: "index_user_settings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -452,15 +439,21 @@ ActiveRecord::Schema.define(version: 20141113081553) do
     t.integer  "gender"
     t.integer  "province_id"
     t.integer  "city_id"
+    t.integer  "latest_company_id"
+    t.string   "latest_position"
+    t.integer  "latest_school_id"
+    t.string   "latest_major"
     t.string   "signature"
     t.text     "description"
-    t.boolean  "verified_flag",          default: false
+    t.boolean  "verified_flag"
     t.string   "avatar"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["latest_company_id"], name: "index_users_on_latest_company_id", using: :btree
+  add_index "users", ["latest_school_id"], name: "index_users_on_latest_school_id", using: :btree
   add_index "users", ["province_id"], name: "index_users_on_province_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

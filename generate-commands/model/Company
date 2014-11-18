@@ -1,1 +1,1 @@
-rails g model Company name:string city:references industry:references corporate_group:references address:string site:string contact:string legal_person:string capital_state:integerf description:text
+rails g model Company name:string city:references industry:references parent_company:references address:string site:string contact:string legal_person:string capital_state:integer description:text

@@ -29,6 +29,12 @@ class User < ActiveRecord::Base
   has_one :user_setting
 	has_many :user_themes
 	has_many :activities
+  has_many :careers
+  has_many :educations
+  has_many :personal_salaries
+  belongs_to :city
+  belongs_to :latest_company, class_name: "Company"
+  belongs_to :latest_school, class_name: "School"
 
   validates :last_name, :first_name, presence: true, on: :create
   validates :last_name, :first_name, format: {with: /\A\p{Han}+\z|\A[a-zA-Z]+\z/}
