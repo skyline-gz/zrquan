@@ -13,6 +13,16 @@ Zrquan = (function(Backbone){
 //        }
 //    });
 
+    App.appView = new (Marionette.LayoutView.extend({
+        el: document,
+        events: {
+            'mouseover' : 'onMouseOver'
+        },
+        onMouseOver: function() {
+            Zrquan.Navbar.navbarEventBus.trigger('dropdown:checkHide', event);
+        }
+    }))();
+
     App.startSubApp = function(appName){
         var currentApp = App.module(appName);
         //console.log('App.startSubApp ' + appName);

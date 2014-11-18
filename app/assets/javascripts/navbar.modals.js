@@ -166,7 +166,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                     url: "/registrations",
                     data: requestObj
                 })).then(function(result){
-                    if(result["code"] == "S_OK") {
+                    if(result["code"] == "S_OK" || result["code"] == "FA_SMTP_AUTHENTICATION_ERROR") {
                         that.hideModal();
                         //注册成功，刷新一次页面
                         location.href = result["redirect"];
