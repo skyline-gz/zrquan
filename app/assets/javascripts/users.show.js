@@ -55,8 +55,21 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         showModal: function(modalName, oFile) {
 
-            function showCoords(c) {
-                console.log(c.x + " " + c.y + " " + c.x2 + " " + c.y2 + " " + c.w + " " + c.h);
+            //预览头像
+            function showCoords(coords) {
+//                console.log(c.x + " " + c.y + " " + c.x2 + " " + c.y2 + " " + c.w + " " + c.h);
+                var rox = $('.jcrop-holder')[0].offsetWidth / oImage.width;
+                var roy = $('.jcrop-holder')[0].offsetHeight / oImage.height;
+
+                var rx = 100 / coords.w;
+                var ry = 100 / coords.h;
+
+                $('#jcrop_preview').css({
+                    width: Math.round(rx * oImage.width * rox) + 'px',
+                    height: Math.round(ry * oImage.height * roy) + 'px',
+                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+                });
             }
 
             var oImage = this.$("#jcrop_target")[0];
@@ -67,6 +80,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
 
                 // e.target.result contains the DataURL which we can use as a source of the image
                 oImage.src = e.target.result;
+                $('#jcrop_preview')[0].src = e.target.result;
                 oImage.onload = function () { // onload event handler
 
                     // display some basic image info

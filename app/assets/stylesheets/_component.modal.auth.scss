@@ -292,18 +292,3 @@
   }
 
 }
-
-#resizeAvatarModal {
-  .modal-content {
-    width: 510px;
-
-    .image-container {
-      width: 300px;
-      min-height: 100px;
-    }
-
-    #jcrop_target {
-      max-width: 100%;
-    }
-  }
-}

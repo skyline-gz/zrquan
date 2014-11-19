@@ -1,0 +1,31 @@
+#resizeAvatarModal {
+  .modal-content {
+    width: 510px;
+
+    .modal-body {
+      overflow: hidden;
+    }
+
+    .image-container {
+      width: 300px;
+      min-height: 100px;
+      float: left;
+    }
+
+    .preview-container {
+      float:left;
+      width:100px;
+      height:100px;
+      overflow:hidden;
+      margin-left:5px;
+    }
+
+    #jcrop_target {
+      max-width: 100%;
+    }
+
+    #jcrop_preview {
+
+    }
+  }
+}
