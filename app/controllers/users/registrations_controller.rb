@@ -20,7 +20,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # 此处捕获devise save时的异常,并返回JSON到前端
     begin
+      # TODO 对于SMTP认证失败导致发送邮件失败的情形，不应该rollback
+      # resource.skip_confirmation!
       resource_saved = resource.save
+      # resource.send_confirmation_instructions
     rescue Net::SMTPAuthenticationError
       render :json => {:code => ReturnCode::FA_SMTP_AUTHENTICATION_ERROR}
       return

@@ -2,6 +2,7 @@ Zrquan = (function(Backbone){
     'use strict';
 
     var App = new Backbone.Marionette.Application();
+    App.appEventBus = new Backbone.Wreqr.EventAggregator();
 
 //    App.addRegions({
 //        primaryRegion: "#primary-region"
@@ -12,6 +13,19 @@ Zrquan = (function(Backbone){
 //            Backbone.history.start();
 //        }
 //    });
+
+    App.appView = new (Marionette.LayoutView.extend({
+        el: document,
+        events: {
+            'mouseover' : 'onMouseOver'
+        },
+        onMouseOver: function() {
+            this._onMouseOverThrottled(event);
+        },
+        _onMouseOverThrottled: _.throttle(function(evt){
+            App.appEventBus.trigger('mouseover', evt);
+        }, 200)
+    }))();
 
     App.startSubApp = function(appName){
         var currentApp = App.module(appName);

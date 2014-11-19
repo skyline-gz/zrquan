@@ -1,7 +1,6 @@
 Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
-    Module.navbarEventBus = Module.navbarEventBus || new Backbone.Wreqr.EventAggregator();
-    var navbarEventBus = Module.navbarEventBus;
+    var navbarEventBus = Module.navbarEventBus = new Backbone.Wreqr.EventAggregator();
 
     Module.addInitializer(function() {
         console.log("Module Navbar init...");
@@ -26,7 +25,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             navbarEventBus.trigger('modal:show', 'authModal');
         },
         onShowProfileDropdown: function(e) {
-            this.$('#top-nav-profile-dropdown').show();
+            navbarEventBus.trigger('dropdown:show');
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
@@ -42,7 +41,42 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             Module.authModalView.render();
             Module.activateModalView.render();
             Module.forgetPasswordModalView.render();
+            Module.profileDropDownView.render();
         }
     });
 
+    Module.profileDropDownView = new (Marionette.ItemView.extend({
+        el: '#top-nav-profile-dropdown',
+        events: {
+            'click .logout' : 'onClickLogout'
+        },
+        //点击退出
+        onClickLogout : function(){
+            $("#top-nav-profile-dropdown").hide();
+            $.when(Zrquan.Ajax.request({
+                url: "/sessions",
+                type: "DELETE"
+            })).then(function(result){
+                if(result["code"] == "S_OK") {
+                    console.log("用户退出成功");
+                    location.href = result["redirect"];
+                }
+            });
+        },
+        showDropdown : function(){
+            this.$el.show();
+        },
+        checkAndHideDropDown: function(evt) {
+            if($(evt.target).hasParent("#top-nav-profile-dropdown,.user-link").length == 0) {
+                this.$el.hide();
+            }
+        },
+        initialize: function() {
+            this.listenTo(navbarEventBus, 'dropdown:show', this.showDropdown);
+            this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideDropDown);
+        },
+        render: function() {
+            this.bindUIElements(); // wire up this.ui, if any
+        }
+    }))();
 });

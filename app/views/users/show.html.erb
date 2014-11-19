@@ -4,7 +4,11 @@
         <div class="user-profile-top"></div>
         <div class="user-profile-container">
           <div class="user-profile-left">
-            <div class="user-profile-logo"></div>
+            <div class="user-profile-logo-container">
+                <img class="user-profile-logo" src="../images/noface.gif">
+                <input type="file" name="image_file" id="image_file" style="display: none"/>
+                <span class="user-profile-logo-edit-button">修改头像</span>
+            </div>
             <div class="user-profile-data">
               <div class="desc">关注&nbsp;50&nbsp;&nbsp;</div>
               <div class="spilt"></div>
@@ -13,7 +17,7 @@
           </div>
           <div class="user-profile-right">
             <div class="user-profile-header">
-              <div class="user-profile-name">Sam（UI设计师）</div>
+              <div class="user-profile-name"><%=generate_name(current_user.first_name, current_user.last_name)%>（UI设计师）</div>
               <div class="user-profile-vip"></div>
               <div class="user-profile-opt">
                 <div class="user-profile-opt-cont">
@@ -66,7 +70,6 @@
         <div class="component-category">提问(15)</div>
         <div class="component-category component-category-current">回答(2)</div>
         <div class="component-category">咨询(20)</div>
-        <div class="component-category">经验(15)</div>
         <div class="component-category">收藏(６)</div>
         <div class="component-category">草稿(３)</div>
       </div>
@@ -252,3 +255,12 @@
     </div>
   </div>
 </div>
+<!--隐藏的iframe，用于处理头像上传的请求-->
+<iframe id="av_up_frame" name="av_up_frame" style="position: absolute; height: 0; width: 0; left: -9000px;"></iframe>
+
+<%= render "modals/modal_resize_avatar" %>
+
+<% content_for :page_javascript do %>
+    <%= javascript_include_tag "jquery.jcrop" %>
+    <%= javascript_include_tag "users.show" %>
+<% end %>
