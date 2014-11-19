@@ -1,0 +1,2 @@
+module UserMsgSettingsHelper
+end

@@ -26,7 +26,7 @@ class Ability
       can :show, Answer
       can :show, Article
       can :show, Comment
-      can :show, UserSetting
+      can :show, UserMsgSetting
       can :show, Bookmark
       can :show, Message
       can :show, NewsFeed
@@ -110,8 +110,8 @@ class Ability
 
     def create_edit_abilities(user)
       can :create, :all
-      cannot :create, [Message, UserSetting]
-      can :edit, [Question, Answer, UserSetting], :user_id => user.id
+      cannot :create, [Message, UserMsgSetting]
+      can :edit, [Question, Answer, UserMsgSetting], :user_id => user.id
       can :edit, User, :id => user.id
     end
 

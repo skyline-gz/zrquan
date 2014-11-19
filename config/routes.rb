@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
 	#mount ChinaCity::Engine => '/china_city'
 
-  resources :user_settings, except: [:destroy, :create, :index]
-
   resources :private_messages, except: [:destroy, :edit, :update]
 
-  resources :user_settings, only: [:edit, :update, :show]
+  resources :user_msg_settings, only: [:edit, :update, :show]
 
   resources :consult_subjects, except: :destroy do
 		member do

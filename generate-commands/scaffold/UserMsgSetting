@@ -1,0 +1,1 @@
+rails g scaffold UserMsgSetting followed_flag:boolean agreed_flag:boolean commented_flag:boolean answer_flag:boolean pm_flag:boolean, user:references

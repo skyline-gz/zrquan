@@ -1,10 +1,10 @@
-<%= form_for(@user_setting) do |f| %>
-  <% if @user_setting.errors.any? %>
+<%= form_for(@user_msg_setting) do |f| %>
+  <% if @user_msg_setting.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user_setting.errors.count, "error") %> prohibited this user_setting from being saved:</h2>
+      <h2><%= pluralize(@user_msg_setting.errors.count, "error") %> prohibited this user_msg_setting from being saved:</h2>
 
       <ul>
-      <% @user_setting.errors.full_messages.each do |message| %>
+      <% @user_msg_setting.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -16,8 +16,8 @@
     <%= f.check_box :followed_flag %>
   </div>
   <div class="field">
-    <%= f.label :aggred_flag %><br>
-    <%= f.check_box :aggred_flag %>
+    <%= f.label :agreed_flag %><br>
+    <%= f.check_box :agreed_flag %>
   </div>
   <div class="field">
     <%= f.label :commented_flag %><br>
