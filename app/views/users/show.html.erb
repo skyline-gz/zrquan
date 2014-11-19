@@ -4,7 +4,7 @@
         <div class="user-profile-top"></div>
         <div class="user-profile-container">
           <div class="user-profile-left">
-            <div class="user-profile-logo"></div>
+            <img class="user-profile-logo" src="../images/avatars/head_b_01.png">
             <div class="user-profile-data">
               <div class="desc">关注&nbsp;50&nbsp;&nbsp;</div>
               <div class="spilt"></div>
@@ -13,7 +13,7 @@
           </div>
           <div class="user-profile-right">
             <div class="user-profile-header">
-              <div class="user-profile-name">Sam（UI设计师）</div>
+              <div class="user-profile-name"><%=generate_name(current_user.first_name, current_user.last_name)%>（UI设计师）</div>
               <div class="user-profile-vip"></div>
               <div class="user-profile-opt">
                 <div class="user-profile-opt-cont">
@@ -66,7 +66,6 @@
         <div class="component-category">提问(15)</div>
         <div class="component-category component-category-current">回答(2)</div>
         <div class="component-category">咨询(20)</div>
-        <div class="component-category">经验(15)</div>
         <div class="component-category">收藏(６)</div>
         <div class="component-category">草稿(３)</div>
       </div>
