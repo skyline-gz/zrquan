@@ -59,7 +59,7 @@
   background-color: $modal-content-bg;
   border: 1px solid $modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
   border: 1px solid $modal-content-border-color;
-  border-radius: $border-radius-small;
+  @include border-radius($border-radius-base);
   @include box-shadow(0 3px 9px rgba(0,0,0,.5));
   background-clip: padding-box;
   // Remove focus outline from opened modal
@@ -91,7 +91,9 @@
 .modal-header {
   padding: $modal-title-padding;
   border-bottom: 1px solid $modal-header-border-color;
-  min-height: ($modal-title-padding + $modal-title-line-height);
+//  min-height: ($modal-title-padding + $modal-title-line-height);
+  background: $base-background-color;
+  @include border-top-radius($border-radius-base);
 }
 // Close icon
 .modal-header .close {
@@ -101,7 +103,9 @@
 // Title text within header
 .modal-title {
   margin: 0;
-  line-height: $modal-title-line-height;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 // Modal body
@@ -117,6 +121,14 @@
   text-align: right; // right align buttons
   border-top: 1px solid $modal-footer-border-color;
   @include clearfix(); // clear it in case folks use .pull-* classes on buttons
+  background: $base-background-color;
+  @include border-bottom-radius($border-radius-base);
+
+  .btn {
+    font-size: 14px;
+    padding: 6px 10px;
+    line-height: 14px;
+  }
 
   // Properly space out buttons
   .btn + .btn {
@@ -130,6 +142,18 @@
   // and override it for block buttons as well
   .btn-block + .btn-block {
     margin-left: 0;
+  }
+
+  .btn-primary {
+    @include btn-base($border-radius-base);
+  }
+
+  .btn-gprimary {
+    @include btn-green-base($border-radius-base);
+  }
+
+  .btn-default {
+    @include btn-gray-base($border-radius-base);
   }
 }
 

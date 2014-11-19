@@ -13,7 +13,7 @@
 
   .user-profile {
     position: relative;
-    background: $light-grey;
+    background: $base-background-color;
     border:1px solid $deep-grey;
     @include border-radius($border-radius-small);
     height: 180px;
@@ -235,7 +235,7 @@
     margin-top: 8px;
     height: 45px;
     padding: 8px 31px;
-    background: $light-grey;
+    background: $base-background-color;
     border:1px solid $deep-grey;
     @include border-radius($border-radius-small);
     font-size: 13px;
