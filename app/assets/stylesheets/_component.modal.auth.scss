@@ -1,9 +1,3 @@
-@import "compass/css3";
-
-@import "base";
-@import "minixs";
-@import "variables";
-
 //登陆注册模态框
 #authModal {
   .close {
@@ -302,5 +296,14 @@
 #resizeAvatarModal {
   .modal-content {
     width: 510px;
+
+    .image-container {
+      width: 300px;
+      min-height: 100px;
+    }
+
+    #jcrop_target {
+      max-width: 100%;
+    }
   }
 }

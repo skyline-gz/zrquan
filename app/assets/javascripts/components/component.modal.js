@@ -52,10 +52,10 @@ Modal.prototype.show = function (_relatedTarget) {
     this.escape();
 
     //居中显示
-    this.position();
-//        setTimeout(function(){
-//            that.position();
-//        }, 10);
+//    this.position();
+    setTimeout(function(){
+        that.position();
+    }, 10);
 
     this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this));
 
