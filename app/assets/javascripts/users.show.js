@@ -53,6 +53,19 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         events: {
 
         },
+        showModal: function(args) {
+            this.$('#jcrop_target').Jcrop({
+                onChange: showCoords,
+                onSelect: showCoords
+            });
+
+            function showCoords(c) {
+                console.log(c.x + " " + c.y + " " + c.x2 + " " + c.y2 + " " + c.w + " " + c.h);
+            }
+
+            //super
+            Zrquan.UI.ModalView.prototype.showModal.call(this, args);
+        },
         initialize: function() {
             this.listenTo(usersEventBus, 'modal:show', this.showModal);
         },
