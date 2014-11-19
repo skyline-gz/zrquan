@@ -2,18 +2,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
     var navbarEventBus = Module.navbarEventBus;
 
-    //模态框抽象视图
-    var AuthBaseModalView = Backbone.Marionette.ItemView.extend({
-        modalName: "",
-        showModal: function(modalName) {
-            if(modalName && modalName == this.modalName) {
-                console.log("modal:" + modalName + " show");
-                this.$el.modal('show');
-            }
-        },
-        hideModal: function() {
-            this.$el.modal('hide');
-        },
+    //登陆验证弹出框抽象视图
+    var AuthBaseModalView = Zrquan.UI.ModalView.extend({
         //检测用户输入是否合法并从界面显示出错信息
         checkAuthParam: function(sType) {
             var bValid = true;
@@ -90,11 +80,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         },
         initialize: function() {
             this.listenTo(navbarEventBus, 'modal:show', this.showModal);
-            this.listenTo(navbarEventBus, 'modal:hide', this.showModal);
-        },
-        render: function() {
-            this.bindUIElements(); // wire up this.ui, if any
-            console.log(this.modalName + " Modal View Init...")
+            this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
         }
     });
 

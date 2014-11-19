@@ -258,6 +258,8 @@
 <!--隐藏的iframe，用于处理头像上传的请求-->
 <iframe id="av_up_frame" name="av_up_frame" style="position: absolute; height: 0; width: 0; left: -9000px;"></iframe>
 
+<%= render "modals/modal_resize_avatar" %>
+
 <% content_for :page_javascript do %>
     <%= javascript_include_tag "jquery.jcrop" %>
     <%= javascript_include_tag "users.show" %>

@@ -11,6 +11,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         start: function() {
             Module.userTopView.render();
             Module.userContentView.render();
+            Module.resizeAvatarModalView.render();
         }
     });
 
@@ -37,6 +38,20 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         initialize: function() {
             this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideChangeAvatarTips);
+        },
+        // override: don't really render, since this view just attaches to existing navbar html.
+        render: function() {
+            this.bindUIElements(); // wire up this.ui, if any
+        }
+    }))();
+
+    Module.resizeAvatarModalView = new (Marionette.LayoutView.extend({
+        el: "#resizeAvatarModal",
+        events: {
+
+        },
+        initialize: function() {
+
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {

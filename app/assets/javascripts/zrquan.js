@@ -41,6 +41,7 @@
 /**
  * 视图(View) Module
  **/
+//= require ui
 //= require navbar
 //= require navbar.modals
 /**
