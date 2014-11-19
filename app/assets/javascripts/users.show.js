@@ -1,5 +1,6 @@
 Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
+    var usersEventBus = Module.usersEventBus = new Backbone.Wreqr.EventAggregator();
 
     Module.addInitializer(function() {
         console.log("Module Users.Show init...");
@@ -30,6 +31,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         onAvatarSelect : function() {
 //            var oFile = $('#image_file')[0].files[0];
+            usersEventBus.trigger('modal:show', 'resizeAvatarModal');
         },
         checkAndHideChangeAvatarTips : function(evt) {
             if($(evt.target).hasParent(".user-profile-logo,.user-profile-logo-edit-button").length == 0) {
@@ -45,13 +47,14 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         }
     }))();
 
-    Module.resizeAvatarModalView = new (Marionette.LayoutView.extend({
+    Module.resizeAvatarModalView = new (Zrquan.UI.ModalView.extend({
         el: "#resizeAvatarModal",
+        modalName: 'resizeAvatarModal',
         events: {
 
         },
         initialize: function() {
-
+            this.listenTo(usersEventBus, 'modal:show', this.showModal);
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
