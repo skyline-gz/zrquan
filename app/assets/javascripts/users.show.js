@@ -17,10 +17,18 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     Module.userTopView = new (Marionette.LayoutView.extend({
         el: ".user-top",
         events: {
-            'mouseover .user-profile-logo' : 'showChangeAvatarTips'
+            'mouseover .user-profile-logo' : 'showChangeAvatarTips',
+            'click .user-profile-logo-edit-button' : 'onChangeAvatarClick',
+            'change #image_file': 'onAvatarSelect'
         },
         showChangeAvatarTips : function() {
             this.$('.user-profile-logo-edit-button').show();
+        },
+        onChangeAvatarClick : function() {
+            $("input[name=image_file]").click();
+        },
+        onAvatarSelect : function() {
+//            var oFile = $('#image_file')[0].files[0];
         },
         checkAndHideChangeAvatarTips : function(evt) {
             if($(evt.target).hasParent(".user-profile-logo,.user-profile-logo-edit-button").length == 0) {
