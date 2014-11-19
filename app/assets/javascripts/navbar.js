@@ -66,14 +66,14 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         showDropdown : function(){
             this.$el.show();
         },
-        checkAndHideDropDown: function() {
-            if($(event.target).hasParent("#top-nav-profile-dropdown,.user-link").length == 0) {
+        checkAndHideDropDown: function(evt) {
+            if($(evt.target).hasParent("#top-nav-profile-dropdown,.user-link").length == 0) {
                 this.$el.hide();
             }
         },
         initialize: function() {
             this.listenTo(navbarEventBus, 'dropdown:show', this.showDropdown);
-            this.listenTo(navbarEventBus, 'dropdown:checkHide', this.checkAndHideDropDown);
+            this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideDropDown);
         },
         render: function() {
             this.bindUIElements(); // wire up this.ui, if any

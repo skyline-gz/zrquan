@@ -15,6 +15,10 @@ class UsersController < ApplicationController
 
   # 显示
   def show
+    @is_self = false
+    if current_user
+      @is_self = (@user.id == current_user.id)
+    end
   end
 
   # 新建用户对象

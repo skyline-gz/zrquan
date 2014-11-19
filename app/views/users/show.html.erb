@@ -4,7 +4,10 @@
         <div class="user-profile-top"></div>
         <div class="user-profile-container">
           <div class="user-profile-left">
-            <img class="user-profile-logo" src="../images/avatars/head_b_01.png">
+            <div class="user-profile-logo-container">
+                <img class="user-profile-logo" src="../images/noface.gif">
+                <span class="user-profile-logo-edit-button">修改头像</span>
+            </div>
             <div class="user-profile-data">
               <div class="desc">关注&nbsp;50&nbsp;&nbsp;</div>
               <div class="spilt"></div>
@@ -251,3 +254,9 @@
     </div>
   </div>
 </div>
+<!--隐藏的iframe，用于处理头像上传的请求-->
+<iframe id="av_up_frame" name="av_up_frame" style="position: absolute; height: 0; width: 0; left: -9000px;"></iframe>
+
+<% content_for :page_javascript do %>
+    <%= javascript_include_tag "users.home" %>
+<% end %>

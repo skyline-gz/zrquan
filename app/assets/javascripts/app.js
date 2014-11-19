@@ -2,6 +2,7 @@ Zrquan = (function(Backbone){
     'use strict';
 
     var App = new Backbone.Marionette.Application();
+    App.appEventBus = new Backbone.Wreqr.EventAggregator();
 
 //    App.addRegions({
 //        primaryRegion: "#primary-region"
@@ -19,8 +20,11 @@ Zrquan = (function(Backbone){
             'mouseover' : 'onMouseOver'
         },
         onMouseOver: function() {
-            Zrquan.Navbar.navbarEventBus.trigger('dropdown:checkHide', event);
-        }
+            this._onMouseOverThrottled(event);
+        },
+        _onMouseOverThrottled: _.throttle(function(evt){
+            App.appEventBus.trigger('mouseover', evt);
+        }, 200)
     }))();
 
     App.startSubApp = function(appName){
