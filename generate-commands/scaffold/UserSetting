@@ -1,1 +1,0 @@
-rails g scaffold UserSetting followed_flag:boolean aggred_flag:boolean commented_flag:boolean answer_flag:boolean pm_flag:boolean, user:references

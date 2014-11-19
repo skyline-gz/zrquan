@@ -424,9 +424,9 @@ ActiveRecord::Schema.define(version: 20141118113024) do
 
   add_index "themes", ["substance_id", "substance_type"], name: "index_themes_on_substance_id_and_substance_type", using: :btree
 
-  create_table "user_settings", force: true do |t|
+  create_table "user_msg_settings", force: true do |t|
     t.boolean  "followed_flag",  default: true
-    t.boolean  "aggred_flag",    default: true
+    t.boolean  "agreed_flag",    default: true
     t.boolean  "commented_flag", default: true
     t.boolean  "answer_flag",    default: true
     t.boolean  "pm_flag",        default: true
@@ -435,7 +435,7 @@ ActiveRecord::Schema.define(version: 20141118113024) do
     t.datetime "updated_at"
   end
 
-  add_index "user_settings", ["user_id"], name: "index_user_settings_on_user_id", using: :btree
+  add_index "user_msg_settings", ["user_id"], name: "index_user_msg_settings_on_user_id", using: :btree
 
   create_table "user_theme_stats", force: true do |t|
     t.integer  "user_id"

@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 		# 	@comment.commentable_type = "Article"
 		# 	@comment.save!
 		# 	# 创建消息并发送
-		# 	if current_user.user_setting.commented_flag == true
+		# 	if current_user.user_msg_setting.commented_flag == true
 		# 		@article.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
      #                                   extra_info2_id: @article.id, extra_info2_type: "Article")
 		# 		# TODO 发送到faye
@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
       @comment.replied_comment_id = params[:replied_comment_id]
       @comment.save!
       # 创建消息并发送
-      if current_user.user_setting.commented_flag == true
+      if current_user.user_msg_setting.commented_flag == true
         @article.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
                                        extra_info2_id: @article.id, extra_info2_type: "Question")
         # TODO 发送到faye
@@ -68,7 +68,7 @@ class CommentsController < ApplicationController
       @comment.replied_comment_id = params[:replied_comment_id]
 			@comment.save!
 			# 创建消息并发送
-			if current_user.user_setting.commented_flag == true
+			if current_user.user_msg_setting.commented_flag == true
 				@answer.user.messages.create!(msg_type: 2, extra_info1_id: current_user.id, extra_info1_type: "User",
                                        extra_info2_id: @question.id, extra_info2_type: "Question")
 			end

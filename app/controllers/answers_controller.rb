@@ -37,7 +37,7 @@ class AnswersController < ApplicationController
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
                                     publish_date: DateUtils.to_yyyymmdd(Date.today))
     # 创建消息并发送
-    if current_user.user_setting.answer_flag == true
+    if current_user.user_msg_setting.answer_flag == true
       @question.user.messages.create!(msg_type: 1, extra_info1_id: current_user.id, extra_info1_type: "User",
                                         extra_info2_id: @question.id, extra_info2_type: "Question")
       # TODO 发送到faye
@@ -63,7 +63,7 @@ class AnswersController < ApplicationController
     latest_score = latest_score + 1
     @answer.update!(:agree_score => latest_score)
     # 创建消息，发送给用户
-    if @answer.user.user_setting.aggred_flag
+    if @answer.user.user_msg_setting.agreed_flag
       logger.debug("message")
       @answer.user.messages.create!(msg_type: 12, extra_info1_id: current_user.id, extra_info1_type: "User",
                                        extra_info2_id: @question.id, extra_info2_type: "Question")

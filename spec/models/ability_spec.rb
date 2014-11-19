@@ -24,8 +24,8 @@ RSpec.describe Ability, :type => :model do
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
     let (:published_article) { FactoryGirl.create(:published_article, :user=>normal_user) }
     let (:draft_article) { FactoryGirl.create(:draft_article, :user=>normal_user) }
-    let (:my_user_setting) { FactoryGirl.create(:user_setting, :user=>me) }
-    let (:another_user_setting) { FactoryGirl.create(:user_setting, :user=>normal_user) }
+    let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
+    let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>normal_user) }
     let (:ability) { Ability.new(me) }
 
     context "question" do
@@ -166,8 +166,8 @@ RSpec.describe Ability, :type => :model do
     context "user info and user setting" do
       it { should be_able_to(:edit, me) }
       it { should_not be_able_to(:edit, normal_user) }
-      it { should be_able_to(:edit, my_user_setting) }
-      it { should_not be_able_to(:edit, another_user_setting) }
+      it { should be_able_to(:edit, my_user_msg_setting) }
+      it { should_not be_able_to(:edit, another_user_msg_setting) }
     end
 
   end
@@ -180,8 +180,8 @@ RSpec.describe Ability, :type => :model do
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
     let (:published_article) { FactoryGirl.create(:published_article, :user=>another_n_user) }
     let (:draft_article) { FactoryGirl.create(:draft_article, :user=>another_n_user) }
-    let (:my_user_setting) { FactoryGirl.create(:user_setting, :user=>me) }
-    let (:another_user_setting) { FactoryGirl.create(:user_setting, :user=>another_n_user) }
+    let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
+    let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>another_n_user) }
     let (:ability) { Ability.new(me) }
 
     context "question" do
@@ -319,8 +319,8 @@ RSpec.describe Ability, :type => :model do
     context "user info and user setting" do
       it { should be_able_to(:edit, me) }
       it { should_not be_able_to(:edit, other_user = verified_user) }
-      it { should be_able_to(:edit, my_user_setting) }
-      it { should_not be_able_to(:edit, another_user_setting) }
+      it { should be_able_to(:edit, my_user_msg_setting) }
+      it { should_not be_able_to(:edit, another_user_msg_setting) }
     end
 
   end

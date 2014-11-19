@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
     latest_score = latest_score + 1
     @article.update!(:agree_score => latest_score)
 		# 创建消息，发送给用户
-		if @article.user.user_setting.aggred_flag
+		if @article.user.user_msg_setting.agreed_flag
 			@article.user.messages.create!(msg_type: 11, extra_info1_id: current_user.id, extra_info1_type: "User",
                                      extra_info2_id: @article.id, extra_info2_type: "Article")
 		end
