@@ -77,7 +77,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             var that = this;
             var avatarBase64File = this.cropAvatar(this.jcrop_coords);
             var data = new FormData();
-            data.append('picture', dataURItoBlob(avatarBase64File), 'test.png');
+            data.append('picture', dataURItoBlob(avatarBase64File));
             data.append('handle_mode', 'save');
 
             function dataURItoBlob(dataURI) {
@@ -141,50 +141,55 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 marginTop: '-' + Math.round(resizeRatio.ry * coords.y) + 'px'
             });
         },
-        showModal: function(modalName, oFile) {
+        initJCorp: function() {
             var that = this;
             function onChangeCoords(coords) {
                 that.jcrop_coords = _.extend({}, coords);
                 that.previewAvatar(coords);
             }
 
-            var oImage = this.ui.image[0];
-            // prepare HTML5 FileReader
-            var oReader = new FileReader();
-            oReader.onload = function(e) {
-                // e.target.result contains the DataURL which we can use as a source of the image
-                oImage.src = e.target.result;
-                that.ui.preview[0].src = e.target.result;
-                oImage.onload = function () { // onload event handler
+            // destroy Jcrop if it is existed
+            if (that.jcrop_api)
+                that.jcrop_api.destroy();
 
-                    // display some basic image info
-//                        var sResultFileSize = bytesToSize(oFile.size);
-//                        $('#filesize').val(sResultFileSize);
-//                        $('#filetype').val(oFile.type);
-//                        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
+            // initialize Jcrop
+            $('#jcrop_target').Jcrop({
+                setSelect:   [ 0, 0, 32, 32 ],
+                minSize: [32, 32], // min crop size
+                aspectRatio : 1, // keep aspect ratio 1:1
+                bgFade: true, // use fade effect
+                bgOpacity: .3, // fade opacity
+                onChange: onChangeCoords,
+                onSelect: onChangeCoords
+            }, function(){
+                // Store the Jcrop API in the jcrop_api variable
+                that.jcrop_api = this;
+            });
+        },
+        showModal: function(modalName, oFile) {
+            var that = this;
 
-                    // destroy Jcrop if it is existed
-                    if (that.jcrop_api)
-                        that.jcrop_api.destroy();
-
-                    // initialize Jcrop
-                    $('#jcrop_target').Jcrop({
-                        setSelect:   [ 0, 0, 32, 32 ],
-                        minSize: [32, 32], // min crop size
-                        aspectRatio : 1, // keep aspect ratio 1:1
-                        bgFade: true, // use fade effect
-                        bgOpacity: .3, // fade opacity
-                        onChange: onChangeCoords,
-                        onSelect: onChangeCoords
-                    }, function(){
-                        // Store the Jcrop API in the jcrop_api variable
-                        that.jcrop_api = this;
-                    });
+            if(Zrquan.Base.support.file && Zrquan.Base.support.canvas) {
+                var oImage = this.ui.image[0];
+                // prepare HTML5 FileReader
+                var oReader = new FileReader();
+                oReader.onload = function(e) {
+                    // e.target.result contains the DataURL which we can use as a source of the image
+                    //todo:检测文件大小和文件类型，出错提示
+                    oImage.src = e.target.result;
+                    that.ui.preview[0].src = e.target.result;
+                    oImage.onload = function () { // onload event handler
+                        that.initJCorp();
+                    };
                 };
-            };
-
-            // read selected file as DataURL
-            oReader.readAsDataURL(oFile);
+                // read selected file as DataURL
+                oReader.readAsDataURL(oFile);
+            } else {
+                //使form file input透明，并覆盖到头像区域
+                //file onchage 时提交表单
+                //返回文件路径后，初始化jcrop
+                //第二次提交，可以是xhr方式,提交 jcorp的裁剪结果，返回路径
+            }
 
             //super
             Zrquan.UI.ModalView.prototype.showModal.call(this, modalName);
