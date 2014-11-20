@@ -1,6 +1,7 @@
 Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
     var usersEventBus = Module.usersEventBus = new Backbone.Wreqr.EventAggregator();
+    var enableClientCrop = false || Zrquan.Base.support.file && Zrquan.Base.support.canvas;
 
     Module.addInitializer(function() {
         console.log("Module Users.Show init...");
@@ -34,7 +35,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             usersEventBus.trigger('modal:show', 'resizeAvatarModal', oFile);
         },
         checkAndHideChangeAvatarTips : function(evt) {
-            if($(evt.target).hasParent(".user-profile-logo,.user-profile-logo-edit-button").length == 0) {
+            if($(evt.target).hasParent(".user-profile-logo,.user-profile-logo-edit-button,input[name=picture]").length == 0) {
                 this.$('.user-profile-logo-edit-button').hide();
             }
         },
@@ -44,6 +45,21 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         initialize: function() {
             this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideChangeAvatarTips);
             this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
+
+            if (enableClientCrop) {
+                //使form file input透明，并覆盖到头像区域
+                //file onchage 时提交表单
+                var offset = this.$('.user-profile-logo').offset();
+                offset.top += 75;
+                this.$('input[name=picture]').css({
+                    'display' : 'block',
+                    'z-index' : 9999,
+                    'filter' : 'alpha(opacity=0)',
+                    '-moz-opacity' : 0,
+                    'opacity' : 0,
+                    'cursor' : 'pointer'
+                }).offset(offset);
+            }
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
@@ -169,7 +185,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         showModal: function(modalName, oFile) {
             var that = this;
 
-            if(Zrquan.Base.support.file && Zrquan.Base.support.canvas) {
+            if(enableClientCrop) {
                 var oImage = this.ui.image[0];
                 // prepare HTML5 FileReader
                 var oReader = new FileReader();
@@ -185,8 +201,6 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 // read selected file as DataURL
                 oReader.readAsDataURL(oFile);
             } else {
-                //使form file input透明，并覆盖到头像区域
-                //file onchage 时提交表单
                 //返回文件路径后，初始化jcrop
                 //第二次提交，可以是xhr方式,提交 jcorp的裁剪结果，返回路径
             }

@@ -48,6 +48,14 @@
           height: 100px;
         }
 
+        input[name=picture] {
+          display: none;
+          font-size: 21px;
+          width: 143px;
+          height: 23px;
+          position: absolute;
+        }
+
         .user-profile-logo {
           @include border-radius($border-radius-base);
           box-shadow: 0 0 5px rgba(0,0,0,.3) inset;
