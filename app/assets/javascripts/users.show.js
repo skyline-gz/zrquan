@@ -50,11 +50,52 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     Module.resizeAvatarModalView = new (Zrquan.UI.ModalView.extend({
         el: "#resizeAvatarModal",
         modalName: 'resizeAvatarModal',
+        jcrop_api: null,
+        ui: {
+           'image' : '#jcrop_target',
+            'holder': '.jcrop-holder',
+            'canvas': '#crop_canvas'
+        },
         events: {
+            'click .btn-primary' : 'resizeNSaveAvatar'
+        },
+        _getResizeRatio : function(coords) {
+            var bounds = this.jcrop_api.getBounds();
+            return {
+                'rx' : 100 / coords.w,
+                'ry' : 100 / coords.h,
+                'rox' : this.ui.holder[0].offsetWidth / bounds[0],
+                'roy' : this.ui.holder[0].offsetHeight / bounds[1]
+            };
+        },
+        resizeNSaveAvatar: function() {
 
         },
-        showModal: function(modalName, oFile) {
+        cropAvatar: function(coords) {
+            var context = this.ui.canvas.getContext('2d');
+            var resizeRatio = this._getResizeRatio(coords);
 
+            // 如果支持html5，则直接通过canvas绘图截图
+            //为Canvas设置背景色,以防透明图片背景变黑
+            context.fillStyle = "#fff";
+            context.fillRect(0,0,100,100);
+
+            var sourceX = Math.round(coords.x / resizeRatio.rox);
+            var sourceY = Math.round(coords.y / resizeRatio.roy) ;
+            var sourceWidth = Math.round(coords.w /resizeRatio.rox);
+            var sourceHeight = Math.round(coords.h /resizeRatio.roy);
+            var destWidth = 100;
+            var destHeight = 100;
+            var destX = 0;
+            var destY = 0;
+            context.imageSmoothingEnabled = true;
+            context.drawImage(this.ui.image, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+
+            //get the image data from the canvas
+            return this.ui.canvas.toDataURL("image/png");
+        },
+        showModal: function(modalName, oFile) {
+            var that = this;
             //预览头像
             function showCoords(coords) {
 //                console.log(c.x + " " + c.y + " " + c.x2 + " " + c.y2 + " " + c.w + " " + c.h);
@@ -70,9 +111,31 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     marginLeft: '-' + Math.round(rx * coords.x) + 'px',
                     marginTop: '-' + Math.round(ry * coords.y) + 'px'
                 });
+
+                // 如果支持html5，则直接通过canvas绘图截图
+                //为Canvas设置背景色,以防透明图片背景变黑
+                context.fillStyle = "#fff";
+                context.fillRect(0,0,100,100);
+
+                var sourceX = Math.round(coords.x / rox);
+                var sourceY = Math.round(coords.y / roy) ;
+                var sourceWidth = Math.round(coords.w /rox);
+                var sourceHeight = Math.round(coords.h /roy);
+                var destWidth = 100;
+                var destHeight = 100;
+                var destX = 0;
+                var destY = 0;
+                context.imageSmoothingEnabled = true;
+                context.drawImage(oImage, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+
+                //get the image data from the canvas
+                var imageData = oCanvas.toDataURL("image/png");
+                console.log(imageData);
             }
 
             var oImage = this.$("#jcrop_target")[0];
+            var oCanvas = this.$("#crop_canvas")[0];
+            var context = oCanvas.getContext('2d');
 
             // prepare HTML5 FileReader
             var oReader = new FileReader();
@@ -90,11 +153,11 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
 //                        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
 
                     // Create variables (in this scope) to hold the Jcrop API and image size
-                    var jcrop_api, boundx, boundy;
+                    var boundx, boundy;
 
                     // destroy Jcrop if it is existed
-                    if (typeof jcrop_api != 'undefined')
-                        jcrop_api.destroy();
+                    if (that.jcrop_api)
+                        that.jcrop_api.destroy();
 
                     // initialize Jcrop
                     $('#jcrop_target').Jcrop({
@@ -114,7 +177,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                         boundy = bounds[1];
 
                         // Store the Jcrop API in the jcrop_api variable
-                        jcrop_api = this;
+                        that.jcrop_api = this;
                     });
                 };
             };
