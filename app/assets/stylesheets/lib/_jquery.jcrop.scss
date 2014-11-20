@@ -162,4 +162,6 @@
 .jcrop-holder img,
 img.jcrop-preview {
   max-width: none;
+  //使透明图像不要变黑
+  background: #fff;
 }

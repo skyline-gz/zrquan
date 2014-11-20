@@ -51,9 +51,9 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         el: "#resizeAvatarModal",
         modalName: 'resizeAvatarModal',
         jcrop_api: null,
+        jcrop_coords: null,
         ui: {
            'image' : '#jcrop_target',
-            'holder': '.jcrop-holder',
             'canvas': '#crop_canvas'
         },
         events: {
@@ -64,15 +64,16 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             return {
                 'rx' : 100 / coords.w,
                 'ry' : 100 / coords.h,
-                'rox' : this.ui.holder[0].offsetWidth / bounds[0],
-                'roy' : this.ui.holder[0].offsetHeight / bounds[1]
+                'rox' : bounds[0] / this.ui.image[0].width,
+                'roy' : bounds[1] / this.ui.image[0].height
             };
         },
         resizeNSaveAvatar: function() {
-
+            var avatarBase64File = this.cropAvatar(this.jcrop_coords);
+            console.log(avatarBase64File);
         },
         cropAvatar: function(coords) {
-            var context = this.ui.canvas.getContext('2d');
+            var context = this.ui.canvas[0].getContext('2d');
             var resizeRatio = this._getResizeRatio(coords);
 
             // 如果支持html5，则直接通过canvas绘图截图
@@ -89,15 +90,16 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             var destX = 0;
             var destY = 0;
             context.imageSmoothingEnabled = true;
-            context.drawImage(this.ui.image, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+            context.drawImage(this.ui.image[0], sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
 
             //get the image data from the canvas
-            return this.ui.canvas.toDataURL("image/png");
+            return this.ui.canvas[0].toDataURL("image/png");
         },
         showModal: function(modalName, oFile) {
             var that = this;
             //预览头像
             function showCoords(coords) {
+                that.jcrop_coords = _.extend({}, coords);
 //                console.log(c.x + " " + c.y + " " + c.x2 + " " + c.y2 + " " + c.w + " " + c.h);
                 var rox = $('.jcrop-holder')[0].offsetWidth / oImage.width;
                 var roy = $('.jcrop-holder')[0].offsetHeight / oImage.height;
@@ -111,26 +113,6 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     marginLeft: '-' + Math.round(rx * coords.x) + 'px',
                     marginTop: '-' + Math.round(ry * coords.y) + 'px'
                 });
-
-                // 如果支持html5，则直接通过canvas绘图截图
-                //为Canvas设置背景色,以防透明图片背景变黑
-                context.fillStyle = "#fff";
-                context.fillRect(0,0,100,100);
-
-                var sourceX = Math.round(coords.x / rox);
-                var sourceY = Math.round(coords.y / roy) ;
-                var sourceWidth = Math.round(coords.w /rox);
-                var sourceHeight = Math.round(coords.h /roy);
-                var destWidth = 100;
-                var destHeight = 100;
-                var destX = 0;
-                var destY = 0;
-                context.imageSmoothingEnabled = true;
-                context.drawImage(oImage, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
-
-                //get the image data from the canvas
-                var imageData = oCanvas.toDataURL("image/png");
-                console.log(imageData);
             }
 
             var oImage = this.$("#jcrop_target")[0];
