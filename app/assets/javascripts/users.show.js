@@ -58,18 +58,19 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         jcrop_coords: null,
         ui: {
            'image' : '#jcrop_target',
-            'canvas': '#crop_canvas'
+           'canvas': '#crop_canvas',
+           'preview': '#jcrop_preview'
         },
         events: {
             'click .btn-primary' : 'resizeNSaveAvatar'
         },
         _getResizeRatio : function(coords) {
-            var bounds = this.jcrop_api.getBounds();
+            var holder = this.$('.jcrop-holder')[0];
             return {
                 'rx' : 100 / coords.w,
                 'ry' : 100 / coords.h,
-                'rox' : bounds[0] / this.ui.image[0].width,
-                'roy' : bounds[1] / this.ui.image[0].height
+                'rox' : holder.offsetWidth / this.ui.image[0].width,
+                'roy' : holder.offsetHeight / this.ui.image[0].height
             };
         },
         resizeNSaveAvatar: function() {
@@ -119,41 +120,41 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             var destHeight = 100;
             var destX = 0;
             var destY = 0;
-            context.imageSmoothingEnabled = true;
+            context.antialias = 'subpixel';
+            context.filter = 'best';
+            context.patternQuality = 'best';
+            context.oImageSmoothingEnabled = context.mozImageSmoothingEnabled = context.webkitImageSmoothingEnabled = context.imageSmoothingEnabled = true;
             context.drawImage(this.ui.image[0], sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
 
             //get the image data from the canvas
             return this.ui.canvas[0].toDataURL("image/png");
         },
+        //预览头像
+        previewAvatar: function(coords) {
+            var oImage = this.ui.image[0];
+            var resizeRatio = this._getResizeRatio(coords);
+
+            this.ui.preview.css({
+                width: Math.round(resizeRatio.rx * oImage.width * resizeRatio.rox) + 'px',
+                height: Math.round(resizeRatio.ry * oImage.height * resizeRatio.roy) + 'px',
+                marginLeft: '-' + Math.round(resizeRatio.rx * coords.x) + 'px',
+                marginTop: '-' + Math.round(resizeRatio.ry * coords.y) + 'px'
+            });
+        },
         showModal: function(modalName, oFile) {
             var that = this;
-            //预览头像
-            function showCoords(coords) {
+            function onChangeCoords(coords) {
                 that.jcrop_coords = _.extend({}, coords);
-//                console.log(c.x + " " + c.y + " " + c.x2 + " " + c.y2 + " " + c.w + " " + c.h);
-                var rox = $('.jcrop-holder')[0].offsetWidth / oImage.width;
-                var roy = $('.jcrop-holder')[0].offsetHeight / oImage.height;
-
-                var rx = 100 / coords.w;
-                var ry = 100 / coords.h;
-
-                $('#jcrop_preview').css({
-                    width: Math.round(rx * oImage.width * rox) + 'px',
-                    height: Math.round(ry * oImage.height * roy) + 'px',
-                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
-                });
+                that.previewAvatar(coords);
             }
 
-            var oImage = this.$("#jcrop_target")[0];
-
+            var oImage = this.ui.image[0];
             // prepare HTML5 FileReader
             var oReader = new FileReader();
             oReader.onload = function(e) {
-
                 // e.target.result contains the DataURL which we can use as a source of the image
                 oImage.src = e.target.result;
-                $('#jcrop_preview')[0].src = e.target.result;
+                that.ui.preview[0].src = e.target.result;
                 oImage.onload = function () { // onload event handler
 
                     // display some basic image info
@@ -173,8 +174,8 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                         aspectRatio : 1, // keep aspect ratio 1:1
                         bgFade: true, // use fade effect
                         bgOpacity: .3, // fade opacity
-                        onChange: showCoords,
-                        onSelect: showCoords
+                        onChange: onChangeCoords,
+                        onSelect: onChangeCoords
                     }, function(){
                         // Store the Jcrop API in the jcrop_api variable
                         that.jcrop_api = this;
