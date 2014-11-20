@@ -9,8 +9,8 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :latest_position, :string
     add_reference :users, :latest_school, index: true
     add_column :users, :latest_major, :string
-    add_column :users, :signature, :string
-    add_column :users, :description, :text
+    add_column :users, :description, :string
+    add_column :users, :mobile, :string
     add_column :users, :total_agree_score, :integer
     add_column :users, :reputation, :integer
     add_column :users, :verified_flag, :boolean
