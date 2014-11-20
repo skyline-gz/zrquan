@@ -27,12 +27,17 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         onShowProfileDropdown: function(e) {
             navbarEventBus.trigger('dropdown:show');
         },
+        reloadAvatar: function(url) {
+            this.$('img.user-logo').attr("src", url);
+        },
+        initialize: function() {
+            this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
+        },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
             this.bindUIElements(); // wire up this.ui, if any
         }
     });
-
 
     Module.Controller = Marionette.Controller.extend({
         start: function() {

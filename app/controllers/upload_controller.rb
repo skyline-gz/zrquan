@@ -31,7 +31,7 @@ class UploadController < ApplicationController
       # 释放临时文件
       tempfile.close
       tempfile.unlink
-      render :json => {:code => 'S_OK'}
+      render :json => {:code => 'S_OK', :url => Settings.upload_url + file_path}
       return
     end
     cache_obj = {:content_type => params["picture"].content_type, :fileblob => uploaded_avatar}

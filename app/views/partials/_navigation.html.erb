@@ -24,7 +24,7 @@
           <li>
             <a class="user-link">
                 <% if current_user.avatar != nil %>
-                  <img src="<%=current_user.avatar%>" class="user-logo">
+                  <img src="<%= Settings.upload_url + current_user.avatar%>" class="user-logo">
                 <% else %>
                   <img src="../images/noface.gif" class="user-logo">
                 <% end %>

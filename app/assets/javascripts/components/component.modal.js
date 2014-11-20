@@ -55,7 +55,7 @@ Modal.prototype.show = function (_relatedTarget) {
 //    this.position();
     setTimeout(function(){
         that.position();
-    }, 10);
+    });
 
     this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this));
 

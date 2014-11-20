@@ -5,7 +5,11 @@
         <div class="user-profile-container">
           <div class="user-profile-left">
             <div class="user-profile-logo-container">
-                <img class="user-profile-logo" src="../images/noface.gif">
+                  <% if current_user.avatar != nil %>
+                      <img src="<%= Settings.upload_url + current_user.avatar%>" class="user-profile-logo">
+                  <% else %>
+                    <img class="user-profile-logo" src="../images/noface.gif">
+                  <% end %>
                 <input type="file" name="image_file" id="image_file" style="display: none"/>
                 <span class="user-profile-logo-edit-button">修改头像</span>
             </div>

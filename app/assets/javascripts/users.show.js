@@ -38,8 +38,12 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 this.$('.user-profile-logo-edit-button').hide();
             }
         },
+        reloadAvatar: function(url) {
+            this.$('img.user-profile-logo').attr('src', url);
+        },
         initialize: function() {
             this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideChangeAvatarTips);
+            this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
@@ -69,6 +73,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             };
         },
         resizeNSaveAvatar: function() {
+            var that = this;
             var avatarBase64File = this.cropAvatar(this.jcrop_coords);
             var data = new FormData();
             data.append('picture', dataURItoBlob(avatarBase64File), 'test.png');
@@ -82,9 +87,6 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 }
                 return new Blob([new Uint8Array(array)], {type: 'image/png'});
             }
-//            jQuery.each($('#file')[0].files, function(i, file) {
-//                data.append('file-'+i, file);
-//            });
 
             $.ajax({
                 url: '/upload/upload_avatar',
@@ -95,6 +97,8 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 type: 'POST',
                 success: function(data){
                     console.log("ajax.multipart form data success" + data);
+                    Zrquan.appEventBus.trigger('reload:avatar', data.url);
+                    that.hideModal();
                 }
             });
         },
@@ -142,8 +146,6 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             }
 
             var oImage = this.$("#jcrop_target")[0];
-            var oCanvas = this.$("#crop_canvas")[0];
-            var context = oCanvas.getContext('2d');
 
             // prepare HTML5 FileReader
             var oReader = new FileReader();
@@ -160,9 +162,6 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
 //                        $('#filetype').val(oFile.type);
 //                        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
 
-                    // Create variables (in this scope) to hold the Jcrop API and image size
-                    var boundx, boundy;
-
                     // destroy Jcrop if it is existed
                     if (that.jcrop_api)
                         that.jcrop_api.destroy();
@@ -176,14 +175,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                         bgOpacity: .3, // fade opacity
                         onChange: showCoords,
                         onSelect: showCoords
-//                            onRelease: clearInfo
                     }, function(){
-
-                        // use the Jcrop API to get the real image size
-                        var bounds = this.getBounds();
-                        boundx = bounds[0];
-                        boundy = bounds[1];
-
                         // Store the Jcrop API in the jcrop_api variable
                         that.jcrop_api = this;
                     });
