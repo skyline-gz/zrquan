@@ -16,6 +16,16 @@
             <img src="" id="jcrop_preview">
           </div>
           <canvas id="crop_canvas" width="100" height="100" style="float:left"></canvas>
+          <form target="av_up_frame" method="post" enctype="multipart/form-data"
+                action="http://localhost:3000/upload/upload_avatar" style="display: none">
+            <label for="avt_file"></label>
+            <input type="file" accept="image/*" name="picture" id="avt_file">
+            <input type="hidden" name="handle_mode" value="save">
+            <!--<input type="hidden" name="handle_mode" value="cache">-->
+            <!--<input type="hidden" name="handle_mode" value="resize">-->
+            <input type="hidden" name="dest_id" value="668baec661da36f56ad735997c001dd8">
+            <input type="hidden" name="return_size" value="l">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

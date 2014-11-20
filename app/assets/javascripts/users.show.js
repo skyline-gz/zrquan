@@ -70,7 +70,33 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         resizeNSaveAvatar: function() {
             var avatarBase64File = this.cropAvatar(this.jcrop_coords);
-            console.log(avatarBase64File);
+            var data = new FormData();
+            data.append('picture', dataURItoBlob(avatarBase64File), 'test.png');
+            data.append('handle_mode', 'save');
+
+            function dataURItoBlob(dataURI) {
+                var binary = atob(dataURI.split(',')[1]);
+                var array = [];
+                for(var i = 0; i < binary.length; i++) {
+                    array.push(binary.charCodeAt(i));
+                }
+                return new Blob([new Uint8Array(array)], {type: 'image/png'});
+            }
+//            jQuery.each($('#file')[0].files, function(i, file) {
+//                data.append('file-'+i, file);
+//            });
+
+            $.ajax({
+                url: '/upload/upload_avatar',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function(data){
+                    console.log("ajax.multipart form data success" + data);
+                }
+            });
         },
         cropAvatar: function(coords) {
             var context = this.ui.canvas[0].getContext('2d');

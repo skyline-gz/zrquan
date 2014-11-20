@@ -12,6 +12,28 @@ class UploadController < ApplicationController
 
   def upload_avatar
     uploaded_avatar = params["picture"].read
+    if params["handle_mode"] == 'save'
+      # 利用md5构造唯一的文件名及临时文件
+      type = MIME::Types[params["picture"].content_type].first.extensions.first
+      destid = Digest::MD5.hexdigest(uploaded_avatar)
+      tempfile = Tempfile.new([destid, "\." + type], '/tmp')
+      File.open(tempfile, "wb") do |f|
+        f.write uploaded_avatar
+      end
+      # 测试七牛云存储
+      uploader = AvatarUploader.new(current_user, "avartars")
+      uploader.store!(tempfile)
+
+      file_path = uploader.file.path
+      current_user.avatar = file_path
+      current_user.save
+
+      # 释放临时文件
+      tempfile.close
+      tempfile.unlink
+      render :json => {:code => 'S_OK'}
+      return
+    end
     cache_obj = {:content_type => params["picture"].content_type, :fileblob => uploaded_avatar}
     # File.read(:content_type => params["picture"])
     destid = Digest::MD5.hexdigest(uploaded_avatar)
