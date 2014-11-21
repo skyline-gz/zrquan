@@ -27,4 +27,10 @@ Zrquan.module('Base', function(Module, App, Backbone, Marionette, $, _) {
             return !!$(this).closest(exp).length;
         });
     };
+
+    //清空表单元素的值
+    $.fn.resetFormElement = function() {
+        this.wrap('<form>').closest('form').get(0).reset();
+        return this.unwrap();
+    };
 });

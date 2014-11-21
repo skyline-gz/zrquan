@@ -53,8 +53,12 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             this.$('img.user-profile-logo').attr('src', url);
         },
         initialize: function() {
+            var that = this;
             this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideChangeAvatarTips);
             this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
+            this.listenTo(usersEventBus, 'reset:file_input', function(){
+                that = $('input[name=picture]').resetFormElement();
+            });
 
             if (!enableClientCrop) {
                 //使form file input透明，并覆盖到头像区域
@@ -275,6 +279,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         hideModal: function () {
             this.jcrop_api.destroy();
             this.ui.image.css({ 'width' : '', 'height' : '' });
+            usersEventBus.trigger('reset:file_input');
             Zrquan.UI.ModalView.prototype.hideModal.call(this);
         },
         initialize: function() {
