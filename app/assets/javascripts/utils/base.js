@@ -3,17 +3,21 @@ Zrquan.module('Base', function(Module, App, Backbone, Marionette, $, _) {
     //无任何意义，只为了IDEA识别Zrquan.Base已经被定义
     Zrquan.Base = Zrquan.Base || undefined;
 
+    //private
+    var supportFile = function(){
+        return !!(window.FileReader && window.File && window.FileList && window.Blob );
+    }();
+
+    var supportCanvas = function() {
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'));
+    }();
+
     //浏览器特性检测
     Module.support = function() {
         return {
-            file : function () {
-                //Full File API support.
-                return ( window.FileReader && window.File && window.FileList && window.Blob );
-            },
-            canvas : function() {
-                var elem = document.createElement('canvas');
-                return !!(elem.getContext && elem.getContext('2d'));
-            }
+            file : supportFile,
+            canvas : supportCanvas
         }
     }();
 

@@ -1,7 +1,7 @@
 Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
     var usersEventBus = Module.usersEventBus = new Backbone.Wreqr.EventAggregator();
-    var enableClientCrop = false && Zrquan.Base.support.file && Zrquan.Base.support.canvas;
+    var enableClientCrop = Zrquan.Base.support.file && Zrquan.Base.support.canvas;
 
     Module.addInitializer(function() {
         console.log("Module Users.Show init...");
@@ -30,13 +30,13 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         onChangeAvatarClick : function() {
             //IE6 ~ 9 因安全机制不能用JS触发input click事件
-            if(!enableClientCrop) {
+            if(enableClientCrop) {
                 this.$("input[name=picture]").click();
             }
         },
         onAvatarSelect : function() {
-            var oFile = this.$('input[name=picture]')[0].files[0];
             if(enableClientCrop) {
+                var oFile = this.$('input[name=picture]')[0].files[0];
                 usersEventBus.trigger('modal:show', 'resizeAvatarModal', {'file': oFile});
             } else {
                 //file onchage 时提交表单到服务器中缓存
@@ -56,7 +56,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideChangeAvatarTips);
             this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
 
-            if (enableClientCrop) {
+            if (!enableClientCrop) {
                 //使form file input透明，并覆盖到头像区域
                 //file onchage 时提交表单
                 var offset = this.$('.user-profile-logo').offset();
@@ -227,22 +227,24 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 // prepare HTML5 FileReader
                 var oReader = new FileReader();
                 oReader.onload = function(e) {
-                    // e.target.result contains the DataURL which we can use as a source of the image
-                    //todo:检测文件大小和文件类型，出错提示
-                    oPreview.src = oImage.src = e.target.result;
                     oImage.onload = function () { // onload event handler
                         that.initJCorp();
                     };
+                    oPreview.src = oImage.src = "";
+                        // e.target.result contains the DataURL which we can use as a source of the image
+                    //todo:检测文件大小和文件类型，出错提示
+                    oPreview.src = oImage.src = e.target.result;
                 };
                 // read selected file as DataURL
                 oReader.readAsDataURL(options.file);
             } else {
                 //返回文件路径后，初始化jcrop
-                oPreview.src = oImage.src = options.url;
                 this.dest_id = options.dest_id;
                 oImage.onload = function () { // onload event handler
                     that.initJCorp();
                 };
+                oPreview.src = oImage.src = "";
+                oPreview.src = oImage.src = options.url;
             }
 
             //super
