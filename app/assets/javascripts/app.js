@@ -19,8 +19,8 @@ Zrquan = (function(Backbone){
         events: {
             'mouseover' : 'onMouseOver'
         },
-        onMouseOver: function() {
-            this._onMouseOverThrottled(event);
+        onMouseOver: function(evt) {
+            this._onMouseOverThrottled(evt);
         },
         _onMouseOverThrottled: _.throttle(function(evt){
             App.appEventBus.trigger('mouseover', evt);

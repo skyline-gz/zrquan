@@ -1,7 +1,7 @@
 Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
     var usersEventBus = Module.usersEventBus = new Backbone.Wreqr.EventAggregator();
-    var enableClientCrop = false && Zrquan.Base.support.file && Zrquan.Base.support.canvas;
+    var enableClientCrop = Zrquan.Base.support.file && Zrquan.Base.support.canvas;
 
     Module.addInitializer(function() {
         console.log("Module Users.Show init...");
@@ -57,7 +57,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             this.listenTo(Zrquan.appEventBus, 'mouseover', this.checkAndHideChangeAvatarTips);
             this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
             this.listenTo(usersEventBus, 'reset:file_input', function(){
-                that = $('input[name=picture]').resetFormElement();
+                that.$('input[name=picture]').resetFormElement();
             });
 
             if (!enableClientCrop) {
@@ -114,8 +114,6 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         _getResizeRatio : function(coords) {
             var holder = this.$('.jcrop-holder')[0];
-            console.log(holder.offsetWidth + "adsf" + this.image_nature_rect.width);
-            console.log(holder.offsetHeight + "adsf" + this.image_nature_rect.height);
             return {
                 'rx' : 100 / coords.w,
                 'ry' : 100 / coords.h,
