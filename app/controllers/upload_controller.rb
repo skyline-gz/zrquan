@@ -11,41 +11,21 @@ class UploadController < ApplicationController
 
 
   def upload_avatar
-    uploaded_avatar = params["picture"].read
     case params["handle_mode"]
       when 'save'
-        # 利用md5构造唯一的文件名及临时文件
-        type = MIME::Types[params["picture"].content_type].first.extensions.first
-        dest_id = Digest::MD5.hexdigest(uploaded_avatar)
-        tempfile = Tempfile.new([dest_id, "\." + type], '/tmp')
-        File.open(tempfile, "wb") do |f|
-          f.write uploaded_avatar
-        end
-        # 存储到七牛云
-        uploader = AvatarUploader.new(current_user, "avartars")
-        uploader.store!(tempfile)
-
-        file_path = uploader.file.path
-        current_user.avatar = file_path
-        current_user.save
-
-        # 释放临时文件
-        tempfile.close
-        tempfile.unlink
-        render :json => {:code => 'S_OK', :url => Settings.upload_url + file_path}
+        create_and_save_tempfile(params["picture"].read, params["picture"].content_type)
         return
       when 'cache'
+        uploaded_avatar = params["picture"].read
         cache_obj = {:content_type => params["picture"].content_type, :fileblob => uploaded_avatar}
         dest_id = Digest::MD5.hexdigest(uploaded_avatar)
         UploadCache.instance.write(dest_id, cache_obj)
-        temp_avatar_url = request.protocol + request.host_with_port + '/upload/preview_avatar?dest_id=' + dest_id
-        #返回到iframe中执行
-        #Todo 将此部分放在views里面，再render
-        render html: ('<script>parent.Zrquan.Users.Show.resizeAvatarModalView.showModal("resizeAvatarModal",{\'url\':\''
-        +temp_avatar_url + '\',\'dest_id\':\''+ dest_id + '\'});</script>').html_safe
+        @image_url = request.protocol + request.host_with_port + '/upload/preview_avatar?dest_id=' + dest_id
+        @dest_id = dest_id
+        render template: 'users/show.av_iframe'
         return
       when 'resize'
-
+        crop_avatar
         return
       else
     end
@@ -71,11 +51,37 @@ private
     cache_obj = UploadCache.instance.read(key)
     if cache_obj
       image = MiniMagick::Image.read(cache_obj[:fileblob])
-      image.crop('10x10+10+10')
-      send_data image.to_blob, :type => 'image/png',:disposition => 'inline'
+      image.crop("#{w}x#{h}+#{x}+#{y}")
+      image.resize "100x100"
+
+      create_and_save_tempfile(image.to_blob, cache_obj[:content_type])
       return
     end
     render text: "cache expired"
+  end
+
+  def create_and_save_tempfile (file_blob, content_type)
+    # 利用md5构造唯一的文件名及临时文件
+    type = MIME::Types[content_type].first.extensions.first
+
+    dest_id = Digest::MD5.hexdigest(file_blob)
+    tempfile = Tempfile.new([dest_id, "\." + type], '/tmp')
+    File.open(tempfile, "wb") do |f|
+      f.write file_blob
+    end
+
+    # 存储到七牛云
+    uploader = AvatarUploader.new(current_user, "avartars")
+    uploader.store!(tempfile)
+
+    file_path = uploader.file.path
+    current_user.avatar = file_path
+    current_user.save
+
+    # 释放临时文件
+    tempfile.close
+    tempfile.unlink
+    render :json => {:code => 'S_OK', :url => Settings.upload_url + file_path}
   end
 
   def allow_iframe

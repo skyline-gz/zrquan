@@ -71,10 +71,8 @@ Rails.application.routes.draw do
   get 'upload/preview_avatar'
 
   # 为了满足assets pipeline,对于css采用相对路径'../images'等访问
-  get "assets/images/:id" => redirect("assets/%{id}"), constraints: {id: /.*/}
-  get "images/:id" => redirect("assets/%{id}"), constraints: {id: /.*/}
+  get 'assets/images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}
+  get 'images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}
 
   root 'home#home'
-
-  # mount Zrquan::API => "/"
 end

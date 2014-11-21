@@ -113,6 +113,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             }
 
             if(enableClientCrop) {
+                // 如果支持html5，则直接通过canvas绘图截图
                 var avatarBase64File = this.cropAvatar(this.jcrop_coords);
                 var data = new FormData();
                 data.append('picture', dataURItoBlob(avatarBase64File));
@@ -126,33 +127,23 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     processData: false,
                     type: 'POST',
                     success: function(data){
-                        console.log("ajax.multipart form data success" + data);
+                        console.log("Client Crop and Server save image success" + data);
                         Zrquan.appEventBus.trigger('reload:avatar', data.url);
                         that.hideModal();
                     }
                 });
             } else {
+                var coords = this.jcrop_coords;
+                var resizeRatio = this._getResizeRatio(coords);
+
                 //第二次提交，可以是xhr方式,提交 jcorp的裁剪结果，返回路径
-                Zrquan.Request.ajax({
-                    url: '/upload/upload_avatar',
-                    data: data,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    type: 'POST',
-                    success: function(data){
-                        console.log("ajax.multipart form data success" + data);
-                        Zrquan.appEventBus.trigger('reload:avatar', data.url);
-                        that.hideModal();
-                    }
-                });
                 var requestObj = {
                     'handle_mode': 'resize',
                     'dest_id' : this.dest_id,
-                    'x': this.jcrop_coords.x,
-                    'y': this.jcrop_coords.y,
-                    'w': this.jcrop_coords.w,
-                    'h': this.jcrop_coords.h
+                    'x': Math.round(coords.x / resizeRatio.rox),
+                    'y': Math.round(coords.y / resizeRatio.roy),
+                    'w': Math.round(coords.w /resizeRatio.rox),
+                    'h': Math.round(coords.h /resizeRatio.roy)
                 };
 
                 $.when(Zrquan.Ajax.request({
@@ -160,8 +151,9 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     data: requestObj
                 })).then(function(result){
                     if(result["code"] == "S_OK") {
+                        console.log("Server Crop and save image success");
+                        Zrquan.appEventBus.trigger('reload:avatar', data.url);
                         that.hideModal();
-                        console.log("Server Size Crop success");
                     }
                 });
             }
@@ -170,24 +162,19 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             var context = this.ui.canvas[0].getContext('2d');
             var resizeRatio = this._getResizeRatio(coords);
 
-            // 如果支持html5，则直接通过canvas绘图截图
             //为Canvas设置背景色,以防透明图片背景变黑
             context.fillStyle = "#fff";
             context.fillRect(0,0,100,100);
 
             var sourceX = Math.round(coords.x / resizeRatio.rox);
-            var sourceY = Math.round(coords.y / resizeRatio.roy) ;
+            var sourceY = Math.round(coords.y / resizeRatio.roy);
             var sourceWidth = Math.round(coords.w /resizeRatio.rox);
             var sourceHeight = Math.round(coords.h /resizeRatio.roy);
-            var destWidth = 100;
-            var destHeight = 100;
-            var destX = 0;
-            var destY = 0;
             context.antialias = 'subpixel';
             context.filter = 'best';
             context.patternQuality = 'best';
             context.oImageSmoothingEnabled = context.mozImageSmoothingEnabled = context.webkitImageSmoothingEnabled = context.imageSmoothingEnabled = true;
-            context.drawImage(this.ui.image[0], sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+            context.drawImage(this.ui.image[0], sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, 100, 100);
 
             //get the image data from the canvas
             return this.ui.canvas[0].toDataURL("image/png");
