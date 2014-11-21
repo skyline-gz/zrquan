@@ -52,12 +52,9 @@ Modal.prototype.show = function (_relatedTarget) {
     this.escape();
 
     //居中显示
-//    this.position();
-    setTimeout(function(){
-        that.position();
-    });
+    this.moveCenter();
 
-    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this));
+//    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this));
 
     this.backdrop(function () {
         var transition = $.support.transition && that.$element.hasClass('fade');
@@ -139,7 +136,7 @@ Modal.prototype.escape = function () {
     }
 };
 
-Modal.prototype.position = function () {
+Modal.prototype.moveCenter = function () {
     var contentInstance = $(".modal-content", this.$element);
     var screenWidth = $(window).width();
     var screenHeight = $(window).height();

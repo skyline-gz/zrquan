@@ -51,13 +51,11 @@ private
     cache_obj = UploadCache.instance.read(key)
     if cache_obj
       image = MiniMagick::Image.read(cache_obj[:fileblob])
-      image.combine_options do |b|
-        b.background "#ffffff00"
-        b.flatten
-        b.extent("#{w}x#{h}+#{x}+#{y}")
-        b.resize "100x100!"
-      end
-
+      # see http://www.imagemagick.org/script/convert.php
+      image.background("#ffffff00")
+      image.flatten
+      image.extent("#{w}x#{h}+#{x}+#{y}")
+      image.resize "100x100!"
       create_and_save_tempfile(image.to_blob, cache_obj[:content_type])
       return
     end

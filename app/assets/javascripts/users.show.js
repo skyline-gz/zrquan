@@ -214,6 +214,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             }, function(){
                 // Store the Jcrop API in the jcrop_api variable
                 that.jcrop_api = this;
+                that.moveCenter();
             });
         },
         //options格式 {file:file对象(HTML5 Crop有效时使用filer reader加载), url: str(IE9下加载)}
@@ -248,8 +249,15 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             Zrquan.UI.ModalView.prototype.showModal.call(this, modalName);
 
         },
+        hideModal: function () {
+            this.jcrop_api.destroy();
+            this.ui.image.css({ 'width' : '', 'height' : '' });
+            Zrquan.UI.ModalView.prototype.hideModal.call(this);
+        },
         initialize: function() {
             this.listenTo(usersEventBus, 'modal:show', this.showModal);
+            //super
+            Zrquan.UI.ModalView.prototype.initialize.call(this);
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {

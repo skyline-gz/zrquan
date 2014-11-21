@@ -81,6 +81,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         initialize: function() {
             this.listenTo(navbarEventBus, 'modal:show', this.showModal);
             this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
+            Zrquan.UI.ModalView.prototype.initialize.call(this);
         }
     });
 
