@@ -1,7 +1,7 @@
 Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
     var usersEventBus = Module.usersEventBus = new Backbone.Wreqr.EventAggregator();
-    var enableClientCrop = false || Zrquan.Base.support.file && Zrquan.Base.support.canvas;
+    var enableClientCrop = false && Zrquan.Base.support.file && Zrquan.Base.support.canvas;
 
     Module.addInitializer(function() {
         console.log("Module Users.Show init...");
@@ -21,18 +21,28 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         el: ".user-top",
         events: {
             'mouseover .user-profile-logo' : 'showChangeAvatarTips',
+            'mouseover input[name=picture]' : 'showChangeAvatarTips',
             'click .user-profile-logo-edit-button' : 'onChangeAvatarClick',
-            'change #image_file': 'onAvatarSelect'
+            'change input[name=picture]': 'onAvatarSelect'
         },
         showChangeAvatarTips : function() {
             this.$('.user-profile-logo-edit-button').show();
         },
         onChangeAvatarClick : function() {
-            $("input[name=image_file]").click();
+            //IE6 ~ 9 因安全机制不能用JS触发input click事件
+            if(!enableClientCrop) {
+                this.$("input[name=picture]").click();
+            }
         },
         onAvatarSelect : function() {
-            var oFile = $('#image_file')[0].files[0];
-            usersEventBus.trigger('modal:show', 'resizeAvatarModal', oFile);
+            var oFile = this.$('input[name=picture]')[0].files[0];
+            if(enableClientCrop) {
+                usersEventBus.trigger('modal:show', 'resizeAvatarModal', {'file': oFile});
+            } else {
+                //file onchage 时提交表单到服务器中缓存
+                this.$('input[name=handle_mode]').val('cache');
+                this.$('#av_up_form').submit();
+            }
         },
         checkAndHideChangeAvatarTips : function(evt) {
             if($(evt.target).hasParent(".user-profile-logo,.user-profile-logo-edit-button,input[name=picture]").length == 0) {
@@ -182,26 +192,31 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 that.jcrop_api = this;
             });
         },
-        showModal: function(modalName, oFile) {
+        //options格式 {file:file对象(HTML5 Crop有效时使用filer reader加载), url: str(IE9下加载)}
+        showModal: function(modalName, options) {
             var that = this;
+            var oImage = this.ui.image[0];
+            var oPreview = that.ui.preview[0];
 
             if(enableClientCrop) {
-                var oImage = this.ui.image[0];
                 // prepare HTML5 FileReader
                 var oReader = new FileReader();
                 oReader.onload = function(e) {
                     // e.target.result contains the DataURL which we can use as a source of the image
                     //todo:检测文件大小和文件类型，出错提示
-                    oImage.src = e.target.result;
-                    that.ui.preview[0].src = e.target.result;
+                    oPreview.src = oImage.src = e.target.result;
                     oImage.onload = function () { // onload event handler
                         that.initJCorp();
                     };
                 };
                 // read selected file as DataURL
-                oReader.readAsDataURL(oFile);
+                oReader.readAsDataURL(options.file);
             } else {
                 //返回文件路径后，初始化jcrop
+                oPreview.src = oImage.src = options.url;
+                oImage.onload = function () { // onload event handler
+                    that.initJCorp();
+                };
                 //第二次提交，可以是xhr方式,提交 jcorp的裁剪结果，返回路径
             }
 

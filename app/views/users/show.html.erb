@@ -11,12 +11,12 @@
                 <img class="user-profile-logo" src="../images/noface.gif">
               <% end %>
 
-              <form target="av_up_frame" method="post" enctype="multipart/form-data"
-                    action="http://localhost:3000/upload/upload_avatar" style="">
-                <input type="file" accept="image/*" name="picture" id="image_file">
+              <form id='av_up_form' target="av_up_frame" method="post" enctype="multipart/form-data"
+                    action="http://localhost:3000/upload/upload_avatar">
+                <input type="file" accept="image/*" name="picture">
                 <input type="hidden" name="handle_mode" value="cache">
                 <!--<input type="hidden" name="handle_mode" value="resize">-->
-                <!--<input type="hidden" name="dest_id" value="668baec661da36f56ad735997c001dd8">-->
+                <input type="hidden" name="dest_id" value="">
               </form>
               <span class="user-profile-logo-edit-button">修改头像</span>
             </div>
