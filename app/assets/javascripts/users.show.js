@@ -82,6 +82,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         modalName: 'resizeAvatarModal',
         jcrop_api: null,
         jcrop_coords: null,
+        dest_id: "",   //仅非HTML5 crop时有用，缓存第一次cache图片的哈希
         ui: {
            'image' : '#jcrop_target',
            'canvas': '#crop_canvas',
@@ -101,10 +102,6 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         resizeNSaveAvatar: function() {
             var that = this;
-            var avatarBase64File = this.cropAvatar(this.jcrop_coords);
-            var data = new FormData();
-            data.append('picture', dataURItoBlob(avatarBase64File));
-            data.append('handle_mode', 'save');
 
             function dataURItoBlob(dataURI) {
                 var binary = atob(dataURI.split(',')[1]);
@@ -115,19 +112,59 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 return new Blob([new Uint8Array(array)], {type: 'image/png'});
             }
 
-            $.ajax({
-                url: '/upload/upload_avatar',
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'POST',
-                success: function(data){
-                    console.log("ajax.multipart form data success" + data);
-                    Zrquan.appEventBus.trigger('reload:avatar', data.url);
-                    that.hideModal();
-                }
-            });
+            if(enableClientCrop) {
+                var avatarBase64File = this.cropAvatar(this.jcrop_coords);
+                var data = new FormData();
+                data.append('picture', dataURItoBlob(avatarBase64File));
+                data.append('handle_mode', 'save');
+
+                $.ajax({
+                    url: '/upload/upload_avatar',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        console.log("ajax.multipart form data success" + data);
+                        Zrquan.appEventBus.trigger('reload:avatar', data.url);
+                        that.hideModal();
+                    }
+                });
+            } else {
+                //第二次提交，可以是xhr方式,提交 jcorp的裁剪结果，返回路径
+                Zrquan.Request.ajax({
+                    url: '/upload/upload_avatar',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        console.log("ajax.multipart form data success" + data);
+                        Zrquan.appEventBus.trigger('reload:avatar', data.url);
+                        that.hideModal();
+                    }
+                });
+                var requestObj = {
+                    'handle_mode': 'resize',
+                    'dest_id' : this.dest_id,
+                    'x': this.jcrop_coords.x,
+                    'y': this.jcrop_coords.y,
+                    'w': this.jcrop_coords.w,
+                    'h': this.jcrop_coords.h
+                };
+
+                $.when(Zrquan.Ajax.request({
+                    url: "/upload/upload_avatar",
+                    data: requestObj
+                })).then(function(result){
+                    if(result["code"] == "S_OK") {
+                        that.hideModal();
+                        console.log("Server Size Crop success");
+                    }
+                });
+            }
         },
         cropAvatar: function(coords) {
             var context = this.ui.canvas[0].getContext('2d');
@@ -214,10 +251,10 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             } else {
                 //返回文件路径后，初始化jcrop
                 oPreview.src = oImage.src = options.url;
+                this.dest_id = options.dest_id;
                 oImage.onload = function () { // onload event handler
                     that.initJCorp();
                 };
-                //第二次提交，可以是xhr方式,提交 jcorp的裁剪结果，返回路径
             }
 
             //super

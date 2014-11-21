@@ -69,7 +69,6 @@ Rails.application.routes.draw do
   # 头像上传
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
-  get 'upload/crop_avatar'
 
   # 为了满足assets pipeline,对于css采用相对路径'../images'等访问
   get "assets/images/:id" => redirect("assets/%{id}"), constraints: {id: /.*/}
