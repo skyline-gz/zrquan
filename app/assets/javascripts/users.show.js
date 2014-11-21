@@ -93,6 +93,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             'click .btn-primary' : 'resizeNSaveAvatar'
         },
         _getImageNatureRect: function() {
+            var that = this;
             var image = this.ui.image[0];
             if(image.naturalWidth) {
                 this.image_nature_rect.width = image.naturalWidth;
@@ -101,8 +102,8 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 var nImage = new Image(); // or document.createElement('img')
                 var width, height;
                 nImage.onload = function() {
-                    width = this.width;
-                    height = this.height;
+                    that.image_nature_rect.width = this.width;
+                    that.image_nature_rect.height = this.height;
                 };
                 nImage.src = image.src;
             }
@@ -231,8 +232,10 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             }, function(){
                 // Store the Jcrop API in the jcrop_api variable
                 that.jcrop_api = this;
-                that.moveCenter();
                 that._getImageNatureRect();
+                setTimeout(function(){
+                    that.moveCenter();
+                }, 10);
             });
         },
         //options格式 {file:file对象(HTML5 Crop有效时使用filer reader加载), url: str(IE9下加载)}

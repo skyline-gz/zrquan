@@ -56,7 +56,7 @@ private
       image.flatten
       image.extent("#{w}x#{h}+#{x}+#{y}")
       image.resize "100x100!"
-      create_and_save_tempfile(image.to_blob, cache_obj[:content_type])
+      create_and_save_tempfile(image.to_blob, image.mime_type)
       return
     end
     render text: "cache expired"
