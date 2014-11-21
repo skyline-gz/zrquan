@@ -1,7 +1,7 @@
 Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
     var usersEventBus = Module.usersEventBus = new Backbone.Wreqr.EventAggregator();
-    var enableClientCrop = Zrquan.Base.support.file && Zrquan.Base.support.canvas;
+    var enableClientCrop = false && Zrquan.Base.support.file && Zrquan.Base.support.canvas;
 
     Module.addInitializer(function() {
         console.log("Module Users.Show init...");
@@ -82,6 +82,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         modalName: 'resizeAvatarModal',
         jcrop_api: null,
         jcrop_coords: null,
+        image_nature_rect: {width:0, height:0},
         dest_id: "",   //仅非HTML5 crop时有用，缓存第一次cache图片的哈希
         ui: {
            'image' : '#jcrop_target',
@@ -91,13 +92,30 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         events: {
             'click .btn-primary' : 'resizeNSaveAvatar'
         },
+        _getImageNatureRect: function() {
+            var image = this.ui.image[0];
+            if(image.naturalWidth) {
+                this.image_nature_rect.width = image.naturalWidth;
+                this.image_nature_rect.height = image.naturalHeight;
+            } else {
+                var nImage = new Image(); // or document.createElement('img')
+                var width, height;
+                nImage.onload = function() {
+                    width = this.width;
+                    height = this.height;
+                };
+                nImage.src = image.src;
+            }
+        },
         _getResizeRatio : function(coords) {
             var holder = this.$('.jcrop-holder')[0];
+            console.log(holder.offsetWidth + "adsf" + this.image_nature_rect.width);
+            console.log(holder.offsetHeight + "adsf" + this.image_nature_rect.height);
             return {
                 'rx' : 100 / coords.w,
                 'ry' : 100 / coords.h,
-                'rox' : holder.offsetWidth / this.ui.image[0].width,
-                'roy' : holder.offsetHeight / this.ui.image[0].height
+                'rox' : holder.offsetWidth / this.image_nature_rect.width,
+                'roy' : holder.offsetHeight / this.image_nature_rect.height
             };
         },
         resizeNSaveAvatar: function() {
@@ -181,12 +199,11 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         },
         //预览头像
         previewAvatar: function(coords) {
-            var oImage = this.ui.image[0];
             var resizeRatio = this._getResizeRatio(coords);
 
             this.ui.preview.css({
-                width: Math.round(resizeRatio.rx * oImage.width * resizeRatio.rox) + 'px',
-                height: Math.round(resizeRatio.ry * oImage.height * resizeRatio.roy) + 'px',
+                width: Math.round(resizeRatio.rx * this.image_nature_rect.width * resizeRatio.rox) + 'px',
+                height: Math.round(resizeRatio.ry * this.image_nature_rect.height * resizeRatio.roy) + 'px',
                 marginLeft: '-' + Math.round(resizeRatio.rx * coords.x) + 'px',
                 marginTop: '-' + Math.round(resizeRatio.ry * coords.y) + 'px'
             });
@@ -215,6 +232,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 // Store the Jcrop API in the jcrop_api variable
                 that.jcrop_api = this;
                 that.moveCenter();
+                that._getImageNatureRect();
             });
         },
         //options格式 {file:file对象(HTML5 Crop有效时使用filer reader加载), url: str(IE9下加载)}
