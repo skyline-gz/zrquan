@@ -126,9 +126,9 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     contentType: false,
                     processData: false,
                     type: 'POST',
-                    success: function(data){
-                        console.log("Client Crop and Server save image success" + data);
-                        Zrquan.appEventBus.trigger('reload:avatar', data.url);
+                    success: function(result){
+                        console.log("Client Crop and Server save image success :" + result);
+                        Zrquan.appEventBus.trigger('reload:avatar', result.url);
                         that.hideModal();
                     }
                 });
@@ -151,8 +151,8 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     data: requestObj
                 })).then(function(result){
                     if(result["code"] == "S_OK") {
-                        console.log("Server Crop and save image success");
-                        Zrquan.appEventBus.trigger('reload:avatar', data.url);
+                        console.log("Server Crop and save image success :" + result);
+                        Zrquan.appEventBus.trigger('reload:avatar', result.url);
                         that.hideModal();
                     }
                 });

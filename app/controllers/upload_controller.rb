@@ -52,6 +52,8 @@ private
     if cache_obj
       image = MiniMagick::Image.read(cache_obj[:fileblob])
       image.crop("#{w}x#{h}+#{x}+#{y}")
+      image.background("#ffffff00")
+      image.flatten
       image.resize "100x100"
 
       create_and_save_tempfile(image.to_blob, cache_obj[:content_type])
