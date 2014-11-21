@@ -71,12 +71,16 @@ private
     File.open(tempfile, "wb") do |f|
       f.write file_blob
     end
-
     # 存储到七牛云
     uploader = AvatarUploader.new(current_user, "avartars")
     uploader.store!(tempfile)
 
     file_path = uploader.file.path
+
+    if current_user.avatar
+      CarrierWave::Storage::Qiniu::File.new(uploader, current_user.avatar).delete
+    end
+
     current_user.avatar = file_path
     current_user.save
 
