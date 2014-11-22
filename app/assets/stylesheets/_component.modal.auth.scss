@@ -147,13 +147,14 @@
     }
   }
 
-  input {
+  input[type=text], input[type=password] {
     @include border-radius($border-radius-base);
     border: 1px solid #aaa;
     padding: 7px 6px;
-    line-height: 14px;
-    font-size: 14px;
     outline: none;
+    line-height: 16px;
+    height: 16px;
+    margin-bottom: 3px;
   }
 }
 
