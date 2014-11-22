@@ -9,7 +9,19 @@ class UploadController < ApplicationController
   # see http://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4?rq=1
   after_action :allow_iframe
 
-
+  # 上传流程
+  # 客户端先判断是否支持HTML5 Canvas截图和FileReader，则在前端用JCrop得到截图坐标后然后canvas截图，然后做如下调用
+  # picture: fileblob
+  # handle_mode: 'save'
+  # 返回经过七牛持久化的头像url
+  # 若不支持HTML5（IE6~9） 则分两次调用，第一次，将图片缓存到服务器端，返回暂时可访问的URL
+  # picture: file
+  # handle_mode: 'cache'
+  # 返回本地头像缓存（缓存3分钟）的url，以及dest_id以供下次调用
+  # 第二次向服务器发送Jcrop返回的截图坐标，在服务器端进行截图
+  # dest_id: 图片fileblob hash
+  # w h x y 使用Jcrop得到
+  # 返回经过七牛持久化的头像url
   def upload_avatar
     case params["handle_mode"]
       when 'save'
