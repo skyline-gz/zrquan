@@ -1,13 +1,12 @@
 Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
     'use strict';
     Zrquan.UI = Zrquan.UI || undefined;
-    var navbarEventBus = Module.navbarEventBus;
 
     //模态框抽象视图,对bootstrap.modal的简单封装
     Module.ModalView = Backbone.Marionette.ItemView.extend({
         modalName: "",
         events: {
-          'click button[data-dismiss="modal"]' : 'hideModal'
+          'click [data-dismiss="modal"]' : 'hideModal'
         },
         showModal: function (modalName) {
             if (modalName && modalName == this.modalName) {
