@@ -43,10 +43,15 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         start: function() {
             this.view = new Module.View();
             this.view.render();
-            Module.authModalView.render();
-            Module.activateModalView.render();
-            Module.forgetPasswordModalView.render();
-            Module.profileDropDownView.render();
+            this.checkAndRenderView(Module.authModalView);
+            this.checkAndRenderView(Module.activateModalView);
+            this.checkAndRenderView(Module.forgetPasswordModalView);
+            this.checkAndRenderView(Module.profileDropDownView);
+        },
+        checkAndRenderView: function(view) {
+            if(view && view.render) {
+                view.render();
+            }
         }
     });
 

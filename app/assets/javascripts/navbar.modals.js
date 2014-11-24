@@ -86,7 +86,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     });
 
     //登陆注册模态框视图
-    Module.authModalView = new (AuthBaseModalView.extend({
+    Module.authModalView = $('#authModal')[0] ? new (AuthBaseModalView.extend({
         el: '#authModal',
         modalName: 'authModal',
         ui: {
@@ -186,19 +186,16 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             this.listenTo(navbarEventBus, 'auth:switch', this.switchAuth);
             AuthBaseModalView.prototype.initialize.call(this);
         }
-    }))();
+    }))() : undefined;
 
     //激活成功模态框视图
-    Module.activateModalView = new (AuthBaseModalView.extend({
+    Module.activateModalView = $('#activateModal')[0] ? new (AuthBaseModalView.extend({
         el: '#activateModal',
-        modalName: 'activateModal',
-        events: {
-
-        }
-    }))();
+        modalName: 'activateModal'
+    }))() : undefined;
 
     //忘记密码模态框视图
-    Module.forgetPasswordModalView = new (AuthBaseModalView.extend({
+    Module.forgetPasswordModalView = $('#forgetPasswordModal')[0] ? new (AuthBaseModalView.extend({
         el: '#forgetPasswordModal',
         modalName: 'forgetPasswordModal',
         events: {
@@ -229,5 +226,5 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                 });
             }
         }
-    }))();
+    }))() : undefined;
 });
