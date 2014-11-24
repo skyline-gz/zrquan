@@ -123,12 +123,14 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         //   type: 系统通知类型
         //   content: 通知内容
         //   width:  指定宽度,默认为200px
+        //   duration: 显示时间,默认为5s
         showPopTips: function(options) {
             var tObj = {};
             _.extend(tObj, {
                 'type' : options.type || 'info',
                 'content': options.content || '',
-                'width' : options.width || '200px'
+                'width' : options.width || '200px',
+                'duration': options.duration || 5000
             });
             this.instance = this.template(tObj);
             this.$el.append(this.instance);
@@ -136,18 +138,19 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
             //显示5s 后自动收回
             $.support.transition ?
                 this.$el
-                    .one('bsTransitionEnd', $.proxy(this.hidePopTips, this))
+                    .one('bsTransitionEnd', $.proxy(this.hidePopTips, this, tObj.duration))
                     .emulateTransitionEnd(250) :
-                this.hidePopTips()
+                this.hidePopTips(tObj.duration);
         },
-        hidePopTips: function(){
+        hidePopTips: function(duration){
+            console.log(duration);
             var that = this;
             setTimeout(function(){
                 that.$el.css("top", "0px");
                 $.support.transition ?
                     that.$el.one('bsTransitionEnd',  $.proxy(that.removePopTips,that)).emulateTransitionEnd(250) :
                     that.removePopTips();
-            }, 5000)
+            }, duration);
         },
         removePopTips: function() {
             this.$el.empty();
