@@ -1,0 +1,22 @@
+<div class="modal" id="sysModal"></div>
+<script type="text/template" id="sys-modal-template">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">{{=title}}</div>
+          <a class="close" data-dismiss="modal">
+            <i class="icons-no"></i>
+          </a>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          {{ if (typeof(enableBtnCancel) != "undefined") {}}
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{=strBtnCancel}}</button>
+          {{ } }}
+          <button type="button" class="btn btn-primary">{{=strBtnOK}}</button>
+        </div>
+      </div>
+    </div>
+</script>
