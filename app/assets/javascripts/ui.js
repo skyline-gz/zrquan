@@ -105,4 +105,65 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         }
 
     }))();
+
+    //Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'测试提示内容'})
+    Module._sysPopTips = new (Backbone.Marionette.ItemView.extend({
+        el: '#popTips',
+        queue: [],
+        _showing: false,
+        template: _.template($('#pop-tips-template').html()),
+        onSysPoptipsCall: function(options) {
+            this.queue.push(_.extend({}, options));
+            if(!this._showing) {
+                this._showing = true;
+                this.showPopTips(this.queue.pop());
+            }
+        },
+        //options
+        //   type: 系统通知类型
+        //   content: 通知内容
+        //   width:  指定宽度,默认为200px
+        showPopTips: function(options) {
+            var tObj = {};
+            _.extend(tObj, {
+                'type' : options.type || 'info',
+                'content': options.content || '',
+                'width' : options.width || '200px'
+            });
+            this.instance = this.template(tObj);
+            this.$el.append(this.instance);
+            this.$el.css("top", "46px");
+            //显示5s 后自动收回
+            $.support.transition ?
+                this.$el
+                    .one('bsTransitionEnd', $.proxy(this.hidePopTips, this))
+                    .emulateTransitionEnd(250) :
+                this.hidePopTips()
+        },
+        hidePopTips: function(){
+            var that = this;
+            setTimeout(function(){
+                that.$el.css("top", "0px");
+                $.support.transition ?
+                    that.$el.one('bsTransitionEnd',  $.proxy(that.removePopTips,that)).emulateTransitionEnd(250) :
+                    that.removePopTips();
+            }, 5000)
+        },
+        removePopTips: function() {
+            this.$el.empty();
+            if(this.queue.length > 0) {
+                this.showPopTips(this.queue.pop());
+            } else {
+                this._showing = false;
+            }
+        },
+        render: function() {
+            this.bindUIElements(); // wire up this.ui, if any
+        },
+        initialize: function() {
+            this.listenTo(Zrquan.appEventBus, 'poptips:sys', this.onSysPoptipsCall);
+            Backbone.Marionette.ItemView.prototype.initialize.call(this);
+            console.log("System poptips service init...");
+        }
+    }))();
 });

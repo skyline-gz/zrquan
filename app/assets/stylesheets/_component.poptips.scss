@@ -1,6 +1,6 @@
 .popTips {
   position: absolute;
-  top: 46px;
+  top: 0px;
   width: 100%;
   z-index: $zindex-poptips;
   @include transition(top 0.5s ease);
