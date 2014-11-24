@@ -49,7 +49,7 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
     });
 
     //系统的alert, info, error,等模态框的服务
-    //只建议通过Zrquan.appEventBus.trigger('modal:sys',{type:'alert',onOK:function(){alert('123');}})
+    //只建议通过Zrquan.appEventBus.trigger('modal:sys',{type:'info',title:'测试提示标题',content:'测试提示内容',onOK:function(){alert('123');}})
     //方式调用
     Module._sysModalView = new (Module.ModalView.extend({
         el: '#sysModal',
@@ -63,19 +63,22 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         //options
         //   type: 系统模态框类型
         //   title: 系统模态框标题
+        //   content: 提示内容
         //   onOK:  点击确认OK按钮的回调
         onSysModalCall : function(options) {
             this.options = _.extend({}, options);
             var tObj = {};
-            _.extend(tObj, {'title': options.title || '系统提示'});
-            if(options.type == 'alert') {
+            _.extend(tObj, {
+                'title': options.title || '系统提示',
+                'type' : options.type || 'info',
+                'content': options.content || ''
+            });
+            if(options.type == 'info') {
                 _.extend(tObj, {
-                    'enableBtnCancel': undefined,
                     'strBtnOK': '确认'
                 });
             } else if (options.type == 'confirm') {
                 _.extend(tObj, {
-                    'enableBtnCancel': true,
                     'strBtnCancel': '取消',
                     'strBtnOK': '确认'
                 });
@@ -93,6 +96,7 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         },
         hideModal: function () {
             this.$el.empty();
+            Backbone.Marionette.ItemView.prototype.hideModal.call(this);
         },
         initialize: function() {
             this.listenTo(Zrquan.appEventBus, 'modal:sys', this.onSysModalCall);

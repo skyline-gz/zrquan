@@ -9,10 +9,13 @@
           </a>
         </div>
         <div class="modal-body">
-
+          {{ if (type == "info") {}}
+            <i class="icons-info"></i>
+          {{ } }}
+          <span>{{=content}}</span>
         </div>
         <div class="modal-footer">
-          {{ if (typeof(enableBtnCancel) != "undefined") {}}
+          {{ if (type == "confirm") {}}
             <button type="button" class="btn btn-default" data-dismiss="modal">{{=strBtnCancel}}</button>
           {{ } }}
           <button type="button" class="btn btn-primary">{{=strBtnOK}}</button>

@@ -1,9 +1,21 @@
 #sysModal {
   .modal-content {
-    width: 350px;;
+    width: 350px;
   }
 
   .modal-body {
     height: 120px;
+    line-height: 23px;
+    font-size: 14px;
+    font-weight: bold;
+
+    .icons-info {
+      display: block;
+      float: left;
+      margin: 3px 5px 0 2px;
+      width: 16px;
+      height: 16px;
+      background: url('../images/sprites-zh.png') -284px -131px;
+    }
   }
 }
