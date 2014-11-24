@@ -111,19 +111,33 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         el: '#popTips',
         queue: [],
         _showing: false,
+        _timeout: null,
         template: _.template($('#pop-tips-template').html()),
-        onSysPoptipsCall: function(options) {
-            this.queue.push(_.extend({}, options));
-            if(!this._showing) {
-                this._showing = true;
-                this.showPopTips(this.queue.pop());
-            }
-        },
         //options
         //   type: 系统通知类型
         //   content: 通知内容
         //   width:  指定宽度,默认为200px
         //   duration: 显示时间,默认为5s
+        //   immediate: 立即显示, 默认为false
+        onSysPoptipsCall: function(options) {
+            this.queue.unshift(_.extend({}, options));
+            if(options.immediate) {
+                if(this._timeout) {
+                    clearTimeout(this._timeout);
+                    this._timeout = null;
+                }
+                this.$el.addClass('no-transition').css("top","0px");
+                this.$el[0].offsetHeight;     // Trigger a reflow, flushing the CSS changes
+                this.$el.removeClass('no-transition');
+                this.$el.off('bsTransitionEnd');
+                this.removeNShowNextPopTips();
+            } else {
+                if(!this._showing) {
+                    this._showing = true;
+                    this.showPopTips(this.queue.pop());
+                }
+            }
+        },
         showPopTips: function(options) {
             var tObj = {};
             _.extend(tObj, {
@@ -143,16 +157,16 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
                 this.hidePopTips(tObj.duration);
         },
         hidePopTips: function(duration){
-            console.log(duration);
             var that = this;
-            setTimeout(function(){
+            this._timeout = setTimeout(function(){
                 that.$el.css("top", "0px");
                 $.support.transition ?
-                    that.$el.one('bsTransitionEnd',  $.proxy(that.removePopTips,that)).emulateTransitionEnd(250) :
-                    that.removePopTips();
+                    that.$el.one('bsTransitionEnd',  $.proxy(that.removeNShowNextPopTips,that)).emulateTransitionEnd(250) :
+                    that.removeNShowNextPopTips();
+                that._timeout = null;
             }, duration);
         },
-        removePopTips: function() {
+        removeNShowNextPopTips: function() {
             this.$el.empty();
             if(this.queue.length > 0) {
                 this.showPopTips(this.queue.pop());
