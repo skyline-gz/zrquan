@@ -96,12 +96,12 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         },
         hideModal: function () {
             this.$el.empty();
-            Backbone.Marionette.ItemView.prototype.hideModal.call(this);
+            Module.ModalView.prototype.hideModal.call(this);
         },
         initialize: function() {
             this.listenTo(Zrquan.appEventBus, 'modal:sys', this.onSysModalCall);
-            Backbone.Marionette.ItemView.prototype.initialize.call(this);
-            console.log('System modal service init...')
+            Module.ModalView.prototype.initialize.call(this);
+            console.log('System modal service init...');
         }
 
     }))();
