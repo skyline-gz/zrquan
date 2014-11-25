@@ -1,5 +1,5 @@
 /*!
- * jQuery Validation Plugin v1.13.1
+ * jQuery Validation Plugin v1.13.1 (职人圈定制版，欲升级此文件，注意覆盖改动)
  *
  * http://jqueryvalidation.org/
  *
@@ -246,7 +246,9 @@ $.extend( $.validator, {
 		groups: {},
 		rules: {},
 		errorClass: "error",
+        errorIconClass: "icon-validate-error",
 		validClass: "valid",
+        validIconClass: "icon-validate-ok",
 		errorElement: "label",
 		focusCleanup: false,
 		focusInvalid: true,
@@ -749,19 +751,23 @@ $.extend( $.validator, {
 		showLabel: function( element, message ) {
 			var place, group, errorID,
 				error = this.errorsFor( element ),
+                errorIcon,
 				elementID = this.idOrName( element ),
 				describedBy = $( element ).attr( "aria-describedby" );
 			if ( error.length ) {
 				// refresh error/success class
 				error.removeClass( this.settings.validClass ).addClass( this.settings.errorClass );
 				// replace message on existing label
-				error.html( message );
+                errorIcon = $("i", error).removeClass(this.settings.validIconClass).addClass(this.settings.errorIconClass);
+                error.empty().append(errorIcon, message);
 			} else {
+                errorIcon = $("<i>").addClass("icon " + this.settings.errorIconClass);
 				// create error element
 				error = $( "<" + this.settings.errorElement + ">" )
 					.attr( "id", elementID + "-error" )
 					.addClass( this.settings.errorClass )
-					.html( message || "" );
+                    .append(errorIcon)
+					.append( message || "" );
 
 				// Maintain reference to the element to be placed into the DOM
 				place = error;

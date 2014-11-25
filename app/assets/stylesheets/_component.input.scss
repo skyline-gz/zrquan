@@ -16,3 +16,27 @@
     box-shadow: 0 0 5px #ffcd76;
   }
 }
+
+.icon-validate-error {
+  background-position: -284px -131px;
+}
+
+.icon-validate-ok, .icon-validate-error {
+  margin-right: 3px;
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  background-image: url(../images/sprites-zh.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+//jquery.validate
+label.validate-ok, span.validate-ok, label.validate-info, span.validate-info, label.validate-error, span.validate-error {
+  margin-left: 7px;
+  line-height: 32px;
+}
+
+label.validate-error, span.validate-error {
+  color: #c33;
+}
