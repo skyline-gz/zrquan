@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   get 'upload/preview_avatar'
 
   #个人设置
+  get 'settings' => redirect('settings/password')
   get 'settings/password' => 'user_settings#show_password'
 
   # 为了满足assets pipeline,对于css采用相对路径'../images'等访问
