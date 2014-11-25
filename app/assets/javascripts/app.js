@@ -24,7 +24,12 @@ Zrquan = (function(Backbone){
         },
         _onMouseOverThrottled: _.throttle(function(evt){
             App.appEventBus.trigger('mouseover', evt);
-        }, 200)
+        }, 200),
+        initialize: function() {
+            $('.tooltipster').tooltipster({
+                theme: 'tooltipster-shadow'
+            });
+        }
     }))();
 
     App.startSubApp = function(appName){
