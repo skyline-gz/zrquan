@@ -71,9 +71,12 @@ Rails.application.routes.draw do
   get 'upload/preview_avatar'
 
   #个人设置
+  # 密码设置
   get 'settings' => redirect('settings/password')
   get 'settings/password' => 'user_settings#show_password'
   post 'settings/password' => 'users#update_password'
+  # 私信设置
+  get 'settings/notification' => 'user_settings#show_notification'
 
   # 为了满足assets pipeline,对于css采用相对路径'../images'等访问
   get 'assets/images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}
