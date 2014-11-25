@@ -1,6 +1,23 @@
+require "returncode_define.rb"
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow]
   before_action :authenticate_user!
+
+  # 个人设置，更改密码
+  def update_password
+    if params[:password] != params[:password_confirmation]
+      render :json => {:code => ReturnCode::FA_PASSWORD_INCONSISTENT}
+    end
+    @user = User.find(current_user.id)
+    if @user.update_with_password(user_update_password_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      render :json => {:code => ReturnCode::S_OK}
+    else
+      render :json => {:code => ReturnCode::FA_PASSWORD_ERROR}
+    end
+  end
 
   # 全用户列表
   def index
@@ -82,5 +99,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:last_name, :first_name, :signature, :avatar)
+    end
+
+    def user_update_password_params
+      params.permit(:current_password, :password, :password_confirmation)
     end
 end
