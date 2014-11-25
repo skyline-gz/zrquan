@@ -758,7 +758,7 @@ $.extend( $.validator, {
 				// refresh error/success class
 				error.removeClass( this.settings.validClass ).addClass( this.settings.errorClass );
 				// replace message on existing label
-                errorIcon = $("i", error).removeClass(this.settings.validIconClass).addClass(this.settings.errorIconClass);
+                errorIcon = $("<i>").addClass("icon " + this.settings.errorIconClass);
                 error.empty().append(errorIcon, message);
 			} else {
                 errorIcon = $("<i>").addClass("icon " + this.settings.errorIconClass);
