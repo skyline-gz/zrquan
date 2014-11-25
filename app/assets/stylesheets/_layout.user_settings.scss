@@ -1,0 +1,44 @@
+.user-setting {
+  padding-top: 25px;
+
+  .settings-intro {
+    color: #999;
+  }
+
+  .settings-section {
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .settings-item {
+    padding: 12px 0;
+    width: 100%;
+
+    .settings-item-title {
+      width: 65px;
+      text-align: left;
+      margin-right: 25px;
+      float: left;
+
+      &.with-input {
+        margin-top: 5px;
+        margin-bottom: 4px;
+      }
+    }
+
+    &+.settings-item {
+      border-top: 1px dotted #f2f2f2;
+    }
+  }
+
+  .settings-save {
+    margin-top: 25px;
+
+    .btn-save {
+      @include btn-base($border-radius-small);
+      padding: 4px 10px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+  }
+}
