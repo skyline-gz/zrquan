@@ -23,6 +23,7 @@
 //= require turbolinks
 //= require backbone
 //= require backbone.marionette
+//= require jquery.validate
 /**
  * 组件
  **/
