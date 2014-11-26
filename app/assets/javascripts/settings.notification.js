@@ -43,18 +43,6 @@ Zrquan.module('Settings.Notification', function(Module, App, Backbone, Marionett
                 }
             });
         },
-        syncCheckboxState: function() {
-            this.$('a[data-role=checkbox]').each(function(){
-               if($(this).attr("data-checked") == "true") {
-                   $(this).addClass("icon-selected");
-               } else {
-                   $(this).removeClass("icon-selected");
-               }
-            });
-        },
-        initialize: function() {
-            this.syncCheckboxState();
-        },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
             this.bindUIElements(); // wire up this.ui, if any

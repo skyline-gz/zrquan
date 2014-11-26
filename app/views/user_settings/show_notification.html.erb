@@ -21,7 +21,8 @@
       </div>
       <div class="pull-left settings-item-right">
         <a data-role="checkbox" data-checked="<%= @user_msg_setting.followed_flag ? 'true':'false' %>"
-           data-attr="followed_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+           data-attr="followed_flag" class="icon-mail tooltipster <%= @user_msg_setting.followed_flag ? 'icon-selected':'' %>"
+           title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -30,7 +31,8 @@
       </div>
       <div class="pull-left settings-item-right">
         <a data-role="checkbox" data-checked="<%= @user_msg_setting.pm_flag ? 'true':'false' %>"
-           data-attr="pm_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+           data-attr="pm_flag" class="icon-mail tooltipster <%= @user_msg_setting.pm_flag ? 'icon-selected':'' %>"
+           title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -39,7 +41,8 @@
       </div>
       <div class="pull-left settings-item-right">
         <a data-role="checkbox" data-checked="<%= @user_msg_setting.agreed_flag ? 'true':'false' %>"
-           data-attr="agreed_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+           data-attr="agreed_flag" class="icon-mail tooltipster <%= @user_msg_setting.agreed_flag ? 'icon-selected':'' %>"
+           title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -48,7 +51,8 @@
       </div>
       <div class="pull-left settings-item-right">
         <a data-role="checkbox" data-checked="<%= @user_msg_setting.commented_flag ? 'true':'false' %>"
-           data-attr="commented_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+           data-attr="commented_flag" class="icon-mail tooltipster <%= @user_msg_setting.commented_flag ? 'icon-selected':'' %>"
+           title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -57,7 +61,8 @@
       </div>
       <div class="pull-left settings-item-right">
         <a data-role="checkbox" data-checked="<%= @user_msg_setting.answer_flag ? 'true':'false' %>"
-           data-attr="answer_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+           data-attr="answer_flag" class="icon-mail tooltipster <%= @user_msg_setting.answer_flag ? 'icon-selected':'' %>"
+           title="消息提醒" tabindex="0"></a>
       </div>
     </div>
   </section>
