@@ -38,7 +38,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
     };
 
     $('#company').typeahead({
-            //hint: true,
+            hint: true,
             highlight: true,
             minLength: 1
         },{
