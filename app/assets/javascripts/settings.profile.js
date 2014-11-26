@@ -13,16 +13,29 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         '腾讯网络科技'
     ];
 
-    // constructs the suggestion engine
-    var states = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        // `states` is an array of state names defined in "The Basics"
-        local: $.map(astates, function(state) { return { value: state }; })
-    });
+    var substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+            var matches, substrRegex;
 
-    // kicks off the loading/processing of `local` and `prefetch`
-    states.initialize();
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function(i, str) {
+                if (substrRegex.test(str)) {
+                    // the typeahead jQuery plugin expects suggestions to a
+                    // JavaScript object, refer to typeahead docs for more info
+                    matches.push({ value: str });
+                }
+            });
+
+            cb(matches);
+        };
+    };
 
     $('#company').typeahead({
             //hint: true,
@@ -31,8 +44,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         },{
             name: 'states',
             displayKey: 'value',
-            // `ttAdapter` wraps the suggestion engine in an adapter that
             // is compatible with the typeahead jQuery plugin
-            source: states.ttAdapter()
+            source: substringMatcher(astates)
         });
 });

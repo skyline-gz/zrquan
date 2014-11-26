@@ -35,7 +35,7 @@
 //漂亮的tooltips
 //= require jquery.tooltipster
 //twitter的自动完成库
-//= require typeahead.bundle
+//= require typeahead.jquery
 /**
  * 组件
  **/
