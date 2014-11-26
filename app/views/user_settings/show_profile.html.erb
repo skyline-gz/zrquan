@@ -14,4 +14,51 @@
     </li>
   </ul>
   <div class="settings-intro">修改你的个人档案。</div>
+  <!-- data-remote data-type 由jquery-ujs作ajax form submit的准备 -->
+  <form action="/settings/profile" method="POST" id="password-setting-form"
+        autocomplete="off" novalidate="novalidate" data-remote="true" data-type="json">
+    <div class="settings-section">
+        <div class="settings-item clearfix">
+          <label for="company" class="settings-item-title with-input">公司</label>
+          <div class="settings-item-content">
+            <input type="text" autocomplete="off" class="component-input"
+                   name="company" id="company" placeholder="公司" required="">
+          </div>
+        </div>
+        <div class="settings-item clearfix">
+          <label for="position" class="settings-item-title with-input">职位</label>
+          <div class="settings-item-content">
+            <input type="text" autocomplete="off" class="component-input"
+                   name="position" id="position" placeholder="职位" required="">
+          </div>
+        </div>
+        <div class="settings-item clearfix">
+          <label for="location" class="settings-item-title with-input">所在地</label>
+          <div class="settings-item-content">
+            <input type="text" autocomplete="off" class="component-input"
+                   name="location" id="location" placeholder="所在地" required="">
+          </div>
+        </div>
+        <div class="settings-item clearfix">
+          <label for="location" class="settings-item-title with-input">学校</label>
+          <div class="settings-item-content">
+            <input type="text" autocomplete="off" class="component-input"
+                   name="education" id="education" placeholder="学校" required="">
+          </div>
+        </div>
+        <div class="settings-item clearfix">
+          <label for="major" class="settings-item-title with-input">专业</label>
+          <div class="settings-item-content">
+            <input type="text" autocomplete="off" class="component-input"
+                   name="major" id="major" placeholder="专业" required="">
+          </div>
+        </div>
+    </div>
+    <div class="settings-save">
+        <button type="submit" class="btn-save">保存</button>
+    </div>
+  </form>
 </div>
+<% content_for :page_javascript do %>
+    <%= javascript_include_tag "settings.profile" %>
+<% end %>

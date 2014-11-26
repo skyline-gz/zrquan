@@ -32,8 +32,10 @@
  **/
 //支持input控件输入的validate
 //= require jquery.validate
-//自定义tooltips
+//漂亮的tooltips
 //= require jquery.tooltipster
+//twitter的自动完成库
+//= require typeahead.bundle
 /**
  * 组件
  **/
