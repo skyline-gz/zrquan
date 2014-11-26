@@ -153,14 +153,13 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                     url: "/registrations",
                     data: requestObj
                 })).then(function(result){
+                    //todo: SMTP认证失败时不应该rollback，暂时前端处理与发送成功一致
                     if(result["code"] == "S_OK" || result["code"] == "FA_SMTP_AUTHENTICATION_ERROR") {
                         that.hideModal();
-                        //注册成功，刷新一次页面
-                        location.href = result["redirect"];
-                        navbarEventBus.trigger('modal:show', 'activateModal');
                         var matches = Zrquan.Regex.EMAIL.exec(requestObj.user.email);
-                        that.$("#activateLink").prop("href", "http://mail." + matches[1]);
-                    }else if(result["code"] == "FA_USER_ALREADY_EXIT") {
+                        navbarEventBus.trigger('activateModal:set', "http://mail." + matches[1], result.redirect);
+                        navbarEventBus.trigger('modal:show', 'activateModal');
+                    } else if(result["code"] == "FA_USER_ALREADY_EXIT") {
                         that.addErrorTips("#sign-up-email", "该账号已经存在");
                     }
                 });
@@ -191,7 +190,19 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     //激活成功模态框视图
     Module.activateModalView = $('#activateModal')[0] ? new (AuthBaseModalView.extend({
         el: '#activateModal',
-        modalName: 'activateModal'
+        modalName: 'activateModal',
+        redirect: null,
+        setActivateModal: function(strLink, redirect) {
+            this.$("#activateLink").prop("href", strLink);
+            this.redirect = redirect || location.href;
+        },
+        hideModal: function() {
+            location.href = this.redirect;
+        },
+        initialize: function() {
+            this.listenTo(navbarEventBus, 'activateModal:set', this.setActivateModal);
+            AuthBaseModalView.prototype.initialize.call(this);
+        }
     }))() : undefined;
 
     //忘记密码模态框视图
