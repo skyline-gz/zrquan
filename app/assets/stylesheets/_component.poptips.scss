@@ -1,0 +1,31 @@
+.popTips {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: $zindex-poptips;
+  @include transition(top 0.5s ease);
+
+  .popTipsContent {
+    text-align: center;
+    width: 200px;
+    height: 24px;
+    margin: 0 auto;
+    padding: 3px 8px;
+    background-repeat: repeat-x;
+    @include border-bottom-radius($border-radius-base);
+    color: #ffffff;
+    font-weight: bold;
+
+    &.info {
+      background: $base-color;
+      background-color: $base-color;
+      @include background-image(linear-gradient(top, #f2b35e,$base-color));
+    }
+
+    &.error {
+      background:  #E68B87;
+      background-color: #E68B87;
+      @include background-image(linear-gradient(top, #ed8f8b, #dc837f));
+    }
+  }
+}

@@ -2,6 +2,7 @@
 @import "compass/reset";
 
 //预定义常量
+@import "base";
 @import "variables";
 
 //预定义函数
@@ -12,18 +13,24 @@
 
 //引用插件依赖的样式
 @import "lib/jquery.jcrop";
+@import "lib/tooltipster";
+@import "lib/typeahead";
 
 //通用组件
+@import "component.input";
 @import "component.button";
 @import "component.modal";
 @import "component.subject";
 @import "component.infoblock";
 @import "component.userblock";
 @import "component.categories";
+@import "component.tab_nav";
 
 //自定义组件
+@import "component.modal.system";
 @import "component.modal.auth";
 @import "component.modal.resize_avatar";
+@import "component.poptips";
 @import "component.popover.profile";
 
 //布局
@@ -32,6 +39,7 @@
 @import "layout.navigation";
 @import "layout.home";
 @import "layout.user";
+@import "layout.user_settings";
 @import "layout.verified_users_list";
 @import "layout.question";
 @import "layout.questions_list";

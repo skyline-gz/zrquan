@@ -11,18 +11,31 @@
 // about supported directives.
 //
 /**
- * 基本库
+ * 调试相关
  **/
 //跨浏览器debug支持
 //= require consolelog
 //支持IE8/IOS6-/Safari 11-的console debug
 //= require consolelog.detailprint
+/**
+ * 基本库
+ **/
 //= require underscore
 //= require jquery
+//支持rails ajax提交表单
 //= require jquery_ujs
 //= require turbolinks
 //= require backbone
 //= require backbone.marionette
+/**
+ * 插件
+ **/
+//支持input控件输入的validate
+//= require jquery.validate
+//漂亮的tooltips
+//= require jquery.tooltipster
+//twitter的自动完成库
+//= require typeahead.bundle
 /**
  * 组件
  **/

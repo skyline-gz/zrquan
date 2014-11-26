@@ -27,7 +27,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
     # "uploads/avatars/" + current_user.id
     # "#{model.user.first_name}/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.title}"
     # 存储格式应该是　http://zrquan.qiniudn.com/uploads/user/avatars/user.id
-    # Todo: 这里存储的格式需要以后再测试，mounted_as如果访问不了，估计要hard code
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 

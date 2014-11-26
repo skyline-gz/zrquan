@@ -1,0 +1,111 @@
+.user-setting {
+  padding-top: 25px;
+
+  .settings-intro {
+    color: #999;
+  }
+
+  .settings-section {
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .settings-item-wrapper {
+
+    h2 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    p.settings-item-intro {
+      color: #999;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+  }
+
+  .settings-item {
+    padding: 12px 0;
+    width: 100%;
+
+    &+.settings-item {
+      border-top: 1px dotted #f2f2f2;
+    }
+
+    &.settings-item-solidline {
+      position: relative;
+      padding-top: 24px;
+      padding-bottom: 24px;
+
+      &+.settings-item-solidline {
+        border-top: 1px solid #eee;
+      }
+    }
+
+    .settings-item-title {
+      width: 65px;
+      text-align: left;
+      margin-right: 25px;
+      float: left;
+
+      &.with-input {
+        margin-top: 5px;
+        margin-bottom: 4px;
+      }
+    }
+
+    .settings-item-left {
+      width: 234px;
+      min-height: 30px;
+    }
+
+    .settings-item-right {
+      position: relative;
+
+      a.icon-mail {
+        float: left;
+        position: relative;
+        -webkit-user-select: none;
+        margin-right: 86px;
+        cursor: pointer;
+        outline: 0;
+        width: 32px;
+        height: 25px;
+        background-image: url(../images/icons-zh.png);
+        background-position: 0 0;
+        display: inline-block;
+      }
+
+      a.icon-selected:after {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: -1px;
+        content: '';
+        background-image: url(../images/icons-zh.png);
+        background-size: 83px 79px;
+        background-position: -23px -46px;
+        background-repeat: no-repeat;
+        width: 14px;
+        height: 14px;
+      }
+
+    }
+  }
+
+  .settings-save {
+    margin-top: 25px;
+
+    .btn-save {
+      @include btn-base($border-radius-small);
+      padding: 4px 10px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+  }
+}

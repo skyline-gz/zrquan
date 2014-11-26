@@ -7,9 +7,10 @@
     }
 
     .image-container {
-      width: 300px;
+      width: 350px;
       min-height: 100px;
       float: left;
+      position: relative;
     }
 
     .preview-container {
@@ -17,11 +18,12 @@
       width:100px;
       height:100px;
       overflow:hidden;
-      margin-left:5px;
+      margin-left:15px;
     }
 
     #jcrop_target {
       max-width: 100%;
+//      max-height: 500px;
     }
 
     #jcrop_preview {

@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   resources :private_messages, except: [:destroy, :edit, :update]
 
-  resources :user_msg_settings, only: [:edit, :update, :show]
-
   resources :consult_subjects, except: :destroy do
 		member do
 			post :accept
@@ -69,13 +67,25 @@ Rails.application.routes.draw do
   # 头像上传
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
-  get 'upload/crop_avatar'
+
+  # 个人设置
+  get 'settings' => redirect('settings/profile')
+
+  # 档案设置
+  get 'settings/profile' => 'user_settings#show_profile'
+  post 'settings/profile' => 'users#update_profile'
+
+  # 密码设置
+  get 'settings/password' => 'user_settings#show_password'
+  post 'settings/password' => 'users#update_password'
+
+  # 私信设置
+  get 'settings/notification' => 'user_settings#show_notification'
+  post 'settings/notification' => 'user_settings#edit_notification'
 
   # 为了满足assets pipeline,对于css采用相对路径'../images'等访问
-  get "assets/images/:id" => redirect("assets/%{id}"), constraints: {id: /.*/}
-  get "images/:id" => redirect("assets/%{id}"), constraints: {id: /.*/}
+  get 'assets/images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}
+  get 'images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}
 
   root 'home#home'
-
-  # mount Zrquan::API => "/"
 end

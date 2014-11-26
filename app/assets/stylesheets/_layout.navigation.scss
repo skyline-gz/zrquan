@@ -3,7 +3,7 @@ div[role=navigation] {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 20;
+  z-index: $zindex-navbar;
 
   height: $navigation-height;
   background-color: $navigation-background-color;
@@ -272,7 +272,7 @@ div[role=navigation] {
     }
 
     li a:hover {
-      background: #e0e0e0;
+      background: #EDEDED;
     }
 
     a.logout {

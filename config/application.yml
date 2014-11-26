@@ -1,0 +1,13 @@
+defaults: &defaults
+  upload_cache:
+    avatar_experied_minute: 10
+  upload_url: "http://zrquan.qiniudn.com/"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -12,7 +12,7 @@
     <div class="top-nav-searchbar">
       <form method="GET" action="/search" class="top-nav-search-form">
         <input type="text" class="top-nav-search-input" id="q" name="q"
-               autocomplete="off" value="" placeholder="搜索问题、经验或导师..." aria-haspopup="true">
+               autocomplete="off" value="" placeholder="搜索问题或职人..." aria-haspopup="true">
         <input type="hidden" name="type" value="question">
         <button type="submit" class="top-nav-search-submit">
           <i class="icons-search_s"></i></button>
@@ -24,7 +24,7 @@
           <li>
             <a class="user-link">
                 <% if current_user.avatar != nil %>
-                  <img src="<%=current_user.avatar%>" class="user-logo">
+                  <img src="<%= Settings.upload_url + current_user.avatar%>" class="user-logo">
                 <% else %>
                   <img src="../images/noface.gif" class="user-logo">
                 <% end %>
@@ -36,7 +36,7 @@
                   <i class="top-nav-icon-home"></i>我的主页</a>
               </li>
               <li>
-                <a href="/user_msg_settings/<%=current_user.id%>" tabindex="-1">
+                <a href="/settings" tabindex="-1">
                   <i class="top-nav-icon-settings"></i>设置</a>
               </li>
               <li>
@@ -45,8 +45,8 @@
               </li>
             </ul>
           </li>
-          <li><a class="message-link"><i class="icons-message"></i></a></li>
-          <li><a class="private-message-link"><i class="icons-private_message"></i></a></li>
+          <li><a class="message-link tooltipster" title="消息"><i class="icons-message"></i></a></li>
+          <li><a class="private-message-link tooltipster" title="私信"><i class="icons-private_message"></i></a></li>
         </ul>
     <% else %>
         <ul class="top-nav-noauth">

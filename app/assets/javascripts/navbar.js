@@ -27,21 +27,31 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         onShowProfileDropdown: function(e) {
             navbarEventBus.trigger('dropdown:show');
         },
+        reloadAvatar: function(url) {
+            this.$('img.user-logo').attr("src", url);
+        },
+        initialize: function() {
+            this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
+        },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
             this.bindUIElements(); // wire up this.ui, if any
         }
     });
 
-
     Module.Controller = Marionette.Controller.extend({
         start: function() {
             this.view = new Module.View();
             this.view.render();
-            Module.authModalView.render();
-            Module.activateModalView.render();
-            Module.forgetPasswordModalView.render();
-            Module.profileDropDownView.render();
+            this.checkAndRenderView(Module.authModalView);
+            this.checkAndRenderView(Module.activateModalView);
+            this.checkAndRenderView(Module.forgetPasswordModalView);
+            this.checkAndRenderView(Module.profileDropDownView);
+        },
+        checkAndRenderView: function(view) {
+            if(view && view.render) {
+                view.render();
+            }
         }
     });
 
