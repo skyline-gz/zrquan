@@ -68,11 +68,17 @@ Rails.application.routes.draw do
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
 
-  #个人设置
+  # 个人设置
+  get 'settings' => redirect('settings/profile')
+
+  # 档案设置
+  get 'settings/profile' => 'user_settings#show_profile'
+  post 'settings/profile' => 'users#update_profile'
+
   # 密码设置
-  get 'settings' => redirect('settings/password')
   get 'settings/password' => 'user_settings#show_password'
   post 'settings/password' => 'users#update_password'
+
   # 私信设置
   get 'settings/notification' => 'user_settings#show_notification'
   post 'settings/notification' => 'user_settings#edit_notification'

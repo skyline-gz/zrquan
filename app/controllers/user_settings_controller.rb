@@ -24,6 +24,15 @@ class UserSettingsController < ApplicationController
     end
   end
 
+  #档案设置
+  def show_profile
+
+  end
+
+  def update_profile
+
+  end
+
   private
   def set_user_msg_setting
     @user_msg_setting = UserMsgSetting.find(current_user.id)
