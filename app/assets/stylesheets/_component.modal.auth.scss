@@ -48,6 +48,7 @@
     .modal-input {
       position: relative;
       margin: 5px 0;
+      @extend .clearfix;
     }
 
     .modal-input-tips {
