@@ -13,6 +13,6 @@ class UserSettingsController < ApplicationController
 
   # 消息设置
   def show_notification
-
+    @user_msg_setting = UserMsgSetting.find(current_user.id)
   end
 end

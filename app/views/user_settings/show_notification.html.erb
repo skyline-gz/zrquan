@@ -20,7 +20,8 @@
         <h3>有人关注了我</h3>
       </div>
       <div class="pull-left settings-item-right">
-        <a data-role="checkbox" data-checked="true" data-attr="followed_flag" class="icon-mail tooltipster icon-selected" title="消息提醒" tabindex="0"></a>
+        <a data-role="checkbox" data-checked="<%= @user_msg_setting.followed_flag ? 'true':'false' %>"
+           data-attr="followed_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -28,7 +29,8 @@
         <h3>给我发了私信</h3>
       </div>
       <div class="pull-left settings-item-right">
-        <a data-role="checkbox" data-checked="false" data-attr="pm_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+        <a data-role="checkbox" data-checked="<%= @user_msg_setting.pm_flag ? 'true':'false' %>"
+           data-attr="pm_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -36,7 +38,8 @@
         <h3>赞同 / 感谢我的回答</h3>
       </div>
       <div class="pull-left settings-item-right">
-        <a data-role="checkbox" data-checked="false" data-attr="agreed_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+        <a data-role="checkbox" data-checked="<%= @user_msg_setting.agreed_flag ? 'true':'false' %>"
+           data-attr="agreed_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -44,7 +47,8 @@
         <h3>@ / 评论我</h3>
       </div>
       <div class="pull-left settings-item-right">
-        <a data-role="checkbox" data-checked="false" data-attr="commented_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+        <a data-role="checkbox" data-checked="<%= @user_msg_setting.commented_flag ? 'true':'false' %>"
+           data-attr="commented_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
       </div>
     </div>
     <div class="settings-item settings-item-solidline clearfix">
@@ -52,8 +56,12 @@
         <h3>关注的问题有了新回答</h3>
       </div>
       <div class="pull-left settings-item-right">
-        <a data-role="checkbox" data-checked="false" data-attr="answer_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
+        <a data-role="checkbox" data-checked="<%= @user_msg_setting.answer_flag ? 'true':'false' %>"
+           data-attr="answer_flag" class="icon-mail tooltipster" title="消息提醒" tabindex="0"></a>
       </div>
     </div>
   </section>
 </div>
+<% content_for :page_javascript do %>
+    <%= javascript_include_tag "settings.notification" %>
+<% end %>
