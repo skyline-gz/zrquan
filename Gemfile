@@ -92,4 +92,4 @@ gem 'mini_magick', '3.7.0'
 gem 'carrierwave-qiniu', '0.1.4'
 
 # 拼音处理
-gem 'ruby-pinyin', '0.４.3'
+gem 'ruby-pinyin', '0.4.3'
