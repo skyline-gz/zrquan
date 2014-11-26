@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :company do
     name "MyString"
-    city nil
+    location nil
     industry nil
     parent_company nil
     address "MyString"

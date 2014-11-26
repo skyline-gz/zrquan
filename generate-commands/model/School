@@ -1,1 +1,1 @@
-rails g model School name:string city:references address:string site:string description:text
+rails g model School name:string location:references address:string site:string description:text

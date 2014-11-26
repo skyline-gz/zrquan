@@ -1,7 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :city do
+  factory :location do
+    name "MyString"
+    region nil
     expense "MyText"
     strong_industry "MyText"
     entry_policy "MyText"

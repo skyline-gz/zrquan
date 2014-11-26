@@ -2,7 +2,7 @@ class CreateCompanies < ActiveRecord::Migration
   def change
     create_table :companies do |t|
       t.string :name
-      t.references :city, index: true
+      t.references :location, index: true
       t.references :industry, index: true
       t.references :parent_company, index: true
       t.string :address

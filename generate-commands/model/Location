@@ -1,0 +1,1 @@
+rails g model Location name:string region:references expense:text strong_industry:text entry_policy:text support_policy:text description:text

@@ -1,9 +1,4 @@
-<%-
-  province = '440000'
-  city = '440300'
-  provinces  = ChinaCity.list
-  cities     = ChinaCity.list(province)
-%>
+
 <%= form_for(@user, :html => {:multipart => true}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -28,20 +23,6 @@
   <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
-  </div>
-	<!--<div class='html-tag city-group'>
-		<select class='city-select city-province'>
-		  <option>--省份--</option>
-		  <%= options_for_select(provinces) %>
-		</select>
-		<select class='city-select city-city'>
-		  <option>--城市--</option>
-		  <%= options_for_select(cities) %>
-		</select>
-	</div>-->
-  <div class="field">
-    <%= f.label :signature %><br>
-    <%= f.text_area :signature %>
   </div>
   <div class="actions">
     <%= f.submit %>
