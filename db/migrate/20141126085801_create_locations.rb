@@ -1,6 +1,8 @@
-class CreateCities < ActiveRecord::Migration
+class CreateLocations < ActiveRecord::Migration
   def change
-    create_table :cities do |t|
+    create_table :locations do |t|
+      t.string :name
+      t.references :region, index: true
       t.text :expense
       t.text :strong_industry
       t.text :entry_policy

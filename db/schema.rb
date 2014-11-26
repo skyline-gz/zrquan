@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118113024) do
+ActiveRecord::Schema.define(version: 20141126085801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,25 +127,6 @@ ActiveRecord::Schema.define(version: 20141118113024) do
     t.datetime "updated_at"
   end
 
-  create_table "cities", force: true do |t|
-    t.text     "expense"
-    t.text     "strong_industry"
-    t.text     "entry_policy"
-    t.text     "support_policy"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "city_foods", force: true do |t|
-    t.string   "content"
-    t.integer  "city_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "city_foods", ["city_id"], name: "index_city_foods_on_city_id", using: :btree
-
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -162,7 +143,7 @@ ActiveRecord::Schema.define(version: 20141118113024) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
-    t.integer  "city_id"
+    t.integer  "location_id"
     t.integer  "industry_id"
     t.integer  "parent_company_id"
     t.string   "address"
@@ -175,8 +156,8 @@ ActiveRecord::Schema.define(version: 20141118113024) do
     t.datetime "updated_at"
   end
 
-  add_index "companies", ["city_id"], name: "index_companies_on_city_id", using: :btree
   add_index "companies", ["industry_id"], name: "index_companies_on_industry_id", using: :btree
+  add_index "companies", ["location_id"], name: "index_companies_on_location_id", using: :btree
   add_index "companies", ["parent_company_id"], name: "index_companies_on_parent_company_id", using: :btree
 
   create_table "company_salaries", force: true do |t|
@@ -238,6 +219,15 @@ ActiveRecord::Schema.define(version: 20141118113024) do
   add_index "educations", ["school_id"], name: "index_educations_on_school_id", using: :btree
   add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
 
+  create_table "food_styles", force: true do |t|
+    t.string   "content"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "food_styles", ["location_id"], name: "index_food_styles_on_location_id", using: :btree
+
   create_table "images", force: true do |t|
     t.string   "content"
     t.integer  "wiki_id"
@@ -284,6 +274,20 @@ ActiveRecord::Schema.define(version: 20141118113024) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.integer  "region_id"
+    t.text     "expense"
+    t.text     "strong_industry"
+    t.text     "entry_policy"
+    t.text     "support_policy"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["region_id"], name: "index_locations_on_region_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.integer  "msg_type"
@@ -385,6 +389,12 @@ ActiveRecord::Schema.define(version: 20141118113024) do
 
   add_index "recommend_users", ["user_id"], name: "index_recommend_users_on_user_id", using: :btree
 
+  create_table "regions", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "relationships", force: true do |t|
     t.integer  "following_user_id"
     t.integer  "follower_id"
@@ -397,7 +407,7 @@ ActiveRecord::Schema.define(version: 20141118113024) do
 
   create_table "schools", force: true do |t|
     t.string   "name"
-    t.integer  "city_id"
+    t.integer  "location_id"
     t.string   "address"
     t.string   "site"
     t.text     "description"
@@ -405,7 +415,7 @@ ActiveRecord::Schema.define(version: 20141118113024) do
     t.datetime "updated_at"
   end
 
-  add_index "schools", ["city_id"], name: "index_schools_on_city_id", using: :btree
+  add_index "schools", ["location_id"], name: "index_schools_on_location_id", using: :btree
 
   create_table "skills", force: true do |t|
     t.string   "name"
@@ -477,8 +487,7 @@ ActiveRecord::Schema.define(version: 20141118113024) do
     t.string   "last_name"
     t.string   "first_name"
     t.integer  "gender"
-    t.integer  "province_id"
-    t.integer  "city_id"
+    t.integer  "location_id"
     t.integer  "latest_company_id"
     t.string   "latest_position"
     t.integer  "latest_school_id"
@@ -491,12 +500,11 @@ ActiveRecord::Schema.define(version: 20141118113024) do
     t.string   "avatar"
   end
 
-  add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["latest_company_id"], name: "index_users_on_latest_company_id", using: :btree
   add_index "users", ["latest_school_id"], name: "index_users_on_latest_school_id", using: :btree
-  add_index "users", ["province_id"], name: "index_users_on_province_id", using: :btree
+  add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "welfares", force: true do |t|
