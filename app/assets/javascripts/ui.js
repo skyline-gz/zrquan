@@ -118,9 +118,10 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         //   content: 通知内容
         //   width:  指定宽度,默认为200px
         //   duration: 显示时间,默认为5s
-        //   immediate: 立即显示, 默认为false
+        //   immediate: 是否立即显示, 默认为true
         onSysPoptipsCall: function(options) {
             this.queue.unshift(_.extend({}, options));
+            options.immediate = _.isBoolean(options.immediate) ? options.immediate : true;
             if(options.immediate) {
                 if(this._timeout) {
                     clearTimeout(this._timeout);

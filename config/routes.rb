@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   resources :private_messages, except: [:destroy, :edit, :update]
 
-  resources :user_msg_settings, only: [:edit, :update, :show]
-
   resources :consult_subjects, except: :destroy do
 		member do
 			post :accept
@@ -77,6 +75,7 @@ Rails.application.routes.draw do
   post 'settings/password' => 'users#update_password'
   # 私信设置
   get 'settings/notification' => 'user_settings#show_notification'
+  post 'settings/notification' => 'user_settings#edit_notification'
 
   # 为了满足assets pipeline,对于css采用相对路径'../images'等访问
   get 'assets/images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}

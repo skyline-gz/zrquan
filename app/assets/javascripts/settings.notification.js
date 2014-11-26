@@ -1,8 +1,8 @@
-Zrquan.module('Settings.Password', function(Module, App, Backbone, Marionette, $, _){
+Zrquan.module('Settings.Notification', function(Module, App, Backbone, Marionette, $, _){
     "use strict";
 
     Module.addInitializer(function() {
-        console.log("Module Settings.Password init...");
+        console.log("Module Settings.Notification init...");
         Module.controller = new Module.Controller();
         Module.controller.start();
     });
@@ -26,6 +26,22 @@ Zrquan.module('Settings.Password', function(Module, App, Backbone, Marionette, $
             } else {
                 $(el).attr("data-checked", "true").addClass("icon-selected");
             }
+            var requestObj = {
+                'user_msg_setting': {}
+            };
+
+            requestObj['user_msg_setting'][$(el).attr("data-attr")] = $(el).attr("data-checked");
+
+            $.when(Zrquan.Ajax.request({
+                url: "/settings/notification",
+                data: requestObj
+            })).then(function(result) {
+                if (result.code == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'设置成功', width:'100px'});
+                } else if (result.code == "FA_UNKNOWN_ERROR") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'未知错误', width:'100px'});
+                }
+            });
         },
         syncCheckboxState: function() {
             this.$('a[data-role=checkbox]').each(function(){

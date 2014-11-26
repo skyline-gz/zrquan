@@ -149,7 +149,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     success: function(result){
                         console.log("Client Crop and Server save image success :" + result);
                         Zrquan.appEventBus.trigger('reload:avatar', result.url);
-                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'150px', immediate:true});
+                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'150px'});
                     }
                 });
             } else {
@@ -173,7 +173,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     if(result["code"] == "S_OK") {
                         console.log("Server Crop and save image success :" + result);
                         Zrquan.appEventBus.trigger('reload:avatar', result.url);
-                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'150px', immediate:true});
+                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'150px'});
                     }
                 });
             }
