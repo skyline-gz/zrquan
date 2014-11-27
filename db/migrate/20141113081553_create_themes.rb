@@ -6,5 +6,7 @@ class CreateThemes < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :themes, :name, unique: true
   end
 end
