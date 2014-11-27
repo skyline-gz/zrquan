@@ -9,5 +9,7 @@ class CreateSchools < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :schools, :name, unique: true
   end
 end

@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20141126085801) do
 
   add_index "companies", ["industry_id"], name: "index_companies_on_industry_id", using: :btree
   add_index "companies", ["location_id"], name: "index_companies_on_location_id", using: :btree
+  add_index "companies", ["name"], name: "index_companies_on_name", unique: true, using: :btree
   add_index "companies", ["parent_company_id"], name: "index_companies_on_parent_company_id", using: :btree
 
   create_table "company_salaries", force: true do |t|
@@ -416,6 +417,7 @@ ActiveRecord::Schema.define(version: 20141126085801) do
   end
 
   add_index "schools", ["location_id"], name: "index_schools_on_location_id", using: :btree
+  add_index "schools", ["name"], name: "index_schools_on_name", unique: true, using: :btree
 
   create_table "skills", force: true do |t|
     t.string   "name"
@@ -432,6 +434,7 @@ ActiveRecord::Schema.define(version: 20141126085801) do
     t.datetime "updated_at"
   end
 
+  add_index "themes", ["name"], name: "index_themes_on_name", unique: true, using: :btree
   add_index "themes", ["substance_id", "substance_type"], name: "index_themes_on_substance_id_and_substance_type", using: :btree
 
   create_table "user_msg_settings", force: true do |t|
