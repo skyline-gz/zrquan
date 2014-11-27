@@ -28,7 +28,7 @@
 
   strong {
     font-weight: bold;
-    color: black;
+    color: $deep-base-color;
   }
 }
 
@@ -41,6 +41,11 @@
 .tt-suggestion.tt-cursor {
   color: #fff;
   background-color: $base-color;
+
+  strong {
+    font-weight: bold;
+    color: #fff;
+  }
 }
 
 .tt-suggestion p {
