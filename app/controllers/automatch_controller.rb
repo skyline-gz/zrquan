@@ -7,10 +7,10 @@ class AutomatchController < ApplicationController
 
   # 匹配公司
   # param: query 'wangluo'
-  # 　　　　returnSize 10 可指定返回的记录条数
+  # 　　　　returnSize 10 可指定返回的记录条数，默认50条记录，最大不超过999条
   # return: {
   #   code: 'S_OK'  　操作成功
-  #   data: [] 见如下　返回的最大长度，默认10条记录
+  #   data: [] 见如下　返回的最大长度
   #   total: 10  匹配的总长
   #   0: {
   #     value: '网络易网络有限王洛的公司',
@@ -25,13 +25,14 @@ class AutomatchController < ApplicationController
   #   }
   def companies
     query = params[:query]
+    return_size = [params[:returnSize] || 50, 999].min
     if query == nil
       render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
       return
     end
     terms = get_terms('company')
     total = terms.length
-    results = match_and_sort_terms(terms, query)
+    results = match_and_sort_terms(terms, query, return_size)
     render :json => {:code => ReturnCode::S_OK, :matches => results, :total => total}
   end
 
@@ -45,7 +46,7 @@ class AutomatchController < ApplicationController
 
   private
   # 匹配并排序结果
-  def match_and_sort_terms(terms, query)
+  def match_and_sort_terms(terms, query, return_size)
     results = []
     terms.each do |o|
       match_success = o[:s_v].index(query) \
@@ -60,6 +61,7 @@ class AutomatchController < ApplicationController
 
     # 根据最先匹配原则，排序所有结果
     results.sort_by! { |k| k[:ioq] }
+    results.slice!(0, return_size)
   end
 
   # 获取根据类型，获取待匹配类型（company,position,school等）的所有条目

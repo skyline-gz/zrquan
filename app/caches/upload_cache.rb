@@ -5,7 +5,7 @@ class UploadCache
   @avatars_cache = nil
 
   def initialize
-    min = Settings.upload_cache.avatar_experied_minute
+    min = Settings.cache.uploaded_avatar_experied_minute
     @avatars_cache = ActiveSupport::Cache::MemoryStore.new(expires_in: min.minutes)
   end
 

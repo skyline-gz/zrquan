@@ -1,6 +1,7 @@
 defaults: &defaults
-  upload_cache:
-    avatar_experied_minute: 10
+  cache:
+    uploaded_avatar_experied_minute: 10
+    automatch_terms_experied_minute: 60
   upload_url: "http://zrquan.qiniudn.com/"
 
 development:

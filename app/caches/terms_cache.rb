@@ -5,7 +5,7 @@ class TermsCache
   @terms_cache = nil
 
   def initialize
-    min = 60
+    min = Settings.cache.automatch_terms_experied_minute
     @terms_cache = ActiveSupport::Cache::MemoryStore.new(expires_in: min.minutes)
   end
 
