@@ -3,6 +3,12 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
     function matchCompanies(q, cb) {
         var matches =[];
+        var cache_matches = locache.get("companies_" + q);
+        if(cache_matches) {
+            cb(cache_matches);
+            return;
+        }
+
         Zrquan.Ajax.request({
             url: "/automatch",
             data: {query: q, type:"company"}
@@ -11,6 +17,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
                 $.each(result['matches'], function(i, o){
                     matches.push({ value: o.value });
                 });
+                locache.set("companies_" + q, matches, 60);
                 cb(matches);
             }
         });
@@ -29,6 +36,12 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
     function matchSchools(q, cb) {
         var matches =[];
+        var cache_matches = locache.get("schools_" + q);
+        if(cache_matches) {
+            cb(cache_matches);
+            return;
+        }
+
         Zrquan.Ajax.request({
             url: "/automatch",
             data: {query: q, type:"school"}
@@ -37,6 +50,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
                 $.each(result['matches'], function(i, o){
                     matches.push({ value: o.value });
                 });
+                locache.set("schools_" + q, matches, 60);
                 cb(matches);
             }
         });
