@@ -13,6 +13,8 @@ class AutomatchController < ApplicationController
   #   matchLength: 10  匹配的总长
   #   0: {
   #     value: '网络易网络有限王洛的公司',
+  #     ioq: 匹配的优先度，结果默认以此排序，即最前匹配的位置
+  #     Todo: matches有助于客户端标示匹配的（拼音所匹配到的条目的中文）的起始，暂不实现
   #     matches: [{str : '网络', start: 0, end: 1},
   #               {str : '网络', start: 3, end: 4},
   # 　　　　　　　　{str:'王洛', start:7, end:8}]
@@ -21,22 +23,40 @@ class AutomatchController < ApplicationController
   #     ...
   #   }
   def companies
-    # companies = Company.all
-    str = '网易股份有限公司'
-    arr_pin_yin = PinYin.of_string(str)
-    arr_abbr_pin_yin = abbr_arr(str)
-    arr_abbr_pin_yin_except_lead = abbr_arr(str, true)
-    str_pin_yin = PinYin.permlink(str, '')
-    str_abbr_pin_yin = PinYin.abbr(str)
-    str_abbr_pin_yin_except_lead = PinYin.abbr(str, true)
+
+    query = 'zhong'
+
+    companies = Company.all
+
+    companies_for_match = []
+    companies.each do |o|
+      name = o.name
+      obj = {
+        :s_v => name,
+        :s_py => PinYin.permlink(name, ''),
+        :s_py1 => PinYin.abbr(name),
+        :s_py2 => PinYin.abbr(name, true)
+      }
+      companies_for_match.push(obj)
+    end
+
+    results = []
+    companies_for_match.each_with_index do |o, i|
+      match_success = o[:s_v].index(query) \
+      || o[:s_py].index(query) \
+      || o[:s_py1].index(query) \
+      || o[:s_py2].index(query)
+
+      if match_success
+        results.push({:value => o[:s_v], :ioq => match_success})
+      end
+    end
+
+    # 根据最先匹配原则，排序所有结果
+    results.sort_by! { |k| k[:ioq] }
+
     render :json => {:code => ReturnCode::S_OK,
-                     :arr_pin_yin => arr_pin_yin,
-                     :arr_abbr_pin_yin => arr_abbr_pin_yin,
-                     :arr_abbr_pin_yin_except_lead => arr_abbr_pin_yin_except_lead,
-                     :str=> str,
-                     :str_pin_yin => str_pin_yin,
-                     :str_abbr_pin_yin => str_abbr_pin_yin,
-                     :str_abbr_pin_yin_except_lead => str_abbr_pin_yin_except_lead
+                     :matches => results
            }
   end
 
@@ -49,12 +69,5 @@ class AutomatchController < ApplicationController
   end
 
   private
-  def abbr_arr(str, except_lead=false, except_english=true)
-    result = []
-    PinYin.of_string(str).each_with_index do |word, i|
-      w = (except_lead && i == 0) || (except_english && word.english?) ? word : word[0]
-      result.push(w)
-    end
-    result
-  end
+
 end
