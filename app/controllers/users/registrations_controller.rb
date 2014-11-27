@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # 创建用户（注册）
 	# 重写devise的注册controller
 
+  # see: http://www.rubydoc.info/github/plataformatec/devise/master/Devise/Models/Confirmable
   # sample:
   # curl -v -H 'Content-Type: applicationion/json' -X POST http://localhost:3000/registrations -d "{\"user\":{\"email\":\"yuqi.fan@foxmail.com\",\"password\":\"secret\"}}"
   # {"code":"FA_INVALID_PARAMETERS","msg":{"email":["can't be blank"],"password":["can't be blank"]}}
@@ -18,15 +19,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       return
     end
 
-    # 此处捕获devise save时的异常,并返回JSON到前端
+    # TODO 异步发送注册邮件，提高注册响应速度　https://github.com/mhfs/devise-async
+    resource.skip_confirmation_notification!
+    resource_saved = resource.save
+
+    # 此处捕获send email时的异常
     begin
-      # TODO 对于SMTP认证失败导致发送邮件失败的情形，不应该rollback
-      # resource.skip_confirmation!
-      resource_saved = resource.save
-      # resource.send_confirmation_instructions
+      resource.send_confirmation_instructions
     rescue Net::SMTPAuthenticationError
-      render :json => {:code => ReturnCode::FA_SMTP_AUTHENTICATION_ERROR}
-      return
+      # just log and do nothing
+      # render :json => {:code => ReturnCode::FA_SMTP_AUTHENTICATION_ERROR}
+      logger.error ReturnCode::FA_SMTP_AUTHENTICATION_ERROR
     end
 
     yield resource if block_given?
