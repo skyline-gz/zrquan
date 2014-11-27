@@ -68,6 +68,11 @@ Rails.application.routes.draw do
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
 
+  #　自动匹配
+  post 'automatch/companies' => 'automatch#companies'
+  post 'automatch/positions' => 'automatch#positions'
+  post 'automatch/schools' => 'automatch#schools'
+
   # 个人设置
   get 'settings' => redirect('settings/profile')
 

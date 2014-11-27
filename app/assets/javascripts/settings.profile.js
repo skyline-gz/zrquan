@@ -13,6 +13,15 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         '腾讯网络科技'
     ];
 
+    Zrquan.Ajax.request({
+        url: "/automatch/companies",
+        data: {}
+    }).then(function(result) {
+        //if (result.code == "S_OK") {
+        //
+        //}
+    });
+
     var substringMatcher = function(strs) {
         return function findMatches(q, cb) {
             var matches, substrRegex;
