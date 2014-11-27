@@ -3,13 +3,16 @@ require 'returncode_define'
 
 class AutomatchController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_query_params, only: [:companies, :positions]
+  before_action :set_query_params
+
+  SUPPORT_TYPE = %w('company', 'school')
 
   # 匹配公司
   # param: query 'wangluo'
-  # 　　　　returnSize 10 可指定返回的记录条数，默认50条记录，最大不超过999条
+  # 　　　　returnSize 10 可指定返回的记录条数，默认50条记录，最大不超过1000条
   # return: {
   #   code: 'S_OK'  　操作成功
+  #   type: 'company' 支持自动匹配的类型，见SUPPORT_TYPE
   #   data: [] 见如下　返回的最大长度
   #   total: 10  匹配的总长
   #   0: {
@@ -23,30 +26,29 @@ class AutomatchController < ApplicationController
   #   1:
   #     ...
   #   }
-  def companies
+
+  def do_match
     query = params[:query]
-    return_size = [params[:returnSize] || 50, 999].min
-    if query == nil
+    type = params[:type]
+    return_size = [params[:returnSize] || 50, 1000].min
+    if query == nil || type == nil
       render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
       return
     end
-    terms = get_terms('company')
-    total = terms.length
-    results = match_and_sort_terms(terms, query, return_size)
-    render :json => {:code => ReturnCode::S_OK, :matches => results, :total => total}
-  end
-
-  def positions
-
-  end
-
-  def schools
-
+    if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
+      terms = get_terms(type)
+      results = match_and_sort_terms(terms, query)
+      total = results.length
+      results = results.slice(0, return_size)
+      render :json => {:code => ReturnCode::S_OK, :matches => results, :total => total}
+    else
+      render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
+    end
   end
 
   private
   # 匹配并排序结果
-  def match_and_sort_terms(terms, query, return_size)
+  def match_and_sort_terms(terms, query)
     results = []
     terms.each do |o|
       match_success = o[:s_v].index(query) \
@@ -55,13 +57,12 @@ class AutomatchController < ApplicationController
       || o[:s_py2].index(query)
 
       if match_success
-        results.push({:value => o[:s_v], :ioq => match_success})
+        results.push({:id => o[:id], :value => o[:s_v], :ioq => match_success})
       end
     end
 
     # 根据最先匹配原则，排序所有结果
     results.sort_by! { |k| k[:ioq] }
-    results.slice!(0, return_size)
   end
 
   # 获取根据类型，获取待匹配类型（company,position,school等）的所有条目
@@ -73,6 +74,7 @@ class AutomatchController < ApplicationController
     fetch_and_cache_terms(type)
   end
 
+  # 在modal层取数据，预处理，并放入缓存
   def fetch_and_cache_terms(type)
     terms = nil
     case type
@@ -80,8 +82,10 @@ class AutomatchController < ApplicationController
         companies = Company.all
         terms = pre_process(companies)
         TermsCache.instance.write(type, terms)
-      when 'position'
-        # positions = Position.all
+      when 'school'
+        schools = School.all
+        terms = pre_process(schools)
+        TermsCache.instance.write(type, terms)
       else
     end
     terms
@@ -93,6 +97,7 @@ class AutomatchController < ApplicationController
     terms.each do |o|
       name = o.name
       obj = {
+          :id => o.id,
           :s_v => name,
           :s_py => PinYin.permlink(name, ''),
           :s_py1 => PinYin.abbr(name),
@@ -105,6 +110,6 @@ class AutomatchController < ApplicationController
 
   # 参数处理
   def set_query_params
-    params.permit(:query, :returnSize)
+    params.permit(:query, :type, :returnSize)
   end
 end
