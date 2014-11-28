@@ -50,7 +50,7 @@
   position: relative;
   width: auto;
   margin: 10px;
-  z-index: $zindex-modal;
+//  z-index: $zindex-modal;
 }
 
 // Actual modal
@@ -179,4 +179,34 @@
   width: 50px;
   height: 50px;
   overflow: scroll;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+
+/* add a scroll bar to stop page from jerking around */
+.modal-open.page-overflow .page-container,
+.modal-open.page-overflow .page-container .navbar-fixed-top,
+.modal-open.page-overflow .page-container .navbar-fixed-bottom,
+.modal-open.page-overflow .modal-scrollable {
+  overflow-y: scroll;
+}
+
+@media (max-width: 979px) {
+  .modal-open.page-overflow .page-container .navbar-fixed-top,
+  .modal-open.page-overflow .page-container .navbar-fixed-bottom  {
+    overflow-y: visible;
+  }
+}
+
+
+.modal-scrollable {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
 }

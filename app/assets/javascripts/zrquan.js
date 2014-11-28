@@ -46,6 +46,7 @@
  **/
 //= require ./components/component.transition
 //= require ./components/component.modal
+//= require ./components/component.modalmanager
 /**
  * Main Module
  **/

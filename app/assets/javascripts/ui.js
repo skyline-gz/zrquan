@@ -17,8 +17,8 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         showModal: function (modalName) {
             if (modalName && modalName == this.modalName) {
                 console.log("modal:" + modalName + " show");
-                if (this.$el.data('bs.modal')) {
-                    this.$el.data('bs.modal').show();
+                if (this.$el.data('modal')) {
+                    this.$el.data('modal').show();
                 } else {
                     this.$el.modal("show");
                     console.log(modalName + "Modal Instance Init...")
@@ -26,10 +26,10 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
             }
         },
         moveCenter: function() {
-            this.$el.data('bs.modal').moveCenter();
+            this.$el.data('modal').moveCenter();
         },
         hideModal: function () {
-            this.$el.data('bs.modal').hide();
+            this.$el.data('modal').hide();
         },
         attachEvent: function() {
             // add events from child
