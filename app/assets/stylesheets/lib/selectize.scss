@@ -1,5 +1,5 @@
 /**
- * selectize.css (v0.11.2)
+ * selectize.default.css (v0.11.2) - Default Theme
  * Copyright (c) 2013 Brian Reavis & contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
@@ -13,7 +13,6 @@
  *
  * @author Brian Reavis <brian@thirdroute.com>
  */
-
 .selectize-control.plugin-drag_drop.multi > .selectize-input > div.ui-sortable-placeholder {
   visibility: visible !important;
   background: #f2f2f2 !important;
@@ -89,10 +88,8 @@
   vertical-align: middle;
   display: inline-block;
   padding: 2px 0 0 0;
-  border-left: 1px solid #d0d0d0;
-  -webkit-border-radius: 0 2px 2px 0;
-  -moz-border-radius: 0 2px 2px 0;
-  border-radius: 0 2px 2px 0;
+  border-left: 1px solid $deep-base-color;
+  @include border-right-radius($border-radius-base);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -101,13 +98,13 @@
   background: rgba(0, 0, 0, 0.05);
 }
 .selectize-control.plugin-remove_button [data-value].active .remove {
-  border-left-color: #cacaca;
+  border-left-color: $deep-base-color;
 }
 .selectize-control.plugin-remove_button .disabled [data-value] .remove:hover {
   background: none;
 }
 .selectize-control.plugin-remove_button .disabled [data-value] .remove {
-  border-left-color: #ffffff;
+  border-left-color: #aaaaaa;
 }
 .selectize-control {
   position: relative;
@@ -140,12 +137,10 @@
   box-sizing: border-box;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  @include border-radius($border-radius-base);
 }
 .selectize-control.multi .selectize-input.has-items {
-  padding: 6px 8px 3px;
+  padding: 5px 8px 2px;
 }
 .selectize-input.full {
   background-color: #ffffff;
@@ -159,9 +154,7 @@
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 .selectize-input.dropdown-active {
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
+  @include border-left-radius($border-radius-base);
 }
 .selectize-input > * {
   vertical-align: baseline;
@@ -174,20 +167,20 @@
   cursor: pointer;
   margin: 0 3px 3px 0;
   padding: 2px 6px;
-  background: #f2f2f2;
-  color: #303030;
-  border: 0 solid #d0d0d0;
+  background: $base-color;
+  color: #ffffff;
+  border: 1px solid #CF7A01;
 }
 .selectize-control.multi .selectize-input > div.active {
-  background: #e8e8e8;
-  color: #303030;
-  border: 0 solid #cacaca;
+  background: #92c836;
+  color: #ffffff;
+  border: 1px solid #CF7A01;
 }
 .selectize-control.multi .selectize-input.disabled > div,
 .selectize-control.multi .selectize-input.disabled > div.active {
-  color: #7d7d7d;
-  background: #ffffff;
-  border: 0 solid #ffffff;
+  color: #ffffff;
+  background: #d2d2d2;
+  border: 1px solid #aaaaaa;
 }
 .selectize-input > input {
   display: inline-block !important;
@@ -195,7 +188,7 @@
   min-height: 0 !important;
   max-height: none !important;
   max-width: 100% !important;
-  margin: 0 2px 0 0 !important;
+  margin: 0 1px !important;
   text-indent: 0 !important;
   border: 0 none !important;
   background: none !important;
@@ -314,4 +307,65 @@
 .selectize-control .selectize-input.disabled {
   opacity: 0.5;
   background-color: #fafafa;
+}
+.selectize-control.multi .selectize-input.has-items {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.selectize-control.multi .selectize-input.disabled [data-value] {
+  color: #999;
+  text-shadow: none;
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.selectize-control.multi .selectize-input.disabled [data-value],
+.selectize-control.multi .selectize-input.disabled [data-value] .remove {
+  border-color: #e6e6e6;
+}
+.selectize-control.multi .selectize-input.disabled [data-value] .remove {
+  background: none;
+}
+.selectize-control.multi .selectize-input [data-value] {
+  text-shadow: 0 1px 0 rgba(0, 51, 83, 0.3);
+  @include border-radius($border-radius-base);
+  background: $base-color;
+  background-color: $base-color;
+  @include background-image(linear-gradient(top,$base-color,$deep-base-color));
+  background-repeat: repeat-x;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),inset 0 1px rgba(255,255,255,0.03);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2),inset 0 1px rgba(255,255,255,0.03);
+}
+.selectize-control.multi .selectize-input [data-value].active {
+  background: #EF8B00;
+  background-color: #EF8B00;
+  @include background-image(linear-gradient(top, #EF8B00, #C67401));
+  background-repeat: repeat-x;
+}
+.selectize-control.single .selectize-input {
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
+  background-color: #f9f9f9;
+  background-image: -moz-linear-gradient(top, #fefefe, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fefefe), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top, #fefefe, #f2f2f2);
+  background-image: -o-linear-gradient(top, #fefefe, #f2f2f2);
+  background-image: linear-gradient(to bottom, #fefefe, #f2f2f2);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffefefe', endColorstr='#fff2f2f2', GradientType=0);
+}
+.selectize-control.single .selectize-input,
+.selectize-dropdown.single {
+  border-color: #b8b8b8;
+}
+.selectize-dropdown .optgroup-header {
+  padding-top: 7px;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+.selectize-dropdown .optgroup {
+  border-top: 1px solid #f0f0f0;
+}
+.selectize-dropdown .optgroup:first-child {
+  border-top: 0 none;
 }
