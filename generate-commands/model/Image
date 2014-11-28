@@ -1,1 +1,0 @@
-rails g model Image content:string wiki:references{polymorphic}
