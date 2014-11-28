@@ -1,0 +1,37 @@
+<!--创建主题模态框-->
+<div class="modal" id="createThemeModal" xmlns="http://www.w3.org/1999/html">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">创建主题</div>
+        <a class="close" data-dismiss="modal">
+          <i class="icons-no"></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <div class="section-item">
+          <h4>主题名：</h4>
+          <input name="name" class="component-input" type="text" />
+        </div>
+        <div class="section-item">
+          <h4>主题描述（可选）：</h4>
+          <textarea name="description" class="component-textarea"
+           placeholder="请对此主题补充一些描述资料, 以供他人参考"></textarea>
+        </div>
+        <div class="section-item">
+          <h4 class="pull-left">主题类型：</h4>
+          <select name="themes">
+            <option>酒店</option>
+            <option>金融</option>
+            <option>互联网</option>
+            <option>物流</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">提问</button>
+      </div>
+    </div>
+  </div>
+</div>

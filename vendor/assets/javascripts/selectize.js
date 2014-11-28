@@ -1,7 +1,4 @@
 /**
- * 职人圈定制版
- */
-/**
  * sifter.js
  * Copyright (c) 2013 Brian Reavis & contributors
  *

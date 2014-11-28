@@ -52,6 +52,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             this.checkAndRenderView(Module.forgetPasswordModalView);
             this.checkAndRenderView(Module.profileDropDownView);
             this.checkAndRenderView(Module.askQuestionModuleView);
+            this.checkAndRenderView(Module.createThemeModalView);
         },
         checkAndRenderView: function(view) {
             if(view && view.render) {
