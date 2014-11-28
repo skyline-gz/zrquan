@@ -24,9 +24,12 @@
 //= require jquery
 //支持rails ajax提交表单
 //= require jquery_ujs
+//支持pjax
 //= require turbolinks
 //= require backbone
 //= require backbone.marionette
+//支持html5缓存记录
+//= require locache
 /**
  * 插件
  **/
@@ -56,7 +59,8 @@
  **/
 //= require ui
 //= require navbar
-//= require navbar.modals
+//= require navbar.modals.auth
+//= require navbar.modals.ask
 /**
  * 初始化页面Application
  **/

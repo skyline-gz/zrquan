@@ -69,9 +69,7 @@ Rails.application.routes.draw do
   get 'upload/preview_avatar'
 
   #　自动匹配
-  post 'automatch/companies' => 'automatch#companies'
-  post 'automatch/positions' => 'automatch#positions'
-  post 'automatch/schools' => 'automatch#schools'
+  post 'automatch' => 'automatch#do_match'
 
   # 个人设置
   get 'settings' => redirect('settings/profile')

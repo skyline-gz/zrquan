@@ -1,17 +1,23 @@
 Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $, _){
     "use strict";
 
-    function findMatches(q, cb) {
+    function matchCompanies(q, cb) {
         var matches =[];
+        var cache_matches = locache.get("companies_" + q);
+        if(cache_matches) {
+            cb(cache_matches);
+            return;
+        }
 
         Zrquan.Ajax.request({
-            url: "/automatch/companies",
-            data: {query: q}
+            url: "/automatch",
+            data: {query: q, type:"company"}
         }).then(function(result) {
             if (result['code'] == "S_OK") {
                 $.each(result['matches'], function(i, o){
                     matches.push({ value: o.value });
                 });
+                locache.set("companies_" + q, matches, 60);
                 cb(matches);
             }
         });
@@ -25,6 +31,39 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
             name: 'states',
             displayKey: 'value',
             // is compatible with the typeahead jQuery plugin
-            source: findMatches
+            source: matchCompanies
         });
+
+    function matchSchools(q, cb) {
+        var matches =[];
+        var cache_matches = locache.get("schools_" + q);
+        if(cache_matches) {
+            cb(cache_matches);
+            return;
+        }
+
+        Zrquan.Ajax.request({
+            url: "/automatch",
+            data: {query: q, type:"school"}
+        }).then(function(result) {
+            if (result['code'] == "S_OK") {
+                $.each(result['matches'], function(i, o){
+                    matches.push({ value: o.value });
+                });
+                locache.set("schools_" + q, matches, 60);
+                cb(matches);
+            }
+        });
+    }
+
+    $('#school').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },{
+        name: 'states',
+        displayKey: 'value',
+        // is compatible with the typeahead jQuery plugin
+        source: matchSchools
+    });
 });
