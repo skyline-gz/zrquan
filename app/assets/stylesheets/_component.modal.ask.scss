@@ -1,9 +1,23 @@
 #askQuestionModal {
   .modal-content {
-    width: 510px;
+    width: 530px;
   }
 
   .modal-body {
-    height: 200px;
+    padding: 0 15px;
+
+    .section-item {
+      padding: 8px 0;
+    }
+
+    .component-input,.component-textarea {
+      width: 477px;
+    }
+
+    h4 {
+      margin-bottom: 2px;
+      font-size: 13px;
+      line-height: 23px;
+    }
   }
 }
