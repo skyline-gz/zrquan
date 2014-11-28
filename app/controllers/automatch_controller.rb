@@ -6,6 +6,12 @@ class AutomatchController < ApplicationController
   before_action :set_query_params
 
   SUPPORT_TYPE = %w('company', 'school')
+  MATCH_TYPE = {
+      :value => 's_v',                            #命中原字符串
+      :pinyin_value => 's_py',                    #命中字符串的全拼
+      :pinyin_value_abbr => 's_py1',              #命中字符串的声母串
+      :pinyin_value_abbr_except_lead => 's_py2',  #命中字符串的声母串（原字符串的首个字符不变，仍然是全拼）
+  }
 
   # 匹配公司
   # param: query 'wangluo'
@@ -47,17 +53,25 @@ class AutomatchController < ApplicationController
   end
 
   private
-  # 匹配并排序结果
+  # 匹配结果
+  # param
+  #    terms : object 条目
+  #    query : string 关键字
+  # return
+  #    results : object 匹配结果　id为该类型（如company在compenies表）在所属表中的id,
+  # 　　　　　　　　　　　　　　　　　value是匹配命中的字符串值,
+  # 　　　　　　　　　　　　　　　　　m_t是匹配命中的类型，见MATCH_TYPE
+
   def match_and_sort_terms(terms, query)
     results = []
     terms.each do |o|
-      match_success = o[:s_v].index(query) \
-      || o[:s_py].index(query) \
-      || o[:s_py1].index(query) \
-      || o[:s_py2].index(query)
-
-      if match_success
-        results.push({:id => o[:id], :value => o[:s_v], :ioq => match_success})
+      MATCH_TYPE.each do |key, value|
+        match_success = o[value].index(query)
+        if match_success
+          results.push({:id => o[:id], :value => o[MATCH_TYPE[:value]], \
+          :ioq => match_success, :m_t => value})
+          break
+        end
       end
     end
 
@@ -96,13 +110,11 @@ class AutomatchController < ApplicationController
     terms_for_match = []
     terms.each do |o|
       name = o.name
-      obj = {
-          :id => o.id,
-          :s_v => name,
-          :s_py => PinYin.permlink(name, ''),
-          :s_py1 => PinYin.abbr(name),
-          :s_py2 => PinYin.abbr(name, true)
-      }
+      obj = {:id => o.id}
+      obj[MATCH_TYPE[:value]] = name
+      obj[MATCH_TYPE[:pinyin_value]] = PinYin.permlink(name, '')
+      obj[MATCH_TYPE[:pinyin_value_abbr]] = PinYin.abbr(name)
+      obj[MATCH_TYPE[:pinyin_value_abbr_except_lead]] = PinYin.abbr(name, true)
       terms_for_match.push(obj)
     end
     terms_for_match
