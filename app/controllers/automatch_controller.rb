@@ -46,7 +46,7 @@ class AutomatchController < ApplicationController
       terms = get_terms(type)
       results = match_and_sort_terms(terms, query)
       total = results.length
-      results = results.slice(0, return_size)
+      results = results.slice(0, return_size).each { |k| k.except!(:ioq, :m_t) }
       render :json => {:code => ReturnCode::S_OK, :matches => results, :total => total}
     else
       render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
