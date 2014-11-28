@@ -39,6 +39,8 @@
 //= require jquery.tooltipster
 //twitter的自动完成库
 //= require typeahead.jquery
+//标签＆下拉表单库
+//= require selectize
 /**
  * 组件
  **/
