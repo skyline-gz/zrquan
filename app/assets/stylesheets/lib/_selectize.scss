@@ -257,14 +257,18 @@
   cursor: default;
 }
 .selectize-dropdown .active {
-  background-color: #f5fafd;
-  color: #495c68;
+  background-color: #fff9f0;
+  color: #685953;
 }
 .selectize-dropdown .active.create {
-  color: #495c68;
+  color: #685953;
 }
 .selectize-dropdown .create {
-  color: rgba(48, 48, 48, 0.5);
+  color: #303030;
+
+  strong {
+    color: #B87F3B
+  }
 }
 .selectize-dropdown-content {
   overflow-y: auto;
