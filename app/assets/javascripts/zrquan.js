@@ -59,7 +59,8 @@
  **/
 //= require ui
 //= require navbar
-//= require navbar.modals
+//= require navbar.modals.auth
+//= require navbar.modals.ask
 /**
  * 初始化页面Application
  **/

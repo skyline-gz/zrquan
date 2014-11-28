@@ -26,6 +26,8 @@
         <%= render "modals/modal_sign_up_in" %>
         <%= render "modals/modal_activate" %>
         <%= render "modals/modal_forget_password" %>
+    <% else %>
+        <%= render "modals/modal_ask_question" %>
     <% end %>
 </body>
     <%= javascript_include_tag 'zrquan', 'data-turbolinks-track' => true %>

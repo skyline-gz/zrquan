@@ -14,6 +14,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         events: {
             'click #btn-sign-up': 'onClickBtnSignUp',
             'click #btn-sign-in': 'onClickBtnSignIn',
+            'click button.top-nav-add-question': 'onClickBtnAskQuestion',
             'mouseover .user-link': 'onShowProfileDropdown'
         },
         onClickBtnSignUp: function(e) {
@@ -23,6 +24,9 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         onClickBtnSignIn: function(e) {
             navbarEventBus.trigger('auth:switch', 'sign-in');
             navbarEventBus.trigger('modal:show', 'authModal');
+        },
+        onClickBtnAskQuestion: function(e) {
+            navbarEventBus.trigger('modal:show', 'askQuestionModal');
         },
         onShowProfileDropdown: function(e) {
             navbarEventBus.trigger('dropdown:show');
@@ -47,6 +51,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             this.checkAndRenderView(Module.activateModalView);
             this.checkAndRenderView(Module.forgetPasswordModalView);
             this.checkAndRenderView(Module.profileDropDownView);
+            this.checkAndRenderView(Module.askQuestionModuleView);
         },
         checkAndRenderView: function(view) {
             if(view && view.render) {

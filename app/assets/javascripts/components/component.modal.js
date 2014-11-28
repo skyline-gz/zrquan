@@ -51,9 +51,6 @@ Modal.prototype.show = function (_relatedTarget) {
 //        this.setScrollbar();
     this.escape();
 
-    //居中显示
-    this.moveCenter();
-
 //    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this));
 
     this.backdrop(function () {
@@ -76,6 +73,9 @@ Modal.prototype.show = function (_relatedTarget) {
             .attr('aria-hidden', false);
 
         that.enforceFocus();
+
+        //居中显示
+        that.moveCenter();
 
         var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget });
 
