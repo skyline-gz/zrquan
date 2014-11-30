@@ -15,7 +15,7 @@ class AutomatchController < ApplicationController
   }
 
   # 匹配 暂时只实现了字符串单处匹配成功的返回，不支持同时匹配同一字符串的多处子串的返回
-  # param: query 'wangluo'
+  # param: query 'al'
   # 　　　　returnSize 10 可指定返回的记录条数，默认50条记录，最大不超过1000条
   # return: {
   #   code: 'S_OK'  　操作成功
@@ -23,12 +23,12 @@ class AutomatchController < ApplicationController
   #   matches: [] 见如下　返回的最大长度
   #   total: 10  匹配的总长
   #   0: {
-  #     value: '网络易网络有限王洛的公司',
-  #     ioq: 匹配的优先度，结果默认以此排序，即最前匹配的位置，默认不返回
-  #     m_t: 匹配类型，见MATCH_TYPE定义，默认不返回
-  #     key: '网络'
+  #     value: '阿里巴巴',
+  #     ioq: '0', 匹配的优先度，结果默认以此排序，即最前匹配的位置，默认不返回
+  #     m_t: 's_py1', 匹配类型，见MATCH_TYPE定义，默认不返回
+  #     key: '阿里'
   #     start: 0
-  #     end: 1
+  #     length: 2
   #   },
   #   1:
   #     ...
