@@ -14,7 +14,7 @@ class AutomatchController < ApplicationController
       :pinyin_value_abbr_except_lead => 's_py2',  #命中字符串的声母串（原字符串的首个字符不变，仍然是全拼）
   }
 
-  # 匹配公司
+  # 匹配 暂时只实现了字符串单处匹配成功的返回，不支持同时匹配同一字符串的多处子串的返回
   # param: query 'wangluo'
   # 　　　　returnSize 10 可指定返回的记录条数，默认50条记录，最大不超过1000条
   # return: {
@@ -23,9 +23,9 @@ class AutomatchController < ApplicationController
   #   matches: [] 见如下　返回的最大长度
   #   total: 10  匹配的总长
   #   0: {
-  #     Todo: 暂不实现同一字符串多处匹配成功的返回
   #     value: '网络易网络有限王洛的公司',
-  #     ioq: 匹配的优先度，结果默认以此排序，即最前匹配的位置
+  #     ioq: 匹配的优先度，结果默认以此排序，即最前匹配的位置，默认不返回
+  #     m_t: 匹配类型，见MATCH_TYPE定义，默认不返回
   #     key: '网络'
   #     start: 0
   #     end: 1
@@ -38,7 +38,7 @@ class AutomatchController < ApplicationController
     query = params[:query]
     type = params[:type]
     return_size = [params[:returnSize] || 50, 1000].min
-    if query == nil || type == nil
+    if query == nil|| query.length <= 0 || type == nil
       render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
       return
     end
@@ -74,6 +74,14 @@ class AutomatchController < ApplicationController
           if v == MATCH_TYPE[:value]
             start = match_success
             length = query.length
+          else
+            matched_array = o[MATCH_ARRAY_PREFIX  + MATCH_TYPE[k]]
+            pos = calculate_py_position(match_success, query, matched_array)
+            if pos == nil
+              break
+            end
+            start = pos[:start]
+            length = pos[:length]
           end
           key = value[start..start + length - 1]
           results.push({:id => o[:id], :value => value, \
@@ -85,6 +93,43 @@ class AutomatchController < ApplicationController
 
     # 根据最先匹配原则，排序所有结果
     results.sort_by! { |k| k[:ioq] }
+  end
+
+  # 当匹配成功的类型是拼音时，计算对应于value的start和length
+  def calculate_py_position(matched_index, query, matched_array)
+    start = length = str_start = str_length = 0
+    matched_array.each do |v|
+      if str_start == matched_index
+        break
+      end
+      if str_start > matched_index
+        break
+      end
+      # 由于'56网'的数组表示为['56','wang']，并非['5','6','wang']，需要调整
+      if is_number? v
+        start += v.length
+      else
+        start += 1
+      end
+      str_start += v.length
+    end
+
+    if str_start > matched_index
+      return nil
+    end
+
+    for i in start..matched_array.length - 1
+      str_length += matched_array[i].length
+      length += 1
+      if str_length == query.length
+        break;
+      end
+      if str_length > query.length
+        break
+      end
+    end
+
+    {:start => start, :length => length}
   end
 
   # 获取根据类型，获取待匹配类型（company,position,school等）的所有条目
@@ -144,5 +189,9 @@ class AutomatchController < ApplicationController
       result.push w
     end
     result
+  end
+
+  def is_number?(object)
+    true if Float(object) rescue false
   end
 end
