@@ -32,11 +32,11 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                         text: ""
                     }
                 },
-                //render: {
-                //    option: function(item, escape) {
-                //        return '<div>' + escape(item.value) + '</div>';
-                //    }
-                //},
+//                render: {
+//                    option: function(item, escape) {
+//                        return '<div>' + escape(item.value) + '</div>';
+//                    }
+//                },
                 load: function(query, callback) {
                     if (!query.length) return callback();
                     Zrquan.Ajax.request({

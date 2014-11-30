@@ -1113,8 +1113,6 @@
 			var self = this;
 			var fn = self.settings.load;
 			if (!fn) return;
-			if (self.loadedSearches.hasOwnProperty(value)) return;
-			self.loadedSearches[value] = true;
 			self.load(function(callback) {
 				fn.apply(self, [value, callback]);
 			});
@@ -1251,9 +1249,11 @@
 			var $wrapper = self.$wrapper.addClass('loading');
 	
 			self.loading++;
+            self.remoteResults = [];
 			fn.apply(self, [function(results) {
 				self.loading = Math.max(self.loading - 1, 0);
 				if (results && results.length) {
+                    self.remoteResults = results;
 					self.addOption(results);
 					self.refreshOptions(self.isFocused && !self.isInputHidden);
 				}
@@ -1490,17 +1490,11 @@
 			var i, value, result;
 			var self     = this;
 			var settings = self.settings;
-	
-			// perform search
-			if (query !== self.lastQuery) {
-				self.lastQuery = query;
-				//result = self.sifter.search(query, $.extend(options, {score: calculateScore}));
-				result = {};
-				result.items = self.options;
-				self.currentResults = result;
-			} else {
-				result = $.extend(true, {}, self.currentResults);
-			}
+
+            self.lastQuery = query;
+            result = {};
+            result.items = self.remoteResults || [];
+            self.currentResults = result;
 	
 			// filter out selected items
 			if (settings.hideSelected) {
@@ -1591,11 +1585,11 @@
 			$dropdown_content.html(html.join(''));
 	
 			// highlight matching terms inline
-			if (self.settings.highlight && results.query.length && results.tokens.length) {
-				for (i = 0, n = results.tokens.length; i < n; i++) {
-					highlight($dropdown_content, results.tokens[i].regex);
-				}
-			}
+//			if (self.settings.highlight && results.query.length && results.tokens.length) {
+//				for (i = 0, n = results.tokens.length; i < n; i++) {
+//					highlight($dropdown_content, results.tokens[i].regex);
+//				}
+//			}
 	
 			// add "selected" class to selected options
 			if (!self.settings.hideSelected) {
