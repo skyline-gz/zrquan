@@ -2,7 +2,6 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
     "use strict";
 
     function matchCompanies(q, cb) {
-        var matches =[];
         var cache_matches = locache.get("ac_companies_" + q);
         if(cache_matches) {
             cb(cache_matches);
@@ -32,7 +31,6 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         });
 
     function matchSchools(q, cb) {
-        var matches =[];
         var cache_matches = locache.get("ac_schools_" + q);
         if(cache_matches) {
             cb(cache_matches);

@@ -78,7 +78,7 @@ class AutomatchController < ApplicationController
             matched_array = o[MATCH_ARRAY_PREFIX  + MATCH_TYPE[k]]
             pos = calculate_py_position(match_success, query, matched_array)
             if pos == nil
-              break
+              next
             end
             start = pos[:start]
             length = pos[:length]
@@ -120,7 +120,7 @@ class AutomatchController < ApplicationController
     end
 
     for i in array_start..matched_array.length - 1
-      v = matched_array[i];
+      v = matched_array[i]
       py_length += v.length
       if is_number? v
         length += v.length
