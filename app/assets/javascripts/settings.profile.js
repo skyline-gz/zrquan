@@ -14,11 +14,8 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
             data: {query: q, type:"company"}
         }).then(function(result) {
             if (result['code'] == "S_OK") {
-                $.each(result['matches'], function(i, o){
-                    matches.push({ value: o.value });
-                });
-                locache.set("ac_companies_" + q, matches, 60);
-                cb(matches);
+                locache.set("ac_companies_" + q, result['matches'], 60);
+                cb(result['matches']);
             }
         });
     }
@@ -47,11 +44,8 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
             data: {query: q, type:"school"}
         }).then(function(result) {
             if (result['code'] == "S_OK") {
-                $.each(result['matches'], function(i, o){
-                    matches.push({ value: o.value });
-                });
-                locache.set("ac_schools_" + q, matches, 60);
-                cb(matches);
+                locache.set("ac_schools_" + q, result['matches'], 60);
+                cb(result['matches']);
             }
         });
     }

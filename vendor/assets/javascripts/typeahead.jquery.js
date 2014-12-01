@@ -4,7 +4,7 @@
  * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-(function($) {
+(function($, underscore) {
     var _ = function() {
         "use strict";
         return {
@@ -605,15 +605,25 @@
                     $suggestions = $(html.suggestions).css(css.suggestions);
                     nodes = _.map(suggestions, getSuggestionNode);
                     $suggestions.append.apply($suggestions, nodes);
-                    that.highlight && highlight({
-                        className: "tt-highlight",
-                        node: $suggestions[0],
-                        pattern: query
-                    });
+//                    that.highlight && highlight({
+//                        className: "tt-highlight",
+//                        node: $suggestions[0],
+//                        pattern: query
+//                    });
                     return $suggestions;
                     function getSuggestionNode(suggestion) {
                         var $el;
-                        $el = $(html.suggestion).append(that.templates.suggestion(suggestion)).data(datasetKey, that.name).data(valueKey, that.displayFn(suggestion)).data(datumKey, suggestion);
+//                        $el = $(html.suggestion).append(that.templates.suggestion(suggestion))
+                        $el = $(html.suggestion).append(
+                            underscore.escape(suggestion.value).substr(0, 0 + suggestion.start)
+                            + '<strong class="highlight">'
+                            + underscore.escape(suggestion.value).substr(suggestion.start, suggestion.length)
+                            + '</strong>'
+                            + underscore.escape(suggestion.value).substr(suggestion.start + suggestion.length)
+                            + '</div>'
+                        )
+                            .data(datasetKey, that.name).data(valueKey, that.displayFn(suggestion))
+                            .data(datumKey, suggestion);
                         $el.children().each(function() {
                             $(this).css(css.suggestionChild);
                         });
@@ -1181,4 +1191,4 @@
             return this;
         };
     })();
-})(window.jQuery);
+})(window.jQuery, window._);
