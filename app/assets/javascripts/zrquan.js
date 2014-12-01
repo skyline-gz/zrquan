@@ -41,6 +41,10 @@
 //= require typeahead.jquery
 //标签＆下拉表单库
 //= require selectize
+//百度开源编辑器ueditor
+//= require ueditor/zrquan.config.js
+//= require ueditor/ueditor.all.js
+//= require ueditor/lang/zh-cn/zh-cn.js
 /**
  * 组件
  **/

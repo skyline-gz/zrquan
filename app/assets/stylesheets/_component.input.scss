@@ -11,7 +11,7 @@
   &:focus{
     outline:none;
     border: 1px solid #ffcd76;
-    box-shadow: 0 0 5px #ffcd76;
+    @include box-shadow(0 0 5px #ffcd76);
   }
 }
 

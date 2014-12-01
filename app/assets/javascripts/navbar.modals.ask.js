@@ -7,7 +7,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         el: '#askQuestionModal',
         modalName: 'askQuestionModal',
         ui: {
-            'themes' : 'input[name="themes"]'
+            'themes' : 'input[name="themes"]',
+            'description' : 'textarea[name="description"]'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
@@ -17,6 +18,10 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         render: function() {
             Zrquan.UI.ModalView.prototype.render.call(this);
             var that = this;
+            UE.getEditor(this.ui.description[0], {
+                submitButton:false,
+                initialFrameHeight:115
+            });
             this.ui.themes.selectize({
                 plugins: ['remove_button'],
                 maxItems: 5,
