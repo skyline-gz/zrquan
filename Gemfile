@@ -18,10 +18,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # javascript库：jquery
 gem 'jquery-rails', '3.1.0'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# 此处使用百度的富内容编辑器Ueditor
-gem 'rails_kindeditor', '0.4.5'
 
 # 后端系列gem
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,6 +30,10 @@ gem 'spring',        group: :development
 gem 'settingslogic', '2.0.9'
 
 # 默认暂时不用的gem
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# gem 'turbolinks'　与较多的前段库产生冲突，暂不使用
+# 此处使用了百度的富内容编辑器Ueditor
+# gem 'rails_kindeditor', '0.4.5'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 # Use ActiveModel has_secure_password

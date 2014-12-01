@@ -11,7 +11,7 @@
     <%= javascript_include_tag 'json2'%>
     <%= javascript_include_tag 'es5-shim'%>
   <![endif]-->
-  <%= stylesheet_link_tag 'zrquan', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'zrquan', media: 'all'%>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -32,6 +32,6 @@
         <%= render 'modals/modal_create_theme' %>
     <% end %>
 </body>
-    <%= javascript_include_tag 'zrquan', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'zrquan'%>
     <%= yield :page_javascript %>
 </html>

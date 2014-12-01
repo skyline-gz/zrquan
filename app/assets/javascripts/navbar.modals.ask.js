@@ -19,7 +19,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             Zrquan.UI.ModalView.prototype.render.call(this);
             var that = this;
             UE.getEditor(this.ui.description[0], {
-                submitButton:false,
+                UEDITOR_HOME_URL: '/assets/ueditor/',
+                submitButton: false,
                 initialFrameHeight:115
             });
             this.ui.themes.selectize({

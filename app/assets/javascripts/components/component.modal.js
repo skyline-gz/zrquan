@@ -280,7 +280,7 @@
             var screenWidth = $(window).width();
             var screenHeight = $(window).height();
             contentInstance.css({
-                top: (screenHeight - contentInstance.height())/2 - 16 + "px",
+                top: Math.max((screenHeight - contentInstance.height())/2 - 16 , 0)+ "px",
                 left: (screenWidth - contentInstance.width())/2 + "px"
             })
         },

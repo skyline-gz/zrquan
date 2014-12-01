@@ -181,11 +181,6 @@
   overflow: scroll;
 }
 
-.modal-open {
-  overflow: hidden;
-}
-
-
 /* add a scroll bar to stop page from jerking around */
 .modal-open.page-overflow .page-container,
 .modal-open.page-overflow .page-container .navbar-fixed-top,

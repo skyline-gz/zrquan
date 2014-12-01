@@ -24,8 +24,6 @@
 //= require jquery
 //支持rails ajax提交表单
 //= require jquery_ujs
-//支持pjax
-//= require turbolinks
 //= require backbone
 //= require backbone.marionette
 //支持html5缓存记录
