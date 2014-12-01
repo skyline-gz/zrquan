@@ -9,6 +9,7 @@
   <!--[if lt IE 9]>
     <%= javascript_include_tag 'html5shiv'%>
     <%= javascript_include_tag 'json2'%>
+    <%= javascript_include_tag 'es5-shim'%>
   <![endif]-->
   <%= stylesheet_link_tag 'zrquan', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -20,14 +21,15 @@
 
     <%= yield %>
 
-    <%= render "modals/modal_system" %>
-    <%= render "partials/poptips"%>
+    <%= render 'modals/modal_system' %>
+    <%= render 'partials/poptips'%>
     <% if current_user == nil %>
-        <%= render "modals/modal_sign_up_in" %>
-        <%= render "modals/modal_activate" %>
-        <%= render "modals/modal_forget_password" %>
+        <%= render 'modals/modal_sign_up_in' %>
+        <%= render 'modals/modal_activate' %>
+        <%= render 'modals/modal_forget_password' %>
     <% else %>
-        <%= render "modals/modal_ask_question" %>
+        <%= render 'modals/modal_ask_question' %>
+        <%= render 'modals/modal_create_theme' %>
     <% end %>
 </body>
     <%= javascript_include_tag 'zrquan', 'data-turbolinks-track' => true %>

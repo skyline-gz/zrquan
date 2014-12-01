@@ -1,9 +1,24 @@
-#askQuestionModal {
+#askQuestionModal, #createThemeModal {
   .modal-content {
-    width: 510px;
+    width: 530px;
   }
 
   .modal-body {
-    height: 200px;
+    padding: 10px 15px;
+    padding-bottom: 20px;
+
+    .section-item {
+      padding: 8px 0;
+    }
+
+    .component-input,.component-textarea {
+      width: 477px;
+    }
+
+    h4 {
+      margin-bottom: 5px;
+      font-size: 13px;
+      line-height: 23px;
+    }
   }
 }
