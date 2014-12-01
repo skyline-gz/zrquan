@@ -49,31 +49,6 @@ class UsersController < ApplicationController
     authorize! :edit, @user
   end
 
-  # POST /users
-  # POST /users.json
-  #def create
-  #  @user = User.new(user_params)
-  #  respond_to do |format|
-  #    if @user.save
-	#			# create default user_msg_setting for this user
-	#			@user_msg_setting =	UserMsgSetting.new
-	#			@user_msg_setting.followed_flag = true
-	#			@user_msg_setting.agreed_flag = true
-	#			@user_msg_setting.commented_flag = true
-	#			@user_msg_setting.answer_flag = true
-	#			@user_msg_setting.pm_flag = true
-	#			@user_msg_setting.user_id = @user.id
-	#			if @user_msg_setting.save
-	#		    format.html { redirect_to @user, notice: 'User was successfully created.' }
-	#		    format.json { render :show, status: :created, location: @user }
-	#			end
-  #    else
-  #      format.html { render :new }
-  #      format.json { render json: @user.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
-
   # 更新
   def update
     @user.update!(user_params)

@@ -153,8 +153,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                     url: "/registrations",
                     data: requestObj
                 })).then(function(result){
-                    //todo: SMTP认证失败时不应该rollback，暂时前端处理与发送成功一致
-                    if(result["code"] == "S_OK" || result["code"] == "FA_SMTP_AUTHENTICATION_ERROR") {
+                    if(result["code"] == "S_OK") {
                         that.hideModal();
                         var matches = Zrquan.Regex.EMAIL.exec(requestObj.user.email);
                         navbarEventBus.trigger('activateModal:set', "http://mail." + matches[1], result.redirect);
@@ -192,12 +191,29 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         el: '#activateModal',
         modalName: 'activateModal',
         redirect: null,
+        events: {
+            'click #resendConfirm' : 'onResendConfirmClick'
+        },
+        onResendConfirmClick: function(e) {
+            Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'激活邮件发送中...'});
+            $.when(Zrquan.Ajax.request({
+                url: "/confirmations/resend",
+                type: "GET"
+            })).then(function(result){
+                if(result["code"] == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'激活邮件发送成功!'});
+                }
+            });
+            return false;
+        },
         setActivateModal: function(strLink, redirect) {
             this.$("#activateLink").prop("href", strLink);
             this.redirect = redirect || location.href;
         },
         hideModal: function() {
-            location.href = this.redirect;
+            if (this.redirect) {
+                location.href = this.redirect;
+            }
         },
         initialize: function() {
             this.listenTo(navbarEventBus, 'activateModal:set', this.setActivateModal);

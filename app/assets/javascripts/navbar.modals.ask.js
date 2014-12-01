@@ -8,7 +8,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         modalName: 'askQuestionModal',
         ui: {
             'themes' : 'input[name="themes"]',
-            'description' : 'textarea[name="description"]'
+            'description' : 'textarea[name="content"]'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);

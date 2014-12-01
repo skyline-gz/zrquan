@@ -26,7 +26,17 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
             navbarEventBus.trigger('modal:show', 'authModal');
         },
         onClickBtnAskQuestion: function(e) {
-            navbarEventBus.trigger('modal:show', 'askQuestionModal');
+            if(Zrquan.User.isLogin) {
+                if(Zrquan.User.isComfirmed) {
+                    navbarEventBus.trigger('modal:show', 'askQuestionModal');
+                } else {
+                    var matches = Zrquan.Regex.EMAIL.exec(Zrquan.User.email);
+                    navbarEventBus.trigger('activateModal:set', "http://mail." + matches[1], '/');
+                    navbarEventBus.trigger('modal:show', 'activateModal');
+                }
+            } else {
+                this.onClickBtnSignUp(e);
+            }
         },
         onShowProfileDropdown: function(e) {
             navbarEventBus.trigger('dropdown:show');
