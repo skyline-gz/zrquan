@@ -3,7 +3,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
     function matchCompanies(q, cb) {
         var matches =[];
-        var cache_matches = locache.get("companies_" + q);
+        var cache_matches = locache.get("ac_companies_" + q);
         if(cache_matches) {
             cb(cache_matches);
             return;
@@ -17,7 +17,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
                 $.each(result['matches'], function(i, o){
                     matches.push({ value: o.value });
                 });
-                locache.set("companies_" + q, matches, 60);
+                locache.set("ac_companies_" + q, matches, 60);
                 cb(matches);
             }
         });
@@ -36,7 +36,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
     function matchSchools(q, cb) {
         var matches =[];
-        var cache_matches = locache.get("schools_" + q);
+        var cache_matches = locache.get("ac_schools_" + q);
         if(cache_matches) {
             cb(cache_matches);
             return;
@@ -50,7 +50,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
                 $.each(result['matches'], function(i, o){
                     matches.push({ value: o.value });
                 });
-                locache.set("schools_" + q, matches, 60);
+                locache.set("ac_schools_" + q, matches, 60);
                 cb(matches);
             }
         });

@@ -97,12 +97,12 @@ class AutomatchController < ApplicationController
 
   # 当匹配成功的类型是拼音时，计算对应于value的start和length
   def calculate_py_position(matched_index, query, matched_array)
-    start = length = str_start = str_length = 0
+    array_start = start = length = py_start = py_length = 0
     matched_array.each do |v|
-      if str_start == matched_index
+      if py_start == matched_index
         break
       end
-      if str_start > matched_index
+      if py_start > matched_index
         break
       end
       # 由于'56网'的数组表示为['56','wang']，并非['5','6','wang']，需要调整
@@ -111,20 +111,26 @@ class AutomatchController < ApplicationController
       else
         start += 1
       end
-      str_start += v.length
+      py_start += v.length
+      array_start += 1
     end
 
-    if str_start > matched_index
+    if py_start > matched_index
       return nil
     end
 
-    for i in start..matched_array.length - 1
-      str_length += matched_array[i].length
-      length += 1
-      if str_length == query.length
+    for i in array_start..matched_array.length - 1
+      v = matched_array[i];
+      py_length += v.length
+      if is_number? v
+        length += v.length
+      else
+        length += 1
+      end
+      if py_length == query.length
         break;
       end
-      if str_length > query.length
+      if py_length > query.length
         break
       end
     end

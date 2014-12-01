@@ -163,38 +163,6 @@
 	}
 }(this, function($, Sifter, MicroPlugin) {
 	'use strict';
-
-	var highlight = function($element, pattern) {
-		if (typeof pattern === 'string' && !pattern.length) return;
-		var regex = (typeof pattern === 'string') ? new RegExp(pattern, 'i') : pattern;
-	
-		var highlight = function(node) {
-			var skip = 0;
-			if (node.nodeType === 3) {
-				var pos = node.data.search(regex);
-				if (pos >= 0 && node.data.length > 0) {
-					var match = node.data.match(regex);
-					var spannode = document.createElement('span');
-					spannode.className = 'highlight';
-					var middlebit = node.splitText(pos);
-					var endbit = middlebit.splitText(match[0].length);
-					var middleclone = middlebit.cloneNode(true);
-					spannode.appendChild(middleclone);
-					middlebit.parentNode.replaceChild(spannode, middlebit);
-					skip = 1;
-				}
-			} else if (node.nodeType === 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
-				for (var i = 0; i < node.childNodes.length; ++i) {
-					i += highlight(node.childNodes[i]);
-				}
-			}
-			return skip;
-		};
-	
-		return $element.each(function() {
-			highlight(this);
-		});
-	};
 	
 	var MicroEvent = function() {};
 	MicroEvent.prototype = {
@@ -867,7 +835,13 @@
 					return '<div class="optgroup-header">' + escape(data[field_optgroup]) + '</div>';
 				},
 				'option': function(data, escape) {
-					return '<div class="option">' + escape(data[field_label]) + '</div>';
+					var value = data.value;
+					return '<div class="option">' + escape(value).substr(0, 0 + data.start)
+						+ '<strong class="highlight">'
+						+ escape(value).substr(data.start, data.length)
+						+ '</strong>'
+						+ escape(value).substr(data.start + data.length)
+						+ '</div>';
 				},
 				'item': function(data, escape) {
 					return '<div class="item">' + escape(data[field_label]) + '</div>';
@@ -1009,6 +983,7 @@
 		onKeyDown: function(e) {
 			var isInput = e.target === this.$control_input[0];
 			var self = this;
+			var $next;
 	
 			if (self.isLocked) {
 				if (e.keyCode !== KEY_TAB) {
@@ -1034,7 +1009,11 @@
 						self.open();
 					} else if (self.$activeOption) {
 						self.ignoreHover = true;
-						var $next = self.getAdjacentOption(self.$activeOption, 1);
+						$next = self.getAdjacentOption(self.$activeOption, 1);
+						if ($next.length) self.setActiveOption($next, true, true);
+					} else {
+						self.ignoreHover = true;
+						$next = self.getAdjacentOption();
 						if ($next.length) self.setActiveOption($next, true, true);
 					}
 					e.preventDefault();
@@ -1093,11 +1072,16 @@
 	
 			if (self.isLocked) return e && e.preventDefault();
 			var value = self.$control_input.val() || '';
-			if (self.lastValue !== value) {
+			if(value == '') {
 				self.lastValue = value;
-				self.onSearchChange(value);
+				self.remoteResults = [];
 				self.refreshOptions();
-				self.trigger('type', value);
+			} else {
+				if (self.lastValue !== value) {
+					self.lastValue = value;
+					self.onSearchChange(value);
+					self.trigger('type', value);
+				}
 			}
 		},
 	
@@ -1140,7 +1124,7 @@
 			if (!self.$activeItems.length) {
 				self.showInput();
 				self.setActiveItem(null);
-				self.refreshOptions(!!self.settings.openOnFocus);
+				//self.refreshOptions(!!self.settings.openOnFocus);
 			}
 	
 			self.refreshState();
@@ -1252,11 +1236,9 @@
             self.remoteResults = [];
 			fn.apply(self, [function(results) {
 				self.loading = Math.max(self.loading - 1, 0);
-				if (results && results.length) {
-                    self.remoteResults = results;
-					self.addOption(results);
-					self.refreshOptions(self.isFocused && !self.isInputHidden);
-				}
+				self.remoteResults = results;
+				self.addOption(results);
+				self.refreshOptions(self.isFocused && !self.isInputHidden);
 				if (!self.loading) {
 					$wrapper.removeClass('loading');
 				}
@@ -1547,7 +1529,8 @@
 			}
 	
 			for (i = 0; i < n; i++) {
-				option      = self.options[results.items[i].id];
+				//option      = self.options[results.items[i].id];
+				option      = results.items[i];
 				option_html = self.render('option', option);
 				optgroup    = option[self.settings.optgroupField] || '';
 				optgroups   = $.isArray(optgroup) ? optgroup : [optgroup];
@@ -1584,13 +1567,6 @@
 	
 			$dropdown_content.html(html.join(''));
 	
-			// highlight matching terms inline
-//			if (self.settings.highlight && results.query.length && results.tokens.length) {
-//				for (i = 0, n = results.tokens.length; i < n; i++) {
-//					highlight($dropdown_content, results.tokens[i].regex);
-//				}
-//			}
-	
 			// add "selected" class to selected options
 			if (!self.settings.hideSelected) {
 				for (i = 0, n = self.items.length; i < n; i++) {
@@ -1604,28 +1580,10 @@
 				$dropdown_content.prepend(self.render('option_create', {input: query}));
 				$create = $($dropdown_content[0].childNodes[0]);
 			}
-	
+
 			// activate
 			self.hasOptions = results.items.length > 0 || has_create_option;
 			if (self.hasOptions) {
-				if (results.items.length > 0) {
-					$active_before = active_before && self.getOption(active_before);
-					if ($active_before && $active_before.length) {
-						$active = $active_before;
-					} else if (self.settings.mode === 'single' && self.items.length) {
-						$active = self.getOption(self.items[0]);
-					}
-					if (!$active || !$active.length) {
-						if ($create && !self.settings.addPrecedence) {
-							$active = self.getAdjacentOption($create, 1);
-						} else {
-							$active = $dropdown_content.find('[data-selectable]:first');
-						}
-					}
-				} else {
-					$active = $create;
-				}
-				self.setActiveOption($active);
 				if (triggerDropdown && !self.isOpen) { self.open(); }
 			} else {
 				self.setActiveOption(null);
@@ -1687,7 +1645,7 @@
 		updateOption: function(value, data) {
 			var self = this;
 			var $item, $item_new;
-			var value_new, index_item, cache_items, cache_options;
+			var value_new, index_item, cache_items;
 	
 			value     = hash_key(value);
 			value_new = hash_key(data[self.settings.valueField]);
@@ -1706,19 +1664,6 @@
 				}
 			}
 			self.options[value_new] = data;
-	
-			// invalidate render cache
-			cache_items = self.renderCache['item'];
-			cache_options = self.renderCache['option'];
-	
-			if (cache_items) {
-				delete cache_items[value];
-				delete cache_items[value_new];
-			}
-			if (cache_options) {
-				delete cache_options[value];
-				delete cache_options[value_new];
-			}
 	
 			// update the item if it's selected
 			if (self.items.indexOf(value_new) !== -1) {
@@ -1745,12 +1690,7 @@
 		removeOption: function(value) {
 			var self = this;
 			value = hash_key(value);
-	
-			var cache_items = self.renderCache['item'];
-			var cache_options = self.renderCache['option'];
-			if (cache_items) delete cache_items[value];
-			if (cache_options) delete cache_options[value];
-	
+
 			delete self.userOptions[value];
 			delete self.options[value];
 			self.lastQuery = null;
@@ -1766,7 +1706,6 @@
 	
 			self.loadedSearches = {};
 			self.userOptions = {};
-			self.renderCache = {};
 			self.options = {};
 			self.lastQuery = null;
 			self.trigger('option_clear');
@@ -1794,9 +1733,11 @@
 		 */
 		getAdjacentOption: function($option, direction) {
 			var $options = this.$dropdown.find('[data-selectable]');
-			var index    = $options.index($option) + direction;
-	
-			return index >= 0 && index < $options.length ? $options.eq(index) : $();
+			var index = 0;
+			if($option) {
+				index  = $options.index($option) + direction;
+			}
+			return $options.eq(index);
 		},
 	
 		/**
@@ -2434,25 +2375,12 @@
 		 * @returns {string}
 		 */
 		render: function(templateName, data) {
-			var value, id, label;
-			var html = '';
-			var cache = false;
+			var value, id, html;
 			var self = this;
 			var regex_tag = /^[\t ]*<([a-z][a-z0-9\-_]*(?:\:[a-z][a-z0-9\-_]*)?)/i;
 	
 			if (templateName === 'option' || templateName === 'item') {
 				value = hash_key(data[self.settings.valueField]);
-				cache = !!value;
-			}
-	
-			// pull markup from cache if it exists
-			if (cache) {
-				if (!isset(self.renderCache[templateName])) {
-					self.renderCache[templateName] = {};
-				}
-				if (self.renderCache[templateName].hasOwnProperty(value)) {
-					return self.renderCache[templateName][value];
-				}
 			}
 	
 			// render markup
@@ -2470,28 +2398,7 @@
 				html = html.replace(regex_tag, '<$1 data-value="' + escape_replace(escape_html(value || '')) + '"');
 			}
 	
-			// update cache
-			if (cache) {
-				self.renderCache[templateName][value] = html;
-			}
-	
 			return html;
-		},
-	
-		/**
-		 * Clears the render cache for a template. If
-		 * no template is given, clears all render
-		 * caches.
-		 *
-		 * @param {string} templateName
-		 */
-		clearCache: function(templateName) {
-			var self = this;
-			if (typeof templateName === 'undefined') {
-				self.renderCache = {};
-			} else {
-				delete self.renderCache[templateName];
-			}
 		},
 	
 		/**
@@ -2523,8 +2430,7 @@
 		create: false,
 		createOnBlur: false,
 		createFilter: null,
-		highlight: true,
-		openOnFocus: true,
+		openOnFocus: false,
 		maxOptions: 1000,
 		maxItems: null,
 		hideSelected: null,

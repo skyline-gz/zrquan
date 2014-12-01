@@ -26,24 +26,28 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 searchField: 'value',
                 persist: false,
                 create: function(input) {
-                    navbarEventBus.trigger("modal:show", "createThemeModal");
+                    navbarEventBus.trigger("modal:show", "createThemeModal", input);
                     return {
                         value: "",
                         text: ""
                     }
                 },
-//                render: {
-//                    option: function(item, escape) {
-//                        return '<div>' + escape(item.value) + '</div>';
-//                    }
-//                },
                 load: function(query, callback) {
                     if (!query.length) return callback();
+                    //先从localStorage中取
+                    var cache_matches = locache.get("ac_themes_" + query);
+                    if(cache_matches) {
+                        callback(cache_matches);
+                        return;
+                    }
+
+                    //再从远端进行自动匹配
                     Zrquan.Ajax.request({
                         url: "/automatch",
                         data: {query: query, type:"company"}
                     }).then(function(result) {
                         if(result.code == "S_OK") {
+                            locache.set("ac_companies_" + query, result.matches, 60);
                             callback(result.matches);
                             return;
                         }
@@ -59,7 +63,13 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         el: '#createThemeModal',
         modalName: 'createThemeModal',
         ui: {
-            //'themes' : 'input[name="themes"]'
+            'themeName' : 'input[name="name"]'
+        },
+        showModal: function(modalName, defaultValue) {
+            this.ui.themeName.val(defaultValue);
+            //super
+            Zrquan.UI.ModalView.prototype.showModal.call(this, modalName);
+
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
