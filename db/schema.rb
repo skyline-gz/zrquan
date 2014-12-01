@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126085801) do
+ActiveRecord::Schema.define(version: 20141128041713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,6 +238,16 @@ ActiveRecord::Schema.define(version: 20141126085801) do
   end
 
   add_index "images", ["wiki_id", "wiki_type"], name: "index_images_on_wiki_id_and_wiki_type", using: :btree
+
+  create_table "impressions", force: true do |t|
+    t.string   "content"
+    t.integer  "wiki_id"
+    t.string   "wiki_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["wiki_id", "wiki_type"], name: "index_impressions_on_wiki_id_and_wiki_type", using: :btree
 
   create_table "industries", force: true do |t|
     t.string   "name"
