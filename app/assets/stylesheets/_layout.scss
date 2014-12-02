@@ -24,6 +24,14 @@ body {
   padding-top: $body-padding-top;
 }
 
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style:italic;
+}
+
 input[type=text], input[type=password]:focus {
   -webkit-appearance: none;
 }

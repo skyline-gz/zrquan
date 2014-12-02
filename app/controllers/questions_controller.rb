@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
     @comments = @question.comments
     @questioner = @question.user
     @bookmarks = @question.bookmarks
+    @question_themes = @question.question_themes
   end
 
   # 新建问题对象
