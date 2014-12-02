@@ -7,8 +7,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         el: '#askQuestionModal',
         modalName: 'askQuestionModal',
         ui: {
-            'themes' : 'input[name="themes"]',
-            'description' : 'textarea[name="content"]'
+            'themes' : 'input[name="question[themes]"]',
+            'description' : 'textarea[name="question[content]"]'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
@@ -69,7 +69,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         el: '#createThemeModal',
         modalName: 'createThemeModal',
         ui: {
-            'themeName' : 'input[name="name"]'
+            'themeName' : 'input[name="theme[name]"]'
         },
         showModal: function(modalName, defaultValue) {
             this.ui.themeName.val(defaultValue);
