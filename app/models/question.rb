@@ -28,19 +28,20 @@ class Question < ActiveRecord::Base
 
 	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
 	def sorted_answers
-		invited_answers = Array.new
-		normal_answers = Array.new
-		answers.each do |ans|
-			if invited_users.include? ans.user
-				invited_answers << ans
-			else
-				normal_answers << ans
-			end
-		end
-		# 两类型答案分别按赞同分数排序，然后合并
-    invited_answers = invited_answers.sort_by {|ia| -ia.agree_score}
-    normal_answers = normal_answers.sort_by {|na| -na.agree_score}
-		invited_answers + normal_answers
+		# invited_answers = Array.new
+		# normal_answers = Array.new
+		# answers.each do |ans|
+		# 	if invited_users.include? ans.user
+		# 		invited_answers << ans
+		# 	else
+		# 		normal_answers << ans
+		# 	end
+		# end
+		# # 两类型答案分别按赞同分数排序，然后合并
+    # invited_answers = invited_answers.sort_by {|ia| -ia.agree_score}
+    # normal_answers = normal_answers.sort_by {|na| -na.agree_score}
+		# invited_answers + normal_answers
+    answers.order("agree_score")
   end
 
   def theme_ids
