@@ -13,6 +13,8 @@ class QuestionsController < ApplicationController
   def show
 		#@user = User.find(params[:id])
 		#@questions = @user.questions
+    @answers = @question.answers
+    @questioner = @question.user
   end
 
   # 新建问题对象
