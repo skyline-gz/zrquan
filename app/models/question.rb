@@ -43,7 +43,16 @@ class Question < ActiveRecord::Base
     # normal_answers = normal_answers.sort_by {|na| -na.agree_score}
 		# invited_answers + normal_answers
     answers.order("agree_score")
-  end
+	end
+
+	# 返回最佳答案
+	def recommend_answer
+		if answers.length
+			normal_answers = answers.sort_by {|na| -na.agree_score}
+			return normal_answers[0]
+		end
+		nil
+	end
 
   def theme_ids
     theme_ids = Array.new

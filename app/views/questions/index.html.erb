@@ -1,45 +1,22 @@
-<h1>Listing questions</h1>
+<div class="ql-header warp-content">
+  <div class="ql-header-title-container">
+    <div class="ql-header-title">问答推荐</div>
+  </div>
+  <div class="component-categories ql-content-categories">
+    <div class="component-category">职场规划</div>
+    <div class="component-category component-category-current">实习</div>
+    <div class="component-category">毕业生求职</div>
+    <div class="component-category">工作方案</div>
+    <div class="component-category">创业</div>
+    <div class="component-category">职场关系</div>
+    <div class="component-category">升职</div>
+    <div class="component-category">自我提升</div>
+  </div>
+</div>
+<div class="ql-content warp-content">
+  <div class="ql-content-left">
+    <div role="infoblocks">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-<!-- theme -->
-      <th>Industry</th>
-      <th>Category</th>
-      <th>Answer num</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.title %></td>
-        <td><%= question.content %></td>
-
-        <td><%= question.industry %></td>
-        <td><%= question.category %></td>
-        <td><%= question.answer_num %></td>
-        <td><%= question.user.last_name %>&nbsp;<%= question.user.first_name %></td>
-        <td><%= link_to 'Show', question %></td>
-				<% if can? :bookmark, question %>
-					<td><%= link_to 'Bookmark', bookmarks_path(:type=>"Question", :id=>question.id), method: :post %></td>
-				<% elsif can? :unbookmark, question %>
-					<td><%= link_to 'Unbookmark', bookmark_path(:type=>"Question", :id=>question.id), :id=>question.id, method: :delete %></td>
-				<% end %>
-				<!--<% if can? :edit, question %>
-	        <td><%= link_to 'Edit', edit_question_path(question), 'data-no-turbolink' => true %></td>
-				<% end %>-->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<% if can? :create, Question %>
-	<%= link_to 'New Question', new_question_path, 'data-no-turbolink' => true %>
-<% end %>
+    </div>
+  </div>
+</div>
