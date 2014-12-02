@@ -11,7 +11,7 @@
             <div class="component-infoblock-header">
               <span class="component-infoblock-username"><%=generate_name(@questioner.first_name, @questioner.last_name)%></span>
               <i class="icons-vip"></i>
-              <span class="component-infoblock-time">几秒前</span>
+              <span class="component-infoblock-time timeago" title="<%= @question.updated_at %>"><%= @question.updated_at %></span>
             </div>
             <div class="component-infoblock-content"><%= raw @question.content %></div>
             <div class="component-infoblock-footer">
@@ -256,3 +256,6 @@
     </div>
   </div>
 </div>
+<% content_for :page_javascript do %>
+    <%= javascript_include_tag "questions.show" %>
+<% end %>
