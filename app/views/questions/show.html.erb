@@ -40,6 +40,36 @@
         <span><%= @answers.length %>个回答</span>
       </div>
       <div role="infoblocks">
+        <% @answers.each do |answer| %>
+            <div class="component-infoblock">.
+                <div class="component-infoblock-left">
+                    <div class="component-infoblock-avatar avatars-head_s_02"></div>
+                    <div class="component-infoblock-good">
+                        <div class="component-infoblock-good-num"><% answer.agreements.length %></div>
+                        <div class="component-infoblock-good-action">
+                            <i class="icons-good"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-infoblock-right">
+                    <div class="component-infoblock-header">
+                        <span class="component-infoblock-username"><%=generate_name(answer.user.first_name, answer.user.last_name)%></span>
+                        <i class="icons-vip"></i>
+                        <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= answer.updated_at %></span>
+                    </div>
+                    <div class="component-infoblock-content"><%= raw answer.content %></div>
+                    <div class="component-infoblock-footer">
+                        <div class="component-comment">
+                            <i class="icons-comment"></i>评论&nbsp;<%= answer.comments.length %>
+                        </div>
+                        <div class="component-infoblock-subjects">
+                            <div class="component-subject">职业策划</div>
+                            <div class="component-subject">应届生求职</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
         <!--<div class="component-infoblock">-->
           <!--<div class="component-infoblock-left">-->
             <!--<div class="component-infoblock-avatar avatars-head_s_01"></div>-->
@@ -253,10 +283,11 @@
     </div>
     <div class="question-answer-editor">
       <div class="question-answer-editor-header">撰写答案</div>
-      <form id="form" action="_blank" method="post" target="_blank">
+      <form id="answerForm" action="/questions/<%= @question.id %>/answers" method="post" target="_self">
+        <textarea id="inputContent" name="answer[content]" style="display: none"></textarea>
         <script type="text/plain" id="answerContent">
-                        <p class='init-content'>请输入你的回答...</p>
-                    </script>
+            <p class='init-content'>请输入你的回答...</p>
+        </script>
       </form>
     </div>
   </div>

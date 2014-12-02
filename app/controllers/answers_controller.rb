@@ -31,8 +31,6 @@ class AnswersController < ApplicationController
     @answer.question_id = params[:question_id]
     @answer.save!
     # TODO 错误处理
-    # 更新问题的答案数
-    @question.update!(answer_num: @question.answer_num + 1)
     # 创建用户行为（回答问题）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
                                     publish_date: DateUtils.to_yyyymmdd(Date.today))

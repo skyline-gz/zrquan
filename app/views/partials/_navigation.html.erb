@@ -6,7 +6,7 @@
         <div class="top-nav-li <%=params[:controller] == 'home' ? 'current': ''%>"><a href="/" class="top-nav-link">首页</a></div>
         <div class="top-nav-li <%=params[:controller] == 'users' ? 'current': ''%>"><a class="top-nav-link">职人</a></div>
         <div class="top-nav-li <%=params[:controller] == 'questions' || params[:controller] == 'answers'\
-                                  ? 'current': ''%>"><a class="top-nav-link">问答</a></div>
+                                  ? 'current': ''%>"><a href="/questions" class="top-nav-link">问答</a></div>
         <div class="top-nav-li"><a class="top-nav-link">百科</a></div>
       </div>
     </div>

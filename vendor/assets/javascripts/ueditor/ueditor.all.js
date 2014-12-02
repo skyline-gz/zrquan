@@ -28661,7 +28661,14 @@ UE.ui = baidu.editor.ui = {};
                             form.submit();
                         }
                     }
-                    domUtils.on(editor.ui.getDom('submitbtn'), "click", sumitForm);
+                    function onSubmitBtnClick() {
+                        if(editor.options.onSubmitButtonClick) {
+                            editor.options.onSubmitButtonClick.call(this);
+                        } else {
+                            sumitForm();
+                        }
+                    }
+                    domUtils.on(editor.ui.getDom('submitbtn'), "click", onSubmitBtnClick);
                     editor.ui.getDom('submitbtn').innerHTML = editor.getLang("submitTip");
                 }
                 editor.ui._scale();
