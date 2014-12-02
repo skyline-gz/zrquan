@@ -5,7 +5,11 @@
       <div role="infoblocks">
         <div class="component-infoblock">
           <div class="component-infoblock-left">
-            <div class="component-infoblock-avatar avatars-head_s_02"></div>
+            <% if @questioner.avatar != nil %>
+                <img src="<%= Settings.upload_url + @questioner.avatar%>" class="component-infoblock-avatar">
+            <% else %>
+                <img src="../images/noface.gif" class="component-infoblock-avatar">
+            <% end %>
           </div>
           <div class="component-infoblock-right">
             <div class="component-infoblock-header">
@@ -16,10 +20,10 @@
             <div class="component-infoblock-content"><%= raw @question.content %></div>
             <div class="component-infoblock-footer">
               <div class="component-comment">
-                <i class="icons-comment"></i>评论&nbsp;99
+                <i class="icons-comment"></i>评论&nbsp;<%= @comments.length %>
               </div>
               <div class="component-favorites">
-                <i class="icons-favorites"></i>收藏&nbsp;5
+                <i class="icons-favorites"></i>收藏&nbsp;<%= @bookmarks.length %>
               </div>
               <div class="component-infoblock-subjects">
                 <div class="component-subject">职业策划</div>

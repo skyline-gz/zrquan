@@ -14,6 +14,7 @@ div[role=infoblocks] {
       width: 32px;
 
       .component-infoblock-avatar {
+        @include border-radius($border-radius-base);
         width: 32px;
         height: 32px;
         display: block;

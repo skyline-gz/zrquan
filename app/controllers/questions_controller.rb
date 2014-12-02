@@ -11,10 +11,10 @@ class QuestionsController < ApplicationController
 
   # 显示
   def show
-		#@user = User.find(params[:id])
-		#@questions = @user.questions
     @answers = @question.answers
+    @comments = @question.comments
     @questioner = @question.user
+    @bookmarks = @question.bookmarks
   end
 
   # 新建问题对象
@@ -59,7 +59,7 @@ class QuestionsController < ApplicationController
 		# 创建用户行为（发布问题）
 		current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
 																		publish_date: DateUtils.to_yyyymmdd(Date.today))
-		redirect_to @question, notice: 'Question was successfully created.'
+		redirect_to @question
   end
 
   # 更新
