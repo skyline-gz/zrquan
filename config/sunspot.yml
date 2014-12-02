@@ -13,6 +13,8 @@ development:
     port: 8982
     log_level: INFO
     path: /solr/development
+#  auto_commit_after_request: false
+#  auto_commit_after_delete_request: false
 
 test:
   solr:
