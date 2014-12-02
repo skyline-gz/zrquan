@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
 
   # 列表
   def index
-    @questions = Question.all
+    @questions = Question.all.order("updated_at DESC")
   end
 
   # 显示
