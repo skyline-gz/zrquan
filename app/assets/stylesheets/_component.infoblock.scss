@@ -97,15 +97,16 @@ div[role=infoblocks] {
 
       .component-infoblock-title {
         display: block;
-        margin-top: 2px;
+        margin-top: 6px;
         font-size: 14px;
         font-weight: bold;
-        height: 23px;
-        line-height: 23px;
+        height: 14px;
+        line-height: 14px;
         color: #EE8E00;
       }
 
       .component-infoblock-content {
+        margin-top: 6px;
         font-size: 14px;
         line-height: $base-content-line-height;
         color: $deep-dark;

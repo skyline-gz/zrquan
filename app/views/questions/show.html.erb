@@ -13,7 +13,7 @@
           </div>
           <div class="component-infoblock-right">
             <div class="component-infoblock-header">
-              <span class="component-infoblock-username"><%=generate_name(@questioner.first_name, @questioner.last_name)%></span>
+              <span class="component-infoblock-username"><%= generate_name(@questioner.first_name, @questioner.last_name)%></span>
               <i class="icons-vip"></i>
               <span class="component-infoblock-time timeago" title="<%= @question.updated_at %>"><%= @question.updated_at %></span>
             </div>
@@ -41,11 +41,15 @@
       </div>
       <div role="infoblocks">
         <% @answers.each do |answer| %>
-            <div class="component-infoblock">.
+            <div class="component-infoblock">
                 <div class="component-infoblock-left">
-                    <div class="component-infoblock-avatar avatars-head_s_02"></div>
+                  <% if answer.user.avatar != nil %>
+                    <img src="<%= Settings.upload_url + answer.user.avatar%>" class="component-infoblock-avatar">
+                  <% else %>
+                    <img src="../images/noface.gif" class="component-infoblock-avatar">
+                  <% end %>
                     <div class="component-infoblock-good">
-                        <div class="component-infoblock-good-num"><% answer.agreements.length %></div>
+                        <div class="component-infoblock-good-num"><%= answer.agreements.length %></div>
                         <div class="component-infoblock-good-action">
                             <i class="icons-good"></i>
                         </div>

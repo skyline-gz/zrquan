@@ -21,9 +21,13 @@
             <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
             <% if question.recommend_answer %>
                 <div class="component-infoblock-left">
-                  <div class="component-infoblock-avatar avatars-head_s_01"></div>
+                  <% if question.recommend_answer.user.avatar != nil %>
+                      <img src="<%= Settings.upload_url + question.recommend_answer.user.avatar%>" class="component-infoblock-avatar">
+                  <% else %>
+                      <img src="../images/noface.gif" class="component-infoblock-avatar">
+                  <% end %>
                   <div class="component-infoblock-good">
-                    <div class="component-infoblock-good-num">10</div>
+                    <div class="component-infoblock-good-num"><%= question.recommend_answer.agreements.length %></div>
                     <div class="component-infoblock-good-action">
                       <i class="icons-good"></i>
                     </div>
@@ -31,18 +35,16 @@
                 </div>
                 <div class="component-infoblock-right">
                   <div class="component-infoblock-header">
-                    <span class="component-infoblock-username">Tank</span>
+                    <span class="component-infoblock-username"><%=generate_name(question.recommend_answer.user.first_name, \
+                        question.recommend_answer.user.last_name)%></span>
                     <i class="icons-vip"></i>
                     <span class="component-infoblock-action">的答案（推荐）</span>
-                    <span class="component-infoblock-time">刚刚</span>
+                    <span class="component-infoblock-time timeago" title="<%= question.recommend_answer.updated_at %>"><%= question.recommend_answer.updated_at %></span>
                   </div>
-                  <div class="component-infoblock-content">这一阶段是从学校走上工作岗位，是人生事业发展的起点。它主要目标，就是选择职业与坚持学习。在充分做好自我分析，选择适合自己的职业，设定人生目标，制定人生计划。再一个任务，就是要树立自己良好的形象。年轻人步入职业世界，表现如何，对未来的发展影响极大。有些年轻人，特别是刚毕业的大学生，总认为自己有知识，有…<a href="javascript:void(0);" class="showall">显示全文</a></div>
+                  <div class="component-infoblock-content"><%= raw question.recommend_answer.content %></div>
                   <div class="component-infoblock-footer">
                     <div class="component-comment">
-                      <i class="icons-comment"></i>回答&nbsp;12
-                    </div>
-                    <div class="component-favorites">
-                      <i class="icons-favorites"></i>收藏&nbsp;5
+                      <i class="icons-comment"></i>评论&nbsp;<%= question.recommend_answer.comments.length %>
                     </div>
                     <div class="component-infoblock-subjects">
                       <div class="component-subject">职业策划</div>
