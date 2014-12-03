@@ -5,7 +5,7 @@ class AutomatchController < ApplicationController
   before_action :authenticate_user!
   before_action :set_query_params
 
-  SUPPORT_TYPE = %w('company', 'school')
+  SUPPORT_TYPE = %w('company', 'school', 'theme')
   MATCH_ARRAY_PREFIX = "o_"
   MATCH_TYPE = {
       :value => 's_v',                            #命中原字符串
@@ -158,6 +158,10 @@ class AutomatchController < ApplicationController
       when 'school'
         schools = School.all
         terms = pre_process(schools)
+        TermsCache.instance.write(type, terms)
+      when 'theme'
+        themes = Theme.all
+        terms = pre_process(themes)
         TermsCache.instance.write(type, terms)
       else
     end

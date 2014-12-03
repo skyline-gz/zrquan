@@ -68,6 +68,9 @@ Rails.application.routes.draw do
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
 
+  # 创建主题
+  post 'themes' => 'themes#create'
+
   #　自动匹配
   post 'automatch' => 'automatch#do_match'
 

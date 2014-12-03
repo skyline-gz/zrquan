@@ -50,7 +50,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                     //再从远端进行自动匹配
                     Zrquan.Ajax.request({
                         url: "/automatch",
-                        data: {query: query, type:"company"}
+                        data: {query: query, type:"theme"}
                     }).then(function(result) {
                         if(result.code == "S_OK") {
                             locache.set("ac_companies_" + query, result.matches, 60);
@@ -69,7 +69,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         el: '#createThemeModal',
         modalName: 'createThemeModal',
         ui: {
-            'themeName' : 'input[name="theme[name]"]'
+            'themeName' : 'input[name=name]'
         },
         showModal: function(modalName, defaultValue) {
             this.ui.themeName.val(defaultValue);
@@ -83,6 +83,17 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
         },
         render: function() {
+            var that = this;
+            this.$('theme-create-form').on('ajax:success', function(xhr, data, status) {
+                if(data.code == "S_OK") {
+                    that.hideModal();
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【】成功'});
+                } else if(data.code == "FA_NOT_SUPPORTED_PARAMETERS") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'输入参数错误'});
+                }
+                that.$( "input[name=name]").val("");
+                that.$( "input[name=description]").val("");
+            });
             Zrquan.UI.ModalView.prototype.render.call(this);
 
         }

@@ -149,7 +149,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     success: function(result){
                         console.log("Client Crop and Server save image success :" + result);
                         Zrquan.appEventBus.trigger('reload:avatar', result.url);
-                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'150px'});
+                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'100px'});
                     }
                 });
             } else {
@@ -173,11 +173,11 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                     if(result["code"] == "S_OK") {
                         console.log("Server Crop and save image success :" + result);
                         Zrquan.appEventBus.trigger('reload:avatar', result.url);
-                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'150px'});
+                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'保存成功!',width:'100px'});
                     }
                 });
             }
-            Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'正在保存...',width:'150px'});
+            Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'正在保存...',width:'100px'});
             this.hideModal();
         },
         cropAvatar: function(coords) {
