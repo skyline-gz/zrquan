@@ -1,4 +1,8 @@
+require 'ruby-pinyin'
+
 module AutomatchUtils
+
+  AC_SUPPORT_TYPE = %w('Company', 'School', 'Theme')
 
   MATCH_ARRAY_PREFIX = 'o_'
   MATCH_TYPE = {
@@ -8,9 +12,25 @@ module AutomatchUtils
       :pinyin_value_abbr_except_lead => 's_py2',  #命中字符串的声母串（原字符串的首个字符不变，仍然是全拼）
   }
 
+  # 判断是否AC_SUPPORT_TYPE中定义的可匹配的类型
+  def support_match (type)
+    AC_SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
+  end
+
   def auto_match(query, type)
     terms = get_terms(type)
     match_and_sort_terms(terms, query)
+  end
+
+  # 当缓存还没过期时，增量更新缓存,term是一个对象，需要有:id 和 :name属性,
+  #   type见 AC_SUPPORT_TYPE的定义
+  def add_term(term, type)
+    terms = TermsCache.instance.read(type)
+    if terms
+      new_terms = pre_process([term])
+      terms = terms.concat new_terms
+      TermsCache.instance.write(type, terms)
+    end
   end
 
   private
@@ -111,15 +131,15 @@ module AutomatchUtils
   def fetch_and_cache_terms(type)
     terms = nil
     case type
-      when 'company'
+      when 'Company'
         companies = Company.all
         terms = pre_process(companies)
         TermsCache.instance.write(type, terms)
-      when 'school'
+      when 'School'
         schools = School.all
         terms = pre_process(schools)
         TermsCache.instance.write(type, terms)
-      when 'theme'
+      when 'Theme'
         themes = Theme.all
         terms = pre_process(themes)
         TermsCache.instance.write(type, terms)

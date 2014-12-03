@@ -1,6 +1,8 @@
 require 'returncode_define'
 
 class ThemesController < ApplicationController
+  include AutomatchUtils
+
   before_action :set_theme_params
   SUPPORT_TYPE = %w('Company', 'School', 'Skill', 'Certification', 'OtherWiki')
 
@@ -31,6 +33,12 @@ class ThemesController < ApplicationController
         end
         @theme = theme_related_obj.themes.create!(:name => theme_related_obj.name, \
           :substance_id => theme_related_obj.id, :substance_type => theme_type)
+
+        # 更新自动匹配相关的缓存
+        if support_match(theme_type)
+          add_term(theme_related_obj, theme_type)
+        end
+        add_term(@theme, 'Theme')
       end
       render :json => {:code => ReturnCode::S_OK}
     else

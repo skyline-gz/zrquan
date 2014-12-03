@@ -10,7 +10,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
         Zrquan.Ajax.request({
             url: "/automatch",
-            data: {query: q, type:"company"}
+            data: {query: q, type:"Company"}
         }).then(function(result) {
             if (result['code'] == "S_OK") {
                 locache.set("ac_companies_" + q, result['matches'], 60);
@@ -39,7 +39,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
         Zrquan.Ajax.request({
             url: "/automatch",
-            data: {query: q, type:"school"}
+            data: {query: q, type:"School"}
         }).then(function(result) {
             if (result['code'] == "S_OK") {
                 locache.set("ac_schools_" + q, result['matches'], 60);

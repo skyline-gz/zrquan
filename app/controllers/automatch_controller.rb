@@ -1,4 +1,3 @@
-require 'ruby-pinyin'
 require 'returncode_define'
 
 class AutomatchController < ApplicationController
@@ -7,7 +6,6 @@ class AutomatchController < ApplicationController
   before_action :authenticate_user!
   before_action :set_query_params
 
-  SUPPORT_TYPE = %w('company', 'school', 'theme')
 
   # 匹配 暂时只实现了字符串单处匹配成功的返回，不支持同时匹配同一字符串的多处子串的返回
   # param: query 'al'
@@ -37,7 +35,7 @@ class AutomatchController < ApplicationController
       render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
       return
     end
-    if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
+    if support_match type
       results = auto_match(query, type)
       total = results.length
       results = results.slice(0, return_size).each { |k| k.except!(:ioq, :m_t) }

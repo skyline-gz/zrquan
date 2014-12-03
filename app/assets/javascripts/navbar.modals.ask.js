@@ -50,7 +50,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                     //再从远端进行自动匹配
                     Zrquan.Ajax.request({
                         url: "/automatch",
-                        data: {query: query, type:"theme"}
+                        data: {query: query, type:"Theme"}
                     }).then(function(result) {
                         if(result.code == "S_OK") {
                             locache.set("ac_companies_" + query, result.matches, 60);
@@ -84,10 +84,10 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         },
         render: function() {
             var that = this;
-            this.$('theme-create-form').on('ajax:success', function(xhr, data, status) {
+            this.$('#theme-create-form').on('ajax:success', function(xhr, data, status) {
                 if(data.code == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【' + this.ui.themeName.val() + '】成功'});
                     that.hideModal();
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【】成功'});
                 } else if(data.code == "FA_NOT_SUPPORTED_PARAMETERS") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'输入参数错误'});
                 }
