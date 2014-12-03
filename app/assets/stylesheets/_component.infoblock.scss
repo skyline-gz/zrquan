@@ -112,9 +112,43 @@ div[role=infoblocks] {
         color: $deep-dark;
         font-family: $base-article-family;
 
+        P {
+          display: inline;
+        }
+
         a.showall {
           white-space: nowrap;
           color: #438cca;
+        }
+
+        a.edit-button {
+          color: #999;
+          display: inline-block;
+          font-size: 11px;
+          -webkit-text-size-adjust: none;
+          font-weight: 400;
+          padding: 0 5px 0 2px;
+          margin: 0 0 0 2px;
+
+          &:hover {
+            text-decoration: none;
+            background: #faf4eb;
+            border-radius: 3px;
+            color: #bf8d69;
+          }
+
+          .edit-button-icon {
+            background-position: -118px -50px;
+            height: 12px;
+            margin-right: 4px;
+            outline: medium none;
+            overflow: hidden;
+            width: 12px;
+            vertical-align: -3px;
+            background-image: url(../images/sprites-zh.png);
+            background-repeat: no-repeat;
+            display: inline-block;
+          }
         }
       }
 

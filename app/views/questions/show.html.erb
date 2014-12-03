@@ -5,25 +5,25 @@
       <div role="infoblocks">
         <div class="component-infoblock">
           <div class="component-infoblock-left">
-            <% if @questioner.avatar != nil %>
-                <img src="<%= Settings.upload_url + @questioner.avatar%>" class="component-infoblock-avatar">
+            <% if @question.user.avatar != nil %>
+                <img src="<%= Settings.upload_url + @question.user.avatar%>" class="component-infoblock-avatar">
             <% else %>
                 <img src="../images/noface.gif" class="component-infoblock-avatar">
             <% end %>
           </div>
           <div class="component-infoblock-right">
             <div class="component-infoblock-header">
-              <span class="component-infoblock-username"><%= generate_name(@questioner.first_name, @questioner.last_name)%></span>
+              <span class="component-infoblock-username"><%= generate_name(@question.user.first_name, @question.user.last_name)%></span>
               <i class="icons-vip"></i>
               <span class="component-infoblock-time timeago" title="<%= @question.updated_at %>"><%= @question.updated_at %></span>
             </div>
             <div class="component-infoblock-content"><%= raw @question.content %></div>
             <div class="component-infoblock-footer">
               <div class="component-comment">
-                <i class="icons-comment"></i>评论&nbsp;<%= @comments.length %>
+                <i class="icons-comment"></i>评论&nbsp;<%= @question.comments.length %>
               </div>
               <div class="component-favorites">
-                <i class="icons-favorites"></i>收藏&nbsp;<%= @bookmarks.length %>
+                <i class="icons-favorites"></i>收藏&nbsp;<%= @question.bookmarks.length %>
               </div>
               <div class="component-infoblock-subjects">
                 <div class="component-subject">职业策划</div>
@@ -37,10 +37,10 @@
     <div class="question-answer">
       <div class="question-answer-header">
         <i class="question-answer-ico"></i>
-        <span><%= @answers.length %>个回答</span>
+        <span><%= @question.answers.length %>个回答</span>
       </div>
       <div role="infoblocks">
-        <% @answers.each do |answer| %>
+        <% @question.answers.each do |answer| %>
             <div class="component-infoblock">
                 <div class="component-infoblock-left">
                   <% if answer.user.avatar != nil %>
@@ -61,7 +61,15 @@
                         <i class="icons-vip"></i>
                         <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= answer.updated_at %></span>
                     </div>
-                    <div class="component-infoblock-content"><%= raw answer.content %></div>
+                    <div class="component-infoblock-content">
+                      <%= raw answer.content %>
+                      <% if current_user != nil && answer.user.id == current_user.id %>
+                          <a href="javascript:void(0);" class="edit-button" name="edit">
+                            <i class="edit-button-icon"></i>
+                            <span>修改</span>
+                          </a>
+                      <% end %>
+                    </div>
                     <div class="component-infoblock-footer">
                         <div class="component-comment">
                             <i class="icons-comment"></i>评论&nbsp;<%= answer.comments.length %>
@@ -285,15 +293,17 @@
         <!--</div>-->
       </div>
     </div>
-    <div class="question-answer-editor">
-      <div class="question-answer-editor-header">撰写答案</div>
-      <form id="answerForm" action="/questions/<%= @question.id %>/answers" method="post" target="_self">
-        <textarea id="inputContent" name="answer[content]" style="display: none"></textarea>
-        <script type="text/plain" id="answerContent">
-            <p class='init-content'>请输入你的回答...</p>
-        </script>
-      </form>
-    </div>
+    <% if can? :answer, @question %>
+        <div class="question-answer-editor">
+          <div class="question-answer-editor-header">撰写答案</div>
+          <form id="answerForm" action="/questions/<%= @question.id %>/answers" method="post" target="_self">
+            <textarea id="inputContent" name="answer[content]" style="display: none"></textarea>
+            <script type="text/plain" id="answerContent">
+                <p class='init-content'>请输入你的回答...</p>
+            </script>
+          </form>
+        </div>
+    <% end %>
   </div>
 </div>
 <% content_for :page_javascript do %>

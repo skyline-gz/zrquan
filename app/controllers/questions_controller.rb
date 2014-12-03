@@ -11,11 +11,6 @@ class QuestionsController < ApplicationController
 
   # 显示
   def show
-    @answers = @question.answers
-    @comments = @question.comments
-    @questioner = @question.user
-    @bookmarks = @question.bookmarks
-    @question_themes = @question.question_themes
   end
 
   # 新建问题对象
