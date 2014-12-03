@@ -42,7 +42,7 @@
       <div role="infoblocks">
         <% @question.answers.each do |answer| %>
             <% @editable = current_user != nil && answer.user.id == current_user.id %>
-            <div class="component-infoblock">
+            <div class="component-infoblock" data-id="<%= answer.id %>">
                 <div class="component-infoblock-left">
                   <% if answer.user.avatar != nil %>
                     <img src="<%= Settings.upload_url + answer.user.avatar%>" class="component-infoblock-avatar">
@@ -50,7 +50,7 @@
                     <img src="../images/noface.gif" class="component-infoblock-avatar">
                   <% end %>
                     <div class="component-infoblock-good">
-                        <div class="component-infoblock-good-num"><%= answer.agreements.length %></div>
+                        <div class="component-infoblock-good-num" data-num="<%= answer.agreements.length %>"><%= answer.agreements.length %></div>
                         <div class="component-infoblock-good-action">
                             <i class="icons-good"></i>
                         </div>

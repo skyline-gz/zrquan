@@ -6,7 +6,14 @@ class QuestionsController < ApplicationController
 
   # 列表
   def index
-    @questions = Question.all.order("updated_at DESC")
+    # 根据推荐答案的更新时间
+    @questions = Question.all.sort_by {|question|
+      if question.recommend_answer
+        question.recommend_answer.updated_at
+      else
+        question.updated_at
+      end
+    }.reverse!
   end
 
   # 显示

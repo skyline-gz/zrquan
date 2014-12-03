@@ -1,4 +1,5 @@
 require "date_utils.rb"
+require 'returncode_define'
 
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy, :agree]
@@ -35,12 +36,12 @@ class AnswersController < ApplicationController
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
                                     publish_date: DateUtils.to_yyyymmdd(Date.today))
     # 创建消息并发送
-    if current_user.user_msg_setting.answer_flag == true
+    if current_user.user_msg_setting.answer_flag
       @question.user.messages.create!(msg_type: 1, extra_info1_id: current_user.id, extra_info1_type: "User",
                                         extra_info2_id: @question.id, extra_info2_type: "Question")
       # TODO 发送到faye
     end
-    redirect_to question_path(@question), notice: 'Answer was successfully created.'
+    redirect_to question_path(@question)
   end
 
   # 更新
@@ -53,25 +54,24 @@ class AnswersController < ApplicationController
 
 	# 赞同
   def agree
-    authorize! :agree, @answer
-    @question = Question.find(@answer.question_id)
-    latest_score = @answer.agree_score
-    logger.debug(latest_score)
-    # 更新赞同分数（因为职人的范围变广，所有人都+1）
-    latest_score = latest_score + 1
-    @answer.update!(:agree_score => latest_score)
-    # 创建消息，发送给用户
-    if @answer.user.user_msg_setting.agreed_flag
-      logger.debug("message")
-      @answer.user.messages.create!(msg_type: 12, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                       extra_info2_id: @question.id, extra_info2_type: "Question")
+    if can? :agree, @answer
+      @question = Question.find(@answer.question_id)
+      # 更新赞同分数（因为职人的范围变广，所有人都+1）
+      @answer.update!(:agree_score => @answer.agree_score + 1)
+      # 创建消息，发送给用户
+      if @answer.user.user_msg_setting.agreed_flag
+        @answer.user.messages.create!(msg_type: 12, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                         extra_info2_id: @question.id, extra_info2_type: "Question")
+      end
+      # 创建用户赞同信息
+      current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
+      # 创建用户行为（赞同答案）
+      current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
+                                      publish_date: DateUtils.to_yyyymmdd(Date.today))
+      render :json => { :code => ReturnCode::S_OK }
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
     end
-    # 创建用户赞同信息
-    current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
-    # 创建用户行为（赞同答案）
-    current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
-                                    publish_date: DateUtils.to_yyyymmdd(Date.today))
-    redirect_to question_path(@question), notice: 'Answer was successfully updated.'
   end
 
   # DELETE /answers/1

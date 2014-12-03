@@ -3,6 +3,7 @@ module ReturnCode
   S_INACTIVE_OK = 'S_INACTIVE_OK' #特指未激活用户登陆成功
   FA_INVALID_PARAMETERS = 'FA_INVALID_PARAMETERS' #请求参数非法，一般指某必须参数为空或取值非法
   FA_NOT_SUPPORTED_PARAMETERS = 'FA_NOT_SUPPORTED_PARAMETERS' #请求参数不支持，一般指某参数取值合法，但不支持取该值
+  FA_UNAUTHORIZED = 'FA_UNAUTHORIZED'  #用户权限不足
   FA_UNKNOWN_ERROR = 'FA_UNKNOWN_ERROR'   #未知错误
   FA_USER_ALREADY_EXIT = 'FA_USER_ALREADY_EXIT'              #注册时，用户已经存在
   FA_USER_NOT_EXIT = 'FA_USER_NOT_EXIT'   #登录时，用户(账号)不存在

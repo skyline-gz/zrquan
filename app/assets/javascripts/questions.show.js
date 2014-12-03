@@ -16,16 +16,18 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
 
     Module.InfoBlockView = Backbone.Marionette.ItemView.extend({
         events: {
-            'click a.edit-button' : 'onEditButtonClick'
+            'click a.edit-button' : 'onEditButtonClick',
+            'click .component-infoblock-good-action' : 'onAgreeAnswerClick'
         },
         ui: {
             editButton : '.edit-button',
             editorWrapper : '.component-infoblock-editor-wrapper',
             editor : '.component-infoblock-editor',
             content: '.component-infoblock-content',
-            rawContent: '.component-infoblock-raw-content'
+            rawContent: '.component-infoblock-raw-content',
+            agreeNum: '.component-infoblock-good-num'
         },
-        onEditButtonClick : function (evt) {
+        onEditButtonClick: function (evt) {
             var that = this;
             this.ui.content.hide();
             this.ui.editorWrapper.show();
@@ -51,6 +53,22 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                 }
             });
             editor.setShow();
+        },
+        onAgreeAnswerClick: function(evt) {
+            var that = this;
+            var answerId = this.$el.attr('data-id');
+            $.when(Zrquan.Ajax.request({
+                url: "/answers/" + answerId + "/agree",
+                data: {}
+            })).then(function(result) {
+                if (result.code == "S_OK") {
+                    var agreeNum = parseInt(that.ui.agreeNum.attr('data-num')) + 1;
+                    that.ui.agreeNum.attr('data-num', agreeNum).html(agreeNum);
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'点赞成功', width:'100px'});
+                } else if (result.code == "FA_UNAUTHORIZED") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'操作失败', width:'100px'});
+                }
+            });
         },
         render: function() {
             console.log('InfoBlockView render');
