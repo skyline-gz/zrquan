@@ -48,7 +48,7 @@ class AnswersController < ApplicationController
     @question = Question.find(@answer.question_id)
     # 更新答案
     @answer.update!(answer_params)
-    redirect_to question_path(@question), notice: 'Answer was successfully updated.'
+    redirect_to question_path(@question)
   end
 
 	# 赞同

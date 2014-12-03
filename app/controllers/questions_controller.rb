@@ -63,26 +63,30 @@ class QuestionsController < ApplicationController
 		# 更新问题和邀请
 		ActiveRecord::Base.transaction do
 			@question.update!(question_params)
-			if !Invitation.destroy_all(question_id:@question.id)
-				raise ActiveRecord::Rollback
-			end
-			invitations_params[:invitations_attributes][:user_id].each do |u_id|
-				@invitation = Invitation.new
-				@invitation.question_id = @question.id
-				@invitation.user_id = u_id
-				@invitation.save!
-				# 发信息给受邀导师
-				@invitation.user.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                              extra_info2_id: @question.id, extra_info2_type: "Question")
+      if invitations_params != {}
+        if !Invitation.destroy_all(question_id:@question.id)
+          raise ActiveRecord::Rollback
+        end
+        invitations_params[:invitations_attributes][:user_id].each do |u_id|
+          @invitation = Invitation.new
+          @invitation.question_id = @question.id
+          @invitation.user_id = u_id
+          @invitation.save!
+          # 发信息给受邀导师
+          @invitation.user.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                                extra_info2_id: @question.id, extra_info2_type: "Question")
+        end
       end
-      question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
-        @question_theme = QuestionTheme.new
-        @question_theme.question_id = @question.id
-        @question_theme.theme_id = t_id
-        @question_theme.save!
+      if question_themes_params != {}
+        question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
+          @question_theme = QuestionTheme.new
+          @question_theme.question_id = @question.id
+          @question_theme.theme_id = t_id
+          @question_theme.save!
+        end
       end
 		end
-		redirect_to @question, notice: 'Question was successfully updated.'
+		redirect_to @question
   end
 
   # DELETE /questions/1

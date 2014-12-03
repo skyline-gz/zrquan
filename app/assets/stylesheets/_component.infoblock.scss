@@ -155,6 +155,10 @@ div[role=infoblocks] {
       .component-infoblock-editor {
         display: none;
         margin-top: 15px;
+
+        form {
+          display: none;
+        }
       }
 
       .component-infoblock-footer {

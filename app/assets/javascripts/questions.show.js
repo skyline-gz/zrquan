@@ -25,6 +25,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             rawContent: '.component-infoblock-raw-content'
         },
         onEditButtonClick : function (evt) {
+            var that = this;
             this.ui.content.hide();
             this.ui.editor.show();
             var rawContent = this.ui.rawContent.val();
@@ -36,8 +37,8 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                 autoClearinitialContent: false,
                 onSubmitButtonClick: function(e) {
                     var value = editor.getContent();
-                    $('#inputContent').val(value);
-                    $('#answerForm').submit();
+                    $('input[name="answer[content]"]', that.ui.editor).val(value);
+                    $('form', that.ui.editor)[0].submit();
                     return false;
                 }
             });

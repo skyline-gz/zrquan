@@ -41,6 +41,7 @@
       </div>
       <div role="infoblocks">
         <% @question.answers.each do |answer| %>
+            <% @editable = current_user != nil && answer.user.id == current_user.id %>
             <div class="component-infoblock">
                 <div class="component-infoblock-left">
                   <% if answer.user.avatar != nil %>
@@ -64,14 +65,21 @@
                     <div class="component-infoblock-content">
                       <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
                       <%= raw answer.content %>
-                      <% if current_user != nil && answer.user.id == current_user.id %>
+                      <% if @editable %>
                           <a href="javascript:void(0);" class="edit-button" name="edit">
                             <i class="edit-button-icon"></i>
                             <span>修改</span>
                           </a>
                       <% end %>
                     </div>
-                    <div class="component-infoblock-editor"></div>
+                    <% if @editable %>
+                        <div class="component-infoblock-editor">
+                          <form action="/answers/<%= answer.id %>" method="post" target="_self">
+                            <input type="text" name="answer[content]" />
+                            <input type="text" name="_method" value="put"/>
+                          </form>
+                        </div>
+                    <% end %>
                     <div class="component-infoblock-footer">
                         <div class="component-comment">
                             <i class="icons-comment"></i>评论&nbsp;<%= answer.comments.length %>
