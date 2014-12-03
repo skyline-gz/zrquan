@@ -12,4 +12,5 @@ module ReturnCode
   FA_SESSION_HAS_BEEN_CREATED = 'FA_SESSION_HAS_BEEN_CREATED'  #SESSION已被创建，可能是同一客户端重复登陆
   FA_SMTP_AUTHENTICATION_ERROR = 'FA_SMTP_AUTHENTICATION_ERROR'    #Devise　SMTP登陆认证失败
   FA_INNER_NET_CONNECT_ERROR = 'FA_INNER_NET_CONNECT_ERROR' #内部网络连接错误，可能是sunspot:solr等服务器未启动
+  FA_TERM_ALREADY_EXIT = 'FA_TERM_ALREADY_EXIT'  #条目已经存在，一般指用户新建某条目时，该条目已有同名存在
 end

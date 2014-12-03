@@ -86,10 +86,12 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             var that = this;
             this.$('#theme-create-form').on('ajax:success', function(xhr, data, status) {
                 if(data.code == "S_OK") {
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【' + this.ui.themeName.val() + '】成功'});
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【' + that.ui.themeName.val() + '】成功'});
                     that.hideModal();
                 } else if(data.code == "FA_NOT_SUPPORTED_PARAMETERS") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'输入参数错误'});
+                } else if(data.code == "FA_TERM_ALREADY_EXIT") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'不能创建相同主题'});
                 }
                 that.$( "input[name=name]").val("");
                 that.$( "input[name=description]").val("");

@@ -10,27 +10,21 @@ class ThemesController < ApplicationController
     name = params[:name]
     description = params[:description]
     theme_type = params[:theme_type]
+    code = nil
     if name == nil || name.length <= 0 || theme_type == nil
       render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
       return
     end
 
     if SUPPORT_TYPE.find { |e| /#{theme_type}/ =~ e }
+
       ActiveRecord::Base.transaction do
-        theme_related_obj = nil
-        case theme_type
-          when 'Company'
-            theme_related_obj = Company.create!(:name=>name, :description => description)
-          when 'School'
-            theme_related_obj = School.create!(:name=>name, :description => description)
-          when 'Skill'
-            theme_related_obj = Skill.create!(:name=>name, :description => description)
-          when 'Certification'
-            theme_related_obj = Certification.create!(:name=>name, :description => description)
-          when 'OtherWiki'
-            theme_related_obj = OtherWiki.create!(:name=>name, :description => description)
-          else
+        # 检验是否有重名
+        if theme_type.constantize.find_by name: name
+          code = ReturnCode::FA_TERM_ALREADY_EXIT
+          raise ActiveRecord::Rollback
         end
+        theme_related_obj = theme_type.constantize.create!(:name=>name, :description => description)
         @theme = theme_related_obj.themes.create!(:name => theme_related_obj.name, \
           :substance_id => theme_related_obj.id, :substance_type => theme_type)
 
@@ -40,7 +34,8 @@ class ThemesController < ApplicationController
         end
         add_term(@theme, 'Theme')
       end
-      render :json => {:code => ReturnCode::S_OK}
+
+      render :json => {:code => code || ReturnCode::S_OK}
     else
       render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
     end
