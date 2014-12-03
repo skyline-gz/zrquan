@@ -1,7 +1,7 @@
 /*!
  * ueditor
  * version: 1.4.3
- * build: Mon Dec 01 2014 13:26:59 GMT+0800 (CST)
+ * build: Wed Dec 03 2014 14:07:48 GMT+0800 (CST)
  */
 
 (function(){
@@ -28669,7 +28669,20 @@ UE.ui = baidu.editor.ui = {};
                         }
                     }
                     domUtils.on(editor.ui.getDom('submitbtn'), "click", onSubmitBtnClick);
-                    editor.ui.getDom('submitbtn').innerHTML = editor.getLang("submitTip");
+                    var tipKey = editor.options.submitButtonTipKey ? editor.options.submitButtonTipKey : "submitTips";
+                    editor.ui.getDom('submitbtn').innerHTML = editor.getLang(tipKey);
+                }
+                //初始化提交按钮
+                if (editor.options.cancelButton) {
+                    function onCancelBtnClick() {
+                        if(editor.options.onCancelButtonClick) {
+                            editor.options.onCancelButtonClick.call(this);
+                        } else {
+                            sumitForm();
+                        }
+                    }
+                    domUtils.on(editor.ui.getDom('cancelbtn'), "click", onCancelBtnClick);
+                    editor.ui.getDom('cancelbtn').innerHTML = editor.getLang("cancel");
                 }
                 editor.ui._scale();
                 if (editor.options.scaleEnabled) {
@@ -28692,8 +28705,12 @@ UE.ui = baidu.editor.ui = {};
                     }
                 }
 
-                if (!editor.options.submitButton) {
-                    editor.ui.getDom('bottomsubmitbar').style.display = "none";
+                if (!editor.options.submitButton && !editor.options.cancelButton) {
+                    editor.ui.getDom('bottomoptsbar').style.display = "none";
+                } else if (!editor.options.submitButton) {
+                    editor.ui.getDom('submitbtn').style.display = "none";
+                } else if (!editor.options.cancelButton) {
+                    editor.ui.getDom('cancelbtn').style.display = "none";
                 }
 
                 if (!editor.selection.isFocus())return;
@@ -29042,8 +29059,9 @@ UE.ui = baidu.editor.ui = {};
                 '<div id="##_iframeholder" class="%%-iframeholder">' +
                 '</div>' +
                 //提交按钮
-                '<div id=##_bottomsubmitbar class="%%-bottomsubmitContainer">' +
+                '<div id=##_bottomoptsbar class="%%-bottomsubmitContainer">' +
                 '<div id="##_submitbtn" class="%%-submitbtn"></div>' +
+                '<div id="##_cancelbtn" class="%%-cancelbtn"></div>' +
                 '</div>' +
                 //modify wdcount by matao
                 //由于产品不开启字数统计和元素路径，因此不加载此部分div
@@ -29498,6 +29516,7 @@ UE.ui = baidu.editor.ui = {};
     }
 
 })();
+
 
 // adapter/message.js
 UE.registerUI('message', function(editor) {

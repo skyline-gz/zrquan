@@ -20,6 +20,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         },
         ui: {
             editButton : '.edit-button',
+            editorWrapper : '.component-infoblock-editor-wrapper',
             editor : '.component-infoblock-editor',
             content: '.component-infoblock-content',
             rawContent: '.component-infoblock-raw-content'
@@ -27,21 +28,29 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         onEditButtonClick : function (evt) {
             var that = this;
             this.ui.content.hide();
-            this.ui.editor.show();
+            this.ui.editorWrapper.show();
             var rawContent = this.ui.rawContent.val();
             var editor = UE.getEditor(this.ui.editor[0], {
                 UEDITOR_HOME_URL: '/assets/ueditor/',
                 submitButton: true,
+                cancelButton: true,
                 initialFrameHeight: 130,
                 initialContent: rawContent,
+                submitButtonTipKey: 'saveTip',
                 autoClearinitialContent: false,
                 onSubmitButtonClick: function(e) {
                     var value = editor.getContent();
-                    $('input[name="answer[content]"]', that.ui.editor).val(value);
-                    $('form', that.ui.editor)[0].submit();
+                    $('input[name="answer[content]"]', that.ui.editorWrapper).val(value);
+                    $('form', that.ui.editorWrapper)[0].submit();
                     return false;
+                },
+                onCancelButtonClick: function(e) {
+                    editor.setHide();
+                    that.ui.content.show();
+                    that.ui.editorWrapper.hide();
                 }
             });
+            editor.setShow();
         },
         render: function() {
             console.log('InfoBlockView render');

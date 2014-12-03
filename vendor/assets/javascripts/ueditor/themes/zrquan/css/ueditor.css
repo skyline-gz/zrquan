@@ -210,14 +210,37 @@ div.edui-box {
     border-top: 1px solid #ccc;
 }
 
+.edui-zrquan .edui-editor-cancelbtn {
+    float: right;
+    margin-top: 5px;
+    margin-right: 12px;
+    width: 56px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background: #e0e0e0;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e0e0e0), color-stop(100%, #ccc));
+    background-image: -webkit-linear-gradient(top, #e0e0e0, #ccc);
+    background-image: -moz-linear-gradient(top, #e0e0e0, #ccc);
+    background-image: -o-linear-gradient(top, #e0e0e0, #ccc);
+    background-image: linear-gradient(top, #e0e0e0, #ccc);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
 .edui-zrquan .edui-editor-submitbtn {
     float: right;
     margin-top: 5px;
     margin-right: 12px;
-    width: 60px;
-    height: 28px;
-    line-height: 28px;
+    width: 56px;
+    height: 26px;
+    line-height: 26px;
     border-radius: 3px;
+    border: 1px solid #ff9700;
     background: #ff9700;
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9700), color-stop(100%, #dd8401));
     background-image: -webkit-linear-gradient(top, #ff9700, #dd8401);

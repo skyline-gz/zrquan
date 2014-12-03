@@ -73,12 +73,14 @@
                       <% end %>
                     </div>
                     <% if @editable %>
+                      <div class="component-infoblock-editor-wrapper">
+                        <form action="/answers/<%= answer.id %>" method="post" target="_self">
+                          <input type="text" name="answer[content]" />
+                          <input type="text" name="_method" value="put"/>
+                        </form>
                         <div class="component-infoblock-editor">
-                          <form action="/answers/<%= answer.id %>" method="post" target="_self">
-                            <input type="text" name="answer[content]" />
-                            <input type="text" name="_method" value="put"/>
-                          </form>
                         </div>
+                      </div>
                     <% end %>
                     <div class="component-infoblock-footer">
                         <div class="component-comment">

@@ -295,7 +295,12 @@
         //,wordOverFlowMsg:''    //<span style="color:red;">你输入的字符个数已经超出最大允许值，服务器可能会拒绝保存！</span>
 
         //职人圈自定义属性，升级UEditor时需要覆盖此改动
-        ,submitButton:true        //是否开启提交表单提交btn
+        ,submitButton:true         //是否开启提交表单提交btn
+        ,onSubmitButtonClick: null //点击submit按钮的响应
+        ,submitButtonTipKey: 'submitTip'   //提交按钮的tip设置，需在zh-cn.js中有定义
+        ,cancelButton:false         //是否开启cancel btn
+        ,onCancelButtonClick: null //点击cancel按钮的响应
+
         //tab
         //点击tab键时移动的距离,tabSize倍数，tabNode什么字符做为单位
         //,tabSize:4
