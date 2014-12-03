@@ -62,6 +62,7 @@
                         <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= answer.updated_at %></span>
                     </div>
                     <div class="component-infoblock-content">
+                      <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
                       <%= raw answer.content %>
                       <% if current_user != nil && answer.user.id == current_user.id %>
                           <a href="javascript:void(0);" class="edit-button" name="edit">
@@ -70,6 +71,7 @@
                           </a>
                       <% end %>
                     </div>
+                    <div class="component-infoblock-editor"></div>
                     <div class="component-infoblock-footer">
                         <div class="component-comment">
                             <i class="icons-comment"></i>评论&nbsp;<%= answer.comments.length %>

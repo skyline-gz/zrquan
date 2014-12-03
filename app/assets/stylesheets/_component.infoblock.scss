@@ -152,6 +152,11 @@ div[role=infoblocks] {
         }
       }
 
+      .component-infoblock-editor {
+        display: none;
+        margin-top: 15px;
+      }
+
       .component-infoblock-footer {
         margin-top: 5px;
         line-height: $base-content-line-height;
