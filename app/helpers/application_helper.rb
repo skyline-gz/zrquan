@@ -8,6 +8,10 @@ module ApplicationHelper
     end
   end
 
+  def to_full_time(date)
+    date.strftime("%F %I:%M %p")
+  end
+
   private
   def check_english(str)
     /\A[a-zA-Z]+\z/.match(str) != nil

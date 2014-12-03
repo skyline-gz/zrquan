@@ -15,7 +15,7 @@
             <div class="component-infoblock-header">
               <span class="component-infoblock-username"><%= generate_name(@question.user.first_name, @question.user.last_name)%></span>
               <i class="icons-vip"></i>
-              <span class="component-infoblock-time timeago" title="<%= @question.updated_at %>"><%= @question.updated_at %></span>
+              <span class="component-infoblock-time timeago" title="<%= @question.updated_at %>"><%= to_full_time(@question.updated_at) %></span>
             </div>
             <div class="component-infoblock-content"><%= raw @question.content %></div>
             <div class="component-infoblock-footer">
@@ -60,7 +60,7 @@
                     <div class="component-infoblock-header">
                         <span class="component-infoblock-username"><%=generate_name(answer.user.first_name, answer.user.last_name)%></span>
                         <i class="icons-vip"></i>
-                        <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= answer.updated_at %></span>
+                        <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= to_full_time(answer.updated_at) %></span>
                     </div>
                     <div class="component-infoblock-content">
                       <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
