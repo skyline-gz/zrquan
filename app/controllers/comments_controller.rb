@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   def create
     type = params[:type]
     id = params[:id]
-    content = strip_tags(params[:content])
+    content = ActionController::Base.helpers.strip_tags params[:content]
     replied_comment_id = params[:replied_comment_id]
 
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
@@ -40,21 +40,21 @@ class CommentsController < ApplicationController
             # 创建消息并发送
             if current_user.user_msg_setting.commented_flag
               comment_related_obj.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                              extra_info2_id: @article.id, extra_info2_type: "Question")
+                                              extra_info2_id: comment_related_obj.id, extra_info2_type: "Question")
               # TODO 发送到faye
             end
             # 创建用户行为（评论经验）
-            current_user.activities.create!(target_id: @article.id, target_type: "Question", activity_type: 4,
+            current_user.activities.create!(target_id: comment_related_obj.id, target_type: "Question", activity_type: 4,
                                             publish_date: DateUtils.to_yyyymmdd(Date.today))
           when 'Answer'
             # 创建消息并发送
             if current_user.user_msg_setting.commented_flag
               comment_related_obj.user.messages.create!(msg_type: 2, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                            extra_info2_id: @question.id, extra_info2_type: "Answer")
+                                            extra_info2_id: comment_related_obj.id, extra_info2_type: "Answer")
               # TODO 发送到faye
             end
             # 创建用户行为（评论答案）
-            current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
+            current_user.activities.create!(target_id: comment_related_obj.id, target_type: "Answer", activity_type: 3,
                                             publish_date: DateUtils.to_yyyymmdd(Date.today))
           else
         end
