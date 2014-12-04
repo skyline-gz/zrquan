@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
       @comment_related_obj = type.constantize.find(id)
-      @comments = Comment.where(:commentable_id => id, :commentable_type => type)
+      @comments = Comment.where(:commentable_id => id, :commentable_type => type).order('updated_at')
       render 'comments/show.json'
     else
       render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
