@@ -1,5 +1,6 @@
 Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _){
     "use strict";
+    Module.infoblocksEventBus = new Backbone.Wreqr.EventAggregator();
 
     Module.addInitializer(function() {
         console.log("Questions Show init...");
@@ -56,7 +57,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                 }
             }).then(function(result) {
                 if (result['code'] == "S_OK") {
-
+                    Module.infoblocksEventBus.trigger('comments:reload');
                 }
             });
         },
@@ -128,6 +129,9 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             });
         },
         onCommentClick: function(evt) {
+            this.loadNShowComment();
+        },
+        loadNShowComment: function() {
             var that = this;
             var queryparams = "?type=Answer" + "&id=" + this.$el.attr('data-id');
 
@@ -151,6 +155,14 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         render: function() {
             console.log('InfoBlockView render');
             this.bindUIElements(); // wire up this.ui, if any
+        },
+        initialize: function(options){
+            var that = this;
+            this.attrs = options.attrs;
+            this.listenTo(Module.infoblocksEventBus, 'comments:reload', function(){
+                that.comment.empty();
+                that.loadNShowComment();
+            });
         }
     });
 
