@@ -14,14 +14,22 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         }
     });
 
+    Module.InfoBlockCommentItem = Backbone.Model.extend({});
+
+    Module.InfoBlockCommentCollection = Backbone.Collection.extend({
+        model: Module.InfoBlockCommentItem
+    });
+
     //单条评论的视图
     Module.InfoBlockCommentItemView = Backbone.Marionette.ItemView.extend({
-
+        template: '#infoblock-comment-item-template'
     });
 
     //评论列表视图
     Module.InfoBlockCommentView = Backbone.Marionette.CompositeView.extend({
         template: '#infoblock-comment-wrapper-template',
+        childView: Module.InfoBlockCommentItemView,
+        childViewContainer: '.component-infoblock-comment-list',
         events: {
             'click .component-infoblock-comment-footer .comment-editable-opts-cancel': 'onCancelCommentClick',
             'click .component-infoblock-comment-footer .comment-editable-opts-submit': 'onSubmitCommentClick'
@@ -121,12 +129,24 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         },
         onCommentClick: function(evt) {
             var that = this;
-            this.comment.show(new Module.InfoBlockCommentView({
-                attrs: {
-                    type: 'Answer',
-                    id: this.$el.attr('data-id')
+            var queryparams = "?type=Answer" + "&id=" + this.$el.attr('data-id');
+
+            $.when(Zrquan.Ajax.request({
+                url: "/comments" + queryparams,
+                type: "GET"
+            })).then(function(result) {
+                if (result.code == "S_OK") {
+                    var comments = new Module.InfoBlockCommentCollection(result.data);
+                    that.comment.show(new Module.InfoBlockCommentView({
+                        collection: comments,
+                        attrs: {
+                            type: 'Answer',
+                            id: that.$el.attr('data-id')
+                        }
+                    }));
+                    $('.timeago', that.$el).timeago();
                 }
-            }));
+            });
         },
         render: function() {
             console.log('InfoBlockView render');

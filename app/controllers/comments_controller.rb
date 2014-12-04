@@ -11,8 +11,9 @@ class CommentsController < ApplicationController
     id = params[:id]
 
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
-      @comments = Comment.find_by(:commentable_id => id, :commentable_type => type)
-      render :json => {:code => ReturnCode::S_OK, :data => @comments.to_json}
+      @comment_related_obj = type.constantize.find(id)
+      @comments = Comment.where(:commentable_id => id, :commentable_type => type)
+      render 'comments/show.json'
     else
       render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
     end
@@ -22,12 +23,13 @@ class CommentsController < ApplicationController
   def create
     type = params[:type]
     id = params[:id]
+    content = strip_tags(params[:content])
     replied_comment_id = params[:replied_comment_id]
 
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
       comment_related_obj = type.constantize.find(id)
       if can? :comment, comment_related_obj
-        @comment = current_user.comments.new(comment_params)
+        @comment = current_user.comments.new({:content => content})
         @comment.commentable_type = type
         @comment.commentable_id = id
         @comment.replied_comment_id = replied_comment_id

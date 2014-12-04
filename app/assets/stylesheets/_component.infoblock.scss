@@ -233,6 +233,7 @@ div[role=infoblocks] {
               margin-top: 3px;
 
               img {
+                @include border-radius($border-radius-small);
                 width: 25px;
                 height: 25px;
               }
