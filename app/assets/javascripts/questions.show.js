@@ -32,8 +32,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         },
         attrs: {
             type: '',      //评论类型
-            answer_id: null,  //问题id
-            question_id: null
+            id: null       //id
         },
         onCancelCommentClick: function() {
 
@@ -43,15 +42,13 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             Zrquan.Ajax.request({
                 url: "/comments",
                 data: {
-                    answer_id: this.attrs.answer_id,
-                    comment: {
-                        content: commentContent
-                    }
+                    type: this.attrs.type,
+                    id: this.attrs.id,
+                    content: commentContent
                 }
             }).then(function(result) {
                 if (result['code'] == "S_OK") {
-                    locache.set("ac_companies_" + q, result['matches'], 60);
-                    cb(result['matches']);
+
                 }
             });
         },
@@ -126,9 +123,8 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             var that = this;
             this.comment.show(new Module.InfoBlockCommentView({
                 attrs: {
-                    type: 'answer',
-                    question_id: this.$el.attr('data-id'),
-                    answer_id: this.$el.attr('data-id')
+                    type: 'Answer',
+                    id: this.$el.attr('data-id')
                 }
             }));
         },
