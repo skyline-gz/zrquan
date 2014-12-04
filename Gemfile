@@ -49,8 +49,9 @@ gem 'settingslogic', '2.0.9'
 # gem 'grape-entity', '0.4.4'
 
 
-# 数据库：postgresql
+# 数据库
 gem 'pg', '0.17.1'
+gem 'mysql2', '~> 0.3.17'
 
 # 测试
 group :development, :test do
