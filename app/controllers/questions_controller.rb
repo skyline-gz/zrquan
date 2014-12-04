@@ -34,31 +34,19 @@ class QuestionsController < ApplicationController
   # 创建
   def create
     authorize! :answer, Question
-		# 创建问题和邀请
-		ActiveRecord::Base.transaction do
-	  	@question = current_user.questions.new(question_params)
-			@question.save!
-			logger.debug(invitations_params)
-			if invitations_params != {}
-				invitations_params[:invitations_attributes][:user_id].each do |u_id|
-					@invitation = Invitation.new
-					@invitation.question_id = @question.id
-					@invitation.user_id = u_id
-					@invitation.save!
-					# 发信息给受邀导师
-					@invitation.user.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                                extra_info2_id: @question.id, extra_info2_type: "Question")
-				end
+		# 创建问题和主题（非严谨，不需事务）
+    @question = current_user.questions.new(question_params)
+    @question.hot_abs = 3   #问题自身权重
+    @question.latest_qa_time = to_yyyymmddhhmmss(Time.now)
+    @question.save!
+    if question_themes_params != {}
+      question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
+        @question_theme = QuestionTheme.new
+        @question_theme.question_id = @question.id
+        @question_theme.theme_id = t_id
+        @question_theme.save!
       end
-      if question_themes_params != {}
-        question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
-          @question_theme = QuestionTheme.new
-          @question_theme.question_id = @question.id
-          @question_theme.theme_id = t_id
-          @question_theme.save!
-        end
-      end
-		end
+    end
 		# 创建用户行为（发布问题）
 		current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
 																		publish_date: DateUtils.to_yyyymmdd(Date.today))
@@ -67,32 +55,16 @@ class QuestionsController < ApplicationController
 
   # 更新
   def update
-		# 更新问题和邀请
-		ActiveRecord::Base.transaction do
-			@question.update!(question_params)
-      if invitations_params != {}
-        if !Invitation.destroy_all(question_id:@question.id)
-          raise ActiveRecord::Rollback
-        end
-        invitations_params[:invitations_attributes][:user_id].each do |u_id|
-          @invitation = Invitation.new
-          @invitation.question_id = @question.id
-          @invitation.user_id = u_id
-          @invitation.save!
-          # 发信息给受邀导师
-          @invitation.user.messages.create!(msg_type: 15, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                                extra_info2_id: @question.id, extra_info2_type: "Question")
-        end
+		# 更新问题和主题（非严谨，不需事务）
+    @question.update!(question_params)
+    if question_themes_params != {}
+      question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
+        @question_theme = QuestionTheme.new
+        @question_theme.question_id = @question.id
+        @question_theme.theme_id = t_id
+        @question_theme.save!
       end
-      if question_themes_params != {}
-        question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
-          @question_theme = QuestionTheme.new
-          @question_theme.question_id = @question.id
-          @question_theme.theme_id = t_id
-          @question_theme.save!
-        end
-      end
-		end
+    end
 		redirect_to @question
   end
 
@@ -117,9 +89,9 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:title, :content)
     end
 
-		def invitations_params
-      params.require(:question).permit(invitations_attributes:[:user_id=>[]])
-    end
+    # def invitations_params
+    #   params.require(:question).permit(invitations_attributes:[:user_id=>[]])
+    # end
 
     def question_themes_params
       params.require(:question).permit(question_themes_attributes:[:theme_id=>[]])

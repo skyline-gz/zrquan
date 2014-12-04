@@ -381,10 +381,14 @@ ActiveRecord::Schema.define(version: 20141128041713) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
+    t.integer  "hot_abs"
+    t.integer  "latest_answer_id"
+    t.integer  "latest_qa_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "questions", ["latest_answer_id"], name: "index_questions_on_latest_answer_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "recommend_users", force: true do |t|

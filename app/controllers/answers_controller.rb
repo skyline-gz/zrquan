@@ -31,6 +31,9 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.new(answer_params)
     @answer.question_id = params[:question_id]
     @answer.save!
+    @question.update!(hot_abs: @question.hot_abs + 3,
+                      latest_answer_id: @answer.id,
+                      latest_qa_time: to_yyyymmddhhmmss(Time.now))
     # TODO 错误处理
     # 创建用户行为（回答问题）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
@@ -57,7 +60,8 @@ class AnswersController < ApplicationController
     if can? :agree, @answer
       @question = Question.find(@answer.question_id)
       # 更新赞同分数（因为职人的范围变广，所有人都+1）
-      @answer.update!(:agree_score => @answer.agree_score + 1)
+      @answer.update!(agree_score: @answer.agree_score + 1)
+      @question.update!(hot_abs: @question.hot_abs + 1)
       # 创建消息，发送给用户
       if @answer.user.user_msg_setting.agreed_flag
         @answer.user.messages.create!(msg_type: 12, extra_info1_id: current_user.id, extra_info1_type: "User",
