@@ -1,58 +1,70 @@
+require 'returncode_define'
 require "date_utils.rb"
 
 class CommentsController < ApplicationController
-  include ReturnCode
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:destroy]
+  SUPPORT_TYPE = %w('Question', 'Answer')
 
   # 列举评论
   def show
+    type = params[:type]
+    id = params[:id]
 
+    if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
+      @comments = Comment.find_by(:commentable_id => id, :commentable_type => type)
+      render :json => {:code => ReturnCode::S_OK, :data => @comments.to_json}
+    else
+      render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
+    end
   end
 
-  # 创建
+  # 创建评论
   def create
-    # 问题评论
-    if params[:question_id] != nil
-      @question = Question.find(params[:question_id])
-      authorize! :comment, @question
-      # 创建经验评论
-      @comment = current_user.comments.new(comment_params)
-      @comment.commentable_id = params[:question_id]
-      @comment.commentable_type = "Question"
-      @comment.replied_comment_id = params[:replied_comment_id]
-      @comment.save!
-      # 创建消息并发送
-      if current_user.user_msg_setting.commented_flag
-        @article.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                       extra_info2_id: @article.id, extra_info2_type: "Question")
-        # TODO 发送到faye
+    type = params[:type]
+    id = params[:id]
+    replied_comment_id = params[:replied_comment_id]
+
+    if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
+      comment_related_obj = type.constantize.find(id)
+      if can? :comment, comment_related_obj
+        @comment = current_user.comments.new(comment_params)
+        @comment.commentable_type = type
+        @comment.commentable_id = id
+        @comment.replied_comment_id = replied_comment_id
+        @comment.save!
+
+        case type
+          when 'Question'
+            # 创建消息并发送
+            if current_user.user_msg_setting.commented_flag
+              comment_related_obj.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                              extra_info2_id: @article.id, extra_info2_type: "Question")
+              # TODO 发送到faye
+            end
+            # 创建用户行为（评论经验）
+            current_user.activities.create!(target_id: @article.id, target_type: "Question", activity_type: 4,
+                                            publish_date: DateUtils.to_yyyymmdd(Date.today))
+          when 'Answer'
+            # 创建消息并发送
+            if current_user.user_msg_setting.commented_flag
+              comment_related_obj.user.messages.create!(msg_type: 2, extra_info1_id: current_user.id, extra_info1_type: "User",
+                                            extra_info2_id: @question.id, extra_info2_type: "Answer")
+              # TODO 发送到faye
+            end
+            # 创建用户行为（评论答案）
+            current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
+                                            publish_date: DateUtils.to_yyyymmdd(Date.today))
+          else
+        end
+        render :json => {:code => ReturnCode::S_OK}
+        return
+      else
+        render :json => {:code => ReturnCode::FA_UNAUTHORIZED}
+        return
       end
-      # 创建用户行为（评论经验）
-      current_user.activities.create!(target_id: @article.id, target_type: "Question", activity_type: 4,
-                                      publish_date: DateUtils.to_yyyymmdd(Date.today))
-      redirect_to article_path(@question), notice: 'Comment was successfully created.'
+    else
+      render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
     end
-		# 答案评论
-		if params[:answer_id] != nil
-			@answer = Answer.find(params[:answer_id])
-      authorize! :comment, @answer
-			@question = @answer.question
-			# 创建答案评论
-			@comment = current_user.comments.new(comment_params)
-			@comment.commentable_id = params[:answer_id]
-			@comment.commentable_type = "Answer"
-      @comment.replied_comment_id = params[:replied_comment_id]
-			@comment.save!
-			# 创建消息并发送
-			if current_user.user_msg_setting.commented_flag
-				@answer.user.messages.create!(msg_type: 2, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                       extra_info2_id: @question.id, extra_info2_type: "Question")
-			end
-			# 创建用户行为（评论答案）
-			current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
-																		  publish_date: DateUtils.to_yyyymmdd(Date.today))
-      render :json => {:code => S_OK}
-		end
   end
 
   # 删除评论
@@ -69,6 +81,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content)
+      params.permit(:content)
     end		
 end
