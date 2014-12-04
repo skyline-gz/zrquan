@@ -1,40 +1,16 @@
 require "date_utils.rb"
 
 class CommentsController < ApplicationController
+  include ReturnCode
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  # 列表
-  def index
-    @comments = Comment.all
-  end
+  # 列举评论
+  def show
 
-  # 新建评论对象
-  def new
-    @comment = Comment.new
   end
 
   # 创建
   def create
-		# 经验评论
-		# if params[:article_id] != nil
-		# 	@article = Article.find(params[:article_id])
-     #  authorize! :comment, @article
-		# 	# 创建经验评论
-		#   @comment = current_user.comments.new(comment_params)
-		# 	@comment.commentable_id = params[:article_id]
-		# 	@comment.commentable_type = "Article"
-		# 	@comment.save!
-		# 	# 创建消息并发送
-		# 	if current_user.user_msg_setting.commented_flag == true
-		# 		@article.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
-     #                                   extra_info2_id: @article.id, extra_info2_type: "Article")
-		# 		# TODO 发送到faye
-		# 	end
-		# 	# 创建用户行为（评论经验）
-		# 	current_user.activities.create!(target_id: @article.id, target_type: "Article", activity_type: 4,
-		# 																  publish_date: DateUtils.to_yyyymmdd(Date.today))
-		#   redirect_to article_path(@article), notice: 'Comment was successfully created.'
-    # end
     # 问题评论
     if params[:question_id] != nil
       @question = Question.find(params[:question_id])
@@ -46,7 +22,7 @@ class CommentsController < ApplicationController
       @comment.replied_comment_id = params[:replied_comment_id]
       @comment.save!
       # 创建消息并发送
-      if current_user.user_msg_setting.commented_flag == true
+      if current_user.user_msg_setting.commented_flag
         @article.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
                                        extra_info2_id: @article.id, extra_info2_type: "Question")
         # TODO 发送到faye
@@ -68,15 +44,20 @@ class CommentsController < ApplicationController
       @comment.replied_comment_id = params[:replied_comment_id]
 			@comment.save!
 			# 创建消息并发送
-			if current_user.user_msg_setting.commented_flag == true
+			if current_user.user_msg_setting.commented_flag
 				@answer.user.messages.create!(msg_type: 2, extra_info1_id: current_user.id, extra_info1_type: "User",
                                        extra_info2_id: @question.id, extra_info2_type: "Question")
 			end
 			# 创建用户行为（评论答案）
 			current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 3,
 																		  publish_date: DateUtils.to_yyyymmdd(Date.today))
-		  redirect_to question_path(@question), notice: 'Comment was successfully created.'
+      render :json => {:code => S_OK}
 		end
+  end
+
+  # 删除评论
+  def destroy
+
   end
 
 

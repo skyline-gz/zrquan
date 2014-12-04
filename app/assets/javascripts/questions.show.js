@@ -14,10 +14,59 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         }
     });
 
-    Module.InfoBlockView = Backbone.Marionette.ItemView.extend({
+    //单条评论的视图
+    Module.InfoBlockCommentItemView = Backbone.Marionette.ItemView.extend({
+
+    });
+
+    //评论列表视图
+    Module.InfoBlockCommentView = Backbone.Marionette.CompositeView.extend({
+        template: '#infoblock-comment-wrapper-template',
+        events: {
+            'click .component-infoblock-comment-footer .comment-editable-opts-cancel': 'onCancelCommentClick',
+            'click .component-infoblock-comment-footer .comment-editable-opts-submit': 'onSubmitCommentClick'
+
+        },
+        ui: {
+            content: '.component-infoblock-comment-footer .component-infoblock-comment-editable'
+        },
+        attrs: {
+            type: '',      //评论类型
+            answer_id: null,  //问题id
+            question_id: null
+        },
+        onCancelCommentClick: function() {
+
+        },
+        onSubmitCommentClick: function(evt) {
+            var commentContent = this.ui.content.html();
+            Zrquan.Ajax.request({
+                url: "/comments",
+                data: {
+                    answer_id: this.attrs.answer_id,
+                    comment: {
+                        content: commentContent
+                    }
+                }
+            }).then(function(result) {
+                if (result['code'] == "S_OK") {
+                    locache.set("ac_companies_" + q, result['matches'], 60);
+                    cb(result['matches']);
+                }
+            });
+        },
+        initialize: function(options){
+            this.attrs = options.attrs;
+        }
+    });
+
+
+    //信息块视图
+    Module.InfoBlockView = Backbone.Marionette.LayoutView.extend({
         events: {
             'click a.edit-button' : 'onEditButtonClick',
-            'click .component-infoblock-good-action' : 'onAgreeAnswerClick'
+            'click .component-infoblock-good-action' : 'onAgreeAnswerClick',
+            'click .component-comment': 'onCommentClick'
         },
         ui: {
             editButton : '.edit-button',
@@ -26,6 +75,9 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             content: '.component-infoblock-content',
             rawContent: '.component-infoblock-raw-content',
             agreeNum: '.component-infoblock-good-num'
+        },
+        regions: {
+            comment: ".component-infoblock-comment"
         },
         onEditButtonClick: function (evt) {
             var that = this;
@@ -70,12 +122,23 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                 }
             });
         },
+        onCommentClick: function(evt) {
+            var that = this;
+            this.comment.show(new Module.InfoBlockCommentView({
+                attrs: {
+                    type: 'answer',
+                    question_id: this.$el.attr('data-id'),
+                    answer_id: this.$el.attr('data-id')
+                }
+            }));
+        },
         render: function() {
             console.log('InfoBlockView render');
             this.bindUIElements(); // wire up this.ui, if any
         }
     });
 
+    //信息块列表视图
     Module.infoBlockCollectionView = new (Backbone.Marionette.CollectionView.extend({
         el: '.question-answer div[role=infoblocks]',
         childView: Module.InfoBlockView,

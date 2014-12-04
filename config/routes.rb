@@ -13,13 +13,6 @@ Rails.application.routes.draw do
 	end
 
 	resources :consult_replies, only: [:show, :edit, :update]
- 
-  resources :articles do
-		member do
-			post :agree
-		end
-		resources :comments, only: [:index, :new, :create]
-	end
 
   resources :messages, except: [:destroy, :edit, :update]
 
@@ -31,7 +24,6 @@ Rails.application.routes.draw do
 		member do
 			post :agree
 		end
-		resources :comments, only: [:index, :new, :create]
 	end
 
   devise_for :users, controllers:{
@@ -63,6 +55,11 @@ Rails.application.routes.draw do
 	get '/home/my_bookmark'
 	get '/home/my_draft'
 	get '/home/activate'
+
+  # 评论问题，评论答案
+  get 'comments' => 'comments#show'
+  post 'comments' => 'comments#create'
+  delete 'comments' => 'comments#destroy'
 
   # 头像上传
   post 'upload/upload_avatar'
