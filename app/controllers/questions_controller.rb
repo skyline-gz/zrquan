@@ -36,6 +36,8 @@ class QuestionsController < ApplicationController
     authorize! :answer, Question
 		# 创建问题和主题（非严谨，不需事务）
     @question = current_user.questions.new(question_params)
+    @question.hot_abs = 3   #问题自身权重
+    @question.latest_qa_time = to_yyyymmddhhmmss(Time.now)
     @question.save!
     if question_themes_params != {}
       question_themes_params[:question_themes_attributes][:theme_id].each do |t_id|
