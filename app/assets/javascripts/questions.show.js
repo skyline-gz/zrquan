@@ -14,7 +14,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         }
     });
 
-    Module.InfoBlockView = Backbone.Marionette.ItemView.extend({
+    Module.InfoBlockView = Backbone.Marionette.LayoutView.extend({
         events: {
             'click a.edit-button' : 'onEditButtonClick',
             'click .component-infoblock-good-action' : 'onAgreeAnswerClick'
@@ -26,6 +26,9 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             content: '.component-infoblock-content',
             rawContent: '.component-infoblock-raw-content',
             agreeNum: '.component-infoblock-good-num'
+        },
+        regions: {
+            comment: ".component-infoblock-comment"
         },
         onEditButtonClick: function (evt) {
             var that = this;
