@@ -13,7 +13,6 @@
 </script>
 
 <script type="text/template" id="infoblock-comment-item-template">
-  <div class="component-infoblock-item-comment">
     <div class="component-infoblock-item-comment-left">
       <img src="{{=user_avatar}}">
     </div>
@@ -31,10 +30,17 @@
       </div>
       <div class="component-infoblock-item-comment-content">{{=content}}</div>
       <div class="component-infoblock-item-comment-footer">
-        <a class="comment-op-link">
+        {{ if(!is_self) { }}
+        <a class="comment-op-link comment-op-link-reply">
           <i class="icon-comment-reply"></i>
           <span>回复</span>
         </a>
+        {{ }else{ }}
+        <a class="comment-op-link comment-op-link-delete">
+          <i class="icon-comment-delete"></i>
+          <span>删除</span>
+        </a>
+        {{ } }}
       </div>
       <div class="component-infoblock-item-comment-form" style="display:none">
         <div class="comment-editable" aria-label="写下你的回复" contenteditable="true"></div>
@@ -44,5 +50,4 @@
         </div>
       </div>
     </div>
-  </div>
 </script>

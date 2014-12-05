@@ -270,6 +270,8 @@ div[role=infoblocks] {
               }
 
               .component-infoblock-item-comment-footer {
+                min-height: 24px;
+
                 .comment-op-link  {
                   margin-right: 12px;
                   color: #999;
@@ -277,26 +279,26 @@ div[role=infoblocks] {
                   cursor: pointer;
                 }
 
-                .icon-comment-agree {
+                .icon-comment-agree, .icon-comment-reply, .icon-comment-delete {
                   margin-right: 5px;
                   width: 11px;
                   height: 11px;
                   vertical-align: -1px;
-                  background-position: -222px -92px;
                   background-image: url(../images/sprites-zh.png);
                   background-repeat: no-repeat;
                   display: inline-block;
                 }
 
+                .icon-comment-agree {
+                  background-position: -222px -92px;
+                }
+
                 .icon-comment-reply {
-                  margin-right: 5px;
-                  width: 11px;
-                  height: 11px;
-                  vertical-align: -1px;
                   background-position: -250px -92px;
-                  background-image: url(../images/sprites-zh.png);
-                  background-repeat: no-repeat;
-                  display: inline-block;
+                }
+
+                .icon-comment-delete {
+                  background-position: -236px -92px;
                 }
 
                 .like-num {

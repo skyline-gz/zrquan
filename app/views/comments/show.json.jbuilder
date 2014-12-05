@@ -6,6 +6,9 @@ json.data @comments do |comment|
   json.is_author comment.user.id == @comment_related_obj.user.id
   json.content comment.content
   json.updated_at comment.updated_at
+  if current_user
+    json.is_self comment.user.id == current_user.id
+  end
   if comment.replied_comment_id
     reply_comment = Comment.find(comment.replied_comment_id)
     if reply_comment

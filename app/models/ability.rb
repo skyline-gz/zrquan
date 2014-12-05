@@ -61,7 +61,7 @@ class Ability
       # article
       article_abilities(user)
       # comment
-      comment_abilities
+      comment_abilities(user)
 			# pm
       pm_abilities(user)
       # bookmark
@@ -94,7 +94,7 @@ class Ability
       # article
       article_abilities(user)
       # comment
-      comment_abilities
+      comment_abilities(user)
 			# pm
       pm_abilities(user)
       # bookmark
@@ -103,9 +103,12 @@ class Ability
       follow_abilities(user)
 		end
 
-    def comment_abilities
+    def comment_abilities(user)
       can :comment, Answer
       can :comment, Question
+      can :delete, Comment do |q|
+        user.id == q.user.id
+      end
     end
 
     def create_edit_abilities(user)

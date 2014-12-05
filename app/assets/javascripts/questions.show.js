@@ -24,16 +24,48 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
     //单条评论的视图
     Module.InfoBlockCommentItemView = Backbone.Marionette.ItemView.extend({
         template: '#infoblock-comment-item-template',
+        className: 'component-infoblock-item-comment',
+        tagName: 'div',
         events: {
-           'click .comment-op-link': 'onReplyCommentClick',
-           'click .comment-editable-opts-submit': 'replyComment'
+           'click .comment-op-link-reply': 'onReplyCommentClick',
+           'click .comment-op-link-delete': 'onDeleteCommentClick',
+           'click .comment-editable-opts-submit': 'replyComment',
+           'click .comment-editable-opts-cancel': 'cancelReplyComment'
         },
         ui: {
             editorWrapper : '.component-infoblock-item-comment-form',
             content: '.comment-editable'
         },
         onReplyCommentClick: function() {
-            this.ui.editorWrapper.show();
+            if(this.ui.editorWrapper.is(':visible')) {
+                this.cancelReplyComment();
+            } else {
+                this.ui.editorWrapper.show();
+            }
+        },
+        onDeleteCommentClick: function() {
+            var that = this;
+            var commentId = this.model.attributes.id;
+            Zrquan.appEventBus.trigger('modal:sys',{
+                type:'confirm',title:'删除评论',content:'你确定要删除该评论吗？', onOK:deleteComment});
+            function deleteComment() {
+                Zrquan.Ajax.request({
+                    url: "/comments",
+                    data: {
+                        id: commentId
+                    },
+                    type: "DELETE"
+                }).then(function(result) {
+                    if (result['code'] == "S_OK") {
+                        that.options.parentView.removeChildView(that);
+                        Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'成功删除评论'});
+                    }
+                });
+            }
+        },
+        cancelReplyComment: function() {
+            this.ui.content.html('');
+            this.ui.editorWrapper.hide();
         },
         replyComment: function() {
             var that = this;
@@ -65,7 +97,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         childView: Module.InfoBlockCommentItemView,
         childViewOptions: function(){
            return {
-               attrs: this.attrs,
+               attrs: this.options.attrs,
                parentView: this        //给子View给予自己的引用
            }
         },
@@ -78,21 +110,18 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         ui: {
             content: '.component-infoblock-comment-footer .component-infoblock-comment-editable'
         },
-        attrs: {
-            type: '',      //评论类型
-            id: null       //id
-        },
         onCancelCommentClick: function() {
 
         },
         onSubmitCommentClick: function(evt) {
             var that = this;
             var commentContent = this.ui.content.html();
+            var attrs = this.options.attrs;
             Zrquan.Ajax.request({
                 url: "/comments",
                 data: {
-                    type: this.attrs.type,
-                    id: this.attrs.id,
+                    type: attrs.type,
+                    id: attrs.id,
                     content: commentContent
                 }
             }).then(function(result) {
@@ -104,7 +133,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             });
         },
         initialize: function(options){
-            this.attrs = options.attrs;
+            console.log(options)
         }
     });
 
@@ -183,13 +212,15 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             })).then(function(result) {
                 if (result.code == "S_OK") {
                     var comments = new Module.InfoBlockCommentCollection(result.data);
-                    that.comment.show(new Module.InfoBlockCommentView({
+                    new Module.InfoBlockCommentView({
                         collection: comments,
+                        el: '.component-infoblock-comment',
                         attrs: {
                             type: 'Answer',
                             id: that.$el.attr('data-id')
-                        }
-                    }));
+                        },
+                        parentView: this
+                    }).render();
                     $('.timeago', that.$el).timeago();
                 }
             });

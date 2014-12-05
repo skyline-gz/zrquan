@@ -75,25 +75,28 @@ class CommentsController < ApplicationController
     end
   end
 
-  # 删除评论
+  # 删除评论,param 评论的id
   def destroy
-    type = params[:type]
     id = params[:id]
-
-    if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
-
+    if id == nil
+      render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
+    end
+    @comment = Comment.find id
+    if can? :delete, @comment
+      @comment.destroy
+      render :json => {:code => ReturnCode::S_OK}
+    else
+      render :json => {:code => ReturnCode::FA_UNAUTHORIZED}
     end
   end
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.permit(:content)
-    end		
+    end
 end
