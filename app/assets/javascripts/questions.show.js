@@ -47,6 +47,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
 
         },
         onSubmitCommentClick: function(evt) {
+            var that = this;
             var commentContent = this.ui.content.html();
             Zrquan.Ajax.request({
                 url: "/comments",
@@ -57,8 +58,10 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                 }
             }).then(function(result) {
                 if (result['code'] == "S_OK") {
-                    Module.infoblocksEventBus.trigger('comments:reload');
+                    var commentView = that.addChild(new Module.InfoBlockCommentItem(result.data[0]), Module.InfoBlockCommentItemView)
+                    $('.timeago', commentView.$el).timeago();
                 }
+                that.ui.content.html('');
             });
         },
         initialize: function(options){
