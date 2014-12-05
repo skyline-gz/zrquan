@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 20141128041713) do
     t.datetime "updated_at"
   end
 
+  add_index "certifications", ["name"], name: "index_certifications_on_name", unique: true, using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -332,6 +334,8 @@ ActiveRecord::Schema.define(version: 20141128041713) do
     t.datetime "updated_at"
   end
 
+  add_index "other_wikis", ["name"], name: "index_other_wikis_on_name", unique: true, using: :btree
+
   create_table "personal_salaries", force: true do |t|
     t.integer  "user_id"
     t.integer  "company_id"
@@ -434,6 +438,8 @@ ActiveRecord::Schema.define(version: 20141128041713) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "skills", ["name"], name: "index_skills_on_name", unique: true, using: :btree
 
   create_table "themes", force: true do |t|
     t.string   "name"

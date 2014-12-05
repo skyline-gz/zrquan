@@ -6,5 +6,7 @@ class CreateOtherWikis < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :other_wikis, :name, unique: true
   end
 end

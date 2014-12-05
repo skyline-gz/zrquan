@@ -13,5 +13,7 @@ class CreateCertifications < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :certifications, :name, unique: true
   end
 end
