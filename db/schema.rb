@@ -387,7 +387,7 @@ ActiveRecord::Schema.define(version: 20141128041713) do
     t.integer  "user_id"
     t.integer  "hot_abs"
     t.integer  "latest_answer_id"
-    t.integer  "latest_qa_time"
+    t.integer  "latest_qa_time",   limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end

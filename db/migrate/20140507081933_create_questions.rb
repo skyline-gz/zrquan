@@ -6,8 +6,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.references :user, index: true
       t.integer :hot_abs
       t.references :latest_answer, index: true
-      t.integer :latest_qa_time
-
+      t.integer :latest_qa_time, :limit => 8
       t.timestamps
     end
   end
