@@ -15,29 +15,24 @@
 <script type="text/template" id="infoblock-comment-item-template">
   <div class="component-infoblock-item-comment">
     <div class="component-infoblock-item-comment-left">
-      <img src="../images/avatars/head_s_02.png">
+      <img src="{{=user_avatar}}">
     </div>
     <div class="component-infoblock-item-comment-right">
       <div class="component-infoblock-item-comment-header">
-        <a>林黛玉</a>
+        <a>{{=user_name}}</a>
         <span>（作者）</span>
         <span>&nbsp;回复&nbsp;</span>
         <a>李明</a>
-        <span class="component-infoblock-item-comment-date">2014-09-30</span>
+        <span class="component-infoblock-item-comment-date timeago" title="{{=updated_at}}">{{=updated_at}}</span>
       </div>
-      <div class="component-infoblock-item-comment-content">大脑：大麻引起的HIGH其实就是思维和记忆的扭曲及身体协调的受阻。如赵阿萌所提，在美国麻后驾车和酒后及毒后驾车一样都是DUI (driving under influence)，一并需要面对法律制裁。长期吸食大麻会导致记忆力和学习能力的减弱。</div>
+      <div class="component-infoblock-item-comment-content">{{=content}}</div>
       <div class="component-infoblock-item-comment-footer">
         <a class="comment-op-link">
           <i class="icon-comment-reply"></i>
           <span>回复</span>
         </a>
-        <a class="comment-op-link">
-          <i class="icon-comment-agree"></i>
-          <span>赞</span>
-        </a>
-        <span class="like-num">131&nbsp;赞</span>
       </div>
-      <div class="component-infoblock-item-comment-form">
+      <div class="component-infoblock-item-comment-form" style="display:none">
         <div class="comment-editable" aria-label="写下你的回复" contenteditable="true"></div>
         <div class="comment-editable-opts">
           <a class="comment-editable-opts-submit">评论</a>
