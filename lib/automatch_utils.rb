@@ -129,22 +129,8 @@ module AutomatchUtils
 
   # 在modal层取数据，预处理，并放入缓存
   def fetch_and_cache_terms(type)
-    terms = nil
-    case type
-      when 'Company'
-        companies = Company.all
-        terms = pre_process(companies)
-        TermsCache.instance.write(type, terms)
-      when 'School'
-        schools = School.all
-        terms = pre_process(schools)
-        TermsCache.instance.write(type, terms)
-      when 'Theme'
-        themes = Theme.all
-        terms = pre_process(themes)
-        TermsCache.instance.write(type, terms)
-      else
-    end
+    terms = pre_process(type.constantize.all)
+    TermsCache.instance.write(type, terms)
     terms
   end
 
