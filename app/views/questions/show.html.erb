@@ -29,8 +29,9 @@
                 <i class="icons-favorites"></i>收藏&nbsp;<%= @question.bookmarks.length %>
               </div>
               <div class="component-infoblock-subjects">
-                <div class="component-subject">职业策划</div>
-                <div class="component-subject">应届生求职</div>
+                <% @question.question_themes.each do |question_theme| %>
+                    <div class="component-subject"><%= question_theme.theme.name %></div>
+                <% end %>
               </div>
             </div>
           </div>
