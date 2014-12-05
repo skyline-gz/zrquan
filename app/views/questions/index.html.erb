@@ -43,7 +43,7 @@
                   </div>
                   <div class="component-infoblock-content"><%= raw question.recommend_answer.content %></div>
                   <div class="component-infoblock-footer">
-                    <div class="component-comment">
+                    <div class="component-infoblock-opts-comment">
                       <i class="icons-comment"></i>评论&nbsp;<%= question.recommend_answer.comments.length %>
                     </div>
                     <div class="component-infoblock-subjects">
@@ -69,10 +69,10 @@
                   </div>
                   <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="/questions/<%= question.id %>" class="showall">我来回答</a></div>
                   <div class="component-infoblock-footer">
-                    <div class="component-comment">
+                    <div class="component-infoblock-opts-comment">
                       <i class="icons-comment"></i>回答&nbsp;0
                     </div>
-                    <div class="component-favorites">
+                    <div class="component-infoblock-opts-favorites">
                       <i class="icons-favorites"></i>收藏&nbsp;<%= question.bookmarks.length %>
                     </div>
                     <div class="component-infoblock-subjects">

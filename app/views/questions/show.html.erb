@@ -19,10 +19,13 @@
             </div>
             <div class="component-infoblock-content"><%= raw @question.content %></div>
             <div class="component-infoblock-footer">
-              <div class="component-comment">
-                <i class="icons-comment"></i>评论&nbsp;<%= @question.comments.length %>
+              <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
+                <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= @question.comments.length %>" class="num-comment"><%= @question.comments.length %></span>
               </div>
-              <div class="component-favorites">
+              <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
+                <i class="icons-comment"></i>收起评论
+              </div>
+              <div class="component-infoblock-opts-favorites">
                 <i class="icons-favorites"></i>收藏&nbsp;<%= @question.bookmarks.length %>
               </div>
               <div class="component-infoblock-subjects">
@@ -83,14 +86,17 @@
                       </div>
                     <% end %>
                     <div class="component-infoblock-footer">
-                        <div class="component-comment">
-                            <i class="icons-comment"></i>评论&nbsp;<%= answer.comments.length %>
+                        <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
+                            <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= answer.comments.length %>" class="num-comment"><%= answer.comments.length %></span>
+                        </div>
+                        <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
+                            <i class="icons-comment"></i>收起评论
                         </div>
                         <div class="component-infoblock-subjects">
                             <div class="component-subject">职业策划</div>
                             <div class="component-subject">应届生求职</div>
                         </div>
-                        <div class="component-infoblock-comment">
+                        <div class="component-infoblock-comment-wrapper">
                         </div>
                       </div>
                     </div>

@@ -165,7 +165,7 @@ div[role=infoblocks] {
         margin-top: 5px;
         line-height: $base-content-line-height;
 
-        .component-comment {
+        .component-infoblock-opts-comment {
           @include inline-block;
           color: $light-dark;
           margin-right: 8px;
@@ -178,9 +178,13 @@ div[role=infoblocks] {
             margin-right: 4px;
             margin-top: -2px;
           }
+
+          &.component-infoblock-opts-comment-hide {
+            display: none;
+          }
         }
 
-        .component-favorites {
+        .component-infoblock-opts-favorites {
           @include inline-block;
           color: $light-dark;
           margin-right: 12px;
@@ -211,7 +215,7 @@ div[role=infoblocks] {
           display: block;
           position: absolute;
           top: -8px;
-          left: 38px;
+          left: 34px;
           width: 13px;
           height: 8px;
           background-position: -200px -165px;
@@ -246,6 +250,7 @@ div[role=infoblocks] {
 
               .component-infoblock-item-comment-header {
                 a {
+                  font-weight: bold;
                   color: $base-color;
                   text-decoration: none;
                   cursor: pointer;
