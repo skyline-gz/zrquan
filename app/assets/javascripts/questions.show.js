@@ -23,13 +23,52 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
 
     //单条评论的视图
     Module.InfoBlockCommentItemView = Backbone.Marionette.ItemView.extend({
-        template: '#infoblock-comment-item-template'
+        template: '#infoblock-comment-item-template',
+        events: {
+           'click .comment-op-link': 'onReplyCommentClick',
+           'click .comment-editable-opts-submit': 'replyComment'
+        },
+        ui: {
+            editorWrapper : '.component-infoblock-item-comment-form',
+            content: '.comment-editable'
+        },
+        onReplyCommentClick: function() {
+            this.ui.editorWrapper.show();
+        },
+        replyComment: function() {
+            var that = this;
+            var attrs = this.options.attrs;
+            this.ui.editorWrapper.hide();
+            var commentContent = this.ui.content.html();
+            Zrquan.Ajax.request({
+                url: "/comments",
+                data: {
+                    type: attrs.type,
+                    id: attrs.id,
+                    replied_comment_id: that.model.attributes.id,
+                    content: commentContent
+                }
+            }).then(function(result) {
+                if (result['code'] == "S_OK") {
+                    var commentView = that.options.parentView.addChild(new Module.InfoBlockCommentItem(result.data[0]),
+                            Module.InfoBlockCommentItemView);
+                    $('.timeago', commentView.$el).timeago();
+                }
+                that.ui.content.html('');
+            });
+        }
     });
 
     //评论列表视图
     Module.InfoBlockCommentView = Backbone.Marionette.CompositeView.extend({
         template: '#infoblock-comment-wrapper-template',
         childView: Module.InfoBlockCommentItemView,
+        childViewOptions: function(){
+           return {
+               attrs: this.attrs,
+               parentView: this        //给子View给予自己的引用
+           }
+        },
         childViewContainer: '.component-infoblock-comment-list',
         events: {
             'click .component-infoblock-comment-footer .comment-editable-opts-cancel': 'onCancelCommentClick',

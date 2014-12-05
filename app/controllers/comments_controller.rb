@@ -26,6 +26,11 @@ class CommentsController < ApplicationController
     content = ActionController::Base.helpers.strip_tags params[:content]
     replied_comment_id = params[:replied_comment_id]
 
+    if replied_comment_id && Comment.find(replied_comment_id) == nil
+        render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
+        return
+    end
+
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
       @comment_related_obj = type.constantize.find(id)
       if can? :comment, @comment_related_obj
@@ -72,7 +77,12 @@ class CommentsController < ApplicationController
 
   # 删除评论
   def destroy
+    type = params[:type]
+    id = params[:id]
 
+    if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
+
+    end
   end
 
 

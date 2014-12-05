@@ -20,9 +20,13 @@
     <div class="component-infoblock-item-comment-right">
       <div class="component-infoblock-item-comment-header">
         <a>{{=user_name}}</a>
+        {{if(is_author) { }}
         <span>（作者）</span>
+        {{ } }}
+        {{if(is_reply) { }}
         <span>&nbsp;回复&nbsp;</span>
-        <a>李明</a>
+        <a>{{=reply_user_name}}</a>
+        {{ } }}
         <span class="component-infoblock-item-comment-date timeago" title="{{=updated_at}}">{{=updated_at}}</span>
       </div>
       <div class="component-infoblock-item-comment-content">{{=content}}</div>
