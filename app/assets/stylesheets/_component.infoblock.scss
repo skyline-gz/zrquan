@@ -211,6 +211,21 @@ div[role=infoblocks] {
         @include border-radius($border-radius-base);
         @include box-shadow(0 1px 1px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15));
 
+        &.empty {
+          border: 0!important;
+          @include box-shadow(none);
+          margin-right: 50px;
+
+          .component-infoblock-icon-spike {
+            display: none!important;
+          }
+
+          .component-infoblock-comment-footer {
+            border:0!important;
+            background: none!important;
+          }
+        }
+
         .component-infoblock-icon-spike {
           display: block;
           position: absolute;

@@ -58,6 +58,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                 }).then(function(result) {
                     if (result['code'] == "S_OK") {
                         that.options.parentView.removeChildView(that);
+                        that.options.parentView.checkEmptyShow();
                         Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'成功删除评论'});
                     }
                 });
@@ -116,6 +117,13 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         ui: {
             content: '.component-infoblock-comment-footer .component-infoblock-comment-editable'
         },
+        checkEmptyShow: function() {
+            if(this.children.length == 0) {
+                this.$el.addClass('empty');
+            } else {
+                this.$el.removeClass('empty');
+            }
+        },
         onCancelCommentClick: function() {
             this.options.parentView.destroyCommentView();
         },
@@ -137,6 +145,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                         $('.timeago', commentView.$el).timeago();
                     }
                     that.ui.content.html('');
+                    that.checkEmptyShow();
                 });
             } else {
                 Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'评论内容不能为空'});
@@ -240,6 +249,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                         parentView: that
                     });
                     that.comment.show(that.views.commentView);
+                    that.views.commentView.checkEmptyShow();
                     $('.timeago', that.$el).timeago();
                 }
             });

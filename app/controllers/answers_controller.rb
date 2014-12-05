@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
     @answer.save!
     @question.update!(hot_abs: @question.hot_abs + 3,
                       latest_answer_id: @answer.id,
-                      latest_qa_time: to_yyyymmddhhmmss(Time.now))
+                      latest_qa_time: DateUtils.to_yyyymmddhhmmss(Time.now))
     # TODO 错误处理
     # 创建用户行为（回答问题）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
