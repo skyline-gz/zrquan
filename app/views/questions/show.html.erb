@@ -25,8 +25,12 @@
               <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
                 <i class="icons-comment"></i>收起评论
               </div>
-              <div class="component-infoblock-opts-favorites">
+              <% bookmark_able = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', @question.id))%>
+              <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= bookmark_able ? 'inline': 'none'%>">
                 <i class="icons-favorites"></i>收藏&nbsp;<%= @question.bookmarks.length %>
+              </div>
+              <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= bookmark_able ? 'none': 'inline'%>">
+                <i class="icons-favorites"></i>取消收藏&nbsp;<%= @question.bookmarks.length %>
               </div>
               <div class="component-infoblock-subjects">
                 <% @question.question_themes.each do |question_theme| %>
@@ -94,10 +98,6 @@
                         </div>
                         <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
                             <i class="icons-comment"></i>收起评论
-                        </div>
-                        <div class="component-infoblock-subjects">
-                            <div class="component-subject">职业策划</div>
-                            <div class="component-subject">应届生求职</div>
                         </div>
                         <div class="component-infoblock-comment-wrapper">
                         </div>

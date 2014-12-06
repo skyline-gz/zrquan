@@ -188,6 +188,7 @@ div[role=infoblocks] {
           @include inline-block;
           color: $light-dark;
           margin-right: 12px;
+          cursor: pointer;
 
           .icons-favorites {
             @include inline-block;

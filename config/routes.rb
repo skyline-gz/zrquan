@@ -48,13 +48,15 @@ Rails.application.routes.draw do
 
 	resources :relationships, only: [:destroy, :create]
 
-	resources :bookmarks, only: [:destroy, :create]
-	#post '/relation'
-	
-	get '/home/search'
-	get '/home/my_bookmark'
-	get '/home/my_draft'
-	get '/home/activate'
+  get '/home/search'
+  get '/home/my_bookmark'
+  get '/home/my_draft'
+  get '/home/activate'
+
+  # 收藏,取消收藏　问题，文章
+  post 'bookmarks' => 'bookmarks#create'
+  delete 'bookmarks' => 'bookmarks#destroy'
+
 
   # 评论问题，评论答案
   get 'comments' => 'comments#show'

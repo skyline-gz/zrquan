@@ -146,8 +146,8 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
         events: {
             'click a.edit-button' : 'onEditButtonClick',
             'click .component-infoblock-good-action' : 'onAgreeAnswerClick',
-            'click .component-infoblock-opts-comment-show': 'onCommentClick',
-            'click .component-infoblock-opts-comment-hide': 'onCommentClick'
+            'click .component-infoblock-opts-comment': 'onCommentClick',
+            'click .component-infoblock-opts-favorites' : 'onFavorClick'
         },
         ui: {
             editButton : '.edit-button',
@@ -216,6 +216,44 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                 this.$('.component-infoblock-opts-comment-show').css( "display", "inline-block");
                 this.$('.component-infoblock-opts-comment-hide').hide();
             }
+        },
+        onFavorClick: function(evt) {
+            if (this.$('.component-infoblock-opts-favorites-ok').is(":visible")) {
+                this.doBookmark();
+                this.$('.component-infoblock-opts-favorites-ok').hide();
+                this.$('.component-infoblock-opts-favorites-cancel').css( "display", "inline-block");
+            } else {
+                this.cancelBookmark();
+                this.$('.component-infoblock-opts-favorites-ok').css( "display", "inline-block");
+                this.$('.component-infoblock-opts-favorites-cancel').hide();
+            }
+        },
+        doBookmark: function() {
+            var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
+
+            $.when(Zrquan.Ajax.request({
+                url: "/bookmarks" + queryparams
+            })).then(function(result) {
+                if (result.code == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'收藏成功', width:'100px'});
+                } else if(result.code == "FA_UNAUTHORIZED") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'收藏失败', width:'100px'});
+                }
+            });
+        },
+        cancelBookmark: function() {
+            var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
+
+            $.when(Zrquan.Ajax.request({
+                url: "/bookmarks" + queryparams,
+                type: "DELETE"
+            })).then(function(result) {
+                if (result.code == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'取消收藏成功', width:'150px'});
+                } else if(result.code == "FA_UNAUTHORIZED") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'取消收藏失败', width:'150px'});
+                }
+            });
         },
         loadNShowComment: function() {
             var that = this;
