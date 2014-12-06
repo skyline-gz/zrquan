@@ -66,6 +66,7 @@
  * 视图(View) Module
  **/
 //= require ui
+//= require ui.infoblocks
 //= require navbar
 //= require navbar.modals.auth
 //= require navbar.modals.ask
