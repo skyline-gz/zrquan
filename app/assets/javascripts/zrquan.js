@@ -26,7 +26,7 @@
 //= require jquery_ujs
 //= require backbone
 //= require backbone.marionette
-//支持html5缓存记录
+//支持localStorage缓存记录
 //= require locache
 /**
  * 插件

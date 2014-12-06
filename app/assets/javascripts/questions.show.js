@@ -10,23 +10,37 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
     Module.Controller = Marionette.Controller.extend({
         start: function() {
             init();
-            Module.infoBlockCollectionView.render();
+            Module.questionView.render();
+            Module.answersView.render();
         }
     });
 
-    //信息块列表视图
-    Module.infoBlockCollectionView = new (Backbone.Marionette.CollectionView.extend({
+    //问题信息块视图
+    Module.questionView = new Zrquan.UI.InfoBlocks.InfoBlockView({
+        el:'.question-body .component-infoblock',
+        attrs: {
+            type: 'Question'
+        }
+    });
+
+    //答案列表视图
+    Module.answersView = new (Backbone.Marionette.CollectionView.extend({
         el: '.question-answer div[role=infoblocks]',
         childView: Zrquan.UI.InfoBlocks.InfoBlockView,
         render: function() {
             var that = this;
             $('.question-answer .component-infoblock').each(function(){
-                var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({el:$(this)});
+                var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({
+                    el:$(this),
+                    attrs: {
+                        type: 'Answer'
+                    }
+                });
                 that._addChildView(infoBlockView, that.childView);
             });
-            console.log('infoBlockCollectionView render')
+            console.log('answersView render')
         }
-    }))();
+    }));
 
     function init() {
         $(".timeago").timeago();

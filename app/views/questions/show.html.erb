@@ -3,7 +3,7 @@
     <div class="question-title"><%= @question.title %></div>
     <div class="question-body">
       <div role="infoblocks">
-        <div class="component-infoblock">
+        <div class="component-infoblock" data-id="<%= @question.id %>">
           <div class="component-infoblock-left">
             <% if @question.user.avatar != nil %>
                 <img src="<%= Settings.upload_url + @question.user.avatar%>" class="component-infoblock-avatar">
@@ -32,6 +32,8 @@
                 <% @question.question_themes.each do |question_theme| %>
                     <div class="component-subject"><%= question_theme.theme.name %></div>
                 <% end %>
+              </div>
+              <div class="component-infoblock-comment-wrapper">
               </div>
             </div>
           </div>

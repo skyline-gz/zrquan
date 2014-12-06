@@ -219,7 +219,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
         },
         loadNShowComment: function() {
             var that = this;
-            var queryparams = "?type=Answer" + "&id=" + this.$el.attr('data-id');
+            var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
 
             $.when(Zrquan.Ajax.request({
                 url: "/comments" + queryparams,
@@ -230,7 +230,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                     that.views.commentView = new Module.InfoBlockCommentView({
                         collection: comments,
                         attrs: {
-                            type: 'Answer',
+                            type: that.options.attrs.type,
                             id: that.$el.attr('data-id')
                         },
                         parentView: that
