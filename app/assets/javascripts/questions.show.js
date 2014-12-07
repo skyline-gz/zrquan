@@ -29,7 +29,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
         childView: Zrquan.UI.InfoBlocks.InfoBlockView,
         render: function() {
             var that = this;
-            $('.question-answer .component-infoblock').each(function(){
+            this.$('.component-infoblock').each(function(){
                 var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({
                     el:$(this),
                     attrs: {
