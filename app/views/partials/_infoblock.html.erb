@@ -17,6 +17,7 @@
 <% is_plane_question = true if local_assigns[:is_plane_question].nil? %>
 <% is_show_question_content = false if local_assigns[:is_show_question_content].nil? %>
 
+<% is_bookmarkable = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', question.id))%>
 
 <% if answer %>
     <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>">
@@ -47,7 +48,12 @@
           <% elsif is_plane_answer%>
               <span class="component-infoblock-action">的答案</span>
           <% end %>
-          <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= to_full_time(answer.updated_at) %></span>
+          <span class="component-infoblock-time">
+            <% if answer.created_at != answer.updated_at %>
+            <span>编辑于</span>
+            <% end %>
+            <span class="timeago" title="<%= answer.updated_at %>"><%= to_full_time(answer.updated_at) %></span>
+          </span>
         </div>
         <div class="component-infoblock-content">
           <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
@@ -109,7 +115,12 @@
           <% if is_plane_question %>
             <span class="component-infoblock-action">提出的问题</span>
           <% end %>
-            <span class="component-infoblock-time timeago" title="<%= question.updated_at %>"><%= to_full_time(question.updated_at) %></span>
+          <span class="component-infoblock-time">
+            <% if question.created_at != question.updated_at %>
+            <span>编辑于</span>
+            <% end %>
+            <span class="timeago" title="<%= question.updated_at %>"><%= to_full_time(question.updated_at) %></span>
+          </span>
         </div>
         <% if is_show_question_content %>
             <div class="component-infoblock-content"><%= raw @question.content %></div>
@@ -123,11 +134,10 @@
           <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
             <i class="icons-comment"></i>收起评论
           </div>
-          <% bookmark_able = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', question.id))%>
-          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= bookmark_able ? 'inline': 'none'%>">
+          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= is_bookmarkable ? 'inline': 'none'%>">
             <i class="icons-favorites"></i>收藏&nbsp;<span data-num="<%= question.bookmarks.length %>" class="bookmarks-num"><%= question.bookmarks.length %></span>
           </div>
-          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= bookmark_able ? 'none': 'inline'%>">
+          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= is_bookmarkable ? 'none': 'inline'%>">
             <i class="icons-favorites"></i>取消收藏&nbsp;<span data-num="<%= question.bookmarks.length %>" class="bookmarks-num"><%= question.bookmarks.length %></span>
           </div>
           <% if is_show_themes %>
