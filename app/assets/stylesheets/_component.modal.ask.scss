@@ -20,5 +20,26 @@
       font-size: 13px;
       line-height: 23px;
     }
+
+    .hot-themes-wrapper {
+      margin-top: 8px;
+      margin-bottom: 25px;
+
+      .hot-themes-title {
+        float: left;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 19px;
+        margin-right: 3px;
+      }
+
+      .component-subject {
+        font-size: 13px;
+        line-height: 13px;
+        padding: 3px 4px;
+        margin-right: 8px;
+        cursor: pointer;
+      }
+    }
   }
 }

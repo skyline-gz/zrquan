@@ -21,6 +21,12 @@
             <div class="section-item">
               <h4>选择或搜索主题：</h4>
               <input name="question[themes]" class="" type="text" />
+              <div class="hot-themes-wrapper">
+                    <span class="hot-themes-title">热门主题：</span>
+                  <%Settings['hot_themes'].each do |key, value| %>
+                      <div class="component-subject" data-id="<%= key %>"><%= value %></div>
+                  <%end%>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
