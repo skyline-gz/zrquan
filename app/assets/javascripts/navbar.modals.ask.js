@@ -30,7 +30,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 valueField: 'id',
                 labelField: 'value',
                 searchField: 'value',
-                placeholder: '请输入问题所属主题...',
+                placeholder: '选择或搜索主题...',
                 persist: false,
                 create: function(input) {
                     navbarEventBus.trigger("modal:show", "createThemeModal", input);

@@ -47,6 +47,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                         that.options.parentView.removeChildView(that);
                         that.options.parentView.checkEmptyShow();
                         Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'成功删除评论'});
+                        that.options.parentView.options.parentView.updateCommentsNum(-1);
                     }
                 });
             }
@@ -74,6 +75,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                         var commentView = that.options.parentView.addChild(new Module.InfoBlockCommentItem(result.data[0]),
                             Module.InfoBlockCommentItemView);
                         $('.timeago', commentView.$el).timeago();
+                        that.options.parentView.options.parentView.updateCommentsNum(1);
                     }
                     that.ui.content.html('');
                 });
@@ -128,8 +130,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                     }
                 }).then(function(result) {
                     if (result['code'] == "S_OK") {
-                        var commentView = that.addChild(new Module.InfoBlockCommentItem(result.data[0]), Module.InfoBlockCommentItemView)
+                        var commentView = that.addChild(new Module.InfoBlockCommentItem(result.data[0]), Module.InfoBlockCommentItemView);
                         $('.timeago', commentView.$el).timeago();
+                        that.options.parentView.updateCommentsNum(1);
                     }
                     that.ui.content.html('');
                     that.checkEmptyShow();
@@ -229,12 +232,14 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             }
         },
         doBookmark: function() {
+            var that = this;
             var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
 
             $.when(Zrquan.Ajax.request({
                 url: "/bookmarks" + queryparams
             })).then(function(result) {
                 if (result.code == "S_OK") {
+                    that.updateBookmarksNum(1);
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'收藏成功', width:'100px'});
                 } else if(result.code == "FA_UNAUTHORIZED") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'收藏失败', width:'100px'});
@@ -242,6 +247,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             });
         },
         cancelBookmark: function() {
+            var that = this;
             var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
 
             $.when(Zrquan.Ajax.request({
@@ -249,11 +255,24 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                 type: "DELETE"
             })).then(function(result) {
                 if (result.code == "S_OK") {
+                    that.updateBookmarksNum(-1);
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'取消收藏成功', width:'150px'});
                 } else if(result.code == "FA_UNAUTHORIZED") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'取消收藏失败', width:'150px'});
                 }
             });
+        },
+        updateBookmarksNum: function(num) {
+            num = num || 0;
+            var el_bookmarks = this.$('.bookmarks-num');
+            var bookmarksNum = parseInt(el_bookmarks.attr('data-num')) + num;
+            el_bookmarks.attr('data-num', bookmarksNum).html(bookmarksNum);
+        },
+        updateCommentsNum: function(num) {
+            num = num || 0;
+            var el_comments = this.$('.comments-num');
+            var commentsNum = parseInt(el_comments.attr('data-num')) + num;
+            el_comments.attr('data-num', commentsNum).html(commentsNum);
         },
         loadNShowComment: function() {
             var that = this;
