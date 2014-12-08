@@ -26,7 +26,7 @@
 //= require jquery_ujs
 //= require backbone
 //= require backbone.marionette
-//支持html5缓存记录
+//支持localStorage缓存记录
 //= require locache
 /**
  * 插件
@@ -66,6 +66,7 @@
  * 视图(View) Module
  **/
 //= require ui
+//= require ui.infoblocks
 //= require navbar
 //= require navbar.modals.auth
 //= require navbar.modals.ask

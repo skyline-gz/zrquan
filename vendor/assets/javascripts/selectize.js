@@ -1575,9 +1575,9 @@
 			}
 	
 			// add create option
-			has_create_option = self.canCreate(query);
+			has_create_option = self.canCreate1(query);
 			if (has_create_option) {
-				$dropdown_content.prepend(self.render('option_create', {input: query}));
+				$dropdown_content.append(self.render('option_create', {input: query}));
 				$create = $($dropdown_content[0].childNodes[0]);
 			}
 
@@ -1898,7 +1898,7 @@
 			var self  = this;
 			var input = $.trim(self.$control_input.val() || '');
 			var caret = self.caretPos;
-			if (!self.canCreate(input)) return false;
+			if (!self.canCreate1(input)) return false;
 			self.lock();
 	
 			if (typeof triggerDropdown === 'undefined') {
@@ -2416,6 +2416,15 @@
 				&& (typeof filter !== 'function' || filter.apply(self, [input]))
 				&& (typeof filter !== 'string' || new RegExp(filter).test(input))
 				&& (!(filter instanceof RegExp) || filter.test(input));
+		},
+
+		canCreate1: function(input) {
+			for (var i = 0; i < (this.remoteResults || []).length; i++) {
+				if(this.remoteResults[i].value == input) {
+					return false;
+				}
+			}
+			return input.length && true;
 		}
 	
 	});

@@ -30,6 +30,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 valueField: 'id',
                 labelField: 'value',
                 searchField: 'value',
+                placeholder: '请输入问题所属主题...',
                 persist: false,
                 create: function(input) {
                     navbarEventBus.trigger("modal:show", "createThemeModal", input);
@@ -86,8 +87,13 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             var that = this;
             this.$('#theme-create-form').on('ajax:success', function(xhr, data, status) {
                 if(data.code == "S_OK") {
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【' + that.ui.themeName.val() + '】成功'});
+                    console.log(data);
+                    var themeName = that.ui.themeName.val();
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【' + themeName + '】成功'});
+                    locache.remove("ac_themes_" + themeName);
                     that.hideModal();
+                    Module.askQuestionModuleView.ui.themes[0].selectize.addOption({id:data.data.id, value:data.data.name});
+                    Module.askQuestionModuleView.ui.themes[0].selectize.addItem(data.data.id);
                 } else if(data.code == "FA_NOT_SUPPORTED_PARAMETERS") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'输入参数错误'});
                 } else if(data.code == "FA_TERM_ALREADY_EXIT") {

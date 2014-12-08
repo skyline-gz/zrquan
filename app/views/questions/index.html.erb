@@ -17,12 +17,13 @@
   <div class="ql-content-left">
     <div role="infoblocks">
       <% @questions.each do |question| %>
-          <div class="component-infoblock">
-            <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
-            <% if question.recommend_answer %>
+          <% if question.recommend_answer %>
+              <div class="component-infoblock" infoblock-type="Answer" data-id="<%= question.recommend_answer.id %>">
+                <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
+
                 <div class="component-infoblock-left">
                   <% if question.recommend_answer.user.avatar != nil %>
-                      <img src="<%= Settings.upload_url + question.recommend_answer.user.avatar%>" class="component-infoblock-avatar">
+                      <img src="<%= Settings.upload_url + question.recommend_answer.user.avatar %>" class="component-infoblock-avatar">
                   <% else %>
                       <img src="../images/noface.gif" class="component-infoblock-avatar">
                   <% end %>
@@ -35,54 +36,75 @@
                 </div>
                 <div class="component-infoblock-right">
                   <div class="component-infoblock-header">
-                    <span class="component-infoblock-username"><%=generate_name(question.recommend_answer.user.first_name, \
-                        question.recommend_answer.user.last_name)%></span>
+                    <span class="component-infoblock-username"><%= generate_name(question.recommend_answer.user.first_name, \
+                        question.recommend_answer.user.last_name) %></span>
                     <i class="icons-vip"></i>
                     <span class="component-infoblock-action">的答案（推荐）</span>
                     <span class="component-infoblock-time timeago" title="<%= question.recommend_answer.updated_at %>"><%= to_full_time(question.recommend_answer.updated_at) %></span>
                   </div>
                   <div class="component-infoblock-content"><%= raw question.recommend_answer.content %></div>
                   <div class="component-infoblock-footer">
-                    <div class="component-comment">
-                      <i class="icons-comment"></i>评论&nbsp;<%= question.recommend_answer.comments.length %>
+                    <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
+                      <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= question.recommend_answer.comments.length %>" class="num-comment"><%= question.recommend_answer.comments.length %></span>
+                    </div>
+                    <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
+                      <i class="icons-comment"></i>收起评论
                     </div>
                     <div class="component-infoblock-subjects">
-                      <div class="component-subject">职业策划</div>
-                      <div class="component-subject">应届生求职</div>
+                      <% question.question_themes.each do |question_theme| %>
+                          <div class="component-subject"><%= question_theme.theme.name %></div>
+                      <% end %>
+                    </div>
+                    <div class="component-infoblock-comment-wrapper">
                     </div>
                   </div>
                 </div>
-            <% else %>
+              </div>
+          <% else %>
+              <div class="component-infoblock" infoblock-type="Question" data-id="<%= question.id %>">
+                <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
+
                 <div class="component-infoblock-left">
                   <% if question.user.avatar != nil %>
-                      <img src="<%= Settings.upload_url + question.user.avatar%>" class="component-infoblock-avatar">
+                      <img src="<%= Settings.upload_url + question.user.avatar %>" class="component-infoblock-avatar">
                   <% else %>
                       <img src="../images/noface.gif" class="component-infoblock-avatar">
                   <% end %>
                 </div>
                 <div class="component-infoblock-right">
                   <div class="component-infoblock-header">
-                    <span class="component-infoblock-username"><%=generate_name(question.user.first_name, question.user.last_name)%></span>
+                    <span class="component-infoblock-username"><%= generate_name(question.user.first_name, question.user.last_name) %></span>
                     <i class="icons-vip"></i>
                     <span class="component-infoblock-action">提出的问题</span>
                     <span class="component-infoblock-time timeago" title="<%= question.updated_at %>"><%= to_full_time(question.updated_at) %></span>
                   </div>
-                  <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="/questions/<%= question.id %>" class="showall">我来回答</a></div>
+                  <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="/questions/<%= question.id %>" class="showall">我来回答</a>
+                  </div>
                   <div class="component-infoblock-footer">
-                    <div class="component-comment">
-                      <i class="icons-comment"></i>回答&nbsp;0
+                    <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
+                      <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= question.comments.length %>" class="num-comment"><%= question.comments.length %></span>
                     </div>
-                    <div class="component-favorites">
+                    <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
+                      <i class="icons-comment"></i>收起评论
+                    </div>
+                    <% bookmark_able = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', question.id))%>
+                    <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= bookmark_able ? 'inline': 'none'%>">
                       <i class="icons-favorites"></i>收藏&nbsp;<%= question.bookmarks.length %>
                     </div>
+                    <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= bookmark_able ? 'none': 'inline'%>">
+                      <i class="icons-favorites"></i>取消收藏&nbsp;<%= question.bookmarks.length %>
+                    </div>
                     <div class="component-infoblock-subjects">
-                      <div class="component-subject">职场发展</div>
-                      <div class="component-subject">工作压力</div>
+                      <% question.question_themes.each do |question_theme| %>
+                          <div class="component-subject"><%= question_theme.theme.name %></div>
+                      <% end %>
+                    </div>
+                    <div class="component-infoblock-comment-wrapper">
                     </div>
                   </div>
                 </div>
-            <% end %>
-          </div>
+              </div>
+          <% end %>
       <% end %>
     </div>
   </div>

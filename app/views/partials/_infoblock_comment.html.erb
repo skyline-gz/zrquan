@@ -13,24 +13,34 @@
 </script>
 
 <script type="text/template" id="infoblock-comment-item-template">
-  <div class="component-infoblock-item-comment">
     <div class="component-infoblock-item-comment-left">
       <img src="{{=user_avatar}}">
     </div>
     <div class="component-infoblock-item-comment-right">
       <div class="component-infoblock-item-comment-header">
         <a>{{=user_name}}</a>
+        {{if(is_author) { }}
         <span>（作者）</span>
+        {{ } }}
+        {{if(is_reply) { }}
         <span>&nbsp;回复&nbsp;</span>
-        <a>李明</a>
+        <a>{{=reply_user_name}}</a>
+        {{ } }}
         <span class="component-infoblock-item-comment-date timeago" title="{{=updated_at}}">{{=updated_at}}</span>
       </div>
       <div class="component-infoblock-item-comment-content">{{=content}}</div>
       <div class="component-infoblock-item-comment-footer">
-        <a class="comment-op-link">
+        {{ if(!is_self) { }}
+        <a class="comment-op-link comment-op-link-reply">
           <i class="icon-comment-reply"></i>
           <span>回复</span>
         </a>
+        {{ }else{ }}
+        <a class="comment-op-link comment-op-link-delete">
+          <i class="icon-comment-delete"></i>
+          <span>删除</span>
+        </a>
+        {{ } }}
       </div>
       <div class="component-infoblock-item-comment-form" style="display:none">
         <div class="comment-editable" aria-label="写下你的回复" contenteditable="true"></div>
@@ -40,5 +50,4 @@
         </div>
       </div>
     </div>
-  </div>
 </script>

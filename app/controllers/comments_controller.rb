@@ -26,6 +26,11 @@ class CommentsController < ApplicationController
     content = ActionController::Base.helpers.strip_tags params[:content]
     replied_comment_id = params[:replied_comment_id]
 
+    if replied_comment_id && Comment.find(replied_comment_id) == nil
+        render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
+        return
+    end
+
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
       @comment_related_obj = type.constantize.find(id)
       if can? :comment, @comment_related_obj
@@ -70,20 +75,28 @@ class CommentsController < ApplicationController
     end
   end
 
-  # 删除评论
+  # 删除评论,param 评论的id
   def destroy
-
+    id = params[:id]
+    if id == nil
+      render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
+    end
+    @comment = Comment.find id
+    if can? :delete, @comment
+      @comment.destroy
+      render :json => {:code => ReturnCode::S_OK}
+    else
+      render :json => {:code => ReturnCode::FA_UNAUTHORIZED}
+    end
   end
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.permit(:content)
-    end		
+    end
 end

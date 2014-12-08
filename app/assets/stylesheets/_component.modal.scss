@@ -59,7 +59,7 @@
   background-color: $modal-content-bg;
   border: 1px solid $modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
   border: 1px solid $modal-content-border-color;
-  @include border-radius($border-radius-base);
+  @include border-radius($border-radius-large);
   @include box-shadow(0 3px 9px rgba(0,0,0,.5));
   background-clip: padding-box;
   // Remove focus outline from opened modal
@@ -94,7 +94,7 @@
   border-bottom: 1px solid $modal-header-border-color;
 //  min-height: ($modal-title-padding + $modal-title-line-height);
   background: $base-background-color;
-  @include border-top-radius($border-radius-base);
+  @include border-top-radius($border-radius-large);
 }
 // Close icon
 .modal-header .close {
@@ -137,7 +137,7 @@
   border-top: 1px solid $modal-footer-border-color;
   @include clearfix(); // clear it in case folks use .pull-* classes on buttons
   background: $base-background-color;
-  @include border-bottom-radius($border-radius-base);
+  @include border-bottom-radius($border-radius-large);
 
   .btn {
     font-size: 14px;
