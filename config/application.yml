@@ -3,12 +3,17 @@ defaults: &defaults
     uploaded_avatar_experied_minute: 10
     automatch_terms_experied_minute: 60
   upload_url: "http://zrquan.qiniudn.com/"
+#  是否打开devise异步发送验证邮件
+  enable_devise_async: false
 
 development:
   <<: *defaults
+  enable_devise_async: false
 
 test:
   <<: *defaults
+  enable_devise_async: true
 
 production:
   <<: *defaults
+  enable_devise_async: true

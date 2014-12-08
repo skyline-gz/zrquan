@@ -36,6 +36,7 @@ gem 'settingslogic', '2.0.9'
 # gem 'rails_kindeditor', '0.4.5'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
+# gem 'devise-encryptable', '0.2.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use unicorn as the app server
@@ -66,7 +67,8 @@ end
 
 # 用户认证
 gem 'devise', '3.2.4'
-# gem 'devise-encryptable', '0.2.0'
+# 异步发送邮件认证
+gem 'devise-async', '0.9.0'
 
 # 用户权限
 gem 'cancancan', '~> 1.9.2'
@@ -84,8 +86,11 @@ gem 'china_city'
 gem 'sunspot_rails', '2.1.1'
 gem 'sunspot_solr', '2.1.1'
 
-# 消息队列
+# Pub/Sub消息队列
 gem 'faye', '1.0.1'
+
+#Simple, efficient background processing for Ruby http://sidekiq.org
+gem 'sidekiq', '2.17.7'
 
 # 图片处理及上传
 gem 'carrierwave', '0.10.0'
