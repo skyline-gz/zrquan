@@ -51,60 +51,8 @@
       </div>
       <div role="infoblocks">
         <% @question.answers.each do |answer| %>
-            <% @editable = current_user != nil && answer.user.id == current_user.id %>
-            <div class="component-infoblock" data-id="<%= answer.id %>">
-                <div class="component-infoblock-left">
-                  <% if answer.user.avatar != nil %>
-                    <img src="<%= Settings.upload_url + answer.user.avatar%>" class="component-infoblock-avatar">
-                  <% else %>
-                    <img src="../images/noface.gif" class="component-infoblock-avatar">
-                  <% end %>
-                    <div class="component-infoblock-good">
-                        <div class="component-infoblock-good-num" data-num="<%= answer.agreements.length %>"><%= answer.agreements.length %></div>
-                        <div class="component-infoblock-good-action">
-                            <i class="icons-good"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="component-infoblock-right">
-                    <div class="component-infoblock-header">
-                        <span class="component-infoblock-username"><%=generate_name(answer.user.first_name, answer.user.last_name)%></span>
-                        <i class="icons-vip"></i>
-                        <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= to_full_time(answer.updated_at) %></span>
-                    </div>
-                    <div class="component-infoblock-content">
-                      <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
-                      <%= raw answer.content %>
-                      <% if @editable %>
-                          <a href="javascript:void(0);" class="edit-button" name="edit">
-                            <i class="edit-button-icon"></i>
-                            <span>修改</span>
-                          </a>
-                      <% end %>
-                    </div>
-                    <% if @editable %>
-                      <div class="component-infoblock-editor-wrapper">
-                        <form action="/answers/<%= answer.id %>" method="post" target="_self">
-                          <input type="text" name="answer[content]" />
-                          <input type="text" name="_method" value="put"/>
-                        </form>
-                        <div class="component-infoblock-editor">
-                        </div>
-                      </div>
-                    <% end %>
-                    <div class="component-infoblock-footer">
-                        <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
-                            <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= answer.comments.length %>" class="num-comment"><%= answer.comments.length %></span>
-                        </div>
-                        <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
-                            <i class="icons-comment"></i>收起评论
-                        </div>
-                        <div class="component-infoblock-comment-wrapper">
-                        </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
+            <%= render partial: 'partials/infoblock', :locals => { :question => @question, :answer => answer, \
+                :is_editable => current_user != nil && answer.user.id == current_user.id, :is_show_title => false} %>
         <% end %>
       </div>
     </div>

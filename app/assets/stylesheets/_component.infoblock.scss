@@ -116,6 +116,19 @@ div[role=infoblocks] {
           display: inline;
         }
 
+        blockquote {
+          margin: .8em 0;
+        }
+        address, blockquote, sup {
+          border-left: 3px solid #D0E5F2;
+          font-style: normal;
+          padding: 0 0 0 10px;
+          display: block;
+          line-height: 24px;
+          vertical-align: baseline;
+          font-size: 100%;
+        }
+
         a.showall {
           white-space: nowrap;
           color: #438cca;

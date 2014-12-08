@@ -24,7 +24,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
                 var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({
                     el:$(this),
                     attrs: {
-                        type: $(this).attr('infoblock-type')
+                        type: $(this).attr('data-type')
                     }
                 });
                 that._addChildView(infoBlockView, that.childView);
