@@ -1,0 +1,123 @@
+<% if false %>
+    问答信息块模板
+    question: object needed Question model
+    answer: object Answer model       　显示主体是答案时，需要传入
+    is_show_title: boolean         　　是否显示标题
+    is_editable: boolean         　　　是否可以编辑答案
+<% end %>
+<% answer = nil if local_assigns[:answer].nil? %>
+<% is_recommend_answer = false if local_assigns[:recommend_answer].nil? %>
+<% is_editable = false if local_assigns[:is_editable].nil? %>
+<% is_show_title = true if local_assigns[:is_show_title].nil? %>
+
+<% if answer %>
+    <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>">
+      <% if is_show_title %>
+        <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
+      <% end %>
+      <div class="component-infoblock-left">
+        <% if answer.user.avatar != nil %>
+            <img src="<%= Settings.upload_url + answer.user.avatar %>" class="component-infoblock-avatar">
+        <% else %>
+            <img src="../images/noface.gif" class="component-infoblock-avatar">
+        <% end %>
+        <div class="component-infoblock-good">
+          <div class="component-infoblock-good-num"><%= answer.agreements.length %></div>
+          <div class="component-infoblock-good-action">
+            <i class="icons-good"></i>
+          </div>
+        </div>
+      </div>
+      <div class="component-infoblock-right">
+        <div class="component-infoblock-header">
+                        <span class="component-infoblock-username"><%= generate_name(answer.user.first_name, answer.user.last_name) %></span>
+          <i class="icons-vip"></i>
+          <% if is_recommend_answer %>
+              <span class="component-infoblock-action">的答案（推荐）</span>
+          <% else %>
+              <span class="component-infoblock-action">的答案</span>
+          <% end %>
+          <span class="component-infoblock-time timeago" title="<%= answer.updated_at %>"><%= to_full_time(answer.updated_at) %></span>
+        </div>
+        <div class="component-infoblock-content">
+          <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
+          <%= raw answer.content %>
+          <% if is_editable %>
+              <a href="javascript:void(0);" class="edit-button" name="edit">
+                <i class="edit-button-icon"></i>
+                <span>修改</span>
+              </a>
+          <% end %>
+        </div>
+        <% if is_editable %>
+            <div class="component-infoblock-editor-wrapper">
+              <form action="/answers/<%= answer.id %>" method="post" target="_self">
+                <input type="text" name="answer[content]" />
+                <input type="text" name="_method" value="put"/>
+              </form>
+              <div class="component-infoblock-editor">
+              </div>
+            </div>
+        <% end %>
+        <div class="component-infoblock-footer">
+          <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
+            <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= answer.comments.length %>" class="num-comment"><%= answer.comments.length %></span>
+          </div>
+          <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
+            <i class="icons-comment"></i>收起评论
+          </div>
+          <div class="component-infoblock-subjects">
+            <% question.question_themes.each do |question_theme| %>
+                <div class="component-subject"><%= question_theme.theme.name %></div>
+            <% end %>
+          </div>
+          <div class="component-infoblock-comment-wrapper">
+          </div>
+        </div>
+      </div>
+    </div>
+<% else %>
+    <div class="component-infoblock" data-type="Question" data-id="<%= question.id %>">
+      <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
+
+      <div class="component-infoblock-left">
+        <% if question.user.avatar != nil %>
+            <img src="<%= Settings.upload_url + question.user.avatar %>" class="component-infoblock-avatar">
+        <% else %>
+            <img src="../images/noface.gif" class="component-infoblock-avatar">
+        <% end %>
+      </div>
+      <div class="component-infoblock-right">
+        <div class="component-infoblock-header">
+          <span class="component-infoblock-username"><%= generate_name(question.user.first_name, question.user.last_name) %></span>
+          <i class="icons-vip"></i>
+          <span class="component-infoblock-action">提出的问题</span>
+          <span class="component-infoblock-time timeago" title="<%= question.updated_at %>"><%= to_full_time(question.updated_at) %></span>
+        </div>
+        <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="/questions/<%= question.id %>" class="showall">我来回答</a>
+        </div>
+        <div class="component-infoblock-footer">
+          <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
+            <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= question.comments.length %>" class="num-comment"><%= question.comments.length %></span>
+          </div>
+          <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
+            <i class="icons-comment"></i>收起评论
+          </div>
+          <% bookmark_able = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', question.id))%>
+          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= bookmark_able ? 'inline': 'none'%>">
+            <i class="icons-favorites"></i>收藏&nbsp;<%= question.bookmarks.length %>
+          </div>
+          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= bookmark_able ? 'none': 'inline'%>">
+            <i class="icons-favorites"></i>取消收藏&nbsp;<%= question.bookmarks.length %>
+          </div>
+          <div class="component-infoblock-subjects">
+            <% question.question_themes.each do |question_theme| %>
+                <div class="component-subject"><%= question_theme.theme.name %></div>
+            <% end %>
+          </div>
+          <div class="component-infoblock-comment-wrapper">
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
