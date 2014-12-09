@@ -6,7 +6,9 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
     Module.askQuestionModuleView = $('#askQuestionModal')[0] ? new (Zrquan.UI.ModalView.extend({
         el: '#askQuestionModal',
         modalName: 'askQuestionModal',
+        editor: null,
         ui: {
+            'title' : 'input[name="question[title]"]',
             'themes' : 'input[name="question[themes]"]',
             'description' : 'textarea[name="question[content]"]'
         },
@@ -18,6 +20,38 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
             this.listenTo(navbarEventBus, 'modal:show', this.showModal);
             this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
+        },
+        showModal: function(modalName, isModified, options) {
+            isModified = isModified || false;
+            if(isModified) {
+                this.$('.modal-title').html("修改问题");
+                this.$('.btn-primary').html("保存");
+                this.$('form').attr('action', '/questions/' + options.id);
+                this.$('input[name=_method]').val("PATCH");
+            } else {
+                this.$('.modal-title').html("提问");
+                this.$('.btn-primary').html("提交");
+                this.$('form').attr('action', '/questions');
+                this.$('input[name=_method]').val("POST");
+            }
+            if(options) {
+                var that = this;
+                this.ui.title.val(options.title);
+                setTimeout(function(){
+                    that.editor.setContent(options.content);
+                }, 300);
+                for(var i = 0; i < options.themes.length; i++ ) {
+                    this.ui.themes[0].selectize.addOption({id:options.themes[i]["id"], value:options.themes[i]["name"]});
+                    this.ui.themes[0].selectize.addItem(options.themes[i]["id"]);
+                }
+            }
+            Zrquan.UI.ModalView.prototype.showModal.call(this, modalName);
+        },
+        hideModal: function() {
+            this.ui.title.val("");
+            this.editor.setContent("");
+            this.ui.themes[0].selectize.clearOptions();
+            Zrquan.UI.ModalView.prototype.hideModal.call(this);
         },
         onHotThemesClick: function(evt) {
             var themeEl = this.$(evt.target);
@@ -38,9 +72,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         },
         render: function() {
             Zrquan.UI.ModalView.prototype.render.call(this);
-            var that = this;
-            UE.getEditor(this.ui.description[0], {
-                UEDITOR_HOME_URL: '/assets/ueditor/',
+            this.editor = UE.getEditor(this.ui.description[0], {
                 submitButton: false,
                 initialFrameHeight:115
             });

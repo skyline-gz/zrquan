@@ -44,6 +44,20 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
 
     function init() {
         $(".timeago").timeago();
+        $('.question-edit').click(function(evt){
+            var url = "/questions/" + $(evt.currentTarget).data("id") + "/edit";
+            Zrquan.Ajax.request({
+                url: url,
+                type: 'GET'
+            }).then(function(result) {
+                if (result['code'] == "S_OK") {
+                    Zrquan.Navbar.navbarEventBus.trigger('modal:show', 'askQuestionModal', true, result.data);
+                } else if (result['code'] == "FA_UNAUTHORIZED") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'没有权限', width: '100px'});
+                }
+            });
+        });
+
         if ($('#answerContent')[0]) {
             var editor = UE.getEditor('answerContent', {
                 UEDITOR_HOME_URL: '/assets/ueditor/',

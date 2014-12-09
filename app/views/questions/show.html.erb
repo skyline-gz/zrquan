@@ -1,6 +1,11 @@
 <div class="warp-content">
   <div class="question-warp-content">
-    <div class="question-title"><%= @question.title %></div>
+    <div class="question-title">
+      <span><%= @question.title %></span>
+      <% if can? :edit, @question %>
+        <a class="question-edit" href="javascript:void(0);" data-id="<%= @question.id %>">编辑问题</a>
+      <% end %>
+    </div>
     <div class="question-body">
       <div role="infoblocks">
         <%= render partial: 'partials/infoblock', :locals => { :question => @question, \

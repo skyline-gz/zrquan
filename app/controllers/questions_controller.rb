@@ -1,7 +1,7 @@
 require "date_utils.rb"
 
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update]
   before_action :authenticate_user!
 
   # 列表
@@ -28,7 +28,12 @@ class QuestionsController < ApplicationController
 
   # 编辑
   def edit
-    authorize! :edit, Question
+    if can? :edit, Question
+      @question_themes = @question.question_themes
+      render 'questions/edit'
+    else
+      render :json => {:code => ReturnCode::FA_UNAUTHORIZED}
+    end
   end
 
   # 创建
