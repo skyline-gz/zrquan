@@ -2,7 +2,7 @@
 <div class="modal" id="askQuestionModal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/questions" method="POST" id="password-setting-form" autocomplete="off" novalidate="novalidate">
+      <form action="/questions" method="POST" autocomplete="off" novalidate="novalidate">
           <div class="modal-header">
             <div class="modal-title">提问</div>
             <a class="close" data-dismiss="modal">
@@ -10,6 +10,20 @@
             </a>
           </div>
           <div class="modal-body">
+            <div class="alert alert-danger" role="alert" style="display:none">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+              <span class="alert-message"></span>
+            </div>
+            <div class="alert alert-success" role="alert" style="display:none">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+              <span class="alert-message"></span>
+            </div>
             <div class="section-item">
               <h4>问题标题：</h4>
               <input name="question[title]" class="component-input" type="text"/>
@@ -19,7 +33,7 @@
               <textarea name="question[content]"></textarea>
             </div>
             <div class="section-item">
-              <h4>选择或搜索主题：</h4>
+              <h4>选择或搜索主题：<span class="themes-tip">手动搜索精确主题，可以让更多资深职场人士看到并回答</span></h4>
               <input name="question[themes]" class="" type="text" />
               <div class="hot-themes-wrapper">
                     <span class="hot-themes-title">热门主题：</span>

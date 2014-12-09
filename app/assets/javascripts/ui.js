@@ -12,10 +12,16 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
     Module.ModalView = Backbone.Marionette.ItemView.extend({
         modalName: "",
         events: {
-          'click [data-dismiss="modal"]' : 'hideModal'
+          'click [data-dismiss="modal"]' : 'hideModal',
+          'click [data-dismiss="alert"]' : function(){
+              this.hideAlert();
+          }
+        },
+        checkCurrentModal: function(modalName) {
+            return (modalName && modalName == this.modalName);
         },
         showModal: function (modalName) {
-            if (modalName && modalName == this.modalName) {
+            if (this.checkCurrentModal(modalName)) {
                 console.log("modal:" + modalName + " show");
                 if (this.$el.data('modal')) {
                     this.$el.data('modal').show();
@@ -30,6 +36,22 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         },
         hideModal: function () {
             this.$el.data('modal').hide();
+        },
+        showAlert: function(str, type) {
+            type = type || 'info';
+            var alertEl = this.$('.alert.alert-' + type);
+            if(alertEl.length) {
+                this.$('.alert-message', alertEl).html(str);
+            }
+            alertEl.show();
+        },
+        hideAlert: function(type) {
+            type = type ? ".alert-" + type : "";
+            var alertEl = this.$('.alert' + type);
+            if(alertEl.length) {
+                this.$('.alert-message', alertEl).empty();
+            }
+            alertEl.hide();
         },
         attachEvent: function() {
             // add events from child

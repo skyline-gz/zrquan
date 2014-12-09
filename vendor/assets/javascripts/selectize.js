@@ -685,6 +685,10 @@
 			if(self.settings.copyClassesToDropdown) {
 				$dropdown.addClass(classes);
 			}
+
+			if(self.settings.showSearchIcon) {
+				$control.addClass('selectize-input-search');
+			}
 	
 			$wrapper.css({
 				width: $input[0].style.width
@@ -847,7 +851,7 @@
 					return '<div class="item">' + escape(data[field_label]) + '</div>';
 				},
 				'option_create': function(data, escape) {
-					return '<div class="create">添加新主题 <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+					return '<div class="create">创建新主题 <strong>' + escape(data.input) + '</strong>&hellip;</div>';
 				}
 			};
 	
@@ -2472,6 +2476,7 @@
 		dropdownParent: null,
 	
 		copyClassesToDropdown: true,
+		showSearchIcon: false, //在输入框前显示搜索按钮
 	
 		/*
 		load            : null, // function(query, callback) { ... }

@@ -9,6 +9,7 @@
 @import "minixs";
 
 //通用帮助类
+@import "scaffolding";
 @import "utilities";
 
 //引用插件依赖的样式
@@ -18,9 +19,11 @@
 @import "lib/selectize";
 
 //通用组件
+@import "component.close";
 @import "component.input";
 @import "component.button";
 @import "component.modal";
+@import "component.alerts";
 @import "component.subject";
 @import "component.infoblock";
 @import "component.userblock";

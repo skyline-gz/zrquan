@@ -11,7 +11,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             'description' : 'textarea[name="question[content]"]'
         },
         events: {
-            'click .hot-themes-wrapper .component-subject' : 'onHotThemesClick'
+            'click .hot-themes-wrapper .component-subject' : 'onHotThemesClick',
+            'submit form' : 'onQuestionFormSubmit'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
@@ -24,6 +25,16 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             var value = themeEl.data('value');
             this.ui.themes[0].selectize.addOption({id:id, value:value});
             this.ui.themes[0].selectize.addItem(id);
+        },
+        onQuestionFormSubmit: function(evt) {
+            this.hideAlert();
+            if(!Zrquan.Regex.QUESTION_NAME.test(this.$('input[name="question[title]"]').val())) {
+                this.showAlert("问题题目需为 8 至 50 个非空字符", "danger");
+                return false;
+            } else if(!Zrquan.Regex.THEME_IDS.test(this.$('input[name="question[themes]"]').val())) {
+                this.showAlert("问题至少需要选择一个合法主题", "danger");
+                return false;
+            }
         },
         render: function() {
             Zrquan.UI.ModalView.prototype.render.call(this);
@@ -41,6 +52,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 labelField: 'value',
                 searchField: 'value',
                 placeholder: '选择或搜索主题...',
+                showSearchIcon: true,
                 persist: false,
                 create: function(input) {
                     navbarEventBus.trigger("modal:show", "createThemeModal", input);
@@ -99,7 +111,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 if(data.code == "S_OK") {
                     console.log(data);
                     var themeName = that.ui.themeName.val();
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【' + themeName + '】成功'});
+                    Module.askQuestionModuleView.showAlert('创建主题【' + themeName + '】成功', "success");
                     locache.remove("ac_themes_" + themeName);
                     that.hideModal();
                     Module.askQuestionModuleView.ui.themes[0].selectize.addOption({id:data.data.id, value:data.data.name});

@@ -6,6 +6,8 @@ Zrquan.module('Regex', function(Module, App, Backbone, Marionette, $, _) {
     var regexObj = {
         ENGLISH_NAME: /^[a-z|A-Z]{0,20}$/,
         CHINESE_NAME: /^[\u4e00-\u9fa5]{0,9}$/,
+        QUESTION_NAME: /^\S{8,50}$/,
+        THEME_IDS: /(\d+)(,\d+)*/,
         PASSWORD: /\w{8,16}/,
         EMAIL: /^\w+[\.\w+]*@([\w]+([\.\w+]+))$/
     };
