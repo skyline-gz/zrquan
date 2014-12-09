@@ -133,9 +133,15 @@ div[role=infoblocks] {
           font-size: 100%;
         }
 
-        a.showall {
+        a.show-all-button, a.hide-all-button {
           white-space: nowrap;
           color: #438cca;
+          font-size: 13px;
+
+          &:hover {
+            background: #daf3ff;
+            text-decoration: none;
+          }
         }
 
         a.edit-button {

@@ -18,6 +18,7 @@
 <% is_show_question_content = false if local_assigns[:is_show_question_content].nil? %>
 
 <% is_bookmarkable = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', question.id))%>
+<% is_need_truncate = answer != nil and strip_tags(answer.content).length > 115 %>
 
 <% if answer %>
     <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>">
@@ -57,7 +58,22 @@
         </div>
         <div class="component-infoblock-content">
           <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
-          <%= raw answer.content %>
+          <% if is_need_truncate %>
+              <div class="component-infoblock-truncate-content">
+                  <%= raw strip_tags(answer.content).truncate(170) %>
+                  <a href="javascript:void(0);" class="show-all-button">
+                    <span>显示全部</span>
+                  </a>
+              </div>
+              <div class="component-infoblock-all-content" style="display: none">
+                  <%= raw answer.content %>
+                  <a href="javascript:void(0);" class="hide-all-button">
+                    <span>收起全部</span>
+                  </a>
+              </div>
+          <% else %>
+              <%= raw answer.content %>
+          <% end %>
           <% if is_editable %>
               <a href="javascript:void(0);" class="edit-button" name="edit">
                 <i class="edit-button-icon"></i>

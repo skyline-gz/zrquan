@@ -150,7 +150,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             'click a.edit-button' : 'onEditButtonClick',
             'click .component-infoblock-good-action' : 'onAgreeAnswerClick',
             'click .component-infoblock-opts-comment': 'onCommentClick',
-            'click .component-infoblock-opts-favorites' : 'onFavorClick'
+            'click .component-infoblock-opts-favorites' : 'onFavorClick',
+            'click .show-all-button' : 'onShowAllClick',
+            'click .hide-all-button' : 'onHideAllClick'
         },
         ui: {
             editButton : '.edit-button',
@@ -261,6 +263,14 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'取消收藏失败', width:'150px'});
                 }
             });
+        },
+        onShowAllClick: function(evt) {
+            this.$('.component-infoblock-truncate-content').hide();
+            this.$('.component-infoblock-all-content').show();
+        },
+        onHideAllClick: function(evt) {
+            this.$('.component-infoblock-truncate-content').show();
+            this.$('.component-infoblock-all-content').hide();
         },
         updateBookmarksNum: function(num) {
             num = num || 0;
