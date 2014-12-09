@@ -23,8 +23,8 @@
               <input name="question[themes]" class="" type="text" />
               <div class="hot-themes-wrapper">
                     <span class="hot-themes-title">热门主题：</span>
-                  <%Settings['hot_themes'].each do |key, value| %>
-                      <div class="component-subject" data-id="<%= key %>"><%= value %></div>
+                  <%Settings['hot_themes'].each do |id, value| %>
+                      <div class="component-subject" data-id="<%= id %>" data-value="<%= value %>"><%= value %></div>
                   <%end%>
               </div>
             </div>

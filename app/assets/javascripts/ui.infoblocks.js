@@ -113,8 +113,8 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                 this.$el.removeClass('empty');
             }
         },
-        onCancelCommentClick: function() {
-            this.options.parentView.destroyCommentView();
+        onCancelCommentClick: function(evt) {
+            this.options.parentView.onCommentClick(evt);
         },
         onSubmitCommentClick: function(evt) {
             var that = this;

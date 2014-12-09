@@ -10,10 +10,20 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             'themes' : 'input[name="question[themes]"]',
             'description' : 'textarea[name="question[content]"]'
         },
+        events: {
+            'click .hot-themes-wrapper .component-subject' : 'onHotThemesClick'
+        },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
             this.listenTo(navbarEventBus, 'modal:show', this.showModal);
             this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
+        },
+        onHotThemesClick: function(evt) {
+            var themeEl = this.$(evt.target);
+            var id = parseInt(themeEl.data('id'));
+            var value = themeEl.data('value');
+            this.ui.themes[0].selectize.addOption({id:id, value:value});
+            this.ui.themes[0].selectize.addItem(id);
         },
         render: function() {
             Zrquan.UI.ModalView.prototype.render.call(this);
