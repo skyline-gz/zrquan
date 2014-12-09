@@ -64,7 +64,6 @@ class QuestionsController < ApplicationController
 		# 更新问题和主题（非严谨，不需事务）
     @question.update!(question_params)
     if params[:question][:themes] != nil
-      is_created = false
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
       # 清空之前的主题-问题关联
       # Todo:可以考虑增量更新，减少SQL插入量
