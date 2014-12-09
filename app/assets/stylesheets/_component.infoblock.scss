@@ -113,6 +113,13 @@ div[role=infoblocks] {
         color: $deep-dark;
         font-family: $base-article-family;
 
+        a {
+          color: #259;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
         P {
           display: inline;
         }

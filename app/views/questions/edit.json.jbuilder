@@ -1,6 +1,5 @@
 json.code 'S_OK'
 json.data do
-  json.test "<>"
   json.id @question.id
   json.title @question.title
   json.content @question.content
