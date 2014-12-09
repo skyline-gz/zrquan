@@ -64,7 +64,13 @@ class QuestionsController < ApplicationController
 		# 更新问题和主题（非严谨，不需事务）
     @question.update!(question_params)
     if params[:question][:themes] != nil
+      is_created = false
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
+      # 清空之前的主题-问题关联
+      # Todo:可以考虑增量更新，减少SQL插入量
+      @question.question_themes.each do |question_theme|
+        question_theme.destroy;
+      end
       themes.each do |t_id|
         @question_theme = QuestionTheme.new
         @question_theme.question_id = @question.id
@@ -74,16 +80,6 @@ class QuestionsController < ApplicationController
     end
 		redirect_to @question
   end
-
-  # DELETE /questions/1
-  # DELETE /questions/1.json
-  #def destroy
-  #  @question.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-  #    format.json { head :no_content }
-  #  end
-  #end
 
   private
     def set_question
