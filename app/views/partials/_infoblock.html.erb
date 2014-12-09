@@ -18,7 +18,7 @@
 <% is_show_question_content = false if local_assigns[:is_show_question_content].nil? %>
 
 <% is_bookmarkable = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', question.id))%>
-<% is_need_truncate = answer != nil and strip_tags(answer.content).length > 115 %>
+<% is_need_truncate = (answer != nil and strip_tags(answer.content).length > 115) %>
 
 <% if answer %>
     <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>">
