@@ -18,7 +18,10 @@ Rails.application.routes.draw do
 
   resources :questions, except: :destroy do
 		resources :answers, except: :destroy
-	end
+  end
+
+  # 列出问题(ajax)
+  get 'list_questions' => 'questions#list'
 
 	resources :answers, only: [:show, :edit, :update] do
 		member do
