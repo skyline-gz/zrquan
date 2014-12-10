@@ -13,7 +13,7 @@
 </div>
 <div class="ql-content warp-content">
   <div class="ql-content-left">
-    <div role="infoblocks">
+    <div role="infoblocks" data-list-type="<%= params[:type]||'1' %>">
       <% @questions.each do |question| %>
           <% if question.recommend_answer %>
               <%= render partial: 'partials/infoblock', :locals => { :question => question, \

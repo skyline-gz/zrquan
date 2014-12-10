@@ -37,21 +37,23 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
         $(".timeago").timeago();
 
         //初始化滚动监听
-        $(document).scroll(function(){
+        $(document).scroll(_.throttle(function(){
             var nScrollTop = $(document.body)[0].scrollTop;
             var availableHeight = $(document).height()-$(window).height();
             console.log(nScrollTop, availableHeight);
-            if(!isLoading && nScrollTop >= availableHeight/2){
+            if(!isLoading && nScrollTop >= availableHeight/4 * 3){
                 isLoading = true;
-                console.info("滚动到中间了，要下拉刷新");
+                console.info("pull to refresh...");
                 pullAndRefresh();
             }
-        });
+        }, 500));
     }
 
     function pullAndRefresh() {
+        var url = "/list_questions?type=" + Module.infosView.$el.data("list-type")
+            + "&last_id=" + Module.infosView.$('.component-infoblock:last-child').data("qid");
         Zrquan.Ajax.request({
-            url: "/list_questions",
+            url: url,
             type: "GET"
         }).then(function(result) {
             if(result.code == "S_OK") {

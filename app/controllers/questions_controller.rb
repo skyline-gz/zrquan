@@ -4,30 +4,35 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update]
   before_action :authenticate_user!
 
+  DEFAULT_SHOW_LENGTH = 20
+  PULL_TO_REFRESH_LENGTH = 10
   QUESTION_LIST_TYPE = {:NEWEST => 1, :HOTTEST => 2, :NOT_ANSWERED => 3}
 
   # 列表 type:int ,1 最新, 2 最热， 3未回答
   def index
     type = params[:type] || QUESTION_LIST_TYPE[:NEWEST]
-    case type.to_i
-      when QUESTION_LIST_TYPE[:NEWEST]
-        # 根据最近回答的时间排序
-        @questions = Question.all.sort_by { |q| q.latest_qa_time }.reverse!
-      when QUESTION_LIST_TYPE[:HOTTEST]
-        @questions = Question.all.sort_by { |q| q.hot_abs / ((((Time.now - q.created_at)/ 1.hour).round) + 12) }.reverse!
-      when QUESTION_LIST_TYPE[:NOT_ANSWERED]
-        @questions = Question.all.select { |q| q.latest_answer_id == nil }.sort_by { |q| q.latest_qa_time }.reverse!
-      else
-        @questions = [];
-    end
-    # 显示20条
-    @questions = @questions[0..19]
+    @questions = get_questions_by_type type.to_i
+    # 显示前20条
+    @questions = @questions[0..DEFAULT_SHOW_LENGTH]
   end
 
-  # 列出
+  # 列出 type:int ,1 最新, 2 最热， 3未回答, last_id 最后一条的记录，第一条记录将从此id的后面开始取
   def list
-    @questions = Question.all
-    render 'questions/list.json'
+    type = params[:type] || QUESTION_LIST_TYPE[:NEWEST]
+    last_id = params[:last_id]
+    @questions = get_questions_by_type type.to_i
+    start = 0
+    if last_id
+      @questions.each_with_index {|q, i|
+        if q.id == last_id.to_i
+          start = i
+          next
+        end
+      }
+    end
+    # 加载10条
+    @questions = @questions[(start + 1)..(start + 1 + PULL_TO_REFRESH_LENGTH)]
+    render 'questions/list'
   end
 
   # 显示
@@ -97,6 +102,20 @@ class QuestionsController < ApplicationController
   private
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def get_questions_by_type(type)
+    case type
+      when QUESTION_LIST_TYPE[:NEWEST]
+        # 根据最近回答的时间排序
+        Question.all.sort_by { |q| q.latest_qa_time }.reverse!
+      when QUESTION_LIST_TYPE[:HOTTEST]
+        Question.all.sort_by { |q| q.hot_abs / ((((Time.now - q.created_at)/ 1.hour).round) + 12) }.reverse!
+      when QUESTION_LIST_TYPE[:NOT_ANSWERED]
+        Question.all.select { |q| q.latest_answer_id == nil }.sort_by { |q| q.latest_qa_time }.reverse!
+      else
+        [];
+    end
   end
 
   def question_params

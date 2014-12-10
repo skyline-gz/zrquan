@@ -21,7 +21,7 @@
 <% is_need_truncate = (answer != nil and strip_tags(answer.content).length > 115) %>
 
 <% if answer %>
-    <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>">
+    <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>" data-qid="<%= question.id %>">
       <% if is_show_title %>
         <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
       <% end %>
@@ -110,7 +110,7 @@
       </div>
     </div>
 <% else %>
-    <div class="component-infoblock" data-type="Question" data-id="<%= question.id %>">
+    <div class="component-infoblock" data-type="Question" data-id="<%= question.id %>" data-qid="<%= question.id %>">
       <% if is_show_title %>
           <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
       <% end %>
