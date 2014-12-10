@@ -1,13 +1,13 @@
 <div class="ql-header warp-content">
   <ul class="component-tab_navs">
-    <li class="component-tab_nav active">
-      <a href="javascript:void(0);">最新</a>
+    <li class="component-tab_nav <%= (params[:type] == nil or params[:type] == '1') ? 'active': ''%>">
+      <a href="/questions">最新</a>
     </li>
-    <li class="component-tab_nav">
-      <a href="javascript:void(0);">热门</a>
+    <li class="component-tab_nav <%= params[:type] == '2' ? 'active': '' %>">
+      <a href="/questions?type=2">热门</a>
     </li>
-    <li class="component-tab_nav">
-      <a href="javascript:void(0);">未回答</a>
+    <li class="component-tab_nav <%= params[:type] == '3' ? 'active': '' %>">
+      <a href="/questions?type=3">未回答</a>
     </li>
   </ul>
 </div>

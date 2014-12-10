@@ -297,7 +297,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                     that.views.commentView = new Module.InfoBlockCommentView({
                         collection: comments,
                         attrs: {
-                            type: that.options.attrs.type,
+                            type: that.$el.attr('data-type'),
                             id: that.$el.attr('data-id')
                         },
                         parentView: that
@@ -318,8 +318,6 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             this.bindUIElements(); // wire up this.ui, if any
         },
         initialize: function(options){
-            var that = this;
-            this.attrs = options.attrs;
 //            this.listenTo(Module.infoblocksEventBus, 'comments:reload', function(){
 //                that.destroyCommentView();
 //                that.loadNShowComment();

@@ -22,10 +22,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
             var that = this;
             this.$('.component-infoblock').each(function(){
                 var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({
-                    el:$(this),
-                    attrs: {
-                        type: $(this).attr('data-type')
-                    }
+                    el:$(this)
                 });
                 that._addChildView(infoBlockView, that.childView);
             });
@@ -33,7 +30,40 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
         }
     }));
 
+    var isLoading = false;
+
     function init() {
+        //初始化漂亮日期
         $(".timeago").timeago();
+
+        //初始化滚动监听
+        $(document).scroll(function(){
+            var nScrollTop = $(document.body)[0].scrollTop;
+            var availableHeight = $(document).height()-$(window).height();
+            console.log(nScrollTop, availableHeight);
+            if(!isLoading && nScrollTop >= availableHeight/2){
+                isLoading = true;
+                console.info("滚动到中间了，要下拉刷新");
+                pullAndRefresh();
+            }
+        });
+    }
+
+    function pullAndRefresh() {
+        Zrquan.Ajax.request({
+            url: "/list_questions",
+            type: "GET"
+        }).then(function(result) {
+            if(result.code == "S_OK") {
+                for(var i = 0; i < result.data.length; i++) {
+                    var infoblockTemplate = result.data[i];
+                    var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({
+                        el: $(infoblockTemplate)
+                    });
+                    Module.infosView._addChildView(infoBlockView);
+                }
+                isLoading = false;
+            }
+        });
     }
 });

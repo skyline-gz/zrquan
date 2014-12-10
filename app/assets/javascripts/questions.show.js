@@ -43,7 +43,10 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
     }));
 
     function init() {
+        //初始化漂亮日期
         $(".timeago").timeago();
+
+        //初始化【编辑问题】
         $('.question-edit').click(function(evt){
             var url = "/questions/" + $(evt.currentTarget).data("id") + "/edit";
             Zrquan.Ajax.request({
@@ -58,6 +61,7 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
             });
         });
 
+        //初始化【攒写答案】
         if ($('#answerContent')[0]) {
             var editor = UE.getEditor('answerContent', {
                 UEDITOR_HOME_URL: '/assets/ueditor/',

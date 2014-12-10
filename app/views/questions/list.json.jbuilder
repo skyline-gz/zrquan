@@ -1,4 +1,4 @@
-json.code = 'S_OK'
+json.code 'S_OK'
 infoblock_templates = []
 @questions.each do |question|
   if question.recommend_answer
