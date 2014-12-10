@@ -64,6 +64,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
                     });
                     Module.infosView._addChildView(infoBlockView);
                 }
+                Module.infosView.$(".timeago").timeago();
                 isLoading = false;
             }
         });
