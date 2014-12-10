@@ -162,9 +162,6 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             rawContent: '.component-infoblock-raw-content',
             agreeNum: '.component-infoblock-good-num'
         },
-        views: {
-            commentView: null
-        },
         regions: {
             comment: ".component-infoblock-comment-wrapper"
         },
@@ -203,8 +200,8 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                 data: {}
             })).then(function(result) {
                 if (result.code == "S_OK") {
-                    var agreeNum = parseInt(that.ui.agreeNum.attr('data-num')) + 1;
-                    that.ui.agreeNum.attr('data-num', agreeNum).html(agreeNum);
+                    var agreeNum = parseInt(that.ui.agreeNum.data('num')) + 1;
+                    that.ui.agreeNum.data('num', agreeNum).html(agreeNum);
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'点赞成功', width:'100px'});
                 } else if (result.code == "FA_UNAUTHORIZED") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'操作失败', width:'100px'});
@@ -294,7 +291,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             })).then(function(result) {
                 if (result.code == "S_OK") {
                     var comments = new Module.InfoBlockCommentCollection(result.data);
-                    that.views.commentView = new Module.InfoBlockCommentView({
+                    var commentView = new Module.InfoBlockCommentView({
                         collection: comments,
                         attrs: {
                             type: that.$el.attr('data-type'),
@@ -302,15 +299,15 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                         },
                         parentView: that
                     });
-                    that.comment.show(that.views.commentView);
-                    that.views.commentView.checkEmptyShow();
+                    that.comment.show(commentView);
+                    commentView.checkEmptyShow();
                     $('.timeago', that.$el).timeago();
                 }
             });
         },
         destroyCommentView: function() {
-            if (this.views.commentView && this.views.commentView.destroy) {
-                this.views.commentView.destroy();
+            if (this.comment.currentView && this.comment.currentView.destroy) {
+                this.comment.currentView.destroy();
             }
         },
         render: function() {
