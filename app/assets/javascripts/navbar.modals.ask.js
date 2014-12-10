@@ -22,27 +22,29 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
         },
         showModal: function(modalName, isModified, options) {
-            isModified = isModified || false;
-            if(isModified) {
-                this.$('.modal-title').html("修改问题");
-                this.$('.btn-primary').html("保存");
-                this.$('form').attr('action', '/questions/' + options.id);
-                this.$('input[name=_method]').val("PATCH");
-            } else {
-                this.$('.modal-title').html("提问");
-                this.$('.btn-primary').html("提交");
-                this.$('form').attr('action', '/questions');
-                this.$('input[name=_method]').val("POST");
-            }
-            if(options) {
-                var that = this;
-                this.ui.title.val(options.title);
-                setTimeout(function(){
-                    that.editor.setContent(options.content);
-                }, 300);
-                for(var i = 0; i < options.themes.length; i++ ) {
-                    this.ui.themes[0].selectize.addOption({id:options.themes[i]["id"], value:options.themes[i]["name"]});
-                    this.ui.themes[0].selectize.addItem(options.themes[i]["id"]);
+            if(this.checkCurrentModal(modalName)) {
+                isModified = isModified || false;
+                if(isModified) {
+                    this.$('.modal-title').html("修改问题");
+                    this.$('.btn-primary').html("保存");
+                    this.$('form').attr('action', '/questions/' + options.id);
+                    this.$('input[name=_method]').val("PATCH");
+                } else {
+                    this.$('.modal-title').html("提问");
+                    this.$('.btn-primary').html("提交");
+                    this.$('form').attr('action', '/questions');
+                    this.$('input[name=_method]').val("POST");
+                }
+                if(options) {
+                    var that = this;
+                    this.ui.title.val(options.title);
+                    setTimeout(function(){
+                        that.editor.setContent(options.content);
+                    }, 300);
+                    for(var i = 0; i < options.themes.length; i++ ) {
+                        this.ui.themes[0].selectize.addOption({id:options.themes[i]["id"], value:options.themes[i]["name"]});
+                        this.ui.themes[0].selectize.addItem(options.themes[i]["id"]);
+                    }
                 }
             }
             Zrquan.UI.ModalView.prototype.showModal.call(this, modalName);
