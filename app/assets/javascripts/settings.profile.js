@@ -59,7 +59,50 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         source: matchSchools
     });
 
-    $('#region').selectpicker({
+    var $region = $('#region');
+    var $location = $('#location');
+
+    $region.selectpicker({
         'title' : '区域'
     });
+
+    $location.selectpicker({
+        'title' : '城市'
+    });
+
+    $location.prop('disabled',true);
+    $location.selectpicker('refresh');
+
+    $region.change(function(){
+        var regionId = parseInt($region.val());
+        if (regionId == -1) {
+            updateLocationOptions();
+            return;
+        }
+        var url = "/settings/locations?id=" + regionId;
+
+        Zrquan.Ajax.request({
+            url: url,
+            type: "GET"
+        }).then(function(result) {
+            if (result['code'] == "S_OK") {
+                updateLocationOptions(result.data);
+            }
+        });
+    });
+
+    function updateLocationOptions(locations) {
+        locations = locations || [];
+        $location.find('option').remove().end();
+        for(var i = 0; i < locations.length; i++ ){
+            var option = $('<OPTION>').attr('value', locations[i].id).html(locations[i].name);
+            $location.append(option);
+        }
+        if(locations.length) {
+            $location.prop('disabled',false);
+        } else {
+            $location.prop('disabled',true);
+        }
+        $location.selectpicker('refresh');
+    }
 });

@@ -83,6 +83,9 @@ Rails.application.routes.draw do
   get 'settings/profile' => 'user_settings#show_profile'
   post 'settings/profile' => 'users#update_profile'
 
+  # 省市级联，根据region id获取所有城市
+  get 'settings/locations' => 'user_settings#locations'
+
   # 密码设置
   get 'settings/password' => 'user_settings#show_password'
   post 'settings/password' => 'users#update_password'

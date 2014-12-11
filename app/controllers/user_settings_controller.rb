@@ -35,7 +35,14 @@ class UserSettingsController < ApplicationController
 
   # 获取所有相应id下的所有城市
   def locations
-    id = params.id.to_i
+    id = params[:id]
+    if id
+      @locations = Location.where ({:region_id => id.to_i})
+      render 'show_locations'
+    else
+      render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
+    end
+
   end
 
   private

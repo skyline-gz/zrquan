@@ -38,12 +38,13 @@
         <label for="location" class="settings-item-title with-input">所在地</label>
 
         <div class="settings-item-content">
-          <select name="region" id="region" title="区域" tabindex="-1" required="">
+          <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
+            <option value="-1">请选择区域...</option>
             <% Region.all.each do |region| %>
                 <option value='<%= region.id %>'><%= region.name %></option>
             <% end %>
           </select>
-          <select name="location" id="location" title="区域" tabindex="-1" required=""></select>
+          <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none"></select>
         </div>
       </div>
       <div class="settings-item clearfix">
