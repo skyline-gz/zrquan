@@ -41,6 +41,8 @@
 //= require selectize
 //bootstrap风格的select控件
 //= require bootstrap-select
+//返回顶部
+//= require jquery.goup
 //友好的日期
 //= require jquery.timeago
 //= require jquery.timeago.settings
