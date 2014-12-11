@@ -11,6 +11,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
         start: function() {
             init();
             Module.infosView.render();
+            Module.loadMoreView.render();
         }
     });
 
@@ -30,7 +31,32 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
         }
     }));
 
+    Module.loadMoreView = new (Backbone.Marionette.ItemView.extend({
+        el: 'a[data-role=load-more]',
+        events: {
+           'click': 'onLoadMoreClick'
+        },
+        switchShowMode: function(isMore) {
+            this.options.isMore = isMore;
+           if(isMore) {
+               this.$el.empty().html("更多");
+           } else {
+               this.$el.empty().append($("<i>").addClass("spinner-gray")).append("正在加载");
+           }
+        },
+        onLoadMoreClick: function() {
+            if(this.options.isMore) {
+                pullAndRefresh();
+            }
+        },
+        render: function() {
+
+        }
+    }));
+
     var isLoading = false;
+    //下拉刷新的次数，前两次自动加载，然后每次手动加载
+    var counter = 0;
 
     function init() {
         //初始化漂亮日期
@@ -50,6 +76,10 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
     }
 
     function pullAndRefresh() {
+        Module.loadMoreView.switchShowMode();
+        Module.loadMoreView.$el.show();
+        counter ++;
+
         var url = "/list_questions?type=" + Module.infosView.$el.data("list-type")
             + "&last_id=" + Module.infosView.$('.component-infoblock:last-child').data("qid");
         Zrquan.Ajax.request({
@@ -57,6 +87,12 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
             type: "GET"
         }).then(function(result) {
             if(result.code == "S_OK") {
+                if(counter == 1) {
+                    Module.loadMoreView.$el.hide();
+                } else {
+                    $(document).off('scroll');
+                    Module.loadMoreView.switchShowMode(true);
+                }
                 for(var i = 0; i < result.data.length; i++) {
                     var infoblockTemplate = result.data[i];
                     var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({

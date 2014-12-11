@@ -198,3 +198,12 @@ input[type="button"] {
   background-repeat: repeat-x;
   border: 1px solid #ccc;
 }
+
+@mixin btn-light-gray-base($border-radius) {
+  @include btn-abstract($border-radius);
+  background: #f8f8f9;
+  background-color: #f1f1f2;
+  @include background-image(linear-gradient(top,#f8f8f9,#e6e6e8));
+  background-repeat: repeat-x;
+  border: 1px solid #bbb;
+}
