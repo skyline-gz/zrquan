@@ -36,16 +36,27 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
         events: {
            'click': 'onLoadMoreClick'
         },
-        switchShowMode: function(isMore) {
-            this.options.isMore = isMore;
-           if(isMore) {
-               this.$el.empty().html("更多");
-           } else {
-               this.$el.empty().append($("<i>").addClass("spinner-gray")).append("正在加载");
-           }
+        mode: {
+           "MORE": 1,
+           "LOADING": 0,
+           "NONE": 2
+        },
+        switchShowMode: function(mode) {
+            this.options.mode = mode;
+            switch(mode) {
+               case this.mode.MORE:
+                   this.$el.empty().html("更多");
+                   break;
+               case this.mode.LOADING:
+                   this.$el.empty().append($("<i>").addClass("spinner-gray")).append("正在加载");
+                   break;
+               case this.mode.NONE:
+                   this.$el.empty().html("没有了");
+                   break;
+            }
         },
         onLoadMoreClick: function() {
-            if(this.options.isMore) {
+            if(this.options.mode == this.mode.MORE) {
                 pullAndRefresh();
             }
         },
@@ -67,7 +78,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
             var nScrollTop = $(document.body)[0].scrollTop;
             var availableHeight = $(document).height()-$(window).height();
             console.log(nScrollTop, availableHeight);
-            if(!isLoading && nScrollTop >= availableHeight/4 * 3){
+            if(!isLoading && nScrollTop >= availableHeight/5 * 4){
                 isLoading = true;
                 console.info("pull to refresh...");
                 pullAndRefresh();
@@ -76,7 +87,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
     }
 
     function pullAndRefresh() {
-        Module.loadMoreView.switchShowMode();
+        Module.loadMoreView.switchShowMode(Module.loadMoreView.mode.LOADING);
         Module.loadMoreView.$el.show();
         counter ++;
 
@@ -89,9 +100,12 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
             if(result.code == "S_OK") {
                 if(counter == 1) {
                     Module.loadMoreView.$el.hide();
+                } else if(result.data.length == 0) {
+                    $(document).off('scroll');
+                    Module.loadMoreView.switchShowMode(Module.loadMoreView.mode.NONE);
                 } else {
                     $(document).off('scroll');
-                    Module.loadMoreView.switchShowMode(true);
+                    Module.loadMoreView.switchShowMode(Module.loadMoreView.mode.MORE);
                 }
                 for(var i = 0; i < result.data.length; i++) {
                     var infoblockTemplate = result.data[i];
