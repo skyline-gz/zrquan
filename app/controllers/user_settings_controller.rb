@@ -33,6 +33,11 @@ class UserSettingsController < ApplicationController
 
   end
 
+  # 获取所有相应id下的所有城市
+  def locations
+    id = params.id.to_i
+  end
+
   private
   def set_user_msg_setting
     @user_msg_setting = UserMsgSetting.find(current_user.id)

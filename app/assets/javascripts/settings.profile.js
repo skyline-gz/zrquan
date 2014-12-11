@@ -58,4 +58,8 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         // is compatible with the typeahead jQuery plugin
         source: matchSchools
     });
+
+    $('#region').selectpicker({
+        'title' : '区域'
+    });
 });
