@@ -1,4 +1,11 @@
 <div class="user-setting warp-content">
+  <div class="alert alert-success" role="alert" style="display:none">
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">×</span>
+      <span class="sr-only">Close</span>
+    </button>
+    <span class="alert-message"></span>
+  </div>
   <ul class="component-tab_navs">
     <li class="component-tab_nav active">
       <a href="/settings/profile">档案</a>
@@ -15,14 +22,14 @@
   </ul>
   <div class="settings-intro">修改你的个人档案。</div>
   <!-- data-remote data-type 由jquery-ujs作ajax form submit的准备 -->
-  <form action="/settings/profile" method="POST" id="password-setting-form"
+  <form action="/settings/profile" method="POST" id="profile-setting-form"
         autocomplete="off" novalidate="novalidate" data-remote="true" data-type="json">
     <div class="settings-section">
       <div class="settings-item clearfix">
         <label for="company" class="settings-item-title with-input">公司</label>
 
         <div class="settings-item-content">
-          <input type="text" autocomplete="off" class="component-input"
+          <input type="text" autocomplete="off" class="component-input" value="<%= @company.name %>"
                  name="company" id="company" placeholder="公司" required="">
         </div>
       </div>
@@ -30,28 +37,42 @@
         <label for="position" class="settings-item-title with-input">职位</label>
 
         <div class="settings-item-content">
-          <input type="text" autocomplete="off" class="component-input"
-                 name="latest_position" id="latest_position" placeholder="职位" required="">
+          <input type="text" autocomplete="off" class="component-input" value="<%= current_user.latest_position %>"
+                 name="position" id="position" placeholder="职位" required="">
         </div>
       </div>
       <div class="settings-item clearfix">
         <label for="location" class="settings-item-title with-input">所在地</label>
 
         <div class="settings-item-content">
-          <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
-            <option value="-1">请选择区域...</option>
-            <% Region.all.each do |region| %>
-                <option value='<%= region.id %>'><%= region.name %></option>
-            <% end %>
-          </select>
-          <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none"></select>
+          <% if current_user.location_id %>
+              <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
+                <option value="-1">请选择区域...</option>
+                <% Region.all.each do |region| %>
+                    <option value='<%= region.id %>' <%= region.id == @region_id ? 'selected': '' %>><%= region.name %></option>
+                <% end %>
+              </select>
+              <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none">
+                <% @locations.each do |location| %>
+                    <option value='<%= location.id %>' <%= location.id == current_user.location_id ? 'selected': '' %>><%= location.name %></option>
+                <% end %>
+              </select>
+          <% else %>
+              <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
+                <option value="-1">请选择区域...</option>
+                <% Region.all.each do |region| %>
+                    <option value='<%= region.id %>'><%= region.name %></option>
+                <% end %>
+              </select>
+              <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none"></select>
+          <% end %>
         </div>
       </div>
       <div class="settings-item clearfix">
         <label for="school" class="settings-item-title with-input">学校</label>
 
         <div class="settings-item-content">
-          <input type="text" autocomplete="off" class="component-input"
+          <input type="text" autocomplete="off" class="component-input" value="<%= @school.name %>"
                  name="school" id="school" placeholder="学校" required="">
         </div>
       </div>
@@ -59,7 +80,7 @@
         <label for="major" class="settings-item-title with-input">专业</label>
 
         <div class="settings-item-content">
-          <input type="text" autocomplete="off" class="component-input"
+          <input type="text" autocomplete="off" class="component-input" value="<%= current_user.latest_major %>"
                  name="major" id="major" placeholder="专业" required="">
         </div>
       </div>

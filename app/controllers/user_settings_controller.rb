@@ -26,11 +26,46 @@ class UserSettingsController < ApplicationController
 
   #档案设置
   def show_profile
-
+    @company = Company.new
+    if current_user.latest_company_id
+      @company = Company.find current_user.latest_company_id
+    end
+    @school = School.new
+    if current_user.latest_school_id
+      @school = School.find current_user.latest_school_id
+    end
+    if current_user.location_id
+      @region_id = Location.find(current_user.location_id).region_id
+      @locations = Location.where ({:region_id => @region_id})
+    end
   end
 
   def update_profile
-
+    company = ActionController::Base.helpers.strip_tags params[:company]
+    position = ActionController::Base.helpers.strip_tags params[:position]
+    region = params[:region].to_i
+    location = params[:location].to_i
+    school = ActionController::Base.helpers.strip_tags params[:school]
+    major = ActionController::Base.helpers.strip_tags params[:major]
+    if company and company.length > 0
+      @company = Company.find_and_save company
+      current_user.latest_company_id = @company.id
+    end
+    if position and position.length > 0
+      current_user.latest_position = position
+    end
+    if region and region != -1 && location
+      current_user.location_id = location
+    end
+    if school and school.length > 0
+      @school = School.find_and_save school
+      current_user.latest_school_id = @school.id
+    end
+    if major and major.length > 0
+      current_user.latest_major = major
+    end
+    current_user.save
+    render :json => {:code => ReturnCode::S_OK}
   end
 
   # 获取所有相应id下的所有城市
@@ -42,7 +77,6 @@ class UserSettingsController < ApplicationController
     else
       render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS}
     end
-
   end
 
   private

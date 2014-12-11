@@ -70,8 +70,10 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         'title' : '城市'
     });
 
-    $location.prop('disabled',true);
-    $location.selectpicker('refresh');
+    if(parseInt($region.val()) == -1) {
+        $location.prop('disabled',true);
+        $location.selectpicker('refresh');
+    }
 
     $region.change(function(){
         var regionId = parseInt($region.val());
@@ -105,4 +107,16 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         }
         $location.selectpicker('refresh');
     }
+
+    $('#profile-setting-form').on('ajax:success', function(xhr, data, status) {
+        if(data.code == "S_OK") {
+            var $alertSuccess = $('.alert.alert-success');
+            $alertSuccess.show();
+            $('.alert-message', $alertSuccess).html("档案保存成功");
+
+            setTimeout(function(){
+                $alertSuccess.hide();
+            }, 2000)
+        }
+    });
 });

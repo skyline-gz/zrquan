@@ -81,7 +81,7 @@ Rails.application.routes.draw do
 
   # 档案设置
   get 'settings/profile' => 'user_settings#show_profile'
-  post 'settings/profile' => 'users#update_profile'
+  post 'settings/profile' => 'user_settings#update_profile'
 
   # 省市级联，根据region id获取所有城市
   get 'settings/locations' => 'user_settings#locations'
