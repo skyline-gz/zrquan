@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
     type = params[:type] || QUESTION_LIST_TYPE[:NEWEST]
     @questions = get_questions_by_type type.to_i
     # 显示前20条
-    @questions = @questions[0..DEFAULT_SHOW_LENGTH]
+    @questions = @questions[0..DEFAULT_SHOW_LENGTH - 1]
   end
 
   # 列出 type:int ,1 最新, 2 最热， 3未回答, last_id 最后一条的记录，第一条记录将从此id的后面开始取
@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
       }
     end
     # 加载10条
-    @questions = @questions[(start + 1)..(start + 1 + PULL_TO_REFRESH_LENGTH)]
+    @questions = @questions[(start + 1)..(start + PULL_TO_REFRESH_LENGTH)]
     render 'questions/list'
   end
 
