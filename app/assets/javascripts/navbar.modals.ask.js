@@ -158,8 +158,12 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 that.$( "input[name=name]").val("");
                 that.$( "input[name=description]").val("");
             });
-            Zrquan.UI.ModalView.prototype.render.call(this);
 
+            this.$('select[name=theme_type]').selectpicker({
+                'title' : '所属主题...'
+            });
+            Zrquan.UI.ModalView.prototype.render.call(this);
         }
     }))() : undefined;
+
 });
