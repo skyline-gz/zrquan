@@ -1,1 +1,1 @@
-rails g scaffold Answer content:text agree_score:integer user:references question:references
+rails g scaffold Answer content:text agree_score:integer user:references question:references edited_at:timestamp

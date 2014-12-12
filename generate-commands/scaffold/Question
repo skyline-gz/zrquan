@@ -1,1 +1,1 @@
-rails g scaffold Question title:string content:text user:references hot_abs:integer latest_answer:references latest_qa_time:integer
+rails g scaffold Question title:string content:text user:references hot_abs:integer latest_answer:references latest_qa_time:integer edited_at:timestamp

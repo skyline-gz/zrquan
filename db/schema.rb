@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128041713) do
+ActiveRecord::Schema.define(version: 20141212072953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141128041713) do
     t.integer  "agree_score", default: 0
     t.integer  "user_id"
     t.integer  "question_id"
+    t.datetime "edited_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -388,6 +389,7 @@ ActiveRecord::Schema.define(version: 20141128041713) do
     t.integer  "hot_abs"
     t.integer  "latest_answer_id"
     t.integer  "latest_qa_time",   limit: 8
+    t.datetime "edited_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -451,6 +453,19 @@ ActiveRecord::Schema.define(version: 20141128041713) do
 
   add_index "themes", ["name"], name: "index_themes_on_name", unique: true, using: :btree
   add_index "themes", ["substance_id", "substance_type"], name: "index_themes_on_substance_id_and_substance_type", using: :btree
+
+  create_table "user_attachments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.string   "url"
+    t.integer  "size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_attachments", ["attachable_id", "attachable_type"], name: "index_user_attachments_on_attachable_id_and_attachable_type", using: :btree
+  add_index "user_attachments", ["user_id"], name: "index_user_attachments_on_user_id", using: :btree
 
   create_table "user_msg_settings", force: true do |t|
     t.boolean  "followed_flag",  default: true
