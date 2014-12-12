@@ -95,7 +95,7 @@
   }
 
   > .disabled {
-    @extend .cursor-disabled;
+    @include cursor-disabled;
 
     &:focus {
       outline: none !important;
@@ -150,7 +150,7 @@
       }
 
       &.disabled a {
-        @extend .cursor-disabled;
+        @include cursor-disabled;
       }
 
       a {

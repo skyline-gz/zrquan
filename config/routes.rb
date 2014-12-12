@@ -70,6 +70,11 @@ Rails.application.routes.draw do
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
 
+  # ueditor 配置，图片，附件上传
+  get 'upload/config_editor'
+  post 'upload/upload_image'
+  post 'upload/upload_file'
+
   # 创建主题
   post 'themes' => 'themes#create'
 
