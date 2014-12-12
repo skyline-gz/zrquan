@@ -459,6 +459,7 @@ ActiveRecord::Schema.define(version: 20141212072953) do
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.string   "url"
+    t.string   'name'
     t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"

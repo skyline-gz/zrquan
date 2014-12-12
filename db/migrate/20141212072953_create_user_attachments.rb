@@ -4,6 +4,7 @@ class CreateUserAttachments < ActiveRecord::Migration
       t.references :user, index: true
       t.references :attachable, polymorphic: true, index: true
       t.string :url
+      t.string :name
       t.integer :size
 
       t.timestamps
