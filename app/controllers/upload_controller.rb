@@ -1,6 +1,7 @@
 require 'digest/md5'
 require 'mime/types'
 require 'tempfile'
+require 'returncode_define'
 
 class UploadController < ApplicationController
   # respond_to :html, :xml, :json
@@ -55,7 +56,7 @@ class UploadController < ApplicationController
 
   # ueditor的配置请求
   def config_editor
-    render 'ueditor.config'
+    render 'config_editor'
   end
 
   # ueditor 上传图片
@@ -66,9 +67,14 @@ class UploadController < ApplicationController
     uploader = ImageUploader.new(current_user, "images")
     uploader.store!(upload_file)
 
+    # 保存附件的关联
+    user_attachment_id = save_user_attachments(upload_file.original_filename, uploader.file.path, \
+      upload_file.content_type, uploader.file.size, 'Image')
+
+    type = get_content_type_extensions(upload_file.content_type)
     render :json => {:original => upload_file.original_filename, :url => Settings.upload_url + uploader.file.path, \
                      :name => uploader.filename, :size => uploader.file.size, \
-                     :type => get_content_type_extensions(upload_file.content_type), :state => 'SUCCESS'}
+                     :attachId =>user_attachment_id, :type => type, :state => 'SUCCESS'}
     end
 
     # ueditor 上传附件
@@ -79,10 +85,25 @@ class UploadController < ApplicationController
       uploader = FileUploader.new(current_user, "files")
       uploader.store!(upload_file)
 
+      # 保存附件的关联
+      user_attachment_id = save_user_attachments(upload_file.original_filename, uploader.file.path, \
+      upload_file.content_type, uploader.file.size, 'Attachment')
+
       type = get_content_type_extensions(upload_file.content_type)
       render :json => {:original => upload_file.original_filename, :url => Settings.upload_url + uploader.file.path, \
                      :name => uploader.name + '.' + type, :size => uploader.file.size, \
-                     :type => type , :state => 'SUCCESS'}
+                     :attachId =>user_attachment_id, :type => type , :state => 'SUCCESS'}
+    end
+
+    # ueditor 列出该用户已上传的附件信息
+    def list_file
+      attach_type = params[:attach_type] || 'Attachment'
+      start = params[:start].to_i
+      size = params[:size].to_i
+      @start = start
+      @file_infos = current_user.user_attachments.where(:attach_type => attach_type).sort_by{ |q| q.updated_at }.reverse!
+      @file_infos[start..start + size - 1]
+      render 'list_file'
     end
 
   private
@@ -92,6 +113,9 @@ class UploadController < ApplicationController
     h = params['h']
     x = params['x']
     y = params['y']
+    if key == nil || w == nil || h == nil || x == nil || y == nil
+      render :json => { :ReturnCode => FA_INVALID_PARAMETERS } and return
+    end
     cache_obj = UploadCache.instance.read(key)
     if cache_obj
       image = MiniMagick::Image.read(cache_obj[:fileblob])
@@ -99,11 +123,11 @@ class UploadController < ApplicationController
       image.background("#ffffff00")
       image.flatten
       image.extent("#{w}x#{h}+#{x}+#{y}")
-      image.resize "100x100!"
+      image.resize '100x100!'
       create_and_save_tempfile(image.to_blob, image.mime_type)
       return
     end
-    render text: "cache expired"
+    render text: 'cache expired!'
   end
 
   def create_and_save_tempfile (file_blob, content_type)
@@ -132,6 +156,17 @@ class UploadController < ApplicationController
     tempfile.close
     tempfile.unlink
     render :json => {:code => 'S_OK', :url => Settings.upload_url + file_path}
+  end
+
+  def save_user_attachments (original_name, url, content_type, size ,attach_type)
+    attach_info = current_user.user_attachments.new
+    attach_info.original_name = original_name
+    attach_info.url = url
+    attach_info.content_type = content_type
+    attach_info.size = size
+    attach_info.attach_type = attach_type
+    attach_info.save
+    attach_info.id
   end
 
   def get_content_type_extensions(content_type)

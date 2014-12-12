@@ -862,7 +862,8 @@
                     'dataType': isJsonp ? 'jsonp':'',
                     'data': utils.extend({
                         start: this.listIndex,
-                        size: this.listSize
+                        size: this.listSize,
+                        attach_type: 'Image'
                     }, editor.queryCommandValue('serverparam')),
                     'method': 'get',
                     'onsuccess': function (r) {
