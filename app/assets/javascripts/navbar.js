@@ -1,5 +1,6 @@
 Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     'use strict';
+    Zrquan.Navbar = Zrquan.Navbar || undefined;
     var navbarEventBus = Module.navbarEventBus = new Backbone.Wreqr.EventAggregator();
 
     Module.addInitializer(function() {

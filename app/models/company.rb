@@ -8,4 +8,14 @@ class Company < ActiveRecord::Base
 
   validates :name, presence: true, on: :create
   validates :name, length: {in: 1..20}
+
+  def self.find_and_save (str)
+    company = Company.find_by(name: str)
+    if company == nil
+      company = Company.new
+      company.name = str
+      company.save
+    end
+    company
+  end
 end

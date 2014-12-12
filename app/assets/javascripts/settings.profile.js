@@ -58,4 +58,65 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         // is compatible with the typeahead jQuery plugin
         source: matchSchools
     });
+
+    var $region = $('#region');
+    var $location = $('#location');
+
+    $region.selectpicker({
+        'title' : '区域'
+    });
+
+    $location.selectpicker({
+        'title' : '城市'
+    });
+
+    if(parseInt($region.val()) == -1) {
+        $location.prop('disabled',true);
+        $location.selectpicker('refresh');
+    }
+
+    $region.change(function(){
+        var regionId = parseInt($region.val());
+        if (regionId == -1) {
+            updateLocationOptions();
+            return;
+        }
+        var url = "/settings/locations?id=" + regionId;
+
+        Zrquan.Ajax.request({
+            url: url,
+            type: "GET"
+        }).then(function(result) {
+            if (result['code'] == "S_OK") {
+                updateLocationOptions(result.data);
+            }
+        });
+    });
+
+    function updateLocationOptions(locations) {
+        locations = locations || [];
+        $location.find('option').remove().end();
+        for(var i = 0; i < locations.length; i++ ){
+            var option = $('<OPTION>').attr('value', locations[i].id).html(locations[i].name);
+            $location.append(option);
+        }
+        if(locations.length) {
+            $location.prop('disabled',false);
+        } else {
+            $location.prop('disabled',true);
+        }
+        $location.selectpicker('refresh');
+    }
+
+    $('#profile-setting-form').on('ajax:success', function(xhr, data, status) {
+        if(data.code == "S_OK") {
+            var $alertSuccess = $('.alert.alert-success');
+            $alertSuccess.show();
+            $('.alert-message', $alertSuccess).html("档案保存成功");
+
+            setTimeout(function(){
+                $alertSuccess.hide();
+            }, 2000)
+        }
+    });
 });

@@ -18,7 +18,10 @@ Rails.application.routes.draw do
 
   resources :questions, except: :destroy do
 		resources :answers, except: :destroy
-	end
+  end
+
+  # 列出问题(ajax)
+  get 'list_questions' => 'questions#list'
 
 	resources :answers, only: [:show, :edit, :update] do
 		member do
@@ -67,6 +70,11 @@ Rails.application.routes.draw do
   post 'upload/upload_avatar'
   get 'upload/preview_avatar'
 
+  # ueditor 配置，图片，附件上传
+  get 'upload/config_editor'
+  post 'upload/upload_image'
+  post 'upload/upload_file'
+
   # 创建主题
   post 'themes' => 'themes#create'
 
@@ -78,7 +86,10 @@ Rails.application.routes.draw do
 
   # 档案设置
   get 'settings/profile' => 'user_settings#show_profile'
-  post 'settings/profile' => 'users#update_profile'
+  post 'settings/profile' => 'user_settings#update_profile'
+
+  # 省市级联，根据region id获取所有城市
+  get 'settings/locations' => 'user_settings#locations'
 
   # 密码设置
   get 'settings/password' => 'user_settings#show_password'

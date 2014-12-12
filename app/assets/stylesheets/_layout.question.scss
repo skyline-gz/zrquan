@@ -9,6 +9,18 @@
   height: 18px;
   font-weight: bold;
   color: #333;
+
+  a.question-edit {
+    font-size: 13px;
+    font-weight: normal;
+    color: #FF8800;
+    margin-left: 10px;
+    cursor: pointer;
+
+    &:hover {
+      color: #e17500;
+    }
+  }
 }
 
 .question-body {

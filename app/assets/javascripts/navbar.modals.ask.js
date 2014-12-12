@@ -6,20 +6,75 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
     Module.askQuestionModuleView = $('#askQuestionModal')[0] ? new (Zrquan.UI.ModalView.extend({
         el: '#askQuestionModal',
         modalName: 'askQuestionModal',
+        editor: null,
         ui: {
+            'title' : 'input[name="question[title]"]',
             'themes' : 'input[name="question[themes]"]',
             'description' : 'textarea[name="question[content]"]'
+        },
+        events: {
+            'click .hot-themes-wrapper .component-subject' : 'onHotThemesClick',
+            'submit form' : 'onQuestionFormSubmit'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
             this.listenTo(navbarEventBus, 'modal:show', this.showModal);
             this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
         },
+        showModal: function(modalName, isModified, options) {
+            if(this.checkCurrentModal(modalName)) {
+                isModified = isModified || false;
+                if(isModified) {
+                    this.$('.modal-title').html("修改问题");
+                    this.$('.btn-primary').html("保存");
+                    this.$('form').attr('action', '/questions/' + options.id);
+                    this.$('input[name=_method]').val("PATCH");
+                } else {
+                    this.$('.modal-title').html("提问");
+                    this.$('.btn-primary').html("提交");
+                    this.$('form').attr('action', '/questions');
+                    this.$('input[name=_method]').val("POST");
+                }
+                if(options) {
+                    var that = this;
+                    this.ui.title.val(options.title);
+                    setTimeout(function(){
+                        that.editor.setContent(options.content);
+                    }, 300);
+                    for(var i = 0; i < options.themes.length; i++ ) {
+                        this.ui.themes[0].selectize.addOption({id:options.themes[i]["id"], value:options.themes[i]["name"]});
+                        this.ui.themes[0].selectize.addItem(options.themes[i]["id"]);
+                    }
+                }
+            }
+            Zrquan.UI.ModalView.prototype.showModal.call(this, modalName);
+        },
+        hideModal: function() {
+            this.ui.title.val("");
+            this.editor.setContent("");
+            this.ui.themes[0].selectize.clearOptions();
+            Zrquan.UI.ModalView.prototype.hideModal.call(this);
+        },
+        onHotThemesClick: function(evt) {
+            var themeEl = this.$(evt.target);
+            var id = parseInt(themeEl.data('id'));
+            var value = themeEl.data('value');
+            this.ui.themes[0].selectize.addOption({id:id, value:value});
+            this.ui.themes[0].selectize.addItem(id);
+        },
+        onQuestionFormSubmit: function(evt) {
+            this.hideAlert();
+            if(!Zrquan.Regex.QUESTION_NAME.test(this.$('input[name="question[title]"]').val())) {
+                this.showAlert("问题题目需为 8 至 50 个非空字符", "danger");
+                return false;
+            } else if(!Zrquan.Regex.THEME_IDS.test(this.$('input[name="question[themes]"]').val())) {
+                this.showAlert("问题至少需要选择一个合法主题", "danger");
+                return false;
+            }
+        },
         render: function() {
             Zrquan.UI.ModalView.prototype.render.call(this);
-            var that = this;
-            UE.getEditor(this.ui.description[0], {
-                UEDITOR_HOME_URL: '/assets/ueditor/',
+            this.editor = UE.getEditor(this.ui.description[0], {
                 submitButton: false,
                 initialFrameHeight:115
             });
@@ -30,7 +85,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 valueField: 'id',
                 labelField: 'value',
                 searchField: 'value',
-                placeholder: '请输入问题所属主题...',
+                placeholder: '选择或搜索主题...',
+                showSearchIcon: true,
                 persist: false,
                 create: function(input) {
                     navbarEventBus.trigger("modal:show", "createThemeModal", input);
@@ -89,7 +145,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 if(data.code == "S_OK") {
                     console.log(data);
                     var themeName = that.ui.themeName.val();
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'创建主题【' + themeName + '】成功'});
+                    Module.askQuestionModuleView.showAlert('创建主题【' + themeName + '】成功', "success");
                     locache.remove("ac_themes_" + themeName);
                     that.hideModal();
                     Module.askQuestionModuleView.ui.themes[0].selectize.addOption({id:data.data.id, value:data.data.name});
@@ -102,8 +158,12 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 that.$( "input[name=name]").val("");
                 that.$( "input[name=description]").val("");
             });
-            Zrquan.UI.ModalView.prototype.render.call(this);
 
+            this.$('select[name=theme_type]').selectpicker({
+                'title' : '所属主题...'
+            });
+            Zrquan.UI.ModalView.prototype.render.call(this);
         }
     }))() : undefined;
+
 });

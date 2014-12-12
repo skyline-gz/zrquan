@@ -81,6 +81,7 @@ div[role=infoblocks] {
         }
 
         .component-infoblock-action {
+          margin-left: 4px;
           line-height: 14px;
           font-weight: normal;
           color: $light-dark
@@ -112,8 +113,11 @@ div[role=infoblocks] {
         color: $deep-dark;
         font-family: $base-article-family;
 
-        P {
-          display: inline;
+        a {
+          color: #259;
+          &:hover {
+            text-decoration: underline;
+          }
         }
 
         blockquote {
@@ -129,9 +133,15 @@ div[role=infoblocks] {
           font-size: 100%;
         }
 
-        a.showall {
+        a.show-all-button, a.hide-all-button {
           white-space: nowrap;
           color: #438cca;
+          font-size: 13px;
+
+          &:hover {
+            background: #daf3ff;
+            text-decoration: none;
+          }
         }
 
         a.edit-button {
@@ -416,5 +426,27 @@ div[role=infoblocks] {
         }
       }
     }
+  }
+}
+
+a[data-role=load-more],
+div[data-role=load-more] {
+  @include btn-light-gray-base($border-radius-base);
+  display: block;
+  font-size: 13px;
+  margin: 20px 0;
+  padding: 5px 1px;
+  color: #666!important;
+  width: 717px;
+
+  .spinner-gray, .spinner-lightgray {
+    display: inline-block;
+    margin: 0 5px;
+    width: 14px;
+    height: 15px;
+    vertical-align: -3px;
+    background-size: 14px 15px;
+    background-repeat: no-repeat;
+    background-image: url(../images/standalone/grey-loading.gif);
   }
 }

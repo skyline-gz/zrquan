@@ -53,7 +53,39 @@ class UploadController < ApplicationController
     render text: 'cache expired'
   end
 
-private
+  # ueditor的配置请求
+  def config_editor
+    render 'ueditor.config'
+  end
+
+  # ueditor 上传图片
+  def upload_image
+    upload_file = params[:upfile]
+
+    # 存储到七牛云
+    uploader = ImageUploader.new(current_user, "images")
+    uploader.store!(upload_file)
+
+    render :json => {:original => upload_file.original_filename, :url => Settings.upload_url + uploader.file.path, \
+                     :name => uploader.filename, :size => uploader.file.size, \
+                     :type => get_content_type_extensions(upload_file.content_type), :state => 'SUCCESS'}
+    end
+
+    # ueditor 上传附件
+    def upload_file
+      upload_file = params[:upfile]
+
+      # 存储到七牛云
+      uploader = FileUploader.new(current_user, "files")
+      uploader.store!(upload_file)
+
+      type = get_content_type_extensions(upload_file.content_type)
+      render :json => {:original => upload_file.original_filename, :url => Settings.upload_url + uploader.file.path, \
+                     :name => uploader.name + '.' + type, :size => uploader.file.size, \
+                     :type => type , :state => 'SUCCESS'}
+    end
+
+  private
   def crop_avatar
     key = params['dest_id']
     w = params['w']
@@ -76,7 +108,7 @@ private
 
   def create_and_save_tempfile (file_blob, content_type)
     # 利用md5构造唯一的文件名及临时文件
-    type = MIME::Types[content_type].first.extensions.first
+    type = get_content_type_extensions content_type
 
     dest_id = Digest::MD5.hexdigest(file_blob)
     tempfile = Tempfile.new([dest_id, "\." + type], '/tmp')
@@ -84,7 +116,7 @@ private
       f.write file_blob
     end
     # 存储到七牛云
-    uploader = AvatarUploader.new(current_user, "avartars")
+    uploader = ImageUploader.new(current_user, "avartars")
     uploader.store!(tempfile)
 
     file_path = uploader.file.path
@@ -100,6 +132,10 @@ private
     tempfile.close
     tempfile.unlink
     render :json => {:code => 'S_OK', :url => Settings.upload_url + file_path}
+  end
+
+  def get_content_type_extensions(content_type)
+    MIME::Types[content_type].first.extensions.first
   end
 
   def allow_iframe

@@ -1,47 +1,15 @@
 <div class="warp-content">
   <div class="question-warp-content">
-    <div class="question-title"><%= @question.title %></div>
+    <div class="question-title">
+      <span><%= @question.title %></span>
+      <% if can? :edit, @question %>
+        <a class="question-edit" href="javascript:void(0);" data-id="<%= @question.id %>">编辑问题</a>
+      <% end %>
+    </div>
     <div class="question-body">
       <div role="infoblocks">
-        <div class="component-infoblock" data-id="<%= @question.id %>">
-          <div class="component-infoblock-left">
-            <% if @question.user.avatar != nil %>
-                <img src="<%= Settings.upload_url + @question.user.avatar%>" class="component-infoblock-avatar">
-            <% else %>
-                <img src="../images/noface.gif" class="component-infoblock-avatar">
-            <% end %>
-          </div>
-          <div class="component-infoblock-right">
-            <div class="component-infoblock-header">
-              <span class="component-infoblock-username"><%= generate_name(@question.user.first_name, @question.user.last_name)%></span>
-              <i class="icons-vip"></i>
-              <span class="component-infoblock-time timeago" title="<%= @question.updated_at %>"><%= to_full_time(@question.updated_at) %></span>
-            </div>
-            <div class="component-infoblock-content"><%= raw @question.content %></div>
-            <div class="component-infoblock-footer">
-              <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
-                <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= @question.comments.length %>" class="num-comment"><%= @question.comments.length %></span>
-              </div>
-              <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
-                <i class="icons-comment"></i>收起评论
-              </div>
-              <% bookmark_able = (current_user == nil or !Bookmark.has?(current_user.id, 'Question', @question.id))%>
-              <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= bookmark_able ? 'inline': 'none'%>">
-                <i class="icons-favorites"></i>收藏&nbsp;<%= @question.bookmarks.length %>
-              </div>
-              <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= bookmark_able ? 'none': 'inline'%>">
-                <i class="icons-favorites"></i>取消收藏&nbsp;<%= @question.bookmarks.length %>
-              </div>
-              <div class="component-infoblock-subjects">
-                <% @question.question_themes.each do |question_theme| %>
-                    <div class="component-subject"><%= question_theme.theme.name %></div>
-                <% end %>
-              </div>
-              <div class="component-infoblock-comment-wrapper">
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render partial: 'partials/infoblock', :locals => { :question => @question, \
+            :is_show_title => false, :is_plane_question => false, :is_show_question_content => true} %>
       </div>
     </div>
     <div class="question-answer">
@@ -52,7 +20,8 @@
       <div role="infoblocks">
         <% @question.answers.each do |answer| %>
             <%= render partial: 'partials/infoblock', :locals => { :question => @question, :answer => answer, \
-                :is_editable => current_user != nil && answer.user.id == current_user.id, :is_show_title => false} %>
+                :is_editable => current_user != nil && answer.user.id == current_user.id, \
+                :is_show_title => false, :is_plane_answer => false, :is_show_themes => false} %>
         <% end %>
       </div>
     </div>

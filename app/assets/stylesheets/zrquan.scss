@@ -11,16 +11,24 @@
 //通用帮助类
 @import "utilities";
 
+//引用bootstrap的组件样式
+@import "bootstrap/close";
+@import "bootstrap/scaffolding";
+@import "bootstrap/buttons";
+@import "bootstrap/button-groups";
+@import "bootstrap/dropdowns";
+@import "bootstrap/modal";
+@import "bootstrap/alerts";
+
 //引用插件依赖的样式
 @import "lib/jquery.jcrop";
 @import "lib/tooltipster";
 @import "lib/typeahead";
 @import "lib/selectize";
+@import "lib/bootstrap-select";
 
 //通用组件
 @import "component.input";
-@import "component.button";
-@import "component.modal";
 @import "component.subject";
 @import "component.infoblock";
 @import "component.userblock";

@@ -26,8 +26,15 @@ Zrquan = (function(Backbone){
             App.appEventBus.trigger('mouseover', evt);
         }, 200),
         initialize: function() {
+            //设置自定义tooltips
             $('.tooltipster').tooltipster({
                 theme: 'tooltipster-shadow'
+            });
+            //添加返回顶部
+            $.goup({
+                containerColor: "#ccc",
+                bottomOffset: "100px",
+                locationOffset: "100px"
             });
         }
     }))();

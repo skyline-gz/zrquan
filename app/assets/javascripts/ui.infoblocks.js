@@ -47,6 +47,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                         that.options.parentView.removeChildView(that);
                         that.options.parentView.checkEmptyShow();
                         Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'成功删除评论'});
+                        that.options.parentView.options.parentView.updateCommentsNum(-1);
                     }
                 });
             }
@@ -74,6 +75,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                         var commentView = that.options.parentView.addChild(new Module.InfoBlockCommentItem(result.data[0]),
                             Module.InfoBlockCommentItemView);
                         $('.timeago', commentView.$el).timeago();
+                        that.options.parentView.options.parentView.updateCommentsNum(1);
                     }
                     that.ui.content.html('');
                 });
@@ -111,8 +113,8 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                 this.$el.removeClass('empty');
             }
         },
-        onCancelCommentClick: function() {
-            this.options.parentView.destroyCommentView();
+        onCancelCommentClick: function(evt) {
+            this.options.parentView.onCommentClick(evt);
         },
         onSubmitCommentClick: function(evt) {
             var that = this;
@@ -128,8 +130,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                     }
                 }).then(function(result) {
                     if (result['code'] == "S_OK") {
-                        var commentView = that.addChild(new Module.InfoBlockCommentItem(result.data[0]), Module.InfoBlockCommentItemView)
+                        var commentView = that.addChild(new Module.InfoBlockCommentItem(result.data[0]), Module.InfoBlockCommentItemView);
                         $('.timeago', commentView.$el).timeago();
+                        that.options.parentView.updateCommentsNum(1);
                     }
                     that.ui.content.html('');
                     that.checkEmptyShow();
@@ -147,7 +150,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             'click a.edit-button' : 'onEditButtonClick',
             'click .component-infoblock-good-action' : 'onAgreeAnswerClick',
             'click .component-infoblock-opts-comment': 'onCommentClick',
-            'click .component-infoblock-opts-favorites' : 'onFavorClick'
+            'click .component-infoblock-opts-favorites' : 'onFavorClick',
+            'click .show-all-button' : 'onShowAllClick',
+            'click .hide-all-button' : 'onHideAllClick'
         },
         ui: {
             editButton : '.edit-button',
@@ -156,9 +161,6 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             content: '.component-infoblock-content',
             rawContent: '.component-infoblock-raw-content',
             agreeNum: '.component-infoblock-good-num'
-        },
-        views: {
-            commentView: null
         },
         regions: {
             comment: ".component-infoblock-comment-wrapper"
@@ -198,8 +200,8 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                 data: {}
             })).then(function(result) {
                 if (result.code == "S_OK") {
-                    var agreeNum = parseInt(that.ui.agreeNum.attr('data-num')) + 1;
-                    that.ui.agreeNum.attr('data-num', agreeNum).html(agreeNum);
+                    var agreeNum = parseInt(that.ui.agreeNum.data('num')) + 1;
+                    that.ui.agreeNum.data('num', agreeNum).html(agreeNum);
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'点赞成功', width:'100px'});
                 } else if (result.code == "FA_UNAUTHORIZED") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'操作失败', width:'100px'});
@@ -229,12 +231,14 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             }
         },
         doBookmark: function() {
-            var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
+            var that = this;
+            var queryparams = "?type="+ this.$el.attr('data-type') + "&id=" + this.$el.attr('data-id');
 
             $.when(Zrquan.Ajax.request({
                 url: "/bookmarks" + queryparams
             })).then(function(result) {
                 if (result.code == "S_OK") {
+                    that.updateBookmarksNum(1);
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'收藏成功', width:'100px'});
                 } else if(result.code == "FA_UNAUTHORIZED") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'收藏失败', width:'100px'});
@@ -242,22 +246,44 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             });
         },
         cancelBookmark: function() {
-            var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
+            var that = this;
+            var queryparams = "?type="+ this.$el.attr('data-type') + "&id=" + this.$el.attr('data-id');
 
             $.when(Zrquan.Ajax.request({
                 url: "/bookmarks" + queryparams,
                 type: "DELETE"
             })).then(function(result) {
                 if (result.code == "S_OK") {
+                    that.updateBookmarksNum(-1);
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'取消收藏成功', width:'150px'});
                 } else if(result.code == "FA_UNAUTHORIZED") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'取消收藏失败', width:'150px'});
                 }
             });
         },
+        onShowAllClick: function(evt) {
+            this.$('.component-infoblock-truncate-content').hide();
+            this.$('.component-infoblock-all-content').show();
+        },
+        onHideAllClick: function(evt) {
+            this.$('.component-infoblock-truncate-content').show();
+            this.$('.component-infoblock-all-content').hide();
+        },
+        updateBookmarksNum: function(num) {
+            num = num || 0;
+            var el_bookmarks = this.$('.bookmarks-num');
+            var bookmarksNum = parseInt(el_bookmarks.attr('data-num')) + num;
+            el_bookmarks.attr('data-num', bookmarksNum).html(bookmarksNum);
+        },
+        updateCommentsNum: function(num) {
+            num = num || 0;
+            var el_comments = this.$('.comments-num');
+            var commentsNum = parseInt(el_comments.attr('data-num')) + num;
+            el_comments.attr('data-num', commentsNum).html(commentsNum);
+        },
         loadNShowComment: function() {
             var that = this;
-            var queryparams = "?type="+ this.options.attrs.type + "&id=" + this.$el.attr('data-id');
+            var queryparams = "?type="+ this.$el.attr('data-type') + "&id=" + this.$el.attr('data-id');
 
             $.when(Zrquan.Ajax.request({
                 url: "/comments" + queryparams,
@@ -265,23 +291,23 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             })).then(function(result) {
                 if (result.code == "S_OK") {
                     var comments = new Module.InfoBlockCommentCollection(result.data);
-                    that.views.commentView = new Module.InfoBlockCommentView({
+                    var commentView = new Module.InfoBlockCommentView({
                         collection: comments,
                         attrs: {
-                            type: that.options.attrs.type,
+                            type: that.$el.attr('data-type'),
                             id: that.$el.attr('data-id')
                         },
                         parentView: that
                     });
-                    that.comment.show(that.views.commentView);
-                    that.views.commentView.checkEmptyShow();
+                    that.comment.show(commentView);
+                    commentView.checkEmptyShow();
                     $('.timeago', that.$el).timeago();
                 }
             });
         },
         destroyCommentView: function() {
-            if (this.views.commentView && this.views.commentView.destroy) {
-                this.views.commentView.destroy();
+            if (this.comment.currentView && this.comment.currentView.destroy) {
+                this.comment.currentView.destroy();
             }
         },
         render: function() {
@@ -289,8 +315,6 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             this.bindUIElements(); // wire up this.ui, if any
         },
         initialize: function(options){
-            var that = this;
-            this.attrs = options.attrs;
 //            this.listenTo(Module.infoblocksEventBus, 'comments:reload', function(){
 //                that.destroyCommentView();
 //                that.loadNShowComment();

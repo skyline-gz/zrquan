@@ -39,6 +39,10 @@
 //= require typeahead.jquery
 //标签＆下拉表单库
 //= require selectize
+//bootstrap风格的select控件
+//= require bootstrap-select
+//返回顶部
+//= require jquery.goup
 //友好的日期
 //= require jquery.timeago
 //= require jquery.timeago.settings
@@ -50,6 +54,7 @@
  * 组件
  **/
 //= require ./components/component.transition
+//= require ./components/component.dropdown
 //= require ./components/component.modal
 //= require ./components/component.modalmanager
 /**

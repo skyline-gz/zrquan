@@ -23,7 +23,7 @@ Zrquan.module('Ajax', function(Module, App, Backbone, Marionette, $, _){
         $.ajax({
             type: options.type,   //访问WebService使用Post方式请求
             contentType: "application/json",
-            url: options.url + "?ts=" +  Math.round(new Date().getTime() / 1000),
+            url: options.url + (options.url.indexOf('?') == -1 ? '?':'&') + "ts=" +  Math.round(new Date().getTime() / 1000),
             data: JSON.stringify(options.data),
             dataType: 'json',
             success: function(result) {     //回调函数，result，返回值

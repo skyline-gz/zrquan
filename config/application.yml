@@ -5,6 +5,13 @@ defaults: &defaults
   upload_url: "http://zrquan.qiniudn.com/"
 #  是否打开devise异步发送验证邮件
   enable_devise_async: false
+#  配置问答提问时显示的热门主题,key为theme id, value为theme name
+  hot_themes:
+    1: "毕业生求职"
+    2: "跳槽"
+    3: "简历修改"
+    4: "找实习"
+    5: "面试咨询"
 
 development:
   <<: *defaults
