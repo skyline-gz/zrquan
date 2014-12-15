@@ -41,28 +41,27 @@ class UsersController < ApplicationController
     if @user.latest_school_id
       @school = School.find(@user.latest_school_id)
     end
-
-    @questions = Question.where(:user_id => @user.id)
-    @answers = Answer.where(:user_id => @user.id)
-    @bookmarks = Bookmark.where(:user_id => @user.id, :bookmarkable_type => 'Question')
-    @bookmark_questions = []
-    @bookmarks.each do |bookmark|
-      @bookmark_questions.push Question.find bookmark.bookmarkable_id
-    end
   end
 
   def questions
     show
+    @questions = Question.where(:user_id => @user.id)
     render 'show'
   end
 
   def answers
     show
+    @answers = Answer.where(:user_id => @user.id)
     render 'show'
   end
 
   def bookmarks
     show
+    @bookmarks = Bookmark.where(:user_id => @user.id, :bookmarkable_type => 'Question')
+    @bookmark_questions = []
+    @bookmarks.each do |bookmark|
+      @bookmark_questions.push Question.find bookmark.bookmarkable_id
+    end
     render 'show'
   end
 
