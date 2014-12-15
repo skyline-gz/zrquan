@@ -20,6 +20,27 @@ class UsersController < ApplicationController
     if current_user
       @is_self = (@user.id == current_user.id)
     end
+
+    @industry = nil
+    if @user.industry_id
+      @industry = Industry.find(@user.industry_id)
+    end
+
+    @company = nil
+    if @user.latest_company_id
+      @company = Company.find(@user.latest_company_id)
+    end
+
+    @region = @location = nil
+    if @user.location_id
+      @location = Location.find(@user.location_id)
+      @region = Region.find(@location.region_id)
+    end
+
+    @school = nil
+    if @user.latest_school_id
+      @school = School.find(@user.latest_school_id)
+    end
   end
 
   private

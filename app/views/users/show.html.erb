@@ -30,7 +30,7 @@
           </div>
           <div class="user-profile-right">
             <div class="user-profile-header">
-              <div class="user-profile-name"><%=generate_name(current_user.first_name, current_user.last_name)%>（UI设计师）</div>
+              <div class="user-profile-name"><%=generate_name(current_user.first_name, current_user.last_name)%>（<%= @user.latest_position %>）</div>
               <% if @user.verified_flag %>
                 <div class="user-profile-vip"></div>
               <% end %>
@@ -39,33 +39,38 @@
               <% else %>
                   <i class="icon icon-profile-male"></i>
               <% end %>
-              <% if current_user and @is_self == false %>
-                  <div class="user-profile-opt">
-                    <!--<div class="user-profile-opt-cont">-->
-                      <!--<i class="user-profile-consult"></i>&nbsp;咨询</div>-->
-                    <!--<div class="spilt"></div>-->
-                    <div class="user-profile-opt-cont">
-                      <i class="user-profile-star"></i>&nbsp;关注</div>
-                    <div class="spilt"></div>
-                    <div class="user-profile-opt-cont">
-                      <i class="user-profile-private_message"></i>&nbsp;私信</div>
-                  </div>
+              <% if current_user %>
+                  <% if @is_self %>
+                      <div class="user-profile-opt">
+                        <div class="user-profile-opt-cont">
+                          <a href="/settings/profile"><i class="icon-profile-edit"></i>编辑资料</a>
+                        </div>
+                      </div>
+                  <% else %>
+                      <div class="user-profile-opt">
+                        <div class="user-profile-opt-cont">
+                          <i class="user-profile-star"></i>&nbsp;关注</div>
+                        <div class="spilt"></div>
+                        <div class="user-profile-opt-cont">
+                          <i class="user-profile-private_message"></i>&nbsp;私信</div>
+                      </div>
+                  <% end %>
               <% end %>
             </div>
             <div class="user-profile-content">
               <div class="user-content-row">
                 <i class="icon-profile-profession"></i>
-                <div class="desc">IT行业</div>
+                <div class="desc"><%= @industry.name %></div>
                 <div class="spilt"></div>
-                <div class="desc">网易网络科技有限公司</div>
+                <div class="desc"><%= @company.name %></div>
               </div>
               <div class="user-content-row">
                 <i class="icon-profile-location"></i>
-                <div class="desc">广东省广州市</div>
+                <div class="desc"><%= @region.name %>&nbsp;<%= @location.name %></div>
               </div>
               <div class="user-content-row">
                 <i class="icon-profile-education"></i>
-                <div class="desc">广东工业大学多媒体技术专业</div>
+                <div class="desc"><%= @school.name %>&nbsp;<%= @user.latest_major %></div>
               </div>
               <!--<div class="user-content-row">-->
                 <!--<i class="icon-profile-specialized"></i>-->
