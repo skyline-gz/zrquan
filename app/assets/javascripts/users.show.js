@@ -12,7 +12,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     Module.Controller = Marionette.Controller.extend({
         start: function() {
             Module.userTopView.render();
-            Module.userContentView.render();
+            Module.infoblocksView.render();
             Module.resizeAvatarModalView.render();
         }
     });
@@ -292,12 +292,22 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         }
     }))();
 
-    Module.userContentView = new (Marionette.LayoutView.extend({
-        el: ".user-content",
-        // override: don't really render, since this view just attaches to existing navbar html.
+    Module.infoblocksView = new (Marionette.CollectionView.extend({
+        el: ".user-content div[role=infoblocks]",
+        childView: Zrquan.UI.InfoBlocks.InfoBlockView,
         render: function() {
-            this.bindUIElements(); // wire up this.ui, if any
+            var that = this;
+            this.$(".timeago").timeago();
+            this.$('.component-infoblock').each(function(){
+                var infoBlockView = new Zrquan.UI.InfoBlocks.InfoBlockView({
+                    el:$(this),
+                    attrs: {
+                        type: 'Answer'
+                    }
+                });
+                that._addChildView(infoBlockView, that.childView);
+            });
         }
-    }))();
+    }));
 
 });
