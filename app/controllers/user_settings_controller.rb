@@ -83,6 +83,7 @@ class UserSettingsController < ApplicationController
     gender = params[:gender].to_i
     school = ActionController::Base.helpers.strip_tags params[:school]
     major = ActionController::Base.helpers.strip_tags params[:major]
+    description = ActionController::Base.helpers.strip_tags params[:description]
 
     current_user.gender = gender
     if industry != -1
@@ -104,6 +105,9 @@ class UserSettingsController < ApplicationController
     end
     if major and major.length > 0
       current_user.latest_major = major
+    end
+    if description.length > 0
+      current_user.description = description
     end
     current_user.save
     render :json => {:code => ReturnCode::S_OK}

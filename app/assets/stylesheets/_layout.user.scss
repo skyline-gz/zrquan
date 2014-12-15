@@ -83,17 +83,18 @@
         .user-profile-data {
           margin-top: 10px;
           line-height: 14px;
+          text-align: center;
+          width: 110px;
+          overflow: hidden;
 
           .desc {
-            display: block;
-            float: left;
+            display: inline-block;
             font-size: 14px;
             color: #333;
           }
 
           .spilt {
-            display: block;
-            float: left;
+            display: inline-block;
             @extend .icons-split_line_black;
             width: 1px;
             height: 14px;

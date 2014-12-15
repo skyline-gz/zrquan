@@ -24,6 +24,7 @@
   <!-- data-remote data-type 由jquery-ujs作ajax form submit的准备 -->
   <form action="/settings/profile" method="POST" id="profile-setting-form"
         autocomplete="off" novalidate="novalidate" data-remote="true" data-type="json">
+
     <div class="settings-section">
       <div class="settings-item clearfix">
         <div class="settings-item-content">
@@ -34,6 +35,7 @@
             <input type="radio" id="female" name="gender" value="0" <%= @is_female ? 'checked="checked"' : '' %> />女</label>
         </div>
       </div>
+
       <div class="settings-item clearfix">
         <label for="industry" class="settings-item-title with-input">行业</label>
 
@@ -91,6 +93,7 @@
                  name="company" id="company" placeholder="公司" required="">
         </div>
       </div>
+
       <div class="settings-item clearfix">
         <label for="position" class="settings-item-title with-input">职位</label>
 
@@ -108,12 +111,22 @@
                  name="school" id="school" placeholder="学校" required="">
         </div>
       </div>
+
       <div class="settings-item clearfix">
         <label for="major" class="settings-item-title with-input">专业</label>
 
         <div class="settings-item-content">
           <input type="text" autocomplete="off" class="component-input" value="<%= current_user.latest_major %>"
                  name="major" id="major" placeholder="专业" required="">
+        </div>
+      </div>
+
+      <div class="settings-item clearfix">
+        <label for="school" class="settings-item-title with-input">个人说明</label>
+
+        <div class="settings-item-content">
+          <textarea type="text" autocomplete="off" class="component-textarea" name="description" id="description"
+                    placeholder="请填写你的个人简介" required=""><%= current_user.description %></textarea>
         </div>
       </div>
     </div>
