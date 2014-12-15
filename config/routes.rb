@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-	#mount ChinaCity::Engine => '/china_city'
-
   resources :private_messages, except: [:destroy, :edit, :update]
 
   resources :consult_subjects, except: :destroy do
@@ -46,8 +44,17 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy, :create] do
 		collection do
 			get :verified_users
-		end
-	end
+    end
+    member do
+      get 'questions'
+      get 'answers'
+      get 'bookmarks'
+      get 'drafts'
+    end
+  end
+
+  #职人详细页面，默认跳转到回答
+  get '/users/:id' => redirect('/users/%{id}/answers'), constraints: {id: /.*/}
 
 	resources :relationships, only: [:destroy, :create]
 

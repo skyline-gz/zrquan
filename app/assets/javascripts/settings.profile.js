@@ -117,6 +117,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         if(data.code == "S_OK") {
             var $alertSuccess = $('.alert.alert-success');
             $alertSuccess.show();
+            $('html, body').animate({scrollTop:0}, 'fast');
             $('.alert-message', $alertSuccess).html("档案保存成功");
 
             setTimeout(function(){

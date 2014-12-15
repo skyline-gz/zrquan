@@ -1,7 +1,7 @@
 require "returncode_define.rb"
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :follow]
+  before_action :set_user, only: [:show, :edit, :questions, :answers, :follow]
   before_action :authenticate_user!
 
   # 全用户列表
@@ -41,6 +41,19 @@ class UsersController < ApplicationController
     if @user.latest_school_id
       @school = School.find(@user.latest_school_id)
     end
+
+    @questions = Question.where(:user_id => @user.id)
+    @answers = Answer.where(:user_id => @user.id)
+  end
+
+  def questions
+    show
+    render 'show'
+  end
+
+  def answers
+    show
+    render 'show'
   end
 
   private

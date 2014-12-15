@@ -276,6 +276,7 @@
 
   .user-detail {
     margin-top: 8px;
+    min-height: 24px;
     max-height: 45px;
     padding: 8px 31px;
     background: $base-background-color;
@@ -324,7 +325,7 @@
   }
 
   .user-content-infoblock {
-    margin-top: -16px;
+    margin-top: -20px;
   }
 
 }

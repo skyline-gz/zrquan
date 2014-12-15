@@ -9,6 +9,16 @@ div[role=infoblocks] {
     overflow: hidden;    //解决子元素浮动时父元素没有被自动撑开的问题
     padding-top: 15px;
 
+    .component-infoblock-title {
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
+      height: 15px;
+      line-height: 15px;
+      color: #EE8E00;
+      margin-bottom: 8px;
+    }
+
     .component-infoblock-left {
       float:left;
       width: 32px;

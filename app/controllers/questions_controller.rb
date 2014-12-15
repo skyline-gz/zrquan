@@ -71,7 +71,8 @@ class QuestionsController < ApplicationController
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
       themes.each do |t_id|
         @question_theme = QuestionTheme.new
-        @question_theme.question_id = @question.id
+        @question_theme.target_id = @question.id
+        @question_theme.target_type = 'Question'
         @question_theme.theme_id = t_id
         @question_theme.save!
       end
@@ -96,7 +97,8 @@ class QuestionsController < ApplicationController
       end
       themes.each do |t_id|
         @question_theme = QuestionTheme.new
-        @question_theme.question_id = @question.id
+        @question_theme.target_id = @question.id
+        @question_theme.target_type = 'Question'
         @question_theme.theme_id = t_id
         @question_theme.save!
       end
