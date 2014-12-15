@@ -1,10 +1,10 @@
 /*!
  * ueditor
  * version: 1.4.3
- * build: Wed Dec 03 2014 14:07:48 GMT+0800 (CST)
+ * build: Fri Dec 12 2014 15:27:15 GMT+0800 (CST)
  */
 
-(function(){
+(function($){
 
 // editor.js
 UEDITOR_CONFIG = window.UEDITOR_CONFIG || {};
@@ -8014,7 +8014,8 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
             }
 
             if(serverUrl) {
-                serverUrl = serverUrl + (serverUrl.indexOf('?') == -1 ? '?':'&') + 'action=' + (actionName || '');
+                //serverUrl = serverUrl + (serverUrl.indexOf('?') == -1 ? '?':'&') + 'action=' + (actionName || '');
+                serverUrl = serverUrl + '/' + actionName;
                 return utils.formatUrl(serverUrl);
             } else {
                 return '';
@@ -8067,7 +8068,7 @@ UE.Editor.defaultOptions = function(editor){
             try{
                 me.options.imageUrl && me.setOpt('serverUrl', me.options.imageUrl.replace(/^(.*[\/]).+([\.].+)$/, '$1controller$2'));
 
-                var configUrl = me.getActionUrl('config'),
+                var configUrl = me.getActionUrl('config_editor'),
                     isJsonp = utils.isCrossDomainUrl(configUrl);
 
                 /* 发出ajax请求 */
@@ -8154,6 +8155,11 @@ UE.ajax = function() {
     }
     var creatAjaxRequest = new Function('return new ' + fnStr);
 
+    // Make sure that every Ajax request sends the CSRF token
+    var CSRFProtection = function(xhr) {
+        var token = $('meta[name="csrf-token"]').attr('content');
+        if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+    };
 
     /**
      * 将json参数转化成适合ajax提交的参数列表
@@ -8194,6 +8200,8 @@ UE.ajax = function() {
                 onerror:function() {
                 }
             };
+
+        CSRFProtection(xhr);
 
         if (typeof url === "object") {
             ajaxOptions = url;
@@ -29607,4 +29615,4 @@ UE.registerUI('autosave', function(editor) {
 
 
 
-})();
+})($);

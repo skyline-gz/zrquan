@@ -50,7 +50,7 @@
               <span class="component-infoblock-action">的答案</span>
           <% end %>
           <span class="component-infoblock-time">
-            <% if answer.created_at != answer.updated_at %>
+            <% if answer.created_at != answer.edited_at %>
             <span>编辑于</span>
             <% end %>
             <span class="timeago" title="<%= answer.updated_at %>"><%= to_full_time(answer.updated_at) %></span>
@@ -132,7 +132,7 @@
             <span class="component-infoblock-action">提出的问题</span>
           <% end %>
           <span class="component-infoblock-time">
-            <% if question.created_at != question.updated_at %>
+            <% if question.created_at != question.edited_at %>
             <span>编辑于</span>
             <% end %>
             <span class="timeago" title="<%= question.updated_at %>"><%= to_full_time(question.updated_at) %></span>

@@ -30,10 +30,14 @@ class AnswersController < ApplicationController
     # 创建答案
     @answer = current_user.answers.new(answer_params)
     @answer.question_id = params[:question_id]
+    current_time = Time.now
+    @answer.created_at = current_time
+    @answer.edited_at = current_time
+    @answer.updated_at = current_time
     @answer.save!
     @question.update!(hot_abs: @question.hot_abs + 3,
                       latest_answer_id: @answer.id,
-                      latest_qa_time: DateUtils.to_yyyymmddhhmmss(Time.now))
+                      latest_qa_time: DateUtils.to_yyyymmddhhmmss(current_time))
     # TODO 错误处理
     # 创建用户行为（回答问题）
     current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
@@ -49,9 +53,10 @@ class AnswersController < ApplicationController
 
   # 更新
   def update
-    @question = Question.find(@answer.question_id)
+    @answer.edited_at = Time.now
     # 更新答案
     @answer.update!(answer_params)
+    @question = Question.find(@answer.question_id)
     redirect_to question_path(@question)
   end
 

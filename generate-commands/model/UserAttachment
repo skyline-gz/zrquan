@@ -1,1 +1,1 @@
-rails g model UserAttachment user:references attachable:references{polymorphic} url:string size:integer
+rails g model UserAttachment user:references attachable:references{polymorphic} url:string original_name:string content_type:string attach_type:string size:integer

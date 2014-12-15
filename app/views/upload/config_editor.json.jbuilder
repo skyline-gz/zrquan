@@ -4,7 +4,7 @@ json.imageCompressBorder 1600
 json.imageCompressEnable true
 json.imageFieldName 'upfile'
 json.imageInsertAlign 'none'
-json.imageManagerActionName 'listimage'
+json.imageManagerActionName 'list_file'
 json.imageManagerAllowFiles ['.png', '.jpg', '.jpeg', '.gif']
 json.imageManagerInsertAlign 'none'
 json.imageManagerListPath '/server/ueditor/upload/image/'
@@ -17,7 +17,7 @@ json.imageUrlPrefix ''
 json.fileActionName 'upload_file'
 json.fileAllowFiles ['.doc','.docx','.xls','.xlsx','.ppt','.pptx','.pdf']
 json.fileFieldName 'upfile'
-json.fileManagerActionName 'listfile'
+json.fileManagerActionName 'list_file'
 json.fileManagerAllowFiles ['.doc','.docx','.xls','.xlsx','.ppt','.pptx','.pdf']
 json.fileManagerListPath '/server/ueditor/upload/file/'
 json.fileManagerListSize 20

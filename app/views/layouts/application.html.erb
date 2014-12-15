@@ -16,8 +16,12 @@
 </head>
 <body>
     <%= render "partials/navigation" %>
-    <p><%= notice %></p>
-    <p><%= alert %></p>
+    <% if notice %>
+        <p class="alert alert-info"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
 
     <%= yield %>
 

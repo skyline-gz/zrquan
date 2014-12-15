@@ -61,7 +61,11 @@ class QuestionsController < ApplicationController
     # 创建问题和主题（非严谨，不需事务）
     @question = current_user.questions.new(question_params)
     @question.hot_abs = 3 #问题自身权重
-    @question.latest_qa_time = DateUtils.to_yyyymmddhhmmss(Time.now)
+    current_time = Time.now
+    @question.latest_qa_time = DateUtils.to_yyyymmddhhmmss(current_time)
+    @question.created_at = current_time
+    @question.edited_at = current_time
+    @question.updated_at = current_time
     @question.save!
     if params[:question][:themes] != nil
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
@@ -81,6 +85,7 @@ class QuestionsController < ApplicationController
   # 更新
   def update
     # 更新问题和主题（非严谨，不需事务）
+    @question.edited_at = Time.now
     @question.update!(question_params)
     if params[:question][:themes] != nil
       themes = params[:question][:themes].split(',').map { |s| s.to_i }

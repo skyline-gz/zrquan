@@ -636,7 +636,8 @@
                     timeout: 100000,
                     data: utils.extend({
                             start: this.listIndex,
-                            size: this.listSize
+                            size: this.listSize,
+                            attach_type: 'Attachment'
                         }, editor.queryCommandValue('serverparam')),
                     method: 'get',
                     onsuccess: function (r) {
@@ -688,7 +689,11 @@
                     } else {
                         var ic = document.createElement('i'),
                             textSpan = document.createElement('span');
-                        textSpan.innerHTML = list[i].url.substr(list[i].url.lastIndexOf('/') + 1);
+                        if (list[i].original) {
+                            textSpan.innerHTML = list[i].original;
+                        } else {
+                            textSpan.innerHTML = list[i].url.substr(list[i].url.lastIndexOf('/') + 1);
+                        }
                         preview = document.createElement('div');
                         preview.appendChild(ic);
                         preview.appendChild(textSpan);
