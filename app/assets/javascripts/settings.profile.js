@@ -61,6 +61,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
     var $region = $('#region');
     var $location = $('#location');
+    var $industry = $('#industry');
 
     $region.selectpicker({
         'title' : '区域'
@@ -68,6 +69,10 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
     $location.selectpicker({
         'title' : '城市'
+    });
+
+    $industry.selectpicker({
+        'title' : '行业'
     });
 
     if(parseInt($region.val()) == -1) {

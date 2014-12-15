@@ -4,6 +4,7 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :first_name, :string
     add_column :users, :gender, :integer
     add_reference :users, :location, index: true
+    add_reference :users, :industry, index: true
     add_reference :users, :latest_company, index: true
     add_column :users, :latest_position, :string
     add_reference :users, :latest_school, index: true

@@ -524,6 +524,7 @@ ActiveRecord::Schema.define(version: 20141212072953) do
     t.string   "first_name"
     t.integer  "gender"
     t.integer  "location_id"
+    t.integer  "industry_id"
     t.integer  "latest_company_id"
     t.string   "latest_position"
     t.integer  "latest_school_id"
@@ -538,6 +539,7 @@ ActiveRecord::Schema.define(version: 20141212072953) do
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["industry_id"], name: "index_users_on_industry_id", using: :btree
   add_index "users", ["latest_company_id"], name: "index_users_on_latest_company_id", using: :btree
   add_index "users", ["latest_school_id"], name: "index_users_on_latest_school_id", using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree

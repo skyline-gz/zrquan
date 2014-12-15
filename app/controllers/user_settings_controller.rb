@@ -38,6 +38,20 @@ class UserSettingsController < ApplicationController
       @region_id = Location.find(current_user.location_id).region_id
       @locations = Location.where ({:region_id => @region_id})
     end
+    @industries = Industry.find_by_sql('WITH RECURSIVE q AS (
+        SELECT  h, ARRAY[id] AS breadcrumb
+        FROM    industries h
+        WHERE   parent_industry_id IS NULL
+        UNION ALL
+        SELECT  hi, breadcrumb || id
+        FROM    q
+        JOIN    industries hi
+        ON      hi.parent_industry_id = (q.h).id
+    )
+    SELECT  (q.h).id,(q.h).parent_industry_id,(q.h).name,breadcrumb::VARCHAR AS path
+    FROM    q
+    ORDER BY
+    breadcrumb')
   end
 
   def update_profile
@@ -45,8 +59,12 @@ class UserSettingsController < ApplicationController
     position = ActionController::Base.helpers.strip_tags params[:position]
     region = params[:region].to_i
     location = params[:location].to_i
+    industry = params[:industry].to_i
     school = ActionController::Base.helpers.strip_tags params[:school]
     major = ActionController::Base.helpers.strip_tags params[:major]
+    if industry != -1
+      current_user.industry_id = industry
+    end
     if company and company.length > 0
       @company = Company.find_and_save company
       current_user.latest_company_id = @company.id

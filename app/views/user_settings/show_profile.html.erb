@@ -24,6 +24,25 @@
   <!-- data-remote data-type 由jquery-ujs作ajax form submit的准备 -->
   <form action="/settings/profile" method="POST" id="profile-setting-form"
         autocomplete="off" novalidate="novalidate" data-remote="true" data-type="json">
+    <div class="settings-item clearfix">
+      <label for="industry" class="settings-item-title with-input">行业</label>
+      <div class="settings-item-content">
+        <select name="industry" id="industry" title="请选择行业..." tabindex="-1" required="" style="display: none">
+          <option value="-1">请选择行业...</option>
+          <% @industries.each do |industry| %>
+              <% if industry.parent_industry_id %>
+                <option value='<%= industry.id %>' <%= industry.id == current_user.industry_id ? 'selected': '' %>><%= industry.name %></option>
+              <% elsif industry.id ==1 %>
+                  <optgroup label="<%= industry.name %>">
+              <% else %>
+                  </optgroup>
+                  <optgroup label="<%= industry.name %>">
+              <% end %>
+          <% end %>
+          </optgroup>
+        </select>
+      </div>
+    </div>
     <div class="settings-section">
       <div class="settings-item clearfix">
         <label for="company" class="settings-item-title with-input">公司</label>
@@ -42,7 +61,7 @@
         </div>
       </div>
       <div class="settings-item clearfix">
-        <label for="location" class="settings-item-title with-input">所在地</label>
+        <label for="region" class="settings-item-title with-input">所在地</label>
 
         <div class="settings-item-content">
           <% if current_user.location_id %>
