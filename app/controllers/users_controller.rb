@@ -1,7 +1,7 @@
 require "returncode_define.rb"
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :questions, :answers, :follow]
+  before_action :set_user, only: [:show, :edit, :questions, :answers, :bookmarks]
   before_action :authenticate_user!
 
   # 全用户列表
@@ -44,6 +44,11 @@ class UsersController < ApplicationController
 
     @questions = Question.where(:user_id => @user.id)
     @answers = Answer.where(:user_id => @user.id)
+    @bookmarks = Bookmark.where(:user_id => @user.id, :bookmarkable_type => 'Question')
+    @bookmark_questions = []
+    @bookmarks.each do |bookmark|
+      @bookmark_questions.push Question.find bookmark.bookmarkable_id
+    end
   end
 
   def questions
@@ -52,6 +57,11 @@ class UsersController < ApplicationController
   end
 
   def answers
+    show
+    render 'show'
+  end
+
+  def bookmarks
     show
     render 'show'
   end

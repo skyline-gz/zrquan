@@ -101,8 +101,8 @@
         <a href="/users/<%= params[:id] %>/questions" class="component-category <%=params[:action] == 'questions' ? 'component-category-current': ''%>">提问(<%= @questions.length %>)</a>
         <a href="/users/<%= params[:id] %>/answers" class="component-category <%=params[:action] == 'answers' ? 'component-category-current': ''%>">回答(<%= @answers.length %>)</a>
         <% if @is_self %>
-            <div class="component-category">收藏(６)</div>
-            <div class="component-category">草稿(３)</div>
+            <a href="/users/<%= params[:id] %>/bookmarks" class="component-category <%=params[:action] == 'bookmarks' ? 'component-category-current': ''%>">收藏(<%= @bookmarks.length %>)</a>
+            <div class="component-category">草稿(0)</div>
         <% end %>
       </div>
   </div>
@@ -121,6 +121,14 @@
         <% elsif params[:action] == 'answers' %>
             <% @answers.each do |answer| %>
                 <%= render partial: 'partials/infoblock', :locals => { :question => answer.question, :answer => answer} %>
+            <% end %>
+        <% elsif @is_self and params[:action] == 'bookmarks' %>
+            <% @bookmark_questions.each do |question| %>
+                <% if question.recommend_answer %>
+                    <%= render partial: 'partials/infoblock', :locals => { :question => question, :answer => question.recommend_answer} %>
+                <% else %>
+                    <%= render partial: 'partials/infoblock', :locals => { :question => question} %>
+                <% end %>
             <% end %>
         <% end %>
       </div>
