@@ -26,6 +26,10 @@ class UserSettingsController < ApplicationController
 
   #档案设置
   def show_profile
+    @is_female = false
+    if defined? current_user.gender and current_user.gender == 0
+      @is_female = true
+    end
     @company = Company.new
     if current_user.latest_company_id
       @company = Company.find current_user.latest_company_id
@@ -38,6 +42,7 @@ class UserSettingsController < ApplicationController
       @region_id = Location.find(current_user.location_id).region_id
       @locations = Location.where ({:region_id => @region_id})
     end
+    # see http://explainextended.com/2009/07/17/postgresql-8-4-preserving-order-for-hierarchical-query/
     @industries = Industry.find_by_sql('WITH RECURSIVE q AS (
         SELECT  h, ARRAY[id] AS breadcrumb
         FROM    industries h
@@ -60,8 +65,11 @@ class UserSettingsController < ApplicationController
     region = params[:region].to_i
     location = params[:location].to_i
     industry = params[:industry].to_i
+    gender = params[:gender].to_i
     school = ActionController::Base.helpers.strip_tags params[:school]
     major = ActionController::Base.helpers.strip_tags params[:major]
+
+    current_user.gender = gender
     if industry != -1
       current_user.industry_id = industry
     end

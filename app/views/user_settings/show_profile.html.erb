@@ -24,26 +24,65 @@
   <!-- data-remote data-type 由jquery-ujs作ajax form submit的准备 -->
   <form action="/settings/profile" method="POST" id="profile-setting-form"
         autocomplete="off" novalidate="novalidate" data-remote="true" data-type="json">
-    <div class="settings-item clearfix">
-      <label for="industry" class="settings-item-title with-input">行业</label>
-      <div class="settings-item-content">
-        <select name="industry" id="industry" title="请选择行业..." tabindex="-1" required="" style="display: none">
-          <option value="-1">请选择行业...</option>
-          <% @industries.each do |industry| %>
-              <% if industry.parent_industry_id %>
-                <option value='<%= industry.id %>' <%= industry.id == current_user.industry_id ? 'selected': '' %>><%= industry.name %></option>
-              <% elsif industry.id ==1 %>
-                  <optgroup label="<%= industry.name %>">
-              <% else %>
-                  </optgroup>
-                  <optgroup label="<%= industry.name %>">
-              <% end %>
-          <% end %>
-          </optgroup>
-        </select>
-      </div>
-    </div>
     <div class="settings-section">
+      <div class="settings-item clearfix">
+        <div class="settings-item-content">
+          <label class="settings-item-title with-input">性别</label>
+          <label for="male" class="settings-item-title with-input" style="margin-right: 0;width: 50px;">
+            <input type="radio" id="male" name="gender" value="1" <%= @is_female ? '' : 'checked="checked"' %> />男</label>
+          <label for="female" class="settings-item-title with-input">
+            <input type="radio" id="female" name="gender" value="0" <%= @is_female ? 'checked="checked"' : '' %> />女</label>
+        </div>
+      </div>
+      <div class="settings-item clearfix">
+        <label for="industry" class="settings-item-title with-input">行业</label>
+
+        <div class="settings-item-content">
+          <select name="industry" id="industry" title="请选择行业..." tabindex="-1" required="" style="display: none">
+            <option value="-1">请选择行业...</option>
+            <% @industries.each do |industry| %>
+                <% if industry.parent_industry_id %>
+                    <option value='<%= industry.id %>' <%= industry.id == current_user.industry_id ? 'selected' : '' %>><%= industry.name %></option>
+                <% elsif industry.id ==1 %>
+                    <optgroup label="<%= industry.name %>">
+                <% else %>
+                    </optgroup>
+                    <optgroup label="<%= industry.name %>">
+                <% end %>
+            <% end %>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="settings-item clearfix">
+        <label for="region" class="settings-item-title with-input">所在地</label>
+
+        <div class="settings-item-content">
+          <% if current_user.location_id %>
+              <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
+                <option value="-1">请选择区域...</option>
+                <% Region.all.each do |region| %>
+                    <option value='<%= region.id %>' <%= region.id == @region_id ? 'selected' : '' %>><%= region.name %></option>
+                <% end %>
+              </select>
+              <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none">
+                <% @locations.each do |location| %>
+                    <option value='<%= location.id %>' <%= location.id == current_user.location_id ? 'selected' : '' %>><%= location.name %></option>
+                <% end %>
+              </select>
+          <% else %>
+              <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
+                <option value="-1">请选择区域...</option>
+                <% Region.all.each do |region| %>
+                    <option value='<%= region.id %>'><%= region.name %></option>
+                <% end %>
+              </select>
+              <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none"></select>
+          <% end %>
+        </div>
+      </div>
+
       <div class="settings-item clearfix">
         <label for="company" class="settings-item-title with-input">公司</label>
 
@@ -60,33 +99,7 @@
                  name="position" id="position" placeholder="职位" required="">
         </div>
       </div>
-      <div class="settings-item clearfix">
-        <label for="region" class="settings-item-title with-input">所在地</label>
 
-        <div class="settings-item-content">
-          <% if current_user.location_id %>
-              <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
-                <option value="-1">请选择区域...</option>
-                <% Region.all.each do |region| %>
-                    <option value='<%= region.id %>' <%= region.id == @region_id ? 'selected': '' %>><%= region.name %></option>
-                <% end %>
-              </select>
-              <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none">
-                <% @locations.each do |location| %>
-                    <option value='<%= location.id %>' <%= location.id == current_user.location_id ? 'selected': '' %>><%= location.name %></option>
-                <% end %>
-              </select>
-          <% else %>
-              <select name="region" id="region" title="请选择区域..." tabindex="-1" required="" style="display: none">
-                <option value="-1">请选择区域...</option>
-                <% Region.all.each do |region| %>
-                    <option value='<%= region.id %>'><%= region.name %></option>
-                <% end %>
-              </select>
-              <select name="location" id="location" title="请选择城市..." tabindex="-1" required="" style="display: none"></select>
-          <% end %>
-        </div>
-      </div>
       <div class="settings-item clearfix">
         <label for="school" class="settings-item-title with-input">学校</label>
 
