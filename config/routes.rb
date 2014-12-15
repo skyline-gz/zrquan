@@ -94,7 +94,7 @@ Rails.application.routes.draw do
 
   # 密码设置
   get 'settings/password' => 'user_settings#show_password'
-  post 'settings/password' => 'users#update_password'
+  post 'settings/password' => 'user_settings#update_password'
 
   # 私信设置
   get 'settings/notification' => 'user_settings#show_notification'

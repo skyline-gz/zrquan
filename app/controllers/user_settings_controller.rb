@@ -12,6 +12,21 @@ class UserSettingsController < ApplicationController
   def show_password
   end
 
+  # 个人设置，更改密码
+  def update_password
+    if params[:password] != params[:password_confirmation]
+      render :json => {:code => ReturnCode::FA_PASSWORD_INCONSISTENT}
+    end
+    @user = User.find(current_user.id)
+    if @user.update_with_password(user_update_password_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      render :json => {:code => ReturnCode::S_OK}
+    else
+      render :json => {:code => ReturnCode::FA_PASSWORD_ERROR}
+    end
+  end
+
   # 消息设置
   def show_notification
   end
@@ -112,5 +127,9 @@ class UserSettingsController < ApplicationController
 
   def user_msg_setting_params
     params.require(:user_msg_setting).permit(:followed_flag, :agreed_flag, :commented_flag, :answer_flag, :pm_flag)
+  end
+
+  def user_update_password_params
+    params.permit(:current_password, :password, :password_confirmation)
   end
 end
