@@ -175,6 +175,23 @@
               background: white;
             }
           }
+
+          .icon-profile-male, .icon-profile-female {
+            width: 16px;
+            height: 16px;
+            background-image: url(../images/sprites-zh.png);
+            background-repeat: no-repeat;
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          .icon-profile-male {
+            background-position: -143px -110px;
+          }
+
+          .icon-profile-female {
+            background-position: -127px -110px;
+          }
         }
 
         .user-profile-content {
@@ -190,7 +207,7 @@
 
           .desc {
             float: left;
-            font: 14px;
+            font-size: 14px;
             color: #333;
           }
 
@@ -241,7 +258,7 @@
 
   .user-detail {
     margin-top: 8px;
-    height: 45px;
+    max-height: 45px;
     padding: 8px 31px;
     background: $base-background-color;
     border:1px solid $deep-grey;
@@ -274,22 +291,7 @@
     margin-top: 10px;
     border-bottom: 1px solid $deep-grey;
     width: 100%;
-    height: 24px;
-
-    .user-content-li {
-      float: left;
-      margin: 0 10px;
-      width: 50px;
-      font-size: 14px;
-      text-align: center;
-      height: 22px;
-      cursor: pointer;
-    }
-
-    .user-content-li-current {
-      color: $light-base-color;
-      border-bottom: 3px solid $base-color;
-    }
+    height: 12px;
   }
 
   .user-main-content {

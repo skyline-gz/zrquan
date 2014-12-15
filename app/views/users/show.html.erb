@@ -34,6 +34,11 @@
               <% if @user.verified_flag %>
                 <div class="user-profile-vip"></div>
               <% end %>
+              <% if current_user and current_user.gender == 0 %>
+                  <i class="icon icon-profile-female"></i>
+              <% else %>
+                  <i class="icon icon-profile-male"></i>
+              <% end %>
               <% if current_user and @is_self == false %>
                   <div class="user-profile-opt">
                     <!--<div class="user-profile-opt-cont">-->
@@ -77,7 +82,7 @@
       </div>
       <div class="user-detail">
         <div class="user-detail-left">个人说明&nbsp;:&nbsp;</div>
-        <div class="user-detail-right">我来自郑州，我是一名信息工程大学印刷工程专业应届本科即将毕业的学员。我的性格偏于内向，为人坦率、热情、讲求原则；处事乐观、专心、细致、头脑清醒；富有责任心、乐于助人。</div>
+        <div class="user-detail-right"><%= raw current_user.description %></div>
       </div>
   </div>
 </div>
@@ -86,18 +91,11 @@
       <div class="component-categories user-content-categories">
         <div class="component-category">提问(15)</div>
         <div class="component-category component-category-current">回答(2)</div>
-        <div class="component-category">咨询(20)</div>
         <div class="component-category">收藏(６)</div>
         <div class="component-category">草稿(３)</div>
       </div>
   </div>
-  <div class="user-content-header">
-    <ul class="user-content-ul">
-      <li class="user-content-li user-content-li-current">全部</li>
-      <li class="user-content-li">已回答</li>
-      <li class="user-content-li">未回答</li>
-    </ul>
-  </div>
+  <div class="user-content-header"></div>
   <div class="user-main-content">
     <div class="user-content-left">
       <div role="infoblocks" class="user-content-infoblock">
