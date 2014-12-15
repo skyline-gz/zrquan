@@ -15,7 +15,7 @@ class Question < ActiveRecord::Base
 	has_many :comments, as: :commentable
 	has_many :news_feeds, as: :feedable
 	has_many :activities, as: :target
-	has_many :question_themes
+	has_many :question_themes, as: :target
 	accepts_nested_attributes_for :invitations
   accepts_nested_attributes_for :question_themes
 

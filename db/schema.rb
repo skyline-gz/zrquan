@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212072953) do
+ActiveRecord::Schema.define(version: 20141215041710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 20141212072953) do
 
   add_index "agreements", ["agreeable_id", "agreeable_type"], name: "index_agreements_on_agreeable_id_and_agreeable_type", using: :btree
   add_index "agreements", ["user_id"], name: "index_agreements_on_user_id", using: :btree
+
+  create_table "answer_drafts", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answer_drafts", ["question_id"], name: "index_answer_drafts_on_question_id", using: :btree
+  add_index "answer_drafts", ["user_id"], name: "index_answer_drafts_on_user_id", using: :btree
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -362,6 +373,16 @@ ActiveRecord::Schema.define(version: 20141212072953) do
   add_index "private_messages", ["user1_id"], name: "index_private_messages_on_user1_id", using: :btree
   add_index "private_messages", ["user2_id"], name: "index_private_messages_on_user2_id", using: :btree
 
+  create_table "question_drafts", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "question_drafts", ["user_id"], name: "index_question_drafts_on_user_id", using: :btree
+
   create_table "question_follows", force: true do |t|
     t.integer  "question_id"
     t.integer  "user_id"
@@ -373,13 +394,14 @@ ActiveRecord::Schema.define(version: 20141212072953) do
   add_index "question_follows", ["user_id"], name: "index_question_follows_on_user_id", using: :btree
 
   create_table "question_themes", force: true do |t|
-    t.integer  "question_id"
+    t.integer  "target_id"
+    t.string   "target_type"
     t.integer  "theme_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "question_themes", ["question_id"], name: "index_question_themes_on_question_id", using: :btree
+  add_index "question_themes", ["target_id", "target_type"], name: "index_question_themes_on_target_id_and_target_type", using: :btree
   add_index "question_themes", ["theme_id"], name: "index_question_themes_on_theme_id", using: :btree
 
   create_table "questions", force: true do |t|
