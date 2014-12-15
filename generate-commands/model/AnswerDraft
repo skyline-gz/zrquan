@@ -1,0 +1,1 @@
+rails g model AnswerDraft content:text user:references question:references

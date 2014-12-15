@@ -1,8 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :question_theme do
-    target nil
-    theme nil
+  factory :answer_draft do
+    content "MyText"
+    user nil
+    question nil
   end
 end

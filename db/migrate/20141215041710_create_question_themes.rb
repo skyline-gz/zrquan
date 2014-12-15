@@ -1,7 +1,7 @@
 class CreateQuestionThemes < ActiveRecord::Migration
   def change
     create_table :question_themes do |t|
-      t.references :question, index: true
+      t.references :target, polymorphic: true, index: true
       t.references :theme, index: true
 
       t.timestamps
