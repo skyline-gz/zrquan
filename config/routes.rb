@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get 'answers'
       get 'bookmarks'
       get 'drafts'
+      get 'profile'
       post 'follow'
       post 'un_follow'
     end

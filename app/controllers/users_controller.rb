@@ -32,6 +32,10 @@ class UsersController < ApplicationController
     render 'show'
   end
 
+  def profile
+    render 'partials/profile_card_content'
+  end
+
   # 关注用户
   def follow
     id = params[:id].to_i

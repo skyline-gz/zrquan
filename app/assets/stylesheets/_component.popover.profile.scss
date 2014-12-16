@@ -143,6 +143,16 @@
         }
       }
     }
+
+    .profile-card-loading {
+      width: 88px;
+      height: 40px;
+//      width: 45px;
+//      height: 30px;
+      background-image: url(../images/standalone/spinner2.gif);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
 
   .arrow, .arrow2 {
