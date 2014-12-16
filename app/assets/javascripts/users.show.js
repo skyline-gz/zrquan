@@ -23,6 +23,8 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             'mouseover .user-profile-logo' : 'showChangeAvatarTips',
             'mouseover input[name=picture]' : 'showChangeAvatarTips',
             'click .user-profile-logo-edit-button' : 'onChangeAvatarClick',
+            'click [data-action="follow"]': 'onFollowClick',
+            'click [data-action="un-follow"]': 'onUnFollowClick',
             'change input[name=picture]': 'onAvatarSelect'
         },
         showChangeAvatarTips : function() {
@@ -33,6 +35,30 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
             if(enableClientCrop) {
                 this.$("input[name=picture]").click();
             }
+        },
+        onFollowClick : function(evt) {
+            var that = this;
+            $.when(Zrquan.Ajax.request({
+                url: "/users/" + $(evt.target).data("target-id") + "/follow"
+            })).then(function(result){
+                if(result["code"] == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'关注成功',width:'100px'});
+                    $(evt.target).hide();
+                    that.$("[data-action='un-follow']").show();
+                }
+            });
+        },
+        onUnFollowClick : function(evt) {
+            var that = this;
+            $.when(Zrquan.Ajax.request({
+                url: "/users/" + $(evt.target).data("target-id") + "/un_follow"
+            })).then(function(result){
+                if(result["code"] == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'取消关注成功',width:'100px'});
+                    $(evt.target).hide();
+                    that.$("[data-action='follow']").show();
+                }
+            });
         },
         onAvatarSelect : function() {
             if(enableClientCrop) {

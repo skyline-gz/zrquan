@@ -73,9 +73,9 @@
               <% end %>
             </div>
             <div class="user-profile-data">
-              <div class="desc">关注&nbsp;<%= @user.following_num %>&nbsp;</div>
+              <div class="desc">关注&nbsp;<span><%= @user.following_num %></span>&nbsp;</div>
               <div class="spilt"></div>
-              <div class="desc">&nbsp;粉丝&nbsp;<%= @user.followers_num %></div>
+              <div class="desc">&nbsp;粉丝&nbsp;<span><%= @user.followers_num %></span></div>
             </div>
           </div>
           <div class="user-profile-right">
@@ -98,10 +98,12 @@
                       </div>
                   <% else %>
                       <div class="user-profile-opt">
-                        <div class="user-profile-opt-cont">
+                        <div class="user-profile-opt-cont" data-target-id="<%= @user.id %>" data-action="follow" style="<%= (current_user.following_u? @user) ? 'display:none': ''%>">
                           <i class="user-profile-star"></i>&nbsp;关注</div>
+                        <div class="user-profile-opt-cont" data-target-id="<%= @user.id %>" data-action="un-follow" style="<%= (current_user.following_u? @user) ? '': 'display:none'%>">
+                          <i class="user-profile-star"></i>&nbsp;取消关注</div>
                         <div class="spilt"></div>
-                        <div class="user-profile-opt-cont">
+                        <div class="user-profile-opt-cont" data-target-id="<%= @user.id %>" data-action="private-message">
                           <i class="user-profile-private_message"></i>&nbsp;私信</div>
                       </div>
                   <% end %>

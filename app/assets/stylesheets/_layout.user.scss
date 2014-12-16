@@ -151,7 +151,8 @@
             .user-profile-consult, .user-profile-star, .user-profile-private_message {
               float: left;
               display: block;
-              margin-top: 1px;
+              margin-top: -1px;
+              margin-right: 2px;
             }
 
             .user-profile-consult {
