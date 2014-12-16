@@ -44,7 +44,10 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 if(result["code"] == "S_OK") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'关注成功',width:'100px'});
                     $(evt.target).hide();
-                    that.$("[data-action='un-follow']").show();
+                    that.$("[data-action=un-follow]").show();
+                    var followerNumEl = that.$("[data-type=followers_num]");
+                    var followerNum = parseInt(followerNumEl.data("num")) + 1;
+                    followerNumEl.data("num", followerNum).html(followerNum)
                 }
             });
         },
@@ -56,7 +59,10 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 if(result["code"] == "S_OK") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'取消关注成功',width:'100px'});
                     $(evt.target).hide();
-                    that.$("[data-action='follow']").show();
+                    that.$("[data-action=follow]").show();
+                    var followerNumEl = that.$("[data-type=followers_num]");
+                    var followerNum = parseInt(followerNumEl.data("num")) - 1;
+                    followerNumEl.data("num", followerNum).html(followerNum)
                 }
             });
         },
