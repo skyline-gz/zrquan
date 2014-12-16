@@ -1,0 +1,62 @@
+<%
+   is_self = false
+   if current_user
+     is_self = (@user.id == current_user.id)
+   end
+
+   industry = nil
+   if @user.industry_id
+     industry = @user.industry
+   end
+
+   company = nil
+   if @user.latest_company_id
+     company = @user.latest_company
+   end
+
+   region = location = nil
+   if @user.location_id
+     location = @user.location
+     region = location.region
+   end
+
+   school = nil
+   if @user.latest_school_id
+     school = @user.latest_school
+   end
+
+   industry_name = industry ? industry.name : '行业'
+   company_name = company ? company.name : '公司'
+   school_name = school ? school.name : '学校'
+   major_name = @user.latest_major ? @user.latest_major : '专业'
+   position_name = @user.latest_position ? @user.latest_position : '职位'
+   region_name = region ? region.name : '区域'
+   location_name = location ? location.name : '城市'
+   description_str = @user.description ? @user.description : '未填写个人描述'
+%>
+
+<div class="profile-card">
+  <div class="upper">
+    <% if @user.avatar != nil %>
+        <img src="<%= Settings.upload_url + @user.avatar%>" class="user-logo">
+    <% else %>
+        <img class="user-logo" src="/images/noface.gif">
+    <% end %>
+    <div class="user-desc-container">
+      <div class="user-name"><%= generate_name(@user.first_name, @user.last_name) %><i class="icons-vip"></i></div>
+      <div class="user-company"><%= company_name%></div>
+      <div class="user-position"><%= position_name%></div>
+    </div>
+  </div>
+  <div class="lower">
+    <div class="lower-left">
+      <!--<div class="lower-accp">接受咨询&nbsp;<em>50</em></div>-->
+      <!--<div class="lower-split"></div>-->
+      <div class="lower-corn">粉丝&nbsp;<em><%= @user.followers_num %></em></div>
+    </div>
+    <div class="lower-right">
+      <!--<div class="btn-ask">咨询</div>-->
+      <div class="btn-corn"><i class="icons-add"></i>关注</div>
+    </div>
+  </div>
+</div>

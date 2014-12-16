@@ -35,7 +35,6 @@
           float: left;
           width: 64px;
           height: 64px;
-          @extend .avatars-head_m_01;
           margin-right: 10px;
         }
 
@@ -147,8 +146,6 @@
     .profile-card-loading {
       width: 88px;
       height: 40px;
-//      width: 45px;
-//      height: 30px;
       background-image: url(../images/standalone/spinner2.gif);
       background-repeat: no-repeat;
       background-position: center;

@@ -13,9 +13,11 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             this.showLoadingTips();
             Zrquan.Ajax.request({
                 url: '/users/' + userId + '/profile',
+                contentType: 'text/html',
+                dataType: "text",
                 type: 'GET'
             }).then(function(result) {
-
+                that.ui.content.empty().append(result).show();
             });
         },
         showLoadingTips: function() {
@@ -28,10 +30,8 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
         hide: function() {
             this.$el.hide();
         },
-        render: function() {
-            this.bindUIElements(); // wire up this.ui, if any
-        },
         initialize: function() {
+            this.bindUIElements(); // wire up this.ui, if any
             this.listenTo(Zrquan.appEventBus, 'profile:show', this.onShowProfile);
             console.log("profile service init...");
             Backbone.Marionette.ItemView.prototype.initialize.call(this);

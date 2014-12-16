@@ -18,15 +18,17 @@ Zrquan.module('Ajax', function(Module, App, Backbone, Marionette, $, _){
         options = options || {};
         options.type = options.type || "POST";
         options.data = options.data || "";
+        options.dataType = options.dataType || "json";
+        options.contentType = options.contentType || "application/json";
         successCallback = successCallback || $.noop();
         errorCallback = errorCallback || $.noop();
         $.ajax({
-            type: options.type,   //访问WebService使用Post方式请求
-            contentType: "application/json",
+            type: options.type,
+            contentType: options.contentType,
             url: options.url + (options.url.indexOf('?') == -1 ? '?':'&') + "ts=" +  Math.round(new Date().getTime() / 1000),
             data: JSON.stringify(options.data),
-            dataType: 'json',
-            success: function(result) {     //回调函数，result，返回值
+            dataType: options.dataType,
+            success: function(result) {
                 console.log(result);
                 deferred.resolve(result);
             }

@@ -1,8 +1,8 @@
 require "returncode_define.rb"
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :questions, :answers, :bookmarks, :follow, :un_follow]
-  before_action :authenticate_user!
+  before_action :set_user, only: [:show, :questions, :answers, :bookmarks, :follow, :un_follow, :profile]
+  before_action :authenticate_user!, except: [:profile]
 
   # 全用户列表
   def index
@@ -32,8 +32,9 @@ class UsersController < ApplicationController
     render 'show'
   end
 
+  # 个人简介卡片内容
   def profile
-    render 'partials/profile_card_content'
+    render 'partials/profile_card_content', layout: false
   end
 
   # 关注用户
