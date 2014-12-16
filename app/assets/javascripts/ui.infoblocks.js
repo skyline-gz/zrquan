@@ -152,7 +152,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             'click .component-infoblock-opts-comment': 'onCommentClick',
             'click .component-infoblock-opts-favorites' : 'onFavorClick',
             'click .show-all-button' : 'onShowAllClick',
-            'click .hide-all-button' : 'onHideAllClick'
+            'click .hide-all-button' : 'onHideAllClick',
+            'mouseover [data-role=user]' : 'onShowUserProfile',
+            'click [data-role=user]' : 'onShowUser'
         },
         ui: {
             editButton : '.edit-button',
@@ -268,6 +270,12 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
         onHideAllClick: function(evt) {
             this.$('.component-infoblock-truncate-content').show();
             this.$('.component-infoblock-all-content').hide();
+        },
+        onShowUserProfile: function(evt) {
+            Zrquan.appEventBus.trigger('profile:show', evt.currentTarget, parseInt($(evt.currentTarget).data('id')));
+        },
+        onShowUser: function(evt) {
+            location.href = '/users/' + $(evt.currentTarget).data('id');
         },
         updateBookmarksNum: function(num) {
             num = num || 0;

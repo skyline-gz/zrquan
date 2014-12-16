@@ -6,8 +6,6 @@
 
 .popover {
   position: absolute;
-  top: 702px;
-  left: 125px;
   z-index: $zindex-popover;
   padding: 12px;
 
@@ -33,6 +31,7 @@
         .user-logo {
           display: block;
           float: left;
+          @include border-radius($border-radius-large);
           width: 64px;
           height: 64px;
           margin-right: 10px;

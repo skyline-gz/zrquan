@@ -25,6 +25,9 @@
      school = @user.latest_school
    end
 
+   questions = Question.where(:user_id => @user.id)
+   answers = Answer.where(:user_id => @user.id)
+
    industry_name = industry ? industry.name : '行业'
    company_name = company ? company.name : '公司'
    school_name = school ? school.name : '学校'
@@ -43,7 +46,11 @@
         <img class="user-logo" src="/images/noface.gif">
     <% end %>
     <div class="user-desc-container">
-      <div class="user-name"><%= generate_name(@user.first_name, @user.last_name) %><i class="icons-vip"></i></div>
+      <div class="user-name"><span><%= generate_name(@user.first_name, @user.last_name) %></span>
+        <% if @user.verified_flag %>
+            <i class="icons-vip"></i>
+        <% end %>
+      </div>
       <div class="user-company"><%= company_name%></div>
       <div class="user-position"><%= position_name%></div>
     </div>
@@ -51,8 +58,11 @@
   <div class="lower">
     <div class="lower-left">
       <!--<div class="lower-accp">接受咨询&nbsp;<em>50</em></div>-->
-      <!--<div class="lower-split"></div>-->
-      <div class="lower-corn">粉丝&nbsp;<em><%= @user.followers_num %></em></div>
+      <div class="lower-corn">提问&nbsp;<em><%= questions.length %></em>&nbsp;&nbsp;</div>
+      <div class="lower-split"></div>
+      <div class="lower-corn">回答&nbsp;<em><%= answers.length %></em>&nbsp;&nbsp;</div>
+      <div class="lower-split"></div>
+      <div class="lower-corn">关注者&nbsp;<em><%= @user.followers_num %></em></div>
     </div>
     <div class="lower-right">
       <!--<div class="btn-ask">咨询</div>-->
