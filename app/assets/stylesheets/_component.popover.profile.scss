@@ -151,23 +151,47 @@
     }
   }
 
-  .arrow, .arrow2 {
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 60px;
-    margin-left: -13px;
-    border-left: 13px solid transparent;
-    border-right: 13px solid transparent;
+  &.bottom {
+    .arrow, .arrow2 {
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 60px;
+      margin-left: -13px;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+    }
+
+    .arrow {
+      top: 0;
+      border-bottom: 13px solid $popover-content-border-color;
+    }
+
+    .arrow2 {
+      top: 1px;
+      border-bottom: 13px solid #fff;
+    }
   }
 
-  .arrow {
-    top: 0;
-    border-bottom: 13px solid $popover-content-border-color;
-  }
+  &.top {
+    .arrow, .arrow2 {
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 60px;
+      margin-left: -13px;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+    }
 
-  .arrow2 {
-    top: 1px;
-    border-bottom: 13px solid #fff;
+    .arrow {
+      bottom: 0;
+      border-top: 13px solid $popover-content-border-color;
+    }
+
+    .arrow2 {
+      bottom: 1px;
+      border-top: 13px solid #fff;
+    }
   }
 }

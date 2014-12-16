@@ -51,7 +51,8 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             this.current_user_id = userId;
             var that = this;
             this.showLoadingTips();
-            this.position(target);
+            this.trigger_el = $(target);
+            this.position();
             Zrquan.Ajax.request({
                 url: '/users/' + userId + '/profile',
                 contentType: 'text/html',
@@ -60,20 +61,29 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             }).then(function(result) {
                 that.ui.content.empty().append(result).show();
                 that.delegateEvents(this.events);
+                that.$el[0].offsetWidth
+                that.position();
             });
         },
         showLoadingTips: function() {
             this.show();
             this.ui.content.empty().append("<div class='profile-card-loading'></div>").show();
         },
-        position: function(target) {
-            var $target = $(target);
-            this.trigger_el = $target;
+        position: function() {
+            var $target = this.trigger_el;
             var offset = $target.offset();
             var width = $target.width();
             var height = $target.height();
-            var top = offset.top + height;
-            var left = offset.left + (width / 2) - 60;
+            var screenHeight = $(window).height();
+            var top, left;
+            left = offset.left + (width / 2) - 60;
+            if(offset.top + height/2 < screenHeight/2) {
+                this.$el.removeClass("top").addClass("bottom");
+                top = offset.top + height;
+            } else {
+                this.$el.removeClass("bottom").addClass("top");
+                top = offset.top - this.$el.outerHeight();
+            }
             this.$el.css({top : top, left: left});
         },
         show: function() {
