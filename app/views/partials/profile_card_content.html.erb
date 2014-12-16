@@ -14,19 +14,25 @@
      company = @user.latest_company
    end
 
+   position = @user.latest_position
+
    school = nil
    if @user.latest_school_id
      school = @user.latest_school
    end
 
+   major = @user.latest_major
+
    questions = Question.where(:user_id => @user.id)
    answers = Answer.where(:user_id => @user.id)
+
+   is_show_business = (!!(company or position) or !(company or position or school or major))
 
    industry_name = industry ? industry.name : '行业未填写'
    company_name = company ? company.name : '公司未填写'
    school_name = school ? school.name : '学校未填写'
-   major_name = @user.latest_major ? @user.latest_major : '专业未填写'
-   position_name = @user.latest_position ? @user.latest_position : '职位未填写'
+   major_name = major ? major : '专业未填写'
+   position_name = position ? position : '职位未填写'
 %>
 
 <div class="profile-card">
@@ -42,8 +48,13 @@
             <i class="icons-vip"></i>
         <% end %>
       </div>
-      <div class="user-company"><%= company_name%></div>
-      <div class="user-position"><%= position_name%></div>
+      <% if is_show_business %>
+        <div class="user-company"><%= company_name%></div>
+        <div class="user-position"><%= position_name%></div>
+      <% else %>
+          <div class="user-company"><%= school_name%></div>
+          <div class="user-position"><%= major_name%></div>
+      <% end %>
     </div>
   </div>
   <div class="lower">
