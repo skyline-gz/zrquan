@@ -24,9 +24,9 @@
     <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>" data-qid="<%= question.id %>">
       <div class="component-infoblock-left">
         <% if answer.user.avatar != nil %>
-            <img src="<%= Settings.upload_url + answer.user.avatar %>" class="component-infoblock-avatar">
+            <img data-role="user" data-id="<%= answer.user.id %>" src="<%= Settings.upload_url + answer.user.avatar %>" class="component-infoblock-avatar">
         <% else %>
-            <img src="/images/noface.gif" class="component-infoblock-avatar">
+            <img data-role="user" data-id="<%= answer.user.id %>" src="/images/noface.gif" class="component-infoblock-avatar">
         <% end %>
         <div class="component-infoblock-good">
           <div class="component-infoblock-good-num" data-num="<%= answer.agreements.length %>"><%= answer.agreements.length %></div>
@@ -37,7 +37,7 @@
       </div>
       <div class="component-infoblock-right">
         <div class="component-infoblock-header">
-          <span class="component-infoblock-username"><%= generate_name(answer.user.first_name, answer.user.last_name) %></span>
+          <span class="component-infoblock-username" data-role="user" data-id="<%= answer.user.id %>"><%= generate_name(answer.user.first_name, answer.user.last_name) %></span>
           <% if answer.user.verified_flag %>
             <i class="icons-vip"></i>
           <% end %>
@@ -117,14 +117,14 @@
 
       <div class="component-infoblock-left">
         <% if question.user.avatar != nil %>
-            <img src="<%= Settings.upload_url + question.user.avatar %>" class="component-infoblock-avatar">
+            <img data-role="user" data-id="<%= question.user.id %>" src="<%= Settings.upload_url + question.user.avatar %>" class="component-infoblock-avatar">
         <% else %>
-            <img src="/images/noface.gif" class="component-infoblock-avatar">
+            <img data-role="user" data-id="<%= question.user.id %>" src="/images/noface.gif" class="component-infoblock-avatar">
         <% end %>
       </div>
       <div class="component-infoblock-right">
         <div class="component-infoblock-header">
-          <span class="component-infoblock-username"><%= generate_name(question.user.first_name, question.user.last_name) %></span>
+          <span class="component-infoblock-username" data-role="user" data-id="<%= question.user.id %>"><%= generate_name(question.user.first_name, question.user.last_name) %></span>
           <% if question.user.verified_flag %>
               <i class="icons-vip"></i>
           <% end %>

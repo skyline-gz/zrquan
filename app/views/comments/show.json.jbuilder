@@ -5,7 +5,7 @@ json.data @comments do |comment|
   if comment.user.avatar
     json.user_avatar Settings.upload_url + comment.user.avatar
   else
-    json.user_avatar '../images/noface.gif'
+    json.user_avatar '/images/noface.gif'
   end
 
   json.is_author comment.user.id == @comment_related_obj.user.id

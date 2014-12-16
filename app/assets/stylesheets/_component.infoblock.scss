@@ -28,6 +28,7 @@ div[role=infoblocks] {
         width: 32px;
         height: 32px;
         display: block;
+        cursor: pointer;
       }
 
       .component-infoblock-good {
@@ -84,6 +85,7 @@ div[role=infoblocks] {
         }
 
         .component-infoblock-username {
+          cursor: pointer;
           font-size: 14px;
           line-height: 14px;
           font-weight: bold;

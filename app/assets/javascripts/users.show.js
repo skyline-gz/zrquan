@@ -39,7 +39,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         onFollowClick : function(evt) {
             var that = this;
             $.when(Zrquan.Ajax.request({
-                url: "/users/" + $(evt.target).data("target-id") + "/follow"
+                url: "/users/" + $(evt.currentTarget).data("target-id") + "/follow"
             })).then(function(result){
                 if(result["code"] == "S_OK") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'关注成功',width:'100px'});
@@ -54,7 +54,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         onUnFollowClick : function(evt) {
             var that = this;
             $.when(Zrquan.Ajax.request({
-                url: "/users/" + $(evt.target).data("target-id") + "/un_follow"
+                url: "/users/" + $(evt.currentTarget).data("target-id") + "/un_follow"
             })).then(function(result){
                 if(result["code"] == "S_OK") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'取消关注成功',width:'100px'});
