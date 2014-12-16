@@ -62,11 +62,16 @@
       <div class="lower-split"></div>
       <div class="lower-corn">回答&nbsp;<em><%= answers.length %></em>&nbsp;&nbsp;</div>
       <div class="lower-split"></div>
-      <div class="lower-corn">关注者&nbsp;<em><%= @user.followers_num %></em></div>
+      <div class="lower-corn">关注者&nbsp;<em data-type="followers_num" data-num="<%= @user.followers_num %>"><%= @user.followers_num %></em></div>
     </div>
     <div class="lower-right">
-      <!--<div class="btn-ask">咨询</div>-->
-      <div class="btn-corn"><i class="icons-add"></i>关注</div>
+      <% unless is_self %>
+          <!--<div class="btn-ask">咨询</div>-->
+          <div class="btn-corn" data-target-id="<%= @user.id %>" data-action="follow"
+               style="<%= (current_user.following_u? @user) ? 'display:none': ''%>"><i class="icons-add"></i>关注</div>
+          <div class="btn-corn" data-target-id="<%= @user.id %>" data-action="un-follow"
+               style="<%= (current_user.following_u? @user) ? '': 'display:none'%>"><i class="icons-add"></i>取消关注</div>
+      <% end %>
     </div>
   </div>
 </div>

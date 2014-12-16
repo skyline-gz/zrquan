@@ -7,8 +7,42 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
         el: '[data-role=profile]',
         trigger_el: null,
         current_user_id: null,
+        events: {
+            'click [data-action="follow"]': 'onFollowClick',
+            'click [data-action="un-follow"]': 'onUnFollowClick'
+        },
         ui: {
             content : '.popover-content'
+        },
+        onFollowClick : function(evt) {
+            var that = this;
+            $.when(Zrquan.Ajax.request({
+                url: "/users/" + $(evt.currentTarget).data("target-id") + "/follow"
+            })).then(function(result){
+                if(result["code"] == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'关注成功',width:'100px'});
+                    $(evt.target).hide();
+                    that.$("[data-action=un-follow]").show();
+                    var followerNumEl = that.$("[data-type=followers_num]");
+                    var followerNum = parseInt(followerNumEl.data("num")) + 1;
+                    followerNumEl.data("num", followerNum).html(followerNum)
+                }
+            });
+        },
+        onUnFollowClick : function(evt) {
+            var that = this;
+            $.when(Zrquan.Ajax.request({
+                url: "/users/" + $(evt.currentTarget).data("target-id") + "/un_follow"
+            })).then(function(result){
+                if(result["code"] == "S_OK") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'取消关注成功',width:'100px'});
+                    $(evt.target).hide();
+                    that.$("[data-action=follow]").show();
+                    var followerNumEl = that.$("[data-type=followers_num]");
+                    var followerNum = parseInt(followerNumEl.data("num")) - 1;
+                    followerNumEl.data("num", followerNum).html(followerNum)
+                }
+            });
         },
         onShowProfile: function(target, userId) {
             if (this.$el.is(':visible') && this.current_user_id == userId) {
@@ -25,6 +59,7 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
                 type: 'GET'
             }).then(function(result) {
                 that.ui.content.empty().append(result).show();
+                that.delegateEvents(this.events);
             });
         },
         showLoadingTips: function() {
