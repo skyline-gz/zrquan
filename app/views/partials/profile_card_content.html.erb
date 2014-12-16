@@ -14,12 +14,6 @@
      company = @user.latest_company
    end
 
-   region = location = nil
-   if @user.location_id
-     location = @user.location
-     region = location.region
-   end
-
    school = nil
    if @user.latest_school_id
      school = @user.latest_school
@@ -28,14 +22,11 @@
    questions = Question.where(:user_id => @user.id)
    answers = Answer.where(:user_id => @user.id)
 
-   industry_name = industry ? industry.name : '行业'
-   company_name = company ? company.name : '公司'
-   school_name = school ? school.name : '学校'
-   major_name = @user.latest_major ? @user.latest_major : '专业'
-   position_name = @user.latest_position ? @user.latest_position : '职位'
-   region_name = region ? region.name : '区域'
-   location_name = location ? location.name : '城市'
-   description_str = @user.description ? @user.description : '未填写个人描述'
+   industry_name = industry ? industry.name : '行业未填写'
+   company_name = company ? company.name : '公司未填写'
+   school_name = school ? school.name : '学校未填写'
+   major_name = @user.latest_major ? @user.latest_major : '专业未填写'
+   position_name = @user.latest_position ? @user.latest_position : '职位未填写'
 %>
 
 <div class="profile-card">

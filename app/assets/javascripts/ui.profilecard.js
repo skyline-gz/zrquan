@@ -21,7 +21,7 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             })).then(function(result){
                 if(result["code"] == "S_OK") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'关注成功',width:'100px'});
-                    $(evt.target).hide();
+                    $(evt.currentTarget).hide();
                     that.$("[data-action=un-follow]").show();
                     var followerNumEl = that.$("[data-type=followers_num]");
                     var followerNum = parseInt(followerNumEl.data("num")) + 1;
@@ -36,7 +36,7 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             })).then(function(result){
                 if(result["code"] == "S_OK") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'info',content:'取消关注成功',width:'100px'});
-                    $(evt.target).hide();
+                    $(evt.currentTarget).hide();
                     that.$("[data-action=follow]").show();
                     var followerNumEl = that.$("[data-type=followers_num]");
                     var followerNum = parseInt(followerNumEl.data("num")) - 1;
