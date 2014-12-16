@@ -1,7 +1,7 @@
 require "returncode_define.rb"
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :questions, :answers, :bookmarks]
+  before_action :set_user, only: [:show, :questions, :answers, :bookmarks, :follow, :un_follow]
   before_action :authenticate_user!
 
   # 全用户列表
@@ -16,57 +16,50 @@ class UsersController < ApplicationController
 
   # 显示
   def show
-    @is_self = false
-    if current_user
-      @is_self = (@user.id == current_user.id)
-    end
-
-    @industry = nil
-    if @user.industry_id
-      @industry = Industry.find(@user.industry_id)
-    end
-
-    @company = nil
-    if @user.latest_company_id
-      @company = Company.find(@user.latest_company_id)
-    end
-
-    @region = @location = nil
-    if @user.location_id
-      @location = Location.find(@user.location_id)
-      @region = Region.find(@location.region_id)
-    end
-
-    @school = nil
-    if @user.latest_school_id
-      @school = School.find(@user.latest_school_id)
-    end
-
-    @questions = Question.where(:user_id => @user.id)
-    @answers = Answer.where(:user_id => @user.id)
-
-    if @is_self
-      @bookmarks = Bookmark.where(:user_id => @user.id, :bookmarkable_type => 'Question')
-      @bookmark_questions = []
-      @bookmarks.each do |bookmark|
-        @bookmark_questions.push Question.find bookmark.bookmarkable_id
-      end
-    end
+    # 详细页默认显示答案
+    params[:action] = 'answers'
   end
 
   def questions
-    show
     render 'show'
   end
 
   def answers
-    show
     render 'show'
   end
 
   def bookmarks
-    show
     render 'show'
+  end
+
+  # 关注用户
+  def follow
+    id = params[:id].to_i
+    if current_user.id == id
+      render :json => { :code => ReturnCode::FA_INVALID_TARGET_ERROR } and return
+    end
+    relationship = Relationship.find_by(:following_user_id => id, :follower_id => current_user.id)
+    if relationship
+      render :json => { :code => ReturnCode::FA_RELATIONSHIP_ALREADY_EXIT}
+    else
+      Relationship.create(:following_user_id => id, :follower_id => current_user.id)
+      render :json => { :code => ReturnCode::S_OK}
+    end
+  end
+
+  # 取消关注用户
+  def un_follow
+    id = params[:id].to_i
+    if current_user.id == id
+      render :json => { :code => ReturnCode::FA_INVALID_TARGET_ERROR } and return
+    end
+    relationship = Relationship.find_by(:following_user_id => id, :follower_id => current_user.id)
+    if relationship
+      relationship.destroy
+      render :json => { :code => ReturnCode::S_OK}
+    else
+      render :json => { :code => ReturnCode::FA_RELATIONSHIP_NOT_EXIT}
+    end
   end
 
   private

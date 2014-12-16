@@ -1,11 +1,50 @@
 <%
-   industry_name = @industry ? @industry.name : '行业'
-   company_name = @company ? @company.name : '公司'
-   school_name = @school ? @school.name : '学校'
+   is_self = false
+   if current_user
+     is_self = (@user.id == current_user.id)
+   end
+
+   industry = nil
+   if @user.industry_id
+     industry = @user.industry
+   end
+
+   company = nil
+   if @user.latest_company_id
+     company = @user.latest_company
+   end
+
+   region = location = nil
+   if @user.location_id
+     location = @user.location
+     region = location.region
+   end
+
+   school = nil
+   if @user.latest_school_id
+     school = @user.latest_school
+   end
+
+   questions = Question.where(:user_id => @user.id)
+   answers = Answer.where(:user_id => @user.id)
+
+   if is_self
+     bookmarks = @user.bookmarks
+     bookmark_questions = []
+     bookmarks.each do |bookmark|
+       if bookmark.bookmarkable_type == 'Question'
+         bookmark_questions.push bookmark.bookmarkable
+       end
+     end
+   end
+   
+   industry_name = industry ? industry.name : '行业'
+   company_name = company ? company.name : '公司'
+   school_name = school ? school.name : '学校'
    major_name = @user.latest_major ? @user.latest_major : '专业'
    position_name = @user.latest_position ? @user.latest_position : '职位'
-   region_name = @region ? @region.name : '区域'
-   location_name = @location ? @location.name : '城市'
+   region_name = region ? region.name : '区域'
+   location_name = location ? location.name : '城市'
    description_str = @user.description ? @user.description : '未填写个人描述'
 %>
 
@@ -22,7 +61,7 @@
                 <img class="user-profile-logo" src="/images/noface.gif">
               <% end %>
 
-              <% if current_user and @is_self %>
+              <% if current_user and is_self %>
                   <form id='av_up_form' target="av_up_frame" method="post" enctype="multipart/form-data"
                         action="/upload/upload_avatar">
                     <input type="file" accept="image/*" name="picture" style="display: none">
@@ -51,7 +90,7 @@
                   <i class="icon icon-profile-male"></i>
               <% end %>
               <% if current_user %>
-                  <% if @is_self %>
+                  <% if is_self %>
                       <div class="user-profile-opt">
                         <div class="user-profile-opt-cont">
                           <a href="/settings/profile"><i class="icon-profile-edit"></i>编辑资料</a>
@@ -98,10 +137,10 @@
 <div class="user-content warp-content">
   <div class="user-wrap-content">
       <div class="component-categories user-content-categories">
-        <a href="/users/<%= params[:id] %>/questions" class="component-category <%=params[:action] == 'questions' ? 'component-category-current': ''%>">提问(<%= @questions.length %>)</a>
-        <a href="/users/<%= params[:id] %>/answers" class="component-category <%=params[:action] == 'answers' ? 'component-category-current': ''%>">回答(<%= @answers.length %>)</a>
-        <% if @is_self %>
-            <a href="/users/<%= params[:id] %>/bookmarks" class="component-category <%=params[:action] == 'bookmarks' ? 'component-category-current': ''%>">收藏(<%= @bookmarks.length %>)</a>
+        <a href="/users/<%= params[:id] %>/questions" class="component-category <%=params[:action] == 'questions' ? 'component-category-current': ''%>">提问(<%= questions.length %>)</a>
+        <a href="/users/<%= params[:id] %>/answers" class="component-category <%=params[:action] == 'answers' ? 'component-category-current': ''%>">回答(<%= answers.length %>)</a>
+        <% if is_self %>
+            <a href="/users/<%= params[:id] %>/bookmarks" class="component-category <%=params[:action] == 'bookmarks' ? 'component-category-current': ''%>">收藏(<%= bookmarks.length %>)</a>
             <div class="component-category">草稿(0)</div>
         <% end %>
       </div>
@@ -111,7 +150,7 @@
     <div class="user-content-left">
       <div role="infoblocks" class="user-content-infoblock">
         <% if params[:action] == 'questions' %>
-            <% @questions.each do |question| %>
+            <% questions.each do |question| %>
                 <% if question.recommend_answer %>
                     <%= render partial: 'partials/infoblock', :locals => { :question => question, :answer => question.recommend_answer} %>
                 <% else %>
@@ -119,11 +158,11 @@
                 <% end %>
             <% end %>
         <% elsif params[:action] == 'answers' %>
-            <% @answers.each do |answer| %>
+            <% answers.each do |answer| %>
                 <%= render partial: 'partials/infoblock', :locals => { :question => answer.question, :answer => answer} %>
             <% end %>
-        <% elsif @is_self and params[:action] == 'bookmarks' %>
-            <% @bookmark_questions.each do |question| %>
+        <% elsif is_self and params[:action] == 'bookmarks' %>
+            <% bookmark_questions.each do |question| %>
                 <% if question.recommend_answer %>
                     <%= render partial: 'partials/infoblock', :locals => { :question => question, :answer => question.recommend_answer} %>
                 <% else %>

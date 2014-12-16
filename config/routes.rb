@@ -50,11 +50,10 @@ Rails.application.routes.draw do
       get 'answers'
       get 'bookmarks'
       get 'drafts'
+      post 'follow'
+      post 'un_follow'
     end
   end
-
-  #职人详细页面，默认跳转到回答
-  get '/users/:id' => redirect('/users/%{id}/answers'), constraints: {id: /.*/}
 
 	resources :relationships, only: [:destroy, :create]
 

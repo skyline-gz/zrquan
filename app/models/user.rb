@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   has_many :personal_salaries
 	has_many :user_attachments
   belongs_to :location
+  belongs_to :industry
   belongs_to :latest_company, class_name: "Company"
   belongs_to :latest_school, class_name: "School"
 
