@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   add_index "answer_drafts", ["user_id"], name: "index_answer_drafts_on_user_id", using: :btree
 
   create_table "answers", force: true do |t|
+    t.integer  "token_id"
     t.text     "content"
     t.integer  "agree_score", default: 0
     t.integer  "user_id"
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["token_id"], name: "index_answers_on_token_id", unique: true, using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "article_themes", force: true do |t|
@@ -405,6 +407,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   add_index "question_themes", ["theme_id"], name: "index_question_themes_on_theme_id", using: :btree
 
   create_table "questions", force: true do |t|
+    t.integer  "token_id"
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
@@ -417,6 +420,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   end
 
   add_index "questions", ["latest_answer_id"], name: "index_questions_on_latest_answer_id", using: :btree
+  add_index "questions", ["token_id"], name: "index_questions_on_token_id", unique: true, using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "recommend_users", force: true do |t|
@@ -542,6 +546,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "token_id"
     t.string   "last_name"
     t.string   "first_name"
     t.integer  "gender"
@@ -566,6 +571,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   add_index "users", ["latest_school_id"], name: "index_users_on_latest_school_id", using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["token_id"], name: "index_users_on_token_id", unique: true, using: :btree
 
   create_table "welfares", force: true do |t|
     t.string   "content"

@@ -1,6 +1,7 @@
 class CreateAnswers < ActiveRecord::Migration
   def change
     create_table :answers do |t|
+      t.integer :token_id
       t.text :content
       t.integer :agree_score, default: 0
       t.references :user, index: true
@@ -9,5 +10,7 @@ class CreateAnswers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :answers, :token_id, unique: true
   end
 end
