@@ -69,9 +69,9 @@
     <div class="lower-right">
       <% unless is_self %>
           <!--<div class="btn-ask">咨询</div>-->
-          <div class="btn-corn" data-target-id="<%= @user.id %>" data-action="follow"
+          <div class="btn-corn" data-target-id="<%= @user.token_id %>" data-action="follow"
                style="<%= (current_user.following_u? @user) ? 'display:none': ''%>"><i class="icons-add"></i>关注</div>
-          <div class="btn-corn" data-target-id="<%= @user.id %>" data-action="un-follow"
+          <div class="btn-corn" data-target-id="<%= @user.token_id %>" data-action="un-follow"
                style="<%= (current_user.following_u? @user) ? '': 'display:none'%>"><i class="icons-add"></i>取消关注</div>
       <% end %>
     </div>

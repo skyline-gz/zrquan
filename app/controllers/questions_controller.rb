@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     start = 0
     if last_id
       @questions.each_with_index {|q, i|
-        if q.id == last_id.to_i
+        if q.token_id == last_id.to_i
           start = i
           next
         end
@@ -70,9 +70,7 @@ class QuestionsController < ApplicationController
     if params[:question][:themes] != nil
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
       themes.each do |t_id|
-        @question_theme = QuestionTheme.new
-        @question_theme.target_id = @question.id
-        @question_theme.target_type = 'Question'
+        @question_theme = @question.question_theme.new
         @question_theme.theme_id = t_id
         @question_theme.save!
       end
@@ -96,9 +94,7 @@ class QuestionsController < ApplicationController
         question_theme.destroy;
       end
       themes.each do |t_id|
-        @question_theme = QuestionTheme.new
-        @question_theme.target_id = @question.id
-        @question_theme.target_type = 'Question'
+        @question_theme = @question.question_theme.new
         @question_theme.theme_id = t_id
         @question_theme.save!
       end

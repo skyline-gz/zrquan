@@ -18,6 +18,6 @@ class RelationshipsController < ApplicationController
 	private
 		# Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by_token_id(params[:id])
     end
 end
