@@ -44,7 +44,7 @@ class Question < ActiveRecord::Base
     # invited_answers = invited_answers.sort_by {|ia| -ia.agree_score}
     # normal_answers = normal_answers.sort_by {|na| -na.agree_score}
 		# invited_answers + normal_answers
-    answers.order("agree_score")
+    answers.order("agree_score desc")
 	end
 
 	# 返回最佳答案

@@ -18,7 +18,7 @@
         <span><%= @question.answers.length %>个回答</span>
       </div>
       <div role="infoblocks">
-        <% @question.answers.each do |answer| %>
+        <% @question.sorted_answers.each do |answer| %>
             <%= render partial: 'partials/infoblock', :locals => { :question => @question, :answer => answer, \
                 :is_editable => current_user != nil && answer.user.id == current_user.id, \
                 :is_show_title => false, :is_plane_answer => false, :is_show_themes => false} %>
