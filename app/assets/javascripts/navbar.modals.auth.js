@@ -116,7 +116,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                     user: {
                         email : this.$("input[name=input-sign-in-email]").val(),
                         password : this.$("input[name=input-sign-in-password]").val(),
-                        remember_me : this.$("input[name=input-sign-in-remember-me]").isChecked
+                        remember_me : this.$("input[name=input-sign-in-remember-me]").is(":checked")
                     }
                 };
 
