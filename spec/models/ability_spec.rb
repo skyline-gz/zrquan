@@ -62,41 +62,8 @@ RSpec.describe Ability, :type => :model do
       }
     end
 
-    context "article" do
-      it { should be_able_to(:create, Article) }
-      it {
-        my_draft_article = FactoryGirl.create(:draft_article, :user=>me)
-        should be_able_to(:destroy, my_draft_article)
-      }
-      it {
-        my_published_article = FactoryGirl.create(:published_article, :user=>me)
-        should_not be_able_to(:destroy, my_published_article)
-      }
-      it {
-        my_draft_article = FactoryGirl.create(:draft_article, :user=>me)
-        should be_able_to(:edit, my_draft_article)
-      }
-      it {
-        my_published_article = FactoryGirl.create(:published_article, :user=>me)
-        should be_able_to(:edit, my_published_article)
-      }
-      it { should_not be_able_to(:edit, published_article) }
-      it { should be_able_to(:agree, published_article) }
-      it { should_not be_able_to(:agree, draft_article) }
-      it {
-        my_article = FactoryGirl.create(:published_article, :user=>me)
-        should_not be_able_to(:agree, my_article)
-      }
-      it {
-        FactoryGirl.create(:article_agree, :user=>me, :agreeable=>published_article)
-        should_not be_able_to(:agree, agreed_article = published_article)
-      }
-    end
-
     context "comment" do
       it { should be_able_to(:comment, Answer) }
-      it { should be_able_to(:comment, published_article) }
-      it { should_not be_able_to(:comment, draft_article) }
     end
 
     context "bookmark" do
@@ -105,41 +72,35 @@ RSpec.describe Ability, :type => :model do
         FactoryGirl.create(:question_bookmark, :user=>me, :bookmarkable=>question)
         should_not be_able_to(:bookmark, question)
       }
-      it { should be_able_to(:bookmark, published_article) }
-      it { should_not be_able_to(:bookmark, draft_article) }
-      it {
-        FactoryGirl.create(:article_bookmark, :user=>me, :bookmarkable=>published_article)
-        should_not be_able_to(:bookmark, published_article)
-      }
     end
 
-    context "consult" do
-      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>me) }
-      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>normal_user, :mentor=>me) }
-      let (:closed_subject) { FactoryGirl.create(:closed_subject, :apprentice=>normal_user, :mentor=>me) }
-      let (:ignored_subject) { FactoryGirl.create(:ignored_subject, :apprentice=>normal_user, :mentor=>me) }
-      let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
-      let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>normal_user, :consult_subject=>in_progress_subject) }
-      let (:other_mentor) { FactoryGirl.create(:mentor_2) }
-
-      it { should be_able_to(:create, ConsultSubject) }
-      it { should be_able_to(:consult, other_mentor) }
-      it { should be_able_to(:accept, applying_subject) }
-      it { should be_able_to(:ignore, applying_subject) }
-      it { should_not be_able_to(:accept, in_progress_subject) }
-      it { should_not be_able_to(:ignore, in_progress_subject) }
-      it { should be_able_to(:close, in_progress_subject) }
-      it { should_not be_able_to(:close, applying_subject) }
-      it { should be_able_to(:show, applying_subject) }
-      it {
-        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>other_mentor)
-        should_not be_able_to(:show, not_my_subject)
-      }
-      it { should be_able_to(:reply, in_progress_subject) }
-      it { should_not be_able_to(:reply, applying_subject) }
-      it { should be_able_to(:edit, my_reply) }
-      it { should_not be_able_to(:edit, not_my_reply) }
-    end
+    # context "consult" do
+    #   let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>me) }
+    #   let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>normal_user, :mentor=>me) }
+    #   let (:closed_subject) { FactoryGirl.create(:closed_subject, :apprentice=>normal_user, :mentor=>me) }
+    #   let (:ignored_subject) { FactoryGirl.create(:ignored_subject, :apprentice=>normal_user, :mentor=>me) }
+    #   let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
+    #   let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>normal_user, :consult_subject=>in_progress_subject) }
+    #   let (:other_mentor) { FactoryGirl.create(:mentor_2) }
+    #
+    #   it { should be_able_to(:create, ConsultSubject) }
+    #   it { should be_able_to(:consult, other_mentor) }
+    #   it { should be_able_to(:accept, applying_subject) }
+    #   it { should be_able_to(:ignore, applying_subject) }
+    #   it { should_not be_able_to(:accept, in_progress_subject) }
+    #   it { should_not be_able_to(:ignore, in_progress_subject) }
+    #   it { should be_able_to(:close, in_progress_subject) }
+    #   it { should_not be_able_to(:close, applying_subject) }
+    #   it { should be_able_to(:show, applying_subject) }
+    #   it {
+    #     not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>normal_user, :mentor=>other_mentor)
+    #     should_not be_able_to(:show, not_my_subject)
+    #   }
+    #   it { should be_able_to(:reply, in_progress_subject) }
+    #   it { should_not be_able_to(:reply, applying_subject) }
+    #   it { should be_able_to(:edit, my_reply) }
+    #   it { should_not be_able_to(:edit, not_my_reply) }
+    # end
 
     context "follow" do
       it { should be_able_to(:follow, other_user = normal_user) }
@@ -219,65 +180,32 @@ RSpec.describe Ability, :type => :model do
       }
     end
 
-    context "article" do
-      it { should be_able_to(:create, Article) }
-      it {
-        my_draft_article = FactoryGirl.create(:draft_article, :user=>me)
-        should be_able_to(:destroy, my_draft_article)
-      }
-      it {
-        my_published_article = FactoryGirl.create(:published_article, :user=>me)
-        should_not be_able_to(:destroy, my_published_article)
-      }
-      it {
-        my_draft_article = FactoryGirl.create(:draft_article, :user=>me)
-        should be_able_to(:edit, my_draft_article)
-      }
-      it {
-        my_published_article = FactoryGirl.create(:published_article, :user=>me)
-        should be_able_to(:edit, my_published_article)
-      }
-      it { should_not be_able_to(:edit, published_article) }
-      it { should be_able_to(:agree, published_article) }
-      it { should_not be_able_to(:agree, draft_article) }
-      it {
-        my_article = FactoryGirl.create(:published_article, :user=>me)
-        should_not be_able_to(:agree, my_article)
-      }
-      it {
-        FactoryGirl.create(:article_agree, :user=>me, :agreeable=>published_article)
-        should_not be_able_to(:agree, agreed_article = published_article)
-      }
-    end
-
-    context "consult" do
-      let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>me, :mentor=>verified_user) }
-      let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>me, :mentor=>verified_user) }
-      let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
-      let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>another_n_user, :consult_subject=>in_progress_subject) }
-
-      it { should be_able_to(:create, ConsultSubject) }
-      it { should be_able_to(:consult, verified_user) }
-      it { should_not be_able_to(:consult, another_n_user) }
-      it { should_not be_able_to(:accept, ConsultSubject) }
-      it { should_not be_able_to(:ignore, ConsultSubject) }
-      it { should be_able_to(:close, my_subject = in_progress_subject) }
-      it { should_not be_able_to(:close, applying_subject) }
-      it { should be_able_to(:show, my_applying_subject = applying_subject) }
-      it {
-        not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>another_n_user, :mentor=>verified_user)
-        should_not be_able_to(:show, not_my_subject)
-      }
-      it { should be_able_to(:reply, my_subject = in_progress_subject) }
-      it { should_not be_able_to(:reply, applying_subject) }
-      it { should be_able_to(:edit, my_reply) }
-      it { should_not be_able_to(:edit, not_my_reply) }
-    end
+    # context "consult" do
+    #   let (:applying_subject) { FactoryGirl.create(:applying_subject, :apprentice=>me, :mentor=>verified_user) }
+    #   let (:in_progress_subject) { FactoryGirl.create(:in_progress_subject, :apprentice=>me, :mentor=>verified_user) }
+    #   let (:my_reply) { FactoryGirl.create(:consult_reply, :user=>me, :consult_subject=>in_progress_subject) }
+    #   let (:not_my_reply) { FactoryGirl.create(:consult_reply, :user=>another_n_user, :consult_subject=>in_progress_subject) }
+    #
+    #   it { should be_able_to(:create, ConsultSubject) }
+    #   it { should be_able_to(:consult, verified_user) }
+    #   it { should_not be_able_to(:consult, another_n_user) }
+    #   it { should_not be_able_to(:accept, ConsultSubject) }
+    #   it { should_not be_able_to(:ignore, ConsultSubject) }
+    #   it { should be_able_to(:close, my_subject = in_progress_subject) }
+    #   it { should_not be_able_to(:close, applying_subject) }
+    #   it { should be_able_to(:show, my_applying_subject = applying_subject) }
+    #   it {
+    #     not_my_subject = FactoryGirl.create(:applying_subject, :apprentice=>another_n_user, :mentor=>verified_user)
+    #     should_not be_able_to(:show, not_my_subject)
+    #   }
+    #   it { should be_able_to(:reply, my_subject = in_progress_subject) }
+    #   it { should_not be_able_to(:reply, applying_subject) }
+    #   it { should be_able_to(:edit, my_reply) }
+    #   it { should_not be_able_to(:edit, not_my_reply) }
+    # end
 
     context "comment" do
       it { should be_able_to(:comment, Answer) }
-      it { should be_able_to(:comment, published_article) }
-      it { should_not be_able_to(:comment, draft_article) }
     end
 
     context "bookmark" do
@@ -285,12 +213,6 @@ RSpec.describe Ability, :type => :model do
       it {
         FactoryGirl.create(:question_bookmark, :user=>me, :bookmarkable=>question)
         should_not be_able_to(:bookmark, bookmarked_question = question)
-      }
-      it { should be_able_to(:bookmark, published_article) }
-      it { should_not be_able_to(:bookmark, draft_article) }
-      it {
-        FactoryGirl.create(:article_bookmark, :user=>me, :bookmarkable=>published_article)
-        should_not be_able_to(:bookmark, bookmarked_article = published_article)
       }
     end
 

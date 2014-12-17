@@ -24,7 +24,7 @@ class Ability
       # read only
       can :show, Question
       can :show, Answer
-      can :show, Article
+      # can :show, Article
       can :show, Comment
       can :show, UserMsgSetting
       can :show, Bookmark
@@ -59,7 +59,7 @@ class Ability
       # answer
       answer_abilities(user)
       # article
-      article_abilities(user)
+      # article_abilities(user)
       # comment
       comment_abilities(user)
 			# pm
@@ -92,7 +92,7 @@ class Ability
       # answer
       answer_abilities(user)
       # article
-      article_abilities(user)
+      # article_abilities(user)
       # comment
       comment_abilities(user)
 			# pm
@@ -127,26 +127,26 @@ class Ability
       end
     end
 
-    def article_abilities(user)
-      can :agree, Article do |a|
-        a.user_id != user.id and !user.agreed_article?(a) and !a.draft?
-      end
-      can :edit, Article, :user_id => user.id
-      can :destroy, Article, :user_id => user.id, :draft_flag => true
-    end
+    # def article_abilities(user)
+    #   can :agree, Article do |a|
+    #     a.user_id != user.id and !user.agreed_article?(a) and !a.draft?
+    #   end
+    #   can :edit, Article, :user_id => user.id
+    #   can :destroy, Article, :user_id => user.id, :draft_flag => true
+    # end
 
     def follow_abilities(user)
       can :follow, User do |target_user|
         !user.myself?(target_user) and !user.following_u?(target_user)
       end
       can :unfollow, User do |target_user|
-        user.following?(target_user)
+        user.following_u?(target_user)
       end
 			can :follow, Question do |q|
-				!user.following?(q)
+				!user.following_q?(q)
 			end
 			can :unfollow, Question do |q|
-				user.following?(q)
+				user.following_q?(q)
 			end
     end
 
@@ -162,12 +162,6 @@ class Ability
       end
       can :unbookmark, Question do |q|
         user.bookmarked_q?(q)
-      end
-      can :bookmark, Article do |a|
-        !user.bookmarked_a?(a) and !a.draft?
-      end
-      can :unbookmark, Article do |a|
-        user.bookmarked_a?(a) and !a.draft?
       end
     end
 end
