@@ -21,7 +21,7 @@
 <% is_need_truncate = (answer != nil and strip_tags(answer.content).length > 115) %>
 
 <% if answer %>
-    <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>" data-qid="<%= question.id %>">
+    <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>" data-qid="<%= question.token_id %>">
       <div class="component-infoblock-left">
         <% if answer.user.avatar != nil %>
             <img data-role="user" data-id="<%= answer.user.id %>" src="<%= Settings.upload_url + answer.user.avatar %>" class="component-infoblock-avatar">
@@ -54,7 +54,7 @@
           </span>
         </div>
         <% if is_show_title %>
-            <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
+            <a class="component-infoblock-title" href="/questions/<%= question.token_id %>"><%= question.title %></a>
         <% end %>
         <div class="component-infoblock-content">
           <textarea class="component-infoblock-raw-content" style="display: none"><%= raw answer.content %></textarea>
@@ -110,9 +110,9 @@
       </div>
     </div>
 <% else %>
-    <div class="component-infoblock" data-type="Question" data-id="<%= question.id %>" data-qid="<%= question.id %>">
+    <div class="component-infoblock" data-type="Question" data-id="<%= question.token_id %>" data-qid="<%= question.token_id %>">
       <% if is_show_title %>
-          <a class="component-infoblock-title" href="/questions/<%= question.id %>"><%= question.title %></a>
+          <a class="component-infoblock-title" href="/questions/<%= question.token_id %>"><%= question.title %></a>
       <% end %>
 
       <div class="component-infoblock-left">
@@ -141,7 +141,7 @@
         <% if is_show_question_content %>
             <div class="component-infoblock-content"><%= raw @question.content %></div>
         <% else %>
-            <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="/questions/<%= question.id %>" class="showall">我来回答</a></div>
+            <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="/questions/<%= question.token_id %>" class="showall">我来回答</a></div>
         <% end %>
         <div class="component-infoblock-footer">
           <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">

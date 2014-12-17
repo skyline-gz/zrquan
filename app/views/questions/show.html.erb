@@ -3,7 +3,7 @@
     <div class="question-title">
       <span><%= @question.title %></span>
       <% if can? :edit, @question %>
-        <a class="question-edit" href="javascript:void(0);" data-id="<%= @question.id %>">编辑问题</a>
+        <a class="question-edit" href="javascript:void(0);" data-id="<%= @question.token_id %>">编辑问题</a>
       <% end %>
     </div>
     <div class="question-body">
@@ -28,7 +28,7 @@
     <% if can? :answer, @question %>
         <div class="question-answer-editor">
           <div class="question-answer-editor-header">撰写答案</div>
-          <form id="answerForm" action="/questions/<%= @question.id %>/answers" method="post" target="_self">
+          <form id="answerForm" action="/questions/<%= @question.token_id %>/answers" method="post" target="_self">
             <textarea id="inputContent" name="answer[content]" style="display: none"></textarea>
             <script type="text/plain" id="answerContent">
                 <p class='init-content'>请输入你的回答...</p>
