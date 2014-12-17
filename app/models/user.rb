@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	before_create :randomize_token_id
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -172,6 +174,12 @@ class User < ActiveRecord::Base
 			pm = PrivateMessage.where(user1_id: other_user.id, user2_id: id)
 			pm.count > 0 ? true : false
 		end
-  end
+	end
 
+	private
+	def randomize_token_id
+		begin
+			self.token_id = Random.rand(10_000_000 ... 10_000_000_000)
+		end while User.where(token_id: self.token_id).exists?
+	end
 end

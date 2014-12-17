@@ -108,7 +108,7 @@ class QuestionsController < ApplicationController
 
   private
   def set_question
-    @question = Question.find(params[:id])
+    @question = Question.find_by_token_id(params[:id])
   end
 
   def get_questions_by_type(type)

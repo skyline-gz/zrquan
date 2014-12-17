@@ -1,4 +1,6 @@
 class Question < ActiveRecord::Base
+	before_create :randomize_token_id
+
 	searchable do
 		text :title, :content
 	end
@@ -71,4 +73,10 @@ class Question < ActiveRecord::Base
 		inv_users_ids
 	end
 
+	private
+	def randomize_token_id
+		begin
+			self.token_id = Random.rand(10_000_000 ... 10_000_000_000)
+		end while Question.where(token_id: self.token_id).exists?
+	end
 end

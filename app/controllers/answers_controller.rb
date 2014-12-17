@@ -2,26 +2,7 @@ require "date_utils.rb"
 require 'returncode_define'
 
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy, :agree]
-
-  # 列表
-  def index
-    @answers = Answer.all
-  end
-
-  # 显示
-  def show
-  end
-
-  # 新建答案对象
-  def new
-    @answer = Answer.new
-  end
-
-  # 编辑
-  def edit
-    authorize! :edit, @answer
-  end
+  before_action :set_answer, only: [:update, :agree]
 
   # 创建
   def create
@@ -83,20 +64,9 @@ class AnswersController < ApplicationController
     end
   end
 
-  # DELETE /answers/1
-  # DELETE /answers/1.json
-  #def destroy
-  #  @answer.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
-  #    format.json { head :no_content }
-  #  end
-  #end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_answer
-      @answer = Answer.find(params[:id])
+      @answer = Answer.find_by_token_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

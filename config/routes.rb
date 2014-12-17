@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   # 列出问题(ajax)
   get 'list_questions' => 'questions#list'
 
-	resources :answers, only: [:show, :edit, :update] do
+  # 创建答案，修改答案，赞同答案
+	resources :answers, only: [:create, :update] do
 		member do
 			post :agree
 		end
