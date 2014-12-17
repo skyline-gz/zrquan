@@ -1,5 +1,6 @@
 class AddDetailsToUsers < ActiveRecord::Migration
   def change
+    add_column :users, :token_id, :integer
     add_column :users, :last_name, :string
     add_column :users, :first_name, :string
     add_column :users, :gender, :integer
@@ -15,5 +16,7 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :reputation, :integer
     add_column :users, :verified_flag, :boolean
     add_column :users, :avatar, :string
+
+    add_index :users, :token_id, unique: true
   end
 end
