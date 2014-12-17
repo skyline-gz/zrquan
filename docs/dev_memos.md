@@ -4,9 +4,9 @@
 * 消息系统
 * 私信系统
 * 搜索系统【问答主题，职人】
-* 问答提问存草稿
+* 问答提问存草稿(√)
 * 问答答案存草稿
-* random token 代替modal id，以免id可被猜测
+* random token 代替modal id，以免id可被猜测(√)
 
 ### 2014/12/12
 * 【前端+后端】实现保存附件的对应（问题，答案）关系，即attachable_id，attachable_type列，以后和草稿功能也相关
