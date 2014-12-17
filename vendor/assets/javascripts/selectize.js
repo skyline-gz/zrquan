@@ -839,7 +839,7 @@
 					return '<div class="optgroup-header">' + escape(data[field_optgroup]) + '</div>';
 				},
 				'option': function(data, escape) {
-					var value = data.value;
+					var value = data[field_label];
 					return '<div class="option">' + escape(value).substr(0, 0 + data.start)
 						+ '<strong class="highlight">'
 						+ escape(value).substr(data.start, data.length)
@@ -1624,6 +1624,15 @@
 			self.options[value] = data;
 			self.lastQuery = null;
 			self.trigger('option_add', value, data);
+		},
+
+		getOptionData: function(value) {
+			var self = this;
+			if (!self.options.hasOwnProperty(value)) {
+				return null;
+			}
+			return self.options[value];
+
 		},
 	
 		/**

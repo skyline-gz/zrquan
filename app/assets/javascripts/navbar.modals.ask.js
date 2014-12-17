@@ -7,6 +7,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         el: '#askQuestionModal',
         modalName: 'askQuestionModal',
         editor: null,
+        cacheMode: false,                  //标记当前问题是否是读取以及写入到localStorage
         ui: {
             'title' : 'input[name="question[title]"]',
             'themes' : 'input[name="question[themes]"]',
@@ -14,7 +15,11 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         },
         events: {
             'click .hot-themes-wrapper .component-subject' : 'onHotThemesClick',
-            'submit form' : 'onQuestionFormSubmit'
+            'submit form' : 'onQuestionFormSubmit',
+            'input input[name="question[title]"]': 'onFormContentChange',
+            'propertychange input[name="question[title]"]': 'onFormContentChange',
+            'input input[name="question[themes]"]': 'onFormContentChange',
+            'propertychange input[name="question[themes]"]': 'onFormContentChange'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
@@ -22,6 +27,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             this.listenTo(navbarEventBus, 'modal:hide', this.hideModal);
         },
         showModal: function(modalName, isModified, options) {
+            options = options || {};
             if(this.checkCurrentModal(modalName)) {
                 isModified = isModified || false;
                 if(isModified) {
@@ -37,19 +43,61 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 }
                 if(options) {
                     var that = this;
-                    this.ui.title.val(options.title);
-                    setTimeout(function(){
-                        that.editor.setContent(options.content);
-                    }, 300);
-                    for(var i = 0; i < options.themes.length; i++ ) {
-                        this.ui.themes[0].selectize.addOption({id:options.themes[i]["id"], value:options.themes[i]["name"]});
-                        this.ui.themes[0].selectize.addItem(options.themes[i]["id"]);
+                    var title, content, themes;
+                    var cacheObj = locache.get(Zrquan.User.email + "_question_draft_form_cache_obj");
+                    if(options.cacheMode && cacheObj) {
+                        title = cacheObj.title;
+                        content = cacheObj.content;
+                        themes = cacheObj.themes;
+                    } else {
+                        title = options.title;
+                        content = options.content;
+                        themes = options.themes;
+                    }
+
+                    if(title) {
+                        this.ui.title.val(title);
+                    }
+                    if(content) {
+                        setTimeout(function(){
+                            that.editor.setContent(content);
+                        }, 300);
+                    }
+                    if(themes && _.isArray(themes)) {
+                        for(var i = 0; i < themes.length; i++ ) {
+                            if(!themes[i]) continue;
+                            this.ui.themes[0].selectize.addOption({
+                                id:themes[i]["id"],
+                                name:themes[i]["name"]
+                            });
+                            this.ui.themes[0].selectize.addItem(themes[i]["id"]);
+                        }
                     }
                 }
             }
+            this.cacheMode = options.cacheMode || false;
             Zrquan.UI.ModalView.prototype.showModal.call(this, modalName);
         },
+        onFormContentChange: function(evt) {
+            this.saveFormToLocal.call(this);
+        },
+        saveFormToLocal: _.throttle(function() {
+            if(this.cacheMode) {
+                var cacheObj = {};
+                cacheObj.title = this.ui.title.val();
+                cacheObj.content = this.editor.getContent();
+                var themeIds = this.ui.themes.val().split(',');
+                console.log(themeIds);
+                cacheObj.themes = [];
+                for(var i = 0; i < themeIds.length; i++ ) {
+                    cacheObj.themes.push(this.ui.themes[0].selectize.getOptionData(themeIds[i]));
+                }
+                locache.set(Zrquan.User.email + "_question_draft_form_cache_obj", cacheObj);
+            }
+        }, 200),
         hideModal: function() {
+            this.saveFormToLocal();
+            this.cacheMode = false;
             this.ui.title.val("");
             this.editor.setContent("");
             this.ui.themes[0].selectize.clearOptions();
@@ -58,8 +106,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         onHotThemesClick: function(evt) {
             var themeEl = this.$(evt.target);
             var id = parseInt(themeEl.data('id'));
-            var value = themeEl.data('value');
-            this.ui.themes[0].selectize.addOption({id:id, value:value});
+            var name = themeEl.data('name');
+            this.ui.themes[0].selectize.addOption({id:id, name:name});
             this.ui.themes[0].selectize.addItem(id);
         },
         onQuestionFormSubmit: function(evt) {
@@ -73,18 +121,22 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             }
         },
         render: function() {
+            var that = this;
             Zrquan.UI.ModalView.prototype.render.call(this);
             this.editor = UE.getEditor(this.ui.description[0], {
                 submitButton: false,
                 initialFrameHeight:115
+            });
+            this.editor.addListener( 'contentChange', function( editor ) {
+                that.onFormContentChange();
             });
             this.ui.themes.selectize({
                 plugins: ['remove_button'],
                 maxItems: 5,
                 separator: ',',   //在input框中值的分割符号
                 valueField: 'id',
-                labelField: 'value',
-                searchField: 'value',
+                labelField: 'name',
+                searchField: 'name',
                 placeholder: '选择或搜索主题...',
                 showSearchIcon: true,
                 persist: false,

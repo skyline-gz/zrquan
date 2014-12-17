@@ -29,7 +29,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         onClickBtnAskQuestion: function(e) {
             if(Zrquan.User.isLogin) {
                 if(Zrquan.User.isComfirmed) {
-                    navbarEventBus.trigger('modal:show', 'askQuestionModal');
+                    navbarEventBus.trigger('modal:show', 'askQuestionModal', false, {cacheMode: true});
                 } else {
                     var matches = Zrquan.Regex.EMAIL.exec(Zrquan.User.email);
                     navbarEventBus.trigger('activateModal:set', "http://mail." + matches[1], '/');
