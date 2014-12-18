@@ -31,12 +31,12 @@ class User < ActiveRecord::Base
 	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
 	has_many :followers, class_name: "User", through: :reverse_relationships
   has_one :user_msg_setting
-	has_many :user_themes
 	has_many :activities
   has_many :careers
   has_many :educations
   has_many :personal_salaries
 	has_many :user_attachments
+	has_many :answer_drafts
   belongs_to :location
   belongs_to :industry
   belongs_to :latest_company, class_name: "Company"

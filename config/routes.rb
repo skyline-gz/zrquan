@@ -1,32 +1,34 @@
 Rails.application.routes.draw do
-  resources :private_messages, except: [:destroy, :edit, :update]
+  # resources :private_messages, except: [:destroy, :edit, :update]
 
-  resources :consult_subjects, except: :destroy do
-		member do
-			post :accept
-			post :close
-			post :ignore
-		end
-	  resources :consult_replies, except: [:edit, :update, :destroy]
-	end
+  # resources :consult_subjects, except: :destroy do
+	# 	member do
+	# 		post :accept
+	# 		post :close
+	# 		post :ignore
+	# 	end
+	#   resources :consult_replies, except: [:edit, :update, :destroy]
+	# end
 
-	resources :consult_replies, only: [:show, :edit, :update]
+	# resources :consult_replies, only: [:show, :edit, :update]
 
-  resources :messages, except: [:destroy, :edit, :update]
+  # resources :messages, except: [:destroy, :edit, :update]
 
-  resources :questions, except: :destroy do
-		resources :answers, except: :destroy
+  resources :questions, except: [:new, :destroy] do
+    # 创建答案，修改答案，赞同答案
+		resources :answers, only: [:create, :update] do
+      member do
+        post :agree
+      end
+      # 保存 草稿
+      collection do
+        post :draft
+      end
+    end
   end
 
   # 列出问题(ajax)
   get 'list_questions' => 'questions#list'
-
-  # 创建答案，修改答案，赞同答案
-	resources :answers, only: [:create, :update] do
-		member do
-			post :agree
-		end
-	end
 
   devise_for :users, controllers:{
       registrations: "users/registrations",
@@ -43,9 +45,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: [:destroy, :create] do
-		collection do
-			get :verified_users
-    end
+    # collection do
+			# get :verified_users
+    # end
     member do
       get 'questions'
       get 'answers'
@@ -56,11 +58,6 @@ Rails.application.routes.draw do
       post 'un_follow'
     end
   end
-
-  get '/home/search'
-  get '/home/my_bookmark'
-  get '/home/my_draft'
-  get '/home/activate'
 
   # 收藏,取消收藏　问题，文章
   post 'bookmarks' => 'bookmarks#create'

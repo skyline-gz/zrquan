@@ -83,7 +83,7 @@
         </div>
         <% if is_editable %>
             <div class="component-infoblock-editor-wrapper">
-              <form action="/answers/<%= answer.token_id %>" method="post" target="_self">
+              <form action="/questions/<%= question.token_id %>/answers/<%= answer.token_id %>" method="post" target="_self">
                 <input type="text" name="answer[content]" />
                 <input type="text" name="_method" value="put"/>
               </form>
