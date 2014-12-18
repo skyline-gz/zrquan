@@ -119,6 +119,11 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 this.showAlert("问题至少需要选择一个合法主题", "danger");
                 return false;
             }
+            //提问成功，若开启cacheMode时，清空之
+            if(this.cacheMode) {
+                locache.remove(Zrquan.User.email + "_question_draft_form_cache_obj");
+            }
+            return true;
         },
         render: function() {
             var that = this;
