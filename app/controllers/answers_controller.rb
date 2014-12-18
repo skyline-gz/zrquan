@@ -44,7 +44,7 @@ class AnswersController < ApplicationController
 	# 赞同
   def agree
     if can? :agree, @answer
-      @question = Question.find_by_token_id(@answer.question_id)
+      @question = @answer.question
       # 更新赞同分数（因为职人的范围变广，所有人都+1）
       @answer.update!(agree_score: @answer.agree_score + 1)
       @question.update!(hot_abs: @question.hot_abs + 1)

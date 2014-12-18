@@ -21,7 +21,7 @@
 <% is_need_truncate = (answer != nil and strip_tags(answer.content).length > 115) %>
 
 <% if answer %>
-    <div class="component-infoblock" data-type="Answer" data-id="<%= answer.id %>" data-qid="<%= question.token_id %>">
+    <div class="component-infoblock" data-type="Answer" data-id="<%= answer.token_id %>" data-qid="<%= question.token_id %>">
       <div class="component-infoblock-left">
         <% if answer.user.avatar != nil %>
             <img data-role="user" data-id="<%= answer.user.token_id %>" data-url-id="<%= answer.user.url_id %>" src="<%= Settings.upload_url + answer.user.avatar %>" class="component-infoblock-avatar">
