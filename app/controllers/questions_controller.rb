@@ -39,12 +39,6 @@ class QuestionsController < ApplicationController
   def show
   end
 
-  # 新建问题对象
-  def new
-    @question = Question.new
-    @question.invitations.build
-  end
-
   # 编辑
   def edit
     if can? :edit, Question
@@ -78,7 +72,7 @@ class QuestionsController < ApplicationController
     # 创建用户行为（发布问题）
     current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
                                     publish_date: DateUtils.to_yyyymmdd(Date.today))
-    redirect_to @question
+    redirect_to action: 'show', id: @question.token_id
   end
 
   # 更新
@@ -99,7 +93,7 @@ class QuestionsController < ApplicationController
         @question_theme.save!
       end
     end
-    redirect_to @question
+    redirect_to action: 'show', id: @question.token_id
   end
 
   private

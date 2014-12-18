@@ -10,7 +10,7 @@ class AnswersController < ApplicationController
     authorize! :answer, @question
     # 创建答案
     @answer = current_user.answers.new(answer_params)
-    @answer.question_id = params[:question_id]
+    @answer.question_id = @question.id
     current_time = Time.now
     @answer.created_at = current_time
     @answer.edited_at = current_time
@@ -29,7 +29,7 @@ class AnswersController < ApplicationController
                                         extra_info2_id: @question.id, extra_info2_type: "Question")
       # TODO 发送到faye
     end
-    redirect_to question_path(@question)
+    redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
   end
 
   # 更新
@@ -38,7 +38,7 @@ class AnswersController < ApplicationController
     # 更新答案
     @answer.update!(answer_params)
     @question = Question.find(@answer.question_id)
-    redirect_to question_path(@question)
+    redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
   end
 
 	# 赞同

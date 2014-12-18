@@ -1,6 +1,6 @@
 json.code 'S_OK'
 json.data do
-  json.id @question.id
+  json.id @question.token_id
   json.title @question.title
   json.content @question.content
   json.themes @question_themes do |question_theme|
