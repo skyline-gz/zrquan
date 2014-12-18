@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   # 关注用户
   def follow
-    id = params[:id].to_i
+    id = @user.id
     if current_user.id == id
       render :json => { :code => ReturnCode::FA_INVALID_TARGET_ERROR } and return
     end
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
   # 取消关注用户
   def un_follow
-    id = params[:id].to_i
+    id = @user.id
     if current_user.id == id
       render :json => { :code => ReturnCode::FA_INVALID_TARGET_ERROR } and return
     end

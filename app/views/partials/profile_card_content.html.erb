@@ -67,7 +67,7 @@
       <div class="lower-corn">关注者&nbsp;<em data-type="followers_num" data-num="<%= @user.followers_num %>"><%= @user.followers_num %></em></div>
     </div>
     <div class="lower-right">
-      <% unless is_self %>
+      <% if current_user and !is_self %>
           <!--<div class="btn-ask">咨询</div>-->
           <div class="btn-corn" data-target-id="<%= @user.token_id %>" data-action="follow"
                style="<%= (current_user.following_u? @user) ? 'display:none': ''%>"><i class="icons-add"></i>关注</div>

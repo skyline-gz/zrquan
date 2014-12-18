@@ -57,8 +57,6 @@ Rails.application.routes.draw do
     end
   end
 
-	resources :relationships, only: [:destroy, :create]
-
   get '/home/search'
   get '/home/my_bookmark'
   get '/home/my_draft'

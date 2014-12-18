@@ -75,24 +75,6 @@ class User < ActiveRecord::Base
 		question_follows.find_by(question_id: question.id)
 	end
 
-	def follow!(other_user)
-		logger.debug("follow! method.")
-		@relationship = relationships.new
-		@relationship.following_user_id = other_user.id
-		@relationship.save!
-		logger.debug("relationship saved")
-		if user_msg_setting.followed_flag
-			logger.debug("ready to send message")
-			@relationship.following_user.messages.create!(msg_type: 10, extra_info1_id: id, extra_info1_type: "User")
-			logger.debug("message created")
-		end
-	end
-
-	def unfollow(other_user)
-		@relationship = relationships.find_by(following_user_id: other_user.id)
-		@relationship.destroy
-	end
-
 	def bookmarked_q?(question)
 		bookmarks = Bookmark.where(user_id: id, bookmarkable_id: question.id, bookmarkable_type: "Question")
 		if bookmarks.count > 0
