@@ -275,7 +275,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             Zrquan.appEventBus.trigger('profile:show', evt.currentTarget, parseInt($(evt.currentTarget).data('id')));
         },
         onShowUser: function(evt) {
-            location.href = '/users/' + $(evt.currentTarget).data('id');
+            location.href = '/users/' + $(evt.currentTarget).data('url-id');
         },
         updateBookmarksNum: function(num) {
             num = num || 0;

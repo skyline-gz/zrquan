@@ -1,5 +1,7 @@
+require 'ruby-pinyin'
+
 class User < ActiveRecord::Base
-	before_create :randomize_token_id
+	after_create :after_create_user
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -178,8 +180,20 @@ class User < ActiveRecord::Base
 
 	private
 	def randomize_token_id
-		begin
-			self.token_id = Random.rand(10_000_000 ... 10_000_000_000)
-		end while User.where(token_id: self.token_id).exists?
+		self.token_id = 105173 + self.id * 31 + SecureRandom.random_number(31)
+	end
+
+	def generate_url_id
+		url_id = PinYin.permlink(self.last_name) + '-' + PinYin.permlink(self.first_name)
+		if User.find_by_url_id url_id
+			url_id += self.id * 17 + SecureRandom.random_number(17)
+		end
+		self.url_id = url_id
+	end
+
+	def after_create_user
+		randomize_token_id
+		generate_url_id
+		self.save
 	end
 end

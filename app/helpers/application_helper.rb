@@ -2,9 +2,9 @@ module ApplicationHelper
   # 生成姓名
   def generate_name(first_name, last_name)
     if check_english(first_name)|| check_english(last_name)
-      first_name + ' ' + last_name
+      last_name + ' ' + first_name
     else
-      first_name + last_name
+      last_name + first_name
     end
   end
 

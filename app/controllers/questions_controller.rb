@@ -70,7 +70,7 @@ class QuestionsController < ApplicationController
     if params[:question][:themes] != nil
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
       themes.each do |t_id|
-        @question_theme = @question.question_theme.new
+        @question_theme = @question.question_themes.new
         @question_theme.theme_id = t_id
         @question_theme.save!
       end
@@ -94,7 +94,7 @@ class QuestionsController < ApplicationController
         question_theme.destroy;
       end
       themes.each do |t_id|
-        @question_theme = @question.question_theme.new
+        @question_theme = @question.question_themes.new
         @question_theme.theme_id = t_id
         @question_theme.save!
       end

@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-	before_create :randomize_token_id
+	after_create :randomize_token_id
 
 	searchable do
 		text :title, :content
@@ -75,8 +75,7 @@ class Question < ActiveRecord::Base
 
 	private
 	def randomize_token_id
-		begin
-			self.token_id = Random.rand(10_000_000 ... 10_000_000_000)
-		end while Question.where(token_id: self.token_id).exists?
+		self.token_id = 102139 + self.id * 29 + SecureRandom.random_number(29)
+		self.save
 	end
 end
