@@ -208,7 +208,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                     Module.askQuestionModuleView.ui.themes[0].selectize.addItem(data.data.id);
                 } else if(data.code == "FA_NOT_SUPPORTED_PARAMETERS") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'输入参数错误'});
-                } else if(data.code == "FA_TERM_ALREADY_EXIT") {
+                } else if(data.code == "FA_RESOURCE_ALREADY_EXIST") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'不能创建已有主题'});
                 }
                 that.$( "input[name=name]").val("");

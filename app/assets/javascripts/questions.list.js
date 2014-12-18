@@ -91,7 +91,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
         Module.loadMoreView.$el.show();
         counter ++;
 
-        var url = "/list_questions?type=" + Module.infosView.$el.data("list-type")
+        var url = "/questions/list?type=" + Module.infosView.$el.data("list-type")
             + "&last_id=" + Module.infosView.$('.component-infoblock:last-child').data("qid");
         Zrquan.Ajax.request({
             url: url,

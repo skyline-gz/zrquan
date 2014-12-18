@@ -2,10 +2,12 @@ require "date_utils.rb"
 require 'returncode_define'
 
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:update, :agree, :draft]
+  before_action :set_answer, only: [:update, :agree]
+  before_action :authenticate_user!
 
   # 创建
   def create
+    @question = Question.find_by_token_id(params[:question_id])
     authorize! :answer, @question
     # 创建答案
     @answer = current_user.answers.new(answer_params)
@@ -38,20 +40,6 @@ class AnswersController < ApplicationController
     @answer.update!(answer_params)
     @question = Question.find(@answer.question_id)
     redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
-  end
-
-  # 存草稿
-  def draft
-    if current_user.answered? @question
-      render :json => { :code => ReturnCode::FA_QUESTION_ALREADY_ANSWERED } and return;
-    end
-    answer_draft = AnswerDraft.find_by(:user_id => current_user.id, :question_id => @question.id)
-    unless answer_draft
-      answer_draft = current_user.answer_drafts.new(:user_id => current_user.id, :question_id => @question.id)
-    end
-    answer_draft.content = params[:content]
-    answer_draft.save
-    render :json => { :code => ReturnCode::S_OK }
   end
 
 	# 赞同
