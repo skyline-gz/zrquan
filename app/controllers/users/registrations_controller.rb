@@ -34,7 +34,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     yield resource if block_given?
     if resource_saved
-      unless resource.user_msg_setting.create
+      @user_msg_setting =	UserMsgSetting.new
+      @user_msg_setting.user_id = resource.id
+      unless @user_msg_setting.save
         logger.error "create user msg setting failure: id=" + resource.id
       end
       if resource.active_for_authentication?
