@@ -88,9 +88,9 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
                     var draft = result.data.content;
                     setTimeout(function(){
                         editor.setContent(draft, null, null, true);
-                    }, 500);
-                } else if (result['code'] == "FA_UNAUTHORIZED") {
-                    //Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'没有权限', width: '100px'});
+                    }, 100);
+                } else if (result['code'] == "FA_RESOURCE_NOT_EXIST") {
+                    //no draft do nothing
                 }
             });
         }

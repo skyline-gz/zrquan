@@ -70,7 +70,7 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         }
     });
 
-    //系统的alert, info, error,等模态框的服务
+    //系统的alert, info, error, confirm等模态框的服务
     //只建议通过Zrquan.appEventBus.trigger('modal:sys',{type:'info',title:'测试提示标题',content:'测试提示内容',onOK:function(){alert('123');}})
     //方式调用
     Module._sysModalView = new (Module.ModalView.extend({

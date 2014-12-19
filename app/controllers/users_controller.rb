@@ -2,7 +2,7 @@ require "returncode_define.rb"
 
 class UsersController < ApplicationController
   before_action :set_user_by_token_id, only: [:follow, :un_follow, :profile]
-  before_action :set_user_by_url_id, only: [:show,:questions, :answers, :bookmarks]
+  before_action :set_user_by_url_id, only: [:show,:questions, :answers, :bookmarks, :drafts]
   before_action :authenticate_user!, except: [:profile]
 
   # 全用户列表
@@ -30,6 +30,10 @@ class UsersController < ApplicationController
   end
 
   def bookmarks
+    render 'show'
+  end
+
+  def drafts
     render 'show'
   end
 

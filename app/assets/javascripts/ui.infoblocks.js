@@ -1,5 +1,8 @@
 Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _){
     "use strict";
+
+    Zrquan.UI.InfoBlocks = Zrquan.UI.InfoBlocks || undefined;
+
     Module.eventBus = new Backbone.Wreqr.EventAggregator();
 
     Module.InfoBlockCommentItem = Backbone.Model.extend({});
@@ -142,7 +145,6 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             }
         }
     });
-
 
     //信息块视图
     Module.InfoBlockView = Backbone.Marionette.LayoutView.extend({
