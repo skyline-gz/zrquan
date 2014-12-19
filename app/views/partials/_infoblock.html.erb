@@ -100,8 +100,8 @@
           </div>
           <% if is_show_themes %>
               <div class="component-infoblock-subjects">
-                <% question.question_themes.each do |question_theme| %>
-                    <div class="component-subject"><%= question_theme.theme.name %></div>
+                <% question.themes.each do |theme| %>
+                    <div class="component-subject"><%= theme.name %></div>
                 <% end %>
               </div>
           <% end %>
@@ -158,8 +158,8 @@
           </div>
           <% if is_show_themes %>
               <div class="component-infoblock-subjects">
-                <% question.question_themes.each do |question_theme| %>
-                    <div class="component-subject"><%= question_theme.theme.name %></div>
+                <% question.themes.each do |theme| %>
+                    <div class="component-subject"><%= theme.name %></div>
                 <% end %>
               </div>
           <% end %>
