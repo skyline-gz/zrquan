@@ -1,8 +1,7 @@
-require "date_utils.rb"
 require 'returncode_define'
 
 class AnswerDraftsController < ApplicationController
-  before_action :set_question, only: [:save, :show]
+  before_action :set_question, only: [:save, :fetch]
   before_action :authenticate_user!
 
   # 存草稿
@@ -20,7 +19,7 @@ class AnswerDraftsController < ApplicationController
   end
 
   # 取一条草稿
-  def show
+  def fetch
     @answer_draft = AnswerDraft.find_by(:user_id => current_user.id, :question_id => @question.id)
     unless @answer_draft
       render :json => { :code => ReturnCode::FA_RESOURCE_NOT_EXIST } and return

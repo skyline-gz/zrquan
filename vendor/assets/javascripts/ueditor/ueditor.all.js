@@ -1,7 +1,7 @@
 /*!
  * ueditor
  * version: 1.4.3
- * build: Fri Dec 12 2014 15:27:15 GMT+0800 (CST)
+ * build: Fri Dec 19 2014 12:39:30 GMT+0800 (CST)
  */
 
 (function($){
@@ -7324,7 +7324,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
          * editor.setContent('<p>new text</p>', true); //插入的结果是<p>old text</p><p>new text</p>
          * ```
          */
-        setContent: function (html, isAppendTo, notFireSelectionchange) {
+        setContent: function (html, isAppendTo, notFireSelectionchange, notFireContentChange) {
             var me = this;
 
             me.fireEvent('beforesetcontent', html);
@@ -7371,7 +7371,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
                 }
             }
             me.fireEvent('aftersetcontent');
-            me.fireEvent('contentchange');
+            !notFireContentChange && me.fireEvent('contentchange');
 
             !notFireSelectionchange && me._selectionChange();
             //清除保存的选区
@@ -23960,9 +23960,9 @@ UE.plugin.register('autosave', function (){
         //无限循环保护
         lastSaveTime = new Date(),
         //最小保存间隔时间
-        MIN_TIME = 20,
+        MIN_TIME = 20;
         //auto save key
-        saveKey = null;
+        //saveKey = null;
 
     function save ( editor ) {
 
@@ -23990,12 +23990,23 @@ UE.plugin.register('autosave', function (){
             return;
         }
 
-        me.setPreferences( saveKey, saveData );
-
-        editor.fireEvent( "afterautosave", {
-            content: saveData
-        } );
-
+        //这里使用远端作保存
+        //me.setPreferences( saveKey, saveData );
+        UE.ajax.request( me.getOpt('autoSavePath') , {
+            data: {
+                 content: saveData
+            },
+            onsuccess: function ( xhr ) {
+                editor.fireEvent( "afterautosave", {
+                    content: saveData
+                });
+             },
+            onerror: function ( xhr ) {
+                editor.fireEvent( "afterautosave", {
+                    content: saveData
+                });
+            }
+        });
     }
 
     return {
@@ -24088,6 +24099,7 @@ UE.plugin.register('autosave', function (){
     }
 
 });
+
 
 // plugins/charts.js
 UE.plugin.register('charts', function (){
@@ -28680,6 +28692,16 @@ UE.ui = baidu.editor.ui = {};
                     var tipKey = editor.options.submitButtonTipKey ? editor.options.submitButtonTipKey : "submitTips";
                     editor.ui.getDom('submitbtn').innerHTML = editor.getLang(tipKey);
                 }
+                //初始化自动保存tips
+                if(editor.options.enableAutoSave) {
+                    editor.addListener('contentChange', function (t, evt) {
+                        editor.ui.getDom('savetip').style.cssText = "display:block";
+                        editor.ui.getDom('savetiptext').innerHTML = editor.getLang("autosave.saving");
+                    });
+                    editor.addListener('afterautosave', function (t, evt) {
+                        editor.ui.getDom('savetiptext').innerHTML = editor.getLang("autosave.success");
+                    });
+                }
                 //初始化提交按钮
                 if (editor.options.cancelButton) {
                     function onCancelBtnClick() {
@@ -28719,6 +28741,8 @@ UE.ui = baidu.editor.ui = {};
                     editor.ui.getDom('submitbtn').style.display = "none";
                 } else if (!editor.options.cancelButton) {
                     editor.ui.getDom('cancelbtn').style.display = "none";
+                } else if (!editor.options.enableAutoSave) {
+                    editor.ui.getDom('savetip').style.display = "none";
                 }
 
                 if (!editor.selection.isFocus())return;
@@ -29066,9 +29090,15 @@ UE.ui = baidu.editor.ui = {};
                 '</div>' +
                 '<div id="##_iframeholder" class="%%-iframeholder">' +
                 '</div>' +
-                //提交按钮
                 '<div id=##_bottomoptsbar class="%%-bottomsubmitContainer">' +
+                //草稿
+                '<div id=##_savetip class="%%-saveTipContainer" style="display:none;">' +
+                '<i id=##_deleteicon class="%%-deleteIcon"></i>' +
+                '<span id=##_savetiptext class="%%-saveTipText"></span>' +
+                '</div>' +
+                //提交按钮
                 '<div id="##_submitbtn" class="%%-submitbtn"></div>' +
+                //取消按钮
                 '<div id="##_cancelbtn" class="%%-cancelbtn"></div>' +
                 '</div>' +
                 //modify wdcount by matao

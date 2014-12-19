@@ -26,9 +26,10 @@ Rails.application.routes.draw do
       end
     end
     # 获取草稿，保存草稿
-    resources :answer_drafts, only: [:show], :constraints => {:format => 'json'} do
+    resources :answer_drafts, only: [] do
       collection do
         post :save, :constraints => {:format => 'json'}
+        get :fetch, :constraints => {:format => 'json'}
       end
     end
   end

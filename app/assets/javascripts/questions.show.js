@@ -63,15 +63,34 @@ Zrquan.module('Questions.Show', function(Module, App, Backbone, Marionette, $, _
 
         //初始化【攒写答案】
         if ($('#answerContent')[0]) {
+            var qid = $('#answerForm').data('qid');
             var editor = UE.getEditor('answerContent', {
                 UEDITOR_HOME_URL: '/assets/ueditor/',
                 submitButton: true,
+                submitButtonTipKey: 'publishAnswer',
+                enableAutoSave: true,
+                saveInterval: 5000,
+                autoSavePath: '/questions/' + qid + '/answer_drafts/save',
                 initialFrameHeight: 150,
                 onSubmitButtonClick: function(e) {
                     var value = editor.getContent();
                     $('#inputContent').val(value);
                     $('#answerForm').submit();
                     return false;
+                }
+            });
+
+            Zrquan.Ajax.request({
+                url: '/questions/' + qid + '/answer_drafts/fetch',
+                type: 'GET'
+            }).then(function(result) {
+                if (result['code'] == "S_OK") {
+                    var draft = result.data.content;
+                    setTimeout(function(){
+                        editor.setContent(draft, null, null, true);
+                    }, 500);
+                } else if (result['code'] == "FA_UNAUTHORIZED") {
+                    //Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'没有权限', width: '100px'});
                 }
             });
         }

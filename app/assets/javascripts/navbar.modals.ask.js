@@ -37,7 +37,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                     this.$('input[name=_method]').val("PATCH");
                 } else {
                     this.$('.modal-title').html("提问");
-                    this.$('.btn-primary').html("提交");
+                    this.$('.btn-primary').html("发布");
                     this.$('form').attr('action', '/questions');
                     this.$('input[name=_method]').val("POST");
                 }

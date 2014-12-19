@@ -9,6 +9,9 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find_by_token_id(params[:question_id])
     authorize! :answer, @question
+    # 删除已创建草稿
+    @answer_draft = AnswerDraft.find_by(:user_id => current_user.id, :question_id => @question.id)
+    @answer_draft.destroy
     # 创建答案
     @answer = current_user.answers.new(answer_params)
     @answer.question_id = @question.id
