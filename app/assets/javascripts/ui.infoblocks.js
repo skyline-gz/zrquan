@@ -143,6 +143,17 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             } else {
                 Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'评论内容不能为空'});
             }
+        },
+        //自动定位小箭头
+        positionPointer: function() {
+            var $pointer = this.$('.component-infoblock-icon-spike');
+            if($pointer.is(":visible")) {
+                var $anchor = this.options.parentView.$('.component-infoblock-opts-comment-hide');
+                $pointer.css({left: ($anchor.offset().left - this.$el.offset().left + 34) + "px"});
+            }
+        },
+        onShow: function(){
+            this.positionPointer();
         }
     });
 
