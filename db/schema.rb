@@ -544,6 +544,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "token_id"
+    t.string   "url_id"
     t.string   "last_name"
     t.string   "first_name"
     t.integer  "gender"
@@ -569,6 +570,7 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["token_id"], name: "index_users_on_token_id", unique: true, using: :btree
+  add_index "users", ["url_id"], name: "index_users_on_url_id", unique: true, using: :btree
 
   create_table "welfares", force: true do |t|
     t.string   "content"

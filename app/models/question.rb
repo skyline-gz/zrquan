@@ -1,4 +1,6 @@
 class Question < ActiveRecord::Base
+	after_create :randomize_token_id
+
 	searchable do
 		text :title, :content
 	end
@@ -71,4 +73,9 @@ class Question < ActiveRecord::Base
 		inv_users_ids
 	end
 
+	private
+	def randomize_token_id
+		self.token_id = 102139 + self.id * 29 + SecureRandom.random_number(29)
+		self.save
+	end
 end

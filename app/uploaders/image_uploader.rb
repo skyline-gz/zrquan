@@ -26,8 +26,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     # "uploads/avatars/" + current_user.id
     # "#{model.user.first_name}/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.title}"
-    # 存储格式应该是　http://zrquan.qiniudn.com/uploads/user/avatars/user.id
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # 存储格式应该是　http://zrquan.qiniudn.com/uploads/avatars(或images)/user.token_id
+    "uploads/#{mounted_as}/#{model.token_id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

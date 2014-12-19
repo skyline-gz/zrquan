@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     start = 0
     if last_id
       @questions.each_with_index {|q, i|
-        if q.id == last_id.to_i
+        if q.token_id == last_id.to_i
           start = i
           next
         end
@@ -37,12 +37,6 @@ class QuestionsController < ApplicationController
 
   # 显示
   def show
-  end
-
-  # 新建问题对象
-  def new
-    @question = Question.new
-    @question.invitations.build
   end
 
   # 编辑
@@ -70,9 +64,7 @@ class QuestionsController < ApplicationController
     if params[:question][:themes] != nil
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
       themes.each do |t_id|
-        @question_theme = QuestionTheme.new
-        @question_theme.target_id = @question.id
-        @question_theme.target_type = 'Question'
+        @question_theme = @question.question_themes.new
         @question_theme.theme_id = t_id
         @question_theme.save!
       end
@@ -80,7 +72,7 @@ class QuestionsController < ApplicationController
     # 创建用户行为（发布问题）
     current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
                                     publish_date: DateUtils.to_yyyymmdd(Date.today))
-    redirect_to @question
+    redirect_to action: 'show', id: @question.token_id
   end
 
   # 更新
@@ -96,19 +88,17 @@ class QuestionsController < ApplicationController
         question_theme.destroy;
       end
       themes.each do |t_id|
-        @question_theme = QuestionTheme.new
-        @question_theme.target_id = @question.id
-        @question_theme.target_type = 'Question'
+        @question_theme = @question.question_themes.new
         @question_theme.theme_id = t_id
         @question_theme.save!
       end
     end
-    redirect_to @question
+    redirect_to action: 'show', id: @question.token_id
   end
 
   private
   def set_question
-    @question = Question.find(params[:id])
+    @question = Question.find_by_token_id(params[:id])
   end
 
   def get_questions_by_type(type)

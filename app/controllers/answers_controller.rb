@@ -2,34 +2,16 @@ require "date_utils.rb"
 require 'returncode_define'
 
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy, :agree]
-
-  # 列表
-  def index
-    @answers = Answer.all
-  end
-
-  # 显示
-  def show
-  end
-
-  # 新建答案对象
-  def new
-    @answer = Answer.new
-  end
-
-  # 编辑
-  def edit
-    authorize! :edit, @answer
-  end
+  before_action :set_answer, only: [:update, :agree]
+  before_action :authenticate_user!
 
   # 创建
   def create
-    @question = Question.find(params[:question_id])
+    @question = Question.find_by_token_id(params[:question_id])
     authorize! :answer, @question
     # 创建答案
     @answer = current_user.answers.new(answer_params)
-    @answer.question_id = params[:question_id]
+    @answer.question_id = @question.id
     current_time = Time.now
     @answer.created_at = current_time
     @answer.edited_at = current_time
@@ -48,7 +30,7 @@ class AnswersController < ApplicationController
                                         extra_info2_id: @question.id, extra_info2_type: "Question")
       # TODO 发送到faye
     end
-    redirect_to question_path(@question)
+    redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
   end
 
   # 更新
@@ -57,13 +39,12 @@ class AnswersController < ApplicationController
     # 更新答案
     @answer.update!(answer_params)
     @question = Question.find(@answer.question_id)
-    redirect_to question_path(@question)
+    redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
   end
 
 	# 赞同
   def agree
     if can? :agree, @answer
-      @question = Question.find(@answer.question_id)
       # 更新赞同分数（因为职人的范围变广，所有人都+1）
       @answer.update!(agree_score: @answer.agree_score + 1)
       @question.update!(hot_abs: @question.hot_abs + 1)
@@ -83,20 +64,10 @@ class AnswersController < ApplicationController
     end
   end
 
-  # DELETE /answers/1
-  # DELETE /answers/1.json
-  #def destroy
-  #  @answer.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
-  #    format.json { head :no_content }
-  #  end
-  #end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_answer
-      @answer = Answer.find(params[:id])
+      @question = Question.find_by_token_id(params[:question_id])
+      @answer = Answer.find_by_token_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

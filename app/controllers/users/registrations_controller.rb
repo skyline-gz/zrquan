@@ -34,10 +34,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     yield resource if block_given?
     if resource_saved
-			# TODO if user_msg_setting cannot be saved, set error message to the log
-			@user_msg_setting =	UserMsgSetting.new
-			@user_msg_setting.user_id = resource.id
-			@user_msg_setting.save!
+      unless resource.user_msg_setting.create
+        logger.error "create user msg setting failure: id=" + resource.id
+      end
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)

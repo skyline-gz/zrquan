@@ -196,9 +196,10 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
         },
         onAgreeAnswerClick: function(evt) {
             var that = this;
-            var answerId = this.$el.attr('data-id');
+            var answerId = this.$el.data('id');
+            var questionId = this.$el.data('qid');
             $.when(Zrquan.Ajax.request({
-                url: "/answers/" + answerId + "/agree",
+                url: "/questions/"+ questionId + "/answers/" + answerId + "/agree",
                 data: {}
             })).then(function(result) {
                 if (result.code == "S_OK") {
@@ -275,7 +276,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             Zrquan.appEventBus.trigger('profile:show', evt.currentTarget, parseInt($(evt.currentTarget).data('id')));
         },
         onShowUser: function(evt) {
-            location.href = '/users/' + $(evt.currentTarget).data('id');
+            location.href = '/users/' + $(evt.currentTarget).data('url-id');
         },
         updateBookmarksNum: function(num) {
             num = num || 0;

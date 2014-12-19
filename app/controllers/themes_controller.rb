@@ -36,7 +36,7 @@ class ThemesController < ApplicationController
           raise
         end
       rescue Exception
-        code = ReturnCode::FA_TERM_ALREADY_EXIT
+        code = ReturnCode::FA_RESOURCE_ALREADY_EXIST
       end
       render :json => {:code => code}
     else

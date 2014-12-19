@@ -1,5 +1,9 @@
 每日开发功能发布
 ======
+### 2014/12/18
+* user,question,answer 使用token_id 代替modal id做请求，以免id可被猜测
+* user支持使用类汉语拼音生成url_id，在个人主页默认使用此url_id代替id或token_id做路由
+
 ### 2014/12/17
 * 问答－提问，支持使用localStorage存草稿
 

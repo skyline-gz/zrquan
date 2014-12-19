@@ -1,4 +1,8 @@
+require 'ruby-pinyin'
+
 class User < ActiveRecord::Base
+	after_create :after_create_user
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -27,12 +31,12 @@ class User < ActiveRecord::Base
 	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
 	has_many :followers, class_name: "User", through: :reverse_relationships
   has_one :user_msg_setting
-	has_many :user_themes
 	has_many :activities
   has_many :careers
   has_many :educations
   has_many :personal_salaries
 	has_many :user_attachments
+	has_many :answer_drafts
   belongs_to :location
   belongs_to :industry
   belongs_to :latest_company, class_name: "Company"
@@ -69,24 +73,6 @@ class User < ActiveRecord::Base
 
 	def following_q?(question)
 		question_follows.find_by(question_id: question.id)
-	end
-
-	def follow!(other_user)
-		logger.debug("follow! method.")
-		@relationship = relationships.new
-		@relationship.following_user_id = other_user.id
-		@relationship.save!
-		logger.debug("relationship saved")
-		if user_msg_setting.followed_flag
-			logger.debug("ready to send message")
-			@relationship.following_user.messages.create!(msg_type: 10, extra_info1_id: id, extra_info1_type: "User")
-			logger.debug("message created")
-		end
-	end
-
-	def unfollow(other_user)
-		@relationship = relationships.find_by(following_user_id: other_user.id)
-		@relationship.destroy
 	end
 
 	def bookmarked_q?(question)
@@ -172,6 +158,24 @@ class User < ActiveRecord::Base
 			pm = PrivateMessage.where(user1_id: other_user.id, user2_id: id)
 			pm.count > 0 ? true : false
 		end
-  end
+	end
 
+	private
+	def randomize_token_id
+		self.token_id = 105173 + self.id * 31 + SecureRandom.random_number(31)
+	end
+
+	def generate_url_id
+		url_id = PinYin.permlink(self.last_name) + '-' + PinYin.permlink(self.first_name)
+		if User.find_by_url_id url_id
+			url_id += self.id * 17 + SecureRandom.random_number(17)
+		end
+		self.url_id = url_id
+	end
+
+	def after_create_user
+		randomize_token_id
+		generate_url_id
+		self.save
+	end
 end

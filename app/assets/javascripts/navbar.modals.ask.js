@@ -68,7 +68,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                             if(!themes[i]) continue;
                             this.ui.themes[0].selectize.addOption({
                                 id:themes[i]["id"],
-                                name:themes[i]["name"]
+                                value:themes[i]["value"]
                             });
                             this.ui.themes[0].selectize.addItem(themes[i]["id"]);
                         }
@@ -106,8 +106,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
         onHotThemesClick: function(evt) {
             var themeEl = this.$(evt.target);
             var id = parseInt(themeEl.data('id'));
-            var name = themeEl.data('name');
-            this.ui.themes[0].selectize.addOption({id:id, name:name});
+            var value = themeEl.data('value');
+            this.ui.themes[0].selectize.addOption({id:id, value:value});
             this.ui.themes[0].selectize.addItem(id);
         },
         onQuestionFormSubmit: function(evt) {
@@ -119,6 +119,11 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 this.showAlert("问题至少需要选择一个合法主题", "danger");
                 return false;
             }
+            //提问成功，若开启cacheMode时，清空之
+            if(this.cacheMode) {
+                locache.remove(Zrquan.User.email + "_question_draft_form_cache_obj");
+            }
+            return true;
         },
         render: function() {
             var that = this;
@@ -135,8 +140,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                 maxItems: 5,
                 separator: ',',   //在input框中值的分割符号
                 valueField: 'id',
-                labelField: 'name',
-                searchField: 'name',
+                labelField: 'value',
+                searchField: 'value',
                 placeholder: '选择或搜索主题...',
                 showSearchIcon: true,
                 persist: false,
@@ -195,7 +200,6 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             var that = this;
             this.$('#theme-create-form').on('ajax:success', function(xhr, data, status) {
                 if(data.code == "S_OK") {
-                    console.log(data);
                     var themeName = that.ui.themeName.val();
                     Module.askQuestionModuleView.showAlert('创建主题【' + themeName + '】成功', "success");
                     locache.remove("ac_themes_" + themeName);
@@ -204,7 +208,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                     Module.askQuestionModuleView.ui.themes[0].selectize.addItem(data.data.id);
                 } else if(data.code == "FA_NOT_SUPPORTED_PARAMETERS") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'输入参数错误'});
-                } else if(data.code == "FA_TERM_ALREADY_EXIT") {
+                } else if(data.code == "FA_RESOURCE_ALREADY_EXIST") {
                     Zrquan.appEventBus.trigger('poptips:sys',{type:'error',content:'不能创建已有主题'});
                 }
                 that.$( "input[name=name]").val("");

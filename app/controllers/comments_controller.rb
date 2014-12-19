@@ -1,5 +1,5 @@
 require 'returncode_define'
-require "date_utils.rb"
+require 'date_utils.rb'
 
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
     id = params[:id]
 
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
-      @comment_related_obj = type.constantize.find(id)
-      @comments = Comment.where(:commentable_id => id, :commentable_type => type).order('updated_at')
+      @comment_related_obj = type.constantize.find_by_token_id(id)
+      @comments = Comment.where(:commentable_id => @comment_related_obj.id, :commentable_type => type).order('updated_at')
       render 'comments/show'
     else
       render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
@@ -32,11 +32,11 @@ class CommentsController < ApplicationController
     end
 
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
-      @comment_related_obj = type.constantize.find(id)
+      @comment_related_obj = type.constantize.find_by_token_id(id)
       if can? :comment, @comment_related_obj
         @comment = current_user.comments.new({:content => content})
         @comment.commentable_type = type
-        @comment.commentable_id = id
+        @comment.commentable_id = @comment_related_obj.id
         @comment.replied_comment_id = replied_comment_id
         @comment.save!
 

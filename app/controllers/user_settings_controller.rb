@@ -125,7 +125,7 @@ class UserSettingsController < ApplicationController
 
   private
   def set_user_msg_setting
-    @user_msg_setting = UserMsgSetting.find(current_user.id)
+    @user_msg_setting = current_user.user_msg_setting
   end
 
   def user_msg_setting_params

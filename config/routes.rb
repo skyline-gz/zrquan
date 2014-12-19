@@ -1,31 +1,37 @@
 Rails.application.routes.draw do
-  resources :private_messages, except: [:destroy, :edit, :update]
+  # resources :private_messages, except: [:destroy, :edit, :update]
 
-  resources :consult_subjects, except: :destroy do
-		member do
-			post :accept
-			post :close
-			post :ignore
-		end
-	  resources :consult_replies, except: [:edit, :update, :destroy]
-	end
+  # resources :consult_subjects, except: :destroy do
+	# 	member do
+	# 		post :accept
+	# 		post :close
+	# 		post :ignore
+	# 	end
+	#   resources :consult_replies, except: [:edit, :update, :destroy]
+	# end
 
-	resources :consult_replies, only: [:show, :edit, :update]
+	# resources :consult_replies, only: [:show, :edit, :update]
 
-  resources :messages, except: [:destroy, :edit, :update]
+  # resources :messages, except: [:destroy, :edit, :update]
 
-  resources :questions, except: :destroy do
-		resources :answers, except: :destroy
+  resources :questions, except: [:new, :destroy] do
+    # 列出问题(ajax)
+    collection do
+      get :list, :constraints => {:format => 'json'}
+    end
+    # 创建答案，修改答案，赞同答案
+		resources :answers, only: [:create, :update] do
+      member do
+        post :agree, :constraints => {:format => 'json'}
+      end
+    end
+    # 获取草稿，保存草稿
+    resources :answer_drafts, only: [:show], :constraints => {:format => 'json'} do
+      collection do
+        post :save, :constraints => {:format => 'json'}
+      end
+    end
   end
-
-  # 列出问题(ajax)
-  get 'list_questions' => 'questions#list'
-
-	resources :answers, only: [:show, :edit, :update] do
-		member do
-			post :agree
-		end
-	end
 
   devise_for :users, controllers:{
       registrations: "users/registrations",
@@ -42,30 +48,20 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: [:destroy, :create] do
-		collection do
-			get :verified_users
-    end
     member do
       get 'questions'
       get 'answers'
       get 'bookmarks'
       get 'drafts'
       get 'profile'
-      post 'follow'
-      post 'un_follow'
+      post 'follow', :constraints => {:format => 'json'}
+      post 'un_follow', :constraints => {:format => 'json'}
     end
   end
 
-	resources :relationships, only: [:destroy, :create]
-
-  get '/home/search'
-  get '/home/my_bookmark'
-  get '/home/my_draft'
-  get '/home/activate'
-
   # 收藏,取消收藏　问题，文章
-  post 'bookmarks' => 'bookmarks#create'
-  delete 'bookmarks' => 'bookmarks#destroy'
+  post 'bookmarks' => 'bookmarks#create', :constraints => {:format => 'json'}
+  delete 'bookmarks' => 'bookmarks#destroy', :constraints => {:format => 'json'}
 
 
   # 评论问题，评论答案
@@ -87,7 +83,7 @@ Rails.application.routes.draw do
   post 'themes' => 'themes#create'
 
   #　自动匹配
-  post 'automatch' => 'automatch#do_match'
+  post 'automatch' => 'automatch#do_match', :constraints => {:format => 'json'}
 
   # 个人设置
   get 'settings' => redirect('settings/profile')
