@@ -13,18 +13,18 @@
 </script>
 
 <script type="text/template" id="infoblock-comment-item-template">
-    <div class="component-infoblock-item-comment-left">
+    <div class="component-infoblock-item-comment-left" data-role="user" data-id="{{=user_id}}" data-url-id="{{=user_url_id}}">
       <img src="{{=user_avatar}}">
     </div>
     <div class="component-infoblock-item-comment-right">
       <div class="component-infoblock-item-comment-header">
-        <a>{{=user_name}}</a>
+        <a data-role="user" data-id="{{=user_id}}" data-url-id="{{=user_url_id}}" href="javascript:void(0)">{{=user_name}}</a>
         {{if(is_author) { }}
         <span>（作者）</span>
         {{ } }}
         {{if(is_reply) { }}
         <span>&nbsp;回复&nbsp;</span>
-        <a>{{=reply_user_name}}</a>
+        <a data-role="user" data-id="{{=reply_user_id}}" data-url-id="{{=reply_user_url_id}}" >{{=reply_user_name}}</a>
         {{ } }}
         <span class="component-infoblock-item-comment-date timeago" title="{{=updated_at}}">{{=updated_at}}</span>
       </div>
