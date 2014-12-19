@@ -33,6 +33,11 @@ Rails.application.routes.draw do
         get :fetch, :constraints => {:format => 'json'}
       end
     end
+    # 关注，取消关注 问题
+    member do
+      post :follow, :constraints => {:format => 'json'}
+      post :un_follow, :constraints => {:format => 'json'}
+    end
   end
 
   devise_for :users, controllers:{
