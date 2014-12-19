@@ -2,7 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
+      t.string :email,              null: false, default: "", limit: 100  # set limit to fix mysql utf8mb4 error
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable

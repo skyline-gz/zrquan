@@ -18,9 +18,13 @@ default: &default
 #  adapter: postgresql
 #  encoding: unicode
   adapter: mysql2
-  encoding: utf8
-  username: root
-  password: myadmin
+  # mysql的utf8只支持到3字节，必须用utf8mb4实现最大4字节的全支持
+  # 简单地说：mysql.utf8mb4 = pg.utf8
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
