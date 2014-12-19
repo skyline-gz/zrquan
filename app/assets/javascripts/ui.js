@@ -138,7 +138,7 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
         //options
         //   type: 系统通知类型
         //   content: 通知内容
-        //   width:  指定宽度,默认为200px
+        //   width:  指定宽度,默认为100px
         //   duration: 显示时间,默认为5s
         //   immediate: 是否立即显示, 默认为true
         onSysPoptipsCall: function(options) {
@@ -166,7 +166,7 @@ Zrquan.module('UI', function(Module, App, Backbone, Marionette, $, _) {
             _.extend(tObj, {
                 'type' : options.type || 'info',
                 'content': options.content || '',
-                'width' : options.width || '200px',
+                'width' : options.width || '100px',
                 'duration': options.duration || 5000
             });
             this.instance = this.template(tObj);

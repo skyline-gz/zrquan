@@ -145,7 +145,7 @@ class Ability
 			can :follow, Question do |q|
 				!user.following_q?(q)
 			end
-			can :unfollow, Question do |q|
+			can :un_follow, Question do |q|
 				user.following_q?(q)
 			end
     end

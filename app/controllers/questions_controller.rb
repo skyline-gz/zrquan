@@ -102,7 +102,7 @@ class QuestionsController < ApplicationController
 
   # 关注
   def follow
-    if can :follow, @question
+    if can? :follow, @question
       @question.question_follows.create(user_id: current_user.id)
       render :json => { :code => ReturnCode::S_OK }
     else
@@ -112,7 +112,7 @@ class QuestionsController < ApplicationController
 
   # 取消关注
   def un_follow
-    if can :un_follow, @question
+    if can? :un_follow, @question
       QuestionFollow.find_by(user_id: current_user.id, question_id: @question.id).destroy
       render :json => { :code => ReturnCode::S_OK }
     else
