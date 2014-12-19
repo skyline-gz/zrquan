@@ -19,7 +19,7 @@ default: &default
 #  encoding: unicode
   adapter: mysql2
   # mysql的utf8只支持到3字节，必须用utf8mb4实现最大4字节的全支持
-  # 简单地说：mysql.utf8mb4 = pg.utf8
+  # 简单地说：mysql.utf8mb4 = pg.utf8  http://dev.mysql.com/doc/refman/5.6/en/charset-unicode-utf8mb4.html
   encoding: utf8mb4
   charset: utf8mb4
   collation: utf8mb4_general_ci
