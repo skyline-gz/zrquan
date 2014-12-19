@@ -18,8 +18,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             'submit form' : 'onQuestionFormSubmit',
             'input input[name="question[title]"]': 'onFormContentChange',
             'propertychange input[name="question[title]"]': 'onFormContentChange',
-            'input input[name="question[themes]"]': 'onFormContentChange',
-            'propertychange input[name="question[themes]"]': 'onFormContentChange'
+            'change input[name="question[themes]"]': 'onFormContentChange'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
