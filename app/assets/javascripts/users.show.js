@@ -12,7 +12,8 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
     Module.Controller = Marionette.Controller.extend({
         start: function() {
             Module.userTopView.render();
-            Module.infoblocksView.render();
+            Module.infoblocksView && Module.infoblocksView.render();
+            Module.draftblocksView && Module.draftblocksView.render();
             Module.resizeAvatarModalView.render();
         }
     });
@@ -324,7 +325,7 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
         }
     }))();
 
-    Module.infoblocksView = new (Marionette.CollectionView.extend({
+    Module.infoblocksView = $("div[role=infoblocks]")[0] ? new (Marionette.CollectionView.extend({
         el: ".user-content div[role=infoblocks]",
         childView: Zrquan.UI.InfoBlocks.InfoBlockView,
         render: function() {
@@ -340,6 +341,22 @@ Zrquan.module('Users.Show', function(Module, App, Backbone, Marionette, $, _){
                 that._addChildView(infoBlockView, that.childView);
             });
         }
-    }));
+    })): undefined;
+
+    Module.draftblocksView = $("div[role=draftblocks]")[0] ? new (Marionette.CollectionView.extend({
+        el: ".user-content div[role=draftblocks]",
+        childView: Zrquan.UI.DraftBlocks.DraftBlockView,
+        render: function() {
+            var that = this;
+            this.$(".timeago").timeago();
+            this.$('.component-draftblock').each(function(){
+                var draftBlockView = new Zrquan.UI.DraftBlocks.DraftBlockView({
+                    el:$(this),
+                    parentView: that
+                });
+                that._addChildView(draftBlockView, that.childView);
+            });
+        }
+    })): undefined;
 
 });

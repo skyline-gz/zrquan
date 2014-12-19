@@ -56,7 +56,7 @@ class UploadController < ApplicationController
 
   # ueditor的配置请求
   def config_editor
-    render 'config_editor'
+    render 'config_editor.json'
   end
 
   # ueditor 上传图片

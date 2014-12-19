@@ -1,7 +1,7 @@
 /*!
  * ueditor parse
  * version: 1.4.3
- * build: Fri Dec 12 2014 15:27:15 GMT+0800 (CST)
+ * build: Fri Dec 19 2014 12:39:30 GMT+0800 (CST)
  */
 
 (function(){

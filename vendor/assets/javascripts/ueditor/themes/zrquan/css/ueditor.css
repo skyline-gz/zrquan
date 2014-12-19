@@ -210,11 +210,34 @@ div.edui-box {
     border-top: 1px solid #ccc;
 }
 
+.edui-zrquan .edui-editor-saveTipContainer {
+    float: left;
+    margin-top: 12px;
+    margin-left: 14px;
+}
+
+.edui-zrquan .edui-editor-saveTipContainer .edui-editor-deleteIcon {
+    width: 10px;
+    height: 11px;
+    vertical-align: -1px;
+    background-position: -236px -92px;
+    background-image: url(../images/sprites-zrquan.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.edui-zrquan .edui-editor-saveTipContainer .edui-editor-saveTipText {
+    font-size: 13px;
+    color: #666;
+}
+
+
 .edui-zrquan .edui-editor-cancelbtn {
     float: right;
     margin-top: 5px;
     margin-right: 12px;
-    width: 56px;
+    padding: 0 4px;
     height: 26px;
     line-height: 26px;
     border-radius: 3px;
@@ -236,7 +259,7 @@ div.edui-box {
     float: right;
     margin-top: 5px;
     margin-right: 12px;
-    width: 56px;
+    padding: 0 4px;
     height: 26px;
     line-height: 26px;
     border-radius: 3px;

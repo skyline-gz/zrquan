@@ -72,6 +72,7 @@
  **/
 //= require ui
 //= require ui.infoblocks
+//= require ui.draftblocks
 //= require ui.profilecard
 //= require navbar
 //= require navbar.modals.auth

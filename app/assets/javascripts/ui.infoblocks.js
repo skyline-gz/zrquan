@@ -1,5 +1,8 @@
 Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _){
     "use strict";
+
+    Zrquan.UI.InfoBlocks = Zrquan.UI.InfoBlocks || undefined;
+
     Module.eventBus = new Backbone.Wreqr.EventAggregator();
 
     Module.InfoBlockCommentItem = Backbone.Model.extend({});
@@ -140,9 +143,19 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             } else {
                 Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'评论内容不能为空'});
             }
+        },
+        //自动定位小箭头
+        positionPointer: function() {
+            var $pointer = this.$('.component-infoblock-icon-spike');
+            if($pointer.is(":visible")) {
+                var $anchor = this.options.parentView.$('.component-infoblock-opts-comment-hide');
+                $pointer.css({left: ($anchor.offset().left - this.$el.offset().left + 34) + "px"});
+            }
+        },
+        onShow: function(){
+            this.positionPointer();
         }
     });
-
 
     //信息块视图
     Module.InfoBlockView = Backbone.Marionette.LayoutView.extend({
@@ -151,6 +164,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             'click .component-infoblock-good-action' : 'onAgreeAnswerClick',
             'click .component-infoblock-opts-comment': 'onCommentClick',
             'click .component-infoblock-opts-favorites' : 'onFavorClick',
+            'click .component-infoblock-opts-follow' : 'onFollowClick',
             'click .show-all-button' : 'onShowAllClick',
             'click .hide-all-button' : 'onHideAllClick',
             'mouseover [data-role=user]' : 'onShowUserProfile',
@@ -233,6 +247,45 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
                 this.$('.component-infoblock-opts-favorites-cancel').hide();
             }
         },
+        onFollowClick: function(evt) {
+            if (this.$('.component-infoblock-opts-follow-do').is(":visible")) {
+                this.doFollow();
+                this.$('.component-infoblock-opts-follow-do').hide();
+                this.$('.component-infoblock-opts-follow-undo').css( "display", "inline-block");
+            } else {
+                this.cancelFollow();
+                this.$('.component-infoblock-opts-follow-do').css( "display", "inline-block");
+                this.$('.component-infoblock-opts-follow-undo').hide();
+            }
+        },
+        doFollow: function() {
+            var that = this;
+
+            $.when(Zrquan.Ajax.request({
+                url: "/questions/" + this.$el.data('qid') + "/follow"
+            })).then(function(result) {
+                if (result.code == "S_OK") {
+                    that.updateFollowersNum(1);
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'关注成功'});
+                } else if(result.code == "FA_UNAUTHORIZED") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'关注失败'});
+                }
+            });
+        },
+        cancelFollow: function() {
+            var that = this;
+
+            $.when(Zrquan.Ajax.request({
+                url: "/questions/" + this.$el.data('qid') + "/un_follow"
+            })).then(function(result) {
+                if (result.code == "S_OK") {
+                    that.updateFollowersNum(-1);
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'取消关注成功'});
+                } else if(result.code == "FA_UNAUTHORIZED") {
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'取消关注失败'});
+                }
+            });
+        },
         doBookmark: function() {
             var that = this;
             var queryparams = "?type="+ this.$el.attr('data-type') + "&id=" + this.$el.attr('data-id');
@@ -242,9 +295,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             })).then(function(result) {
                 if (result.code == "S_OK") {
                     that.updateBookmarksNum(1);
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'收藏成功', width:'100px'});
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'收藏成功'});
                 } else if(result.code == "FA_UNAUTHORIZED") {
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'收藏失败', width:'100px'});
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'收藏失败'});
                 }
             });
         },
@@ -258,9 +311,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             })).then(function(result) {
                 if (result.code == "S_OK") {
                     that.updateBookmarksNum(-1);
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'取消收藏成功', width:'150px'});
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'info', content:'取消收藏成功'});
                 } else if(result.code == "FA_UNAUTHORIZED") {
-                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'取消收藏失败', width:'150px'});
+                    Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'取消收藏失败'});
                 }
             });
         },
@@ -278,6 +331,12 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
         onShowUser: function(evt) {
             location.href = '/users/' + $(evt.currentTarget).data('url-id');
         },
+        updateFollowersNum: function(num) {
+            num = num || 0;
+            var el_followers = this.$('.followers-num');
+            var followersNum = parseInt(el_followers.attr('data-num')) + num;
+            el_followers.attr('data-num', followersNum).html(followersNum);
+        },
         updateBookmarksNum: function(num) {
             num = num || 0;
             var el_bookmarks = this.$('.bookmarks-num');
@@ -290,6 +349,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             var commentsNum = parseInt(el_comments.attr('data-num')) + num;
             el_comments.attr('data-num', commentsNum).html(commentsNum);
         },
+
         loadNShowComment: function() {
             var that = this;
             var queryparams = "?type="+ this.$el.attr('data-type') + "&id=" + this.$el.attr('data-id');

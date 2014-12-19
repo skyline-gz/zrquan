@@ -25,11 +25,18 @@ Rails.application.routes.draw do
         post :agree, :constraints => {:format => 'json'}
       end
     end
-    # 获取草稿，保存草稿
-    resources :answer_drafts, only: [:show], :constraints => {:format => 'json'} do
+    # 获取草稿，删除草稿，保存草稿
+    resources :answer_drafts, only: [] do
       collection do
         post :save, :constraints => {:format => 'json'}
+        post :remove, :constraints => {:format => 'json'}
+        get :fetch, :constraints => {:format => 'json'}
       end
+    end
+    # 关注，取消关注 问题
+    member do
+      post :follow, :constraints => {:format => 'json'}
+      post :un_follow, :constraints => {:format => 'json'}
     end
   end
 

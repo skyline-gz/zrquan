@@ -89,6 +89,7 @@ UE.I18N['zh-cn'] = {
     'wordOverFlowMsg':'<span style="color:red;">字数超出最大允许值，服务器可能拒绝保存！</span>',
     'submitTip': "提交",
     'publishTip': "发布",
+    'publishAnswer' : "发布答案",
     'saveTip': "保存",
     'ok':"确认",
     'cancel':"取消",
@@ -667,6 +668,6 @@ UE.I18N['zh-cn'] = {
     },
     'autosave': {
         'saving':'保存中...',
-        'success':'本地保存成功'
+        'success':'已保存'
     }
 };

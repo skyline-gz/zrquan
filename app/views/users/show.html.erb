@@ -36,6 +36,8 @@
          bookmark_questions.push bookmark.bookmarkable
        end
      end
+
+     drafts = @user.answer_drafts.order('updated_at').reverse_order!
    end
    
    industry_name = industry ? industry.name : '行业'
@@ -143,14 +145,14 @@
         <a href="/users/<%= params[:id] %>/answers" class="component-category <%=params[:action] == 'answers' ? 'component-category-current': ''%>">回答(<%= answers.length %>)</a>
         <% if is_self %>
             <a href="/users/<%= params[:id] %>/bookmarks" class="component-category <%=params[:action] == 'bookmarks' ? 'component-category-current': ''%>">收藏(<%= bookmarks.length %>)</a>
-            <div class="component-category">草稿(0)</div>
+            <a href="/users/<%= params[:id] %>/drafts" class="component-category <%=params[:action] == 'drafts' ? 'component-category-current': ''%>">草稿(<%= drafts.length %>)</a>
         <% end %>
       </div>
   </div>
   <div class="user-content-header"></div>
   <div class="user-main-content">
     <div class="user-content-left">
-      <div role="infoblocks" class="user-content-infoblock">
+      <div role="<%= params[:action] == 'drafts'?'draftblocks' : 'infoblocks' %>" class="user-content-infoblock">
         <% if params[:action] == 'questions' %>
             <% questions.each do |question| %>
                 <% if question.recommend_answer %>
@@ -170,6 +172,20 @@
                 <% else %>
                     <%= render partial: 'partials/infoblock', :locals => { :question => question} %>
                 <% end %>
+            <% end %>
+        <% elsif is_self and params[:action] == 'drafts' %>
+            <% drafts.each do |draft| %>
+                <div class="component-draftblock">
+                  <a href="/questions/<%= draft.question.token_id%>" class="component-draftblock-title"><%= draft.question.title %></a>
+                  <div class="component-draftblock-content"><%= raw draft.content %></div>
+                  <div class="component-draftblock-action">
+                    <a href="/questions/<%= draft.question.token_id%>">编辑草稿</a>
+                    <span class="bull">•</span>
+                    <a data-role="remove" data-qid='<%= draft.question.token_id%>' href="javascript:void(0);">删除草稿</a>
+                    <span class="bull">•</span>
+                    <span class="timeago" title="<%= draft.updated_at %>"><%= draft.updated_at %></span>
+                  </div>
+                </div>
             <% end %>
         <% end %>
       </div>

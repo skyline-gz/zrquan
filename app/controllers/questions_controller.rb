@@ -1,7 +1,8 @@
-require "date_utils.rb"
+require 'returncode_define'
+require 'date_utils.rb'
 
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update]
+  before_action :set_question, only: [:show, :edit, :update, :follow, :un_follow]
   before_action :authenticate_user!
 
   DEFAULT_SHOW_LENGTH = 20
@@ -52,7 +53,7 @@ class QuestionsController < ApplicationController
   # 创建
   def create
     authorize! :answer, Question
-    # 创建问题和主题（非严谨，不需事务）
+    # 创建问题
     @question = current_user.questions.new(question_params)
     @question.hot_abs = 3 #问题自身权重
     current_time = Time.now
@@ -61,6 +62,7 @@ class QuestionsController < ApplicationController
     @question.edited_at = current_time
     @question.updated_at = current_time
     @question.save!
+    # 创建问题主题关联
     if params[:question][:themes] != nil
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
       themes.each do |t_id|
@@ -69,6 +71,8 @@ class QuestionsController < ApplicationController
         @question_theme.save!
       end
     end
+    # 提问者自动关注当前问题
+    @question.question_follows.create(user_id: current_user.id)
     # 创建用户行为（发布问题）
     current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
                                     publish_date: DateUtils.to_yyyymmdd(Date.today))
@@ -94,6 +98,26 @@ class QuestionsController < ApplicationController
       end
     end
     redirect_to action: 'show', id: @question.token_id
+  end
+
+  # 关注
+  def follow
+    if can? :follow, @question
+      @question.question_follows.create(user_id: current_user.id)
+      render :json => { :code => ReturnCode::S_OK }
+    else
+      render :json => { :code => ReturnCode::FA_RESOURCE_ALREADY_EXIST }
+    end
+  end
+
+  # 取消关注
+  def un_follow
+    if can? :un_follow, @question
+      QuestionFollow.find_by(user_id: current_user.id, question_id: @question.id).destroy
+      render :json => { :code => ReturnCode::S_OK }
+    else
+      render :json => { :code => ReturnCode::FA_RESOURCE_NOT_EXIST }
+    end
   end
 
   private

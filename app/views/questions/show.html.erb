@@ -28,7 +28,7 @@
     <% if can? :answer, @question %>
         <div class="question-answer-editor">
           <div class="question-answer-editor-header">撰写答案</div>
-          <form id="answerForm" action="/questions/<%= @question.token_id %>/answers" method="post" target="_self">
+          <form id="answerForm" action="/questions/<%= @question.token_id %>/answers" method="post" target="_self" data-qid="<%= @question.token_id %>">
             <textarea id="inputContent" name="answer[content]" style="display: none"></textarea>
             <script type="text/plain" id="answerContent">
                 <p class='init-content'>请输入你的回答...</p>

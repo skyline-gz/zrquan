@@ -18,8 +18,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
             'submit form' : 'onQuestionFormSubmit',
             'input input[name="question[title]"]': 'onFormContentChange',
             'propertychange input[name="question[title]"]': 'onFormContentChange',
-            'input input[name="question[themes]"]': 'onFormContentChange',
-            'propertychange input[name="question[themes]"]': 'onFormContentChange'
+            'change input[name="question[themes]"]': 'onFormContentChange'
         },
         initialize: function() {
             Zrquan.UI.ModalView.prototype.initialize.call(this);
@@ -37,7 +36,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _) {
                     this.$('input[name=_method]').val("PATCH");
                 } else {
                     this.$('.modal-title').html("提问");
-                    this.$('.btn-primary').html("提交");
+                    this.$('.btn-primary').html("发布");
                     this.$('form').attr('action', '/questions');
                     this.$('input[name=_method]').val("POST");
                 }

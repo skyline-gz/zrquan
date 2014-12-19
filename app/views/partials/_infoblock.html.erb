@@ -100,8 +100,8 @@
           </div>
           <% if is_show_themes %>
               <div class="component-infoblock-subjects">
-                <% question.question_themes.each do |question_theme| %>
-                    <div class="component-subject"><%= question_theme.theme.name %></div>
+                <% question.themes.each do |theme| %>
+                    <div class="component-subject"><%= theme.name %></div>
                 <% end %>
               </div>
           <% end %>
@@ -144,22 +144,28 @@
             <div class="component-infoblock-content">还没有人回答&nbsp;•&nbsp;<a href="/questions/<%= question.token_id %>" class="showall">我来回答</a></div>
         <% end %>
         <div class="component-infoblock-footer">
+          <div class="component-infoblock-opts-follow component-infoblock-opts-follow-do" style="display:<%= (can? :follow, question) ? 'inline-block': 'none'%>">
+            <i class="icons-follow"></i>关注问题&nbsp;<span data-num="<%= question.followers.length %>" class="followers-num"><%= question.followers.length %></span>
+          </div>
+          <div class="component-infoblock-opts-follow component-infoblock-opts-follow-undo" style="display:<%= (can? :follow, question) ? 'none': 'inline-block'%>">
+            <i class="icons-follow"></i>取消关注&nbsp;<span data-num="<%= question.followers.length %>" class="followers-num"><%= question.followers.length %></span>
+          </div>
           <div class="component-infoblock-opts-comment component-infoblock-opts-comment-show">
             <i class="icons-comment"></i>评论&nbsp;<span data-num="<%= question.comments.length %>" class="comments-num"><%= question.comments.length %></span>
           </div>
           <div class="component-infoblock-opts-comment component-infoblock-opts-comment-hide">
             <i class="icons-comment"></i>收起评论
           </div>
-          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= is_bookmarkable ? 'inline': 'none'%>">
+          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-ok" style="display:<%= is_bookmarkable ? 'inline-block': 'none'%>">
             <i class="icons-favorites"></i>收藏&nbsp;<span data-num="<%= question.bookmarks.length %>" class="bookmarks-num"><%= question.bookmarks.length %></span>
           </div>
-          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= is_bookmarkable ? 'none': 'inline'%>">
+          <div class="component-infoblock-opts-favorites component-infoblock-opts-favorites-cancel" style="display:<%= is_bookmarkable ? 'none': 'inline-block'%>">
             <i class="icons-favorites"></i>取消收藏&nbsp;<span data-num="<%= question.bookmarks.length %>" class="bookmarks-num"><%= question.bookmarks.length %></span>
           </div>
           <% if is_show_themes %>
               <div class="component-infoblock-subjects">
-                <% question.question_themes.each do |question_theme| %>
-                    <div class="component-subject"><%= question_theme.theme.name %></div>
+                <% question.themes.each do |theme| %>
+                    <div class="component-subject"><%= theme.name %></div>
                 <% end %>
               </div>
           <% end %>

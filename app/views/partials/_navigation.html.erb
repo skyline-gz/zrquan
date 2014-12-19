@@ -25,7 +25,7 @@
                 <% if current_user.avatar != nil %>
                   <img src="<%= Settings.upload_url + current_user.avatar%>" class="user-logo">
                 <% else %>
-                  <img src="../images/noface.gif" class="user-logo">
+                  <img src="/images/noface.gif" class="user-logo">
                 <% end %>
                 <span><%=generate_name(current_user.first_name, current_user.last_name)%></span>
             </a>
