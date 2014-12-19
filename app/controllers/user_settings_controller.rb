@@ -57,23 +57,20 @@ class UserSettingsController < ApplicationController
       @region_id = Location.find(current_user.location_id).region_id
       @locations = Location.where ({:region_id => @region_id})
     end
-    # see http://explainextended.com/2009/07/17/postgresql-8-4-preserving-order-for-hierarchical-query/
+
+    # 换成mysql和pg通用的sql
     @industries = Industry.find_by_sql('
-      WITH RECURSIVE q AS (
-          SELECT  h, ARRAY[id] AS breadcrumb
-          FROM    industries h
-          WHERE   parent_industry_id IS NULL
-          UNION ALL
-          SELECT  hi, breadcrumb || id
-          FROM    q
-          JOIN    industries hi
-          ON      hi.parent_industry_id = (q.h).id
-      )
-      SELECT  (q.h).id,(q.h).parent_industry_id,(q.h).name,breadcrumb::VARCHAR AS path
-      FROM    q
-      ORDER BY
-      breadcrumb
-  ')
+      select id, name, parent_industry_id
+      from industries
+      order by
+      case
+        when parent_industry_id is null then id
+        when parent_industry_id is not null then parent_industry_id
+      end,
+      case
+        when parent_industry_id is null then 0
+        when parent_industry_id is not null then 1
+      end, id')
   end
 
   def update_profile
