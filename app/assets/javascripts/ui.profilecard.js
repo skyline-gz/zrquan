@@ -72,12 +72,13 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
         position: function() {
             var $target = this.trigger_el;
             var offset = $target.offset();
+            var offsetTopToWindow = offset.top - $(window).scrollTop();
             var width = $target.width();
             var height = $target.height();
             var screenHeight = $(window).height();
             var top, left;
             left = offset.left + (width / 2) - 60;
-            if(offset.top + height/2 < screenHeight/2) {
+            if(offsetTopToWindow + height/2 < screenHeight/2) {
                 this.$el.removeClass("top").addClass("bottom");
                 top = offset.top + height;
             } else {

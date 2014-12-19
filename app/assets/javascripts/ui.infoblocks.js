@@ -20,7 +20,9 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             'click .comment-op-link-reply': 'onReplyCommentClick',
             'click .comment-op-link-delete': 'onDeleteCommentClick',
             'click .comment-editable-opts-submit': 'replyComment',
-            'click .comment-editable-opts-cancel': 'cancelReplyComment'
+            'click .comment-editable-opts-cancel': 'cancelReplyComment',
+            'mouseover [data-role=user]' : 'onShowUserProfile',
+            'click [data-role=user]' : 'onShowUser'
         },
         ui: {
             editorWrapper : '.component-infoblock-item-comment-form',
@@ -85,6 +87,12 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             } else {
                 Zrquan.appEventBus.trigger('poptips:sys',{type:'error', content:'评论内容不能为空'});
             }
+        },
+        onShowUserProfile: function(evt) {
+            Zrquan.appEventBus.trigger('profile:show', evt.currentTarget, parseInt($(evt.currentTarget).data('id')));
+        },
+        onShowUser: function(evt) {
+            location.href = '/users/' + $(evt.currentTarget).data('url-id');
         }
     });
 
