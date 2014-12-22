@@ -31,7 +31,7 @@ gem 'settingslogic', '2.0.9'
 
 # 默认暂时不用的gem
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'　与较多的前段库产生冲突，暂不使用
+# gem 'turbolinks'　与较多的前端库产生冲突，暂不使用
 # 此处使用了百度的富内容编辑器Ueditor
 # gem 'rails_kindeditor', '0.4.5'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -51,11 +51,13 @@ gem 'settingslogic', '2.0.9'
 
 
 # 数据库
-gem 'pg', '0.17.1'
 gem 'mysql2', '~> 0.3.17'
+# gem 'pg', '0.17.1'
 
 # 测试
 group :development, :test do
+	# 比guard更轻量的自动start/restart工具，用于调试sidekiq workers
+	gem 'rerun', '0.10.0'
 	gem 'rspec', '~> 3.1.0'
 	gem 'rspec-rails', '~> 3.1.0'
 	gem 'guard-rspec', '~> 4.3.1'
