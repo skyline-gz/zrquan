@@ -7,6 +7,7 @@ module ReturnCode
   FA_INVALID_PARAMETERS = 'FA_INVALID_PARAMETERS' #请求参数非法，一般指某必须参数为空或取值非法
   FA_NOT_SUPPORTED_PARAMETERS = 'FA_NOT_SUPPORTED_PARAMETERS' #请求参数不支持，一般指某参数取值合法，但不支持取该值
   FA_INNER_NET_CONNECT_ERROR = 'FA_INNER_NET_CONNECT_ERROR' #内部网络连接错误，可能是sunspot:solr等服务器未启动
+  FA_WRITING_TO_DATABASE_ERROR = 'FA_WRITING_TO_DATABASE_ERROR' #写入数据库出错，一般是create,save,update等activerecord操作返回false
 
   # RESTFUL相关
   FA_RESOURCE_ALREADY_EXIST = 'FA_RESOURCE_ALREADY_EXIST' #资源已经存在，一般指【增操作】时，相同内容或目的的资源已被存在

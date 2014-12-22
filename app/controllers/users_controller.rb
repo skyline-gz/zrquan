@@ -46,14 +46,19 @@ class UsersController < ApplicationController
   def follow
     id = @user.id
     if current_user.id == id
-      render :json => { :code => ReturnCode::FA_INVALID_TARGET_ERROR } and return
+      render :json => { :code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS } and return
     end
     relationship = Relationship.find_by(:following_user_id => id, :follower_id => current_user.id)
     if relationship
       render :json => { :code => ReturnCode::FA_RELATIONSHIP_ALREADY_EXIT}
     else
-      Relationship.create(:following_user_id => id, :follower_id => current_user.id)
-      render :json => { :code => ReturnCode::S_OK}
+      if Relationship.create(:following_user_id => id, :follower_id => current_user.id)
+        # 创建关注消息并发送
+        MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_COMMENT_QUESTION] ,id ,current_user.id)
+        render :json => { :code => ReturnCode::S_OK} and return
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
     end
   end
 

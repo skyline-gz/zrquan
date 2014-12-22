@@ -51,12 +51,8 @@ class AnswersController < ApplicationController
       # 更新赞同分数（因为职人的范围变广，所有人都+1）
       @answer.update!(agree_score: @answer.agree_score + 1)
       @question.update!(hot_abs: @question.hot_abs + 1)
-      # 创建消息，发送给用户
-      if @answer.user.user_msg_setting.agreed_flag
-        @answer.user.messages.create!(msg_type: 12, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                         extra_info2_id: @question.id, extra_info2_type: "Question")
-      end
-      # 创建用户赞同信息
+      # 创建赞同答案的消息并发送
+      MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @answer.id)
       current_user.agreements.create!(agreeable_id: @answer.id, agreeable_type: "Answer")
       # 创建用户行为（赞同答案）
       current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
