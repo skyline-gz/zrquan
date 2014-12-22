@@ -13,15 +13,9 @@ class User < ActiveRecord::Base
 
   has_many :questions
   has_many :answers
-  has_many :articles
   has_many :messages
-  has_many :m_subjects, class_name: "ConsultSubject", foreign_key: "mentor_id"
-  has_many :u_subjects, class_name: "ConsultSubject", foreign_key: "apprentice_id"
-	has_many :consult_replies
   has_many :comments
 	has_many :private_messages
-	has_many :invitations
-	has_many :invited_questions, class_name: "Question", through: :invitations, source: :question
 	has_many :question_follows
 	has_many :following_questions, class_name: "Question", through: :question_follows, source: :question
 	has_many :bookmarks
@@ -91,14 +85,6 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def bookmarked_a?(article)
-		bookmarks = Bookmark.where(user_id: id, bookmarkable_id: article.id, bookmarkable_type: "Article")
-		if bookmarks.count > 0
-			true
-		else
-			false
-		end
-	end
 
 	def answered?(question)
 		question.answers.each do |ans|
@@ -118,15 +104,6 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def commented_article?(article)
-		comments = Comment.where(user_id: id, commentable_id: article.id, commentable_type: "Article")
-		if comments.count > 0
-			true
-		else
-			false
-		end
-	end
-
 	def agreed_answer?(answer)
 		agreements = Agreement.where(user_id: id, agreeable_id: answer.id, agreeable_type: "Answer")
 		if agreements.count > 0
@@ -136,14 +113,6 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def agreed_article?(article)
-		agreements = Agreement.where(user_id: id, agreeable_id: article.id, agreeable_type: "Article")
-		if agreements.count > 0
-			true
-		else
-			false
-		end
-	end
 
 	def verified_user?
 		verified_flag

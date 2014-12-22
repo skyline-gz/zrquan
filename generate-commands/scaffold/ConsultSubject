@@ -1,1 +1,0 @@
-rails g scaffold ConsultSubject title:string content:text mentor:references apprentice:references stat_class:integer

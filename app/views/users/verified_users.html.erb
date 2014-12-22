@@ -17,9 +17,6 @@
         <td><%= vu.first_name %></td>
         <td><%= vu.email %></td>
         <td><%= link_to 'Show', vu %></td>
-				<% if can? :consult, vu %>
-					<td><%= link_to 'Consult', new_consult_subject_path(:first_name=>vu.first_name, :last_name=>vu.last_name, :id=>vu.id), 'data-no-turbolink' => true %></td>
-				<% end %>
 				<% if can? :pm, vu %>
 					<td><%= link_to 'PM', private_messages_path(:id=>vu.id)%></td>
 				<% end %>

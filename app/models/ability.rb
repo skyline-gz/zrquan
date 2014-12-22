@@ -24,7 +24,6 @@ class Ability
       # read only
       can :show, Question
       can :show, Answer
-      # can :show, Article
       can :show, Comment
       can :show, UserMsgSetting
       can :show, Bookmark
@@ -38,28 +37,8 @@ class Ability
 			# general 
 			create_edit_abilities(user)
 
-      # special consult abilities
-      can :show, ConsultSubject do |cs|
-        cs.mentor_id == user.id or cs.apprentice_id == user.id
-      end
-      can [:accept, :ignore], ConsultSubject, :mentor_id=>user.id, :stat_class=>1
-      can [:reply, :close], ConsultSubject  do |cs|
-        (cs.mentor_id == user.id or cs.apprentice_id == user.id) and cs.in_progress?
-      end
-      can :edit, ConsultSubject do |cs|
-        cs.apprentice_id == user.id and cs.in_progress?
-      end
-      can :edit, ConsultReply do |cr|
-        cr.user_id == user.id and cr.consult_subject.in_progress?
-      end
-      can :consult, User do |u|
-        u.verified_user? and !user.myself?(u)
-      end
-
       # answer
       answer_abilities(user)
-      # article
-      # article_abilities(user)
       # comment
       comment_abilities(user)
 			# pm
@@ -75,24 +54,8 @@ class Ability
 			# general 
 			create_edit_abilities(user)
 			
-      # special consult abilities
-      can :show, ConsultSubject, :apprentice_id=>user.id
-      cannot :accept, ConsultSubject
-      can [:reply, :close], ConsultSubject, :apprentice_id=>user.id, :stat_class=>2
-      can :edit, ConsultSubject do |cs|
-        cs.apprentice_id == user.id and cs.in_progress?
-      end
-      can :edit, ConsultReply do |cr|
-        cr.user_id == user.id and cr.consult_subject.in_progress?
-      end
-      can :consult, User do |u|
-        u.verified_user?
-      end
-
       # answer
       answer_abilities(user)
-      # article
-      # article_abilities(user)
       # comment
       comment_abilities(user)
 			# pm
@@ -126,14 +89,6 @@ class Ability
         ans.user_id != user.id and !user.agreed_answer?(ans)
       end
     end
-
-    # def article_abilities(user)
-    #   can :agree, Article do |a|
-    #     a.user_id != user.id and !user.agreed_article?(a) and !a.draft?
-    #   end
-    #   can :edit, Article, :user_id => user.id
-    #   can :destroy, Article, :user_id => user.id, :draft_flag => true
-    # end
 
     def follow_abilities(user)
       can :follow, User do |target_user|

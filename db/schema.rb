@@ -63,32 +63,6 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   add_index "answers", ["token_id"], name: "index_answers_on_token_id", unique: true, using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
-  create_table "article_themes", force: true do |t|
-    t.integer  "article_id"
-    t.integer  "theme_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "article_themes", ["article_id"], name: "index_article_themes_on_article_id", using: :btree
-  add_index "article_themes", ["theme_id"], name: "index_article_themes_on_theme_id", using: :btree
-
-  create_table "articles", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.boolean  "draft_flag",  default: false
-    t.integer  "agree_score", default: 0
-    t.integer  "industry_id"
-    t.integer  "category_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "articles", ["category_id"], name: "index_articles_on_category_id", using: :btree
-  add_index "articles", ["industry_id"], name: "index_articles_on_industry_id", using: :btree
-  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
-
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id"
     t.integer  "bookmarkable_id"
@@ -186,40 +160,6 @@ ActiveRecord::Schema.define(version: 20141215041710) do
 
   add_index "company_salaries", ["company_id"], name: "index_company_salaries_on_company_id", using: :btree
 
-  create_table "consult_replies", force: true do |t|
-    t.integer  "consult_subject_id"
-    t.text     "content"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consult_replies", ["consult_subject_id"], name: "index_consult_replies_on_consult_subject_id", using: :btree
-  add_index "consult_replies", ["user_id"], name: "index_consult_replies_on_user_id", using: :btree
-
-  create_table "consult_subjects", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "mentor_id"
-    t.integer  "apprentice_id"
-    t.integer  "stat_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consult_subjects", ["apprentice_id"], name: "index_consult_subjects_on_apprentice_id", using: :btree
-  add_index "consult_subjects", ["mentor_id"], name: "index_consult_subjects_on_mentor_id", using: :btree
-
-  create_table "consult_themes", force: true do |t|
-    t.integer  "consult_subject_id"
-    t.integer  "theme_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consult_themes", ["consult_subject_id"], name: "index_consult_themes_on_consult_subject_id", using: :btree
-  add_index "consult_themes", ["theme_id"], name: "index_consult_themes_on_theme_id", using: :btree
-
   create_table "educations", force: true do |t|
     t.integer  "user_id"
     t.integer  "school_id"
@@ -281,16 +221,6 @@ ActiveRecord::Schema.define(version: 20141215041710) do
 
   add_index "industry_job_categories", ["industry_id"], name: "index_industry_job_categories_on_industry_id", using: :btree
   add_index "industry_job_categories", ["job_category_id"], name: "index_industry_job_categories_on_job_category_id", using: :btree
-
-  create_table "invitations", force: true do |t|
-    t.integer  "question_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "invitations", ["question_id"], name: "index_invitations_on_question_id", using: :btree
-  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
   create_table "job_categories", force: true do |t|
     t.string   "name"

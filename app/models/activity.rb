@@ -23,19 +23,4 @@ class Activity < ActiveRecord::Base
 		activity_type == 4
 	end
 
-	def agree_answer?
-		activity_type == 5
-	end
-
-	def agree_article?
-		activity_type == 6
-	end
-
-	def accept_consult?
-		activity_type == 7
-	end
-
-	def consult?
-		activity_type == 8
-	end
 end
