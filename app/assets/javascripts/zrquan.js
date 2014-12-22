@@ -28,6 +28,8 @@
 //= require backbone.marionette
 //支持localStorage缓存记录
 //= require locache
+//faye　browser支持
+//= require faye-browser
 /**
  * 插件
  **/

@@ -13,6 +13,10 @@ defaults: &defaults
     4: "找实习"
     5: "面试咨询"
 
+  faye_server: "http://127.0.0.1:8080/faye"
+  faye_client_url: "http://127.0.0.1:8080/faye"
+  faye_token: "123456"
+
 development:
   <<: *defaults
   enable_devise_async: false

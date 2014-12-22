@@ -36,6 +36,9 @@ Zrquan = (function(Backbone){
                 bottomOffset: "100px",
                 locationOffset: "100px"
             });
+
+            //初始化faye subscribe
+            initNotificationSubscribe();
         }
     }))();
 
@@ -53,6 +56,16 @@ Zrquan = (function(Backbone){
     };
 
     App.commands.setHandler("start:app", App.startSubApp, App);
+
+    function initNotificationSubscribe() {
+        if (!Zrquan.User.access_token) {
+            return;
+        }
+        var faye = new Faye.Client(Zrquan.User.faye_client_url);
+        faye.subscribe("/notifications_count/" + Zrquan.User.access_token, function(result){
+            console.log(result);
+        });
+    }
 
     return App;
 })(Backbone);
