@@ -1,17 +1,6 @@
 Rails.application.routes.draw do
   # resources :private_messages, except: [:destroy, :edit, :update]
 
-  # resources :consult_subjects, except: :destroy do
-	# 	member do
-	# 		post :accept
-	# 		post :close
-	# 		post :ignore
-	# 	end
-	#   resources :consult_replies, except: [:edit, :update, :destroy]
-	# end
-
-	# resources :consult_replies, only: [:show, :edit, :update]
-
   # resources :messages, except: [:destroy, :edit, :update]
 
   resources :questions, except: [:new, :destroy] do

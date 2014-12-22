@@ -21,9 +21,6 @@ class HomeController < ApplicationController
 	def question
 	end
 
-	# 菜单-咨询
-	def consult
-	end
 
 	# 搜索
 	def search

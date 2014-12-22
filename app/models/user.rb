@@ -14,9 +14,6 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_many :messages
-  has_many :m_subjects, class_name: "ConsultSubject", foreign_key: "mentor_id"
-  has_many :u_subjects, class_name: "ConsultSubject", foreign_key: "apprentice_id"
-	has_many :consult_replies
   has_many :comments
 	has_many :private_messages
 	has_many :question_follows

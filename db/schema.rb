@@ -160,40 +160,6 @@ ActiveRecord::Schema.define(version: 20141215041710) do
 
   add_index "company_salaries", ["company_id"], name: "index_company_salaries_on_company_id", using: :btree
 
-  create_table "consult_replies", force: true do |t|
-    t.integer  "consult_subject_id"
-    t.text     "content"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consult_replies", ["consult_subject_id"], name: "index_consult_replies_on_consult_subject_id", using: :btree
-  add_index "consult_replies", ["user_id"], name: "index_consult_replies_on_user_id", using: :btree
-
-  create_table "consult_subjects", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "mentor_id"
-    t.integer  "apprentice_id"
-    t.integer  "stat_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consult_subjects", ["apprentice_id"], name: "index_consult_subjects_on_apprentice_id", using: :btree
-  add_index "consult_subjects", ["mentor_id"], name: "index_consult_subjects_on_mentor_id", using: :btree
-
-  create_table "consult_themes", force: true do |t|
-    t.integer  "consult_subject_id"
-    t.integer  "theme_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consult_themes", ["consult_subject_id"], name: "index_consult_themes_on_consult_subject_id", using: :btree
-  add_index "consult_themes", ["theme_id"], name: "index_consult_themes_on_theme_id", using: :btree
-
   create_table "educations", force: true do |t|
     t.integer  "user_id"
     t.integer  "school_id"
