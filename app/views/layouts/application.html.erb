@@ -42,5 +42,11 @@
 </body>
     <%= javascript_include_tag 'zrquan'%>
     <%= render 'users/base_attrs' %>
+    <script type="text/javascript">
+        /**
+         * 初始化页面Application
+         **/
+        Zrquan.start();
+    </script>
     <%= yield :page_javascript %>
 </html>

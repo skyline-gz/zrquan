@@ -28,6 +28,8 @@
 //= require backbone.marionette
 //支持localStorage缓存记录
 //= require locache
+//faye　browser支持
+//= require faye-browser
 /**
  * 插件
  **/
@@ -77,7 +79,3 @@
 //= require navbar
 //= require navbar.modals.auth
 //= require navbar.modals.ask
-/**
- * 初始化页面Application
- **/
-Zrquan.start();

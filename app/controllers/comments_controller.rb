@@ -43,12 +43,9 @@ class CommentsController < ApplicationController
         case type
           when 'Question'
             # 创建消息并发送
-            if current_user.user_msg_setting.commented_flag
-              @comment_related_obj.user.messages.create!(msg_type: 3, extra_info1_id: current_user.id, extra_info1_type: "User",
-                                              extra_info2_id: @comment_related_obj.id, extra_info2_type: "Question")
-              # TODO 发送到faye
-            end
-            # 创建用户行为（评论经验）
+            MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_COMMENT_QUESTION], current_user.id, @comment_related_obj.id)
+
+            # 创建用户行为（评论问题）
             current_user.activities.create!(target_id: @comment_related_obj.id, target_type: "Question", activity_type: 4,
                                             publish_date: DateUtils.to_yyyymmdd(Date.today))
           when 'Answer'

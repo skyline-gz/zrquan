@@ -55,7 +55,14 @@ class User < ActiveRecord::Base
     if password.present? and not password.match(/\A[a-zA-Z0-9]+\z/)
       errors.add :password, "can only be input by alphabet and digit."
     end
-  end
+	end
+
+	# 用于生产客户端通过Faye Sub/Pub的合法token
+	def temp_access_token
+		Rails.cache.fetch("user-#{self.id}-temp_access_token-#{Time.now.strftime("%Y%m%d")}") do
+			SecureRandom.hex
+		end
+	end
 
 	def following_num
 		following_users.count
@@ -171,7 +178,15 @@ class User < ActiveRecord::Base
 		self.url_id = url_id
 	end
 
+	# 生产用户的设置信息，失败则记录到log
+	def generate_user_msg_setting
+		unless self.user_msg_setting.create
+			logger.error "create user msg setting failure: user_id=" + self.id + " ,user_email=" + self.email
+		end
+	end
+
 	def after_create_user
+		generate_user_msg_setting
 		randomize_token_id
 		generate_url_id
 		self.save

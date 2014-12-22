@@ -47,6 +47,23 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         },
         initialize: function() {
             this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
+
+            //初始化faye subscribe
+            initNotificationSubscribe();
+
+            function initNotificationSubscribe() {
+                if (!Zrquan.User.access_token) {
+                    return;
+                }
+                var faye = new Faye.Client(Zrquan.User.faye_client_url);
+                faye.subscribe("/message/" + Zrquan.User.access_token, function(result){
+                    console.log(result);
+                });
+
+                faye.then(function() {
+                    console.log('Faye Browser Subscription is now active!');
+                });
+            }
         },
         // override: don't really render, since this view just attaches to existing navbar html.
         render: function() {
