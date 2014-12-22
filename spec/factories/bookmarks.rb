@@ -8,8 +8,5 @@ FactoryGirl.define do
       association :bookmarkable, factory: :question_1
     end
 
-    factory :article_bookmark do
-      association :bookmarkable, factory: :published_article
-    end
   end
 end

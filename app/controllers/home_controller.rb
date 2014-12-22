@@ -21,10 +21,6 @@ class HomeController < ApplicationController
 	def question
 	end
 
-	# 菜单-经验
-	def article
-	end
-
 	# 菜单-咨询
 	def consult
 	end
@@ -46,6 +42,5 @@ class HomeController < ApplicationController
 
 	# 副菜单-我的草稿
 	def my_draft
-		@draft_articles = current_user.articles.where(draft_flag: true)
 	end
 end

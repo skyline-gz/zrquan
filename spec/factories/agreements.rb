@@ -8,9 +8,6 @@ FactoryGirl.define do
       association :agreeable, factory: :q1_other_answer_1
     end
 
-    factory :article_agree do
-      association :agreeable, factory: :published_article
-    end
   end
 
 end

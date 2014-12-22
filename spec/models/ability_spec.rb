@@ -22,8 +22,6 @@ RSpec.describe Ability, :type => :model do
     let (:me) { FactoryGirl.create(:mentor_1) }
     let (:question) { FactoryGirl.create(:question_1, :user=>normal_user) }
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
-    let (:published_article) { FactoryGirl.create(:published_article, :user=>normal_user) }
-    let (:draft_article) { FactoryGirl.create(:draft_article, :user=>normal_user) }
     let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
     let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>normal_user) }
     let (:ability) { Ability.new(me) }
@@ -139,8 +137,6 @@ RSpec.describe Ability, :type => :model do
     let (:another_n_user) { FactoryGirl.create(:normal_user_1) }
     let (:question) { FactoryGirl.create(:question_1, :user=>another_n_user) }
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
-    let (:published_article) { FactoryGirl.create(:published_article, :user=>another_n_user) }
-    let (:draft_article) { FactoryGirl.create(:draft_article, :user=>another_n_user) }
     let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
     let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>another_n_user) }
     let (:ability) { Ability.new(me) }

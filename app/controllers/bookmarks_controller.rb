@@ -3,7 +3,7 @@ require 'returncode_define.rb'
 class BookmarksController < ApplicationController
 
   # 支持收藏的类型
-  SUPPORT_TYPE = %w('Question', 'Article')
+  SUPPORT_TYPE = %w('Question')
 
   # 收藏
 	def create

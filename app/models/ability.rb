@@ -24,7 +24,6 @@ class Ability
       # read only
       can :show, Question
       can :show, Answer
-      # can :show, Article
       can :show, Comment
       can :show, UserMsgSetting
       can :show, Bookmark
@@ -58,8 +57,6 @@ class Ability
 
       # answer
       answer_abilities(user)
-      # article
-      # article_abilities(user)
       # comment
       comment_abilities(user)
 			# pm
@@ -91,8 +88,6 @@ class Ability
 
       # answer
       answer_abilities(user)
-      # article
-      # article_abilities(user)
       # comment
       comment_abilities(user)
 			# pm
@@ -126,14 +121,6 @@ class Ability
         ans.user_id != user.id and !user.agreed_answer?(ans)
       end
     end
-
-    # def article_abilities(user)
-    #   can :agree, Article do |a|
-    #     a.user_id != user.id and !user.agreed_article?(a) and !a.draft?
-    #   end
-    #   can :edit, Article, :user_id => user.id
-    #   can :destroy, Article, :user_id => user.id, :draft_flag => true
-    # end
 
     def follow_abilities(user)
       can :follow, User do |target_user|

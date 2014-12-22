@@ -1,1 +1,0 @@
-rails g scaffold Article title:string content:text draft_flag:boolean agree_score:integer industry:references category:references user:references

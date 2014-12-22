@@ -1,1 +1,0 @@
-rails g model ArticleTheme article:references theme:references
