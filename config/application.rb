@@ -10,10 +10,11 @@ module Zrquan
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/caches)
+    config.autoload_paths += %W(#{config.root}/app/workers)
 
 		config.time_zone = 'Beijing'
 		config.active_record.default_timezone = :local
-    config.i18n.default_locale = :"zh-CN"
+    config.i18n.default_locale = :'zh-CN'
 
     # devise respond_to json
     config.to_prepare do
