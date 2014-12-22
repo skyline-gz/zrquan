@@ -20,8 +20,6 @@ class User < ActiveRecord::Base
 	has_many :consult_replies
   has_many :comments
 	has_many :private_messages
-	has_many :invitations
-	has_many :invited_questions, class_name: "Question", through: :invitations, source: :question
 	has_many :question_follows
 	has_many :following_questions, class_name: "Question", through: :question_follows, source: :question
 	has_many :bookmarks

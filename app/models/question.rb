@@ -9,9 +9,7 @@ class Question < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
 	has_many :answers
-	has_many :invitations
 	has_many :question_follows
-	has_many :invited_users, class_name: "User", through: :invitations, source: :user
 	has_many :followers, class_name: "User", through: :question_follows, source: :user
 	has_many :bookmarks, as: :bookmarkable
 	has_many :comments, as: :commentable
@@ -19,7 +17,6 @@ class Question < ActiveRecord::Base
 	has_many :activities, as: :target
 	has_many :question_themes, as: :target
 	has_many :themes, class_name: "Theme", through: :question_themes, source: :theme
-	accepts_nested_attributes_for :invitations
   accepts_nested_attributes_for :question_themes
 
 	validates :title, presence: true, on: :create
@@ -64,15 +61,6 @@ class Question < ActiveRecord::Base
     end
     theme_ids
   end
-
-	def inv_user_ids
-		inv_users_ids = Array.new
-		invitations.each do |inv|
-			inv_users_ids << inv.user_id
-		end
-		logger.debug(inv_users_ids)
-		inv_users_ids
-	end
 
 	private
 	def randomize_token_id

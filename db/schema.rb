@@ -282,16 +282,6 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   add_index "industry_job_categories", ["industry_id"], name: "index_industry_job_categories_on_industry_id", using: :btree
   add_index "industry_job_categories", ["job_category_id"], name: "index_industry_job_categories_on_job_category_id", using: :btree
 
-  create_table "invitations", force: true do |t|
-    t.integer  "question_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "invitations", ["question_id"], name: "index_invitations_on_question_id", using: :btree
-  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
-
   create_table "job_categories", force: true do |t|
     t.string   "name"
     t.text     "description"
