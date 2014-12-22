@@ -63,32 +63,6 @@ ActiveRecord::Schema.define(version: 20141215041710) do
   add_index "answers", ["token_id"], name: "index_answers_on_token_id", unique: true, using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
-  create_table "article_themes", force: true do |t|
-    t.integer  "article_id"
-    t.integer  "theme_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "article_themes", ["article_id"], name: "index_article_themes_on_article_id", using: :btree
-  add_index "article_themes", ["theme_id"], name: "index_article_themes_on_theme_id", using: :btree
-
-  create_table "articles", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.boolean  "draft_flag",  default: false
-    t.integer  "agree_score", default: 0
-    t.integer  "industry_id"
-    t.integer  "category_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "articles", ["category_id"], name: "index_articles_on_category_id", using: :btree
-  add_index "articles", ["industry_id"], name: "index_articles_on_industry_id", using: :btree
-  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
-
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id"
     t.integer  "bookmarkable_id"

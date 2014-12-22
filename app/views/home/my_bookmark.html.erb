@@ -18,13 +18,6 @@
 		      <td><%= q.title %></td>
 		      <td><%= q.content %></td>
 		    </tr>
-			<% else %>
-				<% a = Article.find(b.bookmarkable_id) %>
-				<tr>
-					<td><b>Article</b></td>
-		      <td><%= a.title %></td>
-		      <td><%= a.content %></td>
-		    </tr>
 			<% end %>
     <% end %>
   </tbody>
