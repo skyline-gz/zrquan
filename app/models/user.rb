@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 	has_many :following_users, class_name: "User", through: :relationships
 	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
 	has_many :followers, class_name: "User", through: :reverse_relationships
-  has_one :user_msg_setting
+  has_one  :user_msg_setting
 	has_many :activities
   has_many :careers
   has_many :educations
@@ -151,15 +151,15 @@ class User < ActiveRecord::Base
 
 	# 生产用户的设置信息，失败则记录到log
 	def generate_user_msg_setting
-		unless self.user_msg_setting.create
+		unless self.create_user_msg_setting
 			logger.error "create user msg setting failure: user_id=" + self.id + " ,user_email=" + self.email
 		end
 	end
 
 	def after_create_user
-		generate_user_msg_setting
 		randomize_token_id
 		generate_url_id
 		self.save
+		generate_user_msg_setting
 	end
 end

@@ -81,9 +81,6 @@ gem 'thin', group: :development
 # 分页
 gem 'will_paginate', '~> 3.0.5'
 
-# 省市级联
-gem 'china_city'
-
 # 搜索引擎
 gem 'sunspot_rails', '2.1.1'
 gem 'sunspot_solr', '2.1.1'

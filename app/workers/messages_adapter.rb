@@ -23,7 +23,7 @@ class MessagesAdapter
             question_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION], extra_info1_id: user.id, extra_info1_type: 'User',
                                             extra_info2_id: question_obj.id, extra_info2_type: 'Question')
             push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION],
-                                                        obj1: user, obj2: question_obj})
+                                                        obj1: extract_user(user), obj2: extract_question(question_obj)})
           end
         end
       when ACTION_TYPE[:USER_COMMENT_QUESTION]
@@ -43,7 +43,7 @@ class MessagesAdapter
             follower.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION], extra_info1_id: user.id, extra_info1_type: 'User',
                                                        extra_info2_id: question_obj.id, extra_info2_type: 'Question')
             push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
-                                                              obj1: user, obj2: question_obj})
+                                                              obj1: extract_user(user), obj2: extract_question(question_obj)})
           end
         end
       when ACTION_TYPE[:USER_COMMENT_ANSWER]
@@ -64,7 +64,7 @@ class MessagesAdapter
           answer_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: 'User',
                                     extra_info2_id: answer_question.id, extra_info2_type: 'Question')
           push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
-                                                               obj1: user, obj2: answer_question})
+                                                               obj1: extract_user(user), obj2: extract_question(answer_question)})
         end
       when ACTION_TYPE[:USER_REPLY_COMMENT]
         user = User.find(args[0])
@@ -75,14 +75,14 @@ class MessagesAdapter
           reply_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: 'User',
                                        extra_info2_id: question_obj.id, extra_info2_type: 'Question')
           push_to_client(reply_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
-                                                                  obj1: user, obj2: question_obj})
+                                                                  obj1: extract_user(user), obj2: extract_question(question_obj)})
         end
       when ACTION_TYPE[:USER_FOLLOW_USER]
         user0 = User.find(args[0])
         user1 = User.find(args[1])
         if user1.user_msg_setting.followed_flag
           user1.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_FOLLOW_YOU], extra_info1_id: user0.id, extra_info1_type: 'User',)
-          push_to_client(user1.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_FOLLOW_YOU], obj1: user0})
+          push_to_client(user1.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_FOLLOW_YOU], obj1: extract_user(user0)})
         end
       when ACTION_TYPE[:USER_AGREE_ANSWER]
         user = User.find(args[0])
@@ -93,7 +93,7 @@ class MessagesAdapter
           answer_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: "User",
                                         extra_info2_id: answer_question.id, extra_info2_type: 'Question')
           push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER],
-                                                         obj1: user, obj2: answer_question})
+                                                         obj1: extract_user(user), obj2: extract_question(answer_question)})
         end
       else
     end
@@ -102,5 +102,17 @@ class MessagesAdapter
   private
   def push_to_client (temp_access_token, obj)
     FayeClient.send("/message/#{temp_access_token}", obj)
+  end
+
+  def extract_user(user)
+    hash = user.as_json
+    user_name = ApplicationController.helpers.generate_name(hash['first_name'], hash['last_name'])
+    hash.slice!('token_id', 'url_id')
+    hash.merge!("name" => user_name)
+  end
+
+  def extract_question(question)
+    hash = question.as_json
+    hash.slice('title', 'token_id')
   end
 end
