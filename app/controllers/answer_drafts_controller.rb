@@ -1,4 +1,4 @@
-require 'returncode_define'
+require 'return_code'
 
 class AnswerDraftsController < ApplicationController
   before_action :set_question, only: [:save, :fetch, :remove]

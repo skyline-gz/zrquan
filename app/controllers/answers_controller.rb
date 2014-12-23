@@ -1,5 +1,5 @@
-require "date_utils.rb"
-require 'returncode_define'
+require 'date_utils.rb'
+require 'return_code'
 
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:update, :agree]

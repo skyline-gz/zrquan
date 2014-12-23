@@ -1,7 +1,7 @@
 require 'digest/md5'
 require 'mime/types'
 require 'tempfile'
-require 'returncode_define'
+require 'return_code'
 
 class UploadController < ApplicationController
   # respond_to :html, :xml, :json

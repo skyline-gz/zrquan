@@ -1,4 +1,4 @@
-require "returncode_define.rb"
+require 'return_code.rb'
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # 创建用户（注册）

@@ -1,4 +1,4 @@
-require "returncode_define.rb"
+require "return_code.rb"
 
 class UsersController < ApplicationController
   before_action :set_user_by_token_id, only: [:follow, :un_follow, :profile]

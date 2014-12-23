@@ -1,4 +1,4 @@
-require 'returncode_define'
+require 'return_code'
 require 'date_utils.rb'
 
 class QuestionsController < ApplicationController

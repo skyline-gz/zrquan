@@ -1,4 +1,4 @@
-require 'returncode_define'
+require 'return_code'
 
 class ThemesController < ApplicationController
   include AutomatchUtils

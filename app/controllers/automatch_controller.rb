@@ -1,4 +1,4 @@
-require 'returncode_define'
+require 'return_code'
 
 class AutomatchController < ApplicationController
   include AutomatchUtils

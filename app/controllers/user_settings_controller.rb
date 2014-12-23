@@ -1,4 +1,4 @@
-require "returncode_define.rb"
+require "return_code.rb"
 
 class UserSettingsController < ApplicationController
   before_action :authenticate_user!
