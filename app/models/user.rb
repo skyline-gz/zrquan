@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def unread_messages
+		messages.where(read_flag: false)
+	end
+
 	def following_num
 		following_users.count
 	end

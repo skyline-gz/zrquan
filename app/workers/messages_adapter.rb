@@ -22,7 +22,7 @@ class MessagesAdapter
           if question_user.user_msg_setting.answer_flag && !is_self
             question_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION], extra_info1_id: user.id, extra_info1_type: 'User',
                                             extra_info2_id: question_obj.id, extra_info2_type: 'Question')
-            push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION],
+            push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION], unread_num:question_user.unread_messages.length,
                                                         obj1: extract_user(user), obj2: extract_question(question_obj)})
           end
         end
@@ -42,7 +42,7 @@ class MessagesAdapter
           if follower.user_msg_setting.commented_flag && !is_reply_user_follower && !is_self
             follower.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION], extra_info1_id: user.id, extra_info1_type: 'User',
                                                        extra_info2_id: question_obj.id, extra_info2_type: 'Question')
-            push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
+            push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION], unread_num:follower.unread_messages.length,
                                                               obj1: extract_user(user), obj2: extract_question(question_obj)})
           end
         end
@@ -63,7 +63,7 @@ class MessagesAdapter
         if answer_user.user_msg_setting.commented_flag && !is_reply_user_follower && is_self
           answer_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: 'User',
                                     extra_info2_id: answer_question.id, extra_info2_type: 'Question')
-          push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
+          push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION], unread_num:answer_user.unread_messages.length,
                                                                obj1: extract_user(user), obj2: extract_question(answer_question)})
         end
       when ACTION_TYPE[:USER_REPLY_COMMENT]
@@ -74,7 +74,7 @@ class MessagesAdapter
         if reply_user.user_msg_setting.commented_flag
           reply_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: 'User',
                                        extra_info2_id: question_obj.id, extra_info2_type: 'Question')
-          push_to_client(reply_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
+          push_to_client(reply_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION], unread_num:reply_user.unread_messages.length,
                                                                   obj1: extract_user(user), obj2: extract_question(question_obj)})
         end
       when ACTION_TYPE[:USER_FOLLOW_USER]
@@ -82,7 +82,7 @@ class MessagesAdapter
         user1 = User.find(args[1])
         if user1.user_msg_setting.followed_flag
           user1.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_FOLLOW_YOU], extra_info1_id: user0.id, extra_info1_type: 'User',)
-          push_to_client(user1.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_FOLLOW_YOU], obj1: extract_user(user0)})
+          push_to_client(user1.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_FOLLOW_YOU], obj1: extract_user(user0), unread_num:user1.unread_messages.length,})
         end
       when ACTION_TYPE[:USER_AGREE_ANSWER]
         user = User.find(args[0])
@@ -92,7 +92,7 @@ class MessagesAdapter
         if answer_user.user_msg_setting.agreed_flag
           answer_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: "User",
                                         extra_info2_id: answer_question.id, extra_info2_type: 'Question')
-          push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER],
+          push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER], unread_num:answer_user.unread_messages.length,
                                                          obj1: extract_user(user), obj2: extract_question(answer_question)})
         end
       else
@@ -108,7 +108,7 @@ class MessagesAdapter
     hash = user.as_json
     user_name = ApplicationController.helpers.generate_name(hash['first_name'], hash['last_name'])
     hash.slice!('token_id', 'url_id')
-    hash.merge!("name" => user_name)
+    hash.merge!('name' => user_name)
   end
 
   def extract_question(question)

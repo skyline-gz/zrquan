@@ -158,8 +158,23 @@ div[role=navigation] {
     }
 
     .icons-message {
+      position: relative;
       width: 25px;
       height: 20px;
+
+      .message-num {
+        position: absolute;
+        background: #ff9700;
+        color: #ffffff;
+        padding: 0 4px;
+        height: 14px;
+        border-radius: 100%;
+        line-height: 14px;
+        font-size: 12px;
+        font-weight: bold;
+        top: -6px;
+        left: 16px;
+      }
     }
 
     .icons-private_message {

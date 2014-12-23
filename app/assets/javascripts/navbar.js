@@ -12,6 +12,9 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
     //导航栏主视图
     Module.View = Marionette.LayoutView.extend({
         el: "div[role=navigation]",
+        ui: {
+            messageNum : '.message-num'
+        },
         events: {
             'click #btn-sign-up': 'onClickBtnSignUp',
             'click #btn-sign-in': 'onClickBtnSignIn',
@@ -47,6 +50,7 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
         },
         initialize: function() {
             this.listenTo(Zrquan.appEventBus, 'reload:avatar', this.reloadAvatar);
+            var that = this;
 
             //初始化faye subscribe
             initNotificationSubscribe();
@@ -57,7 +61,10 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                 }
                 var faye = new Faye.Client(Zrquan.User.faye_client_url);
                 faye.subscribe("/message/" + Zrquan.User.access_token, function(result){
-                    console.log(result);
+                    console.log('Faye message come... ' + result);
+                    if(result.unread_num > 0) {
+                        that.ui.messageNum.html(result.unread_num).show();
+                    }
                 });
 
                 faye.then(function() {

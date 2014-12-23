@@ -44,7 +44,10 @@
               </li>
             </ul>
           </li>
-          <li><a class="message-link tooltipster" title="消息"><i class="icons-message"></i></a></li>
+          <li><a class="message-link tooltipster" title="消息">
+            <i class="icons-message">
+              <div class="message-num" data-num="<%= current_user.unread_messages.length %>"
+                   style="<%= current_user.unread_messages.length <= 0 ? 'display:none' : 'display:block' %>"><%= current_user.unread_messages.length %></div></i></a></li>
           <li><a class="private-message-link tooltipster" title="私信"><i class="icons-private_message"></i></a></li>
         </ul>
     <% else %>
