@@ -12,6 +12,20 @@ class MessagesAdapter
 
   def perform(type, *args)
     case type
+      when ACTION_TYPE[:USER_ANSWER_QUESTION]
+        user = User.find(args[0])
+        question_obj = Question.find(args[1])
+        question_user = question_obj.user
+        question_obj.followers.each do |follower|
+          # 1.自己回答自己关注的问题时，不发消息
+          is_self = (user.id == follower.id)
+          if question_user.user_msg_setting.answer_flag && !is_self
+            question_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION], extra_info1_id: user.id, extra_info1_type: 'User',
+                                            extra_info2_id: question_obj.id, extra_info2_type: 'Question')
+            push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION],
+                                                        obj1: user, obj2: question_obj})
+          end
+        end
       when ACTION_TYPE[:USER_COMMENT_QUESTION]
         user = User.find(args[0])
         question_obj = Question.find(args[1])
@@ -21,7 +35,11 @@ class MessagesAdapter
           reply_user = replied_comment_obj.user
         end
         question_obj.followers.each do |follower|
-          if follower.user_msg_setting.commented_flag && !(reply_user && (reply_user.id == follower.id))
+          # １.即是关注问题者，又是被回复者时，不发消息
+          is_reply_user_follower = (!!reply_user and (reply_user.id == follower.id))
+          # 2.自己评论自己关注的问题时，不发消息
+          is_self = (user.id == follower.id)
+          if follower.user_msg_setting.commented_flag && !is_reply_user_follower && !is_self
             follower.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION], extra_info1_id: user.id, extra_info1_type: 'User',
                                                        extra_info2_id: question_obj.id, extra_info2_type: 'Question')
             push_to_client(follower.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
@@ -38,7 +56,11 @@ class MessagesAdapter
         end
         answer_user = answer_obj.user
         answer_question = answer_obj.question
-        if answer_user.user_msg_setting.commented_flag && !(reply_user && (reply_user.id == answer_user.id))
+        # １.即是答案所有者，又是被回复者时，不发消息
+        is_reply_user_follower = (!!reply_user and (reply_user.id == answer_user.id))
+        # 2.自己评论自己的答案时，不发消息
+        is_self = (user.id == follower.id)
+        if answer_user.user_msg_setting.commented_flag && !is_reply_user_follower && is_self
           answer_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: 'User',
                                     extra_info2_id: answer_question.id, extra_info2_type: 'Question')
           push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION],
