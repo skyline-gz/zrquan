@@ -1,0 +1,64 @@
+.ml-header {
+  margin-top: 18px;
+  font-weight: 700;
+  font-size: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #CCC;
+  position: relative;
+}
+
+.ml-content {
+  overflow: hidden;
+  padding-top: 25px;
+  margin-bottom: 50px;
+
+  .ml-content-left {
+    float: left;
+    width: 772px;
+    border-right: 1px solid $deep-grey;
+
+    div[role=messageblocks] {
+      width: 720px;
+      margin-top: -15px;
+
+      .day {
+        margin-top: 10px;
+
+        h3 {
+          font-size: 13px;
+          font-weight: bold;
+        }
+
+        .item {
+          clear: both;
+          border-top: 1px solid #EEE;
+          padding: 8px 0;
+          position: relative;
+
+          a {
+            color: #CB7800;
+
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+
+          .icon-comment {
+            margin-top: 4px;
+            margin-right: 5px;
+            float: left;
+            width: 13px;
+            height: 13px;
+            background-position: -207px -45px;
+            background-image: url(../images/sprites-zh.png);
+            background-repeat: no-repeat;
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+  }
+}

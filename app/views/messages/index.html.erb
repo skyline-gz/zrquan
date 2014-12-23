@@ -1,24 +1,76 @@
-<h1>Listing messages</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>Msg type</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr>
-        <td></td>
-        <td><%= message.msg_type %></td>
-        <td><%= message.user.email %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="ml-header warp-content">全部消息</div>
+<div class="ml-content warp-content">
+  <div class="ml-content-left">
+    <div role="messageblocks" >
+        <% @messages.each do |key, messages|%>
+            <div class="day">
+                <h3><%= key %></h3>
+                <% messages.each do |message| %>
+                  <div class="item">
+                  <%
+                  case message.msg_type
+                    when Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION]
+                      user = User.find(message.extra_info1_id)
+                      question = Question.find(message.extra_info2_id)
+                  %>
+                        <i class="icon-comment"></i>
+                        <a class="component-infoblock-username" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+                        <span>回答了你关注的问题</span>
+                        <a><%= question.title %></a>
+                    <%
+                    when Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER]
+                      user = User.find(message.extra_info1_id)
+                      question = Question.find(message.extra_info2_id)
+                  %>
+                        <i class="icon-comment"></i>
+                        <a class="component-infoblock-username" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+                        <span>评论了你在问题</span>
+                        <a><%= question.title %></a>
+                        <span>的回答</span>
+                  <%
+                    when Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION]
+                     user = User.find(message.extra_info1_id)
+                     question = Question.find(message.extra_info2_id)
+                  %>
+                    <i class="icon-comment"></i>
+                    <a class="component-infoblock-username" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+                    <span>评论了你关注的问题</span>
+                    <a><%= question.title %></a>
+                  <%
+                    when Message::MESSAGE_TYPE[:USER_REPLY_YOUR_COMMENT]
+                      user = User.find(message.extra_info1_id)
+                      question = Question.find(message.extra_info2_id)
+                  %>
+                        <i class="icon-comment"></i>
+                        <a class="component-infoblock-username" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+                        <span>回复了你在问题</span>
+                        <a><%= question.title %></a>
+                        <span>的评论</span>
+                    <%
+                    when Message::MESSAGE_TYPE[:USER_FOLLOW_YOU]
+                      user = User.find(message.extra_info1_id)
+                    %>
+                        <i class="icon-comment"></i>
+                        <a class="component-infoblock-username" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+                        <span>关注了你</span>
+                    <%
+                    when Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER]
+                      user = User.find(message.extra_info1_id)
+                      question = Question.find(message.extra_info2_id)
+                    %>
+                        <i class="icon-comment"></i>
+                        <a class="component-infoblock-username" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+                        <span>赞同了你在问题</span>
+                        <a><%= question.title %></a>
+                        <span>的回答</span>
+                    <%
+                    else
+                  end
+                  %>
+                  </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+  </div>
+</div>
