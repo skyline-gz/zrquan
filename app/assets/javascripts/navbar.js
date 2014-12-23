@@ -61,7 +61,8 @@ Zrquan.module('Navbar', function(Module, App, Backbone, Marionette, $, _){
                 }
                 var faye = new Faye.Client(Zrquan.User.faye_client_url);
                 faye.subscribe("/message/" + Zrquan.User.access_token, function(result){
-                    console.log('Faye message come... ' + result);
+                    console.log('Faye message come... ');
+                    console.log(result);
                     if(result.unread_num > 0) {
                         that.ui.messageNum.html(result.unread_num).show();
                     }

@@ -59,8 +59,8 @@ class MessagesAdapter
         # １.即是答案所有者，又是被回复者时，不发消息
         is_reply_user_follower = (!!reply_user and (reply_user.id == answer_user.id))
         # 2.自己评论自己的答案时，不发消息
-        is_self = (user.id == follower.id)
-        if answer_user.user_msg_setting.commented_flag && !is_reply_user_follower && is_self
+        is_self = (user.id == answer_user.id)
+        if answer_user.user_msg_setting.commented_flag && !is_reply_user_follower && !is_self
           answer_user.messages.create!(msg_type: Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER], extra_info1_id: user.id, extra_info1_type: 'User',
                                     extra_info2_id: answer_question.id, extra_info2_type: 'Question')
           push_to_client(answer_user.temp_access_token, {type:  Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION], unread_num:answer_user.unread_messages.length,

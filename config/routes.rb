@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :private_messages, except: [:destroy, :edit, :update]
 
-  # resources :messages, except: [:destroy, :edit, :update]
+  resources :messages, only: [:index]
 
   resources :questions, except: [:new, :destroy] do
     # 列出问题(ajax)
