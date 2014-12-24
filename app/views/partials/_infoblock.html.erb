@@ -37,7 +37,7 @@
       </div>
       <div class="component-infoblock-right">
         <div class="component-infoblock-header">
-          <span class="component-infoblock-username" data-role="user" data-url-id="<%= answer.user.url_id %>" data-id="<%= answer.user.token_id %>"><%= generate_name(answer.user.first_name, answer.user.last_name) %></span>
+          <span class="component-infoblock-username" data-role="user" data-url-id="<%= answer.user.url_id %>" data-id="<%= answer.user.token_id %>"><%= answer.user.full_name %></span>
           <% if answer.user.verified_flag %>
             <i class="icons-vip"></i>
           <% end %>
@@ -124,7 +124,7 @@
       </div>
       <div class="component-infoblock-right">
         <div class="component-infoblock-header">
-          <span class="component-infoblock-username" data-role="user" data-url-id="<%= question.user.url_id %>" data-id="<%= question.user.token_id %>"><%= generate_name(question.user.first_name, question.user.last_name) %></span>
+          <span class="component-infoblock-username" data-role="user" data-url-id="<%= question.user.url_id %>" data-id="<%= question.user.token_id %>"><%= question.user.full_name %></span>
           <% if question.user.verified_flag %>
               <i class="icons-vip"></i>
           <% end %>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # resources :private_messages, except: [:destroy, :edit, :update]
 
   resources :messages, only: [:index] do
     # 列出消息(ajax)
@@ -59,6 +58,11 @@ Rails.application.routes.draw do
       post 'un_follow', :constraints => {:format => 'json'}
     end
   end
+
+  # 搜索
+  get 'search' => 'search#index'
+  # 列出搜索结果(ajax)
+  get 'search/list' => 'search#list', :constraints => {:format => 'json'}
 
   # 收藏,取消收藏　问题，文章
   post 'bookmarks' => 'bookmarks#create', :constraints => {:format => 'json'}

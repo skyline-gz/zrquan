@@ -12,7 +12,7 @@
       <form method="GET" action="/search" class="top-nav-search-form">
         <input type="text" class="top-nav-search-input" id="q" name="q"
                autocomplete="off" value="" placeholder="搜索问题或用户..." aria-haspopup="true">
-        <input type="hidden" name="type" value="question">
+        <input type="hidden" name="type" value="Question">
         <button type="submit" class="top-nav-search-submit">
           <i class="icons-search_s"></i></button>
       </form>
@@ -27,7 +27,7 @@
                 <% else %>
                   <img src="/images/noface.gif" class="user-logo">
                 <% end %>
-                <span><%=generate_name(current_user.first_name, current_user.last_name)%></span>
+                <span><%= current_user.full_name %></span>
             </a>
             <ul class="top-nav-dropdown" id="top-nav-profile-dropdown" aria-labelledby=":0" aria-hidden="true">
               <li>

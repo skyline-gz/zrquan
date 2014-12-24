@@ -82,7 +82,7 @@
           </div>
           <div class="user-profile-right">
             <div class="user-profile-header">
-              <div class="user-profile-name"><%=generate_name(@user.first_name, @user.last_name)%></div>
+              <div class="user-profile-name"><%= @user.full_name %></div>
               <% if @user.verified_flag %>
                 <div class="user-profile-vip"></div>
               <% end %>

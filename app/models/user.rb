@@ -11,6 +11,19 @@ class User < ActiveRecord::Base
 	# 头像上传由异步upload_controller.rb控制,avatar字段只存储头像url
 	# mount_uploader :avatar, AvatarUploader
 
+	searchable do
+		text :user_full_name do
+			full_name
+		end
+		text :description, :latest_position, :latest_major
+		text :user_latest_company do
+			latest_company.try(:name) || ''
+		end
+		text :user_latest_school do
+			latest_school.try(:name) || ''
+		end
+	end
+
   has_many :questions
   has_many :answers
   has_many :messages
@@ -46,6 +59,17 @@ class User < ActiveRecord::Base
   validate :password_complexity
   # 密码长度的验证在config/initializers/devise.rb里面设置（config.password_length）
   # 邮箱格式的验证在config/initializers/devise.rb里面设置（config.email_regexp）
+
+	# 根据书写习惯显示姓名
+	def full_name
+		first_name = self.first_name
+		last_name = self.last_name
+		if check_english(first_name)|| check_english(last_name)
+			last_name + ' ' + first_name
+		else
+			last_name + first_name
+		end
+	end
 
   def password_complexity
     if password.present? and not password.match(/\A[a-zA-Z0-9]+\z/)
@@ -165,5 +189,9 @@ class User < ActiveRecord::Base
 		generate_url_id
 		self.save
 		generate_user_msg_setting
+	end
+
+	def check_english(str)
+		/\A[a-zA-Z]+\z/.match(str) != nil
 	end
 end

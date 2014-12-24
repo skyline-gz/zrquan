@@ -43,7 +43,7 @@
         <img class="user-logo" src="/images/noface.gif">
     <% end %>
     <div class="user-desc-container">
-      <div class="user-name"><span><%= generate_name(@user.first_name, @user.last_name) %></span>
+      <div class="user-name"><span><%= @user.full_name %></span>
         <% if @user.verified_flag %>
             <i class="icons-vip"></i>
         <% end %>

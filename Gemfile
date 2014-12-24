@@ -98,3 +98,6 @@ gem 'carrierwave-qiniu', '0.1.4'
 
 # 拼音处理
 gem 'ruby-pinyin', '0.4.3'
+
+# 在控制台中打印进度条，rake sunspot:reindex[,model] 命令强依赖
+gem 'progress_bar', '1.0.3'

@@ -5,7 +5,7 @@
     <% else %>
         Module.isLogin = true;
         Module.isComfirmed = <%= current_user.confirmed? %>;
-        Module.name = '<%= generate_name(current_user.first_name, current_user.last_name) %>';
+        Module.name = '<%= current_user.full_name %>';
         Module.email = '<%= current_user.email %>';
         Module.avatar = '<%= current_user.avatar == nil ? '': Settings.upload_url + current_user.avatar %>';
         Module.user_id = <%= current_user.token_id %>;
