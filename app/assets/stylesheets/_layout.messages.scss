@@ -44,17 +44,32 @@
             }
           }
 
-          .icon-comment {
+          .icon-comment, .icon-answer, .icon-agree, .icon-follow{
             margin-top: 4px;
             margin-right: 5px;
             float: left;
             width: 13px;
             height: 13px;
-            background-position: -207px -45px;
             background-image: url(../images/sprites-zh.png);
             background-repeat: no-repeat;
             display: inline-block;
             vertical-align: middle;
+          }
+
+          .icon-comment {
+            background-position: -207px -45px;
+          }
+
+          .icon-answer {
+            background-position: -166px -45px;
+          }
+
+          .icon-agree {
+            background-position: -179px -45px;
+          }
+
+          .icon-follow {
+            background-position: -193px -45px;
           }
         }
       }

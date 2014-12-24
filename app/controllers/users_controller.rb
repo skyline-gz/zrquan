@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     else
       if Relationship.create(:following_user_id => id, :follower_id => current_user.id)
         # 创建关注消息并发送
-        MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_COMMENT_QUESTION] ,id ,current_user.id)
+        MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_FOLLOW_USER] , current_user.id, id)
         render :json => { :code => ReturnCode::S_OK} and return
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }

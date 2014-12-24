@@ -15,6 +15,7 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             content : '.popover-content'
         },
         onFollowClick : function(evt) {
+            locache.remove("profile_card_content_html_" + this.current_user_id);
             var that = this;
             $.when(Zrquan.Ajax.request({
                 url: "/users/" + $(evt.currentTarget).data("target-id") + "/follow"
@@ -30,6 +31,7 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             });
         },
         onUnFollowClick : function(evt) {
+            locache.remove("profile_card_content_html_" + this.current_user_id);
             var that = this;
             $.when(Zrquan.Ajax.request({
                 url: "/users/" + $(evt.currentTarget).data("target-id") + "/un_follow"
@@ -67,6 +69,7 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
                 dataType: "text",
                 type: 'GET'
             }).then(function(result) {
+                locache.set("profile_card_content_html_" + userId, result, 60);
                 that.showContent(result);
             });
         },
@@ -101,7 +104,6 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             this.$el.show();
         },
         hide: function() {
-            locache.set("profile_card_content_html_" + this.current_user_id, this.ui.content.html(), 60);
             this.$el.hide();
         },
         checkAndHide: function(evt) {
