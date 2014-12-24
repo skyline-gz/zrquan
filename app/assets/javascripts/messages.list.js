@@ -1,6 +1,8 @@
 Zrquan.module('Messages.List', function(Module, App, Backbone, Marionette, $, _){
     "use strict";
 
+    var messageBlocks = $('div[role=messageblocks]');
+
     Module.addInitializer(function() {
         console.log("Messages List init...");
         Module.controller = new Module.Controller();
@@ -10,6 +12,7 @@ Zrquan.module('Messages.List', function(Module, App, Backbone, Marionette, $, _)
     Module.Controller = Marionette.Controller.extend({
         start: function() {
             Module.loadMoreView.render();
+            $('[data-role=user]', messageBlocks).mouseover(onShowUserProfile);
         }
     });
 
@@ -19,7 +22,6 @@ Zrquan.module('Messages.List', function(Module, App, Backbone, Marionette, $, _)
             this.$el.show();
             this.counter ++;
             var that = this;
-            var messageBlocks = $('div[role=messageblocks]');
             var lastDay = $('.day:last-child', messageBlocks);
             var url = "/messages/list?last_id=" + $('.item:last-child', lastDay).data("id");
 
@@ -39,9 +41,14 @@ Zrquan.module('Messages.List', function(Module, App, Backbone, Marionette, $, _)
                         var infoblockTemplate = result.data[i];
                         messageBlocks.append(infoblockTemplate);
                     }
+                    $('[data-role=user]', messageBlocks).mouseover(onShowUserProfile);
                     that.isLoading = false;
                 }
             });
         }
     }));
+
+    function onShowUserProfile(evt) {
+        Zrquan.appEventBus.trigger('profile:show', evt.currentTarget, parseInt($(evt.currentTarget).data('id')));
+    }
 });
