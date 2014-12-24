@@ -17,8 +17,8 @@ class MessagesController < ApplicationController
     @messages = get_ordered_messages
     start = 0
     if last_id
-      @messages.each_with_index {|q, i|
-        if q.token_id == last_id.to_i
+      @messages.each_with_index {|m, i|
+        if m.id == last_id.to_i
           start = i
           next
         end

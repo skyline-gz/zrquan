@@ -6,9 +6,10 @@
     <% else %>
         <div role="messageblocks">
           <% @messages.each do |key, messages| %>
-             <%= render partial: 'messages/messagedayblock', :locals => {:day_key =>key, :messages => messages} %>
+             <%= render partial: 'messages/messages_day_block', :locals => {:day_key =>key, :messages => messages} %>
           <% end %>
         </div>
+        <a href="javascript:void(0);" data-role='load-more' style="display: none"><i class="spinner-gray"></i>正在加载</a>
     <% end %>
   </div>
 </div>

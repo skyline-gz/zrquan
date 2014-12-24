@@ -35,6 +35,9 @@ Zrquan.module('UI.LoadMore', function(Module, App, Backbone, Marionette, $, _) {
             }
         },
         onScroll: function(evt) {
+            if(this.options.mode == this.mode.MORE || this.options.mode == this.mode.NONE) {
+                return;
+            }
             var nScrollTop = $(document.body)[0].scrollTop;
             var availableHeight = $(document).height()-$(window).height();
             console.log(nScrollTop, availableHeight);

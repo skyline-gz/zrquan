@@ -5,7 +5,7 @@
 <div class="day">
   <h3><%= day_key %></h3>
   <% messages.each do |message| %>
-    <div class="item">
+    <div class="item" data-id="<%= message.id %>">
       <%
          case message.msg_type
            when Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION]

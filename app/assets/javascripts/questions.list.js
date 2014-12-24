@@ -2,7 +2,7 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
     "use strict";
 
     Module.addInitializer(function() {
-        console.log("Questions Show init...");
+        console.log("Questions List init...");
         Module.controller = new Module.Controller();
         Module.controller.start();
     });
@@ -13,7 +13,6 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
             Module.loadMoreView.render();
         }
     });
-
     //问答信息块列表视图
     Module.infosView = new (Backbone.Marionette.CollectionView.extend({
         el: 'div[role=infoblocks]',
@@ -33,8 +32,8 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
 
     Module.loadMoreView = new (Zrquan.UI.LoadMore.LoadMoreView.extend({
         pullAndRefresh: function()  {
-            Module.loadMoreView.switchShowMode(Module.loadMoreView.mode.LOADING);
-            Module.loadMoreView.$el.show();
+            this.switchShowMode(Module.loadMoreView.mode.LOADING);
+            this.$el.show();
             this.counter ++;
             var that = this;
             var url = "/questions/list?type=" + Module.infosView.$el.data("list-type")
@@ -45,12 +44,10 @@ Zrquan.module('Questions.List', function(Module, App, Backbone, Marionette, $, _
             }).then(function(result) {
                 if(result.code == "S_OK") {
                     if(result.data.length == 0) {
-                        $(document).off('scroll');
                         that.switchShowMode(Module.loadMoreView.mode.NONE);
                     } else if(that.counter == 1) {
                         that.$el.hide();
                     } else {
-                        $(document).off('scroll');
                         that.switchShowMode(Module.loadMoreView.mode.MORE);
                     }
                     for(var i = 0; i < result.data.length; i++) {
