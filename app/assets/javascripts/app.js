@@ -17,14 +17,21 @@ Zrquan = (function(Backbone){
     App.appView = new (Marionette.LayoutView.extend({
         el: document,
         events: {
-            'mouseover' : 'onMouseOver'
+            'mouseover' : 'onMouseOver',
+            'scroll' : 'onScroll'
         },
         onMouseOver: function(evt) {
             this._onMouseOverThrottled(evt);
         },
+        onScroll: function(evt) {
+            this._onScrollThrottled(evt);
+        },
         _onMouseOverThrottled: _.throttle(function(evt){
             App.appEventBus.trigger('mouseover', evt);
         }, 200),
+        _onScrollThrottled: _.throttle(function(evt){
+            App.appEventBus.trigger('scroll', evt);
+        }, 500),
         initialize: function() {
             //设置自定义tooltips
             $('.tooltipster').tooltipster({
