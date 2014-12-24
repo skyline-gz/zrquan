@@ -26,7 +26,11 @@
         border-bottom: 1px solid $popover-content-border-color;
         padding-top: 18px;
         padding-left: 15px;
-        padding-bottom: 9px;
+        padding-bottom: 4px;
+
+        .upper-wrapper {
+          overflow: hidden;
+        }
 
         .user-logo {
           display: block;
@@ -76,6 +80,11 @@
             margin-left: 3px;
             margin-bottom: 2px;
           }
+        }
+
+        .user-description {
+          font-size: 13px;
+          margin-top: 4px;
         }
       }
 
