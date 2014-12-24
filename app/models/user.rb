@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   validates :first_name, length: {in: 1..20}, if: Proc.new { |u| u.first_name.match(/\A[a-zA-Z]+\z/) }
   validates :last_name, length: {in: 1..9}, if: Proc.new { |u| u.last_name.match(/\A\p{Han}+\z/) }
   validates :first_name, length: {in: 1..9}, if: Proc.new { |u| u.first_name.match(/\A\p{Han}+\z/) }
+  validates :description, length: {maximum: 25}
 
   validate :password_complexity
   # 密码长度的验证在config/initializers/devise.rb里面设置（config.password_length）
