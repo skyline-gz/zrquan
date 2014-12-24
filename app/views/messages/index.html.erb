@@ -6,75 +6,12 @@
     <% else %>
         <div role="messageblocks">
           <% @messages.each do |key, messages| %>
-              <div class="day">
-                <h3><%= key %></h3>
-                <% messages.each do |message| %>
-                    <div class="item">
-                      <%
-                         case message.msg_type
-                           when Message::MESSAGE_TYPE[:USER_ANSWER_YOUR_FOLLOWING_QUESTION]
-                             user = User.find(message.extra_info1_id)
-                             question = Question.find(message.extra_info2_id)
-                      %>
-                          <i class="icon-comment"></i>
-                          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
-                          <span>回答了你关注的问题</span>
-                          <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
-                      <%
-                         when Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_ANSWER]
-                           user = User.find(message.extra_info1_id)
-                           question = Question.find(message.extra_info2_id)
-                      %>
-                          <i class="icon-comment"></i>
-                          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
-                          <span>评论了你在问题</span>
-                          <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
-                          <span>的回答</span>
-                      <%
-                         when Message::MESSAGE_TYPE[:USER_COMMENT_YOUR_FOLLOWING_QUESTION]
-                           user = User.find(message.extra_info1_id)
-                           question = Question.find(message.extra_info2_id)
-                      %>
-                          <i class="icon-comment"></i>
-                          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
-                          <span>评论了你关注的问题</span>
-                          <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
-                      <%
-                         when Message::MESSAGE_TYPE[:USER_REPLY_YOUR_COMMENT]
-                           user = User.find(message.extra_info1_id)
-                           question = Question.find(message.extra_info2_id)
-                      %>
-                          <i class="icon-comment"></i>
-                          <a class="component-infoblock-username" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
-                          <span>回复了你在问题</span>
-                          <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
-                          <span>的评论</span>
-                      <%
-                         when Message::MESSAGE_TYPE[:USER_FOLLOW_YOU]
-                           user = User.find(message.extra_info1_id)
-                      %>
-                          <i class="icon-comment"></i>
-                          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
-                          <span>关注了你</span>
-                      <%
-                         when Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER]
-                           user = User.find(message.extra_info1_id)
-                           question = Question.find(message.extra_info2_id)
-                      %>
-                          <i class="icon-comment"></i>
-                          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
-                          <span>赞同了你在问题</span>
-                          <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
-                          <span>的回答</span>
-                      <%
-                         else
-                         end
-                      %>
-                    </div>
-                <% end %>
-              </div>
+             <%= render partial: 'messages/messagedayblock', :locals => {:day_key =>key, :messages => messages} %>
           <% end %>
         </div>
     <% end %>
   </div>
 </div>
+<% content_for :page_javascript do %>
+    <%= javascript_include_tag "messages.list" %>
+<% end %>

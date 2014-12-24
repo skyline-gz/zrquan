@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   # resources :private_messages, except: [:destroy, :edit, :update]
 
-  resources :messages, only: [:index]
+  resources :messages, only: [:index] do
+    # 列出消息(ajax)
+    collection do
+      get :list, :constraints => {:format => 'json'}
+    end
+  end
 
   resources :questions, except: [:new, :destroy] do
     # 列出问题(ajax)
