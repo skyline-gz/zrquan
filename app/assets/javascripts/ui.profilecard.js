@@ -45,13 +45,21 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             });
         },
         onShowProfile: function(target, userId) {
+            this.hide();
             if (this.$el.is(':visible') && this.current_user_id == userId) {
                 return;
             }
             this.current_user_id = userId;
+            this.trigger_el = $(target);
+            this.show();
+            var cacheHtml = locache.get("profile_card_content_html_" + userId);
+            if(cacheHtml) {
+                this.showContent(cacheHtml);
+                return;
+            }
+
             var that = this;
             this.showLoadingTips();
-            this.trigger_el = $(target);
             this.position();
             Zrquan.Ajax.request({
                 url: '/users/' + userId + '/profile',
@@ -59,14 +67,16 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
                 dataType: "text",
                 type: 'GET'
             }).then(function(result) {
-                that.ui.content.empty().append(result).show();
-                that.delegateEvents(this.events);
-                that.$el[0].offsetWidth
-                that.position();
+                that.showContent(result);
             });
         },
+        showContent: function(html) {
+            this.ui.content.empty().append(html).show();
+            this.delegateEvents(this.events);
+            this.$el[0].offsetWidth
+            this.position();
+        },
         showLoadingTips: function() {
-            this.show();
             this.ui.content.empty().append("<div class='profile-card-loading'></div>").show();
         },
         position: function() {
@@ -91,6 +101,7 @@ Zrquan.module('UI.ProfileCard', function(Module, App, Backbone, Marionette, $, _
             this.$el.show();
         },
         hide: function() {
+            locache.set("profile_card_content_html_" + this.current_user_id, this.ui.content.html(), 60);
             this.$el.hide();
         },
         checkAndHide: function(evt) {
