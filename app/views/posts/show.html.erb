@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @post.token_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Agree score:</strong>
+  <%= @post.agree_score %>
+</p>
+
+<p>
+  <strong>Oppose score:</strong>
+  <%= @post.oppose_score %>
+</p>
+
+<p>
+  <strong>Anonymous flag:</strong>
+  <%= @post.anonymous_flag %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user %>
+</p>
+
+<p>
+  <strong>Edited at:</strong>
+  <%= @post.edited_at %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

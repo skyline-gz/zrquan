@@ -30,6 +30,7 @@ class Ability
       can :show, Message
       can :show, NewsFeed
       can :show, Activity
+      can :show, Post
 		end
 
 		# verified_user
@@ -52,7 +53,7 @@ class Ability
     # normal user
     def normal_user_abilities(user)
 			# general 
-			create_edit_abilities(user)
+			create_edit_abilitlies(user)
 			
       # answer
       answer_abilities(user)
@@ -87,6 +88,13 @@ class Ability
       end
       can :agree, Answer do |ans|
         ans.user_id != user.id and !user.agreed_answer?(ans)
+      end
+    end
+
+    def post_abilities(user)
+      can :create, Post
+      can :agree, Post do |p|
+        p.user_id != user.id and !user.agreed_answer?(p)
       end
     end
 

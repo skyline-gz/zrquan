@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post_comment.content %>
+</p>
+
+<p>
+  <strong>Agree score:</strong>
+  <%= @post_comment.agree_score %>
+</p>
+
+<p>
+  <strong>Oppose score:</strong>
+  <%= @post_comment.oppose_score %>
+</p>
+
+<p>
+  <strong>Anonymous flag:</strong>
+  <%= @post_comment.anonymous_flag %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post_comment.user %>
+</p>
+
+<p>
+  <strong>Replied comment:</strong>
+  <%= @post_comment.replied_comment %>
+</p>
+
+<%= link_to 'Edit', edit_post_comment_path(@post_comment) %> |
+<%= link_to 'Back', post_comments_path %>
