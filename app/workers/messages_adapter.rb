@@ -106,7 +106,7 @@ class MessagesAdapter
 
   def extract_user(user)
     hash = user.as_json
-    user_name = ApplicationController.helpers.generate_name(hash['first_name'], hash['last_name'])
+    user_name = user.full_name
     hash.slice!('token_id', 'url_id')
     hash.merge!('name' => user_name)
   end

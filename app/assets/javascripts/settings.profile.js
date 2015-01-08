@@ -113,7 +113,23 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
         $location.selectpicker('refresh');
     }
 
-    $('#profile-setting-form').on('ajax:success', function(xhr, data, status) {
+    var $profileSettingForm = $('#profile-setting-form');
+
+    $profileSettingForm.on('submit', function() {
+        if(!Zrquan.Regex.USER_DESC.test($('#description', $profileSettingForm).val())){
+            var $alertDanger = $('.alert.alert-danger');
+            $alertDanger.show();
+            $('html, body').animate({scrollTop:0}, 'fast');
+            $('.alert-message', $alertDanger).html("个人简介必须在25个字符以内");
+
+            setTimeout(function(){
+                $alertDanger.hide();
+            }, 2000);
+            return false;
+        }
+    });
+
+    $profileSettingForm.on('ajax:success', function(xhr, data, status) {
         if(data.code == "S_OK") {
             var $alertSuccess = $('.alert.alert-success');
             $alertSuccess.show();
@@ -122,7 +138,7 @@ Zrquan.module('Settings.Profile', function(Module, App, Backbone, Marionette, $,
 
             setTimeout(function(){
                 $alertSuccess.hide();
-            }, 2000)
+            }, 2000);
         }
     });
 });

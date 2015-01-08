@@ -1,0 +1,13 @@
+<% if params[:type] == 'Question' %>
+    <% @items.each do |question| %>
+        <div><%= question.title %></div> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div><%= question.content %></div>
+        <br>
+    <% end %>
+<% elsif params[:type] == 'User' %>
+    <% @items.each do |user| %>
+        <div><%= user.email %></div> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div><%= user.url_id %></div>
+        <br>
+    <% end %>
+<% end %>

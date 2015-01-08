@@ -47,7 +47,7 @@
    position_name = @user.latest_position ? @user.latest_position : '职位'
    region_name = region ? region.name : '区域'
    location_name = location ? location.name : '城市'
-   description_str = @user.description ? @user.description : '未填写个人描述'
+   description_str = @user.description ? @user.description : '未填写个人简介'
 %>
 
 <div class="user-top warp-content">
@@ -82,7 +82,7 @@
           </div>
           <div class="user-profile-right">
             <div class="user-profile-header">
-              <div class="user-profile-name"><%=generate_name(@user.first_name, @user.last_name)%></div>
+              <div class="user-profile-name"><%= @user.full_name %></div>
               <% if @user.verified_flag %>
                 <div class="user-profile-vip"></div>
               <% end %>
@@ -128,13 +128,12 @@
                 <i class="icon-profile-education"></i>
                 <div class="desc"><%= school_name %>&nbsp;<%= major_name %></div>
               </div>
+              <div class="user-content-row">
+                <div class="desc" style="padding-left: 21px;"><%= description_str %></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="user-detail">
-        <div class="user-detail-left">个人说明&nbsp;:&nbsp;</div>
-        <div class="user-detail-right"><%= raw description_str %></div>
       </div>
   </div>
 </div>

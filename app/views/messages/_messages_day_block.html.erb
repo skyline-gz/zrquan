@@ -13,7 +13,7 @@
              question = Question.find(message.extra_info2_id)
       %>
           <i class="icon-answer"></i>
-          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= user.full_name %></a>
           <span>回答了你关注的问题</span>
           <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
       <%
@@ -22,7 +22,7 @@
            question = Question.find(message.extra_info2_id)
       %>
           <i class="icon-comment"></i>
-          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= user.full_name %></a>
           <span>评论了你在问题</span>
           <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
           <span>的回答</span>
@@ -32,7 +32,7 @@
            question = Question.find(message.extra_info2_id)
       %>
           <i class="icon-comment"></i>
-          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= user.full_name %></a>
           <span>评论了你关注的问题</span>
           <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
       <%
@@ -41,7 +41,7 @@
            question = Question.find(message.extra_info2_id)
       %>
           <i class="icon-comment"></i>
-          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= user.full_name %></a>
           <span>回复了你在问题</span>
           <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
           <span>的评论</span>
@@ -50,7 +50,7 @@
            user = User.find(message.extra_info1_id)
       %>
           <i class="icon-follow"></i>
-          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= user.full_name %></a>
           <span>关注了你</span>
       <%
          when Message::MESSAGE_TYPE[:USER_AGREE_YOUR_ANSWER]
@@ -58,7 +58,7 @@
            question = Question.find(message.extra_info2_id)
       %>
           <i class="icon-agree"></i>
-          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= generate_name(user.first_name, user.last_name) %></a>
+          <a href="/users/<%= user.url_id %>" data-role="user" data-url-id="<%= user.url_id %>" data-id="<%= user.token_id %>"><%= user.full_name %></a>
           <span>赞同了你在问题</span>
           <a href="/questions/<%= question.token_id %>"><%= question.title %></a>
           <span>的回答</span>
