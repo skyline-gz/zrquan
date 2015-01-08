@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215041710) do
+ActiveRecord::Schema.define(version: 20141224091723) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -268,6 +268,17 @@ ActiveRecord::Schema.define(version: 20141215041710) do
 
   add_index "news_feeds", ["feedable_id", "feedable_type"], name: "index_news_feeds_on_feedable_id_and_feedable_type", using: :btree
 
+  create_table "oppositions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "opposable_id"
+    t.string   "opposable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "oppositions", ["opposable_id", "opposable_type"], name: "index_oppositions_on_opposable_id_and_opposable_type", using: :btree
+  add_index "oppositions", ["user_id"], name: "index_oppositions_on_user_id", using: :btree
+
   create_table "other_wikis", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -288,6 +299,44 @@ ActiveRecord::Schema.define(version: 20141215041710) do
 
   add_index "personal_salaries", ["company_id"], name: "index_personal_salaries_on_company_id", using: :btree
   add_index "personal_salaries", ["user_id"], name: "index_personal_salaries_on_user_id", using: :btree
+
+  create_table "post_comments", force: true do |t|
+    t.text     "content"
+    t.integer  "agree_score"
+    t.integer  "oppose_score"
+    t.boolean  "anonymous_flag"
+    t.integer  "user_id"
+    t.integer  "replied_comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_comments", ["replied_comment_id"], name: "index_post_comments_on_replied_comment_id", using: :btree
+  add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id", using: :btree
+
+  create_table "post_themes", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_themes", ["post_id"], name: "index_post_themes_on_post_id", using: :btree
+  add_index "post_themes", ["theme_id"], name: "index_post_themes_on_theme_id", using: :btree
+
+  create_table "posts", force: true do |t|
+    t.integer  "token_id"
+    t.text     "content"
+    t.integer  "agree_score"
+    t.integer  "oppose_score"
+    t.boolean  "anonymous_flag"
+    t.integer  "user_id"
+    t.datetime "edited_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "private_messages", force: true do |t|
     t.text     "content"

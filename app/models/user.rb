@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :questions
   has_many :answers
+  has_many :posts
+  has_many :post_comments
   has_many :messages
   has_many :comments
 	has_many :private_messages
@@ -20,6 +22,7 @@ class User < ActiveRecord::Base
 	has_many :following_questions, class_name: "Question", through: :question_follows, source: :question
 	has_many :bookmarks
 	has_many :agreements
+	has_many :oppositions
 	has_many :relationships, foreign_key: "follower_id"
 	has_many :following_users, class_name: "User", through: :relationships
 	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
@@ -111,6 +114,15 @@ class User < ActiveRecord::Base
 
 	def agreed_answer?(answer)
 		agreements = Agreement.where(user_id: id, agreeable_id: answer.id, agreeable_type: "Answer")
+		if agreements.count > 0
+			true
+		else
+			false
+		end
+  end
+
+	def agreed_post?(post)
+		agreements = Agreement.where(user_id: id, agreeable_id: post.id, agreeable_type: "Post")
 		if agreements.count > 0
 			true
 		else

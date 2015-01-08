@@ -1,0 +1,1 @@
+rails g scaffold Post token_id:integer content:text agree_score:integer oppose_score:integer anonymous_flag:boolean user:references edited_at:timestamp

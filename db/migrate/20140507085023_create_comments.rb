@@ -3,6 +3,7 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.text :content
       t.references :user, index: true
+      t.boolean :anonymous_flag, default: false
       t.references :commentable, polymorphic: true, index: true
 			t.references :replied_comment, index: true
 

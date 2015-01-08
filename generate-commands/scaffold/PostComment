@@ -1,0 +1,1 @@
+rails g scaffold PostComment content:text agree_score:integer oppose_score:integer anonymous_flag:boolean user:references replied_comment:references

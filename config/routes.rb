@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+
+  resources :posts, except: [:new, :destroy] do
+    member do
+      post :agree, :constraints => {:format => 'json'}
+      post :oppose, :constraints => {:format => 'json'}
+    end
+  end
+
+  resources :post_comments, only: [:create, :destroy] do
+    member do
+      post :agree, :constraints => {:format => 'json'}
+      post :oppose, :constraints => {:format => 'json'}
+    end
+  end
   # resources :private_messages, except: [:destroy, :edit, :update]
 
   resources :messages, only: [:index] do
