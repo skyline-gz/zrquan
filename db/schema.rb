@@ -51,7 +51,9 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   create_table "answers", force: true do |t|
     t.integer  "token_id"
     t.text     "content"
-    t.integer  "agree_score", default: 0
+    t.integer  "agree_score",    default: 0
+    t.integer  "oppose_score",   default: 0
+    t.boolean  "anonymous_flag", default: false
     t.integer  "user_id"
     t.integer  "question_id"
     t.datetime "edited_at"
@@ -76,7 +78,6 @@ ActiveRecord::Schema.define(version: 20141224091723) do
 
   create_table "careers", force: true do |t|
     t.integer  "user_id"
-    t.integer  "industry_id"
     t.integer  "company_id"
     t.string   "position"
     t.string   "entry_year"
@@ -89,7 +90,6 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   end
 
   add_index "careers", ["company_id"], name: "index_careers_on_company_id", using: :btree
-  add_index "careers", ["industry_id"], name: "index_careers_on_industry_id", using: :btree
   add_index "careers", ["user_id"], name: "index_careers_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
+    t.boolean  "anonymous_flag",     default: false
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "replied_comment_id"
@@ -148,18 +149,6 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   add_index "companies", ["name"], name: "index_companies_on_name", unique: true, using: :btree
   add_index "companies", ["parent_company_id"], name: "index_companies_on_parent_company_id", using: :btree
 
-  create_table "company_salaries", force: true do |t|
-    t.integer  "company_id"
-    t.string   "position"
-    t.integer  "salary_sum"
-    t.integer  "samples"
-    t.integer  "salary_avg"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "company_salaries", ["company_id"], name: "index_company_salaries_on_company_id", using: :btree
-
   create_table "educations", force: true do |t|
     t.integer  "user_id"
     t.integer  "school_id"
@@ -173,15 +162,6 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   add_index "educations", ["school_id"], name: "index_educations_on_school_id", using: :btree
   add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
 
-  create_table "food_styles", force: true do |t|
-    t.string   "content"
-    t.integer  "location_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "food_styles", ["location_id"], name: "index_food_styles_on_location_id", using: :btree
-
   create_table "images", force: true do |t|
     t.string   "content"
     t.integer  "wiki_id"
@@ -191,16 +171,6 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   end
 
   add_index "images", ["wiki_id", "wiki_type"], name: "index_images_on_wiki_id_and_wiki_type", using: :btree
-
-  create_table "impressions", force: true do |t|
-    t.string   "content"
-    t.integer  "wiki_id"
-    t.string   "wiki_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "impressions", ["wiki_id", "wiki_type"], name: "index_impressions_on_wiki_id_and_wiki_type", using: :btree
 
   create_table "industries", force: true do |t|
     t.string   "name"
@@ -288,23 +258,11 @@ ActiveRecord::Schema.define(version: 20141224091723) do
 
   add_index "other_wikis", ["name"], name: "index_other_wikis_on_name", unique: true, using: :btree
 
-  create_table "personal_salaries", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "company_id"
-    t.string   "position"
-    t.integer  "salary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "personal_salaries", ["company_id"], name: "index_personal_salaries_on_company_id", using: :btree
-  add_index "personal_salaries", ["user_id"], name: "index_personal_salaries_on_user_id", using: :btree
-
   create_table "post_comments", force: true do |t|
     t.text     "content"
-    t.integer  "agree_score"
-    t.integer  "oppose_score"
-    t.boolean  "anonymous_flag"
+    t.integer  "agree_score",        default: 0
+    t.integer  "oppose_score",       default: 0
+    t.boolean  "anonymous_flag",     default: false
     t.integer  "user_id"
     t.integer  "replied_comment_id"
     t.datetime "created_at"
@@ -327,9 +285,9 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   create_table "posts", force: true do |t|
     t.integer  "token_id"
     t.text     "content"
-    t.integer  "agree_score"
-    t.integer  "oppose_score"
-    t.boolean  "anonymous_flag"
+    t.integer  "agree_score",    default: 0
+    t.integer  "oppose_score",   default: 0
+    t.boolean  "anonymous_flag", default: false
     t.integer  "user_id"
     t.datetime "edited_at"
     t.datetime "created_at"
@@ -376,6 +334,7 @@ ActiveRecord::Schema.define(version: 20141224091723) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
+    t.boolean  "anonymous_flag",             default: false
     t.integer  "hot_abs"
     t.integer  "latest_answer_id"
     t.integer  "latest_qa_time",   limit: 8
@@ -474,26 +433,6 @@ ActiveRecord::Schema.define(version: 20141224091723) do
 
   add_index "user_msg_settings", ["user_id"], name: "index_user_msg_settings_on_user_id", using: :btree
 
-  create_table "user_theme_stats", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "theme_id"
-    t.integer  "question_count"
-    t.integer  "answer_count"
-    t.integer  "total_agree_score"
-    t.integer  "apply_consult_count"
-    t.string   "accept_consult_count"
-    t.integer  "fin_mentor_consult_count"
-    t.integer  "mentor_score_sum"
-    t.integer  "score_consult_count"
-    t.integer  "mentor_score_avg"
-    t.integer  "reputation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_theme_stats", ["theme_id"], name: "index_user_theme_stats_on_theme_id", using: :btree
-  add_index "user_theme_stats", ["user_id"], name: "index_user_theme_stats_on_user_id", using: :btree
-
   create_table "users", force: true do |t|
     t.string   "email",                  limit: 100, default: "", null: false
     t.string   "encrypted_password",                 default: "", null: false
@@ -518,14 +457,10 @@ ActiveRecord::Schema.define(version: 20141224091723) do
     t.integer  "gender"
     t.integer  "location_id"
     t.integer  "industry_id"
-    t.integer  "latest_company_id"
-    t.string   "latest_position"
-    t.integer  "latest_school_id"
-    t.string   "latest_major"
+    t.integer  "latest_career_id"
+    t.integer  "latest_education_id"
     t.string   "description"
     t.string   "mobile"
-    t.integer  "total_agree_score"
-    t.integer  "reputation"
     t.boolean  "verified_flag"
     t.string   "avatar"
   end
@@ -533,20 +468,11 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["industry_id"], name: "index_users_on_industry_id", using: :btree
-  add_index "users", ["latest_company_id"], name: "index_users_on_latest_company_id", using: :btree
-  add_index "users", ["latest_school_id"], name: "index_users_on_latest_school_id", using: :btree
+  add_index "users", ["latest_career_id"], name: "index_users_on_latest_career_id", using: :btree
+  add_index "users", ["latest_education_id"], name: "index_users_on_latest_education_id", using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["token_id"], name: "index_users_on_token_id", unique: true, using: :btree
   add_index "users", ["url_id"], name: "index_users_on_url_id", unique: true, using: :btree
-
-  create_table "welfares", force: true do |t|
-    t.string   "content"
-    t.integer  "company_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "welfares", ["company_id"], name: "index_welfares_on_company_id", using: :btree
 
 end
