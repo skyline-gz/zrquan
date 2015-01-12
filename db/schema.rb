@@ -162,16 +162,6 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   add_index "educations", ["school_id"], name: "index_educations_on_school_id", using: :btree
   add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
 
-  create_table "images", force: true do |t|
-    t.string   "content"
-    t.integer  "wiki_id"
-    t.string   "wiki_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "images", ["wiki_id", "wiki_type"], name: "index_images_on_wiki_id_and_wiki_type", using: :btree
-
   create_table "industries", force: true do |t|
     t.string   "name"
     t.text     "description"
