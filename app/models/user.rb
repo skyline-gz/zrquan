@@ -100,23 +100,35 @@ class User < ActiveRecord::Base
 		reverse_relationships.count
 	end
 
-	def following_u?(other_user)
-		relationships.find_by(following_user_id: other_user.id)
-	end
+  def reputation
+    reputation = 0
+    agree_multiple = {"a"=>4, "p"=>2, "c"=>2}
+    # 计算声望
+    valid_agree_score.each do |vas|
+      reputation = reputation + vas["num"] * agree_multiple[vas["type"]]
+    end
+    valid_oppose_score.each do |vos|
+      reputation = reputation - vos["num"]
+    end
+    reputation > 0 ? reputation : 0
+  end
 
-	def following_q?(question)
-		question_follows.find_by(question_id: question.id)
-	end
+  def following_u?(other_user)
+    relationships.find_by(following_user_id: other_user.id)
+  end
 
-	def bookmarked_q?(question)
-		bookmarks = Bookmark.where(user_id: id, bookmarkable_id: question.id, bookmarkable_type: "Question")
-		if bookmarks.count > 0
-			true
-		else
-			false
-		end
-	end
+  def following_q?(question)
+    question_follows.find_by(question_id: question.id)
+  end
 
+  def bookmarked_q?(question)
+    bookmarks = Bookmark.where(user_id: id, bookmarkable_id: question.id, bookmarkable_type: "Question")
+    if bookmarks.count > 0
+      true
+    else
+      false
+    end
+  end
 
 	def answered?(question)
 		question.answers.each do |ans|
@@ -148,6 +160,42 @@ class User < ActiveRecord::Base
 	def agreed_post?(post)
 		agreements = Agreement.where(user_id: id, agreeable_id: post.id, agreeable_type: "Post")
 		if agreements.count > 0
+			true
+		else
+			false
+		end
+  end
+
+	def agreed_post_comment?(post_comment)
+		agreements = Agreement.where(user_id: id, agreeable_id: post_comment.id, agreeable_type: "PostComment")
+		if agreements.count > 0
+			true
+		else
+			false
+		end
+  end
+
+	def opposed_answer?(answer)
+		opposition = Opposition.where(user_id: id, opposable_id: answer.id, opposable_type: "Answer")
+		if opposition.count > 0
+			true
+		else
+			false
+		end
+  end
+
+	def opposed_post?(post)
+		opposition = Opposition.where(user_id: id, opposable_id: post.id, opposable_type: "Post")
+		if opposition.count > 0
+			true
+		else
+			false
+		end
+  end
+
+	def opposed_post_comment?(post_comment)
+		opposition = Opposition.where(user_id: id, opposable_id: post_comment.id, opposable_type: "PostComment")
+		if opposition.count > 0
 			true
 		else
 			false
@@ -206,5 +254,53 @@ class User < ActiveRecord::Base
 
 	def check_english(str)
 		/\A[a-zA-Z]+\z/.match(str) != nil
-	end
+  end
+
+  def valid_agree_score
+    valid_score = Aggrement.connection.select_all(
+        ["select 'a' as type, count(an.id) as num
+          from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
+          where
+            ag.agreeable_type = 'ANSWERS' and
+            an.anonymous_flag = 0 and
+            an.user_id = ?
+          union all
+          select 'p' as type, count(po.id) as num
+          from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
+          where
+            ag.agreeable_type = 'POSTS' and
+            po.anonymous_flag = 0 and
+            po.user_id = ?
+          union all
+          select 'c' as type, count(co.id) as num
+          from AGREEMENTS ag inner join POST_COMMENTS co on ag.agreeable_id = co.id
+          where
+            ag.agreeable_type = 'POSTS' and
+            co.anonymous_flag = 0 and
+            co.user_id = ?", id, id, id])
+  end
+
+  def valid_oppose_score
+    valid_score = Aggrement.connection.select_all(
+        ["select 'a' as type, count(an.id) as num
+          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+          where
+            op.opposable_type = 'ANSWERS' and
+            an.anonymous_flag = 0 and
+            an.user_id = ?
+          union all
+          select 'p' as type, count(po.id) as num
+          from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
+          where
+            op.opposable_type = 'POSTS' and
+            po.anonymous_flag = 0 and
+            po.user_id = ?
+          union all
+          select 'c' as type, count(co.id) as num
+          from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
+          where
+            op.opposable_type = 'POSTS' and
+            co.anonymous_flag = 0 and
+            co.user_id = ?", id, id, id])
+  end
 end
