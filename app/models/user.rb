@@ -12,16 +12,19 @@ class User < ActiveRecord::Base
 	# mount_uploader :avatar, AvatarUploader
 
 	searchable do
-		text :user_full_name do
-			full_name
-		end
-		text :description, :latest_position, :latest_major
-		text :user_latest_company do
-			latest_company.try(:name) || ''
-		end
-		text :user_latest_school do
-			latest_school.try(:name) || ''
-		end
+    text :name, :description
+    text :company do
+      latest_company
+    end
+    text :position do
+      latest_position
+    end
+    text :school do
+      latest_school
+    end
+    text :major do
+      latest_major
+    end
 	end
 
   has_many :questions
@@ -44,36 +47,22 @@ class User < ActiveRecord::Base
 	has_many :activities
   has_many :careers
   has_many :educations
-  has_many :personal_salaries
 	has_many :user_attachments
 	has_many :answer_drafts
   belongs_to :location
   belongs_to :industry
-  belongs_to :latest_company, class_name: "Company"
-  belongs_to :latest_school, class_name: "School"
+  belongs_to :latest_career, class_name: "Career"
+  belongs_to :latest_education, class_name: "Education"
 
-  validates :last_name, :first_name, presence: true, on: :create
-  validates :last_name, :first_name, format: {with: /\A\p{Han}+\z|\A[a-zA-Z]+\z/}
-  validates :last_name, length: {in: 1..20}, if: Proc.new { |u| u.last_name.match(/\A[a-zA-Z]+\z/) }
-  validates :first_name, length: {in: 1..20}, if: Proc.new { |u| u.first_name.match(/\A[a-zA-Z]+\z/) }
-  validates :last_name, length: {in: 1..9}, if: Proc.new { |u| u.last_name.match(/\A\p{Han}+\z/) }
-  validates :first_name, length: {in: 1..9}, if: Proc.new { |u| u.first_name.match(/\A\p{Han}+\z/) }
+  validates :name, presence: true, on: :create
+  validates :name, format: {with: /\A\p{Han}+\z|\A[a-zA-Z]+\z/}
+  validates :name, length: {in: 1..30}, if: Proc.new { |u| u.name.match(/\A[a-zA-Z]+\z/) }
+  validates :name, length: {in: 1..10}, if: Proc.new { |u| u.name.match(/\A\p{Han}+\z/) }
   validates :description, length: {maximum: 25}
 
   validate :password_complexity
   # 密码长度的验证在config/initializers/devise.rb里面设置（config.password_length）
   # 邮箱格式的验证在config/initializers/devise.rb里面设置（config.email_regexp）
-
-	# 根据书写习惯显示姓名
-	def full_name
-		first_name = self.first_name
-		last_name = self.last_name
-		if check_english(first_name)|| check_english(last_name)
-			last_name + ' ' + first_name
-		else
-			last_name + first_name
-		end
-	end
 
   def password_complexity
     if password.present? and not password.match(/\A[a-zA-Z0-9]+\z/)
@@ -90,27 +79,50 @@ class User < ActiveRecord::Base
 
 	def unread_messages
 		messages.where(read_flag: false)
-	end
+  end
 
+  def latest_company
+    latest_career != nil ? latest_career.company.name : ""
+  end
+
+  def latest_position
+    latest_career != nil ? latest_career.position : ""
+  end
+
+  def latest_school
+    latest_education != nil ? latest_education.school.name : ""
+  end
+
+  def latest_major
+    latest_education != nil ? latest_education.major : ""
+  end
+
+  # 关注人数
 	def following_num
-		following_users.count
+    relationships.count
 	end
 
+  # 粉丝数
 	def followers_num
 		reverse_relationships.count
 	end
 
+  # 声望
   def reputation
     reputation = 0
     agree_multiple = {"a"=>4, "p"=>2, "c"=>2}
-    # 计算声望
+    # 计算声望，赞加上的分数
     valid_agree_score.each do |vas|
       reputation = reputation + vas["num"] * agree_multiple[vas["type"]]
     end
+    # 反对减去的分数
     valid_oppose_score.each do |vos|
       reputation = reputation - vos["num"]
     end
     reputation > 0 ? reputation : 0
+  end
+
+  def answer_ag
   end
 
   def following_u?(other_user)
@@ -230,13 +242,13 @@ class User < ActiveRecord::Base
 		self.token_id = 105173 + self.id * 31 + SecureRandom.random_number(31)
 	end
 
-	def generate_url_id
-		url_id = PinYin.permlink(self.last_name) + '-' + PinYin.permlink(self.first_name)
-		if User.find_by_url_id url_id
-			url_id += self.id * 17 + SecureRandom.random_number(17)
-		end
-		self.url_id = url_id
-	end
+	# def generate_url_id
+	# 	url_id = PinYin.permlink(self.last_name) + '-' + PinYin.permlink(self.first_name)
+	# 	if User.find_by_url_id url_id
+	# 		url_id += self.id * 17 + SecureRandom.random_number(17)
+	# 	end
+	# 	self.url_id = url_id
+	# end
 
 	# 生产用户的设置信息，失败则记录到log
 	def generate_user_msg_setting
@@ -247,7 +259,7 @@ class User < ActiveRecord::Base
 
 	def after_create_user
 		randomize_token_id
-		generate_url_id
+		# generate_url_id
 		self.save
 		generate_user_msg_setting
 	end
@@ -256,8 +268,18 @@ class User < ActiveRecord::Base
 		/\A[a-zA-Z]+\z/.match(str) != nil
   end
 
+  def valid_answer_ag
+    ActiveRecord::Base.connection.select_all(
+        ["select count(an.id) as num
+          from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
+          where
+            ag.agreeable_type = 'ANSWERS' and
+            an.anonymous_flag = 0 and
+            an.user_id = ?", id])
+  end
+
   def valid_agree_score
-    valid_score = Aggrement.connection.select_all(
+    ActiveRecord::Base.connection.select_all(
         ["select 'a' as type, count(an.id) as num
           from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
           where
@@ -281,7 +303,7 @@ class User < ActiveRecord::Base
   end
 
   def valid_oppose_score
-    valid_score = Aggrement.connection.select_all(
+    ActiveRecord::Base.connection.select_all(
         ["select 'a' as type, count(an.id) as num
           from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
           where

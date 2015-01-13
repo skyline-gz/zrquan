@@ -1,48 +1,42 @@
 FactoryGirl.define do
   factory :normal_user_1, class: User do
 		email   		  "dreamou@zrquan.com"
-    last_name  	  "欧阳"
-    first_name	  "俊"
+    name	        "欧阳俊"
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
-    verified_flag   false
   end
 
   factory :normal_user_2, class: User do
 		email   		  "royfung@zqruan.com"
-    last_name  	  "冯"
-    first_name	  "庆强"
+    name  	  "冯庆强"
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
     verified_flag   false
   end
 
-  factory :mentor_1, class: User do
+  factory :v_user_1, class: User do
     email   		  "fan.yuqi@zrquan.com"
-    last_name  	  "樊"
-    first_name	  "宇祺"
+    name	        "樊宇祺"
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
     verified_flag   true
   end
 
-  factory :mentor_2, class: User do
+  factory :v_user_2, class: User do
     email   		  "lin.zhiling@zrquan.com"
-    last_name  	  "林"
-    first_name	  "志玲"
+    name  	      "林志玲"
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
     verified_flag   true
   end
 
-  factory :mentor_3, class: User do
+  factory :v_user_3, class: User do
     email   		  "gao.yuanyuan@zrquan.com"
-    last_name  	  "高"
-    first_name	  "圆圆"
+    name  	      "高圆圆"
     password	    "12345678"
     password_confirmation	   "12345678"
     confirmed_at  1.days.ago
@@ -51,8 +45,7 @@ FactoryGirl.define do
 
   factory :unconfirmed_user, class: User do
     email   		  "fan.bingbing@zrquan.com"
-    last_name  	  "范"
-    first_name	  "冰冰"
+    name  	      "范冰冰"
     password	    "12345678"
     password_confirmation	   "12345678"
   end

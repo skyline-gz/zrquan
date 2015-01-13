@@ -17,7 +17,7 @@ RSpec.describe Ability, :type => :model do
 
   context "verified user" do
     let (:normal_user) { FactoryGirl.create(:normal_user_1) }
-    let (:me) { FactoryGirl.create(:mentor_1) }
+    let (:me) { FactoryGirl.create(:v_user_1) }
     let (:question) { FactoryGirl.create(:question_1, :user=>normal_user) }
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
     let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
@@ -103,7 +103,7 @@ RSpec.describe Ability, :type => :model do
 
   context "normal_user" do
     let (:me) { FactoryGirl.create(:normal_user_2) }
-    let (:verified_user) { FactoryGirl.create(:mentor_1) }
+    let (:verified_user) { FactoryGirl.create(:v_user_1) }
     let (:another_n_user) { FactoryGirl.create(:normal_user_1) }
     let (:question) { FactoryGirl.create(:question_1, :user=>another_n_user) }
     let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }

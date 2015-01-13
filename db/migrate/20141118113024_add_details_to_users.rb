@@ -2,8 +2,7 @@ class AddDetailsToUsers < ActiveRecord::Migration
   def change
     add_column :users, :token_id, :integer
     add_column :users, :url_id, :string
-    add_column :users, :last_name, :string
-    add_column :users, :first_name, :string
+    add_column :users, :name, :string
     add_column :users, :gender, :integer
     add_reference :users, :location, index: true
     add_reference :users, :industry, index: true

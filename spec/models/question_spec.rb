@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Question, :type => :model do
 	context "with more than 2 answers" do
     let (:question) {FactoryGirl.create(:question_1)}
-    let (:mentor_1) {FactoryGirl.create(:mentor_1)}
-    let (:mentor_2) {FactoryGirl.create(:mentor_2)}
+    let (:v_user_1) {FactoryGirl.create(:v_user_1)}
+    let (:v_user_2) {FactoryGirl.create(:v_user_2)}
 
     it "multiple other users' answers should sorted by agree scores desc" do
       answer_score_30 = FactoryGirl.create(:q1_other_answer_1, :question=>question)
