@@ -120,30 +120,67 @@ class QuestionsController < ApplicationController
     end
   end
 
+  # 所有【转匿名】和【转实名】都在一级内容的【更多操作】进行
   # 转成匿名
   def to_anonymous
-    @question.update(anonymous_flag: true)
-    to_anonymous_comments
+    # 只有当是提问者或者回答者时才会同时把评论的【转成匿名】
+    if @question.user_id == current_user.id
+      @question.update(anonymous_flag: true)
+      to_anonymous_comments
+    elsif to_anonymous_answer > 0
+      to_anonymous_comments
+    end
   end
 
   # 转成实名
   def to_real_name
-
+    # 只有当是提问者或者回答者时才会同时把评论的【转成实名】
+    if @question.user_id == current_user.id
+      @question.update(anonymous_flag: false)
+      to_real_name_comments
+    elsif to_real_name_answer > 0
+      to_real_name_comments
+    end
   end
 
   private
+    def to_anonymous_answer
+      Answer.where("user_id = ? and question_id = ?", current_user.id, @question.id).
+          update_all(anonymous_flag: true)
+    end
+
+    def to_real_name_answer
+      Answer.where("user_id = ? and question_id = ?", current_user.id, @question.id).
+          update_all(anonymous_flag: false)
+    end
+
     def to_anonymous_comments
-      Comment.connection.execute(
-          "update COMMENTS c
-           set ANONYMOUS_FLAG = 1
-           where
-           c.commentable_id = #{@question.id} and
-           c.commentable_type = 'Question' ")
+      Comment.where(
+          "commentable_id = ? and commentable_type = ? and user_id = ?",
+          @question.id, "Question", current_user.id
+      ).update_all(anonymous_flag: true)
+
       Comment.connection.execute(
           "update COMMENTS c
            inner join ANSWERS a on (c.commentable_id = a.id and a.question_id = #{@question.id})
            set ANONYMOUS_FLAG = 1
-           where c.commentable_type = 'Answer' ")
+           where
+           c.commentable_type = 'Answer' and
+           c.user_id = #{current_user.id}")
+    end
+
+    def to_real_name_comments
+      Comment.where(
+          "commentable_id = ? and commentable_type = ? and user_id = ?",
+          @question.id, "Question", current_user.id
+      ).update_all(anonymous_flag: false)
+
+      Comment.connection.execute(
+          "update COMMENTS c
+           inner join ANSWERS a on (c.commentable_id = a.id and a.question_id = #{@question.id})
+           set ANONYMOUS_FLAG = 0
+           where c.commentable_type = 'Answer' and
+           c.user_id = #{current_user.id}")
     end
 
     def set_question

@@ -69,6 +69,7 @@ class AnswersController < ApplicationController
     end
   end
 
+
   private
     def set_answer
       @question = Question.find_by_token_id(params[:question_id])
