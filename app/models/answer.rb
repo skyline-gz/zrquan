@@ -6,6 +6,7 @@ class Answer < ActiveRecord::Base
 	has_many :comments, as: :commentable
 	has_many :activities, as: :target
 	has_many :agreements, as: :agreeable
+	has_many :oppositions, as: :opposable
 
 	validates :content, presence: true, on: :create
 	validates :content, length: {in: 8..10000}

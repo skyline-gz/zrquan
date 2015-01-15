@@ -53,6 +53,7 @@ class AnswersController < ApplicationController
     if can? :agree, @answer
       @agreement = current_user.agreements.new(
           agreeable_id: @answer.id, agreeable_type: "Answer")
+      # 成功赞成
       if @agreement.save
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
         @answer.update!(agree_score: @answer.agree_score + 1)
@@ -96,6 +97,7 @@ class AnswersController < ApplicationController
     if can? :oppose, @answer
       @opposition = current_user.oppositions.new(
           opposable_id: @answer.id, opposable_type: "Answer")
+      # 成功反对
       if @opposition.save
         # 更新排名因子
         @question.update!(hot_abs: @question.hot_abs - 1)

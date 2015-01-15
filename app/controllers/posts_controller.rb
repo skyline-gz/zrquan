@@ -62,7 +62,26 @@ class PostsController < ApplicationController
   end
 
   def agree
-
+    if can? :agree, @post
+      @agreement = current_user.agreements.new(
+          agreeable_id: @post.id, agreeable_type: "Post")
+      # 成功赞成
+      if @agreement.save
+        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        @post.update!(agree_score: @post.agree_score + 1)
+        @post.update!(hot_abs: @post.hot_abs + 1)
+        # 创建赞同答案的消息并发送
+        MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
+        # 创建用户行为（赞同答案）
+        current_user.activities.create!(target_id: @post.id, target_type: "Post", activity_type: 5,
+                                        publish_date: DateUtils.to_yyyymmdd(Date.today))
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
+    end
   end
 
   def oppose
