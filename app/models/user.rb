@@ -12,19 +12,19 @@ class User < ActiveRecord::Base
 	# mount_uploader :avatar, AvatarUploader
 
 	searchable do
-    text :name, :description
-    text :company do
+   text :name, :description
+   text :company do
       latest_company
-    end
-    text :position do
+   end
+   text :position do
       latest_position
-    end
-    text :school do
+   end
+   text :school do
       latest_school
-    end
-    text :major do
+   end
+   text :major do
       latest_major
-    end
+   end
 	end
 
   has_many :questions
@@ -283,21 +283,21 @@ class User < ActiveRecord::Base
         ["select 'a' as type, count(an.id) as num
           from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
           where
-            ag.agreeable_type = 'ANSWERS' and
+            ag.agreeable_type = 'Answer' and
             an.anonymous_flag = 0 and
             an.user_id = ?
           union all
           select 'p' as type, count(po.id) as num
           from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
           where
-            ag.agreeable_type = 'POSTS' and
+            ag.agreeable_type = 'Post' and
             po.anonymous_flag = 0 and
             po.user_id = ?
           union all
           select 'c' as type, count(co.id) as num
           from AGREEMENTS ag inner join POST_COMMENTS co on ag.agreeable_id = co.id
           where
-            ag.agreeable_type = 'POSTS' and
+            ag.agreeable_type = 'PostComment' and
             co.anonymous_flag = 0 and
             co.user_id = ?", id, id, id])
   end
@@ -307,21 +307,21 @@ class User < ActiveRecord::Base
         ["select 'a' as type, count(an.id) as num
           from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
           where
-            op.opposable_type = 'ANSWERS' and
+            op.opposable_type = 'Answer' and
             an.anonymous_flag = 0 and
             an.user_id = ?
           union all
           select 'p' as type, count(po.id) as num
           from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
           where
-            op.opposable_type = 'POSTS' and
+            op.opposable_type = 'Post' and
             po.anonymous_flag = 0 and
             po.user_id = ?
           union all
           select 'c' as type, count(co.id) as num
           from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
           where
-            op.opposable_type = 'POSTS' and
+            op.opposable_type = 'PostComment' and
             co.anonymous_flag = 0 and
             co.user_id = ?", id, id, id])
   end

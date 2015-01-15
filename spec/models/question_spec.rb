@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Question, :type => :model do
 	context "with more than 2 answers" do
-    let (:question) {FactoryGirl.create(:question_1)}
+    let (:question) {FactoryGirl.create(:real_name_question)}
     let (:v_user_1) {FactoryGirl.create(:v_user_1)}
     let (:v_user_2) {FactoryGirl.create(:v_user_2)}
 

@@ -5,7 +5,7 @@ FactoryGirl.define do
     association :user, factory: :normal_user_1
 
     factory :question_bookmark do
-      association :bookmarkable, factory: :question_1
+      association :bookmarkable, factory: :real_name_question
     end
 
   end

@@ -18,8 +18,8 @@ RSpec.describe Ability, :type => :model do
   context "verified user" do
     let (:normal_user) { FactoryGirl.create(:normal_user_1) }
     let (:me) { FactoryGirl.create(:v_user_1) }
-    let (:question) { FactoryGirl.create(:question_1, :user=>normal_user) }
-    let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
+    let (:question) { FactoryGirl.create(:real_name_question, :user=>normal_user) }
+    let (:my_question) { FactoryGirl.create(:real_name_question, :user=>me) }
     let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
     let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>normal_user) }
     let (:ability) { Ability.new(me) }
@@ -105,8 +105,8 @@ RSpec.describe Ability, :type => :model do
     let (:me) { FactoryGirl.create(:normal_user_2) }
     let (:verified_user) { FactoryGirl.create(:v_user_1) }
     let (:another_n_user) { FactoryGirl.create(:normal_user_1) }
-    let (:question) { FactoryGirl.create(:question_1, :user=>another_n_user) }
-    let (:my_question) { FactoryGirl.create(:question_1, :user=>me) }
+    let (:question) { FactoryGirl.create(:real_name_question, :user=>another_n_user) }
+    let (:my_question) { FactoryGirl.create(:real_name_question, :user=>me) }
     let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
     let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>another_n_user) }
     let (:ability) { Ability.new(me) }

@@ -83,7 +83,7 @@ class QuestionsController < ApplicationController
   def update
     # 更新问题和主题（非严谨，不需事务）
     @question.edited_at = Time.now
-    @question.update!(question_params)
+    @question.update(question_params)
     if params[:question][:themes] != nil
       themes = params[:question][:themes].split(',').map { |s| s.to_i }
       # 清空之前的主题-问题关联
@@ -120,26 +120,51 @@ class QuestionsController < ApplicationController
     end
   end
 
+  # 转成匿名
+  def to_anonymous
+    @question.update(anonymous_flag: true)
+    to_anonymous_comments
+  end
+
+  # 转成实名
+  def to_real_name
+
+  end
+
   private
-  def set_question
-    @question = Question.find_by_token_id(params[:id])
-  end
-
-  def get_questions_by_type(type)
-    case type
-      when QUESTION_LIST_TYPE[:NEWEST]
-        # 根据最近回答的时间排序
-        Question.all.sort_by { |q| q.latest_qa_time }.reverse!
-      when QUESTION_LIST_TYPE[:HOTTEST]
-        Question.all.sort_by { |q| q.hot_abs.to_f / ((((Time.now - q.created_at)/ 1.hour).round) + 12) }.reverse!
-      when QUESTION_LIST_TYPE[:NOT_ANSWERED]
-        Question.all.select { |q| q.latest_answer_id == nil }.sort_by { |q| q.latest_qa_time }.reverse!
-      else
-        [];
+    def to_anonymous_comments
+      Comment.connection.execute(
+          "update COMMENTS c
+           set ANONYMOUS_FLAG = 1
+           where
+           c.commentable_id = #{@question.id} and
+           c.commentable_type = 'Question' ")
+      Comment.connection.execute(
+          "update COMMENTS c
+           inner join ANSWERS a on (c.commentable_id = a.id and a.question_id = #{@question.id})
+           set ANONYMOUS_FLAG = 1
+           where c.commentable_type = 'Answer' ")
     end
-  end
 
-  def question_params
-    params.require(:question).permit(:title, :content)
-  end
+    def set_question
+      @question = Question.find_by_token_id(params[:id])
+    end
+
+    def get_questions_by_type(type)
+      case type
+        when QUESTION_LIST_TYPE[:NEWEST]
+          # 根据最近回答的时间排序
+          Question.all.sort_by { |q| q.latest_qa_time }.reverse!
+        when QUESTION_LIST_TYPE[:HOTTEST]
+          Question.all.sort_by { |q| q.hot_abs.to_f / ((((Time.now - q.created_at)/ 1.hour).round) + 12) }.reverse!
+        when QUESTION_LIST_TYPE[:NOT_ANSWERED]
+          Question.all.select { |q| q.latest_answer_id == nil }.sort_by { |q| q.latest_qa_time }.reverse!
+        else
+          [];
+      end
+    end
+
+    def question_params
+      params.require(:question).permit(:title, :content)
+    end
 end
