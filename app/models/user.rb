@@ -110,19 +110,75 @@ class User < ActiveRecord::Base
   # 声望
   def reputation
     reputation = 0
-    agree_multiple = {"a"=>4, "p"=>2, "c"=>2}
-    # 计算声望，赞加上的分数
-    valid_agree_score.each do |vas|
-      reputation = reputation + vas["num"] * agree_multiple[vas["type"]]
-    end
-    # 反对减去的分数
-    valid_oppose_score.each do |vos|
-      reputation = reputation - vos["num"]
-    end
+    reputation = reputation + answer_ag * 4 + post_ag * 2 + post_comment_ag * 2
+    reputation = reputation - answer_op - post_op - post_comment_op
     reputation > 0 ? reputation : 0
   end
 
   def answer_ag
+    result = ActiveRecord::Base.connection.select_all(
+        ["select 'a' as type, count(an.id) as num
+          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+          where
+            op.opposable_type = 'Answer' and
+            an.anonymous_flag = 0 and
+            an.user_id = ?", id])
+    result[0]["num"]
+  end
+
+  def post_ag
+    result = ActiveRecord::Base.connection.select_all(
+        ["select 'p' as type, count(po.id) as num
+          from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
+          where
+            ag.agreeable_type = 'Post' and
+            po.anonymous_flag = 0 and
+            po.user_id = ?", id])
+    result[0]["num"]
+  end
+
+  def post_comment_ag
+    result = ActiveRecord::Base.connection.select_all(
+        ["select 'a' as type, count(an.id) as num
+          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+          where
+            op.opposable_type = 'Answer' and
+            an.anonymous_flag = 0 and
+            an.user_id = ?", id])
+    result[0]["num"]
+  end
+
+  def answer_op
+    result = ActiveRecord::Base.connection.select_all(
+        ["select 'a' as type, count(an.id) as num
+          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+          where
+            op.opposable_type = 'Answer' and
+            an.anonymous_flag = 0 and
+            an.user_id = ?", id])
+    result[0]["num"]
+  end
+
+  def post_op
+    result = ActiveRecord::Base.connection.select_all(
+        ["select 'p' as type, count(po.id) as num
+          from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
+          where
+            op.opposable_type = 'Post' and
+            po.anonymous_flag = 0 and
+            po.user_id = ?", id])
+    result[0]["num"]
+  end
+
+  def post_comment_op
+    result = ActiveRecord::Base.connection.select_all(
+        ["select 'c' as type, count(co.id) as num
+          from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
+          where
+            op.opposable_type = 'PostComment' and
+            co.anonymous_flag = 0 and
+            co.user_id = ?", id])
+    result[0]["num"]
   end
 
   def following_u?(other_user)
@@ -214,7 +270,6 @@ class User < ActiveRecord::Base
 		end
 	end
 
-
 	def verified_user?
 		verified_flag
 	end
@@ -268,61 +323,4 @@ class User < ActiveRecord::Base
 		/\A[a-zA-Z]+\z/.match(str) != nil
   end
 
-  def valid_answer_ag
-    ActiveRecord::Base.connection.select_all(
-        ["select count(an.id) as num
-          from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
-          where
-            ag.agreeable_type = 'ANSWERS' and
-            an.anonymous_flag = 0 and
-            an.user_id = ?", id])
-  end
-
-  def valid_agree_score
-    ActiveRecord::Base.connection.select_all(
-        ["select 'a' as type, count(an.id) as num
-          from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
-          where
-            ag.agreeable_type = 'Answer' and
-            an.anonymous_flag = 0 and
-            an.user_id = ?
-          union all
-          select 'p' as type, count(po.id) as num
-          from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
-          where
-            ag.agreeable_type = 'Post' and
-            po.anonymous_flag = 0 and
-            po.user_id = ?
-          union all
-          select 'c' as type, count(co.id) as num
-          from AGREEMENTS ag inner join POST_COMMENTS co on ag.agreeable_id = co.id
-          where
-            ag.agreeable_type = 'PostComment' and
-            co.anonymous_flag = 0 and
-            co.user_id = ?", id, id, id])
-  end
-
-  def valid_oppose_score
-    ActiveRecord::Base.connection.select_all(
-        ["select 'a' as type, count(an.id) as num
-          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
-          where
-            op.opposable_type = 'Answer' and
-            an.anonymous_flag = 0 and
-            an.user_id = ?
-          union all
-          select 'p' as type, count(po.id) as num
-          from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
-          where
-            op.opposable_type = 'Post' and
-            po.anonymous_flag = 0 and
-            po.user_id = ?
-          union all
-          select 'c' as type, count(co.id) as num
-          from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
-          where
-            op.opposable_type = 'PostComment' and
-            co.anonymous_flag = 0 and
-            co.user_id = ?", id, id, id])
-  end
 end
