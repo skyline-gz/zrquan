@@ -86,15 +86,33 @@ class Ability
       can :answer, Question do |q|
         !user.answered?(q) and q.user_id != user.id
       end
-      can :agree, Answer do |ans|
-        ans.user_id != user.id and !user.agreed_answer?(ans)
+      can :agree, Answer do |a|
+        a.user_id != user.id and !user.agreed_answer?(a)
+      end
+      can :cancel_agree, Answer do |a|
+        a.user_id != user.id and user.agreed_answer?(a)
+      end
+      can :oppose, Answer do |a|
+        a.user_id != user.id and !user.opposed_answer?(a)
+      end
+      can :cancel_oppose, Answer do |a|
+        a.user_id != user.id and user.opposed_answer?(a)
       end
     end
 
     def post_abilities(user)
       can :create, Post
       can :agree, Post do |p|
-        p.user_id != user.id and !user.agreed_answer?(p)
+        p.user_id != user.id and !user.agreed_post?(p)
+      end
+      can :cancel_agree, Post do |p|
+        p.user_id != user.id and user.agreed_post?(p)
+      end
+      can :oppose, Post do |a|
+        a.user_id != user.id and !user.opposed_post?(a)
+      end
+      can :cancel_oppose, Post do |a|
+        a.user_id != user.id and user.opposed_post?(a)
       end
     end
 
