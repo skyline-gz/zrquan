@@ -51,7 +51,9 @@ class AnswersController < ApplicationController
 	# 赞同
   def agree
     if can? :agree, @answer
-      if current_user.agreements.create(agreeable_id: @answer.id, agreeable_type: "Answer")
+      @agreement = current_user.agreements.new(
+          agreeable_id: @answer.id, agreeable_type: "Answer")
+      if @agreement.save
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
         @answer.update!(agree_score: @answer.agree_score + 1)
         @question.update!(hot_abs: @question.hot_abs + 1)
@@ -92,7 +94,9 @@ class AnswersController < ApplicationController
   # 反对
   def oppose
     if can? :oppose, @answer
-      if current_user.Opposition.create(opposable_id: @answer.id, opposable_type: "Answer")
+      @opposition = current_user.oppositions.new(
+          opposable_id: @answer.id, opposable_type: "Answer")
+      if @opposition.save
         # 更新排名因子
         @question.update!(hot_abs: @question.hot_abs - 1)
         render :json => { :code => ReturnCode::S_OK }
