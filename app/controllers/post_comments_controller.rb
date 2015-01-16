@@ -7,47 +7,72 @@ class PostCommentsController < ApplicationController
     @post_comments = PostComment.all
   end
 
-  # GET /post_comments/1
-  # GET /post_comments/1.json
-  def show
-  end
-
   # GET /post_comments/new
   def new
     @post_comment = PostComment.new
   end
 
-  # GET /post_comments/1/edit
-  def edit
-  end
-
   # POST /post_comments
   # POST /post_comments.json
   def create
-    @post_comment = PostComment.new(post_comment_params)
-
-    respond_to do |format|
-      if @post_comment.save
-        format.html { redirect_to @post_comment, notice: 'Post comment was successfully created.' }
-        format.json { render :show, status: :created, location: @post_comment }
-      else
-        format.html { render :new }
-        format.json { render json: @post_comment.errors, status: :unprocessable_entity }
-      end
+    @post = Post.find_by_token_id(params[:post_id])
+    # 写评论
+    @post_comment = current_user.post_comments.new(post_comment_params)
+    @post_comment.post_id = @post.id
+    if @post_comment.save
+      @post.update!(hot_abs: @question.hot_abs + 1)
+      # 创建回答问题消息并发送
+      # MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_ANSWER_QUESTION], current_user.id, @question.id)
+      # 创建用户行为（回答问题）
+      current_user.activities.create!(target_id: @post_comment.id, target_type: "PostComment", activity_type: 2,
+                                      publish_date: DateUtils.to_yyyymmdd(Date.today))
+      redirect_to :controller => 'posts',:action => 'show', :id => @post.token_id
+    else
+      render :json => {:code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR}
     end
   end
 
-  # PATCH/PUT /post_comments/1
-  # PATCH/PUT /post_comments/1.json
-  def update
-    respond_to do |format|
-      if @post_comment.update(post_comment_params)
-        format.html { redirect_to @post_comment, notice: 'Post comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post_comment }
+  # 赞同
+  def agree
+    if can? :agree, @post_comment
+      @post_comment = current_user.agreements.new(
+          agreeable_id: @post_comment.id, agreeable_type: "PostComment")
+      # 成功赞成
+      if @agreement.save
+        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        @post_comment.update!(agree_score: @post_comment.agree_score + 1)
+        @post.update!(hot_abs: @post.hot_abs + 1)
+        # 创建赞同答案的消息并发送
+        MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
+        # 创建用户行为（赞同答案）
+        current_user.activities.create!(target_id: @post_comment.id, target_type: "PostComment", activity_type: 5,
+                                        publish_date: DateUtils.to_yyyymmdd(Date.today))
+        render :json => { :code => ReturnCode::S_OK }
       else
-        format.html { render :edit }
-        format.json { render json: @post_comment.errors, status: :unprocessable_entity }
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
       end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
+    end
+  end
+
+  # 取消赞同
+  def cancel_agree
+    if can? :cancel_agree, @post_comment
+      result = Agreement.where(
+          "agreeable_id = ? and agreeable_type = ?", @answer.id, "Answer"
+      ).destroy_all
+      # 成功取消
+      if result > 0
+        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        @answer.update!(agree_score: @answer.agree_score - 1)
+        @question.update!(hot_abs: @question.hot_abs - 1)
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
     end
   end
 

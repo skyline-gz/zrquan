@@ -12,10 +12,7 @@ class AnswersController < ApplicationController
       # 创建答案
       @answer = current_user.answers.new(answer_params)
       @answer.question_id = @question.id
-      current_time = Time.now
-      @answer.created_at = current_time
-      @answer.edited_at = current_time
-      @answer.updated_at = current_time
+      @answer.edited_at = Time.now
       if @answer.save
         # 删除已创建草稿
         @answer_draft = AnswerDraft.find_by(:user_id => current_user.id, :question_id => @question.id)
@@ -76,7 +73,8 @@ class AnswersController < ApplicationController
   def cancel_agree
     if can? :cancel_agree, @answer
       result = Agreement.where(
-          "agreeable_id = ? and agreeable_type = ?", @answer.id, "Answer"
+          "agreeable_id = ? and agreeable_type = ? and user_id = ?",
+          @answer.id, "Answer", current_user.id
       ).destroy_all
       # 成功取消
       if result > 0
@@ -114,7 +112,8 @@ class AnswersController < ApplicationController
   def cancel_oppose
     if can? :cancel_oppose, @answer
       result = Opposition.where(
-          "opposable_id = ? and opposable_type = ?", @answer.id, "Answer"
+          "opposable_id = ? and opposable_type = ? and user_id = ?",
+          @answer.id, "Answer", current_user.id
       ).destroy_all
       # 成功取消
       if result > 0
