@@ -425,22 +425,11 @@ ActiveRecord::Schema.define(version: 20141224091723) do
   add_index "user_msg_settings", ["user_id"], name: "index_user_msg_settings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  limit: 100, default: "", null: false
-    t.string   "encrypted_password",                 default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.string   "mobile",              limit: 20, default: "", null: false
+    t.string   "encrypted_password",             default: "", null: false
+    t.integer  "sign_in_count",                  default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "token_id"
     t.string   "url_id"
     t.string   "name"
@@ -450,18 +439,17 @@ ActiveRecord::Schema.define(version: 20141224091723) do
     t.integer  "latest_career_id"
     t.integer  "latest_education_id"
     t.string   "description"
-    t.string   "mobile"
     t.boolean  "verified_flag"
     t.string   "avatar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["industry_id"], name: "index_users_on_industry_id", using: :btree
   add_index "users", ["latest_career_id"], name: "index_users_on_latest_career_id", using: :btree
   add_index "users", ["latest_education_id"], name: "index_users_on_latest_education_id", using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
   add_index "users", ["token_id"], name: "index_users_on_token_id", unique: true, using: :btree
   add_index "users", ["url_id"], name: "index_users_on_url_id", unique: true, using: :btree
 
