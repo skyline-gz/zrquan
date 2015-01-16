@@ -90,7 +90,7 @@ class Ability
       can :follow, Question
       can :edit, Question, :user_id => user.id
       can :switch_identity, Question do |q|
-        q.user_id == user.id or user.answered?(q)
+        question_identity(q) != -1
       end
     end
 
@@ -126,6 +126,9 @@ class Ability
       end
       can :cancel_oppose, Post do |p|
         p.user_id != user.id and user.opposed_post?(p)
+      end
+      can :switch_identity, Post do |p|
+        post_identity(p) != -1
       end
     end
 

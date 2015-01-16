@@ -112,31 +112,41 @@ class User < ActiveRecord::Base
 
   # 于某问题上下文环境身份
   def question_identity(question)
+    identity = -1
     q = Question.where(user_id:id, id:question.id)
     if q.count > 0
-      q.anonymous_flag ? 1 : 0
+      identity = q.anonymous_flag ? 1 : 0
     else
-      a = Answer.where(user_id:id, question_id:question.id)
-      if a.count > 0
-        a.anonymous_flag ? 1 : 0
-      else
-        -1
+      answers = Answer.where(user_id:id, question_id:question.id)
+      if answers.count > 0
+        answers.each do |a|
+          if a.anonymous_flag
+            identity = 1
+          end
+        end
+        identity = 0
       end
     end
+    identity
   end
 
   def post_identity(post)
+    identity = -1
     p = Post.where(user_id:id, id:post.id)
     if p.count > 0
-      p.anonymous_flag ? 1 : 0
+      identity = p.anonymous_flag ? 1 : 0
     else
-      a = PostComment.where(user_id:id, question_id:post.id)
-      if a.count > 0
-        a.anonymous_flag ? 1 : 0
-      else
-        -1
+      posts = PostComment.where(user_id:id, post_id:post.id)
+      if posts.count > 0
+        posts.each do |p|
+          if p.anonymous_flag
+            identity = 1
+          end
+        end
+        identity = 0
       end
     end
+    identity
   end
 
   def answer_ag
