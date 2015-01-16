@@ -6,6 +6,7 @@ FactoryGirl.define do
     agree_score 1
     oppose_score 1
     anonymous_flag false
+    post nil
     user nil
     replied_comment nil
   end

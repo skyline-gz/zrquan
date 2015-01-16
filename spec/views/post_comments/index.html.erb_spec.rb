@@ -8,6 +8,7 @@ RSpec.describe "post_comments/index", :type => :view do
         :agree_score => 1,
         :oppose_score => 2,
         :anonymous_flag => false,
+        :post => nil,
         :user => nil,
         :replied_comment => nil
       ),
@@ -16,6 +17,7 @@ RSpec.describe "post_comments/index", :type => :view do
         :agree_score => 1,
         :oppose_score => 2,
         :anonymous_flag => false,
+        :post => nil,
         :user => nil,
         :replied_comment => nil
       )
@@ -28,6 +30,7 @@ RSpec.describe "post_comments/index", :type => :view do
     assert_select "tr>td", :text => 1.to_s, :count => 2
     assert_select "tr>td", :text => 2.to_s, :count => 2
     assert_select "tr>td", :text => false.to_s, :count => 2
+    assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
   end

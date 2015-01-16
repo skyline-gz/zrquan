@@ -110,6 +110,35 @@ class User < ActiveRecord::Base
     reputation > 0 ? reputation : 0
   end
 
+  # 于某问题上下文环境身份
+  def question_identity(question)
+    q = Question.where(user_id:id, id:question.id)
+    if q.count > 0
+      q.anonymous_flag ? 1 : 0
+    else
+      a = Answer.where(user_id:id, question_id:question.id)
+      if a.count > 0
+        a.anonymous_flag ? 1 : 0
+      else
+        -1
+      end
+    end
+  end
+
+  def post_identity(post)
+    p = Post.where(user_id:id, id:post.id)
+    if p.count > 0
+      p.anonymous_flag ? 1 : 0
+    else
+      a = PostComment.where(user_id:id, question_id:post.id)
+      if a.count > 0
+        a.anonymous_flag ? 1 : 0
+      else
+        -1
+      end
+    end
+  end
+
   def answer_ag
     result = ActiveRecord::Base.connection.select_all(
         ["select 'a' as type, count(an.id) as num

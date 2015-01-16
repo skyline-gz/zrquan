@@ -7,6 +7,7 @@ RSpec.describe "post_comments/show", :type => :view do
       :agree_score => 1,
       :oppose_score => 2,
       :anonymous_flag => false,
+      :post => nil,
       :user => nil,
       :replied_comment => nil
     ))
@@ -18,6 +19,7 @@ RSpec.describe "post_comments/show", :type => :view do
     expect(rendered).to match(/1/)
     expect(rendered).to match(/2/)
     expect(rendered).to match(/false/)
+    expect(rendered).to match(//)
     expect(rendered).to match(//)
     expect(rendered).to match(//)
   end

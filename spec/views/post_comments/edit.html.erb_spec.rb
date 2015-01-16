@@ -7,6 +7,7 @@ RSpec.describe "post_comments/edit", :type => :view do
       :agree_score => 1,
       :oppose_score => 1,
       :anonymous_flag => false,
+      :post => nil,
       :user => nil,
       :replied_comment => nil
     ))
@@ -24,6 +25,8 @@ RSpec.describe "post_comments/edit", :type => :view do
       assert_select "input#post_comment_oppose_score[name=?]", "post_comment[oppose_score]"
 
       assert_select "input#post_comment_anonymous_flag[name=?]", "post_comment[anonymous_flag]"
+
+      assert_select "input#post_comment_post_id[name=?]", "post_comment[post_id]"
 
       assert_select "input#post_comment_user_id[name=?]", "post_comment[user_id]"
 

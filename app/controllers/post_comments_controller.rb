@@ -61,14 +61,6 @@ class PostCommentsController < ApplicationController
     end
   end
 
-  def agree
-
-  end
-
-  def oppose
-
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post_comment
@@ -77,6 +69,6 @@ class PostCommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_comment_params
-      params.require(:post_comment).permit(:content, :agree_score, :oppose_score, :anonymous_flag, :user_id, :replied_comment_id)
+      params.require(:post_comment).permit(:content, :agree_score, :oppose_score, :anonymous_flag, :post_id, :user_id, :replied_comment_id)
     end
 end

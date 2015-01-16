@@ -89,6 +89,9 @@ class Ability
       can :create, Question
       can :follow, Question
       can :edit, Question, :user_id => user.id
+      can :switch_identity, Question do |q|
+        q.user_id == user.id or user.answered?(q)
+      end
     end
 
     def answer_abilities(user)
