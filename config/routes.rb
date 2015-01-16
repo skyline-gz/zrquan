@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :post_comments
-
-  resources :posts, except: [:new, :destroy] do
+  resources :posts, except: [:edit, :update, :destroy] do
     member do
       post :agree, :constraints => {:format => 'json'}
       post :oppose, :constraints => {:format => 'json'}

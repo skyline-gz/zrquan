@@ -17,48 +17,25 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  # GET /posts/1/edit
-  def edit
-  end
-
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    @post = current_user.posts.new(post_params)
+    @post.hot_abs = 5 #问题自身权重
+    @post.save!
+    # 创建问题主题关联
+    if params[:post][:themes] != nil
+      themes = params[:post][:themes].split(',').map { |s| s.to_i }
+      themes.each do |t_id|
+        @post_theme = @post.post_themes.new
+        @post_theme.theme_id = t_id
+        @post_theme.save!
       end
     end
-  end
-
-  # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
-  def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /posts/1
-  # DELETE /posts/1.json
-  def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # 创建用户行为（发布问题）
+    current_user.activities.create!(target_id: @post.id, target_type: "Post", activity_type: 1,
+                                    publish_date: DateUtils.to_yyyymmdd(Date.today))
+    redirect_to action: 'show', id: @post.token_id
   end
 
   def agree
@@ -104,6 +81,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # 反对
   def oppose
     if can? :oppose, @post
       @opposition = current_user.oppositions.new(
@@ -140,7 +118,34 @@ class PostsController < ApplicationController
     end
   end
 
+  # 所有【转匿名】和【转实名】都在一级内容的【更多操作】进行
+  # 转成匿名
+  def to_anonymous
+    if @post.user_id == current_user.id
+      @post.update(anonymous_flag: true)
+    end
+    to_anonymous_comments
+  end
+
+  # 转成实名
+  def to_real_name
+    if @post.user_id == current_user.id
+      @post.update(anonymous_flag: false)
+    end
+    to_real_name_comments
+  end
+
   private
+    def to_anonymous_comments
+      PostComment.where("post_id = ? and user_id = ?", @post.id, current_user.id).
+          update_all(anonymous_flag: true)
+    end
+
+    def to_real_name_comments
+      PostComment.where("post_id = ? and user_id = ?", @post.id, current_user.id).
+          update_all(anonymous_flag: false)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
@@ -148,6 +153,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:token_id, :content, :agree_score, :oppose_score, :anonymous_flag, :user_id, :edited_at)
+      params.require(:post).permit(:token_id, :content, :anonymous_flag, :user_id, :edited_at)
     end
 end

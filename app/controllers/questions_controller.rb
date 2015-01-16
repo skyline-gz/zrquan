@@ -52,15 +52,12 @@ class QuestionsController < ApplicationController
 
   # 创建
   def create
-    authorize! :answer, Question
     # 创建问题
     @question = current_user.questions.new(question_params)
     @question.hot_abs = 3 #问题自身权重
     current_time = Time.now
     @question.latest_qa_time = DateUtils.to_yyyymmddhhmmss(current_time)
-    @question.created_at = current_time
     @question.edited_at = current_time
-    @question.updated_at = current_time
     @question.save!
     # 创建问题主题关联
     if params[:question][:themes] != nil
