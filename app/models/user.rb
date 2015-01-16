@@ -223,12 +223,12 @@ class User < ActiveRecord::Base
     question_follows.find_by(question_id: question.id)
   end
 
-  def bookmarked_q?(question)
+  def bookmarked_question?(question)
     bookmarks = Bookmark.where(user_id: id, bookmarkable_id: question.id, bookmarkable_type: "Question")
     bookmarks.count > 0 ? true : false
   end
 
-  def bookmarked_p?(post)
+  def bookmarked_post?(post)
     bookmarks = Bookmark.where(user_id: id, bookmarkable_id: post.id, bookmarkable_type: "Post")
     bookmarks.count > 0 ? true : false
   end

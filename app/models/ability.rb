@@ -137,6 +137,18 @@ class Ability
       can :delete, PostComment do |pc|
         user.id == pc.user.id
       end
+      can :agree, PostComment do |pc|
+        pc.user_id != user.id and !user.agreed_post_comment?(pc)
+      end
+      can :cancel_agree, PostComment do |pc|
+        pc.user_id != user.id and user.agreed_post_comment?(pc)
+      end
+      can :oppose, PostComment do |pc|
+        pc.user_id != user.id and !user.opposed_post_comment?(pc)
+      end
+      can :cancel_oppose, PostComment do |pc|
+        pc.user_id != user.id and user.opposed_post_comment?(pc)
+      end
     end
 
     def follow_abilities(user)
@@ -162,16 +174,16 @@ class Ability
 
     def bookmark_abilities(user)
       can :bookmark, Question do |q|
-        !user.bookmarked_q?(q)
+        !user.bookmarked_question?(q)
       end
       can :unbookmark, Question do |q|
-        user.bookmarked_q?(q)
+        user.bookmarked_question?(q)
       end
       can :bookmark, Post do |p|
-        !user.bookmarked_q?(p)
+        !user.bookmarked_post?(p)
       end
       can :unbookmark, Post do |p|
-        user.bookmarked_q?(p)
+        user.bookmarked_post?(p)
       end
     end
 end
