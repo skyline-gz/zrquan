@@ -84,8 +84,60 @@ class PostsController < ApplicationController
     end
   end
 
-  def oppose
+  # 取消赞同
+  def cancel_agree
+    if can? :cancel_agree, @post
+      result = Agreement.where(
+          "agreeable_id = ? and agreeable_type = ?", @post.id, "Post"
+      ).destroy_all
+      # 成功取消
+      if result > 0
+        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        @post.update!(agree_score: @post.agree_score - 1)
+        @post.update!(hot_abs: @post.hot_abs - 1)
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
+    end
+  end
 
+  def oppose
+    if can? :oppose, @post
+      @opposition = current_user.oppositions.new(
+          opposable_id: @post.id, opposable_type: "Post")
+      # 成功反对
+      if @opposition.save
+        # 更新排名因子
+        @post.update!(hot_abs: @post.hot_abs - 1)
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
+    end
+  end
+
+  # 取消反对
+  def cancel_oppose
+    if can? :cancel_oppose, @post
+      result = Opposition.where(
+          "opposable_id = ? and opposable_type = ?", @post.id, "Post"
+      ).destroy_all
+      # 成功取消
+      if result > 0
+        # 更新排名因子
+        @post.update!(hot_abs: @post.hot_abs + 1)
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
+    end
   end
 
   private

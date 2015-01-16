@@ -8,9 +8,9 @@ class Ability
 		# unactivated user
 		elsif !user.activated?
 			logout_unactivate_abilities(user)
-		# verified_user
-		elsif user.verified_user?
-			verified_user_abilities(user)
+		# # verified_user
+		# elsif user.verified_user?
+		# 	verified_user_abilities(user)
 		# normal user
 		else
 			normal_user_abilities(user)
@@ -31,32 +31,36 @@ class Ability
       can :show, NewsFeed
       can :show, Activity
       can :show, Post
+      can :show, PostComment
 		end
 
-		# verified_user
-		def verified_user_abilities(user)
-			# general 
-			create_edit_abilities(user)
-
-      # answer
-      answer_abilities(user)
-      # comment
-      comment_abilities(user)
-			# pm
-      pm_abilities(user)
-      # bookmark
-      bookmark_abilities(user)
-			# user relationship
-      follow_abilities(user)
-		end
+		# # verified_user
+		# def verified_user_abilities(user)
+		# 	# general
+     #  user_related_abilities(user)
+    #
+     #  # answer
+     #  answer_abilities(user)
+     #  # comment
+     #  comment_abilities(user)
+		# 	# pm
+     #  pm_abilities(user)
+     #  # bookmark
+     #  bookmark_abilities(user)
+		# 	# user relationship
+     #  follow_abilities(user)
+		# end
 
     # normal user
     def normal_user_abilities(user)
 			# general 
-			create_edit_abilitlies(user)
+      user_related_abilities(user)
 			
       # answer
       answer_abilities(user)
+      # post
+      post_abilities(user)
+      post_comment_abilities(user)
       # comment
       comment_abilities(user)
 			# pm
@@ -70,22 +74,28 @@ class Ability
     def comment_abilities(user)
       can :comment, Answer
       can :comment, Question
-      can :delete, Comment do |q|
-        user.id == q.user.id
+      can :delete, Comment do |c|
+        user.id == c.user.id
       end
     end
 
-    def create_edit_abilities(user)
-      can :create, :all
-      cannot :create, [Message, UserMsgSetting]
-      can :edit, [Question, Answer, UserMsgSetting], :user_id => user.id
+    def user_related_abilities(user)
+      can :create, User
       can :edit, User, :id => user.id
+      can :edit, UserMsgSetting, :user_id => user.id
+    end
+
+    def question_abilities(user)
+      can :create, Question
+      can :follow, Question
+      can :edit, Question, :user_id => user.id
     end
 
     def answer_abilities(user)
       can :answer, Question do |q|
         !user.answered?(q) and q.user_id != user.id
       end
+      can :edit, Answer, :user_id => user.id
       can :agree, Answer do |a|
         a.user_id != user.id and !user.agreed_answer?(a)
       end
@@ -108,11 +118,18 @@ class Ability
       can :cancel_agree, Post do |p|
         p.user_id != user.id and user.agreed_post?(p)
       end
-      can :oppose, Post do |a|
-        a.user_id != user.id and !user.opposed_post?(a)
+      can :oppose, Post do |p|
+        p.user_id != user.id and !user.opposed_post?(p)
       end
-      can :cancel_oppose, Post do |a|
-        a.user_id != user.id and user.opposed_post?(a)
+      can :cancel_oppose, Post do |p|
+        p.user_id != user.id and user.opposed_post?(p)
+      end
+    end
+
+    def post_comment_abilities(user)
+      can :comment, Post
+      can :delete, PostComment do |pc|
+        user.id == pc.user.id
       end
     end
 
@@ -143,6 +160,12 @@ class Ability
       end
       can :unbookmark, Question do |q|
         user.bookmarked_q?(q)
+      end
+      can :bookmark, Post do |p|
+        !user.bookmarked_q?(p)
+      end
+      can :unbookmark, Post do |p|
+        user.bookmarked_q?(p)
       end
     end
 end

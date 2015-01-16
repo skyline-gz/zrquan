@@ -186,11 +186,12 @@ class User < ActiveRecord::Base
 
   def bookmarked_q?(question)
     bookmarks = Bookmark.where(user_id: id, bookmarkable_id: question.id, bookmarkable_type: "Question")
-    if bookmarks.count > 0
-      true
-    else
-      false
-    end
+    bookmarks.count > 0 ? true : false
+  end
+
+  def bookmarked_p?(post)
+    bookmarks = Bookmark.where(user_id: id, bookmarkable_id: post.id, bookmarkable_type: "Post")
+    bookmarks.count > 0 ? true : false
   end
 
 	def answered?(question)
@@ -213,56 +214,32 @@ class User < ActiveRecord::Base
 
 	def agreed_answer?(answer)
 		agreements = Agreement.where(user_id: id, agreeable_id: answer.id, agreeable_type: "Answer")
-		if agreements.count > 0
-			true
-		else
-			false
-		end
+    agreements.count > 0 ? true : false
   end
 
 	def agreed_post?(post)
 		agreements = Agreement.where(user_id: id, agreeable_id: post.id, agreeable_type: "Post")
-		if agreements.count > 0
-			true
-		else
-			false
-		end
+		agreements.count > 0 ? true : false
   end
 
 	def agreed_post_comment?(post_comment)
 		agreements = Agreement.where(user_id: id, agreeable_id: post_comment.id, agreeable_type: "PostComment")
-		if agreements.count > 0
-			true
-		else
-			false
-		end
+    agreements.count > 0 ? true : false
   end
 
 	def opposed_answer?(answer)
 		opposition = Opposition.where(user_id: id, opposable_id: answer.id, opposable_type: "Answer")
-		if opposition.count > 0
-			true
-		else
-			false
-		end
+    opposition.count > 0 ? true : false
   end
 
 	def opposed_post?(post)
 		opposition = Opposition.where(user_id: id, opposable_id: post.id, opposable_type: "Post")
-		if opposition.count > 0
-			true
-		else
-			false
-		end
+    opposition.count > 0 ? true : false
   end
 
 	def opposed_post_comment?(post_comment)
 		opposition = Opposition.where(user_id: id, opposable_id: post_comment.id, opposable_type: "PostComment")
-		if opposition.count > 0
-			true
-		else
-			false
-		end
+    opposition.count > 0 ? true : false
 	end
 
 	def verified_user?
