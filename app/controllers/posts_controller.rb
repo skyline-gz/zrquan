@@ -65,7 +65,8 @@ class PostsController < ApplicationController
   def cancel_agree
     if can? :cancel_agree, @post
       result = Agreement.where(
-          "agreeable_id = ? and agreeable_type = ?", @post.id, "Post"
+          "agreeable_id = ? and agreeable_type = ? and user_id = ?",
+          @post.id, "Post", current_user.id
       ).destroy_all
       # 成功取消
       if result > 0
@@ -103,7 +104,8 @@ class PostsController < ApplicationController
   def cancel_oppose
     if can? :cancel_oppose, @post
       result = Opposition.where(
-          "opposable_id = ? and opposable_type = ?", @post.id, "Post"
+          "opposable_id = ? and opposable_type = ? and user_id = ?",
+          @post.id, "Post", current_user.id
       ).destroy_all
       # 成功取消
       if result > 0
