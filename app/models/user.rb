@@ -223,6 +223,10 @@ class User < ActiveRecord::Base
     question_follows.find_by(question_id: question.id)
   end
 
+  def following_t?(theme)
+    theme_follows.find_by(theme_id: theme.id)
+  end
+
   def bookmarked_question?(question)
     bookmarks = Bookmark.where(user_id: id, bookmarkable_id: question.id, bookmarkable_type: "Question")
     bookmarks.count > 0 ? true : false

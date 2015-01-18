@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     # 关注，取消关注 问题
     member do
       post :follow, :constraints => {:format => 'json'}
-      post :un_follow, :constraints => {:format => 'json'}
+      post :unfollow, :constraints => {:format => 'json'}
     end
   end
 
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
       get 'drafts'
       get 'profile'
       post 'follow', :constraints => {:format => 'json'}
-      post 'un_follow', :constraints => {:format => 'json'}
+      post 'unfollow', :constraints => {:format => 'json'}
     end
   end
 

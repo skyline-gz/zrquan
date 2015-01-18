@@ -284,7 +284,7 @@ Zrquan.module('UI.InfoBlocks', function(Module, App, Backbone, Marionette, $, _)
             var that = this;
 
             $.when(Zrquan.Ajax.request({
-                url: "/questions/" + this.$el.data('qid') + "/un_follow"
+                url: "/questions/" + this.$el.data('qid') + "/unfollow"
             })).then(function(result) {
                 if (result.code == "S_OK") {
                     that.updateFollowersNum(-1);

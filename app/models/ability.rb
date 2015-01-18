@@ -158,10 +158,16 @@ class Ability
       can :unfollow, User do |target_user|
         user.following_u?(target_user)
       end
+      can :follow, Theme do |t|
+        !user.following_t?(t)
+      end
+      can :unfollow, Theme do |t|
+        user.following_t?(t)
+      end
 			can :follow, Question do |q|
 				!user.following_q?(q)
 			end
-			can :un_follow, Question do |q|
+			can :unfollow, Question do |q|
 				user.following_q?(q)
 			end
     end

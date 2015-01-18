@@ -1,7 +1,7 @@
 require "return_code.rb"
 
 class UsersController < ApplicationController
-  before_action :set_user_by_token_id, only: [:follow, :un_follow, :profile]
+  before_action :set_user_by_token_id, only: [:follow, :unfollow, :profile]
   before_action :set_user_by_url_id, only: [:show,:questions, :answers, :bookmarks, :drafts]
   before_action :authenticate_user!, except: [:profile]
 
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   # 取消关注用户
-  def un_follow
+  def unfollow
     id = @user.id
     if current_user.id == id
       render :json => { :code => ReturnCode::FA_INVALID_TARGET_ERROR } and return

@@ -60,13 +60,52 @@ class PostCommentsController < ApplicationController
   def cancel_agree
     if can? :cancel_agree, @post_comment
       result = Agreement.where(
-          "agreeable_id = ? and agreeable_type = ?", @answer.id, "Answer"
+          "agreeable_id = ? and agreeable_type = ? and user_id = ?",
+          @post_comment.id, "PostComment", current_user.id
       ).destroy_all
       # 成功取消
       if result > 0
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
-        @answer.update!(agree_score: @answer.agree_score - 1)
-        @question.update!(hot_abs: @question.hot_abs - 1)
+        @post_comment.update!(agree_score: @answer.agree_score - 1)
+        @post.update!(hot_abs: @question.hot_abs - 1)
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
+    end
+  end
+
+  # 反对
+  def oppose
+    if can? :oppose, @post_comment
+      @opposition = current_user.oppositions.new(
+          opposable_id: @post_comment.id, opposable_type: "PostComment")
+      # 成功反对
+      if @opposition.save
+        # 更新排名因子
+        @post.update!(hot_abs: @post.hot_abs - 1)
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
+      end
+    else
+      render :json => { :code => ReturnCode::FA_UNAUTHORIZED }
+    end
+  end
+
+  # 取消反对
+  def cancel_oppose
+    if can? :cancel_oppose, @post_comment
+      result = Opposition.where(
+          "opposable_id = ? and opposable_type = ? and user_id = ?",
+          @post_comment.id, "PostComment", current_user.id
+      ).destroy_all
+      # 成功取消
+      if result > 0
+        # 更新排名因子
+        @post.update!(hot_abs: @post.hot_abs + 1)
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }

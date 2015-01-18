@@ -44,6 +44,26 @@ class ThemesController < ApplicationController
     end
   end
 
+  # 关注
+  def follow
+    if can? :follow, @theme
+      @theme.theme_follows.create(user_id: current_user.id)
+      render :json => { :code => ReturnCode::S_OK }
+    else
+      render :json => { :code => ReturnCode::FA_RESOURCE_ALREADY_EXIST }
+    end
+  end
+
+  # 取消关注
+  def unfollow
+    if can? :unfollow, @theme
+      ThemeFollow.find_by(user_id: current_user.id, theme_id: @theme.id).destroy
+      render :json => { :code => ReturnCode::S_OK }
+    else
+      render :json => { :code => ReturnCode::FA_RESOURCE_NOT_EXIST }
+    end
+  end
+
   # 参数处理
   def set_theme_params
     params.permit(:name, :description, :theme_type)

@@ -2,7 +2,7 @@ require 'return_code'
 require 'date_utils.rb'
 
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :follow, :un_follow]
+  before_action :set_question, only: [:show, :edit, :update, :follow, :unfollow]
   before_action :authenticate_user!
 
   DEFAULT_SHOW_LENGTH = 20
@@ -108,8 +108,8 @@ class QuestionsController < ApplicationController
   end
 
   # 取消关注
-  def un_follow
-    if can? :un_follow, @question
+  def unfollow
+    if can? :unfollow, @question
       QuestionFollow.find_by(user_id: current_user.id, question_id: @question.id).destroy
       render :json => { :code => ReturnCode::S_OK }
     else
