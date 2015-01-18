@@ -3,8 +3,9 @@ class Company < ActiveRecord::Base
   belongs_to :industry
   belongs_to :parent_company
   has_many :subsidiary, class_name: "Company", foreign_key: "parent_company_id"
-  has_many :company_salaries
-  has_many :themes, as: :substance
+  has_many :careers
+  has_many :users, through: :careers
+  has_one :theme, as: :substance
 
   validates :name, presence: true, on: :create
   validates :name, length: {in: 1..20}
