@@ -308,9 +308,9 @@ class User < ActiveRecord::Base
 	end
 
 	private
-	def randomize_token_id
-		self.token_id = 105173 + self.id * 31 + SecureRandom.random_number(31)
-	end
+	# def randomize_token_id
+	# 	self.token_id = 105173 + self.id * 31 + SecureRandom.random_number(31)
+	# end
 
 	# def generate_url_id
 	# 	url_id = PinYin.permlink(self.last_name) + '-' + PinYin.permlink(self.first_name)
@@ -328,7 +328,7 @@ class User < ActiveRecord::Base
 	end
 
 	def after_create_user
-		randomize_token_id
+		# randomize_token_id
 		# generate_url_id
 		self.save
 		generate_user_msg_setting

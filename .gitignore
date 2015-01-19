@@ -39,18 +39,3 @@
 /solr/pids
 /solr/test
 /public/uploads
-
-###############
-#   前端构建   #
-###############
-
-#ignore sass cache files
-/front/src/.sass-cache
-
-#ignore nodejs/grunt plugin
-node_modules
-
-#ignore live/development/build
-/front/src/css
-/front/development
-/front/build

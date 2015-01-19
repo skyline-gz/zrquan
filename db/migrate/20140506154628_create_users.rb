@@ -7,11 +7,11 @@ class CreateUsers < ActiveRecord::Migration
 
       ## Trackable
       t.integer  :sign_in_count, default: 0, null: false
+      # 最近一次使用用户密码登陆的时间
       t.datetime :current_sign_in_at
-      t.datetime :last_sign_in_at
+      # 最近一次校验JWT token的时间
+      t.datetime :current_sign_in_verify_at
 
-      t.integer :token_id
-      t.string  :url_id
       t.string  :name
       t.integer :gender
       t.references  :location, index: true
@@ -26,7 +26,5 @@ class CreateUsers < ActiveRecord::Migration
     end
 
     add_index :users, :mobile,  unique: true
-    add_index :users, :token_id, unique: true
-    add_index :users, :url_id, unique: true
   end
 end

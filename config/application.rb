@@ -16,11 +16,6 @@ module Zrquan
 		config.active_record.default_timezone = :local
     config.i18n.default_locale = :'zh-CN'
 
-    # devise respond_to json
-    config.to_prepare do
-      DeviseController.respond_to :html, :json
-    end
-
     #禁用active_support全局的对输出json时自动转换html标签tag
     # Todo:  需要自定义方法对用户输入进行区别化的XSS防范
     config.active_support.escape_html_entities_in_json = false
