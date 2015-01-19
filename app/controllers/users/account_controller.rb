@@ -3,12 +3,16 @@ require 'return_code'
 class Users::AccountController < ApplicationController
   # 验证客户端token是否合法
   # sample:
-  # curl -v -H 'Content-Type: applicationion/json' -X POST http://localhost:3000/users/sms_code -d "{\"mobile\":\"13533365535\"}"
-  # {"code":"FA_INVALID_PARAMETERS","msg":{"email":["can't be blank"],"password":["can't be blank"]}}
-  def verify
+  # curl -v -H 'Content-Type: applicationion/json' -X GET http://localhost:3000/users/sms_code -d "{\"mobile\":\"13533365535\"}"
+  def send_verify_code
     # 生成六位随机数字
-    verify_code = '%010d' % rand(10 ** 6)
-    # Todo:将verify_code发送到第三方短信平台
+    mobile = params[:mobile]
+    verify_code = VerifyCodeCache.instance.read(mobile)
+    unless verify_code
+      verify_code = '%6d' % rand(10 ** 6)
+    end
+    # Todo:将verify_code发送到第三方短信平台，暂时直接将验证码返回以便跳过发短信的步骤
+    VerifyCodeCache.instance.write(mobile, verify_code)
     render :json => {:code => ReturnCode::S_OK, :results => verify_code}
   end
 
