@@ -48,19 +48,17 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, controllers:{
-      registrations: "users/registrations",
-      sessions: "users/sessions",
-      confirmations: "users/confirmations",
-      passwords: "users/passwords"
-  }
-
-  devise_scope :user do
-    post 'registrations' => 'users/registrations#create'
-    post 'sessions' => 'users/sessions#create'
-    delete 'sessions' => 'users/sessions#destroy'
-    get 'confirmations/resend' => 'users/confirmations#resend'
-  end
+  # 账号相关
+  # 根据手机号码发送认证短信，并建立手机号码与验证码的哈希，供注册账号或找回密码使用
+  get 'users/sms_code' => 'users/sms_code', :constraints => {:format => 'json'}
+  # 注册账户
+  post 'users/registration' => 'users/registration#create', :constraints => {:format => 'json'}
+  # 验证客户端token是否合法
+  get 'users/verify' => 'users/sessions#verify', :constraints => {:format => 'json'}
+  # 登陆账号
+  post 'users/session' => 'users/session#create', :constraints => {:format => 'json'}
+  # 更改密码
+  post 'users/password' => 'users/password#update', :constraints => {:format => 'json'}
 
   resources :users, except: [:destroy, :create] do
     member do

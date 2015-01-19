@@ -3,8 +3,6 @@ defaults: &defaults
     uploaded_avatar_experied_minute: 10
     automatch_terms_experied_minute: 60
   upload_url: "http://zrquan.qiniudn.com/"
-#  是否打开devise异步发送验证邮件
-  enable_devise_async: false
 #  配置问答提问时显示的热门主题,key为theme id, value为theme name
   hot_themes:
     1: "毕业生求职"
@@ -13,18 +11,11 @@ defaults: &defaults
     4: "找实习"
     5: "面试咨询"
 
-  faye_server: "http://127.0.0.1:8080/faye"
-  faye_client_url: "http://127.0.0.1:8080/faye"
-  faye_token: "123456"
-
 development:
   <<: *defaults
-  enable_devise_async: false
 
 test:
   <<: *defaults
-  enable_devise_async: true
 
 production:
   <<: *defaults
-  enable_devise_async: true
