@@ -277,16 +277,19 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   create_table "posts", force: true do |t|
     t.integer  "token_id"
     t.text     "content"
-    t.integer  "hot_abs"
-    t.integer  "agree_score",    default: 0
-    t.integer  "oppose_score",   default: 0
-    t.boolean  "anonymous_flag", default: false
+    t.integer  "weight"
+    t.float    "epoch_time",     limit: 53
+    t.float    "hot",            limit: 53
+    t.integer  "agree_score",               default: 0
+    t.integer  "oppose_score",              default: 0
+    t.boolean  "anonymous_flag",            default: false
     t.integer  "user_id"
     t.datetime "edited_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "posts", ["hot"], name: "index_posts_on_hot", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "private_messages", force: true do |t|
@@ -327,8 +330,10 @@ ActiveRecord::Schema.define(version: 20150118093208) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.boolean  "anonymous_flag",             default: false
-    t.integer  "hot_abs"
+    t.boolean  "anonymous_flag",              default: false
+    t.integer  "weight"
+    t.float    "epoch_time",       limit: 53
+    t.float    "hot",              limit: 53
     t.integer  "latest_answer_id"
     t.integer  "latest_qa_time",   limit: 8
     t.datetime "edited_at"
@@ -336,6 +341,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
     t.datetime "updated_at"
   end
 
+  add_index "questions", ["hot"], name: "index_questions_on_hot", using: :btree
   add_index "questions", ["latest_answer_id"], name: "index_questions_on_latest_answer_id", using: :btree
   add_index "questions", ["token_id"], name: "index_questions_on_token_id", unique: true, using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree

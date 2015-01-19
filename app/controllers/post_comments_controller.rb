@@ -20,7 +20,7 @@ class PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
     if @post_comment.save
-      @post.update!(hot_abs: @question.hot_abs + 1)
+      @post.update!(weight: @question.weight + 1)
       # 创建回答问题消息并发送
       # MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_ANSWER_QUESTION], current_user.id, @question.id)
       # 创建用户行为（回答问题）
@@ -41,7 +41,7 @@ class PostCommentsController < ApplicationController
       if @agreement.save
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
         @post_comment.update!(agree_score: @post_comment.agree_score + 1)
-        @post.update!(hot_abs: @post.hot_abs + 1)
+        @post.update!(weight: @post.weight + 1)
         # 创建赞同答案的消息并发送
         MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
         # 创建用户行为（赞同答案）
@@ -67,7 +67,7 @@ class PostCommentsController < ApplicationController
       if result > 0
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
         @post_comment.update!(agree_score: @answer.agree_score - 1)
-        @post.update!(hot_abs: @question.hot_abs - 1)
+        @post.update!(weight: @question.weight - 1)
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -85,7 +85,7 @@ class PostCommentsController < ApplicationController
       # 成功反对
       if @opposition.save
         # 更新排名因子
-        @post.update!(hot_abs: @post.hot_abs - 1)
+        @post.update!(weight: @post.weight - 1)
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -105,7 +105,7 @@ class PostCommentsController < ApplicationController
       # 成功取消
       if result > 0
         # 更新排名因子
-        @post.update!(hot_abs: @post.hot_abs + 1)
+        @post.update!(weight: @post.weight + 1)
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }

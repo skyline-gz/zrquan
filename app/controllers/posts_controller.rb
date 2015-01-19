@@ -1,3 +1,5 @@
+require 'ranking_utils.rb'
+
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -21,7 +23,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.new(post_params)
-    @post.hot_abs = 5 #问题自身权重
+    @post.weight = 1 #本体自身权重
+    @post.epoch_time = Time.now.to_i
+    @post.hot = RankingUtils.post_hot(@post.weight, @post.epoch_time)
     @post.save!
     # 创建问题主题关联
     if params[:post][:themes] != nil
@@ -44,9 +48,13 @@ class PostsController < ApplicationController
           agreeable_id: @post.id, agreeable_type: "Post")
       # 成功赞成
       if @agreement.save
-        # 更新赞同分数（因为职人的范围变广，所有人都+1）
-        @post.update!(agree_score: @post.agree_score + 1)
-        @post.update!(hot_abs: @post.hot_abs + 1)
+        # 更新post
+        new_weight = @post.weight + 1
+        @post.update!(
+            agree_score: @post.agree_score + 1,
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         # 创建赞同答案的消息并发送
         MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
         # 创建用户行为（赞同答案）
@@ -71,8 +79,12 @@ class PostsController < ApplicationController
       # 成功取消
       if result > 0
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
-        @post.update!(agree_score: @post.agree_score - 1)
-        @post.update!(hot_abs: @post.hot_abs - 1)
+        new_weight = @post.weight - 1
+        @post.update!(
+            agree_score: @post.agree_score - 1,
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -90,7 +102,11 @@ class PostsController < ApplicationController
       # 成功反对
       if @opposition.save
         # 更新排名因子
-        @post.update!(hot_abs: @post.hot_abs - 1)
+        new_weight = @post.weight - 1
+        @post.update!(
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -110,7 +126,11 @@ class PostsController < ApplicationController
       # 成功取消
       if result > 0
         # 更新排名因子
-        @post.update!(hot_abs: @post.hot_abs + 1)
+        new_weight = @post.weight + 1
+        @post.update!(
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }

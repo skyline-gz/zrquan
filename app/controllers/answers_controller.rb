@@ -1,4 +1,5 @@
 require 'date_utils.rb'
+require 'ranking_utils.rb'
 require 'return_code'
 
 class AnswersController < ApplicationController
@@ -17,7 +18,9 @@ class AnswersController < ApplicationController
         # 删除已创建草稿
         @answer_draft = AnswerDraft.find_by(:user_id => current_user.id, :question_id => @question.id)
         @answer_draft.try(:destroy)
-        @question.update!(hot_abs: @question.hot_abs + 3,
+        new_weight = @question.weight + 3
+        @question.update!(weight: new_weight,
+                          hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
                           latest_answer_id: @answer.id,
                           latest_qa_time: DateUtils.to_yyyymmddhhmmss(current_time))
         # 创建回答问题消息并发送
@@ -54,7 +57,11 @@ class AnswersController < ApplicationController
       if @agreement.save
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
         @answer.update!(agree_score: @answer.agree_score + 1)
-        @question.update!(hot_abs: @question.hot_abs + 1)
+        new_weight = @question.weight + 1
+        @question.update!(
+            weight: new_weight,
+            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+        )
         # 创建赞同答案的消息并发送
         MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @answer.id)
         # 创建用户行为（赞同答案）
@@ -80,7 +87,11 @@ class AnswersController < ApplicationController
       if result > 0
         # 更新赞同分数（因为职人的范围变广，所有人都+1）
         @answer.update!(agree_score: @answer.agree_score - 1)
-        @question.update!(hot_abs: @question.hot_abs - 1)
+        new_weight = @question.weight - 1
+        @question.update!(
+            weight: new_weight,
+            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -98,7 +109,11 @@ class AnswersController < ApplicationController
       # 成功反对
       if @opposition.save
         # 更新排名因子
-        @question.update!(hot_abs: @question.hot_abs - 1)
+        new_weight = @question.weight - 1
+        @question.update!(
+            weight: new_weight,
+            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -118,7 +133,11 @@ class AnswersController < ApplicationController
       # 成功取消
       if result > 0
         # 更新排名因子
-        @question.update!(hot_abs: @question.hot_abs + 1)
+        new_weight = @question.weight + 1
+        @question.update!(
+            weight: new_weight,
+            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
