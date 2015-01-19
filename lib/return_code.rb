@@ -14,6 +14,7 @@ module ReturnCode
   FA_RESOURCE_NOT_EXIST = 'FA_RESOURCE_NOT_EXIST' #资源不存在，一般指【删查改】等操作所需要的资源不存在
 
   # 用户相关
+  FA_INVALID_MOBILE_FORMAT = 'FA_INVALID_MOBILE_FORMAT'   #非法的电话号码格式
   FA_UNAUTHORIZED = 'FA_UNAUTHORIZED'  #用户权限不足
   FA_USER_ALREADY_EXIT = 'FA_USER_ALREADY_EXIT'              #注册时，用户已经存在
   FA_USER_NOT_EXIT = 'FA_USER_NOT_EXIT'   #登录时，用户(账号)不存在
