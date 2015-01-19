@@ -46,10 +46,10 @@ group :development, :test do
 end
 
 # a Ruby binding for the OpenBSD bcrypt() password hashing algorithm, allowing you to easily store a secure hash of your users' passwords.
-gem 'bcrypt-ruby'
+gem 'bcrypt', '~> 3.1.9'
 
 # JSON Web Token implementation in Ruby
-gem 'ruby-jwt'
+gem 'jwt', '~> 1.2.0'
 
 # 用户权限
 gem 'cancancan', '~> 1.9.2'
