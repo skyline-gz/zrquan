@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116110546) do
+ActiveRecord::Schema.define(version: 20150118093208) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -386,6 +386,16 @@ ActiveRecord::Schema.define(version: 20150116110546) do
 
   add_index "skills", ["name"], name: "index_skills_on_name", unique: true, using: :btree
 
+  create_table "theme_follows", force: true do |t|
+    t.integer  "theme_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "theme_follows", ["theme_id"], name: "index_theme_follows_on_theme_id", using: :btree
+  add_index "theme_follows", ["user_id"], name: "index_theme_follows_on_user_id", using: :btree
+
   create_table "themes", force: true do |t|
     t.string   "name"
     t.integer  "substance_id"
@@ -427,13 +437,11 @@ ActiveRecord::Schema.define(version: 20150116110546) do
   add_index "user_msg_settings", ["user_id"], name: "index_user_msg_settings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "mobile",              limit: 20, default: "", null: false
-    t.string   "encrypted_password",             default: "", null: false
-    t.integer  "sign_in_count",                  default: 0,  null: false
+    t.string   "mobile",                    limit: 20, default: "", null: false
+    t.string   "encrypted_password",                   default: "", null: false
+    t.integer  "sign_in_count",                        default: 0,  null: false
     t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.integer  "token_id"
-    t.string   "url_id"
+    t.datetime "current_sign_in_verify_at"
     t.string   "name"
     t.integer  "gender"
     t.integer  "location_id"
@@ -452,7 +460,5 @@ ActiveRecord::Schema.define(version: 20150116110546) do
   add_index "users", ["latest_education_id"], name: "index_users_on_latest_education_id", using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
   add_index "users", ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
-  add_index "users", ["token_id"], name: "index_users_on_token_id", unique: true, using: :btree
-  add_index "users", ["url_id"], name: "index_users_on_url_id", unique: true, using: :btree
 
 end
