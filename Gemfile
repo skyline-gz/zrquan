@@ -3,7 +3,7 @@ source 'https://ruby.taobao.org/'
 
 # rails默认系列gem
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '~> 4.1.9'
 
 # 前端系列gem
 # Use SCSS for stylesheets
