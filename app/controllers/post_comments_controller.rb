@@ -137,16 +137,6 @@ class PostCommentsController < ApplicationController
     end
   end
 
-  # DELETE /post_comments/1
-  # DELETE /post_comments/1.json
-  def destroy
-    @post_comment.destroy
-    respond_to do |format|
-      format.html { redirect_to post_comments_url, notice: 'Post comment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post_comment
