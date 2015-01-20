@@ -16,8 +16,9 @@ module ReturnCode
   # 用户相关
   FA_INVALID_MOBILE_FORMAT = 'FA_INVALID_MOBILE_FORMAT'          #非法的电话号码格式
   FA_USER_ALREADY_EXIT = 'FA_USER_ALREADY_EXIT'                  #注册时，用户已经存在
-  FA_USER_NOT_EXIT = 'FA_USER_NOT_EXIT'                          #登录时，用户(账号)不存在
-  FA_INVALID_VERIFY_CODE = 'FA_INVALID_VERIFY_CODE'              #注册或找回密码时，没有提供合法的短信验证码
+  FA_USER_NOT_EXIT = 'FA_USER_NOT_EXIT'                          #登录，或重置密码时，用户(账号)不存在
+  FA_NEED_VERIFY_CODE = 'FA_NEED_VERIFY_CODE'                    #注册或找回密码时，没有短信验证码
+  FA_INVALID_VERIFY_CODE = 'FA_INVALID_VERIFY_CODE'              #注册或找回密码时，短信验证码不正确
   FA_VERIFY_CODE_EXPIRED = 'FA_VERIFY_CODE_EXPIRED'              #验证码过期了，应重新请求生成新的验证码
   FA_INVALID_USER_NAME_FORMAT = 'FA_INVALID_USER_NAME_FORMAT'    #非法的用户名格式
   FA_INVALID_PASSWORD_FORMAT = 'FA_INVALID_PASSWORD_FORMAT'      #非法的密码格式

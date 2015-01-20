@@ -23,9 +23,33 @@ class Users::AccountController < ApplicationController
     end
   end
 
-  # curl -v -H 'Content-Type: application/json' -X GET http://localhost:3000/users/sms_code -d "{\"mobile\":\"13533365535\"}"
+  # curl -v -H 'Content-Type: application/json' -X POST http://localhost:3000/users/reset_password -d "{\"mobile\":\"13533365535\"}"
   # 重置密码(需要提供验证码)
   def reset_password
     verify_code = params[:verify_code]
+    mobile = params[:mobile]
+    new_password = params[:new_password]
+
+    unless verify_code
+      render :json => {:code => ReturnCode::FA_NEED_VERIFY_CODE} and return
+    end
+
+    unless RegexExpression::MOBILE.match(mobile)
+      render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT}
+    end
+
+    unless User.password_validate? new_password
+      render :json => {:code => ReturnCode::FA_INVALID_PASSWORD_FORMAT} and return
+    end
+
+    user = User.find_by_mobile mobile
+
+    unless user
+      render :json => {:code => ReturnCode::FA_USER_NOT_EXIT} and return
+    end
+
+    user.password = new_password
+    user.save
+    render :json => {:code => ReturnCode::S_OK}
   end
 end

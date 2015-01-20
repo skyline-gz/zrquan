@@ -10,35 +10,40 @@ class Users::RegistrationController < ApplicationController
     verify_code = params[:verify_code].to_s
     password = params[:password].to_s
     name = params[:name]
-    if RegexExpression::MOBILE.match(mobile)
-      verify_code_in_cache = VerifyCodeCache.instance.read(mobile)
-      if verify_code_in_cache
-        if verify_code_in_cache == verify_code
-          user = User.find_by_mobile mobile
 
-          if user
-            render :json => {:code => ReturnCode::FA_USER_ALREADY_EXIT} and return
-          end
-
-          if User.password_validate? password
-            user = User.new(:mobile => mobile, :name => name)
-            if user.errors[:name].any?
-              render :json => {:code => ReturnCode::FA_INVALID_USER_NAME_FORMAT} and return
-            end
-            user.password = password
-            user.save
-            render :json => {:code => ReturnCode::S_OK} and return
-          else
-            render :json => {:code => ReturnCode::FA_INVALID_PASSWORD_FORMAT} and return
-          end
-        else
-          render :json => {:code => ReturnCode::FA_INVALID_VERIFY_CODE} and return
-        end
-      else
-        render :json => {:code => ReturnCode::FA_VERIFY_CODE_EXPIRED} and return
-      end
-    else
+    if RegexExpression::MOBILE.match(mobile) == nil
       render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT} and return
     end
+
+    verify_code_in_cache = VerifyCodeCache.instance.read(mobile)
+    if verify_code_in_cache == nil
+      render :json => {:code => ReturnCode::FA_VERIFY_CODE_EXPIRED} and return
+    end
+
+    if verify_code == nil
+      render :json => {:code => ReturnCode::FA_NEED_VERIFY_CODE} and return
+    end
+
+    if verify_code_in_cache != verify_code
+      render :json => {:code => ReturnCode::FA_INVALID_VERIFY_CODE} and return
+    end
+
+    user = User.find_by_mobile mobile
+
+    if user
+      render :json => {:code => ReturnCode::FA_USER_ALREADY_EXIT} and return
+    end
+
+    unless User.password_validate? password
+      render :json => {:code => ReturnCode::FA_INVALID_PASSWORD_FORMAT} and return
+    end
+
+    user = User.new(:mobile => mobile, :name => name)
+    if user.errors[:name].any?
+      render :json => {:code => ReturnCode::FA_INVALID_USER_NAME_FORMAT} and return
+    end
+    user.password = password
+    user.save
+    render :json => {:code => ReturnCode::S_OK}
   end
 end
