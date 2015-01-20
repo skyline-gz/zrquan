@@ -1,7 +1,7 @@
 require "date_utils.rb"
 
 class HomeController < ApplicationController
-#  before_action :authenticate_user!
+#  before_action :authenticate_user
 
 	# 菜单-首页
 	def home

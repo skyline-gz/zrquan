@@ -4,7 +4,7 @@ require "ranking_utils.rb"
 
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :follow, :unfollow]
-  before_action :authenticate_user!
+  before_action :authenticate_user
 
   DEFAULT_SHOW_LENGTH = 20
   PULL_TO_REFRESH_LENGTH = 10

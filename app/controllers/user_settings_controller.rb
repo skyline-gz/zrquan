@@ -1,7 +1,7 @@
 require "return_code.rb"
 
 class UserSettingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user
   before_action :set_user_msg_setting, only: [:show_notification, :edit_notification]
 
   # 个人账户设置

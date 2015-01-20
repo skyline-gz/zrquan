@@ -5,7 +5,7 @@ require 'return_code'
 
 class UploadController < ApplicationController
   # respond_to :html, :xml, :json
-  before_action :authenticate_user!
+  before_action :authenticate_user
   # 允许iframe跨域请求
   # see http://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4?rq=1
   after_action :allow_iframe
