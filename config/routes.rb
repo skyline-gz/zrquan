@@ -59,8 +59,8 @@ Rails.application.routes.draw do
       get 'verify' => 'users/sessions#verify', :constraints => {:format => 'json'}
       # 登陆账号
       post 'session' => 'users/session#create', :constraints => {:format => 'json'}
-      # 更改密码
-      post 'password' => 'users/account#change_password', :constraints => {:format => 'json'}
+      # 重置密码(需要提供验证码)
+      post 'reset_password' => 'users/account#reset_password', :constraints => {:format => 'json'}
     end
     member do
       get 'questions'

@@ -1,4 +1,5 @@
 require 'return_code'
+require 'regex_expression'
 
 class Users::SessionController < ApplicationController
 
@@ -13,17 +14,31 @@ class Users::SessionController < ApplicationController
     mobile = params[:mobile].to_s
     password = params[:password].to_s
 
+    if RegexExpression::MOBILE.match(mobile) == nil
+      render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT}
+    end
+
+    if RegexExpression::PASSWORD.match(password) == nil
+      render :json => {:code => ReturnCode::FA_INVALID_PASSWORD_FORMAT} and return
+    end
+
     user = User.find_by_mobile(mobile)
+
+    if user == nil
+      render :json => {:code => ReturnCode::FA_USER_NOT_EXIT} and return
+    end
+
     if user.password == password
-      give_token
+      jwt_token = give_token user.id
+      render :json => {:code => ReturnCode::S_OK, :results => {:token => jwt_token}}
     else
-      redirect_to home_url
+      render :json => {:code => ReturnCode::FA_PASSWORD_ERROR} and return
     end
   end
 
   private
-  def give_token
-
+  def give_token (uid)
+    JWT.encode({:current_login_at => Time.now.to_i(), :id => uid}, Settings.jwt_secret)
   end
 
 end

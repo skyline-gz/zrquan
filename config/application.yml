@@ -1,4 +1,5 @@
 defaults: &defaults
+  jwt_secret: "LASKJDFLDKljklakljdfmn4564561598asdfdfSDDFD"
   cache:
     #手机验证码的有效时间
     verify_code_experied_minute: 30

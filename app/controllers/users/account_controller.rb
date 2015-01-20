@@ -17,15 +17,15 @@ class Users::AccountController < ApplicationController
 
       # Todo:将verify_code发送到第三方短信平台，暂时直接将验证码返回以便跳过发短信的步骤
       VerifyCodeCache.instance.write(mobile, verify_code.to_s)
-      render :json => {:code => ReturnCode::S_OK, :results => verify_code}
+      render :json => {:code => ReturnCode::S_OK, :results => {:verify_code => verify_code}}
     else
       render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT}
     end
   end
 
   # curl -v -H 'Content-Type: application/json' -X GET http://localhost:3000/users/sms_code -d "{\"mobile\":\"13533365535\"}"
-  # 更改密码
-  def change_password
+  # 重置密码(需要提供验证码)
+  def reset_password
     verify_code = params[:verify_code]
   end
 end

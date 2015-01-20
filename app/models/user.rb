@@ -57,13 +57,12 @@ class User < ActiveRecord::Base
   validates :name, length: {in: 1..10}, if: Proc.new { |u| u.name.match(/\A\p{Han}+\z/) }
   validates :description, length: {maximum: 25}
 
-  def password_hash
-    self.encrypted_password
+  def password
+    Password.new(self.encrypted_password)
   end
 
   def password=(new_password)
-    password_hash = Password.create(new_password)
-    self.encrypted_password = password_hash
+    self.encrypted_password = Password.create(new_password)
   end
 
   def self.password_validate?(new_password)
