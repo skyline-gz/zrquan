@@ -10,11 +10,15 @@ class Post < ActiveRecord::Base
   validates :content, presence: true, on: :create
   validates :content, length: {in: 1..140}
 
+  def hottest_comment
+    hot_comments.try(:first)
+  end
+
   def hot_comments
     PostComment.find_by_sql(
         ["select pc.*, (pc.agree_score - pc.oppose_score) as actual_score
          from POST_COMMENTS pc
-				 where pc.post_id = ? order by actual_score DESC", id])
+				 where pc.post_id = ? order by actual_score DESC limit 10", id])
   end
 
   def all_comments
