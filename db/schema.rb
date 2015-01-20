@@ -443,11 +443,10 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "user_msg_settings", ["user_id"], name: "index_user_msg_settings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "mobile",                    limit: 20, default: "", null: false
-    t.string   "encrypted_password",                   default: "", null: false
-    t.integer  "sign_in_count",                        default: 0,  null: false
+    t.string   "mobile",              limit: 20, default: "", null: false
+    t.string   "encrypted_password",             default: "", null: false
+    t.integer  "sign_in_count",                  default: 0,  null: false
     t.datetime "current_sign_in_at"
-    t.datetime "current_sign_in_verify_at"
     t.string   "name"
     t.integer  "gender"
     t.integer  "location_id"
