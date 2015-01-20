@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :post_comments, only: [:create, :destroy] do
+  resources :post_comments, only: [:new, :create] do
     member do
       post :agree, :constraints => {:format => 'json'}
       post :oppose, :constraints => {:format => 'json'}

@@ -1,5 +1,6 @@
 require 'return_code'
 require 'date_utils.rb'
+require "ranking_utils.rb"
 
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :follow, :unfollow]
@@ -54,10 +55,12 @@ class QuestionsController < ApplicationController
   def create
     # 创建问题
     @question = current_user.questions.new(question_params)
-    @question.hot_abs = 3 #问题自身权重
+    @question.weight = 1 #问题自身权重
     current_time = Time.now
     @question.latest_qa_time = DateUtils.to_yyyymmddhhmmss(current_time)
     @question.edited_at = current_time
+    @question.epoch_time = current_time.to_i
+    @question.hot = RankingUtils.question_hot(@question.weight, @question.epoch_time)
     @question.save!
     # 创建问题主题关联
     if params[:question][:themes] != nil
@@ -184,19 +187,19 @@ class QuestionsController < ApplicationController
       @question = Question.find_by_token_id(params[:id])
     end
 
-    def get_questions_by_type(type)
-      case type
-        when QUESTION_LIST_TYPE[:NEWEST]
-          # 根据最近回答的时间排序
-          Question.all.sort_by { |q| q.latest_qa_time }.reverse!
-        when QUESTION_LIST_TYPE[:HOTTEST]
-          Question.all.sort_by { |q| q.hot_abs.to_f / ((((Time.now - q.created_at)/ 1.hour).round) + 12) }.reverse!
-        when QUESTION_LIST_TYPE[:NOT_ANSWERED]
-          Question.all.select { |q| q.latest_answer_id == nil }.sort_by { |q| q.latest_qa_time }.reverse!
-        else
-          [];
-      end
-    end
+    # def get_questions_by_type(type)
+    #   case type
+    #     when QUESTION_LIST_TYPE[:NEWEST]
+    #       # 根据最近回答的时间排序
+    #       Question.all.sort_by { |q| q.latest_qa_time }.reverse!
+    #     when QUESTION_LIST_TYPE[:HOTTEST]
+    #       Question.all.sort_by { |q| q.weight.to_f / ((((Time.now - q.created_at)/ 1.hour).round) + 12) }.reverse!
+    #     when QUESTION_LIST_TYPE[:NOT_ANSWERED]
+    #       Question.all.select { |q| q.latest_answer_id == nil }.sort_by { |q| q.latest_qa_time }.reverse!
+    #     else
+    #       [];
+    #   end
+    # end
 
     def question_params
       params.require(:question).permit(:title, :content)
