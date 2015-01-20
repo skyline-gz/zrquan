@@ -9,8 +9,6 @@ class CreateUsers < ActiveRecord::Migration
       t.integer  :sign_in_count, default: 0, null: false
       # 最近一次使用用户密码登陆的时间
       t.datetime :current_sign_in_at
-      # 最近一次校验JWT token的时间
-      t.datetime :current_sign_in_verify_at
 
       t.string  :name
       t.integer :gender

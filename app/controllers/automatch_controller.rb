@@ -3,7 +3,7 @@ require 'return_code'
 class AutomatchController < ApplicationController
   include AutomatchUtils
 
-  before_action :authenticate_user!
+  before_action :authenticate_user
   before_action :set_query_params
 
 

@@ -3,7 +3,7 @@ require "return_code.rb"
 class UsersController < ApplicationController
   before_action :set_user_by_token_id, only: [:follow, :unfollow, :profile]
   before_action :set_user_by_url_id, only: [:show,:questions, :answers, :bookmarks, :drafts]
-  before_action :authenticate_user!, except: [:profile]
+  before_action :authenticate_user, except: [:profile]
 
   # 全用户列表
   def index

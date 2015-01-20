@@ -2,7 +2,7 @@ require 'return_code'
 
 class AnswerDraftsController < ApplicationController
   before_action :set_question, only: [:save, :fetch, :remove]
-  before_action :authenticate_user!
+  before_action :authenticate_user
 
   # 存草稿
   def save
