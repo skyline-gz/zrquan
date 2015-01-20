@@ -73,6 +73,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # 关注人
+  get 'activities' => 'activities#list', :constraints => {:format => 'json'}
+
   # 搜索
   get 'search' => 'search#index'
   # 列出搜索结果(ajax)

@@ -5,16 +5,16 @@ class HomeController < ApplicationController
 
 	# 菜单-首页
 	def home
-		@rec_users = RecommendUser.all
-		@news_feeds = NewsFeed.all
-		# 列出最近一个月的个人活动
-		prev_month_date = DateUtils.to_yyyymmdd(Date.today.prev_month)
-		if current_user != nil
-			@recent_activities = Activity.find_by_sql(
-				["select A.* from ACTIVITIES A inner join RELATIONSHIPS R on
-				 A.USER_ID = R.FOLLOWING_USER_ID and R.FOLLOWER_ID = ? 
-				 where A.PUBLISH_DATE >= ? order by A.ID DESC", current_user.id, prev_month_date])
-		end
+		# @rec_users = RecommendUser.all
+		# @news_feeds = NewsFeed.all
+		# # 列出最近一个月的个人活动
+		# prev_month_date = DateUtils.to_yyyymmdd(Date.today.prev_month)
+		# if current_user != nil
+		# 	@recent_activities = Activity.find_by_sql(
+		# 		["select A.* from ACTIVITIES A inner join RELATIONSHIPS R on
+		# 		 A.USER_ID = R.FOLLOWING_USER_ID and R.FOLLOWER_ID = ?
+		# 		 where A.PUBLISH_DATE >= ? order by A.ID DESC", current_user.id, prev_month_date])
+		# end
   end
 
   def posts
@@ -25,6 +25,10 @@ class HomeController < ApplicationController
           p2.created_at,
           p2.agree_score,
           u.name as user_name,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major,
           u.avatar,
           t.name as theme_name
         from
@@ -58,6 +62,10 @@ class HomeController < ApplicationController
           answer_agree,
           follow_cnt,
           u.name as user_name,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major,
           u.avatar,
           t.name as theme_name
         from
