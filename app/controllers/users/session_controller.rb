@@ -33,8 +33,8 @@ class Users::SessionController < ApplicationController
   # curl -v -H 'Content-Type: application/json' -X POST http://localhost:3000/users/session -d "{\"mobile\":\"13533365535\",\"password\":\"12345678\"}"
   # 登陆账号,返回JWT Token
   def create
-    mobile = params[:mobile].to_s
-    password = params[:password].to_s
+    mobile = (params[:mobile] || '').to_s
+    password = (params[:password] || '').to_s
 
     if RegexExpression::MOBILE.match(mobile) == nil
       render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT}

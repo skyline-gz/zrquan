@@ -6,9 +6,9 @@ class Users::RegistrationController < ApplicationController
   # curl -v -H 'Content-Type: application/json' -X POST http://localhost:3000/users/registration -d "{\"mobile\":\"13533365535\",\"password\":\"12345678\",\"name\":\"繁育其\",\"verify_code\":\"123456\"}"
   # 注册用户
   def create
-    mobile = params[:mobile].to_s
-    verify_code = params[:verify_code].to_s
-    password = params[:password].to_s
+    mobile = (params[:mobile] || '').to_s
+    verify_code = (params[:verify_code] || '').to_s
+    password = (params[:password] || '').to_s
     name = params[:name]
 
     if RegexExpression::MOBILE.match(mobile) == nil
@@ -20,11 +20,11 @@ class Users::RegistrationController < ApplicationController
       render :json => {:code => ReturnCode::FA_VERIFY_CODE_EXPIRED} and return
     end
 
-    if verify_code == nil
+    if verify_code == nil || verify_code.length == 0
       render :json => {:code => ReturnCode::FA_NEED_VERIFY_CODE} and return
     end
 
-    if verify_code_in_cache != verify_code
+    if verify_code_in_cache != verify_code.to_s
       render :json => {:code => ReturnCode::FA_INVALID_VERIFY_CODE} and return
     end
 

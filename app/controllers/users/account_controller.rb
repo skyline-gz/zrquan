@@ -8,7 +8,7 @@ class Users::AccountController < ApplicationController
   # curl -v -H 'Content-Type: application/json' -X GET http://localhost:3000/users/send_verify_code?mobile=13533365535
   def send_verify_code
     # 生成六位随机数字
-    mobile = params[:mobile].to_s
+    mobile = (params[:mobile] || '').to_s
     if RegexExpression::MOBILE.match(mobile)
       verify_code = VerifyCodeCache.instance.read(mobile)
       unless verify_code
@@ -26,12 +26,17 @@ class Users::AccountController < ApplicationController
   # curl -v -H 'Content-Type: application/json' -X POST http://localhost:3000/users/reset_password -d "{\"mobile\":\"13533365535\"}"
   # 重置密码(需要提供验证码)
   def reset_password
-    verify_code = params[:verify_code]
-    mobile = params[:mobile]
-    new_password = params[:new_password]
+    mobile = (params[:mobile] || '').to_s
+    verify_code = (params[:verify_code] || '').to_s
+    new_password = (params[:new_password] || '').to_s
 
-    unless verify_code
+    unless verify_code == nil || verify_code.length == 0
       render :json => {:code => ReturnCode::FA_NEED_VERIFY_CODE} and return
+    end
+
+    verify_code_in_cache = VerifyCodeCache.instance.read(mobile)
+    if verify_code_in_cache == nil
+      render :json => {:code => ReturnCode::FA_VERIFY_CODE_EXPIRED} and return
     end
 
     unless RegexExpression::MOBILE.match(mobile)
