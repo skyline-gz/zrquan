@@ -24,22 +24,24 @@ class HomeController < ApplicationController
           p2.anonymous_flag,
           p2.created_at,
           p2.agree_score,
-          count(pc.id) as comment_cnt,
-          sum(pc.agree_score) as comment_agree,
           u.name as user_name,
           u.avatar,
           t.name as theme_name
         from
           POSTS p2 inner join
-          (select p.id, min(tf.theme_id) as theme_id
+          (select
+          	 p.id,
+          	 min(tf.theme_id) as theme_id,
+          	 count(pc.id) as comment_cnt,
+          	 sum(pc.agree_score) as comment_agree
            from
            POSTS p inner join POST_THEMES pt on p.id = pt.post_id
            inner join THEME_FOLLOWS tf on pt.theme_id = tf.theme_id
+           inner join POST_COMMENTS pc on p.id = pc.post_id
            where
            tf.user_id = ?
            group by p.id
           ) t1 on p2.id = t1.id
-          inner join POST_COMMENTS pc on p2.id = pc.post_id
           inner join THEMES t on t1.theme_id = t.id
           inner join USERS u on p2.user_id = u.id
         order by p2.hot
@@ -54,6 +56,7 @@ class HomeController < ApplicationController
           q2.created_at,
           answer_cnt,
           answer_agree,
+          follow_cnt,
           u.name as user_name,
           u.avatar,
           t.name as theme_name
@@ -63,11 +66,13 @@ class HomeController < ApplicationController
           	 q.id,
           	 min(tf.theme_id) as theme_id,
           	 count(a.id) as answer_cnt,
-          	 sum(a.agree_score) as answer_agree
+          	 sum(a.agree_score) as answer_agree,
+          	 count(qf.follow_id) as follow_cnt
            from
            QUESTIONS q inner join QUESTION_THEMES qt on q.id = qt.question_id
            inner join THEME_FOLLOWS tf on qt.theme_id = tf.theme_id
            inner join ANSWERS a on q.id = a.question_id
+           inner join QUESTION_FOLLOWS qf on q.id = qf.question_id
            where
            tf.user_id = ?
            group by q.id

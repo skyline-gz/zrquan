@@ -55,7 +55,7 @@ class AnswersController < ApplicationController
           agreeable_id: @answer.id, agreeable_type: "Answer")
       # 成功赞成
       if @agreement.save
-        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        # 更新投票和排名因子
         @answer.update!(agree_score: @answer.agree_score + 1)
         new_weight = @question.weight + 1
         @question.update!(
@@ -85,7 +85,7 @@ class AnswersController < ApplicationController
       ).destroy_all
       # 成功取消
       if result > 0
-        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        # 更新投票和排名因子
         @answer.update!(agree_score: @answer.agree_score - 1)
         new_weight = @question.weight - 1
         @question.update!(
@@ -108,7 +108,8 @@ class AnswersController < ApplicationController
           opposable_id: @answer.id, opposable_type: "Answer")
       # 成功反对
       if @opposition.save
-        # 更新排名因子
+        # 更新投票和排名因子
+        @answer.update!(oppose_score: @answer.oppose_score + 1)
         new_weight = @question.weight - 1
         @question.update!(
             weight: new_weight,
@@ -133,6 +134,7 @@ class AnswersController < ApplicationController
       # 成功取消
       if result > 0
         # 更新排名因子
+        @answer.update!(oppose_score: @answer.oppose_score - 1)
         new_weight = @question.weight + 1
         @question.update!(
             weight: new_weight,

@@ -104,6 +104,7 @@ class PostsController < ApplicationController
         # 更新排名因子
         new_weight = @post.weight - 1
         @post.update!(
+            oppose_score: @post.oppose_score + 1,
             weight: new_weight,
             hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
         )
@@ -128,6 +129,7 @@ class PostsController < ApplicationController
         # 更新排名因子
         new_weight = @post.weight + 1
         @post.update!(
+            oppose_score: @post.oppose_score - 1,
             weight: new_weight,
             hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
         )
