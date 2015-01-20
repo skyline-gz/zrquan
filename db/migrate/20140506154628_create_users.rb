@@ -16,6 +16,10 @@ class CreateUsers < ActiveRecord::Migration
       t.references  :industry, index: true
       t.references  :latest_career, index: true
       t.references  :latest_education, index: true
+      t.string  :latest_company_name
+      t.string  :latest_position
+      t.string  :latest_school_name
+      t.string  :latest_major
       t.string  :description
       t.boolean :verified_flag
       t.string  :avatar
