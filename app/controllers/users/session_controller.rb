@@ -2,14 +2,28 @@ require 'return_code'
 
 class Users::SessionController < ApplicationController
 
-  # 根据手机号码发送认证短信，并在服务器建立手机号码与验证码的哈希，供注册账号或找回密码使用
-  def send_verify_code
+  # 验证客户端token是否合法
+  def verify
 
   end
 
-  # 更改密码
-  def change_password
-    verify_code = params[:verify_code]
+  # curl -v -H 'Content-Type: application/json' -X POST http://localhost:3000/users/session -d "{\"mobile\":\"13533365535\",\"password\":\"12345678\"}"
+  # 登陆账号,返回JWT Token
+  def create
+    mobile = params[:mobile].to_s
+    password = params[:password].to_s
+
+    user = User.find_by_mobile(mobile)
+    if user.password == password
+      give_token
+    else
+      redirect_to home_url
+    end
+  end
+
+  private
+  def give_token
+
   end
 
 end

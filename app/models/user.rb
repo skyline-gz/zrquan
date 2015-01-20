@@ -1,6 +1,8 @@
-require 'ruby-pinyin'
+require 'bcrypt'
+require 'regex_expression'
 
 class User < ActiveRecord::Base
+  include BCrypt
 	after_create :after_create_user
 
 	# 头像上传由异步upload_controller.rb控制,avatar字段只存储头像url
@@ -55,15 +57,18 @@ class User < ActiveRecord::Base
   validates :name, length: {in: 1..10}, if: Proc.new { |u| u.name.match(/\A\p{Han}+\z/) }
   validates :description, length: {maximum: 25}
 
-  validate :password_complexity
-  # 密码长度的验证在config/initializers/devise.rb里面设置（config.password_length）
-  # 邮箱格式的验证在config/initializers/devise.rb里面设置（config.email_regexp）
+  def password_hash
+    self.encrypted_password
+  end
 
-  def password_complexity
-    if password.present? and not password.match(/\A[a-zA-Z0-9]+\z/)
-      errors.add :password, "can only be input by alphabet and digit."
-    end
-	end
+  def password=(new_password)
+    password_hash = Password.create(new_password)
+    self.encrypted_password = password_hash
+  end
+
+  def self.password_validate?(new_password)
+    (RegexExpression::PASSWORD.match new_password) != nil
+  end
 
 	# 用于生产客户端通过Faye Sub/Pub的合法token
 	def temp_access_token
@@ -330,7 +335,7 @@ class User < ActiveRecord::Base
 	def after_create_user
 		# randomize_token_id
 		# generate_url_id
-		self.save
+		# self.save
 		generate_user_msg_setting
 	end
 

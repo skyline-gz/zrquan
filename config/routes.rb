@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     collection do
       # 账号相关
       # 根据手机号码发送认证短信，并在服务器建立手机号码与验证码的哈希，供注册账号或找回密码使用
-      get 'sms_code' => 'users/account#send_verify_code', :constraints => {:format => 'json'}
+      get 'send_verify_code' => 'users/account#send_verify_code', :constraints => {:format => 'json'}
       # 注册账户
       post 'registration' => 'users/registration#create', :constraints => {:format => 'json'}
       # 验证客户端token是否合法
