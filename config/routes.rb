@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       # 注册账户
       post 'registration' => 'users/registration#create', :constraints => {:format => 'json'}
       # 验证客户端token是否合法
-      get 'verify' => 'users/sessions#verify', :constraints => {:format => 'json'}
+      get 'verify' => 'users/session#verify', :constraints => {:format => 'json'}
       # 登陆账号
       post 'session' => 'users/session#create', :constraints => {:format => 'json'}
       # 重置密码(需要提供验证码)
