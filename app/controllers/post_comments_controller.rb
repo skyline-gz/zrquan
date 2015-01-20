@@ -20,7 +20,11 @@ class PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
     if @post_comment.save
-      @post.update!(weight: @question.weight + 1)
+      new_weight = @post.weight + 1
+      @post.update!(
+          weight: new_weight,
+          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+      )
       # 创建回答问题消息并发送
       # MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_ANSWER_QUESTION], current_user.id, @question.id)
       # 创建用户行为（回答问题）
@@ -39,9 +43,13 @@ class PostCommentsController < ApplicationController
           agreeable_id: @post_comment.id, agreeable_type: "PostComment")
       # 成功赞成
       if @agreement.save
-        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        # 更新投票及排名因子
         @post_comment.update!(agree_score: @post_comment.agree_score + 1)
-        @post.update!(weight: @post.weight + 1)
+        new_weight = @post.weight + 1
+        @post.update!(
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         # 创建赞同答案的消息并发送
         MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
         # 创建用户行为（赞同答案）
@@ -65,9 +73,13 @@ class PostCommentsController < ApplicationController
       ).destroy_all
       # 成功取消
       if result > 0
-        # 更新赞同分数（因为职人的范围变广，所有人都+1）
+        # 更新投票及本体排名因子
         @post_comment.update!(agree_score: @answer.agree_score - 1)
-        @post.update!(weight: @question.weight - 1)
+        new_weight = @post.weight - 1
+        @post.update!(
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -84,8 +96,13 @@ class PostCommentsController < ApplicationController
           opposable_id: @post_comment.id, opposable_type: "PostComment")
       # 成功反对
       if @opposition.save
-        # 更新排名因子
-        @post.update!(weight: @post.weight - 1)
+        # 更新投票及排名因子
+        @post_comment.update!(oppose_score: @answer.oppose_score + 1)
+        new_weight = @post.weight - 1
+        @post.update!(
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -104,8 +121,13 @@ class PostCommentsController < ApplicationController
       ).destroy_all
       # 成功取消
       if result > 0
-        # 更新排名因子
-        @post.update!(weight: @post.weight + 1)
+        # 更新投票及排名因子
+        @post_comment.update!(oppose_score: @answer.oppose_score - 1)
+        new_weight = @post.weight + 1
+        @post.update!(
+            weight: new_weight,
+            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+        )
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
