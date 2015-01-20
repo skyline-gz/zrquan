@@ -52,15 +52,15 @@ Rails.application.routes.draw do
     collection do
       # 账号相关
       # 根据手机号码发送认证短信，并在服务器建立手机号码与验证码的哈希，供注册账号或找回密码使用
-      get 'sms_code' => 'users/account#send_verify_code', :constraints => {:format => 'json'}
+      get 'send_verify_code' => 'users/account#send_verify_code', :constraints => {:format => 'json'}
       # 注册账户
       post 'registration' => 'users/registration#create', :constraints => {:format => 'json'}
       # 验证客户端token是否合法
-      get 'verify' => 'users/sessions#verify', :constraints => {:format => 'json'}
+      get 'verify' => 'users/session#verify', :constraints => {:format => 'json'}
       # 登陆账号
       post 'session' => 'users/session#create', :constraints => {:format => 'json'}
-      # 更改密码
-      post 'password' => 'users/account#change_password', :constraints => {:format => 'json'}
+      # 重置密码(需要提供验证码)
+      post 'reset_password' => 'users/account#reset_password', :constraints => {:format => 'json'}
     end
     member do
       get 'questions'
