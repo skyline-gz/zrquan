@@ -29,16 +29,15 @@ class Question < ActiveRecord::Base
 
 	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
 	def sorted_answers
-    answers.order("agree_score desc")
+    Answer.find_by_sql(
+        ["select a.*, (a.agree_score - a.oppose_score) as actual_score
+         from ANSWERS a
+				 where a.question_id = ? order by actual_score DESC limit 10", id])
 	end
 
 	# 返回最佳答案
 	def recommend_answer
-		if answers.length
-			normal_answers = answers.sort_by {|na| -na.agree_score}
-			return normal_answers[0]
-		end
-		nil
+    sorted_answers.try(:first)
 	end
 
   def theme_ids
