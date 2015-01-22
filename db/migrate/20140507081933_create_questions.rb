@@ -9,6 +9,9 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :weight
       t.float :epoch_time, limit: 53
       t.float :hot, limit: 53
+      t.integer :answer_count, default: 0
+      t.integer :follow_count, default: 0
+      t.integer :answer_agree, dafault: 0
       t.references :latest_answer, index: true
       t.integer :latest_qa_time, limit: 8
       t.timestamp :edited_at

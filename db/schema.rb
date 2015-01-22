@@ -282,6 +282,8 @@ ActiveRecord::Schema.define(version: 20150118093208) do
     t.float    "hot",            limit: 53
     t.integer  "agree_score",               default: 0
     t.integer  "oppose_score",              default: 0
+    t.integer  "comment_count",             default: 0
+    t.integer  "comment_agree",             default: 0
     t.boolean  "anonymous_flag",            default: false
     t.integer  "user_id"
     t.datetime "edited_at"
@@ -334,6 +336,9 @@ ActiveRecord::Schema.define(version: 20150118093208) do
     t.integer  "weight"
     t.float    "epoch_time",       limit: 53
     t.float    "hot",              limit: 53
+    t.integer  "answer_count",                default: 0
+    t.integer  "follow_count",                default: 0
+    t.integer  "answer_agree"
     t.integer  "latest_answer_id"
     t.integer  "latest_qa_time",   limit: 8
     t.datetime "edited_at"
@@ -445,7 +450,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   create_table "users", force: true do |t|
     t.string   "mobile",              limit: 20, default: "", null: false
     t.string   "encrypted_password",             default: "", null: false
-    t.integer  "sign_in_count",                  default: 0,  null: false
+    t.integer  "sign_in_count",                  default: 0
     t.datetime "current_sign_in_at"
     t.string   "name"
     t.integer  "gender"

@@ -21,6 +21,7 @@ class AnswersController < ApplicationController
         new_weight = @question.weight + 3
         @question.update!(weight: new_weight,
                           hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
+                          answer_count: @question.answer_count + 1,
                           latest_answer_id: @answer.id,
                           latest_qa_time: DateUtils.to_yyyymmddhhmmss(current_time))
         # 创建回答问题消息并发送
@@ -60,7 +61,8 @@ class AnswersController < ApplicationController
         new_weight = @question.weight + 1
         @question.update!(
             weight: new_weight,
-            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+            hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
+            answer_agree: @question.answer_agree + 1
         )
         # 创建赞同答案的消息并发送
         MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @answer.id)
@@ -90,7 +92,8 @@ class AnswersController < ApplicationController
         new_weight = @question.weight - 1
         @question.update!(
             weight: new_weight,
-            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+            hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
+            answer_agree: @question.answer_agree - 1
         )
         render :json => { :code => ReturnCode::S_OK }
       else

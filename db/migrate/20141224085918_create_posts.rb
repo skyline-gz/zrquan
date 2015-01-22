@@ -8,6 +8,8 @@ class CreatePosts < ActiveRecord::Migration
       t.float :hot, limit: 53
       t.integer :agree_score, default: 0
       t.integer :oppose_score, default: 0
+      t.integer :comment_count, default: 0
+      t.integer :comment_agree, default: 0
       t.boolean :anonymous_flag, default: false
       t.references :user, index: true
       t.timestamp :edited_at

@@ -104,6 +104,7 @@ class QuestionsController < ApplicationController
   def follow
     if can? :follow, @question
       @question.question_follows.create(user_id: current_user.id)
+      @question.update(follow_count: @question.follow_count + 1)
       render :json => { :code => ReturnCode::S_OK }
     else
       render :json => { :code => ReturnCode::FA_RESOURCE_ALREADY_EXIST }
@@ -114,6 +115,7 @@ class QuestionsController < ApplicationController
   def unfollow
     if can? :unfollow, @question
       QuestionFollow.find_by(user_id: current_user.id, question_id: @question.id).destroy
+      @question.update(follow_count: @question.follow_count - 1)
       render :json => { :code => ReturnCode::S_OK }
     else
       render :json => { :code => ReturnCode::FA_RESOURCE_NOT_EXIST }

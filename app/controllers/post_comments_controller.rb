@@ -23,6 +23,7 @@ class PostCommentsController < ApplicationController
       new_weight = @post.weight + 1
       @post.update!(
           weight: new_weight,
+          comment_count: @post.comment_count + 1,
           hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
       )
       # 创建回答问题消息并发送
@@ -48,6 +49,7 @@ class PostCommentsController < ApplicationController
         new_weight = @post.weight + 1
         @post.update!(
             weight: new_weight,
+            comment_agree: @post.comment_agree + 1,
             hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
         )
         # 创建赞同答案的消息并发送
@@ -78,6 +80,7 @@ class PostCommentsController < ApplicationController
         new_weight = @post.weight - 1
         @post.update!(
             weight: new_weight,
+            comment_agree: @post.comment_agree - 1,
             hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
         )
         render :json => { :code => ReturnCode::S_OK }

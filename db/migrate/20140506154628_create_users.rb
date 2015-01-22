@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :encrypted_password, null: false, default: ""
 
       ## Trackable
-      t.integer  :sign_in_count, default: 0, null: false
+      t.integer  :sign_in_count, default: 0
       # 最近一次使用用户密码登陆的时间
       t.datetime :current_sign_in_at
 
