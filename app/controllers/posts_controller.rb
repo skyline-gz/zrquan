@@ -1,7 +1,7 @@
 require 'ranking_utils.rb'
 
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :agree, :cancel_agree, :oppose, :cancel_oppose]
 
   # GET /posts
   # GET /posts.json
@@ -26,40 +26,39 @@ class PostsController < ApplicationController
     @post.weight = 1 #本体自身权重
     @post.epoch_time = Time.now.to_i
     @post.hot = RankingUtils.post_hot(@post.weight, @post.epoch_time)
-    @post.save!
+    is_post_saved = @post.save
     # 创建问题主题关联
-    if params[:post][:themes] != nil
-      themes = params[:post][:themes].split(',').map { |s| s.to_i }
-      themes.each do |t_id|
-        @post_theme = @post.post_themes.new
-        @post_theme.theme_id = t_id
-        @post_theme.save!
-      end
-    end
+    is_post_theme_saved = save_post_theme
     # 创建用户行为（发布问题）
-    current_user.activities.create!(target_id: @post.id, target_type: "Post", activity_type: 1,
-                                    publish_date: DateUtils.to_yyyymmdd(Date.today))
-    redirect_to action: 'show', id: @post.token_id
+    is_activities_saved = save_activities(@post.id, "Post", 1)
+
+    if is_post_saved and is_post_theme_saved and is_activities_saved
+      redirect_to action: 'show', id: @post.token_id
+      # TODO 成功的json
+    else
+      # TODO 失败的json
+    end
   end
 
   def agree
     if can? :agree, @post
-      @agreement = current_user.agreements.new(
-          agreeable_id: @post.id, agreeable_type: "Post")
       # 成功赞成
-      if @agreement.save
-        # 更新post
-        new_weight = @post.weight + 1
-        @post.update!(
-            agree_score: @post.agree_score + 1,
-            weight: new_weight,
-            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
-        )
-        # 创建赞同答案的消息并发送
-        MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
-        # 创建用户行为（赞同答案）
-        current_user.activities.create!(target_id: @post.id, target_type: "Post", activity_type: 5,
-                                        publish_date: DateUtils.to_yyyymmdd(Date.today))
+      agreement = current_user.agreements.new(
+          agreeable_id: @post.id, agreeable_type: "Post")
+      is_agreement_saved = agreement.save
+      # 更新post
+      new_weight = @post.weight + 1
+      is_post_updated = @post.update(
+          agree_score: @post.agree_score + 1,
+          weight: new_weight,
+          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+      )
+      # 创建赞同答案的消息并发送
+      MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
+      # 创建用户行为（赞同）
+      is_activities_saved = save_activities(@post.id, "Post", 5)
+
+      if is_agreement_saved and is_post_updated and is_activities_saved
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -72,19 +71,19 @@ class PostsController < ApplicationController
   # 取消赞同
   def cancel_agree
     if can? :cancel_agree, @post
-      result = Agreement.where(
+      # 成功取消
+      cancel_result = Agreement.where(
           "agreeable_id = ? and agreeable_type = ? and user_id = ?",
           @post.id, "Post", current_user.id
       ).destroy_all
-      # 成功取消
-      if result > 0
-        # 更新赞同分数（因为职人的范围变广，所有人都+1）
-        new_weight = @post.weight - 1
-        @post.update!(
-            agree_score: @post.agree_score - 1,
-            weight: new_weight,
-            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
-        )
+      # 更新赞同分数（因为职人的范围变广，所有人都+1）
+      new_weight = @post.weight - 1
+      is_post_updated = @post.update(
+          agree_score: @post.agree_score - 1,
+          weight: new_weight,
+          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+      )
+      if cancel_result > 0 and is_post_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -97,17 +96,18 @@ class PostsController < ApplicationController
   # 反对
   def oppose
     if can? :oppose, @post
+      # 成功反对
       @opposition = current_user.oppositions.new(
           opposable_id: @post.id, opposable_type: "Post")
-      # 成功反对
-      if @opposition.save
-        # 更新排名因子
-        new_weight = @post.weight - 1
-        @post.update!(
-            oppose_score: @post.oppose_score + 1,
-            weight: new_weight,
-            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
-        )
+      is_opposition_saved = @opposition.save
+      # 更新排名因子
+      new_weight = @post.weight - 1
+      is_post_updated = @post.update(
+          oppose_score: @post.oppose_score + 1,
+          weight: new_weight,
+          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+      )
+      if is_opposition_saved and is_post_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -120,19 +120,19 @@ class PostsController < ApplicationController
   # 取消反对
   def cancel_oppose
     if can? :cancel_oppose, @post
-      result = Opposition.where(
+      # 成功取消
+      cancel_result = Opposition.where(
           "opposable_id = ? and opposable_type = ? and user_id = ?",
           @post.id, "Post", current_user.id
       ).destroy_all
-      # 成功取消
-      if result > 0
-        # 更新排名因子
-        new_weight = @post.weight + 1
-        @post.update!(
-            oppose_score: @post.oppose_score - 1,
-            weight: new_weight,
-            hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
-        )
+      # 更新排名因子
+      new_weight = @post.weight + 1
+      is_post_updated = @post.update(
+          oppose_score: @post.oppose_score - 1,
+          weight: new_weight,
+          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+      )
+      if cancel_result > 0 and is_post_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -160,6 +160,28 @@ class PostsController < ApplicationController
   end
 
   private
+    def save_activities(target_id, target_type, activity_type)
+      act = current_user.activities.new
+      act.target_id = target_id
+      act.target_type = target_type
+      act.activity_type = activity_type
+      act.publish_date = DateUtils.to_yyyymmdd(Date.today)
+      act.save
+    end
+
+    def save_post_theme
+      is_ok = true
+      themes = params[:post][:themes].split(',').map { |s| s.to_i }
+      themes.each do |t_id|
+        pt = @post.post_themes.new
+        pt.theme_id = t_id
+        if !pt.save
+          is_ok = false
+        end
+      end
+      is_ok
+    end
+
     def to_anonymous_comments
       PostComment.where("post_id = ? and user_id = ?", @post.id, current_user.id).
           update_all(anonymous_flag: true)

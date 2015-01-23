@@ -4,11 +4,11 @@ require 'return_code'
 
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:update, :agree, :cancel_agree, :oppose, :cancel_oppose]
+  before_action :set_question, only: [:create, :agree, :cancel_agree, :oppose, :cancel_oppose]
   before_action :authenticate_user
 
   # 创建
   def create
-    @question = Question.find_by_token_id(params[:question_id])
     if can? :answer, @question
       # 创建答案
       @answer = current_user.answers.new(answer_params)
@@ -176,8 +176,11 @@ class AnswersController < ApplicationController
     end
 
     def set_answer
-      @question = Question.find_by_token_id(params[:question_id])
       @answer = Answer.find_by_token_id(params[:id])
+    end
+
+    def set_question
+      @question = Question.find_by_token_id(params[:question_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
