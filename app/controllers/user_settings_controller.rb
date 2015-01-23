@@ -74,14 +74,10 @@ class UserSettingsController < ApplicationController
   end
 
   def update_profile
-    company = ActionController::Base.helpers.strip_tags params[:company]
-    position = ActionController::Base.helpers.strip_tags params[:position]
     region = params[:region].to_i
     location = params[:location].to_i
     industry = params[:industry].to_i
     gender = params[:gender].to_i
-    school = ActionController::Base.helpers.strip_tags params[:school]
-    major = ActionController::Base.helpers.strip_tags params[:major]
     description = ActionController::Base.helpers.strip_tags params[:description]
 
     current_user.gender = gender

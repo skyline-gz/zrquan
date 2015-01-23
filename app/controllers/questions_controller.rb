@@ -61,43 +61,40 @@ class QuestionsController < ApplicationController
     @question.edited_at = current_time
     @question.epoch_time = current_time.to_i
     @question.hot = RankingUtils.question_hot(@question.weight, @question.epoch_time)
-    @question.save!
+    is_question_saved = @question.save
+
     # 创建问题主题关联
-    if params[:question][:themes] != nil
-      themes = params[:question][:themes].split(',').map { |s| s.to_i }
-      themes.each do |t_id|
-        @question_theme = @question.question_themes.new
-        @question_theme.theme_id = t_id
-        @question_theme.save!
-      end
-    end
+    is_question_theme_saved = save_question_theme
+
     # 提问者自动关注当前问题
-    @question.question_follows.create(user_id: current_user.id)
+    qf = @question.question_follows.new
+    qf.user_id = current_user.id
+    is_question_follow_saved = qf.save
+
     # 创建用户行为（发布问题）
-    current_user.activities.create!(target_id: @question.id, target_type: "Question", activity_type: 1,
-                                    publish_date: DateUtils.to_yyyymmdd(Date.today))
-    redirect_to action: 'show', id: @question.token_id
+    is_activities_saved = save_activities
+
+    if is_question_saved and is_question_theme_saved and
+        is_question_follow_saved and is_activities_saved
+      # TODO 成功的json
+      redirect_to action: 'show', id: @question.token_id
+    else
+      # TODO 不成功的json
+    end
   end
 
   # 更新
   def update
     # 更新问题和主题（非严谨，不需事务）
     @question.edited_at = Time.now
-    @question.update(question_params)
-    if params[:question][:themes] != nil
-      themes = params[:question][:themes].split(',').map { |s| s.to_i }
-      # 清空之前的主题-问题关联
-      # Todo:可以考虑增量更新，减少SQL插入量
-      @question.question_themes.each do |question_theme|
-        question_theme.destroy;
-      end
-      themes.each do |t_id|
-        @question_theme = @question.question_themes.new
-        @question_theme.theme_id = t_id
-        @question_theme.save!
-      end
+    is_question_updated = @question.update(question_params)
+    is_question_theme_updated = update_question_theme
+    if is_question_updated and is_question_theme_updated
+      # TODO 成功的json
+      redirect_to action: 'show', id: @question.token_id
+    else
+      # TODO 不成功的json
     end
-    redirect_to action: 'show', id: @question.token_id
   end
 
   # 关注
@@ -146,6 +143,46 @@ class QuestionsController < ApplicationController
   end
 
   private
+    def update_question_theme
+      is_ok = true
+      themes = params[:question][:themes].split(',').map { |s| s.to_i }
+      # 清空之前的主题-问题关联
+      # Todo:可以考虑增量更新，减少SQL插入量
+      @question.question_themes.each do |qt|
+        qt.destroy;
+      end
+      themes.each do |t_id|
+        qt = @question.question_themes.new
+        qt.theme_id = t_id
+        if !qt.save
+          is_ok = false
+        end
+      end
+      is_ok
+    end
+
+    def save_activities
+      act = current_user.activities.new
+      act.target_id = @question.id
+      act.target_type = "Question"
+      act.activity_type = 1
+      act.publish_date = DateUtils.to_yyyymmdd(Date.today)
+      act.save
+    end
+
+    def save_question_theme
+      is_ok = true
+      themes = params[:question][:themes].split(',').map { |s| s.to_i }
+      themes.each do |t_id|
+        qt = @question.question_themes.new
+        qt.theme_id = t_id
+        if !qt.save
+          is_ok = false
+        end
+      end
+      is_ok
+    end
+
     def to_anonymous_answer
       Answer.where("user_id = ? and question_id = ?", current_user.id, @question.id).
           update_all(anonymous_flag: true)

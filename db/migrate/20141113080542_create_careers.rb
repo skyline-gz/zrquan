@@ -5,9 +5,7 @@ class CreateCareers < ActiveRecord::Migration
       t.references :company, index: true
       t.string :position
       t.string :entry_year
-      t.string :entry_month
       t.string :leave_year
-      t.string :leave_month
       t.text :description
 
       t.timestamps

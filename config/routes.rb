@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'education/new'
+  post 'education/create'
+  get 'education/edit'
+  post 'education/update'
+
+  get 'career/new'
+  post 'career/create'
+  get 'career/edit'
+  post 'career/update'
+
   resources :posts, except: [:edit, :update, :destroy] do
     member do
       post :agree, :constraints => {:format => 'json'}
