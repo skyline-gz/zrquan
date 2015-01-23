@@ -100,9 +100,17 @@ class QuestionsController < ApplicationController
   # 关注
   def follow
     if can? :follow, @question
-      @question.question_follows.create(user_id: current_user.id)
-      @question.update(follow_count: @question.follow_count + 1)
-      render :json => { :code => ReturnCode::S_OK }
+      # 追踪问题
+      qf = @question.question_follows.new
+      qf.user_id = current_user.id
+      is_question_follow_saved = qf.save
+      # 更新追踪人数
+      is_question_updated = @question.update(follow_count: @question.follow_count + 1)
+      if is_question_follow_saved and is_question_updated
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        # TODO 不成功的json
+      end
     else
       render :json => { :code => ReturnCode::FA_RESOURCE_ALREADY_EXIST }
     end
@@ -111,9 +119,15 @@ class QuestionsController < ApplicationController
   # 取消关注
   def unfollow
     if can? :unfollow, @question
-      QuestionFollow.find_by(user_id: current_user.id, question_id: @question.id).destroy
-      @question.update(follow_count: @question.follow_count - 1)
-      render :json => { :code => ReturnCode::S_OK }
+      # 取消追踪
+      qf = QuestionFollow.find_by(user_id: current_user.id, question_id: @question.id).destroy
+      # 更新问题跟踪数
+      is_question_undated = @question.update(follow_count: @question.follow_count - 1)
+      if qf.destroyed? and is_question_undated
+        render :json => { :code => ReturnCode::S_OK }
+      else
+        # TODO 不成功的json
+      end
     else
       render :json => { :code => ReturnCode::FA_RESOURCE_NOT_EXIST }
     end
