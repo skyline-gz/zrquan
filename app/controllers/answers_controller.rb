@@ -3,7 +3,7 @@ require 'ranking_utils.rb'
 require 'return_code'
 
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:update, :agree]
+  before_action :set_answer, only: [:update, :agree, :cancel_agree, :oppose, :cancel_oppose]
   before_action :authenticate_user
 
   # 创建
@@ -16,22 +16,29 @@ class AnswersController < ApplicationController
       @answer.edited_at = Time.now
       if @answer.save
         # 删除已创建草稿
-        @answer_draft = AnswerDraft.find_by(:user_id => current_user.id, :question_id => @question.id)
-        @answer_draft.try(:destroy)
+        answer_draft = AnswerDraft.find_by(:user_id => current_user.id, :question_id => @question.id)
+        is_answer_draft_deleted = (answer_draft != nil ? answer_draft.destroy.destroyed? : true)
+        # 更新问题
         new_weight = @question.weight + 3
-        @question.update!(weight: new_weight,
-                          hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
-                          answer_count: @question.answer_count + 1,
-                          latest_answer_id: @answer.id,
-                          latest_qa_time: DateUtils.to_yyyymmddhhmmss(current_time))
+        is_question_updated = @question.update(
+            weight: new_weight,
+            hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
+            answer_count: @question.answer_count + 1,
+            latest_answer_id: @answer.id,
+            latest_qa_time: DateUtils.to_yyyymmddhhmmss(current_time)
+        )
         # 创建回答问题消息并发送
         MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_ANSWER_QUESTION], current_user.id, @question.id)
 
         # 创建用户行为（回答问题）
-        current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 2,
-                                        publish_date: DateUtils.to_yyyymmdd(Date.today))
+        is_activities_saved = save_activities(@answer.id, "Answer", 2)
 
-        redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
+        if is_answer_draft_deleted and is_question_updated and is_activities_saved
+          redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
+          # TODO json 成功
+        else
+          render :json => {:code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR}
+        end
       else
         render :json => {:code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR}
       end
@@ -42,33 +49,38 @@ class AnswersController < ApplicationController
 
   # 更新
   def update
-    @answer.edited_at = Time.now
     # 更新答案
-    @answer.update!(answer_params)
-    @question = Question.find(@answer.question_id)
-    redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
+    @answer.edited_at = Time.now
+    if @answer.update(answer_params)
+      # TODO json 成功
+      redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
+    else
+      # TODO json 失败
+    end
   end
 
 	# 赞同
   def agree
     if can? :agree, @answer
-      @agreement = current_user.agreements.new(
-          agreeable_id: @answer.id, agreeable_type: "Answer")
       # 成功赞成
-      if @agreement.save
-        # 更新投票和排名因子
-        @answer.update!(agree_score: @answer.agree_score + 1)
-        new_weight = @question.weight + 1
-        @question.update!(
-            weight: new_weight,
-            hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
-            answer_agree: @question.answer_agree + 1
-        )
-        # 创建赞同答案的消息并发送
-        MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @answer.id)
-        # 创建用户行为（赞同答案）
-        current_user.activities.create!(target_id: @answer.id, target_type: "Answer", activity_type: 5,
-                                        publish_date: DateUtils.to_yyyymmdd(Date.today))
+      agreement = current_user.agreements.new(
+          agreeable_id: @answer.id, agreeable_type: "Answer")
+      is_agreement_saved = agreement.save
+      # 更新投票和排名因子
+      is_answer_updated = @answer.update(agree_score: @answer.agree_score + 1)
+      new_weight = @question.weight + 1
+      is_question_updated = @question.update(
+          weight: new_weight,
+          hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
+          answer_agree: @question.answer_agree + 1
+      )
+      # 创建赞同答案的消息并发送
+      MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @answer.id)
+      # 创建用户行为（赞同答案）
+      is_activities_saved = save_activities(@answer.id, "Answer", 5)
+
+      if is_agreement_saved and is_answer_updated and
+          is_question_updated and is_activities_saved
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -81,20 +93,20 @@ class AnswersController < ApplicationController
   # 取消赞同
   def cancel_agree
     if can? :cancel_agree, @answer
-      result = Agreement.where(
+      # 取消
+      cancel_result = Agreement.where(
           "agreeable_id = ? and agreeable_type = ? and user_id = ?",
           @answer.id, "Answer", current_user.id
       ).destroy_all
-      # 成功取消
-      if result > 0
-        # 更新投票和排名因子
-        @answer.update!(agree_score: @answer.agree_score - 1)
-        new_weight = @question.weight - 1
-        @question.update!(
-            weight: new_weight,
-            hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
-            answer_agree: @question.answer_agree - 1
-        )
+      # 更新投票和排名因子
+      is_answer_updated = @answer.update!(agree_score: @answer.agree_score - 1)
+      new_weight = @question.weight - 1
+      is_question_updated = @question.update(
+          weight: new_weight,
+          hot: RankingUtils.question_hot(new_weight, @question.epoch_time),
+          answer_agree: @question.answer_agree - 1
+      )
+      if cancel_result > 0 and is_answer_updated and is_question_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -107,17 +119,18 @@ class AnswersController < ApplicationController
   # 反对
   def oppose
     if can? :oppose, @answer
-      @opposition = current_user.oppositions.new(
+      # 反对
+      op = current_user.oppositions.new(
           opposable_id: @answer.id, opposable_type: "Answer")
-      # 成功反对
-      if @opposition.save
-        # 更新投票和排名因子
-        @answer.update!(oppose_score: @answer.oppose_score + 1)
-        new_weight = @question.weight - 1
-        @question.update!(
-            weight: new_weight,
-            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
-        )
+      is_opposition_saved = op.save
+      # 更新投票和排名因子
+      is_answer_updated = @answer.update(oppose_score: @answer.oppose_score + 1)
+      new_weight = @question.weight - 1
+      is_question_updated = @question.update(
+          weight: new_weight,
+          hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+      )
+      if is_opposition_saved and is_answer_updated and is_question_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -130,19 +143,19 @@ class AnswersController < ApplicationController
   # 取消反对
   def cancel_oppose
     if can? :cancel_oppose, @answer
-      result = Opposition.where(
+      # 取消
+      cancel_result = Opposition.where(
           "opposable_id = ? and opposable_type = ? and user_id = ?",
           @answer.id, "Answer", current_user.id
       ).destroy_all
-      # 成功取消
-      if result > 0
-        # 更新排名因子
-        @answer.update!(oppose_score: @answer.oppose_score - 1)
-        new_weight = @question.weight + 1
-        @question.update!(
-            weight: new_weight,
-            hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
-        )
+      # 更新排名因子
+      is_answer_updated = @answer.update(oppose_score: @answer.oppose_score - 1)
+      new_weight = @question.weight + 1
+      is_question_updated = @question.update(
+          weight: new_weight,
+          hot: RankingUtils.question_hot(new_weight, @question.epoch_time)
+      )
+      if cancel_result > 0 and is_answer_updated and is_question_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -153,6 +166,15 @@ class AnswersController < ApplicationController
   end
 
   private
+    def save_activities(target_id, target_type, activity_type)
+      act = current_user.activities.new
+      act.target_id = target_id
+      act.target_type = target_type
+      act.activity_type = activity_type
+      act.publish_date = DateUtils.to_yyyymmdd(Date.today)
+      act.save
+    end
+
     def set_answer
       @question = Question.find_by_token_id(params[:question_id])
       @answer = Answer.find_by_token_id(params[:id])
