@@ -84,22 +84,8 @@ class UserSettingsController < ApplicationController
     if industry != -1
       current_user.industry_id = industry
     end
-    if company and company.length > 0
-      @company = Company.find_and_save company
-      current_user.latest_company_id = @company.id
-    end
-    if position and position.length > 0
-      current_user.latest_position = position
-    end
     if region and region != -1 && location
       current_user.location_id = location
-    end
-    if school and school.length > 0
-      @school = School.find_and_save school
-      current_user.latest_school_id = @school.id
-    end
-    if major and major.length > 0
-      current_user.latest_major = major
     end
     if description.length > 0
       current_user.description = description

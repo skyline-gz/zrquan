@@ -1,7 +1,7 @@
 class CreateCertifications < ActiveRecord::Migration
   def change
     create_table :certifications do |t|
-      t.string :name
+      t.string :name, limit: 30
       t.integer :study_time_sum
       t.integer :study_time_samples
       t.integer :study_time_avg

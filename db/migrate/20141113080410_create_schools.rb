@@ -1,10 +1,10 @@
 class CreateSchools < ActiveRecord::Migration
   def change
     create_table :schools do |t|
-      t.string :name
+      t.string :name, limit: 30
       t.references :location, index: true
-      t.string :address
-      t.string :site
+      t.string :address, limit: 100
+      t.string :site, limit: 30
       t.text :description
 
       t.timestamps

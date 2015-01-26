@@ -17,13 +17,17 @@ ActiveRecord::Schema.define(version: 20150118093208) do
     t.integer  "user_id"
     t.integer  "target_id"
     t.string   "target_type"
+    t.integer  "sub_target_id"
+    t.string   "sub_target_type"
     t.integer  "activity_type"
     t.integer  "publish_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "activities", ["sub_target_id", "sub_target_type"], name: "index_activities_on_sub_target_id_and_sub_target_type", using: :btree
   add_index "activities", ["target_id", "target_type"], name: "index_activities_on_target_id_and_target_type", using: :btree
+  add_index "activities", ["user_id", "publish_date"], name: "index_activities_on_user_id_and_publish_date", using: :btree
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "agreements", force: true do |t|
@@ -79,11 +83,9 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   create_table "careers", force: true do |t|
     t.integer  "user_id"
     t.integer  "company_id"
-    t.string   "position"
-    t.string   "entry_year"
-    t.string   "entry_month"
-    t.string   "leave_year"
-    t.string   "leave_month"
+    t.string   "position",    limit: 30
+    t.string   "entry_year",  limit: 8
+    t.string   "leave_year",  limit: 8
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,14 +94,8 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "careers", ["company_id"], name: "index_careers_on_company_id", using: :btree
   add_index "careers", ["user_id"], name: "index_careers_on_user_id", using: :btree
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "certifications", force: true do |t|
-    t.string   "name"
+    t.string   "name",               limit: 30
     t.integer  "study_time_sum"
     t.integer  "study_time_samples"
     t.integer  "study_time_avg"
@@ -130,14 +126,14 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "companies", force: true do |t|
-    t.string   "name"
+    t.string   "name",              limit: 30
     t.integer  "location_id"
     t.integer  "industry_id"
     t.integer  "parent_company_id"
-    t.string   "address"
-    t.string   "site"
-    t.string   "contact"
-    t.string   "legal_person"
+    t.string   "address",           limit: 100
+    t.string   "site",              limit: 30
+    t.string   "contact",           limit: 20
+    t.string   "legal_person",      limit: 30
     t.integer  "capital_state"
     t.text     "description"
     t.datetime "created_at"
@@ -152,8 +148,8 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   create_table "educations", force: true do |t|
     t.integer  "user_id"
     t.integer  "school_id"
-    t.string   "major"
-    t.string   "graduate_year"
+    t.string   "major",         limit: 30
+    t.string   "graduate_year", limit: 8
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -163,7 +159,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
 
   create_table "industries", force: true do |t|
-    t.string   "name"
+    t.string   "name",               limit: 30
     t.text     "description"
     t.integer  "parent_industry_id"
     t.datetime "created_at"
@@ -183,14 +179,14 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "industry_job_categories", ["job_category_id"], name: "index_industry_job_categories_on_job_category_id", using: :btree
 
   create_table "job_categories", force: true do |t|
-    t.string   "name"
+    t.string   "name",        limit: 30
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "locations", force: true do |t|
-    t.string   "name"
+    t.string   "name",            limit: 30
     t.integer  "region_id"
     t.text     "expense"
     t.text     "strong_industry"
@@ -240,7 +236,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "oppositions", ["user_id"], name: "index_oppositions_on_user_id", using: :btree
 
   create_table "other_wikis", force: true do |t|
-    t.string   "name"
+    t.string   "name",        limit: 30
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -329,7 +325,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
 
   create_table "questions", force: true do |t|
     t.integer  "token_id"
-    t.string   "title"
+    t.string   "title",            limit: 50
     t.text     "content"
     t.integer  "user_id"
     t.boolean  "anonymous_flag",              default: false
@@ -360,7 +356,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "recommend_users", ["user_id"], name: "index_recommend_users_on_user_id", using: :btree
 
   create_table "regions", force: true do |t|
-    t.string   "name"
+    t.string   "name",       limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -376,10 +372,10 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "relationships", ["following_user_id"], name: "index_relationships_on_following_user_id", using: :btree
 
   create_table "schools", force: true do |t|
-    t.string   "name"
+    t.string   "name",        limit: 30
     t.integer  "location_id"
-    t.string   "address"
-    t.string   "site"
+    t.string   "address",     limit: 100
+    t.string   "site",        limit: 30
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -389,7 +385,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "schools", ["name"], name: "index_schools_on_name", unique: true, using: :btree
 
   create_table "skills", force: true do |t|
-    t.string   "name"
+    t.string   "name",        limit: 30
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -408,7 +404,7 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "theme_follows", ["user_id"], name: "index_theme_follows_on_user_id", using: :btree
 
   create_table "themes", force: true do |t|
-    t.string   "name"
+    t.string   "name",           limit: 30
     t.integer  "substance_id"
     t.string   "substance_type"
     t.datetime "created_at"
@@ -448,23 +444,23 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "user_msg_settings", ["user_id"], name: "index_user_msg_settings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "mobile",              limit: 20, default: "", null: false
-    t.string   "encrypted_password",             default: "", null: false
-    t.integer  "sign_in_count",                  default: 0
+    t.string   "mobile",              limit: 20,  default: "", null: false
+    t.string   "encrypted_password",              default: "", null: false
+    t.integer  "sign_in_count",                   default: 0
     t.datetime "current_sign_in_at"
-    t.string   "name"
+    t.string   "name",                limit: 30
     t.integer  "gender"
     t.integer  "location_id"
     t.integer  "industry_id"
     t.integer  "latest_career_id"
     t.integer  "latest_education_id"
-    t.string   "latest_company_name"
-    t.string   "latest_position"
-    t.string   "latest_school_name"
-    t.string   "latest_major"
+    t.string   "latest_company_name", limit: 30
+    t.string   "latest_position",     limit: 30
+    t.string   "latest_school_name",  limit: 30
+    t.string   "latest_major",        limit: 30
     t.string   "description"
     t.boolean  "verified_flag"
-    t.string   "avatar"
+    t.string   "avatar",              limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
   end

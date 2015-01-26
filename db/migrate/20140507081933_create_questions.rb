@@ -2,7 +2,7 @@ class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|
       t.integer :token_id
-      t.string :title
+      t.string :title, limit: 50
       t.text :content
       t.references :user, index: true
       t.boolean :anonymous_flag, default: false
