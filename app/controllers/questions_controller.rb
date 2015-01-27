@@ -61,6 +61,7 @@ class QuestionsController < ApplicationController
     @question.edited_at = current_time
     @question.epoch_time = current_time.to_i
     @question.hot = RankingUtils.question_hot(@question.weight, @question.epoch_time)
+    @question.publish_date = DateUtils.to_yyyymmdd(Date.today)
     is_question_saved = @question.save
 
     # 创建问题主题关联

@@ -26,6 +26,7 @@ class PostsController < ApplicationController
     @post.weight = 1 #本体自身权重
     @post.epoch_time = Time.now.to_i
     @post.hot = RankingUtils.post_hot(@post.weight, @post.epoch_time)
+    @post.publish_date = DateUtils.to_yyyymmdd(Date.today)
     is_post_saved = @post.save
     # 创建问题主题关联
     is_post_theme_saved = save_post_theme

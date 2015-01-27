@@ -12,11 +12,14 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :comment_agree, default: 0
       t.boolean :anonymous_flag, default: false
       t.references :user, index: true
+      t.integer :publish_date
       t.timestamp :edited_at
 
       t.timestamps
     end
 
     add_index :posts, :hot
+    add_index :posts, [:user_id, :publish_date]
+
   end
 end

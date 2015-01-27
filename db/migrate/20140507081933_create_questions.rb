@@ -14,6 +14,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :answer_agree, dafault: 0
       t.references :latest_answer, index: true
       t.integer :latest_qa_time, limit: 8
+      t.integer :publish_date
       t.timestamp :edited_at
 
       t.timestamps
@@ -21,5 +22,6 @@ class CreateQuestions < ActiveRecord::Migration
 
     add_index :questions, :token_id, unique: true
     add_index :questions, :hot
+    add_index :questions, [:user_id, :publish_date]
   end
 end
