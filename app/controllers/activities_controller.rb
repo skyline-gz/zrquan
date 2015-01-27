@@ -1,9 +1,22 @@
+require "date_utils.rb"
+
 class ActivitiesController < ApplicationController
   def list
-    prev_month_date = DateUtils.to_yyyymmdd(Date.today.prev_month)
-    if current_user != nil
-    	@recent_activities = Activity.find_by_sql(
-    		["select
+    sql = make_sql(param_enough)   # TODO param from android side
+    recent = DateUtils.to_yyyymmdd(3.months.ago)
+    if param_enough
+      ActiveRecord::Base.connection.select_all(
+          [sql, current_user.id, recent])
+    else
+      ActiveRecord::Base.connection.select_all(
+          [sql, current_user.id])
+    end
+  end
+
+  private
+  def make_sql(is_recent_enough)
+    select_part =
+        "select
           a.activity_type,
           u.name,
           u.latest_company_name,
@@ -54,15 +67,19 @@ class ActivitiesController < ApplicationController
             when 'PostComment' then p2.content
           end sub_content
           from ACTIVITIES a force index(index_activities_on_user_id_and_publish_date)
-          inner join RELATIONSHIPS r on (r.FOLLOWER_ID = ? and a.USER_ID = r.FOLLOWING_USER_ID and a.PUBLISH_DATE >= ?)
+          inner join RELATIONSHIPS r on (r.FOLLOWER_ID = ? and a.USER_ID = r.FOLLOWING_USER_ID)
           inner join USERS u on (r.FOLLOWING_USER_ID = u.id)
           left join questions q on (a.target_id = q.id and a.target_type = 'Question' and q.anonymous_flag = 0)
           left join answers an on (a.target_id = an.id and a.target_type = 'Answer' and an.anonymous_flag = 0)
           left join questions q2 on (a.sub_target_id = q2.id and a.sub_target_type = 'Question')
           left join posts p on (a.target_id = p.id and a.target_type = 'Post' and p.anonymous_flag = 0)
           left join post_comments pc on (a.target_id = pc.id and a.target_type = 'PostComment' and pc.anonymous_flag = 0)
-          left join posts p2 on (a.sub_target_id = p2.id and a.sub_target_type = 'Post')
-          order by a.PUBLISH_DATE DESC", current_user.id, prev_month_date])
-    end
+          left join posts p2 on (a.sub_target_id = p2.id and a.sub_target_type = 'Post') "
+
+    where_part = "where a.PUBLISH_DATE >= ? "
+
+    order_part = "order by a.PUBLISH_DATE DESC "
+
+    is_recent_enough ? (select_part + where_part + order_part) : (select_part + order_part)
   end
 end
