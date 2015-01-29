@@ -27,6 +27,15 @@ class Question < ActiveRecord::Base
 	#	answers.size
 	#end
 
+  def self.sufficient_days
+    result = ActiveRecord::Base.connection.select_all(
+        ["select min(recent_days) as recent_days
+          from question_stats qs
+          where qs.user_id = ? and qs.following_act_count >= ?", current_user.id, 500]
+    )
+    result[0]["recent_days"]
+  end
+
 	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
 	def sorted_answers
     Answer.find_by_sql(

@@ -10,6 +10,15 @@ class Post < ActiveRecord::Base
   validates :content, presence: true, on: :create
   validates :content, length: {in: 1..140}
 
+  def self.sufficient_days
+    result = ActiveRecord::Base.connection.select_all(
+        ["select min(recent_days) as recent_days
+          from post_stats ps
+          where ps.user_id = ? and ps.following_act_count >= ?", current_user.id, 500]
+    )
+    result[0]["recent_days"]
+  end
+
   def hottest_comment
     hot_comments.try(:first)
   end

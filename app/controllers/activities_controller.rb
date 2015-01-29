@@ -2,8 +2,8 @@ require "date_utils.rb"
 
 class ActivitiesController < ApplicationController
   def list
-    sql = make_sql(sufficient_days)   # TODO param from android side
-
+    sql = make_sql   # TODO param from android side
+    sufficient_days = Activity.sufficient_days
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
       ActiveRecord::Base.connection.select_all(
@@ -17,7 +17,7 @@ class ActivitiesController < ApplicationController
   end
 
   private
-  def make_sql(sufficient_days)
+  def make_sql
     select_part =
         "select
           a.activity_type,

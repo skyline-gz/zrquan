@@ -9,7 +9,7 @@ class Activity < ActiveRecord::Base
     result = ActiveRecord::Base.connection.select_all(
         ["select min(recent_days) as recent_days
           from following_act_stats fas
-          where fas.user_id = ? and following_act_count >= ?", current_user.id, 500]
+          where fas.user_id = ? and fas.following_act_count >= ?", current_user.id, 500]
     )
     result[0]["recent_days"]
   end
