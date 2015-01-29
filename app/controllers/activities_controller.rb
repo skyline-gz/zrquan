@@ -9,7 +9,8 @@ class ActivitiesController < ApplicationController
       ActiveRecord::Base.connection.select_all(
           [sql, current_user.id, recent])
     else
-      recent = DateUtils.to_yyyymmdd(180.days.ago)
+      # 默认值为最近3个月的动态
+      recent = DateUtils.to_yyyymmdd(90.days.ago)
       ActiveRecord::Base.connection.select_all(
           [sql, current_user.id, recent])
     end
