@@ -1,0 +1,1 @@
+rails g migration CreateUserCountStats date_id:integer user_count:integer max_user_id:integer

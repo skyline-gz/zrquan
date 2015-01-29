@@ -5,14 +5,13 @@ class Activity < ActiveRecord::Base
   belongs_to :target, polymorphic: true
   belongs_to :theme
 
-  def self.recent_count_enough?
-    recent = DateUtils.to_yyyymmdd(3.months.ago)
+  def self.sufficient_days
     result = ActiveRecord::Base.connection.select_all(
-        ["select count(a.id) as recent_count
-          from ACTIVITIES a inner join RELATIONSHIPS r on (r.FOLLOWER_ID = ? and a.USER_ID = r.FOLLOWING_USER_ID)
-          where a.publish_date >= ?", current_user.id, recent]
+        ["select min(recent_days) as recent_days
+          from following_act_stats fas
+          where fas.user_id = ? and following_act_count >= ?", current_user.id, 500]
     )
-    result[0]["recent_count"] >= 500
+    result[0]["recent_days"]
   end
 
 	def pdate_to_s

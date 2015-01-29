@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118093208) do
+ActiveRecord::Schema.define(version: 20150128123344) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -158,6 +158,16 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "educations", ["school_id"], name: "index_educations_on_school_id", using: :btree
   add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
 
+  create_table "following_act_stats", force: true do |t|
+    t.integer "user_id"
+    t.integer "following_act_count"
+    t.integer "recent_days"
+  end
+
+  add_index "following_act_stats", ["recent_days"], name: "index_following_act_stats_on_recent_days", using: :btree
+  add_index "following_act_stats", ["user_id", "recent_days"], name: "index_following_act_stats_on_user_id_and_recent_days", using: :btree
+  add_index "following_act_stats", ["user_id"], name: "index_following_act_stats_on_user_id", using: :btree
+
   create_table "industries", force: true do |t|
     t.string   "name",               limit: 30
     t.text     "description"
@@ -260,6 +270,14 @@ ActiveRecord::Schema.define(version: 20150118093208) do
   add_index "post_comments", ["replied_comment_id"], name: "index_post_comments_on_replied_comment_id", using: :btree
   add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id", using: :btree
 
+  create_table "post_stats", force: true do |t|
+    t.integer "post_count"
+    t.integer "theme_id"
+    t.integer "recent_days"
+  end
+
+  add_index "post_stats", ["theme_id"], name: "index_post_stats_on_theme_id", using: :btree
+
   create_table "post_themes", force: true do |t|
     t.integer  "post_id"
     t.integer  "theme_id"
@@ -314,6 +332,14 @@ ActiveRecord::Schema.define(version: 20150118093208) do
 
   add_index "question_follows", ["question_id"], name: "index_question_follows_on_question_id", using: :btree
   add_index "question_follows", ["user_id"], name: "index_question_follows_on_user_id", using: :btree
+
+  create_table "question_stats", force: true do |t|
+    t.integer "question_count"
+    t.integer "theme_id"
+    t.integer "recent_days"
+  end
+
+  add_index "question_stats", ["theme_id"], name: "index_question_stats_on_theme_id", using: :btree
 
   create_table "question_themes", force: true do |t|
     t.integer  "question_id"
@@ -433,6 +459,14 @@ ActiveRecord::Schema.define(version: 20150118093208) do
 
   add_index "user_attachments", ["attachable_id", "attachable_type"], name: "index_user_attachments_on_attachable_id_and_attachable_type", using: :btree
   add_index "user_attachments", ["user_id"], name: "index_user_attachments_on_user_id", using: :btree
+
+  create_table "user_count_stats", force: true do |t|
+    t.integer "date_id"
+    t.integer "user_count"
+    t.integer "max_user_id"
+  end
+
+  add_index "user_count_stats", ["date_id"], name: "index_user_count_stats_on_date_id", unique: true, using: :btree
 
   create_table "user_msg_settings", force: true do |t|
     t.boolean  "followed_flag",  default: true

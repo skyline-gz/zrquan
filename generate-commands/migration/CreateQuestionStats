@@ -1,0 +1,1 @@
+rails g migration CreateQuestionStats question_count:integer theme:references recent_days:integer

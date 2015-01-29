@@ -2,19 +2,21 @@ require "date_utils.rb"
 
 class ActivitiesController < ApplicationController
   def list
-    sql = make_sql(param_enough)   # TODO param from android side
-    recent = DateUtils.to_yyyymmdd(3.months.ago)
-    if param_enough
+    sql = make_sql(sufficient_days)   # TODO param from android side
+
+    if sufficient_days != nil
+      recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
       ActiveRecord::Base.connection.select_all(
           [sql, current_user.id, recent])
     else
+      recent = DateUtils.to_yyyymmdd(180.days.ago)
       ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id])
+          [sql, current_user.id, recent])
     end
   end
 
   private
-  def make_sql(is_recent_enough)
+  def make_sql(sufficient_days)
     select_part =
         "select
           a.activity_type,
@@ -80,6 +82,6 @@ class ActivitiesController < ApplicationController
 
     order_part = "order by a.PUBLISH_DATE DESC "
 
-    is_recent_enough ? (select_part + where_part + order_part) : (select_part + order_part)
+    select_part + where_part + order_part
   end
 end

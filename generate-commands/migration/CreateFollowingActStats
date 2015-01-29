@@ -1,0 +1,1 @@
+rails g migration CreateFollowingActStats user:references following_act_count:integer recent_days:integer
