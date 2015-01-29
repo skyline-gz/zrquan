@@ -9,5 +9,8 @@ class CreateComments < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :comments, [:commentable_id, :commentable_type, :created_at], name: "index_comments_on_commentable"
+    remove_index :comments, [:commentable_id, :commentable_type]
   end
 end

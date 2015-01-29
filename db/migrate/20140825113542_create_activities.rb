@@ -1,7 +1,7 @@
 class CreateActivities < ActiveRecord::Migration
   def change
     create_table :activities do |t|
-      t.references :user, index: true
+      t.references :user  # 不设index,用下面的组合索引代替
       t.references :target, polymorphic: true, index: true
       t.references :sub_target, polymorphic: true, index: true
       t.integer :activity_type

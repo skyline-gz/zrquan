@@ -38,7 +38,7 @@ class Question < ActiveRecord::Base
 
 	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
 	def sorted_answers
-    Answer.find_by_sql(
+    ActiveRecord::Base.connection.select_all(
         ["select a.*, (a.agree_score - a.oppose_score) as actual_score
          from ANSWERS a
 				 where a.question_id = ? order by actual_score DESC limit 10", id])
@@ -47,7 +47,11 @@ class Question < ActiveRecord::Base
 	# 返回最佳答案
 	def recommend_answer
     sorted_answers.try(:first)
-	end
+  end
+
+  def sorted_comments
+    comments.order("created_at desc")
+  end
 
   def theme_ids
     theme_ids = Array.new

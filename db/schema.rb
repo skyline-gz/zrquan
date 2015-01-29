@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "activities", ["sub_target_id", "sub_target_type"], name: "index_activities_on_sub_target_id_and_sub_target_type", using: :btree
   add_index "activities", ["target_id", "target_type"], name: "index_activities_on_target_id_and_target_type", using: :btree
   add_index "activities", ["user_id", "publish_date"], name: "index_activities_on_user_id_and_publish_date", using: :btree
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "agreements", force: true do |t|
     t.integer  "user_id"
@@ -57,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.text     "content"
     t.integer  "agree_score",    default: 0
     t.integer  "oppose_score",   default: 0
+    t.integer  "actual_score",   default: 0
     t.boolean  "anonymous_flag", default: false
     t.integer  "user_id"
     t.integer  "question_id"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.datetime "updated_at"
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["question_id", "actual_score"], name: "index_answers_on_question_id_and_actual_score", using: :btree
   add_index "answers", ["token_id"], name: "index_answers_on_token_id", unique: true, using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["commentable_id", "commentable_type", "created_at"], name: "index_comments_on_commentable", using: :btree
   add_index "comments", ["replied_comment_id"], name: "index_comments_on_replied_comment_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
@@ -166,7 +166,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
 
   add_index "following_act_stats", ["recent_days"], name: "index_following_act_stats_on_recent_days", using: :btree
   add_index "following_act_stats", ["user_id", "recent_days"], name: "index_following_act_stats_on_user_id_and_recent_days", using: :btree
-  add_index "following_act_stats", ["user_id"], name: "index_following_act_stats_on_user_id", using: :btree
 
   create_table "industries", force: true do |t|
     t.string   "name",               limit: 30
@@ -258,6 +257,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.text     "content"
     t.integer  "agree_score"
     t.integer  "oppose_score"
+    t.integer  "actual_score",       default: 0
     t.boolean  "anonymous_flag"
     t.integer  "post_id"
     t.integer  "user_id"
@@ -266,7 +266,8 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.datetime "updated_at"
   end
 
-  add_index "post_comments", ["post_id"], name: "index_post_comments_on_post_id", using: :btree
+  add_index "post_comments", ["post_id", "actual_score"], name: "index_post_comments_on_post_id_and_actual_score", using: :btree
+  add_index "post_comments", ["post_id", "created_at"], name: "index_post_comments_on_post_id_and_created_at", using: :btree
   add_index "post_comments", ["replied_comment_id"], name: "index_post_comments_on_replied_comment_id", using: :btree
   add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id", using: :btree
 
@@ -296,6 +297,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.float    "hot",            limit: 53
     t.integer  "agree_score",               default: 0
     t.integer  "oppose_score",              default: 0
+    t.integer  "actual_score",              default: 0
     t.integer  "comment_count",             default: 0
     t.integer  "comment_agree",             default: 0
     t.boolean  "anonymous_flag",            default: false
@@ -308,7 +310,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
 
   add_index "posts", ["hot"], name: "index_posts_on_hot", using: :btree
   add_index "posts", ["user_id", "publish_date"], name: "index_posts_on_user_id_and_publish_date", using: :btree
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "private_messages", force: true do |t|
     t.text     "content"
@@ -375,7 +376,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "questions", ["latest_answer_id"], name: "index_questions_on_latest_answer_id", using: :btree
   add_index "questions", ["token_id"], name: "index_questions_on_token_id", unique: true, using: :btree
   add_index "questions", ["user_id", "publish_date"], name: "index_questions_on_user_id_and_publish_date", using: :btree
-  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "recommend_users", force: true do |t|
     t.integer  "user_id"

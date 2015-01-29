@@ -4,7 +4,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :token_id
       t.string :title, limit: 50
       t.text :content
-      t.references :user, index: true
+      t.references :user  # 不设index,用下面的组合索引代替
       t.boolean :anonymous_flag, default: false
       t.integer :weight
       t.float :epoch_time, limit: 53
