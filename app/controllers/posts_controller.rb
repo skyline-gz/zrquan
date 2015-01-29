@@ -51,6 +51,7 @@ class PostsController < ApplicationController
       new_weight = @post.weight + 1
       is_post_updated = @post.update(
           agree_score: @post.agree_score + 1,
+          actual_score: @post.actual_score + 1,
           weight: new_weight,
           hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
       )
@@ -81,6 +82,7 @@ class PostsController < ApplicationController
       new_weight = @post.weight - 1
       is_post_updated = @post.update(
           agree_score: @post.agree_score - 1,
+          actual_score: @post.actual_score - 1,
           weight: new_weight,
           hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
       )
@@ -105,6 +107,7 @@ class PostsController < ApplicationController
       new_weight = @post.weight - 1
       is_post_updated = @post.update(
           oppose_score: @post.oppose_score + 1,
+          actual_score: @post.actual_score - 1,
           weight: new_weight,
           hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
       )
@@ -130,6 +133,7 @@ class PostsController < ApplicationController
       new_weight = @post.weight + 1
       is_post_updated = @post.update(
           oppose_score: @post.oppose_score - 1,
+          actual_score: @post.actual_score + 1,
           weight: new_weight,
           hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
       )

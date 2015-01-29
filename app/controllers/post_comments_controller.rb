@@ -48,7 +48,10 @@ class PostCommentsController < ApplicationController
       # 成功赞成
       is_agreement_saved = agreement.save
       # 更新投票及排名因子
-      is_post_comment_updated = @post_comment.update(agree_score: @post_comment.agree_score + 1)
+      is_post_comment_updated = @post_comment.update(
+          agree_score: @post_comment.agree_score + 1,
+          actual_score: @post_comment.actual_score + 1
+      )
       new_weight = @post.weight + 1
       is_post_updated = @post.update(
           weight: new_weight,
@@ -80,7 +83,10 @@ class PostCommentsController < ApplicationController
           @post_comment.id, "PostComment", current_user.id
       ).destroy_all
       # 更新投票及本体排名因子
-      is_post_comment_updated = @post_comment.update(agree_score: @answer.agree_score - 1)
+      is_post_comment_updated = @post_comment.update(
+          agree_score: @answer.agree_score - 1,
+          actual_score: @post_comment.actual_score - 1
+      )
       new_weight = @post.weight - 1
       is_post_updated = @post.update(
           weight: new_weight,
@@ -106,7 +112,10 @@ class PostCommentsController < ApplicationController
           opposable_id: @post_comment.id, opposable_type: "PostComment")
       is_opposition_saved = opposition.save
       # 更新投票及排名因子
-      is_post_comment_updated = @post_comment.update(oppose_score: @answer.oppose_score + 1)
+      is_post_comment_updated = @post_comment.update(
+          oppose_score: @answer.oppose_score + 1,
+          actual_score: @post_comment.actual_score - 1
+      )
       new_weight = @post.weight - 1
       is_post_updated = @post.update(
           weight: new_weight,
@@ -131,7 +140,10 @@ class PostCommentsController < ApplicationController
           @post_comment.id, "PostComment", current_user.id
       ).destroy_all
       # 更新投票及排名因子
-      is_post_comment_updated = @post_comment.update(oppose_score: @answer.oppose_score - 1)
+      is_post_comment_updated = @post_comment.update(
+          oppose_score: @answer.oppose_score - 1,
+          actual_score: @post_comment.actual_score + 1
+      )
       new_weight = @post.weight + 1
       is_post_updated = @post.update(
           weight: new_weight,

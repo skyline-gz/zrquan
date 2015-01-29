@@ -20,17 +20,20 @@ class Post < ActiveRecord::Base
   end
 
   def hottest_comment
-    hot_comments.try(:first)
+    hot_comments[0]
   end
 
   def hot_comments
-    PostComment.find_by_sql(
-        ["select pc.*, (pc.agree_score - pc.oppose_score) as actual_score
-         from POST_COMMENTS pc
-				 where pc.post_id = ? order by actual_score DESC limit 10", id])
+    ActiveRecord::Base.connection.select_all(
+        ["select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
+          from post_comments pc inner join users u on (pc.user_id = u.id)
+          where pc.post_id = ? order by pc.actual_score DESC limit 10", id])
   end
 
   def all_comments
-    post_comments.order('created_at desc')
+    ActiveRecord::Base.connection.select_all(
+        ["select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
+          from post_comments pc inner join users u on (pc.user_id = u.id)
+          where pc.post_id = ? order by pc.created_at DESC", id])
   end
 end

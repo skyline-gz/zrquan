@@ -39,18 +39,22 @@ class Question < ActiveRecord::Base
 	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
 	def sorted_answers
     ActiveRecord::Base.connection.select_all(
-        ["select a.*, (a.agree_score - a.oppose_score) as actual_score
-         from ANSWERS a
-				 where a.question_id = ? order by actual_score DESC limit 10", id])
+        ["select a.content, a.agree_score, a.created_at, u.name, u.avatar
+          from ANSWERS a inner join users u on (a.user_id = u.id)
+          where a.question_id = ? order by a.actual_score DESC limit 10", id])
 	end
 
 	# 返回最佳答案
 	def recommend_answer
-    sorted_answers.try(:first)
+    sorted_answers[0]
   end
 
   def sorted_comments
-    comments.order("created_at desc")
+    ActiveRecord::Base.connection.select_all(
+        ["select c.content, c.created_at, u.name, u.avatar
+          from comments c inner join users u on (c.user_id = u.id)
+          where c.commentable_id = ? and c.commentable_type = 'Question'
+          order by c.created_at DESC", id])
   end
 
   def theme_ids

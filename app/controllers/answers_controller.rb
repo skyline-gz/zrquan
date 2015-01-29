@@ -67,7 +67,10 @@ class AnswersController < ApplicationController
           agreeable_id: @answer.id, agreeable_type: "Answer")
       is_agreement_saved = agreement.save
       # 更新投票和排名因子
-      is_answer_updated = @answer.update(agree_score: @answer.agree_score + 1)
+      is_answer_updated = @answer.update(
+          agree_score: @answer.agree_score + 1,
+          actual_score: @answer.actual_score + 1
+      )
       new_weight = @question.weight + 1
       is_question_updated = @question.update(
           weight: new_weight,
@@ -99,7 +102,10 @@ class AnswersController < ApplicationController
           @answer.id, "Answer", current_user.id
       ).destroy_all
       # 更新投票和排名因子
-      is_answer_updated = @answer.update!(agree_score: @answer.agree_score - 1)
+      is_answer_updated = @answer.update!(
+          agree_score: @answer.agree_score - 1,
+          actual_score: @answer.actual_score - 1
+      )
       new_weight = @question.weight - 1
       is_question_updated = @question.update(
           weight: new_weight,
@@ -124,7 +130,10 @@ class AnswersController < ApplicationController
           opposable_id: @answer.id, opposable_type: "Answer")
       is_opposition_saved = op.save
       # 更新投票和排名因子
-      is_answer_updated = @answer.update(oppose_score: @answer.oppose_score + 1)
+      is_answer_updated = @answer.update(
+          oppose_score: @answer.oppose_score + 1,
+          actual_score: @answer.actual_score - 1
+      )
       new_weight = @question.weight - 1
       is_question_updated = @question.update(
           weight: new_weight,
@@ -149,7 +158,10 @@ class AnswersController < ApplicationController
           @answer.id, "Answer", current_user.id
       ).destroy_all
       # 更新排名因子
-      is_answer_updated = @answer.update(oppose_score: @answer.oppose_score - 1)
+      is_answer_updated = @answer.update(
+          oppose_score: @answer.oppose_score - 1,
+          actual_score: @answer.actual_score + 1
+      )
       new_weight = @question.weight + 1
       is_question_updated = @question.update(
           weight: new_weight,
