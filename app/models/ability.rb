@@ -90,7 +90,7 @@ class Ability
       can :follow, Question
       can :edit, Question, :user_id => user.id
       can :switch_identity, Question do |q|
-        question_identity(q) != -1
+        question_identity(q) != "none"
       end
     end
 
@@ -128,7 +128,7 @@ class Ability
         p.user_id != user.id and user.opposed_post?(p)
       end
       can :switch_identity, Post do |p|
-        post_identity(p) != -1
+        post_identity(p) != "none"
       end
     end
 

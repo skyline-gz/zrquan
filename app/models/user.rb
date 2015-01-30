@@ -116,38 +116,40 @@ class User < ActiveRecord::Base
 
   # 于某问题上下文环境身份
   def question_identity(question)
-    identity = -1
+    identity = "none"
     q = Question.where(user_id:id, id:question.id)
     if q.count > 0
-      identity = q.anonymous_flag ? 1 : 0
+      identity = q.anonymous_flag ? "anonymous" : "real"
     else
       answers = Answer.where(user_id:id, question_id:question.id)
       if answers.count > 0
+        identity = "real"
         answers.each do |a|
           if a.anonymous_flag
-            identity = 1
+            identity = "anonymous"
+            break
           end
         end
-        identity = 0
       end
     end
     identity
   end
 
   def post_identity(post)
-    identity = -1
+    identity = "none"
     p = Post.where(user_id:id, id:post.id)
     if p.count > 0
-      identity = p.anonymous_flag ? 1 : 0
+      identity = p.anonymous_flag ? "anonymous" : "real"
     else
-      posts = PostComment.where(user_id:id, post_id:post.id)
-      if posts.count > 0
-        posts.each do |p|
-          if p.anonymous_flag
-            identity = 1
+      post_comments = PostComment.where(user_id:id, post_id:post.id)
+      if post_comments.count > 0
+        identity = "real"
+        post_comments.each do |pc|
+          if pc.anonymous_flag
+            identity = "anonymous"
+            break
           end
         end
-        identity = 0
       end
     end
     identity
@@ -229,6 +231,48 @@ class User < ActiveRecord::Base
 
   def following_t?(theme)
     theme_follows.find_by(theme_id: theme.id)
+  end
+
+  def bookmarked_questions
+    ActiveRecord::Base.connection.select_all(
+        ["select
+            q.title,
+            q.created_at,
+            q.answer_count,
+            q.follow_count,
+            q.answer_agree,
+            u.name,
+            u.avatar,
+            u.latest_company_name,
+            u.latest_position,
+            u.latest_school_name,
+            u.latest_major
+          from
+            bookmarks bm
+            inner join questions q on (bm.bookmarkable_id = q.id and bm.bookmarkable_type = 'Question')
+            inner join users u on (q.user_id = u.id)
+          where bm.user_id = ? order by bm.created_at", current_user.id])
+  end
+
+  def bookmarked_posts
+    ActiveRecord::Base.connection.select_all(
+        ["select
+            p.content,
+            p.created_at,
+            p.comment_count,
+            p.agree_score,
+            p.comment_agree,
+            u.name,
+            u.avatar,
+            u.latest_company_name,
+            u.latest_position,
+            u.latest_school_name,
+            u.latest_major
+          from
+            bookmarks bm
+            inner join posts p on (bm.bookmarkable_id = p.id and bm.bookmarkable_type = 'Post')
+            inner join users u on (p.user_id = u.id)
+          where bm.user_id = ? order by bm.created_at", current_user.id])
   end
 
   def bookmarked_question?(question)
