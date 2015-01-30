@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   end
 
   add_index "bookmarks", ["bookmarkable_id", "bookmarkable_type"], name: "index_bookmarks_on_bookmarkable_id_and_bookmarkable_type", using: :btree
-  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+  add_index "bookmarks", ["user_id", "created_at"], name: "index_bookmarks_on_user_id_and_created_at", using: :btree
 
   create_table "careers", force: true do |t|
     t.integer  "user_id"
