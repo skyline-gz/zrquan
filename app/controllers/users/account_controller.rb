@@ -12,11 +12,11 @@ class Users::AccountController < ApplicationController
     if RegexExpression::MOBILE.match(mobile)
       verify_code = VerifyCodeCache.instance.read(mobile)
       unless verify_code
-        verify_code = rand(100000..999999)
+        verify_code = rand(100000..999999).to_s
       end
 
       # Todo:将verify_code发送到第三方短信平台，暂时直接将验证码返回以便跳过发短信的步骤
-      VerifyCodeCache.instance.write(mobile, verify_code.to_s)
+      VerifyCodeCache.instance.write(mobile, verify_code)
       render :json => {:code => ReturnCode::S_OK, :results => {:verify_code => verify_code}}
     else
       render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT}
