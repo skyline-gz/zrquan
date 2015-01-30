@@ -19,6 +19,21 @@ class Post < ActiveRecord::Base
     result[0]["recent_days"]
   end
 
+  def detail
+    ActiveRecord::Base.connection.select_all(
+        ["select
+            p.content,
+            p.created_at,
+            u.name,
+            u.avatar,
+            u.latest_company_name,
+            u.latest_position,
+            u.latest_school_name,
+            u.latest_major
+          from posts p inner join users u on (p.user_id = u.id)
+          where p.id = ?", id])
+  end
+
   def hottest_comment
     hot_comments[0]
   end
