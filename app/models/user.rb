@@ -337,10 +337,6 @@ class User < ActiveRecord::Base
 		verified_flag
 	end
 
-	def activated?
-		confirmed_at == nil ? false : true
-	end
-
 	def myself?(other_user)
 		id == other_user.id
 	end

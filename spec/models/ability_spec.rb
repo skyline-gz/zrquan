@@ -4,9 +4,8 @@ require "cancan/matchers"
 RSpec.describe Ability, :type => :model do
   subject { ability }
 
-  context "unconfirmed user" do
-    let (:unconfirmed_user) { FactoryGirl.create(:unconfirmed_user) }
-    let (:ability) { Ability.new(unconfirmed_user) }
+  context "logout user" do
+    let (:ability) { Ability.new(nil) }
 
     it { should_not be_able_to(:create, Question) }
     it { should_not be_able_to(:create, Answer) }
@@ -18,8 +17,8 @@ RSpec.describe Ability, :type => :model do
   context "confirmed_user" do
     let (:me) { FactoryGirl.create(:user_1) }
     let (:another_user) { FactoryGirl.create(:user_2) }
-    let (:question) { FactoryGirl.create(:real_name_question, :user=>another_user) }
-    let (:my_question) { FactoryGirl.create(:real_name_question, :user=>me) }
+    let (:question) { FactoryGirl.create(:hottest_question, :user=>another_user) }
+    let (:my_question) { FactoryGirl.create(:newest_question, :user=>me) }
     let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
     let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>another_user) }
     let (:ability) { Ability.new(me) }
@@ -33,27 +32,27 @@ RSpec.describe Ability, :type => :model do
       it { should_not be_able_to(:answer, my_question) }
       it { should be_able_to(:answer, not_my_question = question) }
       it {
-        my_answer = FactoryGirl.create(:q1_hottest_answer, :question=>question, :user=>me)
+        my_answer = FactoryGirl.create(:hq_real_name_answer, :question=>question, :user=>me)
         should be_able_to(:edit, my_answer)
       }
       it {
-        not_my_answer = FactoryGirl.create(:q1_hottest_answer, :question=>question, :user=>another_n_user)
+        not_my_answer = FactoryGirl.create(:nq_real_name_answer, :question=>my_question, :user=>another_user)
         should_not be_able_to(:edit, not_my_answer)
       }
       it {
-        FactoryGirl.create(:q1_hottest_answer, :question=>question, :user=>me)
+        FactoryGirl.create(:hq_real_name_answer, :question=>question, :user=>me)
         should_not be_able_to(:answer, answered_question = question)
       }
       it {
-        not_my_answer = FactoryGirl.create(:q1_hottest_answer, :question=>question, :user=>another_n_user)
+        not_my_answer = FactoryGirl.create(:nq_real_name_answer, :question=>my_question, :user=>another_user)
         should be_able_to(:agree, not_my_answer)
       }
       it {
-        my_answer = FactoryGirl.create(:q1_hottest_answer, :question=>question, :user=>me)
+        my_answer = FactoryGirl.create(:hq_real_name_answer, :question=>question, :user=>me)
         should_not be_able_to(:agree, my_answer)
       }
       it {
-        other_answer = FactoryGirl.create(:q1_hottest_answer, :question=>question, :user=>another_n_user)
+        other_answer = FactoryGirl.create(:nq_real_name_answer, :question=>question, :user=>another_user)
         FactoryGirl.create(:answer_agree, :user=>me, :agreeable=>other_answer)
         should_not be_able_to(:agree, agreed_answer = other_answer)
       }
@@ -81,17 +80,17 @@ RSpec.describe Ability, :type => :model do
       it { should_not be_able_to(:unfollow, not_following = another_user) }
     end
 
-    context "pm" do
-      it {
-        FactoryGirl.create(:relationship, :following_user=>me, :follower=>another_user)
-        should be_able_to(:pm, follower = another_user)
-      }
-      it {
-        FactoryGirl.create(:private_message, :user1=>me, :user2=>another_user)
-        should be_able_to(:pm, ever_pm_user = another_user)
-      }
-      it { should_not be_able_to(:pm, no_relationship_user = another_user) }
-    end
+    # context "pm" do
+    #   it {
+    #     FactoryGirl.create(:relationship, :following_user=>me, :follower=>another_user)
+    #     should be_able_to(:pm, follower = another_user)
+    #   }
+    #   it {
+    #     FactoryGirl.create(:private_message, :user1=>me, :user2=>another_user)
+    #     should be_able_to(:pm, ever_pm_user = another_user)
+    #   }
+    #   it { should_not be_able_to(:pm, no_relationship_user = another_user) }
+    # end
 
     context "user info and user setting" do
       it { should be_able_to(:edit, me) }

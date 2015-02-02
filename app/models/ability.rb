@@ -4,10 +4,7 @@ class Ability
   def initialize(user)
 		# user not login
 		if user == nil
-			logout_unactivate_abilities(user)
-		# unactivated user
-		elsif !user.activated?
-			logout_unactivate_abilities(user)
+			logout_user_abilities(user)
 		# # verified_user
 		# elsif user.verified_user?
 		# 	verified_user_abilities(user)
@@ -19,7 +16,7 @@ class Ability
 
 	private
 		# logout & unactivated user
-		def logout_unactivate_abilities(user)
+		def logout_user_abilities(user)
       cannot :manage, :all
       # read only
       can :show, Question

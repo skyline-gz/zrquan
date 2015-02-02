@@ -3,7 +3,6 @@ FactoryGirl.define do
 		mobile   		  "18620977370"
     name	        "欧阳俊"
     password	    "12345678"
-    confirmed_at  1.days.ago
     verified_flag   false
   end
 
@@ -11,7 +10,6 @@ FactoryGirl.define do
     mobile   		  "15481345815"
     name  	      "冯庆强"
     password	    "12345678"
-    confirmed_at  1.days.ago
     verified_flag   false
   end
 
@@ -19,7 +17,6 @@ FactoryGirl.define do
     mobile   		  "15481345812"
     name	        "樊宇祺"
     password	    "12345678"
-    confirmed_at  1.days.ago
     verified_flag   true
   end
 
@@ -27,7 +24,6 @@ FactoryGirl.define do
     mobile   		  "15481345109"
     name  	      "林志玲"
     password	    "12345678"
-    confirmed_at  1.days.ago
     verified_flag   true
   end
 
@@ -35,14 +31,6 @@ FactoryGirl.define do
     email   		  "gao.yuanyuan@zrquan.com"
     name  	      "高圆圆"
     password	    "12345678"
-    confirmed_at  1.days.ago
     verified_flag   true
-  end
-
-  factory :unconfirmed_user, class: User do
-    email   		  "fan.bingbing@zrquan.com"
-    name  	      "范冰冰"
-    password	    "12345678"
-    password_confirmation	   "12345678"
   end
 end

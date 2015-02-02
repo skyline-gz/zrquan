@@ -34,7 +34,7 @@ FactoryGirl.define do
 
   factory :hq_real_name_answer, class: Answer do
     content				"普通用户冯庆强的答案"
-    association :user, factory: :user_4
+    association :user, factory: :user_1
     association :question, factory: :hottest_question
     agree_score		30
     oppose_score  10
@@ -45,7 +45,7 @@ FactoryGirl.define do
 
   factory :hq_anonymous_answer, class: Answer do
     content				"普通用户冯庆强的答案"
-    association :user, factory: :user_2
+    association :user, factory: :user_4
     association :question, factory: :hottest_question
     agree_score		30
     oppose_score  19

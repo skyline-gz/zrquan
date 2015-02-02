@@ -54,19 +54,21 @@ class Question < ActiveRecord::Base
 
 	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
 	def sorted_answers
-    ActiveRecord::Base.connection.select_all(
-        ["select
-            a.content,
-            a.agree_score,
-            a.created_at,
-            u.name,
-            u.avatar,
-            u.latest_company_name,
-            u.latest_position,
-            u.latest_school_name,
-            u.latest_major
-          from ANSWERS a inner join users u on (a.user_id = u.id)
-          where a.question_id = ? order by a.actual_score DESC limit 10", id])
+    sql = ["select
+              a.id,
+              a.content,
+              a.agree_score,
+              a.created_at,
+              u.name,
+              u.avatar,
+              u.latest_company_name,
+              u.latest_position,
+              u.latest_school_name,
+              u.latest_major
+            from ANSWERS a inner join users u on (a.user_id = u.id)
+            where a.question_id = ? order by a.actual_score DESC limit 10", id]
+    finished_sql = ActiveRecord::Base.send(:sanitize_sql_array, sql)
+    ActiveRecord::Base.connection.select_all(finished_sql)
 	end
 
 	# 返回最佳答案
