@@ -123,7 +123,7 @@ class HomeController < ApplicationController
     if sort_type == "hot"
       order_part = "order by q2.hot desc "
     elsif sort_type == "new"
-      order_part = "order by q2.publish_date desc "
+      order_part = "order by q2.created_at desc "
     end
 
     limit_part = "limit 20"
@@ -167,7 +167,7 @@ class HomeController < ApplicationController
     if sort_type == "hot"
       order_part = "order by p2.hot desc "
     elsif sort_type == "new"
-      order_part = "order by p2.publish_date desc "
+      order_part = "order by p2.created_at desc "
     end
 
     limit_part = "limit 20"

@@ -81,7 +81,7 @@ class ActivitiesController < ApplicationController
 
     where_part = "where a.PUBLISH_DATE >= ? "
 
-    order_part = "order by a.PUBLISH_DATE DESC "
+    order_part = "order by a.created_at DESC "
 
     select_part + where_part + order_part
   end

@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :agreement do
-    association :user, factory: :normal_user_1
+    association :user, factory: :user_1
 
     factory :answer_agree do
-      association :agreeable, factory: :q1_other_answer_1
+      association :agreeable, factory: :q1_hottest_answer
     end
 
   end
