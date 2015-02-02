@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
     is_question_follow_saved = qf.save
 
     # 创建用户行为（发布问题）
-    is_activities_saved = save_activities
+    is_activities_saved = save_activities(@question.id, "Question", 1)
 
     if is_question_saved and is_question_theme_saved and
         is_question_follow_saved and is_activities_saved
@@ -176,11 +176,11 @@ class QuestionsController < ApplicationController
       is_ok
     end
 
-    def save_activities
+    def save_activities(target_id, target_type, activity_type)
       act = current_user.activities.new
-      act.target_id = @question.id
-      act.target_type = "Question"
-      act.activity_type = 1
+      act.target_id = target_id
+      act.target_type = target_type
+      act.activity_type = activity_type
       act.publish_date = DateUtils.to_yyyymmdd(Date.today)
       act.save
     end

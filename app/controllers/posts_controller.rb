@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     # 创建问题主题关联
     is_post_theme_saved = save_post_theme
     # 创建用户行为（发布问题）
-    is_activities_saved = save_activities(@post.id, "Post", 1)
+    is_activities_saved = save_activities(@post.id, "Post", 3)
 
     if is_post_saved and is_post_theme_saved and is_activities_saved
       redirect_to action: 'show', id: @post.token_id
@@ -57,8 +57,6 @@ class PostsController < ApplicationController
       )
       # 创建赞同答案的消息并发送
       MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
-      # 创建用户行为（赞同）
-      is_activities_saved = save_activities(@post.id, "Post", 5)
 
       if is_agreement_saved and is_post_updated and is_activities_saved
         render :json => { :code => ReturnCode::S_OK }

@@ -31,7 +31,7 @@ class AnswersController < ApplicationController
         MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_ANSWER_QUESTION], current_user.id, @question.id)
 
         # 创建用户行为（回答问题）
-        is_activities_saved = save_activities(@answer.id, "Answer", 2)
+        is_activities_saved = save_activities(@answer.id, "Answer", @question.id, "Question", 2)
 
         if is_answer_draft_deleted and is_question_updated and is_activities_saved
           redirect_to :controller => 'questions',:action => 'show', :id => @question.token_id
@@ -79,8 +79,6 @@ class AnswersController < ApplicationController
       )
       # 创建赞同答案的消息并发送
       MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @answer.id)
-      # 创建用户行为（赞同答案）
-      is_activities_saved = save_activities(@answer.id, "Answer", 5)
 
       if is_agreement_saved and is_answer_updated and
           is_question_updated and is_activities_saved
@@ -178,11 +176,13 @@ class AnswersController < ApplicationController
   end
 
   private
-    def save_activities(target_id, target_type, activity_type)
+    def save_activities(target_id, target_type, sub_target_id, sub_target_type, activity_type)
       act = current_user.activities.new
       act.target_id = target_id
       act.target_type = target_type
       act.activity_type = activity_type
+      act.sub_target_id = sub_target_id
+      act.sub_target_type = sub_target_type
       act.publish_date = DateUtils.to_yyyymmdd(Date.today)
       act.save
     end

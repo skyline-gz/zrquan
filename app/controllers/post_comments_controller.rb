@@ -30,7 +30,7 @@ class PostCommentsController < ApplicationController
     # 创建回答问题消息并发送
     # MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_ANSWER_QUESTION], current_user.id, @question.id)
     # 创建用户行为（回答问题）
-    is_activities_saved = save_activities(@post_comment.id, "PostComment", 2)
+    is_activities_saved = save_activities(@post_comment.id, "PostComment", @post.id, "Post", 4)
 
     if is_post_comment_saved and is_post_updated and is_activities_saved
       # TODO 成功的json
@@ -60,8 +60,6 @@ class PostCommentsController < ApplicationController
       )
       # 创建赞同答案的消息并发送
       MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
-      # 创建用户行为（赞同）
-      is_activities_saved = save_activities(@post_comment.id, "PostComment", 5)
 
       if is_agreement_saved and is_post_comment_updated and
           is_post_updated and is_activities_saved
@@ -160,11 +158,13 @@ class PostCommentsController < ApplicationController
   end
 
   private
-    def save_activities(target_id, target_type, activity_type)
+    def save_activities(target_id, target_type, sub_target_id, sub_target_type, activity_type)
       act = current_user.activities.new
       act.target_id = target_id
       act.target_type = target_type
       act.activity_type = activity_type
+      act.sub_target_id = sub_target_id
+      act.sub_target_type = sub_target_type
       act.publish_date = DateUtils.to_yyyymmdd(Date.today)
       act.save
     end

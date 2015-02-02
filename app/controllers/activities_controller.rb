@@ -21,6 +21,7 @@ class ActivitiesController < ApplicationController
     select_part =
         "select
           a.activity_type,
+          a.created_at,
           u.name,
           u.latest_company_name,
           u.latest_position,
@@ -46,30 +47,18 @@ class ActivitiesController < ApplicationController
             when 'PostComment' then p2.agree_score
           end count_2,
           case a.target_type
-            when 'Question' then q.follow_count
-            when 'Answer' then q2.follow_count
-            when 'Post' then p.agree_score
-            when 'PostComment' then p2.agree_score
-          end count_2,
-          case a.target_type
             when 'Question' then q.answer_agree
             when 'Answer' then q2.answer_agree
             when 'Post' then p.comment_agree
             when 'PostComment' then p2.comment_agree
           end 2nd_content_agree,
           case a.target_type
-            when 'Question' then q.created_at
-            when 'Answer' then an.created_at
-            when 'Post' then p.created_at
-            when 'PostComment' then pc.created_at
-          end created_at,
-          case a.target_type
             when 'Question' then null
             when 'Answer' then q2.title
             when 'Post' then null
             when 'PostComment' then p2.content
           end sub_content
-          from ACTIVITIES a force index(index_activities_on_user_id_and_publish_date)
+          from ACTIVITIES a
           inner join RELATIONSHIPS r on (r.FOLLOWER_ID = ? and a.USER_ID = r.FOLLOWING_USER_ID)
           inner join USERS u on (r.FOLLOWING_USER_ID = u.id)
           left join questions q on (a.target_id = q.id and a.target_type = 'Question' and q.anonymous_flag = 0)
