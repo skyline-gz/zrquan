@@ -84,6 +84,7 @@ class Question < ActiveRecord::Base
   def sorted_comments
     finished_sql = SqlUtils.escape_sql(
         "select
+          c.id,
           c.content,
           c.created_at,
           u.name,
