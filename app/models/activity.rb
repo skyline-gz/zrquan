@@ -6,11 +6,11 @@ class Activity < ActiveRecord::Base
   belongs_to :theme
 
   def self.sufficient_days
-    result = ActiveRecord::Base.connection.select_all(
-        ["select min(recent_days) as recent_days
-          from following_act_stats fas
-          where fas.user_id = ? and fas.following_act_count >= ?", current_user.id, 500]
-    )
+    finished_sql = SqlUtils.escape_sql(
+        "select min(recent_days) as recent_days
+        from following_act_stats fas
+        where fas.user_id = ? and fas.following_act_count >= ?", current_user.id, 500)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["recent_days"]
   end
 

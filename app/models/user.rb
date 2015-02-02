@@ -156,68 +156,74 @@ class User < ActiveRecord::Base
   end
 
   def answer_ag
-    result = ActiveRecord::Base.connection.select_all(
-        ["select 'a' as type, count(an.id) as num
-          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
-          where
-            op.opposable_type = 'Answer' and
-            an.anonymous_flag = 0 and
-            an.user_id = ?", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select 'a' as type, count(an.id) as num
+        from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+        where
+          op.opposable_type = 'Answer' and
+          an.anonymous_flag = 0 and
+          an.user_id = ?", id)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_ag
-    result = ActiveRecord::Base.connection.select_all(
-        ["select 'p' as type, count(po.id) as num
-          from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
-          where
-            ag.agreeable_type = 'Post' and
-            po.anonymous_flag = 0 and
-            po.user_id = ?", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select 'p' as type, count(po.id) as num
+        from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
+        where
+          ag.agreeable_type = 'Post' and
+          po.anonymous_flag = 0 and
+          po.user_id = ?", id)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_comment_ag
-    result = ActiveRecord::Base.connection.select_all(
-        ["select 'a' as type, count(an.id) as num
-          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
-          where
-            op.opposable_type = 'Answer' and
-            an.anonymous_flag = 0 and
-            an.user_id = ?", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select 'a' as type, count(an.id) as num
+        from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+        where
+          op.opposable_type = 'Answer' and
+          an.anonymous_flag = 0 and
+          an.user_id = ?", id)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def answer_op
-    result = ActiveRecord::Base.connection.select_all(
-        ["select 'a' as type, count(an.id) as num
-          from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
-          where
-            op.opposable_type = 'Answer' and
-            an.anonymous_flag = 0 and
-            an.user_id = ?", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select 'a' as type, count(an.id) as num
+        from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+        where
+          op.opposable_type = 'Answer' and
+          an.anonymous_flag = 0 and
+          an.user_id = ?", id)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_op
-    result = ActiveRecord::Base.connection.select_all(
-        ["select 'p' as type, count(po.id) as num
-          from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
-          where
-            op.opposable_type = 'Post' and
-            po.anonymous_flag = 0 and
-            po.user_id = ?", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select 'p' as type, count(po.id) as num
+        from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
+        where
+          op.opposable_type = 'Post' and
+          po.anonymous_flag = 0 and
+          po.user_id = ?", id)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_comment_op
-    result = ActiveRecord::Base.connection.select_all(
-        ["select 'c' as type, count(co.id) as num
-          from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
-          where
-            op.opposable_type = 'PostComment' and
-            co.anonymous_flag = 0 and
-            co.user_id = ?", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select 'c' as type, count(co.id) as num
+        from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
+        where
+          op.opposable_type = 'PostComment' and
+          co.anonymous_flag = 0 and
+          co.user_id = ?", id)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
@@ -234,45 +240,47 @@ class User < ActiveRecord::Base
   end
 
   def bookmarked_questions
-    ActiveRecord::Base.connection.select_all(
-        ["select
-            q.title,
-            q.created_at,
-            q.answer_count,
-            q.follow_count,
-            q.answer_agree,
-            u.name,
-            u.avatar,
-            u.latest_company_name,
-            u.latest_position,
-            u.latest_school_name,
-            u.latest_major
-          from
-            bookmarks bm
-            inner join questions q on (bm.bookmarkable_id = q.id and bm.bookmarkable_type = 'Question')
-            inner join users u on (q.user_id = u.id)
-          where bm.user_id = ? order by bm.created_at", current_user.id])
+    finished_sql = SqlUtils.escape_sql(
+        "select
+          q.title,
+          q.created_at,
+          q.answer_count,
+          q.follow_count,
+          q.answer_agree,
+          u.name,
+          u.avatar,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major
+        from
+          bookmarks bm
+          inner join questions q on (bm.bookmarkable_id = q.id and bm.bookmarkable_type = 'Question')
+          inner join users u on (q.user_id = u.id)
+        where bm.user_id = ? order by bm.created_at", current_user.id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def bookmarked_posts
-    ActiveRecord::Base.connection.select_all(
-        ["select
-            p.content,
-            p.created_at,
-            p.comment_count,
-            p.agree_score,
-            p.comment_agree,
-            u.name,
-            u.avatar,
-            u.latest_company_name,
-            u.latest_position,
-            u.latest_school_name,
-            u.latest_major
-          from
-            bookmarks bm
-            inner join posts p on (bm.bookmarkable_id = p.id and bm.bookmarkable_type = 'Post')
-            inner join users u on (p.user_id = u.id)
-          where bm.user_id = ? order by bm.created_at", current_user.id])
+    finished_sql = SqlUtils.escape_sql(
+        "select
+          p.content,
+          p.created_at,
+          p.comment_count,
+          p.agree_score,
+          p.comment_agree,
+          u.name,
+          u.avatar,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major
+        from
+          bookmarks bm
+          inner join posts p on (bm.bookmarkable_id = p.id and bm.bookmarkable_type = 'Post')
+          inner join users u on (p.user_id = u.id)
+        where bm.user_id = ? order by bm.created_at", current_user.id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def bookmarked_question?(question)

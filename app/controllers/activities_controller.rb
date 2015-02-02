@@ -2,17 +2,17 @@ require "date_utils.rb"
 
 class ActivitiesController < ApplicationController
   def list
-    sql = make_sql   # TODO param from android side
+    # TODO param from android side
     sufficient_days = Activity.sufficient_days
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(make_sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     else
       # 默认值为最近3个月的动态
       recent = DateUtils.to_yyyymmdd(90.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(make_sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     end
   end
 

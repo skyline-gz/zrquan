@@ -11,27 +11,29 @@ class Post < ActiveRecord::Base
   validates :content, length: {in: 1..140}
 
   def self.sufficient_days
-    result = ActiveRecord::Base.connection.select_all(
-        ["select min(recent_days) as recent_days
-          from post_stats ps
-          where ps.user_id = ? and ps.following_act_count >= ?", current_user.id, 500]
+    finished_sql = SqlUtils.escape_sql(
+        "select min(recent_days) as recent_days
+        from post_stats ps
+        where ps.user_id = ? and ps.following_act_count >= ?", current_user.id, 500
     )
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["recent_days"]
   end
 
   def detail
-    ActiveRecord::Base.connection.select_all(
-        ["select
-            p.content,
-            p.created_at,
-            u.name,
-            u.avatar,
-            u.latest_company_name,
-            u.latest_position,
-            u.latest_school_name,
-            u.latest_major
-          from posts p inner join users u on (p.user_id = u.id)
-          where p.id = ?", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select
+          p.content,
+          p.created_at,
+          u.name,
+          u.avatar,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major
+        from posts p inner join users u on (p.user_id = u.id)
+        where p.id = ?", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def hottest_comment
@@ -39,16 +41,18 @@ class Post < ActiveRecord::Base
   end
 
   def hot_comments
-    ActiveRecord::Base.connection.select_all(
-        ["select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
-          from post_comments pc inner join users u on (pc.user_id = u.id)
-          where pc.post_id = ? order by pc.actual_score DESC limit 10", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
+        from post_comments pc inner join users u on (pc.user_id = u.id)
+        where pc.post_id = ? order by pc.actual_score DESC limit 10", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def all_comments
-    ActiveRecord::Base.connection.select_all(
-        ["select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
-          from post_comments pc inner join users u on (pc.user_id = u.id)
-          where pc.post_id = ? order by pc.created_at DESC", id])
+    finished_sql = SqlUtils.escape_sql(
+        "select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
+        from post_comments pc inner join users u on (pc.user_id = u.id)
+        where pc.post_id = ? order by pc.created_at DESC", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
   end
 end

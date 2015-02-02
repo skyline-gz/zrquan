@@ -12,13 +12,13 @@ class HomeController < ApplicationController
     sufficient_days = Post.sufficient_days
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     else
       # 默认值为最近3个月的动态
       recent = DateUtils.to_yyyymmdd(90.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     end
   end
 
@@ -27,13 +27,13 @@ class HomeController < ApplicationController
     sufficient_days = Post.sufficient_days
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     else
       # 默认值为最近3个月的动态
       recent = DateUtils.to_yyyymmdd(90.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     end
   end
 
@@ -42,13 +42,13 @@ class HomeController < ApplicationController
     sufficient_days = Question.sufficient_days
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     else
       # 默认值为最近3个月的动态
       recent = DateUtils.to_yyyymmdd(90.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     end
   end
 
@@ -57,13 +57,13 @@ class HomeController < ApplicationController
     sufficient_days = Question.sufficient_days
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     else
       # 默认值为最近3个月的动态
       recent = DateUtils.to_yyyymmdd(90.days.ago)
-      ActiveRecord::Base.connection.select_all(
-          [sql, current_user.id, recent])
+      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
+      ActiveRecord::Base.connection.select_all(finished_sql)
     end
   end
 
