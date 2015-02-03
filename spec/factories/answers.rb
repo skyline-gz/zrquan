@@ -65,4 +65,15 @@ FactoryGirl.define do
     created_at    Time.new(2015,1,20)
   end
 
+  factory :hq_normal_answer_1, class: Answer do
+    content				"普通用户冯庆强的答案"
+    association :user, factory: :user_3
+    association :question, factory: :hottest_question
+    agree_score		40
+    oppose_score  9
+    actual_score  31
+    anonymous_flag  false
+    created_at    Time.new(2015,1,20)
+  end
+
 end

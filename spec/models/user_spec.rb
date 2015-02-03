@@ -138,7 +138,6 @@ RSpec.describe User, :type => :model do
     end
   end
 
-
   context "bookmarks" do
     let (:user1) {FactoryGirl.create(:user_1)}
     let (:oq) {FactoryGirl.create(:oldest_question, :user=>user1)}
@@ -170,6 +169,80 @@ RSpec.describe User, :type => :model do
       expect(bm_p[0]["id"]).to eq(new_bookmark_1st.id)
       expect(bm_p[1]["id"]).to eq(new_bookmark_2nd.id)
       expect(bm_p[2]["id"]).to eq(new_bookmark_3rd.id)
+    end
+  end
+
+  context "identity" do
+    let (:user1) {FactoryGirl.create(:user_1)}
+    let (:user2) {FactoryGirl.create(:user_2)}
+
+    context "post identity" do
+
+      it "should be 'real' if all post and comments are created by real" do
+        post1 = FactoryGirl.create(:post_1, :user=>user1)
+        FactoryGirl.create(:post_comment_1, :post=>post1, :user=>user1)
+        FactoryGirl.create(:post_comment_5, :post=>post1, :user=>user1)
+
+        expect(user1.post_identity(post1)).to eq("real")
+      end
+
+      it "should be 'none' if the user doesn't write the post and any comment" do
+        post2 = FactoryGirl.create(:post_2, :user=>user2)
+        FactoryGirl.create(:post_comment_6, :post=>post2)
+        FactoryGirl.create(:post_comment_7, :post=>post2)
+
+        expect(user1.post_identity(post2)).to eq("none")
+      end
+
+      it "should be 'anonymous' if the user write the post anonymously" do
+        post4 = FactoryGirl.create(:post_4, :user=>user1)
+
+        expect(user1.post_identity(post4)).to eq("anonymous")
+      end
+
+      it "should be 'anonymous' if the user write the post comment anonymously" do
+        post2 = FactoryGirl.create(:post_2, :user=>user2)
+        FactoryGirl.create(:post_comment_8, :post=>post2, :user=>user1)
+
+        expect(user1.post_identity(post2)).to eq("anonymous")
+      end
+    end
+
+    context "question identity" do
+
+      it "should be 'real' if all question are created by real name" do
+        question = FactoryGirl.create(:oldest_question, :user=>user1)
+
+        expect(user1.question_identity(question)).to eq("real")
+      end
+
+      it "should be 'real' if all answer are created by real name" do
+        question = FactoryGirl.create(:hottest_question, :user=>user2)
+        FactoryGirl.create(:hq_real_name_answer, :question=>question, :user=>user1)
+
+        expect(user1.question_identity(question)).to eq("real")
+      end
+
+      it "should be 'none' if the user doesn't write the question or answer" do
+        question = FactoryGirl.create(:hottest_question, :user=>user2)
+        FactoryGirl.create(:hq_normal_answer_1, :question=>question)
+
+        expect(user1.question_identity(question)).to eq("none")
+      end
+
+      it "should be 'anonymous' if the user write the question anonymously" do
+        question = FactoryGirl.create(:anonymous_question, :user=>user1)
+
+        expect(user1.question_identity(question)).to eq("anonymous")
+      end
+
+      it "should be 'anonymous' if the user write the answer anonymously" do
+        question = FactoryGirl.create(:hottest_question, :user=>user2)
+        FactoryGirl.create(:hq_anonymous_answer, :question=>question, :user=>user1)
+
+        expect(user1.question_identity(question)).to eq("anonymous")
+      end
+
     end
   end
 

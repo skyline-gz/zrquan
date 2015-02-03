@@ -27,8 +27,8 @@ FactoryGirl.define do
     verified_flag   true
   end
 
-  factory :v_user_3, class: User do
-    email   		  "gao.yuanyuan@zrquan.com"
+  factory :user_5, class: User do
+    mobile   		  "15481345115"
     name  	      "高圆圆"
     password	    "12345678"
     verified_flag   true

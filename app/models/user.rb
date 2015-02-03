@@ -117,8 +117,8 @@ class User < ActiveRecord::Base
   # 于某问题上下文环境身份
   def question_identity(question)
     identity = "none"
-    q = Question.where(user_id:id, id:question.id)
-    if q.count > 0
+    q = Question.find_by(user_id:id, id:question.id)
+    if q != nil
       identity = q.anonymous_flag ? "anonymous" : "real"
     else
       answers = Answer.where(user_id:id, question_id:question.id)
@@ -137,8 +137,8 @@ class User < ActiveRecord::Base
 
   def post_identity(post)
     identity = "none"
-    p = Post.where(user_id:id, id:post.id)
-    if p.count > 0
+    p = Post.find_by(user_id:id, id:post.id)
+    if p != nil
       identity = p.anonymous_flag ? "anonymous" : "real"
     else
       post_comments = PostComment.where(user_id:id, post_id:post.id)

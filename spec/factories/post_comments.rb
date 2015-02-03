@@ -56,4 +56,37 @@ FactoryGirl.define do
     created_at      Time.new(2015,1,1)
   end
 
+  factory :post_comment_6, class: PostComment  do
+    content "评论呀呀呀呀"
+    agree_score 28
+    oppose_score 18
+    actual_score 20
+    anonymous_flag false
+    association :post, factory: :post_2
+    association :user, factory: :user_3
+    created_at      Time.new(2015,1,1)
+  end
+
+  factory :post_comment_7, class: PostComment  do
+    content "评论呀呀呀呀"
+    agree_score 28
+    oppose_score 18
+    actual_score 20
+    anonymous_flag false
+    association :post, factory: :post_2
+    association :user, factory: :user_5
+    created_at      Time.new(2015,1,1)
+  end
+
+  factory :post_comment_8, class: PostComment  do
+    content "评论呀呀呀呀"
+    agree_score 28
+    oppose_score 18
+    actual_score 20
+    anonymous_flag true
+    association :post, factory: :post_2
+    association :user, factory: :user_1
+    created_at      Time.new(2015,1,1)
+  end
+
 end

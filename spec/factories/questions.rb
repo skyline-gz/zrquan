@@ -12,7 +12,7 @@ FactoryGirl.define do
   factory :hottest_question, class: Question do
     title   	      "这是最热的问题吧？"
     content  	      "如题"
-    anonymous_flag  false
+    anonymous_flag  true
     association :user, factory: :user_2
     hot             10.124
     publish_date    20150102
