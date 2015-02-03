@@ -52,7 +52,9 @@ class Ability
     def normal_user_abilities(user)
 			# general 
       user_related_abilities(user)
-			
+
+      # questions
+      question_abilities(user)
       # answer
       answer_abilities(user)
       # post
