@@ -28,4 +28,22 @@ FactoryGirl.define do
     association :user, factory: :user_3
   end
 
+  factory :post_4, class: Post do
+    content "轻讨论44"
+    agree_score 18
+    oppose_score 8
+    actual_score 10
+    anonymous_flag true
+    association :user, factory: :user_1
+  end
+
+  factory :post_5, class: Post do
+    content "轻讨论55"
+    agree_score 12
+    oppose_score 5
+    actual_score 7
+    anonymous_flag false
+    association :user, factory: :user_1
+  end
+
 end

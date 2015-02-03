@@ -45,12 +45,23 @@ FactoryGirl.define do
 
   factory :hq_anonymous_answer, class: Answer do
     content				"普通用户冯庆强的答案"
-    association :user, factory: :user_4
+    association :user, factory: :user_1
     association :question, factory: :hottest_question
-    agree_score		30
-    oppose_score  19
-    actual_score  11
+    agree_score		40
+    oppose_score  9
+    actual_score  31
     anonymous_flag  true
+    created_at    Time.new(2015,1,20)
+  end
+
+  factory :rq_anonymous_answer, class: Answer do
+    content				"普通用户冯庆强的答案"
+    association :user, factory: :user_1
+    association :question, factory: :real_name_question
+    agree_score		50
+    oppose_score  19
+    actual_score  31
+    anonymous_flag  false
     created_at    Time.new(2015,1,20)
   end
 

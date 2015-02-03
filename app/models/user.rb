@@ -157,10 +157,9 @@ class User < ActiveRecord::Base
 
   def answer_ag
     finished_sql = SqlUtils.escape_sql(
-        "select count(an.id) as num
-        from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
+        "select sum(an.agree_score) as num
+        from ANSWERS an
         where
-          ag.agreeable_type = 'Answer' and
           an.user_id = ? and
           an.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
@@ -169,10 +168,9 @@ class User < ActiveRecord::Base
 
   def post_ag
     finished_sql = SqlUtils.escape_sql(
-        "select count(po.id) as num
-        from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
+        "select sum(po.agree_score) as num
+        from POSTS po
         where
-          ag.agreeable_type = 'Post' and
           po.user_id = ? and
           po.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
@@ -181,10 +179,9 @@ class User < ActiveRecord::Base
 
   def post_comment_ag
     finished_sql = SqlUtils.escape_sql(
-        "select count(pc.id) as num
-        from AGREEMENTS ag inner join POST_COMMENTS pc on ag.agreeable_id = pc.id
+        "select sum(pc.agree_score) as num
+        from POST_COMMENTS pc
         where
-          ag.agreeable_type = 'PostComment' and
           pc.user_id = ? and
           pc.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
@@ -193,10 +190,9 @@ class User < ActiveRecord::Base
 
   def answer_op
     finished_sql = SqlUtils.escape_sql(
-        "select count(an.id) as num
-        from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+        "select sum(an.oppose_score) as num
+        from ANSWERS an
         where
-          op.opposable_type = 'Answer' and
           an.user_id = ? and
           an.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
@@ -205,10 +201,9 @@ class User < ActiveRecord::Base
 
   def post_op
     finished_sql = SqlUtils.escape_sql(
-        "select count(po.id) as num
-        from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
+        "select sum(po.oppose_score) as num
+        from POSTS po
         where
-          op.opposable_type = 'Post' and
           po.user_id = ? and
           po.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
@@ -217,10 +212,9 @@ class User < ActiveRecord::Base
 
   def post_comment_op
     finished_sql = SqlUtils.escape_sql(
-        "select count(co.id) as num
-        from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
+        "select sum(co.oppose_score) as num
+        from POST_COMMENTS co
         where
-          op.opposable_type = 'PostComment' and
           co.user_id = ? and
           co.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
