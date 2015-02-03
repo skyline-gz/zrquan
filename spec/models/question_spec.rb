@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Question, :type => :model do
 	context "with more than 2 answers" do
-    let (:question) {FactoryGirl.create(:newest_question)}
     let (:user1) {FactoryGirl.create(:user_1)}
     let (:user2) {FactoryGirl.create(:user_2)}
+    let (:question) {FactoryGirl.create(:newest_question, :user=>user1)}
 
     it "multiple answers should sorted by agree scores desc" do
       hottest_an = FactoryGirl.create(:nq_hottest_answer, :question=>question)

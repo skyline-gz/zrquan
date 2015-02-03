@@ -43,6 +43,7 @@ class Post < ActiveRecord::Base
   def hot_comments
     finished_sql = SqlUtils.escape_sql(
         "select
+          pc.id,
           pc.content,
           pc.agree_score,
           pc.created_at,
@@ -63,6 +64,7 @@ class Post < ActiveRecord::Base
   def all_comments
     finished_sql = SqlUtils.escape_sql(
         "select
+          pc.id,
           pc.content,
           pc.agree_score,
           pc.created_at,
@@ -74,7 +76,7 @@ class Post < ActiveRecord::Base
           inner join users u on (pc.user_id = u.id)
           left join post_comments rp on (pc.replied_comment_id = rp.id)
           left join users rpu on (rp.user_id = rpu.id)
-        where pc.post_id = 10
+        where pc.post_id = ?
         order by pc.created_at DESC", id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
