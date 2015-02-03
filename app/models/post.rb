@@ -42,17 +42,40 @@ class Post < ActiveRecord::Base
 
   def hot_comments
     finished_sql = SqlUtils.escape_sql(
-        "select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
-        from post_comments pc inner join users u on (pc.user_id = u.id)
-        where pc.post_id = ? order by pc.actual_score DESC limit 10", id)
+        "select
+          pc.content,
+          pc.agree_score,
+          pc.created_at,
+          u.name as comment_user_name,
+          u.avatar,
+          rpu.name as replied_user_name
+        from
+          post_comments pc
+          inner join users u on (pc.user_id = u.id)
+          left join post_comments rp on (pc.replied_comment_id = rp.id)
+          left join users rpu on (rp.user_id = rpu.id)
+        where pc.post_id = ?
+        order by pc.actual_score DESC
+        limit 10", id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def all_comments
     finished_sql = SqlUtils.escape_sql(
-        "select pc.content, pc.agree_score, pc.created_at, u.name, u.avatar
-        from post_comments pc inner join users u on (pc.user_id = u.id)
-        where pc.post_id = ? order by pc.created_at DESC", id)
+        "select
+          pc.content,
+          pc.agree_score,
+          pc.created_at,
+          u.name as comment_user_name,
+          u.avatar,
+          rpu.name as replied_user_name
+        from
+          post_comments pc
+          inner join users u on (pc.user_id = u.id)
+          left join post_comments rp on (pc.replied_comment_id = rp.id)
+          left join users rpu on (rp.user_id = rpu.id)
+        where pc.post_id = 10
+        order by pc.created_at DESC", id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 end
