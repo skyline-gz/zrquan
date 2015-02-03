@@ -236,6 +236,7 @@ class User < ActiveRecord::Base
   def bookmarked_questions
     finished_sql = SqlUtils.escape_sql(
         "select
+          bm.id,
           q.title,
           q.created_at,
           q.answer_count,
@@ -252,13 +253,14 @@ class User < ActiveRecord::Base
           inner join questions q on (bm.bookmarkable_id = q.id and bm.bookmarkable_type = 'Question')
           inner join users u on (q.user_id = u.id)
         where bm.user_id = ?
-        order by bm.created_at", current_user.id)
+        order by bm.created_at desc", id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def bookmarked_posts
     finished_sql = SqlUtils.escape_sql(
         "select
+          bm.id,
           p.content,
           p.created_at,
           p.comment_count,
@@ -275,7 +277,7 @@ class User < ActiveRecord::Base
           inner join posts p on (bm.bookmarkable_id = p.id and bm.bookmarkable_type = 'Post')
           inner join users u on (p.user_id = u.id)
         where bm.user_id = ?
-        order by bm.created_at", current_user.id)
+        order by bm.created_at desc", id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 

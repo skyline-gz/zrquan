@@ -2,11 +2,12 @@
 
 FactoryGirl.define do
   factory :post_1, class: Post do
-    content "轻讨论1111"
-    agree_score 15
-    oppose_score 2
-    actual_score 13
-    anonymous_flag false
+    content         "轻讨论1111"
+    agree_score     15
+    oppose_score    2
+    actual_score    13
+    anonymous_flag  false
+    created_at      Time.new(2015,1,13)
     association :user, factory: :user_1
   end
 
@@ -16,6 +17,7 @@ FactoryGirl.define do
     oppose_score 2
     actual_score 16
     anonymous_flag false
+    created_at      Time.new(2015,1,15)
     association :user, factory: :user_2
   end
 
@@ -25,6 +27,7 @@ FactoryGirl.define do
     oppose_score 8
     actual_score 3
     anonymous_flag true
+    created_at      Time.new(2015,1,16)
     association :user, factory: :user_3
   end
 
@@ -34,6 +37,7 @@ FactoryGirl.define do
     oppose_score 8
     actual_score 10
     anonymous_flag true
+    created_at      Time.new(2015,1,17)
     association :user, factory: :user_1
   end
 
@@ -43,6 +47,7 @@ FactoryGirl.define do
     oppose_score 5
     actual_score 7
     anonymous_flag false
+    created_at      Time.new(2015,2,1)
     association :user, factory: :user_1
   end
 

@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :nq_real_name_answer, class: Answer do
 		content				"最佳的答案啊啊啊啊"
     association :user, factory: :user_2
-    association :question, factory: :newest_question
+    association :question, factory: :oldest_question
 		agree_score		30
     oppose_score  10
     actual_score  20
@@ -13,7 +13,7 @@ FactoryGirl.define do
   factory :nq_hottest_answer, class: Answer do
 		content				"普通用户冯庆强的答案"
     association :user, factory: :user_4
-    association :question, factory: :newest_question
+    association :question, factory: :oldest_question
 		agree_score		30
     oppose_score  8
     actual_score  22
@@ -24,7 +24,7 @@ FactoryGirl.define do
   factory :nq_newest_answer, class: Answer do
 		content				"普通用户冯庆强的答案"
     association :user, factory: :user_3
-    association :question, factory: :newest_question
+    association :question, factory: :oldest_question
 		agree_score		30
     oppose_score  20
     actual_score  10

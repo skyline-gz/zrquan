@@ -18,7 +18,7 @@ RSpec.describe Ability, :type => :model do
     let (:me) { FactoryGirl.create(:user_1) }
     let (:another_user) { FactoryGirl.create(:user_2) }
     let (:question) { FactoryGirl.create(:hottest_question, :user=>another_user) }
-    let (:my_question) { FactoryGirl.create(:newest_question, :user=>me) }
+    let (:my_question) { FactoryGirl.create(:oldest_question, :user=>me) }
     let (:my_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>me) }
     let (:another_user_msg_setting) { FactoryGirl.create(:user_msg_setting, :user=>another_user) }
     let (:ability) { Ability.new(me) }

@@ -136,7 +136,41 @@ RSpec.describe User, :type => :model do
       FactoryGirl.create(:post_comment_5, :post=>post1, :user=>user1)
       expect(user1.reputation).to eq(475)
     end
+  end
 
+
+  context "bookmarks" do
+    let (:user1) {FactoryGirl.create(:user_1)}
+    let (:oq) {FactoryGirl.create(:oldest_question, :user=>user1)}
+    let (:hq) {FactoryGirl.create(:hottest_question, :user=>user1)}
+    let (:aq) {FactoryGirl.create(:anonymous_question, :user=>user1)}
+    let (:p1) {FactoryGirl.create(:post_1, :user=>user1)}
+    let (:p4) {FactoryGirl.create(:post_4, :user=>user1)}
+    let (:p5) {FactoryGirl.create(:post_5, :user=>user1)}
+
+    it "should order bookmark question by create time desc " do
+      new_bookmark_3rd = FactoryGirl.create(:bookmark_q1, :bookmarkable=>oq, :user=>user1)
+      new_bookmark_1st = FactoryGirl.create(:bookmark_q2, :bookmarkable=>hq, :user=>user1)
+      new_bookmark_2nd = FactoryGirl.create(:bookmark_q3, :bookmarkable=>aq, :user=>user1)
+
+      bm_q = user1.bookmarked_questions
+
+      expect(bm_q[0]["id"]).to eq(new_bookmark_1st.id)
+      expect(bm_q[1]["id"]).to eq(new_bookmark_2nd.id)
+      expect(bm_q[2]["id"]).to eq(new_bookmark_3rd.id)
+    end
+
+    it "should order bookmark post by create time desc " do
+      new_bookmark_3rd = FactoryGirl.create(:bookmark_p1, :bookmarkable=>p1, :user=>user1)
+      new_bookmark_2nd = FactoryGirl.create(:bookmark_p2, :bookmarkable=>p4, :user=>user1)
+      new_bookmark_1st = FactoryGirl.create(:bookmark_p3, :bookmarkable=>p5, :user=>user1)
+
+      bm_p = user1.bookmarked_posts
+
+      expect(bm_p[0]["id"]).to eq(new_bookmark_1st.id)
+      expect(bm_p[1]["id"]).to eq(new_bookmark_2nd.id)
+      expect(bm_p[2]["id"]).to eq(new_bookmark_3rd.id)
+    end
   end
 
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :newest_question, class: Question do
+  factory :oldest_question, class: Question do
     title   	      "这是最新的问题吧？"
     content  	      "如题"
     anonymous_flag  false
