@@ -21,7 +21,7 @@ class CreateQuestions < ActiveRecord::Migration
     end
 
     add_index :questions, :token_id, unique: true
-    add_index :questions, :hot
-    add_index :questions, [:user_id, :publish_date]
+    #add_index :questions, [:user_id, :publish_date]
+    add_index :questions, [:user_id, :anonymous_flag]
   end
 end

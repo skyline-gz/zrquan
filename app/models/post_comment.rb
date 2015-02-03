@@ -7,8 +7,4 @@ class PostComment < ActiveRecord::Base
 
   validates :content, presence: true, on: :create
   validates :content, length: {in: 1..140}
-
-  def actual_score
-    agree_score - oppose_score
-  end
 end

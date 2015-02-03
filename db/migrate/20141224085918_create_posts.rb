@@ -19,8 +19,8 @@ class CreatePosts < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :posts, :hot
-    add_index :posts, [:user_id, :publish_date]
+    #add_index :posts, [:user_id, :publish_date]
+    add_index :posts, [:user_id, :anonymous_flag]
 
   end
 end

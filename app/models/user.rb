@@ -157,72 +157,72 @@ class User < ActiveRecord::Base
 
   def answer_ag
     finished_sql = SqlUtils.escape_sql(
-        "select 'a' as type, count(an.id) as num
-        from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+        "select count(an.id) as num
+        from AGREEMENTS ag inner join ANSWERS an on ag.agreeable_id = an.id
         where
-          op.opposable_type = 'Answer' and
-          an.anonymous_flag = 0 and
-          an.user_id = ?", id)
+          ag.agreeable_type = 'Answer' and
+          an.user_id = ? and
+          an.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_ag
     finished_sql = SqlUtils.escape_sql(
-        "select 'p' as type, count(po.id) as num
+        "select count(po.id) as num
         from AGREEMENTS ag inner join POSTS po on ag.agreeable_id = po.id
         where
           ag.agreeable_type = 'Post' and
-          po.anonymous_flag = 0 and
-          po.user_id = ?", id)
+          po.user_id = ? and
+          po.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_comment_ag
     finished_sql = SqlUtils.escape_sql(
-        "select 'a' as type, count(an.id) as num
-        from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
+        "select count(pc.id) as num
+        from AGREEMENTS ag inner join POST_COMMENTS pc on ag.agreeable_id = pc.id
         where
-          op.opposable_type = 'Answer' and
-          an.anonymous_flag = 0 and
-          an.user_id = ?", id)
+          ag.agreeable_type = 'PostComment' and
+          pc.user_id = ? and
+          pc.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def answer_op
     finished_sql = SqlUtils.escape_sql(
-        "select 'a' as type, count(an.id) as num
+        "select count(an.id) as num
         from OPPOSITIONS op inner join ANSWERS an on op.opposable_id = an.id
         where
           op.opposable_type = 'Answer' and
-          an.anonymous_flag = 0 and
-          an.user_id = ?", id)
+          an.user_id = ? and
+          an.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_op
     finished_sql = SqlUtils.escape_sql(
-        "select 'p' as type, count(po.id) as num
+        "select count(po.id) as num
         from OPPOSITIONS op inner join POSTS po on op.opposable_id = po.id
         where
           op.opposable_type = 'Post' and
-          po.anonymous_flag = 0 and
-          po.user_id = ?", id)
+          po.user_id = ? and
+          po.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_comment_op
     finished_sql = SqlUtils.escape_sql(
-        "select 'c' as type, count(co.id) as num
+        "select count(co.id) as num
         from OPPOSITIONS op inner join POST_COMMENTS co on op.opposable_id = co.id
         where
           op.opposable_type = 'PostComment' and
-          co.anonymous_flag = 0 and
-          co.user_id = ?", id)
+          co.user_id = ? and
+          co.anonymous_flag = 0", id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
@@ -257,7 +257,8 @@ class User < ActiveRecord::Base
           bookmarks bm
           inner join questions q on (bm.bookmarkable_id = q.id and bm.bookmarkable_type = 'Question')
           inner join users u on (q.user_id = u.id)
-        where bm.user_id = ? order by bm.created_at", current_user.id)
+        where bm.user_id = ?
+        order by bm.created_at", current_user.id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
@@ -279,7 +280,8 @@ class User < ActiveRecord::Base
           bookmarks bm
           inner join posts p on (bm.bookmarkable_id = p.id and bm.bookmarkable_type = 'Post')
           inner join users u on (p.user_id = u.id)
-        where bm.user_id = ? order by bm.created_at", current_user.id)
+        where bm.user_id = ?
+        order by bm.created_at", current_user.id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 

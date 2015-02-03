@@ -7,7 +7,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :oppose_score, default: 0
       t.integer :actual_score, default: 0
       t.boolean :anonymous_flag, default: false
-      t.references :user, index: true
+      t.references :user      # 不设index,用下面的组合索引代替
       t.references :question  # 不设index,用下面的组合索引代替
       t.timestamp :edited_at
 
@@ -16,5 +16,6 @@ class CreateAnswers < ActiveRecord::Migration
 
     add_index :answers, :token_id, unique: true
     add_index :answers, [:question_id, :actual_score]
+    add_index :answers, [:user_id, :anonymous_flag]
   end
 end

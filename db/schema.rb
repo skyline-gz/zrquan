@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
 
   add_index "answers", ["question_id", "actual_score"], name: "index_answers_on_question_id_and_actual_score", using: :btree
   add_index "answers", ["token_id"], name: "index_answers_on_token_id", unique: true, using: :btree
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+  add_index "answers", ["user_id", "anonymous_flag"], name: "index_answers_on_user_id_and_anonymous_flag", using: :btree
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id"
@@ -269,7 +269,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "post_comments", ["post_id", "actual_score"], name: "index_post_comments_on_post_id_and_actual_score", using: :btree
   add_index "post_comments", ["post_id", "created_at"], name: "index_post_comments_on_post_id_and_created_at", using: :btree
   add_index "post_comments", ["replied_comment_id"], name: "index_post_comments_on_replied_comment_id", using: :btree
-  add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id", using: :btree
+  add_index "post_comments", ["user_id", "anonymous_flag"], name: "index_post_comments_on_user_id_and_anonymous_flag", using: :btree
 
   create_table "post_stats", force: true do |t|
     t.integer "post_count"
@@ -308,8 +308,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.datetime "updated_at"
   end
 
-  add_index "posts", ["hot"], name: "index_posts_on_hot", using: :btree
-  add_index "posts", ["user_id", "publish_date"], name: "index_posts_on_user_id_and_publish_date", using: :btree
+  add_index "posts", ["user_id", "anonymous_flag"], name: "index_posts_on_user_id_and_anonymous_flag", using: :btree
 
   create_table "private_messages", force: true do |t|
     t.text     "content"
@@ -372,10 +371,9 @@ ActiveRecord::Schema.define(version: 20150128123344) do
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["hot"], name: "index_questions_on_hot", using: :btree
   add_index "questions", ["latest_answer_id"], name: "index_questions_on_latest_answer_id", using: :btree
   add_index "questions", ["token_id"], name: "index_questions_on_token_id", unique: true, using: :btree
-  add_index "questions", ["user_id", "publish_date"], name: "index_questions_on_user_id_and_publish_date", using: :btree
+  add_index "questions", ["user_id", "anonymous_flag"], name: "index_questions_on_user_id_and_anonymous_flag", using: :btree
 
   create_table "recommend_users", force: true do |t|
     t.integer  "user_id"
