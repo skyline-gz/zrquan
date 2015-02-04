@@ -1,4 +1,6 @@
 require "date_utils.rb"
+require 'sql_utils'
+require 'activity_sql'
 
 class Activity < ActiveRecord::Base
   belongs_to :user
@@ -6,10 +8,7 @@ class Activity < ActiveRecord::Base
   belongs_to :theme
 
   def self.sufficient_days
-    finished_sql = SqlUtils.escape_sql(
-        "select min(recent_days) as recent_days
-        from following_act_stats fas
-        where fas.user_id = ? and fas.following_act_count >= ?", current_user.id, 500)
+    finished_sql = SqlUtils.escape_sql(ActivitySql::SUFFICIENT_DAYS, current_user.id, 500)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["recent_days"]
   end

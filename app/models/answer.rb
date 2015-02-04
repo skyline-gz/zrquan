@@ -1,3 +1,5 @@
+require 'sql_utils'
+
 class Answer < ActiveRecord::Base
 	after_create :randomize_token_id
 
