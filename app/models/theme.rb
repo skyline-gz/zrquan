@@ -13,6 +13,10 @@ class Theme < ActiveRecord::Base
   validates :name, presence: true, on: :create
   validates :name, length: {in: 1..20}
 
+  def following_count
+    theme_follows.count
+  end
+
   def questions_num
     question_themes.count
   end
