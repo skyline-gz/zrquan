@@ -156,6 +156,31 @@ module UserSql
         where u.id = ?
         order by q.created_at desc"
 
+  CAREER_LIST =
+      "select
+        co.name as company_name,
+        ca.position,
+        ca.entry_year,
+        ca.leave_year,
+        ca.description
+        from
+          careers ca
+          inner join companies co on ca.company_id = co.id
+        where ca.user_id = ?
+        order by ca.leave_year desc, entry_year desc"
+
+  EDUCATION_LIST =
+      "select
+        s.name as school_name,
+        e.major,
+        e.graduate_year,
+        e.description
+        from
+          educations e
+          inner join schools s on e.school_id = s.id
+        where e.user_id = ?
+        order by e.graduate_year desc"
+
   POST_COMMENT_OP =
       "select sum(co.oppose_score) as num
         from POST_COMMENTS co

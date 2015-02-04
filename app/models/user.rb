@@ -225,33 +225,51 @@ class User < ActiveRecord::Base
     theme_follows.find_by(theme_id: theme.id)
   end
 
+  # 问过list
   def questions_list
     finished_sql = SqlUtils.escape_sql(UserSql::QUESTIONS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  # 说过list
   def posts_list
     finished_sql = SqlUtils.escape_sql(UserSql::POSTS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  # 答过list
   def answers_list
     finished_sql = SqlUtils.escape_sql(UserSql::ANSWERS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  # 跟踪问题list
   def f_questions_list
     finished_sql = SqlUtils.escape_sql(UserSql::F_QUESTIONS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  # 关注主题list
   def f_themes_list
     finished_sql = SqlUtils.escape_sql(UserSql::F_THEMES_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  # 草稿list
   def drafts_list
     finished_sql = SqlUtils.escape_sql(UserSql::DRAFTS_LIST, id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  # 职业经历list
+  def career_list
+    finished_sql = SqlUtils.escape_sql(UserSql::CAREER_LIST, id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  # 教育经历list
+  def education_list
+    finished_sql = SqlUtils.escape_sql(UserSql::EDUCATION_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
@@ -265,11 +283,13 @@ class User < ActiveRecord::Base
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  # 粉丝list
   def followers_list
     finished_sql = SqlUtils.escape_sql(UserSql::FOLLOWERS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  # 关注list
   def following_list
     finished_sql = SqlUtils.escape_sql(UserSql::FOLLOWING_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
