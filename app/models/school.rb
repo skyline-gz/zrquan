@@ -1,3 +1,5 @@
+require 'sql_utils'
+
 class School < ActiveRecord::Base
   belongs_to :location
   has_one :theme, as: :substance

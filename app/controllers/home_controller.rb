@@ -1,4 +1,5 @@
 require "date_utils.rb"
+require 'sql_utils'
 
 class HomeController < ApplicationController
 #  before_action :authenticate_user

@@ -1,3 +1,5 @@
+require 'sql_utils'
+
 class Theme < ActiveRecord::Base
   belongs_to :substance, polymorphic: true
   has_many :question_themes

@@ -1,4 +1,5 @@
 require "date_utils.rb"
+require 'sql_utils'
 
 class ActivitiesController < ApplicationController
   def list

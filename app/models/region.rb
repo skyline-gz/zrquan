@@ -1,3 +1,5 @@
+require 'sql_utils'
+
 class Region < ActiveRecord::Base
   has_one :theme, as: :substance
 

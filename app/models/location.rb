@@ -1,3 +1,5 @@
+require 'sql_utils'
+
 class Location < ActiveRecord::Base
   belongs_to :region
   has_one :theme, as: :substance

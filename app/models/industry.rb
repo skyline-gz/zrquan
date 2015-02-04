@@ -1,3 +1,5 @@
+require 'sql_utils'
+
 class Industry < ActiveRecord::Base
   belongs_to :parent_industry
   has_many :users

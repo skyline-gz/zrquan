@@ -1,3 +1,5 @@
+require 'sql_utils'
+
 class Company < ActiveRecord::Base
   belongs_to :location
   belongs_to :industry
