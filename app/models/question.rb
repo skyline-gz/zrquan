@@ -1,4 +1,5 @@
 require 'sql_utils'
+require 'question_sql'
 
 class Question < ActiveRecord::Base
 	after_create :randomize_token_id
@@ -30,49 +31,19 @@ class Question < ActiveRecord::Base
 	#end
 
   def self.sufficient_days
-    finished_sql = SqlUtils.escape_sql(
-        "select min(recent_days) as recent_days
-        from question_stats qs
-        where qs.user_id = ? and qs.following_act_count >= ?", current_user.id, 500
-    )
+    finished_sql = SqlUtils.escape_sql(QuestionSql::SUFFICIENT_DAYS, current_user.id, 500)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["recent_days"]
   end
 
   def detail
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          q.title,
-          q.content,
-          q.created_at,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from questions q inner join users u on (q.user_id = u.id)
-        where q.id = ?", id)
+    finished_sql = SqlUtils.escape_sql(QuestionSql::DETAIL, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
 	# 返回已经排好序的所有答案（被邀导师答案置顶，其他按照赞同分数排列）
 	def sorted_answers
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          a.id,
-          a.content,
-          a.agree_score,
-          a.created_at,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from ANSWERS a inner join users u on (a.user_id = u.id)
-        where a.question_id = ? order by a.actual_score DESC limit 10", id
-    )
+    finished_sql = SqlUtils.escape_sql(QuestionSql::SORTED_ANSWERS, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
 	end
 
@@ -82,20 +53,7 @@ class Question < ActiveRecord::Base
   end
 
   def sorted_comments
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          c.id,
-          c.content,
-          c.created_at,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from comments c inner join users u on (c.user_id = u.id)
-        where c.commentable_id = ? and c.commentable_type = 'Question'
-        order by c.created_at DESC", id)
+    finished_sql = SqlUtils.escape_sql(QuestionSql::SORTED_COMMENTS, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
