@@ -3,6 +3,7 @@ class CreateThemes < ActiveRecord::Migration
     create_table :themes do |t|
       t.string :name, limit: 30
       t.references :substance, polymorphic: true, index: true
+      t.text :description
 
       t.timestamps
     end

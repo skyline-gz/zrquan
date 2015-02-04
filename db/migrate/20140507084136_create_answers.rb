@@ -17,5 +17,6 @@ class CreateAnswers < ActiveRecord::Migration
     add_index :answers, :token_id, unique: true
     add_index :answers, [:question_id, :actual_score]
     add_index :answers, [:user_id, :anonymous_flag]
+    add_index :answers, [:user_id, :created_at]
   end
 end

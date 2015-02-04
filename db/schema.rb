@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   end
 
   add_index "answer_drafts", ["question_id"], name: "index_answer_drafts_on_question_id", using: :btree
-  add_index "answer_drafts", ["user_id"], name: "index_answer_drafts_on_user_id", using: :btree
+  add_index "answer_drafts", ["user_id", "created_at"], name: "index_answer_drafts_on_user_id_and_created_at", using: :btree
 
   create_table "answers", force: true do |t|
     t.integer  "token_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "answers", ["question_id", "actual_score"], name: "index_answers_on_question_id_and_actual_score", using: :btree
   add_index "answers", ["token_id"], name: "index_answers_on_token_id", unique: true, using: :btree
   add_index "answers", ["user_id", "anonymous_flag"], name: "index_answers_on_user_id_and_anonymous_flag", using: :btree
+  add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id"
@@ -309,6 +310,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   end
 
   add_index "posts", ["user_id", "anonymous_flag"], name: "index_posts_on_user_id_and_anonymous_flag", using: :btree
+  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
 
   create_table "private_messages", force: true do |t|
     t.text     "content"
@@ -331,7 +333,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   end
 
   add_index "question_follows", ["question_id"], name: "index_question_follows_on_question_id", using: :btree
-  add_index "question_follows", ["user_id"], name: "index_question_follows_on_user_id", using: :btree
+  add_index "question_follows", ["user_id", "created_at"], name: "index_question_follows_on_user_id_and_created_at", using: :btree
 
   create_table "question_stats", force: true do |t|
     t.integer "question_count"
@@ -374,6 +376,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "questions", ["latest_answer_id"], name: "index_questions_on_latest_answer_id", using: :btree
   add_index "questions", ["token_id"], name: "index_questions_on_token_id", unique: true, using: :btree
   add_index "questions", ["user_id", "anonymous_flag"], name: "index_questions_on_user_id_and_anonymous_flag", using: :btree
+  add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
 
   create_table "recommend_users", force: true do |t|
     t.integer  "user_id"
@@ -429,12 +432,13 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   end
 
   add_index "theme_follows", ["theme_id"], name: "index_theme_follows_on_theme_id", using: :btree
-  add_index "theme_follows", ["user_id"], name: "index_theme_follows_on_user_id", using: :btree
+  add_index "theme_follows", ["user_id", "created_at"], name: "index_theme_follows_on_user_id_and_created_at", using: :btree
 
   create_table "themes", force: true do |t|
     t.string   "name",           limit: 30
     t.integer  "substance_id"
     t.string   "substance_type"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

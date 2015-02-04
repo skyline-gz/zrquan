@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :educations
 	has_many :user_attachments
 	has_many :answer_drafts
+  has_many :theme_follows
   belongs_to :location
   belongs_to :industry
   belongs_to :latest_career, class_name: "Career"
@@ -104,7 +105,42 @@ class User < ActiveRecord::Base
   # 粉丝数
 	def followers_num
 		reverse_relationships.count
-	end
+  end
+
+  # 问过(数量)
+  def questions_num
+    answers.count
+  end
+
+  # 答过(数量)
+  def answers_num
+    questions.count
+  end
+
+  # 说过(数量)
+  def posts_num
+    posts.count
+  end
+
+  # 跟踪问题数量
+  def f_questions_num
+    question_follows.count
+  end
+
+  # 跟踪主题数量
+  def f_themes_num
+    theme_follows.count
+  end
+
+  # 收藏数量
+  def bookmarks_num
+    bookmarks.count
+  end
+
+  # 草稿数量
+  def drafts_num
+    answer_drafts.count
+  end
 
   # 声望
   def reputation
@@ -233,6 +269,107 @@ class User < ActiveRecord::Base
     theme_follows.find_by(theme_id: theme.id)
   end
 
+  def questions_list
+    finished_sql = SqlUtils.escape_sql(
+        "select
+          q.title,
+          q.created_at,
+          q.answer_count,
+          q.follow_count,
+          q.answer_agree,
+          u.name,
+          u.avatar,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major
+        from
+          questions q
+          inner join users u on (q.user_id = u.id)
+        where u.id = ?
+        order by q.created_at desc", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  def posts_list
+    finished_sql = SqlUtils.escape_sql(
+        "select
+          p.content,
+          p.created_at,
+          p.comment_count,
+          p.agree_score,
+          p.comment_agree,
+          u.name,
+          u.avatar,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major
+        from
+          posts p
+          inner join users u on (p.user_id = u.id)
+        where u.id = ?
+        order by p.created_at desc", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  def answers_list
+    finished_sql = SqlUtils.escape_sql(
+        "select
+          a.content,
+          a.created_at,
+          a.agree_score,
+          q.title,
+          q.answer_count,
+          q.follow_count,
+          u.name,
+          u.avatar,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major
+        from
+          answers a
+          inner join questions q on (a.question_id = q.id)
+          inner join users u on (a.user_id = u.id)
+        where u.id = ?
+        order by a.created_at desc", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  def f_questions_list
+    finished_sql = SqlUtils.escape_sql(
+        "select q.title, q.answer_count, q.follow_count
+        from
+          question_follows qf
+          inner join questions q on qf.question_id = q.id
+        where qf.user_id = ?
+        order by qf.created_at desc", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  def f_themes_list
+    finished_sql = SqlUtils.escape_sql(
+        "select t.name, t.description, t.substance_type
+        from
+          theme_follows tf
+          inner join themes t on tf.theme_id = t.id
+        where tf.user_id = ?
+        order by tf.created_at desc", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  def drafts_list
+    finished_sql = SqlUtils.escape_sql(
+        "select q.title, ad.content, ad.created_at
+        from
+          answer_drafts ad
+          inner join questions q on ad.question_id = q.id
+        where ad.user_id = 4
+        order by ad.created_at desc", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
   def bookmarked_questions
     finished_sql = SqlUtils.escape_sql(
         "select
@@ -292,21 +429,13 @@ class User < ActiveRecord::Base
   end
 
 	def answered?(question)
-		question.answers.each do |ans|
-			if ans.user_id == id
-				return true
-			end
-		end
-		false
+    answer_count = question.answers.where(user_id:id).count
+    answer_count > 0 ? true : false
 	end
 
 	def commented_answer?(answer)
 		comments = Comment.where(user_id: id, commentable_id: answer.id, commentable_type: "Answer")
-		if comments.count > 0
-			true
-		else
-			false
-		end
+		comments.count > 0 ? true : false
 	end
 
 	def agreed_answer?(answer)
