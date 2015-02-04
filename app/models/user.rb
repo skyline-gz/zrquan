@@ -1,5 +1,7 @@
 require 'bcrypt'
 require 'regex_expression'
+require 'sql_utils'
+require 'user_sql'
 
 class User < ActiveRecord::Base
   include BCrypt
@@ -11,13 +13,13 @@ class User < ActiveRecord::Base
 	searchable do
    text :name, :description
    text :company do
-      latest_company
+      latest_company_name
    end
    text :position do
       latest_position
    end
    text :school do
-      latest_school
+      latest_school_name
    end
    text :major do
       latest_major
@@ -37,9 +39,9 @@ class User < ActiveRecord::Base
 	has_many :agreements
 	has_many :oppositions
 	has_many :relationships, foreign_key: "follower_id"
-	has_many :following_users, class_name: "User", through: :relationships
+	# has_many :following_users, class_name: "User", through: :relationships
 	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_user_id"
-	has_many :followers, class_name: "User", through: :reverse_relationships
+	# has_many :followers, class_name: "User", through: :reverse_relationships
   has_one  :user_msg_setting
 	has_many :activities
   has_many :careers
@@ -79,22 +81,6 @@ class User < ActiveRecord::Base
 
 	def unread_messages
 		messages.where(read_flag: false)
-  end
-
-  def latest_company
-    latest_career != nil ? latest_career.company.name : ""
-  end
-
-  def latest_position
-    latest_career != nil ? latest_career.position : ""
-  end
-
-  def latest_school
-    latest_education != nil ? latest_education.school.name : ""
-  end
-
-  def latest_major
-    latest_education != nil ? latest_education.major : ""
   end
 
   # 关注人数
@@ -192,67 +178,37 @@ class User < ActiveRecord::Base
   end
 
   def answer_ag
-    finished_sql = SqlUtils.escape_sql(
-        "select sum(an.agree_score) as num
-        from ANSWERS an
-        where
-          an.user_id = ? and
-          an.anonymous_flag = 0", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::ANSWER_AG, id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_ag
-    finished_sql = SqlUtils.escape_sql(
-        "select sum(po.agree_score) as num
-        from POSTS po
-        where
-          po.user_id = ? and
-          po.anonymous_flag = 0", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::POST_AG, id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_comment_ag
-    finished_sql = SqlUtils.escape_sql(
-        "select sum(pc.agree_score) as num
-        from POST_COMMENTS pc
-        where
-          pc.user_id = ? and
-          pc.anonymous_flag = 0", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::POST_COMMENT_AG, id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def answer_op
-    finished_sql = SqlUtils.escape_sql(
-        "select sum(an.oppose_score) as num
-        from ANSWERS an
-        where
-          an.user_id = ? and
-          an.anonymous_flag = 0", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::ANSWER_OP, id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_op
-    finished_sql = SqlUtils.escape_sql(
-        "select sum(po.oppose_score) as num
-        from POSTS po
-        where
-          po.user_id = ? and
-          po.anonymous_flag = 0", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::POST_OP, id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
 
   def post_comment_op
-    finished_sql = SqlUtils.escape_sql(
-        "select sum(co.oppose_score) as num
-        from POST_COMMENTS co
-        where
-          co.user_id = ? and
-          co.anonymous_flag = 0", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::POST_COMMENT_OP, id)
     result = ActiveRecord::Base.connection.select_all(finished_sql)
     result[0]["num"]
   end
@@ -270,151 +226,52 @@ class User < ActiveRecord::Base
   end
 
   def questions_list
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          q.title,
-          q.created_at,
-          q.answer_count,
-          q.follow_count,
-          q.answer_agree,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from
-          questions q
-          inner join users u on (q.user_id = u.id)
-        where u.id = ?
-        order by q.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::QUESTIONS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def posts_list
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          p.content,
-          p.created_at,
-          p.comment_count,
-          p.agree_score,
-          p.comment_agree,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from
-          posts p
-          inner join users u on (p.user_id = u.id)
-        where u.id = ?
-        order by p.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::POSTS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def answers_list
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          a.content,
-          a.created_at,
-          a.agree_score,
-          q.title,
-          q.answer_count,
-          q.follow_count,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from
-          answers a
-          inner join questions q on (a.question_id = q.id)
-          inner join users u on (a.user_id = u.id)
-        where u.id = ?
-        order by a.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::ANSWERS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def f_questions_list
-    finished_sql = SqlUtils.escape_sql(
-        "select q.title, q.answer_count, q.follow_count
-        from
-          question_follows qf
-          inner join questions q on qf.question_id = q.id
-        where qf.user_id = ?
-        order by qf.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::F_QUESTIONS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def f_themes_list
-    finished_sql = SqlUtils.escape_sql(
-        "select t.name, t.description, t.substance_type
-        from
-          theme_follows tf
-          inner join themes t on tf.theme_id = t.id
-        where tf.user_id = ?
-        order by tf.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::F_THEMES_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def drafts_list
-    finished_sql = SqlUtils.escape_sql(
-        "select q.title, ad.content, ad.created_at
-        from
-          answer_drafts ad
-          inner join questions q on ad.question_id = q.id
-        where ad.user_id = 4
-        order by ad.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::DRAFTS_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def bookmarked_questions
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          bm.id,
-          q.title,
-          q.created_at,
-          q.answer_count,
-          q.follow_count,
-          q.answer_agree,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from
-          bookmarks bm
-          inner join questions q on (bm.bookmarkable_id = q.id and bm.bookmarkable_type = 'Question')
-          inner join users u on (q.user_id = u.id)
-        where bm.user_id = ?
-        order by bm.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::BOOKMARKED_QUESTIONS, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def bookmarked_posts
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          bm.id,
-          p.content,
-          p.created_at,
-          p.comment_count,
-          p.agree_score,
-          p.comment_agree,
-          u.name,
-          u.avatar,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major
-        from
-          bookmarks bm
-          inner join posts p on (bm.bookmarkable_id = p.id and bm.bookmarkable_type = 'Post')
-          inner join users u on (p.user_id = u.id)
-        where bm.user_id = ?
-        order by bm.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(UserSql::BOOKMARKED_POSTS, id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  def followers_list
+    finished_sql = SqlUtils.escape_sql(UserSql::FOLLOWERS_LIST, id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
+  def following_list
+    finished_sql = SqlUtils.escape_sql(UserSql::FOLLOWING_LIST, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
