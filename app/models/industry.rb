@@ -12,7 +12,21 @@ class Industry < ActiveRecord::Base
   end
 
   def all_users
-    users.order("reputation desc")
+    finished_sql = SqlUtils.escape_sql(
+        "select
+          u.name as user_name,
+          u.latest_company_name,
+          u.latest_position,
+          u.latest_school_name,
+          u.latest_major,
+          u.avatar,
+          u.description
+        from
+          users u
+        where
+          u.industry_id = ?
+        order by u.created_at desc", id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
   def questions_num
@@ -24,6 +38,6 @@ class Industry < ActiveRecord::Base
   end
 
   def users_num
-    users.count
+    all_users.count
   end
 end
