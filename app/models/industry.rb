@@ -1,4 +1,5 @@
 require 'sql_utils'
+require 'theme_sql'
 
 class Industry < ActiveRecord::Base
   belongs_to :parent_industry
@@ -14,20 +15,7 @@ class Industry < ActiveRecord::Base
   end
 
   def all_users
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          u.name as user_name,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major,
-          u.avatar,
-          u.description
-        from
-          users u
-        where
-          u.industry_id = ?
-        order by u.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(ThemeSql::INDUSTRY_USERS, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 

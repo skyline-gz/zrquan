@@ -1,4 +1,5 @@
 require 'sql_utils'
+require 'theme_sql'
 
 class Region < ActiveRecord::Base
   has_one :theme, as: :substance
@@ -12,21 +13,7 @@ class Region < ActiveRecord::Base
   end
 
   def all_users
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          u.name as user_name,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major,
-          u.avatar,
-          u.description
-        from
-          users u
-          inner join locations l on u.location_id = l.id
-        where
-          l.region_id = ?
-        order by u.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(ThemeSql::REGION_USERS, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 

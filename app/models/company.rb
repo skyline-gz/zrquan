@@ -1,4 +1,5 @@
 require 'sql_utils'
+require 'theme_sql'
 
 class Company < ActiveRecord::Base
   belongs_to :location
@@ -31,22 +32,7 @@ class Company < ActiveRecord::Base
   end
 
   def all_users
-    finished_sql = SqlUtils.escape_sql(
-        "select
-          u.name as user_name,
-          u.latest_company_name,
-          u.latest_position,
-          u.latest_school_name,
-          u.latest_major,
-          u.avatar,
-          u.description
-        from
-          companies com
-          inner join careers car on com.id = car.company_id
-          inner join users u on car.id = u.latest_career_id
-        where
-          com.id = ?
-        order by u.created_at desc", id)
+    finished_sql = SqlUtils.escape_sql(ThemeSql::COMPANY_USERS, id)
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
