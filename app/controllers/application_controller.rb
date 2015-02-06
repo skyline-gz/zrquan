@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   protected
   def authenticate_user
     jwt_token = request.headers['Zrquan-Token']
+
+    if jwt_token == nil
+      render :json => {:code => ReturnCode::FA_ACCESS_TOKEN_NOT_EXIT} and return
+    end
+
     begin
       payload = JWT.decode(jwt_token, Settings.jwt.secret)[0]
     rescue JWT::DecodeError
