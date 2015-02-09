@@ -3,7 +3,8 @@ require 'return_code'
 class AutomatchController < ApplicationController
   include AutomatchUtils
 
-  before_action :authenticate_user
+  # 注册时需要调用匹配学校，因此不需要校验用户
+  # before_action :authenticate_user
   before_action :set_query_params
 
 
