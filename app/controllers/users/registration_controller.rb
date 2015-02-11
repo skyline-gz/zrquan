@@ -10,6 +10,8 @@ class Users::RegistrationController < ApplicationController
     verify_code = (params[:verify_code] || '').to_s
     password = (params[:password] || '').to_s
     name = params[:name]
+    industry_id = params[:industry_id]
+    latest_school_name = params[:latest_school_name]
 
     if RegexExpression::MOBILE.match(mobile) == nil
       render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT} and return
@@ -42,8 +44,12 @@ class Users::RegistrationController < ApplicationController
     if user.errors[:name].any?
       render :json => {:code => ReturnCode::FA_INVALID_USER_NAME_FORMAT} and return
     end
+
     user.password = password
+    user.industry_id = industry_id
+    user.latest_school_name = latest_school_name
     user.save
+
     render :json => {:code => ReturnCode::S_OK}
   end
 end

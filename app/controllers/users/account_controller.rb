@@ -4,12 +4,22 @@ require 'regex_expression'
 class Users::AccountController < ApplicationController
 
   # 根据手机号码发送认证短信，并在服务器建立手机号码与验证码的哈希，供注册账号或找回密码使用
+  # param: mobile 欲发送确认短信的手机号
+  # 　　　　ignore_mobile_check  是否跳过检测已注册的手机号(用于找回密码)
   # sample:
-  # curl -v -H 'Content-Type: application/json' -X GET http://localhost:3000/users/send_verify_code?mobile=13533365535
+  # curl -v -H 'Content-Type: application/json' -X GET http://localhost:3000/users/send_verify_code?mobile=13533365535&ignore_mobile_check=true
   def send_verify_code
     # 生成六位随机数字
     mobile = (params[:mobile] || '').to_s
+    ignore_mobile_check = (params[:ignore_mobile_check]) == 'true'
     if RegexExpression::MOBILE.match(mobile)
+      unless ignore_mobile_check
+        user = User.find_by_mobile mobile
+        if user
+          render :json => {:code => ReturnCode::FA_USER_ALREADY_EXIT} and return
+        end
+      end
+
       verify_code = VerifyCodeCache.instance.read(mobile)
       unless verify_code
         verify_code = rand(100000..999999).to_s
@@ -30,7 +40,7 @@ class Users::AccountController < ApplicationController
     verify_code = (params[:verify_code] || '').to_s
     new_password = (params[:new_password] || '').to_s
 
-    unless verify_code == nil || verify_code.length == 0
+    if verify_code == nil || verify_code.length == 0
       render :json => {:code => ReturnCode::FA_NEED_VERIFY_CODE} and return
     end
 

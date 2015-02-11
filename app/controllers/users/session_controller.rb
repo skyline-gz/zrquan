@@ -18,7 +18,7 @@ class Users::SessionController < ApplicationController
     password = (params[:password] || '').to_s
 
     if RegexExpression::MOBILE.match(mobile) == nil
-      render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT}
+      render :json => {:code => ReturnCode::FA_INVALID_MOBILE_FORMAT} and return
     end
 
     if RegexExpression::PASSWORD.match(password) == nil
