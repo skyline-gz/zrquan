@@ -40,7 +40,7 @@ class Users::AccountController < ApplicationController
     verify_code = (params[:verify_code] || '').to_s
     new_password = (params[:new_password] || '').to_s
 
-    unless verify_code == nil || verify_code.length == 0
+    if verify_code == nil || verify_code.length == 0
       render :json => {:code => ReturnCode::FA_NEED_VERIFY_CODE} and return
     end
 
