@@ -1,5 +1,7 @@
 module QuestionSql
 
+  ALL_LIMIT = 500
+
   def self.home_question_sql(sort_type)
     select_part =
         "select
@@ -39,7 +41,7 @@ module QuestionSql
       order_part = "order by q2.created_at desc "
     end
 
-    limit_part = "limit 20"
+    limit_part = "limit " + ALL_LIMIT.to_s
 
     select_part + where_part + order_part + limit_part
   end

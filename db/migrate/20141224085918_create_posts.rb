@@ -1,7 +1,6 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.integer :token_id
       t.text :content
       t.integer :weight
       t.float :epoch_time, limit: 53
@@ -13,6 +12,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :comment_agree, default: 0
       t.boolean :anonymous_flag, default: false
       t.references :user  # 不设index,用下面的组合索引代替
+      t.references :hottest_comment, index: true
       t.integer :publish_date
       t.timestamp :edited_at
 

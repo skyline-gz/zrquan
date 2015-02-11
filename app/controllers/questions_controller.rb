@@ -241,20 +241,6 @@ class QuestionsController < ApplicationController
       @question = Question.find_by_token_id(params[:id])
     end
 
-    # def get_questions_by_type(type)
-    #   case type
-    #     when QUESTION_LIST_TYPE[:NEWEST]
-    #       # 根据最近回答的时间排序
-    #       Question.all.sort_by { |q| q.latest_qa_time }.reverse!
-    #     when QUESTION_LIST_TYPE[:HOTTEST]
-    #       Question.all.sort_by { |q| q.weight.to_f / ((((Time.now - q.created_at)/ 1.hour).round) + 12) }.reverse!
-    #     when QUESTION_LIST_TYPE[:NOT_ANSWERED]
-    #       Question.all.select { |q| q.latest_answer_id == nil }.sort_by { |q| q.latest_qa_time }.reverse!
-    #     else
-    #       [];
-    #   end
-    # end
-
     def question_params
       params.require(:question).permit(:title, :content)
     end

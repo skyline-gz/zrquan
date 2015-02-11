@@ -10,23 +10,58 @@ class HomeController < ApplicationController
 	def home
   end
 
+  def test_posts
+    user_id = params[:userId]
+    sql = PostSql.test_post_id("hot")
+    sufficient_days = 90
+
+    if sufficient_days != nil
+      recent = sufficient_days.days.ago.strftime("%Y-%m-%d")
+      finished_sql = SqlUtils.escape_sql(sql, user_id.to_i)
+      all_id = ActiveRecord::Base.connection.select_all(finished_sql)
+    else
+      # 默认值为最近3个月的动态
+      recent = 90.days.ago.strftime("%Y-%m-%d")
+      finished_sql = SqlUtils.escape_sql(sql, user_id.to_i)
+      all_id = ActiveRecord::Base.connection.select_all(finished_sql)
+    end
+
+    id_array = []
+    all_id.to_ary[0..19].each do |a|
+      id_array << a["id"]
+    end
+    finished_sql = SqlUtils.escape_sql(PostSql::TEST_POST_SQL, id_array)
+    result = ActiveRecord::Base.connection.select_all(finished_sql)
+
+    render :json => {:ids => all_id, :result => result}
+  end
+
   def hot_posts
-    sql = PostSql.home_post_sql("hot")
-    sufficient_days = Post.sufficient_days
+    # user_id = current_user.id
+    user_id = params[:userId]
+    page = params[:page].to_i
+    sql = PostSql.home_post_sql("hot", page)
+    # sufficient_days = Post.sufficient_days
+    sufficient_days = 90
+    result = nil
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
-      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
-      ActiveRecord::Base.connection.select_all(finished_sql)
+      finished_sql = SqlUtils.escape_sql(sql, user_id, recent)
+      result = ActiveRecord::Base.connection.select_all(finished_sql)
     else
       # 默认值为最近3个月的动态
       recent = DateUtils.to_yyyymmdd(90.days.ago)
-      finished_sql = SqlUtils.escape_sql(sql, current_user.id, recent)
-      ActiveRecord::Base.connection.select_all(finished_sql)
+      finished_sql = SqlUtils.escape_sql(sql, user_id, recent)
+      result = ActiveRecord::Base.connection.select_all(finished_sql)
     end
+
+    render :json => {:result => result}
+    # render 'home/hot_posts'
   end
 
   def new_posts
-    sql = PostSql.home_post_sql("new")
+    page = params[:page]
+    sql = PostSql.home_post_sql("new", page)
     sufficient_days = Post.sufficient_days
     if sufficient_days != nil
       recent = DateUtils.to_yyyymmdd(sufficient_days.days.ago)
@@ -78,6 +113,12 @@ class HomeController < ApplicationController
 			fulltext key_word
 		end
 		logger.debug(@search.results)
-	end
+  end
+
+  private
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def answer_params
+    params.require(:answer).permit(:content)
+  end
 
 end
