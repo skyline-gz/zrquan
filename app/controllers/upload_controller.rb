@@ -157,7 +157,7 @@ class UploadController < ApplicationController
     # 释放临时文件
     tempfile.close
     tempfile.unlink
-    render :json => {:code => 'S_OK', :url => Settings.upload_url + file_path}
+    render :json => {:code => ReturnCode::S_OK, :results => {:url => Settings.upload_url + file_path}}
   end
 
   def save_user_attachments (original_name, url, content_type, size ,attach_type)

@@ -4,10 +4,11 @@ require 'regex_expression'
 class Users::SessionController < ApplicationController
 
   # curl -v -H 'Content-Type: application/json' -H 'Zrquan-Token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50X3NpZ25faW5fYXQiOjE0MjE3NDIyMzAsImlkIjoyfQ.HYwm4BYzocGwWHrWGnVI7HwlG9RXCqj3BpoPAdja-l8' -X GET http://localhost:3000/users/verify
-  # 验证客户端token是否合法
+  # 验证客户端token是否合法，若合法，则返回用户数据
   def verify
-    if current_user
-      render :json => {:code => ReturnCode::S_OK}
+    @user = current_user
+    if @user
+      render 'users/session/user_item.json'
     end
   end
 
@@ -25,17 +26,17 @@ class Users::SessionController < ApplicationController
       render :json => {:code => ReturnCode::FA_INVALID_PASSWORD_FORMAT} and return
     end
 
-    user = User.find_by_mobile(mobile)
+    @user = User.find_by_mobile(mobile)
 
-    if user == nil
+    if @user == nil
       render :json => {:code => ReturnCode::FA_USER_NOT_EXIT} and return
     end
 
-    if user.password == password
-      user.current_sign_in_at = Time.now
-      user.save
-      jwt_token = give_token(user.id, user.current_sign_in_at)
-      render :json => {:code => ReturnCode::S_OK, :results => {:token => jwt_token}}
+    if @user.password == password
+      @user.current_sign_in_at = Time.now
+      @user.save
+      @jwt_token = give_token(@user.id, @user.current_sign_in_at)
+      render 'users/session/create.json'
     else
       render :json => {:code => ReturnCode::FA_PASSWORD_ERROR} and return
     end
