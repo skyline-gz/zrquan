@@ -8,7 +8,7 @@ class UploadController < ApplicationController
   before_action :authenticate_user
   # 允许iframe跨域请求
   # see http://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4?rq=1
-  after_action :allow_iframe
+  # after_action :allow_iframe
 
   # 上传流程
   # 客户端先判断是否支持HTML5 Canvas截图和FileReader，则在前端用JCrop得到截图坐标后然后canvas截图，然后做如下调用
@@ -23,6 +23,8 @@ class UploadController < ApplicationController
   # dest_id: 图片fileblob hash
   # w h x y 使用Jcrop得到
   # 返回经过七牛持久化的头像url
+
+  # 移动端的处理和HTML5 Canvas截图后是一致的，直接调用 save 接口即可
   def upload_avatar
     case params["handle_mode"]
       when 'save'
