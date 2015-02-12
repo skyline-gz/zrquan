@@ -141,7 +141,6 @@ Rails.application.routes.draw do
 
   get 'home/hot_posts', :constraints => {:format => 'json'}
   get 'home/new_posts', :constraints => {:format => 'json'}
-  get 'home/test_posts', :constraints => {:format => 'json'}
   get 'home/hot_questions', :constraints => {:format => 'json'}
   get 'home/new_questions', :constraints => {:format => 'json'}
   root 'home#home'

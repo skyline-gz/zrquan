@@ -3,104 +3,108 @@ module PostSql
   CARDS_PER_PAGE = 20
   ALL_LIMIT = 500
 
-  def self.home_post_sql(sort_type, page)
-    select_part =
-        "select
-            p2.content,
-            p2.anonymous_flag,
-            p2.created_at,
-            p2.agree_score,
-            p2.comment_count,
-            p2.comment_agree,
-            u.name as user_name,
-            u.latest_company_name,
-            u.latest_position,
-            u.latest_school_name,
-            u.latest_major,
-            u.avatar,
-            t.name as theme_name
-        from
-          POSTS p2 inner join
-          (select
-             pt.post_id,
-             min(pt.theme_id) as theme_id
-           from
-           POST_THEMES pt
-           inner join THEME_FOLLOWS tf on (pt.theme_id = tf.theme_id and tf.user_id = ?)
-           group by pt.post_id
-           order by null
-          ) t1 on p2.id = t1.post_id
-          inner join THEMES t on t1.theme_id = t.id
-          inner join USERS u on p2.user_id = u.id "
+  # def self.home_post_sql(sort_type, page)
+  #   select_part =
+  #       "select
+  #           p2.content,
+  #           p2.anonymous_flag,
+  #           p2.created_at,
+  #           p2.agree_score,
+  #           p2.comment_count,
+  #           p2.comment_agree,
+  #           u.name as user_name,
+  #           u.latest_company_name,
+  #           u.latest_position,
+  #           u.latest_school_name,
+  #           u.latest_major,
+  #           u.avatar,
+  #           t.name as theme_name
+  #       from
+  #         POSTS p2 inner join
+  #         (select
+  #            pt.post_id,
+  #            min(pt.theme_id) as theme_id
+  #          from
+  #          POST_THEMES pt
+  #          inner join THEME_FOLLOWS tf on (pt.theme_id = tf.theme_id and tf.user_id = ?)
+  #          group by pt.post_id
+  #          order by null
+  #         ) t1 on p2.id = t1.post_id
+  #         inner join THEMES t on t1.theme_id = t.id
+  #         inner join USERS u on p2.user_id = u.id "
+  #
+  #   where_part = "where p2.PUBLISH_DATE >= ? "
+  #
+  #   order_part = ""
+  #   if sort_type == "hot"
+  #     order_part = "order by p2.hot desc "
+  #   elsif sort_type == "new"
+  #     order_part = "order by p2.created_at desc "
+  #   end
+  #
+  #   # start = CARDS_PER_PAGE * (page - 1)
+  #   limit_part = "limit " + ALL_LIMIT.to_s
+  #
+  #   select_part + where_part + order_part + limit_part
+  # end
 
-    where_part = "where p2.PUBLISH_DATE >= ? "
-
-    order_part = ""
-    if sort_type == "hot"
-      order_part = "order by p2.hot desc "
-    elsif sort_type == "new"
-      order_part = "order by p2.created_at desc "
-    end
-
-    # start = CARDS_PER_PAGE * (page - 1)
-    limit_part = "limit " + ALL_LIMIT.to_s
-
-    select_part + where_part + order_part + limit_part
-  end
-
-  def self.test_post_id(sort_type)
+  def self.home_post_ids(sort_type)
     select_part =
         "select distinct
-          p.id
+          pt.post_id
          from
-          posts p
-         inner join POST_THEMES pt on p.id = pt.post_id
-         inner join THEME_FOLLOWS tf on (pt.theme_id = tf.theme_id and tf.user_id = ?) "
+          POST_THEMES pt
+          inner join THEME_FOLLOWS tf on (pt.theme_id = tf.theme_id and tf.user_id = ?) "
 
     where_part = "where pt.created_at >= ? "
 
     order_part = ""
     if sort_type == "hot"
-      order_part = "order by p.hot desc "
+      order_part = "order by pt.hot desc "
     elsif sort_type == "new"
-      order_part = "order by p.created_at desc "
+      order_part = "order by pt.created_at desc "
     end
 
-    # start = CARDS_PER_PAGE * (page - 1)
     limit_part = "limit " + ALL_LIMIT.to_s
 
-    # select_part + where_part + order_part + limit_part
-    select_part + order_part + limit_part
+    select_part + where_part + order_part + limit_part
+    # select_part + order_part + limit_part
   end
 
-  TEST_POST_SQL =
+  HOME_POST_SQL =
       "select
-        p2.content,
-        p2.anonymous_flag,
-        p2.created_at,
+        p2.content as post_content,
+        p2.anonymous_flag as post_anonymous_flag,
+        p2.created_at as post_created_at,
         p2.comment_count,
         p2.comment_agree,
-        p2.agree_score,
-        u.name as user_name,
-        u.latest_company_name,
-        u.latest_position,
-        u.latest_school_name,
-        u.latest_major,
-        u.avatar,
-        t.name as theme_name
+        p2.agree_score as post_agree_score,
+        pu.name as post_user_name,
+        ifnull(pu.latest_company_name, pu.latest_school_name) as post_user_prop1,
+        ifnull(pu.latest_position, pu.latest_major) as post_user_prop2,
+        pu.avatar as post_user_avatar,
+        t.name as theme_name,
+        pc.content as comment_content,
+        pc.created_at as comment_created_at,
+        pc.agree_score as comment_agree_score,
+        pcu.name as comment_user_name,
+        ifnull(pcu.latest_company_name, pcu.latest_school_name) as comment_user_prop1,
+        ifnull(pcu.latest_position, pcu.latest_major) as comment_user_prop2,
+        pcu.avatar as comment_user_avatar
       from
         POSTS p2 inner join
         (select
-           p.id,
+           pt.post_id,
            min(pt.theme_id) as theme_id
         from
-          POSTS p
-          inner join POST_THEMES pt on p.id = pt.post_id
-        where p.id in (?)
-        group by p.id
+          POST_THEMES pt
+        where pt.post_id in (?)
+        group by pt.post_id
         order by null
-        ) t1 on p2.id = t1.id
-        inner join USERS u on p2.user_id = u.id
+        ) t1 on p2.id = t1.post_id
+        inner join USERS pu on p2.user_id = pu.id
+        inner join POST_COMMENTS pc on p2.hottest_comment_id = pc.id
+        inner join USERS pcu on pc.user_id = pcu.id
         inner join THEMES t on t1.theme_id = t.id
         order by p2.hot desc"
 

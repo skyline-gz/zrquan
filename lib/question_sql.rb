@@ -46,6 +46,30 @@ module QuestionSql
     select_part + where_part + order_part + limit_part
   end
 
+  def self.test_question_id(sort_type)
+    select_part =
+        "select distinct
+          qt.id
+         from
+          QUESTION_THEMES qt
+          inner join THEME_FOLLOWS tf on (qt.theme_id = tf.theme_id and tf.user_id = ?) "
+
+    where_part = "where qt.created_at >= ? "
+
+    order_part = ""
+    if sort_type == "hot"
+      order_part = "order by qt.hot desc "
+    elsif sort_type == "new"
+      order_part = "order by qt.created_at desc "
+    end
+
+    # start = CARDS_PER_PAGE * (page - 1)
+    limit_part = "limit " + ALL_LIMIT.to_s
+
+    # select_part + where_part + order_part + limit_part
+    select_part + order_part + limit_part
+  end
+
   SORTED_COMMENTS =
       "select
           c.id,
