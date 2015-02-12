@@ -132,5 +132,10 @@ Rails.application.routes.draw do
   get 'assets/images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}
   get 'images/:id' => redirect('assets/%{id}'), constraints: {id: /.*/}
 
+  get 'home/hot_posts', :constraints => {:format => 'json'}
+  get 'home/new_posts', :constraints => {:format => 'json'}
+  get 'home/test_posts', :constraints => {:format => 'json'}
+  get 'home/hot_questions', :constraints => {:format => 'json'}
+  get 'home/new_questions', :constraints => {:format => 'json'}
   root 'home#home'
 end

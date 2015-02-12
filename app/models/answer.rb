@@ -24,6 +24,11 @@ class Answer < ActiveRecord::Base
     ActiveRecord::Base.connection.select_all(finished_sql)
   end
 
+  def id_and_score
+    finished_sql = SqlUtils.escape_sql(AnswerSql::ID_AND_SCORE, id)
+    ActiveRecord::Base.connection.select_all(finished_sql)
+  end
+
 	private
 	def randomize_token_id
 		self.token_id = 101747 + self.id * 23 + SecureRandom.random_number(23)

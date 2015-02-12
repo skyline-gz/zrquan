@@ -30,4 +30,12 @@ module AnswerSql
         where c.commentable_id = ? and c.commentable_type = 'Answer'
         order by c.created_at DESC"
 
+  ID_AND_SCORE =
+      "select
+          a.id,
+          a.actual_score
+        from
+          answers a
+        where a.id = ?"
+
 end

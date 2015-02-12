@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "answer_drafts", ["user_id", "created_at"], name: "index_answer_drafts_on_user_id_and_created_at", using: :btree
 
   create_table "answers", force: true do |t|
-    t.integer  "token_id"
     t.text     "content"
     t.integer  "agree_score",    default: 0
     t.integer  "oppose_score",   default: 0
@@ -66,7 +65,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   end
 
   add_index "answers", ["question_id", "actual_score"], name: "index_answers_on_question_id_and_actual_score", using: :btree
-  add_index "answers", ["token_id"], name: "index_answers_on_token_id", unique: true, using: :btree
   add_index "answers", ["user_id", "anonymous_flag"], name: "index_answers_on_user_id_and_anonymous_flag", using: :btree
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
 
@@ -282,6 +280,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
 
   create_table "post_themes", force: true do |t|
     t.integer  "post_id"
+    t.integer  "hot"
     t.integer  "theme_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -291,24 +290,25 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "post_themes", ["theme_id"], name: "index_post_themes_on_theme_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.integer  "token_id"
     t.text     "content"
     t.integer  "weight"
-    t.float    "epoch_time",     limit: 53
-    t.float    "hot",            limit: 53
-    t.integer  "agree_score",               default: 0
-    t.integer  "oppose_score",              default: 0
-    t.integer  "actual_score",              default: 0
-    t.integer  "comment_count",             default: 0
-    t.integer  "comment_agree",             default: 0
-    t.boolean  "anonymous_flag",            default: false
+    t.float    "epoch_time",         limit: 53
+    t.float    "hot",                limit: 53
+    t.integer  "agree_score",                   default: 0
+    t.integer  "oppose_score",                  default: 0
+    t.integer  "actual_score",                  default: 0
+    t.integer  "comment_count",                 default: 0
+    t.integer  "comment_agree",                 default: 0
+    t.boolean  "anonymous_flag",                default: false
     t.integer  "user_id"
+    t.integer  "hottest_comment_id"
     t.integer  "publish_date"
     t.datetime "edited_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "posts", ["hottest_comment_id"], name: "index_posts_on_hottest_comment_id", using: :btree
   add_index "posts", ["user_id", "anonymous_flag"], name: "index_posts_on_user_id_and_anonymous_flag", using: :btree
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
 
@@ -345,6 +345,7 @@ ActiveRecord::Schema.define(version: 20150128123344) do
 
   create_table "question_themes", force: true do |t|
     t.integer  "question_id"
+    t.integer  "hot"
     t.integer  "theme_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -354,27 +355,25 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "question_themes", ["theme_id"], name: "index_question_themes_on_theme_id", using: :btree
 
   create_table "questions", force: true do |t|
-    t.integer  "token_id"
-    t.string   "title",            limit: 50
+    t.string   "title",             limit: 50
     t.text     "content"
     t.integer  "user_id"
-    t.boolean  "anonymous_flag",              default: false
+    t.boolean  "anonymous_flag",               default: false
     t.integer  "weight"
-    t.float    "epoch_time",       limit: 53
-    t.float    "hot",              limit: 53
-    t.integer  "answer_count",                default: 0
-    t.integer  "follow_count",                default: 0
+    t.float    "epoch_time",        limit: 53
+    t.float    "hot",               limit: 53
+    t.integer  "answer_count",                 default: 0
+    t.integer  "follow_count",                 default: 0
     t.integer  "answer_agree"
-    t.integer  "latest_answer_id"
-    t.integer  "latest_qa_time",   limit: 8
+    t.integer  "hottest_answer_id"
+    t.integer  "latest_qa_time",    limit: 8
     t.integer  "publish_date"
     t.datetime "edited_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["latest_answer_id"], name: "index_questions_on_latest_answer_id", using: :btree
-  add_index "questions", ["token_id"], name: "index_questions_on_token_id", unique: true, using: :btree
+  add_index "questions", ["hottest_answer_id"], name: "index_questions_on_hottest_answer_id", using: :btree
   add_index "questions", ["user_id", "anonymous_flag"], name: "index_questions_on_user_id_and_anonymous_flag", using: :btree
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
 

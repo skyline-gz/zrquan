@@ -47,18 +47,28 @@ class PostsController < ApplicationController
       agreement = current_user.agreements.new(
           agreeable_id: @post.id, agreeable_type: "Post")
       is_agreement_saved = agreement.save
+      # 取消反对
+      cancel_result = Opposition.where(
+          "opposable_id = ? and opposable_type = ? and user_id = ?",
+          @post.id, "Post", current_user.id
+      ).destroy_all
+
       # 更新post
       new_weight = @post.weight + 1
+      hot = RankingUtils.post_hot(new_weight, @post.epoch_time)
       is_post_updated = @post.update(
           agree_score: @post.agree_score + 1,
           actual_score: @post.actual_score + 1,
           weight: new_weight,
-          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+          hot: hot
       )
-      # 创建赞同答案的消息并发送
-      MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
 
-      if is_agreement_saved and is_post_updated and is_activities_saved
+      # 更新post_theme
+      PostTheme.where("post_id = ?", @post.id).update_all(hot: hot)
+      # # 创建赞同答案的消息并发送
+      # MessagesAdapter.perform_async(MessagesAdapter::ACTION_TYPE[:USER_AGREE_ANSWER], current_user.id, @post.id)
+
+      if cancel_result > 0 and is_agreement_saved and is_post_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -76,14 +86,20 @@ class PostsController < ApplicationController
           "agreeable_id = ? and agreeable_type = ? and user_id = ?",
           @post.id, "Post", current_user.id
       ).destroy_all
+
       # 更新赞同分数（因为职人的范围变广，所有人都+1）
       new_weight = @post.weight - 1
+      hot = RankingUtils.post_hot(new_weight, @post.epoch_time)
       is_post_updated = @post.update(
           agree_score: @post.agree_score - 1,
           actual_score: @post.actual_score - 1,
           weight: new_weight,
-          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+          hot: hot
       )
+
+      # 更新post_theme
+      PostTheme.where("post_id = ?", @post.id).update_all(hot: hot)
+
       if cancel_result > 0 and is_post_updated
         render :json => { :code => ReturnCode::S_OK }
       else
@@ -101,15 +117,26 @@ class PostsController < ApplicationController
       @opposition = current_user.oppositions.new(
           opposable_id: @post.id, opposable_type: "Post")
       is_opposition_saved = @opposition.save
+      # 取消赞成
+      cancel_result = Agreement.where(
+          "agreeable_id = ? and agreeable_type = ? and user_id = ?",
+          @post.id, "Post", current_user.id
+      ).destroy_all
+
       # 更新排名因子
       new_weight = @post.weight - 1
+      hot = RankingUtils.post_hot(new_weight, @post.epoch_time)
       is_post_updated = @post.update(
           oppose_score: @post.oppose_score + 1,
           actual_score: @post.actual_score - 1,
           weight: new_weight,
-          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+          hot: hot
       )
-      if is_opposition_saved and is_post_updated
+
+      # 更新post_theme
+      PostTheme.where("post_id = ?", @post.id).update_all(hot: hot)
+
+      if cancel_result > 0 and is_opposition_saved and is_post_updated
         render :json => { :code => ReturnCode::S_OK }
       else
         render :json => { :code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
@@ -129,12 +156,16 @@ class PostsController < ApplicationController
       ).destroy_all
       # 更新排名因子
       new_weight = @post.weight + 1
+      hot = RankingUtils.post_hot(new_weight, @post.epoch_time)
       is_post_updated = @post.update(
           oppose_score: @post.oppose_score - 1,
           actual_score: @post.actual_score + 1,
           weight: new_weight,
-          hot: RankingUtils.post_hot(new_weight, @post.epoch_time)
+          hot: hot
       )
+      # 更新post_theme
+      PostTheme.where("post_id = ?", @post.id).update_all(hot: hot)
+
       if cancel_result > 0 and is_post_updated
         render :json => { :code => ReturnCode::S_OK }
       else
