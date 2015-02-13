@@ -13,6 +13,10 @@ class Post < ActiveRecord::Base
   validates :content, presence: true, on: :create
   validates :content, length: {in: 1..140}
 
+  searchable do
+    text :content
+  end
+
   def self.sufficient_days
     finished_sql = SqlUtils.escape_sql(PostSql::SUFFICIENT_DAYS, current_user.id, 500)
     result = ActiveRecord::Base.connection.select_all(finished_sql)

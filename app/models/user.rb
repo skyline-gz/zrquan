@@ -10,22 +10,6 @@ class User < ActiveRecord::Base
 	# 头像上传由异步upload_controller.rb控制,avatar字段只存储头像url
 	# mount_uploader :avatar, AvatarUploader
 
-	searchable do
-   text :name, :description
-   text :company do
-      latest_company_name
-   end
-   text :position do
-      latest_position
-   end
-   text :school do
-      latest_school_name
-   end
-   text :major do
-      latest_major
-   end
-	end
-
   has_many :questions
   has_many :answers
   has_many :posts
@@ -59,6 +43,22 @@ class User < ActiveRecord::Base
   validates :name, length: {in: 1..30}, if: Proc.new { |u| u.name.match(/\A[a-zA-Z]+\z/) }
   validates :name, length: {in: 1..10}, if: Proc.new { |u| u.name.match(/\A\p{Han}+\z/) }
   validates :description, length: {maximum: 25}
+
+  searchable do
+    text :name, :description
+    text :company do
+      latest_company_name
+    end
+    text :position do
+      latest_position
+    end
+    text :school do
+      latest_school_name
+    end
+    text :major do
+      latest_major
+    end
+  end
 
   def password
     Password.new(self.encrypted_password)

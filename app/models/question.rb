@@ -4,10 +4,6 @@ require 'question_sql'
 class Question < ActiveRecord::Base
 	after_create :randomize_token_id
 
-	searchable do
-		text :title, :content
-	end
-
   belongs_to :industry
   belongs_to :category
   belongs_to :user
@@ -25,6 +21,10 @@ class Question < ActiveRecord::Base
 	validates :title, presence: true, on: :create
   validates :title, length: {in: 8..50}
   validates :content, length: {maximum: 10000}
+
+  searchable do
+    text :title, :content
+  end
 
 	#def answers_num
 	#	answers.size

@@ -2,7 +2,7 @@ require 'return_code'
 
 class SearchController < ApplicationController
 
-  SUPPORT_TYPE = %w('Question', 'User')
+  SUPPORT_TYPE = %w('Question', 'User', 'Post', 'Theme')
 
   # type 类型，见 SUPPORT_TYPE
   # q    搜索关键字

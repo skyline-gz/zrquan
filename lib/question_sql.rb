@@ -71,7 +71,7 @@ module QuestionSql
 
   HOME_QUESTION_SQL =
       "select
-        q2.content as question_content,
+        q2.title as question_title,
         q2.anonymous_flag as question_anonymous_flag,
         q2.created_at as question_created_at,
         q2.answer_count,
