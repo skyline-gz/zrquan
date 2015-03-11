@@ -8,16 +8,16 @@ class SearchController < ApplicationController
   # q    搜索关键字
   def index
     type = params[:type]
-    query = params[:q]
-    if query == nil or query.length == 0
+    key_word = params[:q]
+    if key_word == nil or key_word.length == 0
       render :json => {:code => ReturnCode::FA_INVALID_PARAMETERS} and return
     end
     if SUPPORT_TYPE.find { |e| /#{type}/ =~ e }
       search = type.constantize.search do
-        fulltext query
+        fulltext key_word
       end
       @items = search.results
-      render 'search/index'
+      render :json => {:result => @items}
     else
       render :json => {:code => ReturnCode::FA_NOT_SUPPORTED_PARAMETERS}
     end

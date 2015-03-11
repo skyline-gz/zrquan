@@ -2,51 +2,7 @@ module QuestionSql
 
   ALL_LIMIT = 500
 
-  # def self.home_question_sql(sort_type)
-  #   select_part =
-  #       "select
-  #           q2.title,
-  #           q2.anonymous_flag,
-  #           q2.created_at,
-  #           q2.answer_count,
-  #           q2.answer_agree,
-  #           q2.follow_count,
-  #           u.name as user_name,
-  #           u.latest_company_name,
-  #           u.latest_position,
-  #           u.latest_school_name,
-  #           u.latest_major,
-  #           u.avatar,
-  #           t.name as theme_name
-  #         from
-  #           QUESTIONS q2 inner join
-  #           (select
-  #              qt.question_id,
-  #              min(qt.theme_id) as theme_id
-  #            from
-  #            QUESTION_THEMES qt
-  #            inner join THEME_FOLLOWS tf on (qt.theme_id = tf.theme_id and tf.user_id = ?)
-  #            group by qt.question_id
-  #            order by null
-  #           ) t1 on q2.id = t1.question_id
-  #           inner join USERS u on q2.user_id = u.id
-  #           inner join THEMES t on t1.theme_id = t.id "
-  #
-  #   where_part = "where q2.PUBLISH_DATE >= ? "
-  #
-  #   order_part = ""
-  #   if sort_type == "hot"
-  #     order_part = "order by q2.hot desc "
-  #   elsif sort_type == "new"
-  #     order_part = "order by q2.created_at desc "
-  #   end
-  #
-  #   limit_part = "limit " + ALL_LIMIT.to_s
-  #
-  #   select_part + where_part + order_part + limit_part
-  # end
-
-  def self.home_question_ids(sort_type)
+  def self.home_question_ids(sort)
     select_part =
         "select distinct
           qt.question_id
@@ -57,9 +13,9 @@ module QuestionSql
     where_part = "where qt.created_at >= ? "
 
     order_part = ""
-    if sort_type == "hot"
+    if sort == "hot"
       order_part = "order by qt.hot desc "
-    elsif sort_type == "new"
+    elsif sort == "new"
       order_part = "order by qt.created_at desc "
     end
 

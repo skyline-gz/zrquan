@@ -48,7 +48,7 @@ module PostSql
   #   select_part + where_part + order_part + limit_part
   # end
 
-  def self.home_post_ids(sort_type)
+  def self.home_post_ids(sort)
     select_part =
         "select distinct
           pt.post_id
@@ -59,9 +59,9 @@ module PostSql
     where_part = "where pt.created_at >= ? "
 
     order_part = ""
-    if sort_type == "hot"
+    if sort == "hot"
       order_part = "order by pt.hot desc "
-    elsif sort_type == "new"
+    elsif sort == "new"
       order_part = "order by pt.created_at desc "
     end
 

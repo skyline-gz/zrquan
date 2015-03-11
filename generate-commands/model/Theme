@@ -1,1 +1,1 @@
-rails g model Theme name:string substance:references{polymorphic}
+rails g model Theme name:string

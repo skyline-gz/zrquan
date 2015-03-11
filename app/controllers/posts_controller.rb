@@ -22,8 +22,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = current_user.posts.new(post_params)
-    @post.weight = 1 #本体自身权重
+    # @post = current_user.posts.new()
+    @post = Post.new
+    @post.user_id = 1
+    @post.content = params[:content]
+    @post.anonymous_flag = params[:password]
+    @post.weight = 1        #本体自身权重
     @post.epoch_time = Time.now.to_i
     @post.hot = RankingUtils.post_hot(@post.weight, @post.epoch_time)
     @post.publish_date = DateUtils.to_yyyymmdd(Date.today)
@@ -34,10 +38,9 @@ class PostsController < ApplicationController
     is_activities_saved = save_activities(@post.id, "Post", 3)
 
     if is_post_saved and is_post_theme_saved and is_activities_saved
-      redirect_to action: 'show', id: @post.token_id
-      # TODO 成功的json
+      render :json => {:code => ReturnCode::S_OK }
     else
-      # TODO 失败的json
+      render :json => {:code => ReturnCode::FA_WRITING_TO_DATABASE_ERROR }
     end
   end
 
@@ -195,7 +198,8 @@ class PostsController < ApplicationController
 
   private
     def save_activities(target_id, target_type, activity_type)
-      act = current_user.activities.new
+      # act = current_user.activities.new
+      act = Activity.new
       act.target_id = target_id
       act.target_type = target_type
       act.activity_type = activity_type
@@ -205,7 +209,8 @@ class PostsController < ApplicationController
 
     def save_post_theme
       is_ok = true
-      themes = params[:post][:themes].split(',').map { |s| s.to_i }
+      # themes = params[:themes].split(',').map { |s| s.to_i }
+      themes = params[:themes]
       themes.each do |t_id|
         pt = @post.post_themes.new
         pt.theme_id = t_id
@@ -233,6 +238,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:token_id, :content, :anonymous_flag, :user_id, :edited_at)
+      params.require(:post).permit(:content, :anonymous_flag, :user_id, :edited_at)
     end
 end

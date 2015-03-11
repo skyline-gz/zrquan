@@ -2,7 +2,6 @@ require 'sql_utils'
 require 'theme_sql'
 
 class Theme < ActiveRecord::Base
-  belongs_to :substance, polymorphic: true
   has_many :question_themes
   has_many :post_themes
 	has_many :questions, through: :question_themes

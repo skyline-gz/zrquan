@@ -11,13 +11,13 @@ class HomeController < ApplicationController
   end
 
   def posts
-    user_id = params[:userId]
-    post_id = params[:postId]
-    sort_type = params[:sortType]
+    user_id = params[:user_id]
+    post_id = params[:post_id]
+    sort = params[:sort]
 
     # 手机下拉刷新,同时获取所有post_id和最初的20条记录
     if user_id != nil
-      sql = PostSql.home_post_ids(sort_type)
+      sql = PostSql.home_post_ids(sort)
       sufficient_days = 90
       # sufficient_days = Post.sufficient_days
 
@@ -73,13 +73,13 @@ class HomeController < ApplicationController
   # end
 
   def questions
-    user_id = params[:userId]
-    question_id = params[:questionId]
-    sort_type = params[:sortType]
+    user_id = params[:user_id]
+    question_id = params[:question_id]
+    sort= params[:sort]
 
     # 手机下拉刷新,同时获取所有post_id和最初的20条记录
     if user_id != nil
-      sql = QuestionSql.home_question_ids(sort_type)
+      sql = QuestionSql.home_question_ids(sort)
       sufficient_days = Question.sufficient_days
       if sufficient_days != nil
         recent = sufficient_days.days.ago.strftime("%Y-%m-%d")

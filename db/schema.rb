@@ -93,22 +93,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "careers", ["company_id"], name: "index_careers_on_company_id", using: :btree
   add_index "careers", ["user_id"], name: "index_careers_on_user_id", using: :btree
 
-  create_table "certifications", force: true do |t|
-    t.string   "name",               limit: 30
-    t.integer  "study_time_sum"
-    t.integer  "study_time_samples"
-    t.integer  "study_time_avg"
-    t.integer  "study_cost_sum"
-    t.integer  "study_cost_samples"
-    t.integer  "study_cost_avg"
-    t.text     "regist_rule"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "certifications", ["name"], name: "index_certifications_on_name", unique: true, using: :btree
-
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -242,15 +226,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
 
   add_index "oppositions", ["opposable_id", "opposable_type"], name: "index_oppositions_on_opposable_id_and_opposable_type", using: :btree
   add_index "oppositions", ["user_id"], name: "index_oppositions_on_user_id", using: :btree
-
-  create_table "other_wikis", force: true do |t|
-    t.string   "name",        limit: 30
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "other_wikis", ["name"], name: "index_other_wikis_on_name", unique: true, using: :btree
 
   create_table "post_comments", force: true do |t|
     t.text     "content"
@@ -414,15 +389,6 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "schools", ["location_id"], name: "index_schools_on_location_id", using: :btree
   add_index "schools", ["name"], name: "index_schools_on_name", unique: true, using: :btree
 
-  create_table "skills", force: true do |t|
-    t.string   "name",        limit: 30
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "skills", ["name"], name: "index_skills_on_name", unique: true, using: :btree
-
   create_table "theme_follows", force: true do |t|
     t.integer  "theme_id"
     t.integer  "user_id"
@@ -434,16 +400,13 @@ ActiveRecord::Schema.define(version: 20150128123344) do
   add_index "theme_follows", ["user_id", "created_at"], name: "index_theme_follows_on_user_id_and_created_at", using: :btree
 
   create_table "themes", force: true do |t|
-    t.string   "name",           limit: 30
-    t.integer  "substance_id"
-    t.string   "substance_type"
+    t.string   "name",        limit: 30
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "themes", ["name"], name: "index_themes_on_name", unique: true, using: :btree
-  add_index "themes", ["substance_id", "substance_type"], name: "index_themes_on_substance_id_and_substance_type", using: :btree
 
   create_table "user_attachments", force: true do |t|
     t.integer  "user_id"
